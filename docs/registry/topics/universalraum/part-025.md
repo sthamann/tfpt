@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Gravitation muss sehr verschiedene Inhalte gleich behandeln
+
+[experiments/theory-contracts/universalraum-five-source-frontier-20260914/main-v1.4/chapters/15_schatten_offene_phaenomene.tex:22-26](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/main-v1.4/chapters/15_schatten_offene_phaenomene.tex#L22) · `section:0c77ee197316df430aff` · section
+
+Äquivalenztests wie MICROSCOPE prüfen die Universalität des freien Falls für unterschiedliche Materialien mit hoher Genauigkeit. Eine neue Quelle für Raumzeit muss daher erklären, warum verschiedene innere Zusammensetzungen auf dieselbe effektive Geometrie reagieren. F18
+
 ## Weitere offene Stellen mit unterschiedlicher Beweiskraft
 
 [experiments/theory-contracts/universalraum-five-source-frontier-20260914/main-v1.4/chapters/15_schatten_offene_phaenomene.tex:27-43](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/main-v1.4/chapters/15_schatten_offene_phaenomene.tex#L27) · `section:26cd596dca0819265277` · section
@@ -62,7 +68,7 @@ No opening prose excerpt; see the source.
 
 [experiments/theory-contracts/universalraum-five-source-frontier-20260914/main-v1.4/chapters/17_schatten_quellen.tex:3-29](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/main-v1.4/chapters/17_schatten_quellen.tex#L3) · `section:fdb85c35eaeeff800a9c` · section
 
-Die Erweiterung wurde am 14. September 2026 gegen verfügbare Originalabschnitte im lokalen Repository tfpt-theoryv4 abgeglichen. Der gelesene Git-Stand war 66b91e40e245569f06ab440ead80f446c9be0ee5. Dies identifiziert den Checkout; es behauptet keinen frischen vollständigen Beweis- oder Testlauf. Die tatsächlich verwendeten Dateiinhalte sind zusätzlich mit SHA-256 im Paket erfasst, auch soweit der Arbeitsbaum von Git 
+Die Erweiterung wurde am 14. September 2026 gegen verfügbare Originalabschnitte im lokalen Repository tfpt-theoryv4 abgeglichen. Der gelesene Git-Stand war 66b91e40e245569f06ab440ead80f446c9be0ee5. Dies identifiziert den Checkout; es behauptet keinen frischen vollständigen Beweis- oder Testlauf. Die tatsächlich verwendeten Dateiinhalte sind zusätzlich mit SHA-256 im Paket erfasst, auch soweit der Arbeitsbaum von Git
 
 Explicit source references:
 
@@ -128,7 +134,7 @@ Für genau zwei vollständige [formula in source] -Zellen und eine positive Brü
 
 [experiments/theory-contracts/universalraum-five-source-frontier-20260914/main-v1.4/chapters/18_audit_v13.tex:60-77](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/main-v1.4/chapters/18_audit_v13.tex#L60) · `section:81d5a658495cbfd747d3` · section
 
-Im ausgewiesenen harmonischen Modell eines geteilten Vermittlers lautet der symmetrische aktive Block Sein niedriger Zweig beginnt mit [formula in source] ; der antisymmetrische mit [formula in source] . Deshalb ist auf dem aktiven [formula in source] -Raum Nach Abzug beider Einzelbondkorrekturen [formula in source] bleibt Beide Schreibweisen sind kompatibel. Eine Konstante auf dem aktiven Sektor ist außerhalb davon 
+Im ausgewiesenen harmonischen Modell eines geteilten Vermittlers lautet der symmetrische aktive Block Sein niedriger Zweig beginnt mit [formula in source] ; der antisymmetrische mit [formula in source] . Deshalb ist auf dem aktiven [formula in source] -Raum Nach Abzug beider Einzelbondkorrekturen [formula in source] bleibt Beide Schreibweisen sind kompatibel. Eine Konstante auf dem aktiven Sektor ist außerhalb davon
 
 ## Ein exakter Stern-Spektralfilter unter zusätzlichen Ressourcen
 
@@ -188,13 +194,13 @@ Akzeptiere in jeder Sternrunde die Recordfolge 111: Alle acht ersten Recordfolge
 
 [experiments/theory-contracts/universalraum-five-source-frontier-20260914/main-v1.4/chapters/19_execution_v13.tex:85-106](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/main-v1.4/chapters/19_execution_v13.tex#L85) · `section:bb3650b1e2ab66eebb29` · section
 
-Nach erfolgreicher Präparation folgen lokaler Quelltick [formula in source] , zweimal [formula in source] , Rücknahme [formula in source] und dasselbe [formula in source] -Runden-Filter. Ein ideales kostenloses [formula in source] -Messgerät wird nicht eingesetzt. Protokoll R behält denselben kohärenten Pointer; Protokoll F verwendet beim zweiten Schritt einen frischen. Mit [formula in source] lauten die gemeinsamen 
+Nach erfolgreicher Präparation folgen lokaler Quelltick [formula in source] , zweimal [formula in source] , Rücknahme [formula in source] und dasselbe [formula in source] -Runden-Filter. Ein ideales kostenloses [formula in source] -Messgerät wird nicht eingesetzt. Protokoll R behält denselben kohärenten Pointer; Protokoll F verwendet beim zweiten Schritt einen frischen. Mit [formula in source] lauten die gemeinsamen
 
 ## Was für eine native Implementierung noch fehlt
 
 [experiments/theory-contracts/universalraum-five-source-frontier-20260914/main-v1.4/chapters/19_execution_v13.tex:107-115](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/main-v1.4/chapters/19_execution_v13.tex#L107) · `section:2dfbb1428f663731171d` · section
 
-Das neue Register ist nicht Clifford: Ein vierqubitiger Pauli hat Spur null oder [formula in source] . Noch konkreter erzeugt der Quellinput [formula in source] genau 13 nichtverschwindende Rechenbasisamplituden. Das ist kein reiner Stabilizerzustand, dessen Trägergröße eine Zweierpotenz ist. Nur Cliffordoperationen, Stabilizer-Hilfszustände und Pauli-Messungen reichen auch mit Feedback nicht aus. Andere Kodierungen 
+Das neue Register ist nicht Clifford: Ein vierqubitiger Pauli hat Spur null oder [formula in source] . Noch konkreter erzeugt der Quellinput [formula in source] genau 13 nichtverschwindende Rechenbasisamplituden. Das ist kein reiner Stabilizerzustand, dessen Trägergröße eine Zweierpotenz ist. Nur Cliffordoperationen, Stabilizer-Hilfszustände und Pauli-Messungen reichen auch mit Feedback nicht aus. Andere Kodierungen
 
 ## Ungelesener Austausch ist keine Kühlung
 
@@ -206,7 +212,7 @@ Alle [formula in source] kommutieren mit [formula in source] ; der ungelesene Ka
 
 [experiments/theory-contracts/universalraum-five-source-frontier-20260914/main-v1.4/chapters/19_execution_v13.tex:123-126](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/main-v1.4/chapters/19_execution_v13.tex#L123) · `section:69cc2dc25269e86eb105` · section
 
-Ein nativer Adapter muss [formula in source] , [formula in source] , Kern und Belegung gemeinsam liefern, beim Half-Charge-Feld zusätzlich mit Domänen- und Energiekontrolle. Er muss den 13-Amplituden-Eingang, beide Recordzweige und die Acht-Runden-Echos reproduzieren, einschließlich Hilfszuständen und Fehlerausgängen. Erst anschließend ist eine skalierende Zellfamilie sinnvoll auf Geometrie, Chiralität und Spin 2 zu 
+Ein nativer Adapter muss [formula in source] , [formula in source] , Kern und Belegung gemeinsam liefern, beim Half-Charge-Feld zusätzlich mit Domänen- und Energiekontrolle. Er muss den 13-Amplituden-Eingang, beide Recordzweige und die Acht-Runden-Echos reproduzieren, einschließlich Hilfszuständen und Fehlerausgängen. Erst anschließend ist eine skalierende Zellfamilie sinnvoll auf Geometrie, Chiralität und Spin 2 zu
 
 ## Versionspaar v1.3: Quellen, Abdeckung und Reproduktion
 
@@ -392,7 +398,7 @@ Für ausschließlich kantenlokale Vermittler ohne Hopping sind die lokalen Ladun
 
 [experiments/theory-contracts/universalraum-five-source-frontier-20260914/main-v1.4/chapters/23_micro_v14.tex:27-38](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/main-v1.4/chapters/23_micro_v14.tex#L27) · `section:4681a4a1ff48e6ffd9b3` · section
 
-Die Kopplung [formula in source] zwischen 256 Materie- und 288 Vermittlerzuständen wurde neu aufgebaut. Sie erfüllt [formula in source] . Der volle Hamiltonoperator ist Seine 14 verschiedenen Energien sind sieben niedrige Werte sechs obere [formula in source] für [formula in source] und [formula in source] mit Multiplizität 67. Die niedrigen Multiplizitäten sind [formula in source] ; die sechs oberen wiederholen die 
+Die Kopplung [formula in source] zwischen 256 Materie- und 288 Vermittlerzuständen wurde neu aufgebaut. Sie erfüllt [formula in source] . Der volle Hamiltonoperator ist Seine 14 verschiedenen Energien sind sieben niedrige Werte sechs obere [formula in source] für [formula in source] und [formula in source] mit Multiplizität 67. Die niedrigen Multiplizitäten sind [formula in source] ; die sechs oberen wiederholen die
 
 ## Ein exakter endlicher Filter aus wirklichen Entwicklungszeiten
 
@@ -642,9 +648,3 @@ TeX Gyre Pagella TeX Gyre Heros chapter navy section navy slateTFPT · Universal
 [experiments/theory-contracts/universalraum-five-source-frontier-20260914/main-v1.4/update_body_v14.tex:1-9](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/main-v1.4/update_body_v14.tex#L1) · `section:fed5f04136d70f27a937` · chapter
 
 Dieses Update fasst die Prüfung der fünf neuesten Berichte und die danach eigenständig gerechnete Forschungsrunde zusammen. Das zugehörige Hauptbuch v1.4 erhält alle bisherigen Grundlagen, Herleitungen und Abbildungen. Es enthält zusätzlich die vollständigen neuen Argumente, die T1–T8-Zuordnung und die Ressourcen- und Quellengrenzen.
-
-## 1. Was an den fünf neuen Berichten trägt – und was nicht
-
-[experiments/theory-contracts/universalraum-five-source-frontier-20260914/main-v1.4/update_body_v14.tex:10-18](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/main-v1.4/update_body_v14.tex#L10) · `section:ac9fcda0237a52d7d1bb` · section
-
-Der gewichtete Bandbeweis, der Feedbackattraktor und die mikroskopische Sternlösung tragen im deklarierten Modell. Die Standard- [formula in source] -Phasenrechnung und die lokalen F4-Zahlen lassen sich unabhängig reproduzieren. Drei Aussagen mussten enger gefasst werden: Dichte Gleitkomma-Diagonalisierung liefert keinen exakten Vierfachheitsbeweis. Die Vierfachstruktur ist numerisch gut gestützt, aber nicht abschlie

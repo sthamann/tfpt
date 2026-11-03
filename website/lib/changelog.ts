@@ -42,6 +42,118 @@ export const CHANGELOG_MACROS: Record<string, string> =
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    "date": "2026-11-03",
+    "dateLabel": "2026-11-03",
+    "heading": [
+      {
+        "k": "t",
+        "v": ": Shared source, field and transfer consolidation"
+      }
+    ],
+    "items": [
+      [
+        {
+          "k": "t",
+          "v": "The four-puncture meridian/root distinction and conditional joint metric rigidity are recorded with their fixed charge-extension, integrality and completion assumptions. The actual native-clock closure and canonical marked sector extension retain their explicit common-source and covariance prerequisites."
+        }
+      ],
+      [
+        {
+          "k": "t",
+          "v": "The original structured P1 seed and common "
+        },
+        {
+          "k": "m",
+          "v": "S_{\\rm adm}/Z_{\\rm rel}/\\mathrm{OS}/\\Gamma_{\\rm ren}"
+        },
+        {
+          "k": "t",
+          "v": " route are restored as the starting point. A special CAR/native-clock route, an extra post-source vacuum, a new free reference or a universal "
+        },
+        {
+          "k": "m",
+          "v": "a\\to0"
+        },
+        {
+          "k": "t",
+          "v": " limit is not imposed as an additional global requirement. The full reference, domains, weights and eta transport together."
+        }
+      ],
+      [
+        {
+          "k": "t",
+          "v": "The existing variable-background reader, ordered paired source, physical Gauss-sector Hamiltonian source, bounded thermal/ground time words, vacuum reconstruction and common-metric Ward route are reported in their stated operator and limiting classes."
+        }
+      ],
+      [
+        {
+          "k": "t",
+          "v": "The whole DET16 source and its matrix-free word evaluator, exact generator comparison, internal Clifford intertwiner and conditional field-time reader are distinguished from a primitive spatial field identification. Sixteen real vector Majoranas and sixteen complex spinor annihilators are not equated by dimension. The original "
+        },
+        {
+          "k": "m",
+          "v": "96"
+        },
+        {
+          "k": "t",
+          "v": "-dimensional field block retains its given Yukawa/Majorana couplings; it is not "
+        },
+        {
+          "k": "m",
+          "v": "96"
+        },
+        {
+          "k": "t",
+          "v": " independent couplings."
+        }
+      ],
+      [
+        {
+          "k": "t",
+          "v": "The given classical Clifford caller has its complete four-slot field map, same-parameter time, product reflection and exterior transfer kernel. Its positive physical Hamiltonian is distinct from the HS Liouvillian. The whole unprojected free heat trace excludes a literal flat DET16 tensor factor under every unitary oriented kernel identification. Actual sector projections, dynamical bosons and interacting sources remain outside that zero-free premise."
+        }
+      ],
+      [
+        {
+          "k": "t",
+          "v": "The larger declared "
+        },
+        {
+          "k": "m",
+          "v": "64"
+        },
+        {
+          "k": "t",
+          "v": "-CAR/"
+        },
+        {
+          "k": "m",
+          "v": "60"
+        },
+        {
+          "k": "t",
+          "v": "-CCR bank has an evaluated nonzero sixteenth-order compensated environment transition and its leading Dyson time coefficient. Its direct mirror block is zero; the primitive coefficient is separately "
+        },
+        {
+          "k": "c",
+          "v": "null/not_computed"
+        },
+        {
+          "k": "t",
+          "v": ". R111 identifies the remaining source-time residual in the original positive-parent clause and evaluates the marked three-rate "
+        },
+        {
+          "k": "m",
+          "v": "C_6"
+        },
+        {
+          "k": "t",
+          "v": " response. Neither computation is a primitive four-dimensional field or joint-spectrum derivation."
+        }
+      ]
+    ]
+  },
+  {
     "date": "2026-10-18",
     "dateLabel": "2026-10-18",
     "heading": [

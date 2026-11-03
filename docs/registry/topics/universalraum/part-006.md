@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## 1. Was die endliche Bank tatsächlich ausschließt
+
+[documents/experiments--theory-contracts--universalraum-common-process-20260915--tmp--pdfs--TFPT_Universalraum_Gemeinsamer_Prozess_Konsolidierung_2026-09-15_v1.6.8/sections/020-subsection-10-ein-korrigierter-wirklich-entscheidbarer.tex:72-100](../../../../documents/experiments--theory-contracts--universalraum-common-process-20260915--tmp--pdfs--TFPT_Universalraum_Gemeinsamer_Prozess_Konsolidierung_2026-09-15_v1.6.8/sections/020-subsection-10-ein-korrigierter-wirklich-entscheidbarer.tex#L72) · `section:1c7886264b00443951b2` · subsection
+
+Der beibehaltene Beweis aus v1.6.5 gilt für den ursprünglichen Hamiltonoperator mit 64 Fermion- und 60 Bosonmoden, Δ 0. Der Hilbertraum ist wegen der Bosonen nicht endlichdimensional. Endlich ist die Zahl der Moden. Mit C=960g²/Δ folgt aus quadratischem Ergänzen
+
 ## 2. Der kleinste Gegencheck zur Primzahl-Automatik
 
 [documents/experiments--theory-contracts--universalraum-common-process-20260915--tmp--pdfs--TFPT_Universalraum_Gemeinsamer_Prozess_Konsolidierung_2026-09-15_v1.6.8/sections/020-subsection-10-ein-korrigierter-wirklich-entscheidbarer.tex:101-146](../../../../documents/experiments--theory-contracts--universalraum-common-process-20260915--tmp--pdfs--TFPT_Universalraum_Gemeinsamer_Prozess_Konsolidierung_2026-09-15_v1.6.8/sections/020-subsection-10-ein-korrigierter-wirklich-entscheidbarer.tex#L101) · `section:5f63dd1876ef44b98547` · subsection
@@ -357,7 +363,7 @@ Angenommen, es gäbe nur je eine Entnahme- und Additionslinie mit Energien [form
 
 [documents/experiments--theory-contracts--universalraum-common-process-20260915--tmp--pdfs--TFPT_Universalraum_Gemeinsamer_Prozess_Konsolidierung_2026-09-15_v1.6.8/sections/025-subsection-8-was-der-operationssatz-jetzt-tats-chlich.tex:1-57](../../../../documents/experiments--theory-contracts--universalraum-common-process-20260915--tmp--pdfs--TFPT_Universalraum_Gemeinsamer_Prozess_Konsolidierung_2026-09-15_v1.6.8/sections/025-subsection-8-was-der-operationssatz-jetzt-tats-chlich.tex#L1) · `section:0643f20f9a729b3054a0` · subsection
 
-@ > p( - 4 ) * 0.3333 > p( - 4 ) * 0.3333 > p( - 4 ) * 0.3333@ Vertrag & Mathematisch abgesichert & Nicht dadurch verfügbar \\ Markierter endlicher Matrixcompiler & Matrizen, Ordnungen, konkrete endliche Syntheseidentitäten & Vollständiges Fockinstrument, Präparation, physischer Zeitgenerator \\ H allein & Modellzeitentwicklung & Unabhängiges Schalten von X und [formula in source] \\ X und [formula in source] , wenn 
+@ > p( - 4 ) * 0.3333 > p( - 4 ) * 0.3333 > p( - 4 ) * 0.3333@ Vertrag & Mathematisch abgesichert & Nicht dadurch verfügbar \\ Markierter endlicher Matrixcompiler & Matrizen, Ordnungen, konkrete endliche Syntheseidentitäten & Vollständiges Fockinstrument, Präparation, physischer Zeitgenerator \\ H allein & Modellzeitentwicklung & Unabhängiges Schalten von X und [formula in source] \\ X und [formula in source] , wenn
 
 ## 8.1 Konkrete Präparationsgrenze
 
@@ -461,7 +467,7 @@ Explicit source references:
 
 [documents/experiments--theory-contracts--universalraum-common-process-20260915--tmp--pdfs--TFPT_Universalraum_Gemeinsamer_Prozess_Konsolidierung_2026-09-15_v1.6.8/sections/027-subsubsection-die-isotypie-zerlegung-von-n-3-beide-spure.tex:1-30](../../../../documents/experiments--theory-contracts--universalraum-common-process-20260915--tmp--pdfs--TFPT_Universalraum_Gemeinsamer_Prozess_Konsolidierung_2026-09-15_v1.6.8/sections/027-subsubsection-die-isotypie-zerlegung-von-n-3-beide-spure.tex#L1) · `section:8f570d65c4d134ce3119` · subsubsection
 
-@lrrrll@ Block & Dim & Mult & S-Eigenwert & (C_S, C_U) & Rolle \\ (144, 20) & 2880 & 2 & 7 & (85, 39) & hell, X-gekoppelt \\ (144, 4̄) & 576 & 2 & 10 & (85, 15) & hell, X-gekoppelt \\ (16′, 20) & 320 & 2 & 12 & (45, 39) & hell, X-gekoppelt \\ (16′, 4̄) & 64 & 1 & 0 (ker S) & (45, 15) & χ-Kompositblock \\ (672, 4̄) & 2688 & 1 & - & (165, 15) & dunkel \\ (1200, 20) & 24 000 & 1 & - & (141, 39) & dunkel \\ (560, 20′) & 
+@lrrrll@ Block & Dim & Mult & S-Eigenwert & (C_S, C_U) & Rolle \\ (144, 20) & 2880 & 2 & 7 & (85, 39) & hell, X-gekoppelt \\ (144, 4̄) & 576 & 2 & 10 & (85, 15) & hell, X-gekoppelt \\ (16′, 20) & 320 & 2 & 12 & (45, 39) & hell, X-gekoppelt \\ (16′, 4̄) & 64 & 1 & 0 (ker S) & (45, 15) & χ-Kompositblock \\ (672, 4̄) & 2688 & 1 & - & (165, 15) & dunkel \\ (1200, 20) & 24 000 & 1 & - & (141, 39) & dunkel \\ (560, 20′) &
 
 ## Das Verfügbarkeits-Theorem (Parallelsession, symmetry_availability.py)Das Verfügbarkeits-Theorem (Parallelsession, )
 
@@ -551,7 +557,7 @@ Gemessen wird die Dimension des Kommutanten der von einer Operationsstufe erzeug
 
 [documents/experiments--theory-contracts--universalraum-common-process-20260915--tmp--pdfs--TFPT_Universalraum_Gemeinsamer_Prozess_Konsolidierung_2026-09-15_v1.6.8/sections/031-section-tfpt-universalraum-operationssatz-nativer-grundz.tex:67-108](../../../../documents/experiments--theory-contracts--universalraum-common-process-20260915--tmp--pdfs--TFPT_Universalraum_Gemeinsamer_Prozess_Konsolidierung_2026-09-15_v1.6.8/sections/031-section-tfpt-universalraum-operationssatz-nativer-grundz.tex#L67) · `section:da3ab7c3d6ce787c3765` · subsubsection
 
-@ > p( - 8 ) * 0.1875 > p( - 8 ) * 0.1875 > p( - 8 ) * 0.2500 > p( - 8 ) * 0.1875 > p( - 8 ) * 0.1875@ Sektor & Block & Dim & Zerlegung unter so(10)⊕ su(4) & (𝒞_S, 𝒞_C) \\ N=2 & helle Paare ↔ Bosonen & 60 & (10, 6) & (36, 20) \\ N=2 & dunkle Paare & 1956 & (120, 10) ⊕ (126, 6) & (84,36), (100,20) \\ N=3 & dunkle Tripel = ker C₃ & 37888 & (560, 20″) ⊕ (1200, 20) ⊕ (672, 4̄) & (117,63), (141,39), (165,15) \\ N=3 & ker 
+@ > p( - 8 ) * 0.1875 > p( - 8 ) * 0.1875 > p( - 8 ) * 0.2500 > p( - 8 ) * 0.1875 > p( - 8 ) * 0.1875@ Sektor & Block & Dim & Zerlegung unter so(10)⊕ su(4) & (𝒞_S, 𝒞_C) \\ N=2 & helle Paare ↔ Bosonen & 60 & (10, 6) & (36, 20) \\ N=2 & dunkle Paare & 1956 & (120, 10) ⊕ (126, 6) & (84,36), (100,20) \\ N=3 & dunkle Tripel = ker C₃ & 37888 & (560, 20″) ⊕ (1200, 20) ⊕ (672, 4̄) & (117,63), (141,39), (165,15) \\ N=3 & ker
 
 ## 3.2 Kommutanten-Leiter
 
@@ -630,9 +636,3 @@ Der Trägergraph (64 Moden, 480 Kanten, Grad 15, dreiecksfrei) ist nicht biparti
 [documents/experiments--theory-contracts--universalraum-common-process-20260915--tmp--pdfs--TFPT_Universalraum_Gemeinsamer_Prozess_Konsolidierung_2026-09-15_v1.6.8/sections/032-subsection-6-spurnetzwerk-normen-label-spurnetzwerk-norm.tex:1-21](../../../../documents/experiments--theory-contracts--universalraum-common-process-20260915--tmp--pdfs--TFPT_Universalraum_Gemeinsamer_Prozess_Konsolidierung_2026-09-15_v1.6.8/sections/032-subsection-6-spurnetzwerk-normen-label-spurnetzwerk-norm.tex#L1) · `section:e41512d8a5f6e6e290e0` · subsection
 
 über bosonische Kohärenzzustände, die Onishi-Determinante det(1 − M̄M)\^\1/2\ und Wick-Paarung der z-Variablen. Jedes Netzwerk ist eine Kontraktion von n Kopien des Tensors Φ_\ij,kl\ = Σ_A(M_A) \ij\(M_A)\kl\ (Einträge in \−1,0,1\). Netzwerke werden als 4-Bein-Multigraphen unter Knotenumbenennung und Slot-Tausch kanonisiert (n=4: 120 → 27 Klassen). Exaktheit: float64-Kontraktion mit Absolutwert-Begleitkontraktion ( Σa
-
-## 7. T1-T8
-
-[documents/experiments--theory-contracts--universalraum-common-process-20260915--tmp--pdfs--TFPT_Universalraum_Gemeinsamer_Prozess_Konsolidierung_2026-09-15_v1.6.8/sections/032-subsection-6-spurnetzwerk-normen-label-spurnetzwerk-norm.tex:22-62](../../../../documents/experiments--theory-contracts--universalraum-common-process-20260915--tmp--pdfs--TFPT_Universalraum_Gemeinsamer_Prozess_Konsolidierung_2026-09-15_v1.6.8/sections/032-subsection-6-spurnetzwerk-normen-label-spurnetzwerk-norm.tex#L22) · `section:db3cd3f398aea37bc140` · subsection
-
-@ > p( - 4 ) * 0.3333 > p( - 4 ) * 0.3333 > p( - 4 ) * 0.3333@ Tor & Beitrag dieser Runde & Weiter offen \\ T1 & Exakte Kommutanten-Leiter A→B→Cc→Cs→C; Clock als äußeres Symmetrieelement & Welche Symmetrieoperationen der Compiler tatsächlich bereitstellt \\ T2 & Lochbild bewiesen; Z_h + Z_add = 1; ε_h, ε_add & Konvergierter Zustand, Renormierung, Grenzraum \\ T3 & - (ausgeklammert) & Räumlicher Träger \\ T4 & Kern-Sy

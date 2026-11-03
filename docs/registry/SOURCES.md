@@ -426,7 +426,7 @@
 | [documents/articles--2026-08-30--tfpt_thermodynamic_dynamics_en/sections/002-section-existence-of-equilibrium-states.tex](../../documents/articles--2026-08-30--tfpt_thermodynamic_dynamics_en/sections/002-section-existence-of-equilibrium-states.tex) | module_fragment | 4 | 1 |
 | [documents/changelog/main.tex](../../documents/changelog/main.tex) | module_entry | 0 | 2 |
 | [documents/changelog/preamble.tex](../../documents/changelog/preamble.tex) | module_preamble | 2 | 2 |
-| [documents/changelog/sections/001-source.tex](../../documents/changelog/sections/001-source.tex) | module_fragment | 28 | 2 |
+| [documents/changelog/sections/001-source.tex](../../documents/changelog/sections/001-source.tex) | module_fragment | 29 | 2 |
 | [documents/changelog/sections/002-source.tex](../../documents/changelog/sections/002-source.tex) | module_fragment | 23 | 2 |
 | [documents/changelog/sections/003-source.tex](../../documents/changelog/sections/003-source.tex) | module_fragment | 16 | 2 |
 | [documents/changelog/sections/004-source.tex](../../documents/changelog/sections/004-source.tex) | module_fragment | 8 | 2 |
@@ -968,6 +968,7 @@
 | [tex-artefacts/toe_round7_parent_mirror.tex](../../tex-artefacts/toe_round7_parent_mirror.tex) | shared_support | 16 | 3 |
 | [tex-artefacts/toe_round7_proofs.tex](../../tex-artefacts/toe_round7_proofs.tex) | research_fragment | 2 | 3 |
 | [tex-artefacts/toe_round7_quantum_tensor_curvature.tex](../../tex-artefacts/toe_round7_quantum_tensor_curvature.tex) | shared_support | 9 | 3 |
+| [tex-artefacts/toe_source_completion_20261103.tex](../../tex-artefacts/toe_source_completion_20261103.tex) | research_fragment | 11 | 6 |
 | [tex-artefacts/toe_universalraum_synthesis_20260912.tex](../../tex-artefacts/toe_universalraum_synthesis_20260912.tex) | research_fragment | 19 | 2 |
 | [tex-artefacts/verification.tex](../../tex-artefacts/verification.tex) | generated | 1 | 2 |
 | [tex-artefacts/version.tex](../../tex-artefacts/version.tex) | shared_support | 1 | 21 |

@@ -4,11 +4,17 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## 1. Was an den fünf neuen Berichten trägt – und was nicht
+
+[experiments/theory-contracts/universalraum-five-source-frontier-20260914/main-v1.4/update_body_v14.tex:10-18](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/main-v1.4/update_body_v14.tex#L10) · `section:ac9fcda0237a52d7d1bb` · section
+
+Der gewichtete Bandbeweis, der Feedbackattraktor und die mikroskopische Sternlösung tragen im deklarierten Modell. Die Standard- [formula in source] -Phasenrechnung und die lokalen F4-Zahlen lassen sich unabhängig reproduzieren. Drei Aussagen mussten enger gefasst werden: Dichte Gleitkomma-Diagonalisierung liefert keinen exakten Vierfachheitsbeweis. Die Vierfachstruktur ist numerisch gut gestützt, aber nicht abschlie
+
 ## 2. Eine neue Vereinfachung der Dynamik
 
 [experiments/theory-contracts/universalraum-five-source-frontier-20260914/main-v1.4/update_body_v14.tex:19-39](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/main-v1.4/update_body_v14.tex#L19) · `section:bb04f619ceadd47138fd` · section
 
-Für kantenlokale Vermittler lässt sich die vierte Ordnung schreiben als Die Ganzzahligkeit des lokalen Spektrums wurde durch eine exakte 720-dimensionale reguläre [formula in source] -Rechnung kontrolliert. Zusätzlich gilt auf dem ganzen Materieraum Das verkleinert eine komplizierte Korrektur zu lokalen positiven Bausteinen. Positivität des Operators bedeutet dabei nicht automatisch eine positive Gapänderung; Grund- 
+Für kantenlokale Vermittler lässt sich die vierte Ordnung schreiben als Die Ganzzahligkeit des lokalen Spektrums wurde durch eine exakte 720-dimensionale reguläre [formula in source] -Rechnung kontrolliert. Zusätzlich gilt auf dem ganzen Materieraum Das verkleinert eine komplizierte Korrektur zu lokalen positiven Bausteinen. Positivität des Operators bedeutet dabei nicht automatisch eine positive Gapänderung; Grund-
 
 ## 3. Ein gemeinsamer mikroskopischer Ablauf mit Rohwahrscheinlichkeiten
 
@@ -56,7 +62,7 @@ Der gewichtete Bandbeweis, der Feedbackattraktor und die mikroskopische Sternlö
 
 [experiments/theory-contracts/universalraum-five-source-frontier-20260914/update_body_v14.tex:19-39](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/update_body_v14.tex#L19) · `section:31f180b76b18f0ac7d46` · section
 
-Für kantenlokale Vermittler lässt sich die vierte Ordnung schreiben als Die Ganzzahligkeit des lokalen Spektrums wurde durch eine exakte 720-dimensionale reguläre [formula in source] -Rechnung kontrolliert. Zusätzlich gilt auf dem ganzen Materieraum Das verkleinert eine komplizierte Korrektur zu lokalen positiven Bausteinen. Positivität des Operators bedeutet dabei nicht automatisch eine positive Gapänderung; Grund- 
+Für kantenlokale Vermittler lässt sich die vierte Ordnung schreiben als Die Ganzzahligkeit des lokalen Spektrums wurde durch eine exakte 720-dimensionale reguläre [formula in source] -Rechnung kontrolliert. Zusätzlich gilt auf dem ganzen Materieraum Das verkleinert eine komplizierte Korrektur zu lokalen positiven Bausteinen. Positivität des Operators bedeutet dabei nicht automatisch eine positive Gapänderung; Grund-
 
 ## 3. Ein gemeinsamer mikroskopischer Ablauf mit Rohwahrscheinlichkeiten
 
@@ -176,7 +182,7 @@ Die beiden positiven Wurzelgitter [formula in source] und [formula in source] be
 
 [experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/02_algebra.tex:58-83](../../../../experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/02_algebra.tex#L58) · `section:a1deb0ef01a1cb356dbf` · section
 
-Die 240 Wurzeln sind besondere Vektoren in einem acht-dimensionalen Raum. Hinzu kommen acht Cartanrichtungen, sodass die Lie-Algebra 248 Dimensionen besitzt. Unter [formula in source] lautet ihre komplexe Zerlegung L47mmrY Sektor& Wurzeln& Generatoren einschließlich Cartan\\ [formula in source] &40& [formula in source] \\ [formula in source] &12& [formula in source] \\ Gemischter Vektorsektor&60& [formula in source] 
+Die 240 Wurzeln sind besondere Vektoren in einem acht-dimensionalen Raum. Hinzu kommen acht Cartanrichtungen, sodass die Lie-Algebra 248 Dimensionen besitzt. Unter [formula in source] lautet ihre komplexe Zerlegung L47mmrY Sektor& Wurzeln& Generatoren einschließlich Cartan\\ [formula in source] &40& [formula in source] \\ [formula in source] &12& [formula in source] \\ Gemischter Vektorsektor&60& [formula in source]
 
 ## Das endliche Fenster: 60 Strahlen und 15 Kontexte
 
@@ -272,7 +278,7 @@ No opening prose excerpt; see the source.
 
 [experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/04_zellen.tex:3-24](../../../../experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/04_zellen.tex#L3) · `section:f83bc6e9e579cac2a29a` · section
 
-Vier Träger mit je vier Basiswerten besitzen den total antisymmetrischen Zustand Jedes Basiswort verwendet alle vier Werte genau einmal. Die 24 Permutationen erhalten passende Vorzeichen. Das Ergebnis ist ein reiner gemeinsamer Zustand. Jeder einzelne Träger sieht für sich trotzdem maximal gemischt aus: Die Paarreduktion hat Rang sechs und sechs gleich große Eigenwerte [formula in source] . Die Ordnung steckt in den 
+Vier Träger mit je vier Basiswerten besitzen den total antisymmetrischen Zustand Jedes Basiswort verwendet alle vier Werte genau einmal. Die 24 Permutationen erhalten passende Vorzeichen. Das Ergebnis ist ein reiner gemeinsamer Zustand. Jeder einzelne Träger sieht für sich trotzdem maximal gemischt aus: Die Paarreduktion hat Rang sechs und sechs gleich große Eigenwerte [formula in source] . Die Ordnung steckt in den
 
 ## Der Hüllensatz und seine genaue Voraussetzung
 
@@ -440,7 +446,7 @@ Der benötigte Zustand [formula in source] ist in der Acht-Qubit-Kodierung kein 
 
 [experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/06_zeit_echo.tex:105-126](../../../../experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/06_zeit_echo.tex#L105) · `section:9a970a42813ece21f107` · section
 
-Der einfache Eingang lautet Er ist mit dem in S02 angenommenen Clifford-Baukasten präparierbar und besitzt [formula in source] -Anteil [formula in source] . Der Antisymmetrisierer ist Die konkrete Schaltung erzeugt 32 Kontrollzweige, von denen 24 die Permutationen tragen. Acht ungültige Zweige werden markiert. Nach Interferenz und Erfolgsselektion ist der implementierte Operator Somit gilt Der erfolgreiche Zweig ist 
+Der einfache Eingang lautet Er ist mit dem in S02 angenommenen Clifford-Baukasten präparierbar und besitzt [formula in source] -Anteil [formula in source] . Der Antisymmetrisierer ist Die konkrete Schaltung erzeugt 32 Kontrollzweige, von denen 24 die Permutationen tragen. Acht ungültige Zweige werden markiert. Nach Interferenz und Erfolgsselektion ist der implementierte Operator Somit gilt Der erfolgreiche Zweig ist
 
 ## Das ursprüngliche Echo: eins gegen siebzehn Zweiunddreißigstel
 
@@ -506,7 +512,7 @@ Eine gewöhnliche kritische SU(4)-Kette hat links- und rechtslaufende Sektoren, 
 
 [experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/07_seam.tex:98-103](../../../../experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/07_seam.tex#L98) · `section:0d359d1ab7db2c14501d` · section
 
-Die innere Glue- [formula in source] wirkt auf den 248 Strömen mit Phasen [formula in source] auf Sektoren der Größen [formula in source] . Ihre Spur ist null. Die geometrische Vierteldrehung [formula in source] hat auf Stufe eins dagegen Spur [formula in source] . Die Operatoren sind somit nicht identisch. Eine Clock kann eine geometrische Drehung mit innerem Twist kombinieren; die beiden Faktoren bleiben getrennt. 
+Die innere Glue- [formula in source] wirkt auf den 248 Strömen mit Phasen [formula in source] auf Sektoren der Größen [formula in source] . Ihre Spur ist null. Die geometrische Vierteldrehung [formula in source] hat auf Stufe eins dagegen Spur [formula in source] . Die Operatoren sind somit nicht identisch. Eine Clock kann eine geometrische Drehung mit innerem Twist kombinieren; die beiden Faktoren bleiben getrennt.
 
 ## Wie eine vollständige Rekonstruktion aussehen könnte
 
@@ -597,9 +603,3 @@ Eine Algebra mit Darstellung und geeignetem Diracoperator kann Geometrie kodiere
 [experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/09_physik.tex:71-83](../../../../experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/09_physik.tex#L71) · `section:ea23a854ee28f910ebb9` · section
 
 Die Identität [formula in source] passt zu einer bekannten Normierung. Sie liefert nicht das Feld [formula in source] , einen masselosen quantisierten Spin-2-Pol, zwei physische Helizitäten oder universelle Kopplung.
-
-## Die Zahlenprogramme: Nähe, Spannungen und offene Übertragung
-
-[experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/09_physik.tex:84-85](../../../../experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/09_physik.tex#L84) · `section:ce734dcb21f8f15a121a` · chapter
-
-No opening prose excerpt; see the source.

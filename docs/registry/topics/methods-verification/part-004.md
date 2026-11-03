@@ -56,7 +56,7 @@ The TFPT verification suite ( tfpt-suite/) turns paper claims into deterministic
 
 [documents/archive--paper-latex--tfpt-theory-fullv26/sections/008-section-derivation-of-the-cfe-from-the-effective-potenti.tex:172-201](../../../../documents/archive--paper-latex--tfpt-theory-fullv26/sections/008-section-derivation-of-the-cfe-from-the-effective-potenti.tex#L172) · `section:a004e8d3ba1417bea9a7` · subsection
 
-@llrrrrrr@ Module & Mode & Checks & PASS & WARN & FAIL & Plots(exp) & Plots(ok)\\ alpha_on_shell_bridge & engineering & 7 & 6 & 1 & 0 & 0 & 0\\ matching_finite_pieces & engineering & 5 & 4 & 1 & 0 & 0 & 0\\ torsion_condensate & engineering & 8 & 5 & 3 & 0 & 0 & 0\\ alpha_on_shell_bridge & physics & 7 & 6 & 1 & 0 & 0 & 0\\ matching_finite_pieces & physics & 5 & 4 & 1 & 0 & 0 & 0\\ torsion_condensate & physics & 8 & 5 
+@llrrrrrr@ Module & Mode & Checks & PASS & WARN & FAIL & Plots(exp) & Plots(ok)\\ alpha_on_shell_bridge & engineering & 7 & 6 & 1 & 0 & 0 & 0\\ matching_finite_pieces & engineering & 5 & 4 & 1 & 0 & 0 & 0\\ torsion_condensate & engineering & 8 & 5 & 3 & 0 & 0 & 0\\ alpha_on_shell_bridge & physics & 7 & 6 & 1 & 0 & 0 & 0\\ matching_finite_pieces & physics & 5 & 4 & 1 & 0 & 0 & 0\\ torsion_condensate & physics & 8 & 5
 
 ## E [formula in source] Chain CertificateE8 Chain Certificate
 
@@ -68,7 +68,7 @@ This appendix provides the complete verification data for the E [formula in sour
 
 [documents/archive--paper-latex--tfpt-theory-fullv26/sections/009-subsection-the-unique-chain-excerpt.tex:26-40](../../../../documents/archive--paper-latex--tfpt-theory-fullv26/sections/009-subsection-the-unique-chain-excerpt.tex#L26) · `section:c91cccb625cc0fa37890` · subsection
 
-The uniqueness is verified by: Constructing the complete Hasse diagram of [formula in source] from standard tables. Computing all cover relations with [formula in source] . Running dynamic programming to find all paths from [formula in source] to [formula in source] . Applying the cost function [formula in source] (second-difference smoothness). Verifying that the minimum-cost path is unique (cost gap to second-best 
+The uniqueness is verified by: Constructing the complete Hasse diagram of [formula in source] from standard tables. Computing all cover relations with [formula in source] . Running dynamic programming to find all paths from [formula in source] to [formula in source] . Applying the cost function [formula in source] (second-difference smoothness). Verifying that the minimum-cost path is unique (cost gap to second-best
 
 ## Status note
 
@@ -299,7 +299,7 @@ The complete chain from [formula in source] to [formula in source] :
 
 [documents/archive--paper-latex--tfpt-theory-fullv27-final/sections/010-section-verification-suite-summary.tex:262-276](../../../../documents/archive--paper-latex--tfpt-theory-fullv27-final/sections/010-section-verification-suite-summary.tex#L262) · `section:6e6250ad96049af719bb` · subsection
 
-The uniqueness is verified by: Constructing the complete Hasse diagram of [formula in source] from standard tables. Computing all cover relations with [formula in source] . Running dynamic programming to find all paths from [formula in source] to [formula in source] . Applying the cost function [formula in source] (second-difference smoothness). Verifying that the minimum-cost path is unique (cost gap to second-best 
+The uniqueness is verified by: Constructing the complete Hasse diagram of [formula in source] from standard tables. Computing all cover relations with [formula in source] . Running dynamic programming to find all paths from [formula in source] to [formula in source] . Applying the cost function [formula in source] (second-difference smoothness). Verifying that the minimum-cost path is unique (cost gap to second-best
 
 ## Boundary Trace Derivation
 
@@ -507,7 +507,7 @@ The complete chain from [formula in source] to [formula in source] :
 
 [documents/archive--paper-latex--tfpt-theory-fullv27/sections/010-section-verification-suite-summary.tex:259-273](../../../../documents/archive--paper-latex--tfpt-theory-fullv27/sections/010-section-verification-suite-summary.tex#L259) · `section:5d2f324a6eed25813dfc` · subsection
 
-The uniqueness is verified by: Constructing the complete Hasse diagram of [formula in source] from standard tables. Computing all cover relations with [formula in source] . Running dynamic programming to find all paths from [formula in source] to [formula in source] . Applying the cost function [formula in source] (second-difference smoothness). Verifying that the minimum-cost path is unique (cost gap to second-best 
+The uniqueness is verified by: Constructing the complete Hasse diagram of [formula in source] from standard tables. Computing all cover relations with [formula in source] . Running dynamic programming to find all paths from [formula in source] to [formula in source] . Applying the cost function [formula in source] (second-difference smoothness). Verifying that the minimum-cost path is unique (cost gap to second-best
 
 ## Boundary Trace Derivation
 

@@ -1,0 +1,87 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/original-local-source-variable-background-20261102/check_det16_source.py
+Original file SHA-256: 0511dddb7d2c1f634014e2ba7e7227aa9ed20c8aafeccb05b6bec15d9727a0a0
+Inclusive original lines: 60-138
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000060 |     for selection in itertools.product((0,1),repeat=len(spans)):
+000061 |         term=I; weight=1.0
+000062 |         for idx,(span,selected) in enumerate(zip(spans,selection)):
+000063 |             aa=math.exp(-2*span)
+000064 |             weight*=(-math.expm1(-2*span)) if selected else aa
+000065 |             if selected: term=term@P
+000066 |             if idx<len(ops): term=term@ops[idx]
+000067 |         result+=weight*trace(term)
+000068 |     return result
+000069 | 
+000070 | 
+000071 | def zcomplex(value): return [float(value.real),float(value.imag)]
+000072 | 
+000073 | 
+000074 | def apply_word(letters,state):
+000075 |     """Apply left-to-right written CAR word to one bit state, right first."""
+000076 |     amplitude=1
+000077 |     for mode,dagger in reversed(letters):
+000078 |         occupied=(state>>mode)&1
+000079 |         if occupied==int(dagger): return None,0
+000080 |         if (state & ((1<<mode)-1)).bit_count()&1: amplitude=-amplitude
+000081 |         state ^= 1<<mode
+000082 |     return state,amplitude
+000083 | 
+000084 | 
+000085 | def word_fock_trace(letters):
+000086 |     modes=sorted({mode for mode,_ in letters})
+000087 |     # Each mode's initial bit is forced by the first right-to-left action.
+000088 |     bits={}
+000089 |     for mode,dagger in reversed(letters):
+000090 |         if mode not in bits: bits[mode]=0 if dagger else 1
+000091 |     state=sum(bit<<mode for mode,bit in bits.items())
+000092 |     end,sign=apply_word(letters,state)
+000093 |     return 0 if end != state else sign*(1<<(16-len(modes)))
+000094 | 
+000095 | 
+000096 | def word_phi(letters):
+000097 |     value=0j
+000098 |     for state,ket in ((0,1),(D-1,np.exp(1j*phi))):
+000099 |         end,sign=apply_word(letters,state)
+000100 |         if end==0: value+=sign*ket/2
+000101 |         elif end==D-1: value+=sign*ket*np.exp(-1j*phi)/2
+000102 |     return value
+000103 | 
+000104 | 
+000105 | def word_renewal(letters,spans):
+000106 |     """Unnormalized trace via cyclic rank-one renewal, polynomial work."""
+000107 |     k=len(letters)
+000108 |     if any(not isinstance(letter,(tuple,list)) or len(letter)!=2
+000109 |            or type(letter[0]) is not int or not 0<=letter[0]<16
+000110 |            or type(letter[1]) is not bool for letter in letters):
+000111 |         raise ValueError('letters require mode 0..15 as int and dagger as bool')
+000112 |     if len(spans)!=k+1 or any(type(t) not in (int,float) or not math.isfinite(t) or t<0 for t in spans):
+000113 |         raise ValueError('one finite nonnegative interval around each word boundary required')
+000114 |     beta=sum(spans)
+000115 |     if not math.isfinite(beta): raise ValueError('total interval must be finite')
+000116 |     if not k: return D*math.exp(-2*beta)-math.expm1(-2*beta)
+000117 |     delta=[spans[0]+spans[-1]]+spans[1:-1]
+000118 |     doubled=letters+letters
+000119 |     @lru_cache(maxsize=None)
+000120 |     def edge(i,j):
+000121 |         b=-math.expm1(-2*delta[i%k])
+000122 |         a=math.exp(-2*sum(delta[r%k] for r in range(i+1,j)))
+000123 |         return b*a*word_phi(doubled[i:j])
+000124 |     result=math.exp(-2*beta)*word_fock_trace(letters)
+000125 |     for anchor in range(k):
+000126 |         dp={anchor:1+0j}
+000127 |         for j in range(anchor+1,k):
+000128 |             dp[j]=sum(dp[h]*edge(h,j) for h in range(anchor,j))
+000129 |         result+=sum(dp[h]*edge(h,anchor+k) for h in range(anchor,k))
+000130 |     return result
+000131 | 
+000132 | 
+000133 | def main():
+000134 |     initialize_native_controls()
+000135 |     require(P.nnz==4 and close(trace(P),1),'native projector support or trace')
+000136 |     require((P@P-P).nnz==0 or max(abs((P@P-P).data))<1e-14,'projector identity')
+000137 |     require(close(P[D-1,0],np.exp(1j*phi)/2),'native projector phase')
+000138 |     require(close(omegad[D-1,0],1),'native determinant creation sign')

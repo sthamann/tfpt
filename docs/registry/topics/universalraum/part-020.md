@@ -4,6 +4,55 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Research Contract — TFPT.TOE.COMPLETE.01 (the named AND of eight completeness gates)
+
+[experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tfpt_research_contracts.tex:14103-14237](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tfpt_research_contracts.tex#L14103) · `section:b9be0eca5eee141eabc7` · section
+
+Typing. A research contract \ (ledger row TFPT.TOE.COMPLETE.01), registered 2026-08-29 from review wave 4. This row names the AND of eight gates; it does not close any of them and it does not upgrade a marker. Dual rest: the compiler residual [formula in source] sits beside [formula in source] ; this contract is the named AND, not a closure of either.
+
+Explicit source references:
+
+- [verification/v1023_derivative_filtered_wall.py](../../../../verification/v1023_derivative_filtered_wall.py#L1) · explicit_file_citation
+- [verification/v1016_state_gap_batteries.py](../../../../verification/v1016_state_gap_batteries.py#L1) · explicit_file_citation
+- [PRED.JOINTLIKELIHOOD.01](../../../../verification/status_ledger.csv#L749) · explicit_claim_identifier · original status at linked ledger row
+- [AX.P2.01](../../../../verification/status_ledger.csv#L3) · explicit_claim_identifier · original status at linked ledger row
+- [SEAM.EQUIV.MMST.01](../../../../verification/status_ledger.csv#L583) · explicit_claim_identifier · original status at linked ledger row
+- [GRAV.NONCIRCULAR.01](../../../../verification/status_ledger.csv#L747) · explicit_claim_identifier · original status at linked ledger row
+- [SEAM.SIMPLECURRENT.GENERATOR.01](../../../../verification/status_ledger.csv#L756) · explicit_claim_identifier · original status at linked ledger row
+- [SEAM.MMST.TYPEIII.CHARGED.01](../../../../verification/status_ledger.csv#L767) · explicit_claim_identifier · original status at linked ledger row
+- [QFT4D.LATTICE.FUNDAMENTAL.01](../../../../verification/status_ledger.csv#L760) · explicit_claim_identifier · original status at linked ledger row
+- [GRAV.SPIN2.EMERGENCE.01](../../../../verification/status_ledger.csv#L762) · explicit_claim_identifier · original status at linked ledger row
+- [FTRANSFER.SK.RHO0.01](../../../../verification/status_ledger.csv#L763) · explicit_claim_identifier · original status at linked ledger row
+- [TFPT.IRREDUCIBLE.01](../../../../verification/status_ledger.csv#L103) · explicit_claim_identifier · original status at linked ledger row
+- [FLAV.NU.TEXTURE.MECHANISM.01](../../../../verification/status_ledger.csv#L768) · explicit_claim_identifier · original status at linked ledger row
+- [DYN.UNITARY.DILATION.01](../../../../verification/status_ledger.csv#L742) · explicit_claim_identifier · original status at linked ledger row
+- [SEAM.STATE.RPMIXING.01](../../../../verification/status_ledger.csv#L752) · explicit_claim_identifier · original status at linked ledger row
+- [GRAV.WEINBERG.WITTEN.01](../../../../verification/status_ledger.csv#L770) · explicit_claim_identifier · original status at linked ledger row
+- [verification/v1012_toe_gate_witnesses.py](../../../../verification/v1012_toe_gate_witnesses.py#L1) · explicit_file_citation
+- [SEAM.DETLINE.UNIFICATION.01](../../../../verification/status_ledger.csv#L758) · explicit_claim_identifier · original status at linked ledger row
+- [verification/v1015_axiom_core_closure.py](../../../../verification/v1015_axiom_core_closure.py#L1) · explicit_file_citation
+- [verification/v1013_thermodynamic_dynamics.py](../../../../verification/v1013_thermodynamic_dynamics.py#L1) · explicit_file_citation
+- [SEAM.EQUIV.01](../../../../verification/status_ledger.csv#L381) · explicit_claim_identifier · original status at linked ledger row
+- [GAUGE.DETLINE.FIXPOINT.01](../../../../verification/status_ledger.csv#L761) · explicit_claim_identifier · original status at linked ledger row
+- [SEAM.BULK4D.RECON.01](../../../../verification/status_ledger.csv#L740) · explicit_claim_identifier · original status at linked ledger row
+- [SEAM.EQUIV.TWISTOR.01](../../../../verification/status_ledger.csv#L584) · explicit_claim_identifier · original status at linked ledger row
+- [QFT4D.OS.RECON.01](../../../../verification/status_ledger.csv#L745) · explicit_claim_identifier · original status at linked ledger row
+- [CHIRAL4D.MIRROR.DET16.01](../../../../verification/status_ledger.csv#L766) · explicit_claim_identifier · original status at linked ledger row
+- [ALPHA.QUILLEN.EXACT.01](../../../../verification/status_ledger.csv#L445) · explicit_claim_identifier · original status at linked ledger row
+- [verification/v1024_parent_internal_boundaries.py](../../../../verification/v1024_parent_internal_boundaries.py#L1) · explicit_file_citation
+- [AX.P1.01](../../../../verification/status_ledger.csv#L2) · explicit_claim_identifier · original status at linked ledger row
+- [verification/v1014_bridge_refinements.py](../../../../verification/v1014_bridge_refinements.py#L1) · explicit_file_citation
+- [CHIRAL4D.NOMIRROR.01](../../../../verification/status_ledger.csv#L746) · explicit_claim_identifier · original status at linked ledger row
+- [TFPT.TOE.COMPLETE.01](../../../../verification/status_ledger.csv#L764) · explicit_claim_identifier · original status at linked ledger row
+- [verification/v1022_telb_round3_certificates.py](../../../../verification/v1022_telb_round3_certificates.py#L1) · explicit_file_citation
+- [verification/v1025_telb_c1_c2a_certificates.py](../../../../verification/v1025_telb_c1_c2a_certificates.py#L1) · explicit_file_citation
+- [DYN.MARKOV.EMBED.01](../../../../verification/status_ledger.csv#L741) · explicit_claim_identifier · original status at linked ledger row
+- [FLAV.NUSCALE.01](../../../../verification/status_ledger.csv#L365) · explicit_claim_identifier · original status at linked ledger row
+- [TFPT4D.LATTICE.ACTION.01](../../../../verification/status_ledger.csv#L757) · explicit_claim_identifier · original status at linked ledger row
+- [verification/v1020_spectator_sector_obstruction.py](../../../../verification/v1020_spectator_sector_obstruction.py#L1) · explicit_script_identifier
+- [FTRANSFER.GENERATING.01](../../../../verification/status_ledger.csv#L759) · explicit_claim_identifier · original status at linked ledger row
+- [OBS.TRANSDUCTION.01](../../../../verification/status_ledger.csv#L748) · explicit_claim_identifier · original status at linked ledger row
+
 ## Research Contract — FLAV.NUSCALE.06 (pentagon-class misalignment candidate)
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tfpt_research_contracts.tex:14238-14255](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tfpt_research_contracts.tex#L14238) · `section:12feef6a28eadbb9a373` · section
@@ -81,7 +130,7 @@ Explicit source references:
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tfpt_research_contracts.tex:14397-14558](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tfpt_research_contracts.tex#L14397) · `section:03b9058ca08ba4829ac7` · section
 
-Typing. This section is a hand-off document: it packages the one remaining seam obligation as a self-contained problem statement for an outside specialist in conformal nets / vertex operator algebras / algebraic QFT. It documents, it does not close: the ledger row SEAM.EQUIV.01 stays \ (its conditional route SEAM.EQUIV.MMST.01 is closed modulo cited theorems; the unconditional parent is the target below). Nothing in 
+Typing. This section is a hand-off document: it packages the one remaining seam obligation as a self-contained problem statement for an outside specialist in conformal nets / vertex operator algebras / algebraic QFT. It documents, it does not close: the ledger row SEAM.EQUIV.01 stays \ (its conditional route SEAM.EQUIV.MMST.01 is closed modulo cited theorems; the unconditional parent is the target below). Nothing in
 
 Explicit source references:
 
@@ -312,7 +361,7 @@ Fix the original complex, number-conserving QWZ strip at width eight, mass one a
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tex-artefacts/toe_research_20260909.tex:97-114](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tex-artefacts/toe_research_20260909.tex#L97) · `section:65daa31841ba9073fdfb` · subsection
 
-For the same strip and filled projector, the alternating four-word [formula in source] cancels the outer history ramps. Normal ordering is the actual finite-sea trace subtraction. Positive heat regularization, Jensen and Cauchy–Schwarz give uniform [formula in source] bounds for [formula in source] on the full four-endpoint torus, including collisions. They promote the separated-point limit to an [formula in source] 
+For the same strip and filled projector, the alternating four-word [formula in source] cancels the outer history ramps. Normal ordering is the actual finite-sea trace subtraction. Positive heat regularization, Jensen and Cauchy–Schwarz give uniform [formula in source] bounds for [formula in source] on the full four-endpoint torus, including collisions. They promote the separated-point limit to an [formula in source]
 
 ## 3. Full lattice dynamics and a physical neutral ground representation
 
@@ -358,13 +407,13 @@ The geometry branch realizes the proposed elliptic boundary data but exposes its
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tex-artefacts/toe_round27_full_reference.tex:36-65](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tex-artefacts/toe_round27_full_reference.tex#L36) · `section:c392c9bdc8fbf53f4d83` · paragraph
 
-Fix [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] , a time step [formula in source] , [formula in source] and [formula in source] . Every site's charge remains in [formula in source] . The original signed hopping and potential are [formula in source] The [formula in source] directed elementary shifts include their original phases. Thus [formula in source] 
+Fix [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] , a time step [formula in source] , [formula in source] and [formula in source] . Every site's charge remains in [formula in source] . The original signed hopping and potential are [formula in source] The [formula in source] directed elementary shifts include their original phases. Thus [formula in source]
 
 ## Full-reference theorem and proof.
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tex-artefacts/toe_round27_full_reference.tex:66-113](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tex-artefacts/toe_round27_full_reference.tex#L66) · `section:f6a4452580c2f7e16d7b` · paragraph
 
-Let [formula in source] be the sum of moduli before cancellation, resolved into elementary hopping words, initial charge profiles and scalar integrals. Then Every elementary hop changes the complete profile, hence [formula in source] . Scalar spectral Jensen gives [formula in source] . Pinching [formula in source] into its charge blocks [formula in source] contracts the Schatten [formula in source] norm, so [formula 
+Let [formula in source] be the sum of moduli before cancellation, resolved into elementary hopping words, initial charge profiles and scalar integrals. Then Every elementary hop changes the complete profile, hence [formula in source] . Scalar spectral Jensen gives [formula in source] . Pinching [formula in source] into its charge blocks [formula in source] contracts the Schatten [formula in source] norm, so [formula
 
 ## Three explicit error budgets.
 
@@ -405,7 +454,7 @@ This document develops the architecture layer of TFPT: the two axioms, the deriv
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex:147-1673](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex#L147) · `section:8872501633bb702220cd` · section
 
-Notation convention. We write [formula in source] for the root-lattice direct sum (used in the glue/lattice statements: discriminant forms, [formula in source] glue, [formula in source] as an even unimodular lattice), and [formula in source] for the group/representation branching (used for subalgebra embeddings and [formula in source] -rep decompositions). The objects are the same atoms; the symbol marks whether the 
+Notation convention. We write [formula in source] for the root-lattice direct sum (used in the glue/lattice statements: discriminant forms, [formula in source] glue, [formula in source] as an even unimodular lattice), and [formula in source] for the group/representation branching (used for subalgebra embeddings and [formula in source] -rep decompositions). The objects are the same atoms; the symbol marks whether the
 
 Explicit source references:
 
@@ -594,7 +643,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex:1732-1780](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex#L1732) · `section:9656cb78a4cbdf493637` · subsection
 
-A family is exactly the complete Pascal truncation to degree two: the unique positive-integer solution of [formula in source] . Proof of uniqueness. Direct evaluation gives [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] ; so [formula in source] is the only root in [formula in source] . For [formula in source] the forward difference is 
+A family is exactly the complete Pascal truncation to degree two: the unique positive-integer solution of [formula in source] . Proof of uniqueness. Direct evaluation gives [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] ; so [formula in source] is the only root in [formula in source] . For [formula in source] the forward difference is
 
 Explicit source references:
 
@@ -616,7 +665,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex:1781-1796](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex#L1781) · `section:38538ebfe54ea1f0dd1c` · subsection
 
-With [formula in source] , the quadratic hypercharge trace on one family is [formula in source] , and it generates the whole integer chain: The flavor budget, the [formula in source] budget, the [formula in source] count and the second seam defect all hang on the second hypercharge moment [formula in source] . \ Round-22 sharpening: the moment itself is one symbolic identity, [formula in source] — the Coxeter number 
+With [formula in source] , the quadratic hypercharge trace on one family is [formula in source] , and it generates the whole integer chain: The flavor budget, the [formula in source] budget, the [formula in source] count and the second seam defect all hang on the second hypercharge moment [formula in source] . \ Round-22 sharpening: the moment itself is one symbolic identity, [formula in source] — the Coxeter number
 
 Explicit source references:
 
@@ -699,7 +748,7 @@ Explicit source references:
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex:1928-1961](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex#L1928) · `section:26a174b789c650ed0ebe` · subsection
 
-The carrier geometry fixes [formula in source] , [formula in source] , rigid [formula in source] generated by [formula in source] . The twelve puncture-difference cycles [formula in source] carry the residue pairing [formula in source] and form the [formula in source] root system: The corner rotation [formula in source] acts on [formula in source] as the [formula in source] Coxeter element (order [formula in source] 
+The carrier geometry fixes [formula in source] , [formula in source] , rigid [formula in source] generated by [formula in source] . The twelve puncture-difference cycles [formula in source] carry the residue pairing [formula in source] and form the [formula in source] root system: The corner rotation [formula in source] acts on [formula in source] as the [formula in source] Coxeter element (order [formula in source]
 
 Explicit source references:
 
@@ -1005,7 +1054,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex:4318-4334](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex#L4318) · `section:9cd02b2b0f5af263291c` · subsection
 
-Coxeter/gauge typing of the lcm–gcd pair. Writing [formula in source] and [formula in source] , the relations become [formula in source] and [formula in source] : the local SM algebra is the gcd of the Coxeter double-period and the [formula in source] rank-occupancy, and the [formula in source] root count is their lcm. Likewise the EW exponent reads [formula in source] (Coxeter principal part plus a rank singlet). \ 
+Coxeter/gauge typing of the lcm–gcd pair. Writing [formula in source] and [formula in source] , the relations become [formula in source] and [formula in source] : the local SM algebra is the gcd of the Coxeter double-period and the [formula in source] rank-occupancy, and the [formula in source] root count is their lcm. Likewise the EW exponent reads [formula in source] (Coxeter principal part plus a rank singlet). \
 
 ## Level 2 — new exact counting identities ( )
 
@@ -1017,7 +1066,7 @@ with [formula in source] the number of non-empty occupation words of the [formul
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex:4344-4404](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex#L4344) · `section:5e1509353325b787484d` · subsection
 
-Identify [formula in source] with the even-weight binary code on five bits. A transition [formula in source] has flip [formula in source] , even and nonempty, so [formula in source] ; per state there are [formula in source] flips, giving and the [formula in source] undirected flips match the [formula in source] [formula in source] root pairs ( , counting). This makes the atlas conjecture testable: a genuine root map 
+Identify [formula in source] with the even-weight binary code on five bits. A transition [formula in source] has flip [formula in source] , even and nonempty, so [formula in source] ; per state there are [formula in source] flips, giving and the [formula in source] undirected flips match the [formula in source] [formula in source] root pairs ( , counting). This makes the atlas conjecture testable: a genuine root map
 
 Explicit source references:
 
@@ -1037,7 +1086,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex:4405-4425](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex#L4405) · `section:911b129fc3e3dd46c69d` · subsection
 
-Use the universal root-system identity [formula in source] (Coxeter number [formula in source] ). With the carrier values [formula in source] and [formula in source] , The Coxeter number of [formula in source] is exactly three families times the cosmological pair action: each family contributes one [formula in source] -decuple ( [formula in source] ) to the Coxeter period. Equivalently the action ladder is a Coxeter 
+Use the universal root-system identity [formula in source] (Coxeter number [formula in source] ). With the carrier values [formula in source] and [formula in source] , The Coxeter number of [formula in source] is exactly three families times the cosmological pair action: each family contributes one [formula in source] -decuple ( [formula in source] ) to the Coxeter period. Equivalently the action ladder is a Coxeter
 
 ## Level 2.8 — positive-root moment: [formula in source]
 
@@ -1244,7 +1293,7 @@ tocsectionTheorem 4 From the three atoms [formula in source] , with [formula in 
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex:5039-5064](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex#L5039) · `section:ec1ffa8eecd05cd52454` · section
 
-tocsectionTheorem 5 The directed even-flips of [formula in source] are the complete graph [formula in source] : ( [formula in source] .) So the positive [formula in source] roots are the unordered transitions of one family; the second hypercharge moment, the positive-root count and the sum of the [formula in source] exponents coincide at [formula in source] . The CP pairing [formula in source] of the exponents gives 
+tocsectionTheorem 5 The directed even-flips of [formula in source] are the complete graph [formula in source] : ( [formula in source] .) So the positive [formula in source] roots are the unordered transitions of one family; the second hypercharge moment, the positive-root count and the sum of the [formula in source] exponents coincide at [formula in source] . The CP pairing [formula in source] of the exponents gives
 
 ## Theorem 6 — downstream readouts from [formula in source]
 
@@ -1720,7 +1769,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_2_standard_model.tex:1791-1822](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_2_standard_model.tex#L1791) · `section:de65561a933aa5ea02ba` · subsection
 
-The closed CKM point is not an end state — it feeds the theoretically cleanest flavor-changing neutral-current probe, the rare decays [formula in source] and [formula in source] . These are not a new compiler power: the only TFPT-specific content is the CKM point above; the short-distance loop functions ( [formula in source] , [formula in source] , [formula in source] , [formula in source] , Brod–Gorbahn–Stamou) are 
+The closed CKM point is not an end state — it feeds the theoretically cleanest flavor-changing neutral-current probe, the rare decays [formula in source] and [formula in source] . These are not a new compiler power: the only TFPT-specific content is the CKM point above; the short-distance loop functions ( [formula in source] , [formula in source] , [formula in source] , [formula in source] , Brod–Gorbahn–Stamou) are
 
 Explicit source references:
 
@@ -1737,7 +1786,7 @@ A generic ``spine-ratio'' scan ( [formula in source] , [formula in source] , the
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_2_standard_model.tex:1829-2090](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_2_standard_model.tex#L1829) · `section:51b5da5a67a36e5155ae` · section
 
-The neutrino sector is the Majorana branch of the same construction: [formula in source] . @p3.6cmp5.2cmc@ Quantity & Origin & Value \\ [formula in source] & [formula in source] (UV), closure [formula in source] & [formula in source] \\ [formula in source] & primary (freeze): [formula in source] (seed, [formula in source] ); two derived variants in the named box & [formula in source] (NuFIT 6.0 [formula in source] ) 
+The neutrino sector is the Majorana branch of the same construction: [formula in source] . @p3.6cmp5.2cmc@ Quantity & Origin & Value \\ [formula in source] & [formula in source] (UV), closure [formula in source] & [formula in source] \\ [formula in source] & primary (freeze): [formula in source] (seed, [formula in source] ); two derived variants in the named box & [formula in source] (NuFIT 6.0 [formula in source] )
 
 Explicit source references:
 
@@ -1870,28 +1919,3 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_2_standard_model.tex:2169-2175](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_2_standard_model.tex#L2169) · `section:1a2458f59412a5e4396c` · section
 
 For each question the entry is typed honestly as closed, reduced or conditional: the proof chain isolating one sharply named remainder — and, where possible, a reduction that makes the problem smaller than previously thought. This is a resolution map, not a claim that all five are fully solved.
-
-## (1) Flavor residual — ratios closed combinatorially; only the absolute scale is the wall-selection [formula in source] /
-
-[experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_2_standard_model.tex:2176-2205](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_2_standard_model.tex#L2176) · `section:2546f93b78129f0fded4` · subsection
-
-Mehta–Seshadri supplies the equivalence-class framework — stable parabolic bundles [formula in source] irreducible unitary representations — but it does not by itself give ``parabolic-stable [formula in source] transport-minimal'' or the hexagonal word-lengths; that is the TFPT-specific step. The family connection [formula in source] provides the representation, its weights are the cusp exponents, the stable degree i
-
-Explicit source references:
-
-- [verification/v27_wall_representative.py](../../../../verification/v27_wall_representative.py#L1) · explicit_file_citation
-- [verification/v33_explicit_flat_bundle.py](../../../../verification/v33_explicit_flat_bundle.py#L1) · explicit_file_citation
-- [verification/v70_q_integer_lift.py](../../../../verification/v70_q_integer_lift.py#L1) · explicit_script_identifier
-- [verification/v49_readout_rigidity.py](../../../../verification/v49_readout_rigidity.py#L1) · explicit_script_identifier
-- [verification/v30_d4_character_variety.py](../../../../verification/v30_d4_character_variety.py#L1) · explicit_file_citation
-- [verification/v69_d4_q_geometry.py](../../../../verification/v69_d4_q_geometry.py#L1) · explicit_script_identifier
-- [verification/v71_simple_r_bridge.py](../../../../verification/v71_simple_r_bridge.py#L1) · explicit_script_identifier
-- [verification/v34_h2_bridge_attempt.py](../../../../verification/v34_h2_bridge_attempt.py#L1) · explicit_file_citation
-- [verification/v31_R_dictionary.py](../../../../verification/v31_R_dictionary.py#L1) · explicit_file_citation
-
-Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
-
-- [(* ---- (v71) SIMPLE R-bridge: selector stratum derived => ratios are integer Plucker, no monodromy ---- *) checkExact["det ladder (Q,K,R,L)=(3,4,8,20)=(N_fam,|mu4|,rank E8,det L); det R=8=rank E8=g+n; det Q=3=N_fam", {Det[Q], Det[K], Det[R], Det[L]} == {3, 4, 8, 20} && Det[R] == 8 == gcar + Nfam && Det[Q] == Nfam]; checkExact["selector stratum derived => c_u/c_d=55/117 is a pure integer Plucker readout (13=8+5=9+4)", (gcar*11)/(Nfam^2*13) == 55/117 && 13 == 8 + 5 == Nfam^2 + 4]; (* ---- (v72) det Q = N_fam from the cusp class: order = weight denominator = |coker Q| ---- *)](../../../../verification/wolfram/tfpt_readouts.wl#L342)
-- [(* ---- (v69) D4-equivariant Q-geometry: Q_+ from cusp weights, Q_- E-block coupling ---- *) checkExact["Z4 4-cycle eigenvalues {1,i,-1,-i}; H_1(sum=0) families = {i,-1,-i}", Sort[Eigenvalues[{{0,0,0,1},{1,0,0,0},{0,1,0,0},{0,0,1,0}}]] == Sort[{1, I, -1, -I}]]; checkExact["Q_+=3 diag(0,1/3,2/3)+1=diag(1,2,3): Spec{1,2,3}; Q_-=E-coupling sqrt3: Spec{0,+-sqrt3}", Sort[Eigenvalues[3 DiagonalMatrix[{0, 1/3, 2/3}] + IdentityMatrix[3]]] == {1, 2, 3} && Sort[Eigenvalues[{{0, 0, 0}, {0, 0, Sqrt[3]}, {0, Sqrt[3], 0}}]] == Sort[{0, Sqrt[3], -Sqrt[3]}]]; (* ---- (v70) integer-lift of Q: Z4 puncture action unimodular, det Q = N_fam ---- *)](../../../../verification/wolfram/tfpt_readouts.wl#L329)
-- [(* ---- (v97) sheet-conjugation bridge (P1 -> one [P]) ---- *) TA = {{0, 1, 0}, {1, 0, 0}, {2, -2, 1}}; SigM = DiagonalMatrix[{1, -1, -1}]; sig12 = {{0, 1, 0}, {1, 0, 0}, {0, 0, 1}}; e1v = {0, 0, 1}; e2v = {0, 1, 2}; e3v = {1, 0, 0}; QPm = (Q + SigM.Q.SigM)/2; checkExact["v97 Q_+ eigenvectors e1=(0,0,1) [l=1], e2=(0,1,2) [l=2], e3=(1,0,0) [l=3]", (QPm.e1v == 1 e1v) && (QPm.e2v == 2 e2v) && (QPm.e3v == 3 e3v)]; checkExact["v97 T_A integer involution, det -1, fixes 1 and a; T_A swaps e2 <-> e3, fixes e1", (TA.TA == IdentityMatrix[3]) && (Det[TA] == -1) && (TA.one == one) && (TA.av == av) && (TA.e2v == e3v) && (TA.e3v == e2v) && (TA.e1v == e1v)]; checkExact["v97 anchor = conjugation-symmetric vector: a = e2+e3, 1 = a-e1; odd line e2-e3", (av == e2v + e3v) && (one == av - e1v) && (TA.(e2v - e3v) == -(e2v - e3v))]; ddir = {-1, 1, 0}; coeffs = LinearSolve[Transpose[{one, av, ddir}], TA.ddir]; checkExact["v97 one deck action: T_A = -1 on R^3/span{1,a} (like sigma_12); parity det T_A = det sigma_12 = -1, det Sigma = +1", (coeffs[[3]] == -1) && (sig12.ddir == -ddir) && (Det[sig12] == -1) && (Det[SigM] == 1)]; Gm = TA.SigM; RrotM = {{0, 0, -1}, {1, 0, -1}, {0, 1, -1}}; checkExact["v97 D4 closure: G = T_A.Sigma has order 4, char (t+1)(t^2+1) = char(v70 R_rot)", (MatrixPower[Gm, 4] == IdentityMatrix[3]) && (MatrixPower[Gm, 2] != IdentityMatrix[3]) && (Expand[CharacteristicPolynomial[Gm, t] + (t + 1) (t^2 + 1)] === 0) && (Expand[CharacteristicPolynomial[Gm, t] - CharacteristicPolynomial[RrotM, t]] === 0)]; Svars = Array[sv, {3, 3}]; solS = Quiet[Solve[Flatten[Svars.Gm - RrotM.Svars] == 0, Flatten[Svars]], Solve::svars]; Sgen = Svars /. First[solS]; detSgen = Factor[Det[Sgen]]; checkExact["v97 sheet-index lemma: det S always EVEN on the integer intertwiner space, minimum |det| = 2 = |Z2|", Module[{vars = Variables[detSgen], vals}, vals = Select[Abs[detSgen /. Thread[vars -> #]] & /@ Tuples[Range[-2, 2], Length[vars]], # =!= 0 &]; (And @@ (EvenQ /@ vals)) && (Min[vals] == 2)]]; checkExact["v97 Q (det = N_fam) does NOT intertwine G -> R_rot (independent bridge)", Q.Gm != RrotM.Q]; (* ---- (v98) discriminant dictionary derived ---- *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L249)
-- [(* ---- (v50) Q geometry (Theorem Q): Sigma-split char polys ---- *) Qp = (Q + Sig.Q.Sig)/2; Qm = (Q - Sig.Q.Sig)/2; checkExact["Q_+ char poly = (t-1)(t-2)(t-3) => Spec(Q_+)={1,2,3}", Sort[Eigenvalues[Qp]] == {1, 2, 3}]; checkExact["Q_- char poly = t(t^2-3) => Q_-^2 eigenvalues {0,3} (3=N_fam)", Sort[Eigenvalues[Qm]] == Sort[{0, Sqrt[3], -Sqrt[3]}] && Sort[Eigenvalues[Qm.Qm]] == {0, 3, 3}]; (* ---- (v49) Readout Rigidity: c_u/c_d constant on the selector stratum ---- *)](../../../../verification/wolfram/tfpt_readouts.wl#L194)

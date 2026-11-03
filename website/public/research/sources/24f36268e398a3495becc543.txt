@@ -1,0 +1,96 @@
+TFPT scientific source excerpt
+Original repository path: verification/v1008_master_assembly_scaffold.py
+Original file SHA-256: 3c45ac92fabdcb4d572a4f5c1b51d6b33639e6538f30b0168adca12a5d3fcb37
+Inclusive original lines: 1-88
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | #!/usr/bin/env python3
+000002 | # -*- coding: utf-8 -*-
+000003 | """v1008 -- QFT4D.LATTICE.FUNDAMENTAL.01 / GAUGE.DETLINE.FIXPOINT.01
+000004 | [O]: compressed 2+1D master-object scaffold (prototype, matter,
+000005 | wall/mirror, four-block assembly).
+000006 | 
+000007 | Provenance: experiments/tfpt-discovery/tfpt2p1d_{prototype,matter,
+000008 | wall_mirror,master_assembly}_probe.py (review wave 7, 2026-08-30;
+000009 | 16/16 + 20/20 + 13/13 + 15/15).  Helpers are copied; experiments/ is
+000010 | not imported.
+000011 | 
+000012 | THE POINT.  Four stages are scaffold-coherent.  No marker moves.
+000013 | 
+000014 |   Prototype [E-finite]: combinatorial K=0 -- every oriented plaquette
+000015 |         has vanishing flat-x-holonomy exponent; Z2 L=2 Gauss sector
+000016 |         dimension 32.  L=3 262144 is out of suite.
+000017 |   Matter [N]: live frozen-link companion: K(q=0)=0, q^2 ~ 4;
+000018 |         unique-contractive protocol is |R'|<1.  L2/L3 selector
+000019 |         numbers (0.578 -> 0.936, pair 2.00 -> 0.31, R' 0.0005/0.028)
+000020 |         are harvest pins, not L=3 Lanczos.  v1 SHA frozen negative.
+000021 |   Wall/mirror [N]: QWZ physical slope ~ -0.9989; DET mirror gap >= 1.5
+000022 |         (probe min 1.866) through t=0.6; DET-on-physical / remove-DET
+000023 |         mutants.
+000024 |   Assembly [N]: Z6 content (1,2,3,0); clock [0,1,1,2]; D H D^dag
+000025 |         covariance; chi_phys vs chi_mirror; grading mutant.  Frozen
+000026 |         SHA e5566dc4....  Dim 1024.
+000027 | 
+000028 | MUST-FAIL: charge-0 stiffness is zero; remove-DET leaves both edges
+000029 | gapless; DET-on-physical gaps the wrong edge; Psi^2 doubles the
+000030 | clock ground sector.
+000031 | 
+000032 | HONEST SCOPE (firewall): 2+1D analogue scaffold; no 4D volume
+000033 | theorem, no dynamical compact-group links, no continuum limit.
+000034 | QFT4D.LATTICE.FUNDAMENTAL.01 and GAUGE.DETLINE.FIXPOINT.01 stay [O].
+000035 | Python-only / Wolfram mirror deferred.
+000036 | """
+000037 | from __future__ import annotations
+000038 | 
+000039 | import hashlib
+000040 | import itertools
+000041 | import math
+000042 | from dataclasses import dataclass
+000043 | 
+000044 | import numpy as np
+000045 | 
+000046 | from tfpt_constants import check, summary, reset
+000047 | 
+000048 | 
+000049 | def report(name, ok, extra=""):
+000050 |     check("%s -- %s" % (name, extra) if extra else name, ok)
+000051 | 
+000052 | 
+000053 | HERE = __file__.rsplit("/", 1)[0]
+000054 | ROOT = HERE.rsplit("/", 1)[0]
+000055 | MATTER_PROBE = ROOT + "/experiments/tfpt-discovery/tfpt2p1d_matter_probe.py"
+000056 | ASSEMBLY_PROBE = (
+000057 |     ROOT + "/experiments/tfpt-discovery/tfpt2p1d_master_assembly_probe.py"
+000058 | )
+000059 | 
+000060 | HOPPING = 0.6
+000061 | STAGGERED_MASS = 0.2
+000062 | BETA_MATTER = 40.0
+000063 | RICHARDSON_STEP = 0.04
+000064 | FROZEN_SHA256_V1 = (
+000065 |     "301bd3e2270b903fe0717f65ae6f45292a0eb18cd4c0b49e3b77001fbf80dfd2"
+000066 | )
+000067 | FROZEN_SHA256_V2 = (
+000068 |     "cc1ebf2b8237e9688a13914fcca14f99a73b191ae0bdf714eccb1436000826b0"
+000069 | )
+000070 | HARVEST_G_SEL_L2 = 0.578
+000071 | HARVEST_G_SEL_L3 = 0.936
+000072 | HARVEST_PAIR_L2 = 2.00
+000073 | HARVEST_PAIR_L3 = 0.31
+000074 | HARVEST_RPRIME = (0.0005, 0.028)
+000075 | 
+000076 | LX = 32
+000077 | LY = 8
+000078 | MASS = 1.0
+000079 | FLAVORS = 4
+000080 | DET_STRENGTH = 2.0
+000081 | DET_PHASE = math.pi / 7.0
+000082 | HOPPING_VALUES = (0.0, 0.2, 0.4, 0.6)
+000083 | MOMENTA = np.linspace(-math.pi, math.pi, 129)
+000084 | INTERACTION_BETA = 0.7
+000085 | INTERACTION_STRENGTH = 0.4
+000086 | EDGE_GAP_TOL = 1.0e-9
+000087 | MIRROR_GAP_MIN = 1.5
+000088 | LOCALIZATION_MIN = 0.95

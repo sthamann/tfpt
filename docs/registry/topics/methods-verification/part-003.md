@@ -35,7 +35,7 @@ This appendix labels frequently used equalities by logical status to prevent con
 
 [documents/archive--paper-latex--tfpt-31/sections/001-section-reading-guide-and-claim-map.tex:60-165](../../../../documents/archive--paper-latex--tfpt-31/sections/001-section-reading-guide-and-claim-map.tex#L60) · `section:5ad6c8ac0fb46f8da1fd` · section
 
-The paper is organized in three reading layers: Big picture: one section explains what TFPT claims in plain language before the detailed datum and conventions begin. Detail: the main body then runs from primitive core and hard carrier kernel through kernel numerics, the two closure-architecture sections, the closure theorem stack, the particle/mass compiler, and the benchmark interface. Proof sketches: the main text 
+The paper is organized in three reading layers: Big picture: one section explains what TFPT claims in plain language before the detailed datum and conventions begin. Detail: the main body then runs from primitive core and hard carrier kernel through kernel numerics, the two closure-architecture sections, the closure theorem stack, the particle/mass compiler, and the benchmark interface. Proof sketches: the main text
 
 ## Front matter / support
 
@@ -47,7 +47,7 @@ Assume the projected RG flow preserves the admissible Bernstein cone and admits 
 
 [documents/archive--paper-latex--tfpt-31/sections/012-section-particle-and-mass-compiler.tex:137-392](../../../../documents/archive--paper-latex--tfpt-31/sections/012-section-particle-and-mass-compiler.tex#L137) · `section:3559395957442aff0f78` · section
 
-This section is the phenomenological heart of the manuscript. It is not meant to flatten all rows into one uniform notion of prediction. Instead it makes the relation between derived theorem outputs and intrinsic observation rows explicit: a declared numerical preconditioner, a kernel-output map, and a mass ledger that separates internal theorem outputs from their observation-surface images. Accordingly this section 
+This section is the phenomenological heart of the manuscript. It is not meant to flatten all rows into one uniform notion of prediction. Instead it makes the relation between derived theorem outputs and intrinsic observation rows explicit: a declared numerical preconditioner, a kernel-output map, and a mass ledger that separates internal theorem outputs from their observation-surface images. Accordingly this section
 
 ## Mass-closure ledgers
 
@@ -131,7 +131,7 @@ This appendix collects the full Standard Model output of the carrier-first compi
 
 [documents/archive--paper-latex--tfpt-31/sections/017-section-yukawa-kernels-and-positivity-lemmas.tex:320-378](../../../../documents/archive--paper-latex--tfpt-31/sections/017-section-yukawa-kernels-and-positivity-lemmas.tex#L320) · `section:162b2943036b7a704049` · subsection
 
-round-mode=none, group-minimum-digits=20 ! @llllrlrrl@ Quantity & Sector & TFPT formula or source & Obs.\ map & TFPT\ & Unit & Reference\ & Residual & Status \\ 9@l Exact algebraic surface: \\ [formula in source] & EM & exact [formula in source] closure & on-shell Thomson & 137.0359992 & — & 137.03599918 & [formula in source] & EA \\ [formula in source] & EM & unbroken [formula in source] & — & [formula in source] & 
+round-mode=none, group-minimum-digits=20 ! @llllrlrrl@ Quantity & Sector & TFPT formula or source & Obs.\ map & TFPT\ & Unit & Reference\ & Residual & Status \\ 9@l Exact algebraic surface: \\ [formula in source] & EM & exact [formula in source] closure & on-shell Thomson & 137.0359992 & — & 137.03599918 & [formula in source] & EA \\ [formula in source] & EM & unbroken [formula in source] & — & [formula in source] &
 
 ## Extended benchmarks
 
@@ -155,13 +155,13 @@ The compact main-text mass ledgers intentionally suppress explicit formula detai
 
 [documents/archive--paper-latex--tfpt-31/sections/018-subsection-strict-benchmark-surface.tex:183-234](../../../../documents/archive--paper-latex--tfpt-31/sections/018-subsection-strict-benchmark-surface.tex#L183) · `section:c5c52d149c66e7fb784e` · subsection
 
-round-mode=none, group-minimum-digits=20 @> p0.15 > p0.33 > p0.15 Y@ Row & TFPT source or target & TFPT value & Status note \\ [formula in source] & exact unbroken [formula in source] direction & [formula in source] & exact structural row \\ [formula in source] & exact color gauge direction before confinement & [formula in source] & exact structural row \\ [formula in source] & intrinsic threshold output at [formula 
+round-mode=none, group-minimum-digits=20 @> p0.15 > p0.33 > p0.15 Y@ Row & TFPT source or target & TFPT value & Status note \\ [formula in source] & exact unbroken [formula in source] direction & [formula in source] & exact structural row \\ [formula in source] & exact color gauge direction before confinement & [formula in source] & exact structural row \\ [formula in source] & intrinsic threshold output at [formula
 
 ## Reading guide and claim map
 
 [documents/archive--paper-latex--tfpt-32/sections/001-section-reading-guide-and-claim-map.tex:25-127](../../../../documents/archive--paper-latex--tfpt-32/sections/001-section-reading-guide-and-claim-map.tex#L25) · `section:44d833b825fd27c41145` · section
 
-The paper is organized in three reading layers: Big picture: one section explains what TFPT claims in plain language before the detailed datum and conventions begin. Detail: the main body then runs from primitive core and hard carrier kernel through kernel numerics, the two closure-architecture sections, the closure theorem stack, the particle/mass compiler, and the benchmark interface. Proof sketches: the main text 
+The paper is organized in three reading layers: Big picture: one section explains what TFPT claims in plain language before the detailed datum and conventions begin. Detail: the main body then runs from primitive core and hard carrier kernel through kernel numerics, the two closure-architecture sections, the closure theorem stack, the particle/mass compiler, and the benchmark interface. Proof sketches: the main text
 
 ## Particle and mass compiler
 
@@ -197,7 +197,7 @@ The main benchmark table shows only a narrow comparison surface. To keep the com
 
 [documents/archive--paper-latex--tfpt-32/sections/014-section-primary-benchmark-map-and-prediction-ledger.tex:120-123](../../../../documents/archive--paper-latex--tfpt-32/sections/014-section-primary-benchmark-map-and-prediction-ledger.tex#L120) · `section:88d5f46d5372a2a592cb` · subsection
 
-The present comparison surface is deliberately uneven, and that unevenness is informative rather than embarrassing. Carrier algebra and the self-consistent [formula in source] row are the sharpest parts of the manuscript. The seed-driven bridge rows are useful because they are transparent and mutually constrained, not because they are independent. In the mass sector, the manuscript should be read as a mixed surface: 
+The present comparison surface is deliberately uneven, and that unevenness is informative rather than embarrassing. Carrier algebra and the self-consistent [formula in source] row are the sharpest parts of the manuscript. The seed-driven bridge rows are useful because they are transparent and mutually constrained, not because they are independent. In the mass sector, the manuscript should be read as a mixed surface:
 
 ## Residual map and principal comparison refinements
 
@@ -257,7 +257,7 @@ The upgrade path is now organized as proof compression and axiom reduction rathe
 
 [documents/archive--paper-latex--tfpt-32/sections/014-section-primary-benchmark-map-and-prediction-ledger.tex:300-332](../../../../documents/archive--paper-latex--tfpt-32/sections/014-section-primary-benchmark-map-and-prediction-ledger.tex#L300) · `section:1601d0f18313bfa38afc` · subsection
 
-The cleanest route from the present carrier-first compiler to a genuinely generative architecture is not to blur status labels, but to isolate six explicit theorem paths: Master closure theorem: derive APS, Bernstein positivity, reflection positivity, [formula in source] holonomy, and Hamiltonian coercivity from canonical doubling, positive spectral measure, and total Hodge admissibility instead of keeping them as a 
+The cleanest route from the present carrier-first compiler to a genuinely generative architecture is not to blur status labels, but to isolate six explicit theorem paths: Master closure theorem: derive APS, Bernstein positivity, reflection positivity, [formula in source] holonomy, and Hamiltonian coercivity from canonical doubling, positive spectral measure, and total Hodge admissibility instead of keeping them as a
 
 ## Internal closure candidates beyond the theorem stack
 
@@ -335,7 +335,7 @@ The present draft does not ask the reader to accept one undifferentiated output 
 
 [documents/archive--paper-latex--tfpt-42/sections/030-subsection-falsification-matrix.tex:62-128](../../../../documents/archive--paper-latex--tfpt-42/sections/030-subsection-falsification-matrix.tex#L62) · `section:aece9c239123e301af67` · subsection
 
-To keep proof status, interface assumptions, and comparison-only layers visibly separated, we record the present audit path explicitly. We use five status classes: ] full proof in manuscript; ] full proof modulo an explicit standard theorem; ] proof sketch in main text with full proof deferred; ] readout or comparison only; ] programmatic closure target with a fixed mathematical statement but without a claimed proof 
+To keep proof status, interface assumptions, and comparison-only layers visibly separated, we record the present audit path explicitly. We use five status classes: ] full proof in manuscript; ] full proof modulo an explicit standard theorem; ] proof sketch in main text with full proof deferred; ] readout or comparison only; ] programmatic closure target with a fixed mathematical statement but without a claimed proof
 
 Explicit source references:
 
@@ -497,7 +497,7 @@ This appendix provides the complete verification data for the E [formula in sour
 
 [documents/archive--paper-latex--tfpt-theory-fullv21/sections/006-section-numerical-constants-high-precision.tex:263-277](../../../../documents/archive--paper-latex--tfpt-theory-fullv21/sections/006-section-numerical-constants-high-precision.tex#L263) · `section:6158cbfedc1dac1b49e9` · subsection
 
-The uniqueness is verified by: Constructing the complete Hasse diagram of [formula in source] from standard tables. Computing all cover relations with [formula in source] . Running dynamic programming to find all paths from [formula in source] to [formula in source] . Applying the cost function [formula in source] (second-difference smoothness). Verifying that the minimum-cost path is unique (cost gap to second-best 
+The uniqueness is verified by: Constructing the complete Hasse diagram of [formula in source] from standard tables. Computing all cover relations with [formula in source] . Running dynamic programming to find all paths from [formula in source] to [formula in source] . Applying the cost function [formula in source] (second-difference smoothness). Verifying that the minimum-cost path is unique (cost gap to second-best
 
 ## Status note
 
@@ -569,7 +569,7 @@ This appendix provides the complete verification data for the E [formula in sour
 
 [documents/archive--paper-latex--tfpt-theory-fullv24/sections/006-section-numerical-constants-high-precision.tex:263-277](../../../../documents/archive--paper-latex--tfpt-theory-fullv24/sections/006-section-numerical-constants-high-precision.tex#L263) · `section:cf9ca0eb32a78484f335` · subsection
 
-The uniqueness is verified by: Constructing the complete Hasse diagram of [formula in source] from standard tables. Computing all cover relations with [formula in source] . Running dynamic programming to find all paths from [formula in source] to [formula in source] . Applying the cost function [formula in source] (second-difference smoothness). Verifying that the minimum-cost path is unique (cost gap to second-best 
+The uniqueness is verified by: Constructing the complete Hasse diagram of [formula in source] from standard tables. Computing all cover relations with [formula in source] . Running dynamic programming to find all paths from [formula in source] to [formula in source] . Applying the cost function [formula in source] (second-difference smoothness). Verifying that the minimum-cost path is unique (cost gap to second-best
 
 ## Status note
 
@@ -626,7 +626,7 @@ The TFPT verification suite ( tfpt-suite/) turns paper claims into deterministic
 
 [documents/archive--paper-latex--tfpt-theory-fullv25/sections/007-section-what-tfpt-does-emph-not-assume.tex:253-282](../../../../documents/archive--paper-latex--tfpt-theory-fullv25/sections/007-section-what-tfpt-does-emph-not-assume.tex#L253) · `section:b63b138d6fb15db8d399` · subsection
 
-@llrrrrrr@ Module & Mode & Checks & PASS & WARN & FAIL & Plots(exp) & Plots(ok)\\ alpha_on_shell_bridge & engineering & 7 & 6 & 1 & 0 & 0 & 0\\ matching_finite_pieces & engineering & 5 & 4 & 1 & 0 & 0 & 0\\ torsion_condensate & engineering & 8 & 5 & 3 & 0 & 0 & 0\\ alpha_on_shell_bridge & physics & 7 & 6 & 1 & 0 & 0 & 0\\ matching_finite_pieces & physics & 5 & 4 & 1 & 0 & 0 & 0\\ torsion_condensate & physics & 8 & 5 
+@llrrrrrr@ Module & Mode & Checks & PASS & WARN & FAIL & Plots(exp) & Plots(ok)\\ alpha_on_shell_bridge & engineering & 7 & 6 & 1 & 0 & 0 & 0\\ matching_finite_pieces & engineering & 5 & 4 & 1 & 0 & 0 & 0\\ torsion_condensate & engineering & 8 & 5 & 3 & 0 & 0 & 0\\ alpha_on_shell_bridge & physics & 7 & 6 & 1 & 0 & 0 & 0\\ matching_finite_pieces & physics & 5 & 4 & 1 & 0 & 0 & 0\\ torsion_condensate & physics & 8 & 5
 
 ## E [formula in source] Chain CertificateE8 Chain Certificate
 
@@ -638,7 +638,7 @@ This appendix provides the complete verification data for the E [formula in sour
 
 [documents/archive--paper-latex--tfpt-theory-fullv25/sections/008-subsection-theoryv3-evidence-layer-compressed-auto-gener.tex:194-208](../../../../documents/archive--paper-latex--tfpt-theory-fullv25/sections/008-subsection-theoryv3-evidence-layer-compressed-auto-gener.tex#L194) · `section:b8098ef60509670f5e29` · subsection
 
-The uniqueness is verified by: Constructing the complete Hasse diagram of [formula in source] from standard tables. Computing all cover relations with [formula in source] . Running dynamic programming to find all paths from [formula in source] to [formula in source] . Applying the cost function [formula in source] (second-difference smoothness). Verifying that the minimum-cost path is unique (cost gap to second-best 
+The uniqueness is verified by: Constructing the complete Hasse diagram of [formula in source] from standard tables. Computing all cover relations with [formula in source] . Running dynamic programming to find all paths from [formula in source] to [formula in source] . Applying the cost function [formula in source] (second-difference smoothness). Verifying that the minimum-cost path is unique (cost gap to second-best
 
 ## Status note
 

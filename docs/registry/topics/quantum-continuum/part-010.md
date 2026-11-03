@@ -186,6 +186,24 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 - [(* v1031: exact rational-fibre curvature projector and positivity. *) p = {1, 2, 2}; {r2, b, trace, scalar, kp, kq, c} = tensorData[p]; ptt = Simplify[explicitPTT[p, r2]]; check["v1031 C=r^4 PTT with a symmetric rank-two projector", zeroQ[c - r2^2 ptt] && zeroQ[ptt - Transpose[ptt]] && zeroQ[ptt.ptt - ptt] && MatrixRank[ptt] === 2]; cFactor = r2 ptt; check["v1031 exact PSD factorization has spectrum {0^4,r^4,r^4}", zeroQ[c - cFactor.Transpose[cFactor]] && MatrixRank[c] === 2 && Sort[Simplify[Eigenvalues[c]]] === {0, 0, 0, 0, r2^2, r2^2}]; (* v1032: a separate Lorentz-covariant curvature calculation at one exact nonzero null momentum. Pi is the de Donder trace-reversed numerator; positivity is inferred only after the curvature sandwich. *)](../../../../verification/wolfram/tfpt_round7.wl#L79)
 
+## Shared source and transfer update: 3 November 2026
+
+[tex-artefacts/toe_source_completion_20261103.tex:4-26](../../../../tex-artefacts/toe_source_completion_20261103.tex#L4) · `section:5bb11b878db66b765225` · section
+
+The original structured boundary source, its common action and the [formula in source] chain are retained. Several complete source calls, field maps and transfer kernels have now been evaluated in their stated classes. These results include conditional charge and metric selection, physical Gauss-sector sources, vacuum and ground-source reconstruction, and a complete fixed-background Clifford kernel. The primitive spa
+
+## The common source and the corrected starting point (C, F, G)
+
+[tex-artefacts/toe_source_completion_20261103.tex:27-75](../../../../tex-artefacts/toe_source_completion_20261103.tex#L27) · `section:066fe20f4d09268f3d38` · subsection
+
+P1 is a structured reflection-positive boundary kernel, not merely the number [formula in source] . The operational seed already supplies its local algebra, state, time, reflection and collar operator. The original source route is [formula in source] Each arrow retains its actual hypotheses and operator domains. A particular eightfold CAR/native-clock reconstruction is an available conditional route, not a global ext
+
+## Physical source existence, ground words and common geometry (H, I, J)
+
+[tex-artefacts/toe_source_completion_20261103.tex:153-220](../../../../tex-artefacts/toe_source_completion_20261103.tex#L153) · `section:206a9bd3daad77367425` · subsection
+
+The given finite-range uniformly local Hamiltonian class has its thermodynamic real-time norm dynamics and ground/KMS states. Restrictions of one limiting state are compatible. Independently restarted small bare Gibbs weights need not be projective. Exact elimination carries the effective fiber weights, exterior determinants, higher vertices and memory, rather than imposing the original bare ansatz again at each cut.
+
 ## Universalraum synthesis: source selection, reconstruction and accessible dynamics
 
 [tex-artefacts/toe_universalraum_synthesis_20260912.tex:2-4](../../../../tex-artefacts/toe_universalraum_synthesis_20260912.tex#L2) · `section:6e1860c8f024840a2d59` · section

@@ -1,0 +1,68 @@
+TFPT scientific source excerpt
+Original repository path: verification/v1002_spin10_mirror_projector.py
+Original file SHA-256: 84f7cd7987887ee071d7e05872285ab274ae329f6bcfa693be69bb52add19a4c
+Inclusive original lines: 1-60
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """v1002 -- CHIRAL4D.MIRROR.DET16.01: DET16 rank-one projector on the
+000002 | full 2^16 cluster, plus the number-preserving Casimir-route kill.
+000003 | 
+000004 | Provenance: experiments/tfpt-discovery/spin10_det16_projector_probe.py
+000005 | + spin10_mirror_projector_probe.py + spin10_multicluster_singlet_probe.py
+000006 | (review wave 5, 2026-08-29).
+000007 | 
+000008 | THE POINT.  Exact finite-cluster gapping mechanism; the Casimir projector
+000009 | is permanently excluded.
+000010 | 
+000011 |   [E-finite] DET16 rank-one projector on the full 2^16 cluster:
+000012 |        Omega^dag Omega = P_16, Omega Omega^dag = P_0, defect 0;
+000013 |        P_phi hermitian idempotent, rank 1;
+000014 |        h_mir spectrum {0^1, 1^65535}, gap exactly 1;
+000015 |        all 45 so(10) Fock commutators = 0 (det rho_16 = 1);
+000016 |        parity commutator 0; |0> and |F> singlets.
+000017 |   [N]  hopping stability on the 4-mode analogue chain: gap ~0.90
+000018 |        (2 clusters) / ~0.86 (3 clusters) at t = 0.2; spectators untouched.
+000019 |   [X]  KILLED number-preserving Casimir route: singlet census one 16
+000020 |        = {N=0:1, N=16:1} (none at N=8); k=2 half-filling multiplicity 27;
+000021 |        k=3: 1463 (census via exact Weyl alternation, |W(D5)| = 1920).
+000022 |        Uniqueness fails at every cluster size.
+000023 | 
+000024 | MUST-FAIL: odd 15-vertex (parity + gauge fail); 1/3 normalization
+000025 | (not a projector); vector-10 mutant; Spin(9) restriction (new unique
+000026 | N=8 singlet).
+000027 | 
+000028 | HONEST SCOPE (firewall): finite-cluster identity; no dynamical gauge
+000029 | fields, no domain-wall geometry, no 4D volume theorem.
+000030 | CHIRAL4D.NOMIRROR.01 stays Open; MIRROR.DET16 is Candidate [C].
+000031 | Python-only / Wolfram mirror deferred.
+000032 | """
+000033 | from __future__ import annotations
+000034 | 
+000035 | import gc
+000036 | import itertools
+000037 | import math
+000038 | from collections import defaultdict
+000039 | from dataclasses import dataclass
+000040 | from functools import lru_cache
+000041 | from typing import Iterable
+000042 | 
+000043 | import numpy as np
+000044 | import scipy.linalg as la
+000045 | import scipy.sparse as sp
+000046 | import scipy.sparse.linalg as spla
+000047 | 
+000048 | from tfpt_constants import check, summary, reset
+000049 | 
+000050 | 
+000051 | def report(name, ok, extra=""):
+000052 |     check(name if not extra else "%s -- %s" % (name, extra), ok)
+000053 | 
+000054 | 
+000055 | TOL = 2.0e-10
+000056 | EIG_TOL = 2.0e-8
+000057 | SPIN10_MODES = 16
+000058 | TOY_CLUSTER_MODES = 4
+000059 | PHI = np.pi / 7.0
+000060 | HOPPING_VALUES = (0.0, 0.05, 0.1, 0.2)

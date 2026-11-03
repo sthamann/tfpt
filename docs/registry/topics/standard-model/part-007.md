@@ -4,6 +4,21 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## The [formula in source] truncation is [formula in source] -bounded
+
+[documents/tfpt_2_standard_model/sections/010-section-the-explicit-mass-gap-closes-dynamics-and-cluste.tex:184-272](../../../../documents/tfpt_2_standard_model/sections/010-section-the-explicit-mass-gap-closes-dynamics-and-cluste.tex#L184) · `section:ee5c68ec39d878e448bd` · section
+
+On the [formula in source] attractor the curvature during observable inflation is [formula in source] . Higher curvature terms [formula in source] , [formula in source] , enter with [formula in source] , so their contribution to the observables is [formula in source] . With [formula in source] this is [formula in source] ( [formula in source] ), and the leading predictions are [formula in source] matching Planck. The
+
+Explicit source references:
+
+- [verification/v86_nstar_reheating.py](../../../../verification/v86_nstar_reheating.py#L1) · explicit_file_citation
+- [verification/v494_cosmo_running_mu_record.py](../../../../verification/v494_cosmo_running_mu_record.py#L1) · explicit_file_citation
+
+Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
+
+- [(* ---- (v86) reheating arithmetic (scale chain; pivot solve stays Python) ---- *) Mbar = 2.435323203`20 10^18; Mscal = c3^(7/2) Mbar; GammaScal = 4 Mscal^3/(48 Pi Mbar^2); check["v86 Gamma = 4 M^3/(48 pi Mbar^2) = 128.1 GeV", GammaScal, 128.146562596`12, 10^-6]; check["v86 T_reh = 9.55e9 GeV (g*=106.75)", (30 (3 GammaScal^2 Mbar^2)/(Pi^2 106.75))^(1/4), 9.55048669665`12 10^9, 10^-6]; AsOf[n_] := n^2 c3^7/(24 Pi^2); check["v86 A_s(51.4406) = 1.764e-9 (the A_s-disfavoured slow point)", AsOf[51.4406], 1.7637`5 10^-9, 10^-3]; check["v86 A_s-preferred N_star = 56.198", Sqrt[2.105`10 10^-9 24 Pi^2/c3^7], 56.198`6, 10^-4]; check["v86 dichotomy: matching A_s at 51.44 needs M x 1.0925", Sqrt[2.105`10 10^-9/AsOf[51.4406]], 1.09248`6, 10^-4]; (* ---- (v87) SO(16)_1 modular data and its six invariants ---- *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L83)
+
 ## The ambient closure: one spectral-action measure, IR-complete by decoupling
 
 [documents/tfpt_2_standard_model/sections/010-section-the-explicit-mass-gap-closes-dynamics-and-cluste.tex:273-408](../../../../documents/tfpt_2_standard_model/sections/010-section-the-explicit-mass-gap-closes-dynamics-and-cluste.tex#L273) · `section:9d6c7d63f5df5a4df579` · section
@@ -113,7 +128,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 ## Status: what is now written out, and what is honestly left
 
-[documents/tfpt_2_standard_model/sections/011-subsection-seam-response-grammar-gravity-is-the-inverse-.tex:307-358](../../../../documents/tfpt_2_standard_model/sections/011-subsection-seam-response-grammar-gravity-is-the-inverse-.tex#L307) · `section:00b05ea692eac25e3d3e` · section
+[documents/tfpt_2_standard_model/sections/011-subsection-seam-response-grammar-gravity-is-the-inverse-.tex:307-360](../../../../documents/tfpt_2_standard_model/sections/011-subsection-seam-response-grammar-gravity-is-the-inverse-.tex#L307) · `section:00b05ea692eac25e3d3e` · section
 
 tocsectionStatus @p5.6cmcY@ Item & Status & Result \\ Dynamics / clustering (Lemma Gravity Fredholm (Lemma [formula in source] truncation (Lemma Starobinsky [formula in source] / [formula in source] & / & [formula in source] GeV exact ; [formula in source] a \ band over [formula in source] \\ [formula in source] typing (Prop. [formula in source] (Prop. quark [formula in source] -rationals & / & hierarchy + source rat
 
@@ -131,7 +146,7 @@ Explicit source references:
 
 ## Appendix: computational verification
 
-[documents/tfpt_2_standard_model/sections/011-subsection-seam-response-grammar-gravity-is-the-inverse-.tex:359-376](../../../../documents/tfpt_2_standard_model/sections/011-subsection-seam-response-grammar-gravity-is-the-inverse-.tex#L359) · `section:59464fe2623d8f56dc12` · section
+[documents/tfpt_2_standard_model/sections/011-subsection-seam-response-grammar-gravity-is-the-inverse-.tex:361-378](../../../../documents/tfpt_2_standard_model/sections/011-subsection-seam-response-grammar-gravity-is-the-inverse-.tex#L361) · `section:59464fe2623d8f56dc12` · section
 
 The Standard-Model identities used here (marked , , ) are re-derived from [formula in source] and machine-checked by the suite in the repository folder verification/; the inline tags [verification/ [formula in source] ] point to the exact script. Relevant here: v2_carrier_pascal.py — the carrier/Pascal packet ( [formula in source] , [formula in source] ). v3_em_alpha.py — the EM fixed point [formula in source] . v4_f
 
@@ -244,7 +259,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/tfpt_4_frontier/sections/001-source.tex:262-300](../../../../documents/tfpt_4_frontier/sections/001-source.tex#L262) · `section:cc7b2d0df421c394451c` · section
 
-The seam UV is the free chiral [formula in source] fixed point ( v158_fixed_point_stable.py): Gaussian, with no relevant and no marginal interactions. The Higgs self-coupling [formula in source] is the one marginal scalar coupling, so a free seam forces it to the Gaussian point there: [formula in source] the Shaposhnikov–Wetterich double-criticality condition — here derived from the free seam rather than postulated. 
+The seam UV is the free chiral [formula in source] fixed point ( v158_fixed_point_stable.py): Gaussian, with no relevant and no marginal interactions. The Higgs self-coupling [formula in source] is the one marginal scalar coupling, so a free seam forces it to the Gaussian point there: [formula in source] the Shaposhnikov–Wetterich double-criticality condition — here derived from the free seam rather than postulated.
 
 Explicit source references:
 
@@ -469,7 +484,7 @@ Explicit source references:
 
 [documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/002-subsection-der-entscheidende-selektor-vollst-ndigkeit-de.tex:359-369](../../../../documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/002-subsection-der-entscheidende-selektor-vollst-ndigkeit-de.tex#L359) · `section:c414a975128ab2f44f7b` · subsection
 
-Die Marken legen ein gemeinsames Gerüst fest. Der P1/P2-Bootstrap, die [formula in source] -Ladungszerlegung, der Familienrang und die [formula in source] -Verklebung beschränken dieselbe Architektur. Ihre Auswahlklassen bleiben Teil der Aussage. Dieses Gerüst trägt mehrere präzise Auslesungen. Die volle Materiespur zählt [formula in source] Komponenten; die Ladungsspur ergibt mit dem Higgs [formula in source] . Die 
+Die Marken legen ein gemeinsames Gerüst fest. Der P1/P2-Bootstrap, die [formula in source] -Ladungszerlegung, der Familienrang und die [formula in source] -Verklebung beschränken dieselbe Architektur. Ihre Auswahlklassen bleiben Teil der Aussage. Dieses Gerüst trägt mehrere präzise Auslesungen. Die volle Materiespur zählt [formula in source] Komponenten; die Ladungsspur ergibt mit dem Higgs [formula in source] . Die
 
 ## Was die Architektur liefert und was die Physik zusätzlich verlangt
 
@@ -587,7 +602,7 @@ Für den bekannten Sechserzeugen gibt es in der Liste der zwölf elementaren Fer
 
 [documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/012-section-die-quelle-bewegt-sich-wirklich-eine-exakte-zeit.tex:45-56](../../../../documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/012-section-die-quelle-bewegt-sich-wirklich-eine-exakte-zeit.tex#L45) · `section:2bcbb431d1bad8712643` · subsection
 
-Die ursprüngliche v258_dirac_covariance_induction.py verwendet Dabei ist [formula in source] der geometrische Maßstab und [formula in source] die Projektion auf den chiraliätsungeraden Anteil. Im ausgeführten chiralen Beispiel ist [formula in source] ; die Projektion ändert den eingesetzten Operator nicht. Die Rekonstruktion setzt neun Massen in [formula in source] ein, erzeugt daraus [formula in source] und gewinnt 
+Die ursprüngliche v258_dirac_covariance_induction.py verwendet Dabei ist [formula in source] der geometrische Maßstab und [formula in source] die Projektion auf den chiraliätsungeraden Anteil. Im ausgeführten chiralen Beispiel ist [formula in source] ; die Projektion ändert den eingesetzten Operator nicht. Die Rekonstruktion setzt neun Massen in [formula in source] ein, erzeugt daraus [formula in source] und gewinnt
 
 Explicit source references:
 
@@ -1176,7 +1191,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/tfpt_research_contracts/sections/014-source.tex:183-244](../../../../documents/tfpt_research_contracts/sections/014-source.tex#L183) · `section:580c8e5b415ac9b79cec` · section
 
-Typing. A standing discipline rule, in force immediately (ledger row DIMENSION.UPLIFT.FIREWALL.01); the uplift theorems it names are separate \ contracts. It formalizes the core diagnosis of the 2026-08-27 external deep review: a chiral [formula in source] D seam net does not imply a local, interacting [formula in source] D quantum world. The corpus's strongest finite results are boundary/kinematic building blocks — 
+Typing. A standing discipline rule, in force immediately (ledger row DIMENSION.UPLIFT.FIREWALL.01); the uplift theorems it names are separate \ contracts. It formalizes the core diagnosis of the 2026-08-27 external deep review: a chiral [formula in source] D seam net does not imply a local, interacting [formula in source] D quantum world. The corpus's strongest finite results are boundary/kinematic building blocks —
 
 Explicit source references:
 
@@ -1502,7 +1517,7 @@ Der innere Träger kann Familienzahlen und Anomaliesummen motivieren. Drei physi
 
 [experiments/ftransfer-clocks/ftransfer_clocks_contract.tex:61-92](../../../../experiments/ftransfer-clocks/ftransfer_clocks_contract.tex#L61) · `section:1d19ef4ba26a6869c8f3` · section
 
-@llll@ Solver & Clock & Operational definition & Chart / gauge (frozen) \\ [formula in source] (Koide) & proper time [formula in source] & @l@rest-frame proper time of the lepton\ -particle state [formula in source] the phase clock of\ propagator pole, [formula in source] (on-shell\ ; PDG pole masses) & @l@ [formula in source] ;\ v99 seam tick [formula in source] \ proper-phase e-fold \\[8.5mm] [formula in source] ( 
+@llll@ Solver & Clock & Operational definition & Chart / gauge (frozen) \\ [formula in source] (Koide) & proper time [formula in source] & @l@rest-frame proper time of the lepton\ -particle state [formula in source] the phase clock of\ propagator pole, [formula in source] (on-shell\ ; PDG pole masses) & @l@ [formula in source] ;\ v99 seam tick [formula in source] \ proper-phase e-fold \\[8.5mm] [formula in source] (
 
 Explicit source references:
 
@@ -1545,7 +1560,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tex-artefacts/toe_round4_proofs.tex:243-303](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tex-artefacts/toe_round4_proofs.tex#L243) · `section:e34efc6d3388a546fda0` · paragraph
 
-CHIRAL4D.MIRROR.SIGNED.CAR.01. v1027_ signed_ det_ car_ wall.py checks the following algebra and its finite countermodels. The old Hubbard operators [formula in source] satisfy [formula in source] , not CAR, and [formula in source] . For even [formula in source] (in particular [formula in source] ), write [formula in source] and define [formula in source] This is a two-dimensional rotation and identity elsewhere. It 
+CHIRAL4D.MIRROR.SIGNED.CAR.01. v1027_ signed_ det_ car_ wall.py checks the following algebra and its finite countermodels. The old Hubbard operators [formula in source] satisfy [formula in source] , not CAR, and [formula in source] . For even [formula in source] (in particular [formula in source] ), write [formula in source] and define [formula in source] This is a two-dimensional rotation and identity elsewhere. It
 
 Explicit source references:
 
@@ -2044,7 +2059,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tfpt_research_contracts.tex:12571-12632](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tfpt_research_contracts.tex#L12571) · `section:fd8a259cd96f2b7b4df5` · section
 
-Typing. A standing discipline rule, in force immediately (ledger row DIMENSION.UPLIFT.FIREWALL.01); the uplift theorems it names are separate \ contracts. It formalizes the core diagnosis of the 2026-08-27 external deep review: a chiral [formula in source] D seam net does not imply a local, interacting [formula in source] D quantum world. The corpus's strongest finite results are boundary/kinematic building blocks — 
+Typing. A standing discipline rule, in force immediately (ledger row DIMENSION.UPLIFT.FIREWALL.01); the uplift theorems it names are separate \ contracts. It formalizes the core diagnosis of the 2026-08-27 external deep review: a chiral [formula in source] D seam net does not imply a local, interacting [formula in source] D quantum world. The corpus's strongest finite results are boundary/kinematic building blocks —
 
 Explicit source references:
 
@@ -2299,9 +2314,3 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 - [(* ==== v260: one Kummer/K3 carries seam + carrier-16 + E8 (ARCH.K3.01) ==== *) Module[{e8edges, E8, U, L, sig, nodes, marks}, e8edges = {{1, 2}, {2, 3}, {3, 4}, {4, 5}, {5, 6}, {6, 7}, {5, 8}}; E8 = 2 IdentityMatrix[8] - Table[If[i != j && MemberQ[e8edges, Sort[{i, j}]], 1, 0], {i, 8}, {j, 8}]; U = {{0, 1}, {1, 0}}; L = ArrayFlatten[{{U, 0, 0, 0, 0}, {0, U, 0, 0, 0}, {0, 0, U, 0, 0}, {0, 0, 0, -E8, 0}, {0, 0, 0, 0, -E8}}]; sig = {Count[Eigenvalues[N[L]], x_ /; x > 0], Count[Eigenvalues[N[L]], x_ /; x < 0]}; nodes = 2^4; marks = 2^2; checkExact["v260 ARCH.K3.01: one Kummer/K3 surface carries seam + carrier-16 + E8. E8 Cartan even, det 1, " <> "positive-definite (the unique even unimodular pos-def rank-8 lattice); the K3 lattice U^3(+)E8(-1)^2 " <> "has rank 22=b_2, det -1 (unimodular), even, signature (3,19) with E8(-1)^2 an orthogonal summand; the " <> "seam T^2/(z->-z) has 4=|(Z/2)^2| marks (pillowcase); the carrier-16 = Kummer nodes |A[2]|=2^4=16 = " <> "dim S+ = 4x4 = (seam marks)^2. So the v1 glue D5(+)A3+mu4=>E8 is the lattice shadow of one object.", Det[E8] == 1 && AllTrue[Diagonal[E8], EvenQ] && PositiveDefiniteMatrixQ[E8] && Length[L] == 22 && Det[L] == -1 && AllTrue[Diagonal[L], EvenQ] && sig == {3, 19} && nodes == 16 && marks == 4 && nodes == marks^2]; ]; (* ==== v267: QGEO rigidity / minimal-axiom form of QGEO.SYM.01 (QGEO.SYM.02) ==== v262 (alpha_s RG), v263 (seesaw numpy), v264 (DtN FFT), v265 (RG+text guard), v266 (proton RG) are numerical -> Python-only; v267's exact cross-ratio/j core is mirrored here (the DtN/FFT part of v267 stays Python-only). *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2032)
 - [(* ---- (v3) electromagnetic closure: alpha^-1 ---- *) M = 41; phiseam[a_] := phibase + (dtop Exp[-2 a]) (1 - dtop Exp[-2 a])^(-5/4); F[a_] := a^3 - 2 c3^3 a^2 - (4/5) c3^6 M Log[1/phiseam[a]]; aStar = a /. FindRoot[F[a] == 0, {a, 0.0073}, WorkingPrecision -> 40]; alphaInv = 1/aStar; check["alpha_* = 0.00729735256220985", aStar, 0.00729735256220985, 10^-15]; check["alpha^-1 = 137.0359992168407", alphaInv, 137.0359992168407, 10^-12]; (* ---- (v1) E8 glue arithmetic ---- *)](../../../../verification/wolfram/tfpt_readouts.wl#L36)
-
-## Level 1 — original [formula in source] data of the series ( )
-
-[experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex:4318-4334](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex#L4318) · `section:9cd02b2b0f5af263291c` · subsection
-
-Coxeter/gauge typing of the lcm–gcd pair. Writing [formula in source] and [formula in source] , the relations become [formula in source] and [formula in source] : the local SM algebra is the gcd of the Coxeter double-period and the [formula in source] rank-occupancy, and the [formula in source] root count is their lcm. Likewise the EW exponent reads [formula in source] (Coxeter principal part plus a rank singlet). \ 

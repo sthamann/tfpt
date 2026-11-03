@@ -1,0 +1,72 @@
+TFPT scientific source excerpt
+Original repository path: verification/v1024_parent_internal_boundaries.py
+Original file SHA-256: ea084268a20960c1d237f5b4625c7ae444567a17983ac5e461276e92e142a9fd
+Inclusive original lines: 115-178
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000115 | def parent_internal_intertwiner() -> dict[str, np.ndarray | float]:
+000116 |     print("\nA3--D4 PARENT-INTERNAL INTERTWINER")
+000117 | 
+000118 |     omega = np.exp(2j * np.pi / 4)
+000119 |     clock = shift(4)
+000120 |     reflection = np.zeros((4, 4), dtype=complex)
+000121 |     for source in range(4):
+000122 |         reflection[(-source) % 4, source] = 1.0
+000123 | 
+000124 |     fourier = [
+000125 |         np.array([omega ** (momentum * position) for position in range(4)], dtype=complex) / 2.0
+000126 |         for momentum in range(4)
+000127 |     ]
+000128 |     fourier_matrix = np.column_stack(fourier)
+000129 |     seam_ground = fourier[0]
+000130 |     seam_ground_projector = np.outer(seam_ground, seam_ground.conj())
+000131 |     seam_excitation_projector = np.eye(4) - seam_ground_projector
+000132 |     seam_lowerers = [np.outer(seam_ground, fourier[k].conj()) for k in range(1, 4)]
+000133 | 
+000134 |     check("C4 Fourier basis is unitary", np.linalg.norm(fourier_matrix.conj().T @ fourier_matrix - np.eye(4)) < TOL)
+000135 |     coxeter = fourier_matrix[:, 1:].conj().T @ clock @ fourier_matrix[:, 1:]
+000136 |     expected_coxeter = np.diag([omega ** (-k) for k in range(1, 4)])
+000137 |     check(
+000138 |         "nontrivial C4 modes are the A3 Coxeter module",
+000139 |         np.linalg.norm(coxeter - expected_coxeter) < TOL,
+000140 |         "exponents=(1,2,3), eigenvalues=(-i,-1,+i)",
+000141 |     )
+000142 |     check(
+000143 |         "seam generators obey D4 relations",
+000144 |         np.linalg.norm(np.linalg.matrix_power(clock, 4) - np.eye(4)) < TOL
+000145 |         and np.linalg.norm(reflection @ reflection - np.eye(4)) < TOL
+000146 |         and np.linalg.norm(reflection @ clock @ reflection - clock.conj().T) < TOL,
+000147 |     )
+000148 | 
+000149 |     operator_rotation = np.diag([omega**k for k in range(1, 4)])
+000150 |     operator_reflection = np.array(
+000151 |         [[0.0, 0.0, 1.0], [0.0, 1.0, 0.0], [1.0, 0.0, 0.0]], dtype=complex
+000152 |     )
+000153 |     check(
+000154 |         "A3 Coxeter and family D4 representations intertwine",
+000155 |         np.linalg.norm(operator_reflection @ operator_rotation @ operator_reflection - operator_rotation.conj().T) < TOL,
+000156 |         "the intertwiner W maps seam k=1,2,3 to family g=1,2,3",
+000157 |     )
+000158 | 
+000159 |     mode_count = 6
+000160 |     fock_dimension = 1 << mode_count
+000161 |     annihilators = [jordan_wigner_annihilator(mode_count, mode) for mode in range(mode_count)]
+000162 |     identity_fock = np.eye(fock_dimension)
+000163 |     max_car_defect = 0.0
+000164 |     for left in range(mode_count):
+000165 |         for right in range(mode_count):
+000166 |             anticommutator = (
+000167 |                 annihilators[left] @ annihilators[right].conj().T
+000168 |                 + annihilators[right].conj().T @ annihilators[left]
+000169 |             )
+000170 |             target = identity_fock if left == right else np.zeros_like(identity_fock)
+000171 |             max_car_defect = max(max_car_defect, float(np.linalg.norm(anticommutator - target)))
+000172 |     check("six nu^c modes obey exact finite CAR", max_car_defect < TOL, f"max defect={max_car_defect:.3e}")
+000173 | 
+000174 |     pair_annihilators = [
+000175 |         annihilators[2 * family + 1] @ annihilators[2 * family]
+000176 |         for family in range(3)
+000177 |     ]
+000178 |     number = sum(operator.conj().T @ operator for operator in annihilators)

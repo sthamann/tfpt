@@ -71,7 +71,7 @@ The complete chain from [formula in source] to [formula in source] :
 
 [documents/archive--paper-latex--tfpt-theory-fullv24/sections/006-section-numerical-constants-high-precision.tex:263-277](../../../../documents/archive--paper-latex--tfpt-theory-fullv24/sections/006-section-numerical-constants-high-precision.tex#L263) · `section:cf9ca0eb32a78484f335` · subsection
 
-The uniqueness is verified by: Constructing the complete Hasse diagram of [formula in source] from standard tables. Computing all cover relations with [formula in source] . Running dynamic programming to find all paths from [formula in source] to [formula in source] . Applying the cost function [formula in source] (second-difference smoothness). Verifying that the minimum-cost path is unique (cost gap to second-best 
+The uniqueness is verified by: Constructing the complete Hasse diagram of [formula in source] from standard tables. Computing all cover relations with [formula in source] . Running dynamic programming to find all paths from [formula in source] to [formula in source] . Applying the cost function [formula in source] (second-difference smoothness). Verifying that the minimum-cost path is unique (cost gap to second-best
 
 ## Boundary Trace Derivation
 
@@ -608,7 +608,7 @@ The TFPT verification suite ( tfpt-suite/) turns paper claims into deterministic
 
 [documents/archive--paper-latex--tfpt-theory-fullv25/sections/007-section-what-tfpt-does-emph-not-assume.tex:253-282](../../../../documents/archive--paper-latex--tfpt-theory-fullv25/sections/007-section-what-tfpt-does-emph-not-assume.tex#L253) · `section:b63b138d6fb15db8d399` · subsection
 
-@llrrrrrr@ Module & Mode & Checks & PASS & WARN & FAIL & Plots(exp) & Plots(ok)\\ alpha_on_shell_bridge & engineering & 7 & 6 & 1 & 0 & 0 & 0\\ matching_finite_pieces & engineering & 5 & 4 & 1 & 0 & 0 & 0\\ torsion_condensate & engineering & 8 & 5 & 3 & 0 & 0 & 0\\ alpha_on_shell_bridge & physics & 7 & 6 & 1 & 0 & 0 & 0\\ matching_finite_pieces & physics & 5 & 4 & 1 & 0 & 0 & 0\\ torsion_condensate & physics & 8 & 5 
+@llrrrrrr@ Module & Mode & Checks & PASS & WARN & FAIL & Plots(exp) & Plots(ok)\\ alpha_on_shell_bridge & engineering & 7 & 6 & 1 & 0 & 0 & 0\\ matching_finite_pieces & engineering & 5 & 4 & 1 & 0 & 0 & 0\\ torsion_condensate & engineering & 8 & 5 & 3 & 0 & 0 & 0\\ alpha_on_shell_bridge & physics & 7 & 6 & 1 & 0 & 0 & 0\\ matching_finite_pieces & physics & 5 & 4 & 1 & 0 & 0 & 0\\ torsion_condensate & physics & 8 & 5
 
 ## theoryv3 Evidence Layer (Compressed, Auto-Generated)
 

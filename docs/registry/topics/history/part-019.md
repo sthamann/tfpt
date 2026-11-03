@@ -156,7 +156,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/archive--tfpt-45--07_cmb_operational_closure_planck_pipeline/sections/005-section-the-v4-6-8-measurement-bridge-contract.tex:304-332](../../../../documents/archive--tfpt-45--07_cmb_operational_closure_planck_pipeline/sections/005-section-the-v4-6-8-measurement-bridge-contract.tex#L304) · `section:221d6c10c287d5eeeba5` · subsection
 
-Figure [formula in source] value vs Planck 2018 [formula in source] CDM across all sprints between v4.6 and v4.12. The strict TFPT mode never refits parameters and always uses A_planck = 1.0 on the official Plik-lite native + lowl TT/EE likelihood (Cobaya). The drop from v4.9 ( [formula in source] ) to v4.10/v4.11/v4.12 ( [formula in source] / [formula in source] / [formula in source] ) is not a fit improvement — it 
+Figure [formula in source] value vs Planck 2018 [formula in source] CDM across all sprints between v4.6 and v4.12. The strict TFPT mode never refits parameters and always uses A_planck = 1.0 on the official Plik-lite native + lowl TT/EE likelihood (Cobaya). The drop from v4.9 ( [formula in source] ) to v4.10/v4.11/v4.12 ( [formula in source] / [formula in source] / [formula in source] ) is not a fit improvement — it
 
 ## The visibility-amplitude Ward identity (v4.11)
 
@@ -300,7 +300,7 @@ Hook. Seam-orientation theorem.\\ Proposed solution. The closed Riemannian seam 
 
 [documents/archive--tfpt-45--07_cmb_operational_closure_planck_pipeline/sections/007-section-hook-solution-sketches-v4-6-5.tex:196-210](../../../../documents/archive--tfpt-45--07_cmb_operational_closure_planck_pipeline/sections/007-section-hook-solution-sketches-v4-6-5.tex#L196) · `section:7fc56d36ace0447c688d` · paragraph
 
-Hook. Prove [formula in source] for the real [formula in source] .\\ Proposed solution. [formula in source] is the second functional derivative of a real action and is therefore real-symmetric. When expressed in a real (sheet) basis, [formula in source] ; on a complex eigenbasis, [formula in source] implements complex conjugation modulo sheet swap, giving [formula in source] . The candidate v4.6 bundle fails because 
+Hook. Prove [formula in source] for the real [formula in source] .\\ Proposed solution. [formula in source] is the second functional derivative of a real action and is therefore real-symmetric. When expressed in a real (sheet) basis, [formula in source] ; on a complex eigenbasis, [formula in source] implements complex conjugation modulo sheet swap, giving [formula in source] . The candidate v4.6 bundle fails because
 
 ## Lemma E5.h1 (hard).
 
@@ -492,7 +492,7 @@ No opening prose excerpt; see the source.
 
 [documents/archive--tfpt-45--source_extracts--01_boundary_kernel_source/sections/001-section-primitive-core-and-carrier-interface-handoff.tex:7-57](../../../../documents/archive--tfpt-45--source_extracts--01_boundary_kernel_source/sections/001-section-primitive-core-and-carrier-interface-handoff.tex#L7) · `section:238b10aec16e96ddcb5a` · subsection
 
-We use natural units [formula in source] . Relative operators are formulated in Euclidean signature and compared through a declared Wick-rotation bridge when Lorentzian language is needed. Higgs fields are denoted by [formula in source] , Hamiltonians by [formula in source] , and the cosmological Hubble rate by [formula in source] ; this avoids overloading the letter [formula in source] . Newton's constant is always 
+We use natural units [formula in source] . Relative operators are formulated in Euclidean signature and compared through a declared Wick-rotation bridge when Lorentzian language is needed. Higgs fields are denoted by [formula in source] , Hamiltonians by [formula in source] , and the cosmological Hubble rate by [formula in source] ; this avoids overloading the letter [formula in source] . Newton's constant is always
 
 ## Primitive relative spectral dynamics
 

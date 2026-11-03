@@ -13,6 +13,25 @@ are authoritative; the number of checks is not a proof of a complete theory.
 [Machine-readable registry](docs/registry/registry.json) ·
 [Agent instructions](AGENTS.md)
 
+## Source and transfer results, 3 November 2026
+
+The current [shared research plan](docs/research/fundamental-plan/PLAN.md) and
+[consolidated source assessment](docs/research/fundamental-plan/CONSOLIDATION-SESSION-20261103.md)
+retain the connected carrier, E8, clocks, flavor and alpha construction.
+The original whole-source/reference transport, canonical vacuum attachment
+and given classical Clifford field/time kernel are available. The free,
+unprojected positive source excludes an exactly separated flat DET16 factor;
+actual projection, interacting environments and dynamical bosons retain their
+own scope. The primitive physical field/source identification remains open.
+
+The [session result account](docs/research/fundamental-plan/SESSION-RESULTS-A-L-20261103-DE.md)
+links the dated A–L and R104–R110 results. The live plan also retains the
+subsequent R111 source-generator qualification. These are scoped research
+results; no physical completion or ledger promotion is inferred. The website
+ships a reproducible public Atlas snapshot with source excerpts and explicit
+omissions. Local private Atlas databases and unpublished original sources
+are outside that publication export.
+
 ## Find a topic or a source
 
 Start with the **[central content registry](docs/registry/INDEX.md)** or its

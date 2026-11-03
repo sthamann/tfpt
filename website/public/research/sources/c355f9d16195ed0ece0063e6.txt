@@ -1,0 +1,101 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/original-local-source-variable-background-20261102/check_paired_dyson.py
+Original file SHA-256: 777d77aebe964b3169fb15839ab8a277083ad14e92c8db2473a3903b934d4ca2
+Inclusive original lines: 1-93
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Same native variable-background circle; full graph and a smooth Dyson pulse."""
+000002 | from pathlib import Path
+000003 | import sys,json
+000004 | import numpy as np
+000005 | from scipy.linalg import expm,polar
+000006 | from scipy.special import expit
+000007 | [OMITTED: non-scientific conversation or execution metadata]
+000008 | sys.path.insert(0,str(ROOT/'verification'))
+000009 | import v252_full_finite_triple as old
+000010 | checks={}
+000011 | def need(k,v):
+000012 |  checks[k]=bool(v)
+000013 |  if not v:raise RuntimeError(k)
+000014 | rng=np.random.default_rng(252)
+000015 | ys=[rng.normal(size=(3,3))+1j*rng.normal(size=(3,3)) for _ in range(4)]
+000016 | mr=rng.normal(size=(3,3));D=old.full_D(*ys,mr+mr.T)
+000017 | ga=old.grading();K=old.Kswap();bp=old.rep(1,np.zeros((2,2)),np.zeros((3,3)))
+000018 | qs=[np.array([[0,1],[-1,0]],complex),np.array([[0,1j],[1j,0]],complex),np.eye(2),np.diag([-1j,1j])]
+000019 | vs=[]
+000020 | for q in qs:
+000021 |  a=old.rep(0,q,np.zeros((3,3)));o=a@(D@bp-bp@D);b=o+o.conj().T;vs.append(b+K@b.conj()@K)
+000022 | ix=[i for i,f in enumerate(old.P) if f[0] in ('u','d')]
+000023 | g=ga[np.ix_(ix,ix)];T=[-1j*g@v[np.ix_(ix,ix)] for v in vs]
+000024 | potential={0:T[2],1:.065*T[0]-.045j*T[1],-1:.065*T[0]+.045j*T[1],2:.035*T[3],-2:.035*T[3]}
+000025 | force={0:.04*T[2],1:.006*T[0]-.003j*T[3],-1:.006*T[0]+.003j*T[3]}
+000026 | def mult(d,ns):return np.block([[d.get(int(n-m),np.zeros((36,36),complex)) for m in ns] for n in ns])
+000027 | def pulse(h,F,duration,steps):
+000028 |  # f(t)=sin²(pi*t/T) on[0,T], extended0 isC1 with vanishing endpoint.
+000029 |  # Midpoint Strang: actual h+f(t)F evolution, not exp of its integral.
+000030 |  e,u=np.linalg.eigh(h);F=u.conj().T@F@u;v,R=np.linalg.eigh(F)
+000031 |  dt=duration/steps;half=np.exp(-.5j*dt*e);S=np.eye(len(e),dtype=complex)
+000032 |  for j in range(steps):
+000033 |   f=np.sin(np.pi*(j+.5)/steps)**2
+000034 |   V=(R*np.exp(-1j*dt*f*v))@R.conj().T
+000035 |   step=half[:,None]*V*half[None,:];S=step@S
+000036 |  W=np.exp(1j*duration*e)[:,None]*S
+000037 |  return e,F,W
+000038 | def read(e,W):
+000039 |  c=expit(-2*e);a=np.sqrt(1-c);b=np.sqrt(c);I=np.eye(len(e))
+000040 |  # Compression by E=[sqrt(1-c);sqrt(c)] of the TRUE coherent graph.
+000041 |  A=(a[:,None]*a[None,:]+b[:,None]*b[None,:])*W
+000042 |  sign,logabs=np.linalg.slogdet(A);detw=np.linalg.det(W)
+000043 |  chi=sign*np.exp(logabs)/detw
+000044 |  Q=(I-A.conj().T@A);Q=(Q+Q.conj().T)/2
+000045 |  eig=np.linalg.eigvalsh(Q)
+000046 |  fred=np.exp(.5*np.sum(np.log1p(-eig)))
+000047 |  fp=np.linalg.det(I-(1-c)[:,None]*I+(1-c)[:,None]*W)
+000048 |  fm=np.linalg.det(I-c[:,None]*I+c[:,None]*W)
+000049 |  independent=fp*fm/detw
+000050 |  return chi,float(fred),float(eig.min()),independent
+000051 | rows=[]
+000052 | for alpha in [.25,.75]:
+000053 |  for N in [1,2,4]:
+000054 |   ns=np.arange(-N,N);h=np.kron(np.diag(ns+alpha),g)+mult(potential,ns);F=mult(force,ns)
+000055 |   e,Fe,W=pulse(h,F,.4,64);chi,fred,qmin,ind=read(e,W)
+000056 |   need(f'unitary_actual_smooth_pulse_{alpha}_{N}',np.linalg.norm(W.conj().T@W-np.eye(len(e)))<1e-9)
+000057 |   need(f'odd_source_has_unit_determinant_{alpha}_{N}',abs(np.linalg.det(W)-1)<1e-9)
+000058 |   need(f'paired_source_positive_{alpha}_{N}',chi.real>0 and abs(chi.imag)<1e-9)
+000059 |   need(f'exact_Fredholm_squared_overlap_{alpha}_{N}',abs(chi.real-fred)<1e-9)
+000060 |   need(f'crossing_retained_not_independent_faces_{alpha}_{N}',abs(chi-ind)>1e-5)
+000061 |   need(f'leakage_square_positive_{alpha}_{N}',qmin>-1e-10)
+000062 |   _,_,fine=pulse(h,F,.4,128)
+000063 |   chifine=read(e,fine)[0]
+000064 |   need(f'pulse_time_resolution_control_{alpha}_{N}',abs(chifine-chi)<2e-6)
+000065 |   rows.append({'alpha':alpha,'N':N,'oneface_dimension':len(e),'HS_W_minus_I_squared':float(np.linalg.norm(W-np.eye(len(e)))**2),'true_paired_source':[float(chi.real),float(chi.imag)],'Fredholm_positive_root':fred,'independent_face_product':[float(ind.real),float(ind.imag)],'time_resolution_change':float(abs(chifine-chi))})
+000066 | # Existing general normal-profile transfer, retaining its polar face transport.
+000067 | # Use the actual native final h/F and an independent original Higgs direction.
+000068 | Fother=mult({0:.14*T[0],1:.02*T[1]+.01j*T[3],-1:.02*T[1]-.01j*T[3]},ns)
+000069 | transfer=expm(-.06*(h+Fother))@expm(-.06*h)
+000070 | Vpol,Rpol=polar(transfer)
+000071 | q,eig=np.linalg.eigh(np.eye(len(e))+transfer.conj().T@transfer)
+000072 | sqrtinv=(eig*(1/np.sqrt(q)))@eig.conj().T
+000073 | Egraph=np.vstack([sqrtinv,transfer@sqrtinv])
+000074 | I=np.eye(len(e));zeros=np.zeros_like(I)
+000075 | e,Rvec=np.linalg.eigh(Rpol)
+000076 | base=np.diag(np.sqrt(1/(1+e*e)))
+000077 | positivegraph=np.vstack([Rvec@base@Rvec.conj().T,Rvec@np.diag(e)@base@Rvec.conj().T])
+000078 | # The graph convention here is[I;K]; the static positive reader swaps faces.
+000079 | lift=np.block([[I,zeros],[zeros,Vpol]])
+000080 | need('general_ordered_K_is_genuinely_not_selfadjoint',np.linalg.norm(transfer-transfer.conj().T)>1e-4)
+000081 | need('polar_face_transport_preserves_whole_graph',np.linalg.norm(Egraph@Egraph.conj().T-lift@positivegraph@positivegraph.conj().T@lift.conj().T)<1e-9)
+000082 | Wbasis=np.linalg.eigh(h)[1];Wphysical=Wbasis@W@Wbasis.conj().T
+000083 | correct=np.block([[Wphysical,zeros],[zeros,Vpol@Wphysical@Vpol.conj().T]])
+000084 | naive=np.block([[Wphysical,zeros],[zeros,Wphysical]])
+000085 | detw=np.linalg.det(Wphysical)
+000086 | chi_correct=np.linalg.det(Egraph.conj().T@correct@Egraph)/detw
+000087 | chi_naive=np.linalg.det(Egraph.conj().T@naive@Egraph)/detw
+000088 | need('normal_profile_polar_paired_source_is_positive',chi_correct.real>0 and abs(chi_correct.imag)<1e-9)
+000089 | need('normal_profile_polar_unitary_is_not_optional_identical_word',np.linalg.norm(correct-naive)>1e-5)
+000090 | polar_control={'K_adjoint_defect':float(np.linalg.norm(transfer-transfer.conj().T)),'polar_transport_word_defect':float(np.linalg.norm(correct-naive)),'correct_paired_source':[float(chi_correct.real),float(chi_correct.imag)],'same_untransported_word':[float(chi_naive.real),float(chi_naive.imag)]}
+000091 | out={'result_id':'L20261102E','all_passed':all(checks.values()),'checks':checks,'rows':rows,'polar_control':polar_control,'scope':'Actual original variable circle background and smooth odd Higgs force, real-time finite Dyson controls. True coherent two-face graph and adjoint-paired source. Polar completion for the given general ordered normal-profile transfer is conditional on its actual domain; no physical localization map is inferred. Not the unpaired amplitude, positive OS-time identification, absolute Z0 or primitive H-law. Analytical proof establishes the stated all-mode limits.'}
+000092 | Path(__file__).with_name('paired-dyson-results.json').write_text(json.dumps(out,indent=2)+'\n')
+000093 | print(json.dumps({'all_passed':out['all_passed'],'checks':len(checks),'rows':rows,'polar_control':polar_control},indent=2))

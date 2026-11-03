@@ -434,7 +434,7 @@ TFPT is presented here as a carrier-first theory of admissible vacua on the orie
 
 [documents/archive--paper-latex--tfpt-v30/sections/001-section-reading-guide-and-claim-map.tex:132-152](../../../../documents/archive--paper-latex--tfpt-v30/sections/001-section-reading-guide-and-claim-map.tex#L132) · `section:f2e3c62d4e138468e600` · subsection
 
-We use natural units [formula in source] . Relative operators are formulated in Euclidean signature and compared through a declared Wick-rotation bridge when Lorentzian language is needed. Higgs fields are denoted by [formula in source] , Hamiltonians by [formula in source] , and the cosmological Hubble rate by [formula in source] ; this avoids overloading the letter [formula in source] . Newton's constant is always 
+We use natural units [formula in source] . Relative operators are formulated in Euclidean signature and compared through a declared Wick-rotation bridge when Lorentzian language is needed. Higgs fields are denoted by [formula in source] , Hamiltonians by [formula in source] , and the cosmological Hubble rate by [formula in source] ; this avoids overloading the letter [formula in source] . Newton's constant is always
 
 ## Global gauge group and one-family packet
 
@@ -464,7 +464,7 @@ The bosonic relative index satisfies [formula in source] Consequently the unique
 
 [documents/archive--paper-latex--tfpt-v30/sections/005-subsection-residual-map-and-principal-unresolved-compari.tex:121-128](../../../../documents/archive--paper-latex--tfpt-v30/sections/005-subsection-residual-map-and-principal-unresolved-compari.tex#L121) · `section:70b254bd9df14d93caf8` · section
 
-The present paper argues that a small carrier-first core already fixes nontrivial physics: the minimal [formula in source] carrier, the global Standard Model quotient, one chiral family, the carrier norm [formula in source] , the abelian index, the seam constant [formula in source] , the corrected opening [formula in source] , and the electromagnetic closure channel. The compression identities and exclusion theorems 
+The present paper argues that a small carrier-first core already fixes nontrivial physics: the minimal [formula in source] carrier, the global Standard Model quotient, one chiral family, the carrier norm [formula in source] , the abelian index, the seam constant [formula in source] , the corrected opening [formula in source] , and the electromagnetic closure channel. The compression identities and exclusion theorems
 
 ## Series Map
 
@@ -614,7 +614,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/archive--tfpt-45--02_carrier_rigidity_standard_model_packet/sections/002-section-seam-winding-as-source-of-the-integer-conditions.tex:266-310](../../../../documents/archive--tfpt-45--02_carrier_rigidity_standard_model_packet/sections/002-section-seam-winding-as-source-of-the-integer-conditions.tex#L266) · `section:1d17cb67633074f90691` · section
 
-Use : Sections 3.3, 3.4, and 3.5 for carrier normal form, internal stabilizer, one-family packet, character identities, trace identities, and abelian index. Sections 5.1–5.3 only for carrier-relevant compression identities. Sections 6.1–6.6 for families, occupancy, and compact Higgs index. Sections 8.11–8.15 for the Yukawa-based discharge of carrier premises. Section 8.19 and Section 9.11 only for the joint discrete 
+Use : Sections 3.3, 3.4, and 3.5 for carrier normal form, internal stabilizer, one-family packet, character identities, trace identities, and abelian index. Sections 5.1–5.3 only for carrier-relevant compression identities. Sections 6.1–6.6 for families, occupancy, and compact Higgs index. Sections 8.11–8.15 for the Yukawa-based discharge of carrier premises. Section 8.19 and Section 9.11 only for the joint discrete
 
 ## Not Used Here
 
@@ -626,7 +626,7 @@ Exact [formula in source] numerics, CKM/PMNS closure, pole-mass ledgers, OS/CAR 
 
 [documents/archive--tfpt-45--03_electromagnetic_closure_flavor_transport/sections/001-section-electromagnetic-closure.tex:126-177](../../../../documents/archive--tfpt-45--03_electromagnetic_closure_flavor_transport/sections/001-section-electromagnetic-closure.tex#L126) · `section:06db7a3e9e3e1c287faf` · subsection
 
-Before the determinant-line response is invoked in its full form, the same retained seed admits a short bridge derivation that connects the boundary-normalised axion–photon coupling to the cosmological birefringence amplitude. Starting from the unified-field-equation reduction of the seam transfer, the dimensionless axion–photon anomaly coefficient is [formula in source] and the modified Maxwell sector responds to a 
+Before the determinant-line response is invoked in its full form, the same retained seed admits a short bridge derivation that connects the boundary-normalised axion–photon coupling to the cosmological birefringence amplitude. Starting from the unified-field-equation reduction of the seam transfer, the dimensionless axion–photon anomaly coefficient is [formula in source] and the modified Maxwell sector responds to a
 
 ## No-Knobs Audit
 

@@ -20,7 +20,7 @@ The upgrade path is now organized as proof compression and axiom reduction rathe
 
 [documents/archive--paper-latex--tfpt-32/sections/014-section-primary-benchmark-map-and-prediction-ledger.tex:300-332](../../../../documents/archive--paper-latex--tfpt-32/sections/014-section-primary-benchmark-map-and-prediction-ledger.tex#L300) · `section:1601d0f18313bfa38afc` · subsection
 
-The cleanest route from the present carrier-first compiler to a genuinely generative architecture is not to blur status labels, but to isolate six explicit theorem paths: Master closure theorem: derive APS, Bernstein positivity, reflection positivity, [formula in source] holonomy, and Hamiltonian coercivity from canonical doubling, positive spectral measure, and total Hodge admissibility instead of keeping them as a 
+The cleanest route from the present carrier-first compiler to a genuinely generative architecture is not to blur status labels, but to isolate six explicit theorem paths: Master closure theorem: derive APS, Bernstein positivity, reflection positivity, [formula in source] holonomy, and Hamiltonian coercivity from canonical doubling, positive spectral measure, and total Hodge admissibility instead of keeping them as a
 
 ## Internal closure candidates beyond the theorem stack
 
@@ -176,7 +176,7 @@ One useful coarse-grained record algebra is [formula in source] As [formula in s
 
 [documents/archive--paper-latex--tfpt-32/sections/017-section-yukawa-kernels-and-positivity-lemmas.tex:190-205](../../../../documents/archive--paper-latex--tfpt-32/sections/017-section-yukawa-kernels-and-positivity-lemmas.tex#L190) · `section:9826edb1581b125d8287` · subsection
 
-An observer is modeled as a stable pointer subalgebra [formula in source] With orthogonal projectors [formula in source] one writes the measurement channel [formula in source] In finite-dimensional sectors, positivity, additivity on orthogonal decompositions, and phase invariance lead to the standard Born-type assignment [formula in source] The claim is therefore only a constrained evaluation principle on admissible 
+An observer is modeled as a stable pointer subalgebra [formula in source] With orthogonal projectors [formula in source] one writes the measurement channel [formula in source] In finite-dimensional sectors, positivity, additivity on orthogonal decompositions, and phase invariance lead to the standard Born-type assignment [formula in source] The claim is therefore only a constrained evaluation principle on admissible
 
 ## Horizons as conjectural inner seams
 
@@ -272,7 +272,7 @@ No opening prose excerpt; see the source.
 
 [documents/archive--paper-latex--tfpt-42/sections/002-section-big-picture-what-tfpt-actually-claims.tex:238-288](../../../../documents/archive--paper-latex--tfpt-42/sections/002-section-big-picture-what-tfpt-actually-claims.tex#L238) · `section:3ad677837e8bb56c5eb0` · subsection
 
-We use natural units [formula in source] . Relative operators are formulated in Euclidean signature and compared through a declared Wick-rotation bridge when Lorentzian language is needed. Higgs fields are denoted by [formula in source] , Hamiltonians by [formula in source] , and the cosmological Hubble rate by [formula in source] ; this avoids overloading the letter [formula in source] . Newton's constant is always 
+We use natural units [formula in source] . Relative operators are formulated in Euclidean signature and compared through a declared Wick-rotation bridge when Lorentzian language is needed. Higgs fields are denoted by [formula in source] , Hamiltonians by [formula in source] , and the cosmological Hubble rate by [formula in source] ; this avoids overloading the letter [formula in source] . Newton's constant is always
 
 ## Primitive relative spectral dynamics
 
@@ -452,7 +452,7 @@ Let [formula in source] This makes the phase grammar concrete rather than rhetor
 
 [documents/archive--paper-latex--tfpt-42/sections/017-subsection-regularized-yukawa-kernels-and-path-length-ma.tex:1-395](../../../../documents/archive--paper-latex--tfpt-42/sections/017-subsection-regularized-yukawa-kernels-and-path-length-ma.tex#L1) · `section:35e6f8e393c2de55dcf6` · subsection
 
-For each fermion sector define the structural positive transport kernel by [formula in source] whenever the inverse exists on [formula in source] . The final admissible kernel is the restriction of this operator to the gap-stable branch selected below. The transport pole [formula in source] is fixed by the structural stationarity of the exact determinant functional [formula in source] with [formula in source] On the 
+For each fermion sector define the structural positive transport kernel by [formula in source] whenever the inverse exists on [formula in source] . The final admissible kernel is the restriction of this operator to the gap-stable branch selected below. The transport pole [formula in source] is fixed by the structural stationarity of the exact determinant functional [formula in source] with [formula in source] On the
 
 ## Front matter / support
 
@@ -566,7 +566,7 @@ The present draft does not ask the reader to accept one undifferentiated output 
 
 [documents/archive--paper-latex--tfpt-42/sections/030-subsection-falsification-matrix.tex:62-128](../../../../documents/archive--paper-latex--tfpt-42/sections/030-subsection-falsification-matrix.tex#L62) · `section:aece9c239123e301af67` · subsection
 
-To keep proof status, interface assumptions, and comparison-only layers visibly separated, we record the present audit path explicitly. We use five status classes: ] full proof in manuscript; ] full proof modulo an explicit standard theorem; ] proof sketch in main text with full proof deferred; ] readout or comparison only; ] programmatic closure target with a fixed mathematical statement but without a claimed proof 
+To keep proof status, interface assumptions, and comparison-only layers visibly separated, we record the present audit path explicitly. We use five status classes: ] full proof in manuscript; ] full proof modulo an explicit standard theorem; ] proof sketch in main text with full proof deferred; ] readout or comparison only; ] programmatic closure target with a fixed mathematical statement but without a claimed proof
 
 Explicit source references:
 

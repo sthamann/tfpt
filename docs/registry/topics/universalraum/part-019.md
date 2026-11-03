@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## 10.5 Ein bedingter dynamischer Parent
+
+[documents/universal_room--new-3--TFPT_Universalraum_Forschungspaper_2026-09-15--TFPT_Universalraum_Forschungspaper_2026-09-15/sections/004-subsection-9-1-was-der-vorhandene-vierzustandszeuge-bere.tex:286-312](../../../../documents/universal_room--new-3--TFPT_Universalraum_Forschungspaper_2026-09-15--TFPT_Universalraum_Forschungspaper_2026-09-15/sections/004-subsection-9-1-was-der-vorhandene-vierzustandszeuge-bere.tex#L286) · `section:4ec06540b8c273ec0116` · subsection
+
+hat bei festem Parameter eine Lücke [formula in source] und einen Rang-eins-Grundraum [formula in source] . Bei kontrollierter langsamer Parameteränderung liefert er die bekannte geometrische Phase, mit separat zu kontrollierendem adiabatischem Fehler. Er zeigt konstruktiv, dass ein bewegter ausgewählter Unterraum die falsche „alles teleskopiert``-Abkürzung umgehen kann.
+
 ## 11. Wo Raum und echte Wirkung entstehen könnten
 
 [documents/universal_room--new-3--TFPT_Universalraum_Forschungspaper_2026-09-15--TFPT_Universalraum_Forschungspaper_2026-09-15/sections/004-subsection-9-1-was-der-vorhandene-vierzustandszeuge-bere.tex:313-315](../../../../documents/universal_room--new-3--TFPT_Universalraum_Forschungspaper_2026-09-15--TFPT_Universalraum_Forschungspaper_2026-09-15/sections/004-subsection-9-1-was-der-vorhandene-vierzustandszeuge-bere.tex#L313) · `section:cc116004170e1c187143` · section
@@ -699,7 +705,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/origin_theory.tex:1166-1454](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/origin_theory.tex#L1166) · `section:0c131301948f5acf50d5` · section
 
-The precise reformulation ( ). The seam is not identical to an event horizon. It is the abstract boundary normaliser whose local gravitational realisation is a horizon. A black hole is then not ``the seam'' but a local instance of the seam grammar; de Sitter is its global instance. This is stronger and cleaner than a direct identification — it avoids importing Schwarzschild analogies wholesale, and it makes [formula 
+The precise reformulation ( ). The seam is not identical to an event horizon. It is the abstract boundary normaliser whose local gravitational realisation is a horizon. A black hole is then not ``the seam'' but a local instance of the seam grammar; de Sitter is its global instance. This is stronger and cleaner than a direct identification — it avoids importing Schwarzschild analogies wholesale, and it makes [formula
 
 Explicit source references:
 
@@ -1028,7 +1034,7 @@ Explicit source references:
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tex-artefacts/toe_round4_proofs.tex:9-22](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tex-artefacts/toe_round4_proofs.tex#L9) · `section:83c8266dcbf844e64c6b` · paragraph
 
-SEAM.MMST.TELB.NORM.01. For the frozen [formula in source] , [formula in source] collar, the original remainder obeys [formula in source] The interval inputs are v1022 (TV and potential), v1025 (C1/C2a), and v1026_ telb_ round4_ closure.py (CF, DG, signed CROSS, validated Fourier core and all-volume aliases). This is not a proof of the historical sharper [formula in source] or Bound-B target [formula in source] . In 
+SEAM.MMST.TELB.NORM.01. For the frozen [formula in source] , [formula in source] collar, the original remainder obeys [formula in source] The interval inputs are v1022 (TV and potential), v1025 (C1/C2a), and v1026_ telb_ round4_ closure.py (CF, DG, signed CROSS, validated Fourier core and all-volume aliases). This is not a proof of the historical sharper [formula in source] or Bound-B target [formula in source] . In
 
 Explicit source references:
 
@@ -1069,7 +1075,7 @@ Explicit source references:
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tex-artefacts/toe_round4_proofs.tex:243-303](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tex-artefacts/toe_round4_proofs.tex#L243) · `section:e34efc6d3388a546fda0` · paragraph
 
-CHIRAL4D.MIRROR.SIGNED.CAR.01. v1027_ signed_ det_ car_ wall.py checks the following algebra and its finite countermodels. The old Hubbard operators [formula in source] satisfy [formula in source] , not CAR, and [formula in source] . For even [formula in source] (in particular [formula in source] ), write [formula in source] and define [formula in source] This is a two-dimensional rotation and identity elsewhere. It 
+CHIRAL4D.MIRROR.SIGNED.CAR.01. v1027_ signed_ det_ car_ wall.py checks the following algebra and its finite countermodels. The old Hubbard operators [formula in source] satisfy [formula in source] , not CAR, and [formula in source] . For even [formula in source] (in particular [formula in source] ), write [formula in source] and define [formula in source] This is a two-dimensional rotation and identity elsewhere. It
 
 Explicit source references:
 
@@ -2225,7 +2231,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tfpt_research_contracts.tex:12571-12632](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tfpt_research_contracts.tex#L12571) · `section:fd8a259cd96f2b7b4df5` · section
 
-Typing. A standing discipline rule, in force immediately (ledger row DIMENSION.UPLIFT.FIREWALL.01); the uplift theorems it names are separate \ contracts. It formalizes the core diagnosis of the 2026-08-27 external deep review: a chiral [formula in source] D seam net does not imply a local, interacting [formula in source] D quantum world. The corpus's strongest finite results are boundary/kinematic building blocks — 
+Typing. A standing discipline rule, in force immediately (ledger row DIMENSION.UPLIFT.FIREWALL.01); the uplift theorems it names are separate \ contracts. It formalizes the core diagnosis of the 2026-08-27 external deep review: a chiral [formula in source] D seam net does not imply a local, interacting [formula in source] D quantum world. The corpus's strongest finite results are boundary/kinematic building blocks —
 
 Explicit source references:
 
@@ -2698,52 +2704,3 @@ Explicit source references:
 - [SEAM.MMST.TELB.C1C2A.01](../../../../verification/status_ledger.csv#L774) · explicit_claim_identifier · original status at linked ledger row
 - [experiments/tfpt-discovery/mmst_telb_bound_a_probe.py](../../../../experiments/tfpt-discovery/mmst_telb_bound_a_probe.py#L1) · explicit_file_citation
 - [experiments/tfpt-discovery/mmst_telb_trace_decomposition_probe.py](../../../../experiments/tfpt-discovery/mmst_telb_trace_decomposition_probe.py#L1) · explicit_file_citation
-
-## Research Contract — TFPT.TOE.COMPLETE.01 (the named AND of eight completeness gates)
-
-[experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tfpt_research_contracts.tex:14103-14237](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tfpt_research_contracts.tex#L14103) · `section:b9be0eca5eee141eabc7` · section
-
-Typing. A research contract \ (ledger row TFPT.TOE.COMPLETE.01), registered 2026-08-29 from review wave 4. This row names the AND of eight gates; it does not close any of them and it does not upgrade a marker. Dual rest: the compiler residual [formula in source] sits beside [formula in source] ; this contract is the named AND, not a closure of either.
-
-Explicit source references:
-
-- [verification/v1023_derivative_filtered_wall.py](../../../../verification/v1023_derivative_filtered_wall.py#L1) · explicit_file_citation
-- [verification/v1016_state_gap_batteries.py](../../../../verification/v1016_state_gap_batteries.py#L1) · explicit_file_citation
-- [PRED.JOINTLIKELIHOOD.01](../../../../verification/status_ledger.csv#L749) · explicit_claim_identifier · original status at linked ledger row
-- [AX.P2.01](../../../../verification/status_ledger.csv#L3) · explicit_claim_identifier · original status at linked ledger row
-- [SEAM.EQUIV.MMST.01](../../../../verification/status_ledger.csv#L583) · explicit_claim_identifier · original status at linked ledger row
-- [GRAV.NONCIRCULAR.01](../../../../verification/status_ledger.csv#L747) · explicit_claim_identifier · original status at linked ledger row
-- [SEAM.SIMPLECURRENT.GENERATOR.01](../../../../verification/status_ledger.csv#L756) · explicit_claim_identifier · original status at linked ledger row
-- [SEAM.MMST.TYPEIII.CHARGED.01](../../../../verification/status_ledger.csv#L767) · explicit_claim_identifier · original status at linked ledger row
-- [QFT4D.LATTICE.FUNDAMENTAL.01](../../../../verification/status_ledger.csv#L760) · explicit_claim_identifier · original status at linked ledger row
-- [GRAV.SPIN2.EMERGENCE.01](../../../../verification/status_ledger.csv#L762) · explicit_claim_identifier · original status at linked ledger row
-- [FTRANSFER.SK.RHO0.01](../../../../verification/status_ledger.csv#L763) · explicit_claim_identifier · original status at linked ledger row
-- [TFPT.IRREDUCIBLE.01](../../../../verification/status_ledger.csv#L103) · explicit_claim_identifier · original status at linked ledger row
-- [FLAV.NU.TEXTURE.MECHANISM.01](../../../../verification/status_ledger.csv#L768) · explicit_claim_identifier · original status at linked ledger row
-- [DYN.UNITARY.DILATION.01](../../../../verification/status_ledger.csv#L742) · explicit_claim_identifier · original status at linked ledger row
-- [SEAM.STATE.RPMIXING.01](../../../../verification/status_ledger.csv#L752) · explicit_claim_identifier · original status at linked ledger row
-- [GRAV.WEINBERG.WITTEN.01](../../../../verification/status_ledger.csv#L770) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v1012_toe_gate_witnesses.py](../../../../verification/v1012_toe_gate_witnesses.py#L1) · explicit_file_citation
-- [SEAM.DETLINE.UNIFICATION.01](../../../../verification/status_ledger.csv#L758) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v1015_axiom_core_closure.py](../../../../verification/v1015_axiom_core_closure.py#L1) · explicit_file_citation
-- [verification/v1013_thermodynamic_dynamics.py](../../../../verification/v1013_thermodynamic_dynamics.py#L1) · explicit_file_citation
-- [SEAM.EQUIV.01](../../../../verification/status_ledger.csv#L381) · explicit_claim_identifier · original status at linked ledger row
-- [GAUGE.DETLINE.FIXPOINT.01](../../../../verification/status_ledger.csv#L761) · explicit_claim_identifier · original status at linked ledger row
-- [SEAM.BULK4D.RECON.01](../../../../verification/status_ledger.csv#L740) · explicit_claim_identifier · original status at linked ledger row
-- [SEAM.EQUIV.TWISTOR.01](../../../../verification/status_ledger.csv#L584) · explicit_claim_identifier · original status at linked ledger row
-- [QFT4D.OS.RECON.01](../../../../verification/status_ledger.csv#L745) · explicit_claim_identifier · original status at linked ledger row
-- [CHIRAL4D.MIRROR.DET16.01](../../../../verification/status_ledger.csv#L766) · explicit_claim_identifier · original status at linked ledger row
-- [ALPHA.QUILLEN.EXACT.01](../../../../verification/status_ledger.csv#L445) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v1024_parent_internal_boundaries.py](../../../../verification/v1024_parent_internal_boundaries.py#L1) · explicit_file_citation
-- [AX.P1.01](../../../../verification/status_ledger.csv#L2) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v1014_bridge_refinements.py](../../../../verification/v1014_bridge_refinements.py#L1) · explicit_file_citation
-- [CHIRAL4D.NOMIRROR.01](../../../../verification/status_ledger.csv#L746) · explicit_claim_identifier · original status at linked ledger row
-- [TFPT.TOE.COMPLETE.01](../../../../verification/status_ledger.csv#L764) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v1022_telb_round3_certificates.py](../../../../verification/v1022_telb_round3_certificates.py#L1) · explicit_file_citation
-- [verification/v1025_telb_c1_c2a_certificates.py](../../../../verification/v1025_telb_c1_c2a_certificates.py#L1) · explicit_file_citation
-- [DYN.MARKOV.EMBED.01](../../../../verification/status_ledger.csv#L741) · explicit_claim_identifier · original status at linked ledger row
-- [FLAV.NUSCALE.01](../../../../verification/status_ledger.csv#L365) · explicit_claim_identifier · original status at linked ledger row
-- [TFPT4D.LATTICE.ACTION.01](../../../../verification/status_ledger.csv#L757) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v1020_spectator_sector_obstruction.py](../../../../verification/v1020_spectator_sector_obstruction.py#L1) · explicit_script_identifier
-- [FTRANSFER.GENERATING.01](../../../../verification/status_ledger.csv#L759) · explicit_claim_identifier · original status at linked ledger row
-- [OBS.TRANSDUCTION.01](../../../../verification/status_ledger.csv#L748) · explicit_claim_identifier · original status at linked ledger row

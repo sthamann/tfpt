@@ -26,7 +26,7 @@ Die häufig verkürzte Aussage Primzahlen tauchen als Quantenenergien auf umfass
 
 [experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/12_schatten_arithmetik.tex:82-96](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/12_schatten_arithmetik.tex#L82) · `section:cea61e7b26dca88ab9e4` · subsection
 
-Die ersten sechs Werte sind [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] und [formula in source] . Daraus folgt für [formula in source] Hier ist der Primzahlbezug wirklich vorhanden. Die Selbstdualität des Gitters schließt die Poisson-Transformation auf dasselbe Gitter. Poisson-Summation gilt auch für nichtselbstduale Gitter und verbindet dann Gitter und 
+Die ersten sechs Werte sind [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] und [formula in source] . Daraus folgt für [formula in source] Hier ist der Primzahlbezug wirklich vorhanden. Die Selbstdualität des Gitters schließt die Poisson-Transformation auf dasselbe Gitter. Poisson-Summation gilt auch für nichtselbstduale Gitter und verbindet dann Gitter und
 
 ## Die neue Quantenphasen-Arbeit von 2026
 
@@ -183,7 +183,7 @@ Die häufig verkürzte Aussage Primzahlen tauchen als Quantenenergien auf umfass
 
 [experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/12_schatten_arithmetik.tex:82-96](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/12_schatten_arithmetik.tex#L82) · `section:d37d314e419001ac9c86` · subsection
 
-Die ersten sechs Werte sind [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] und [formula in source] . Daraus folgt für [formula in source] Hier ist der Primzahlbezug wirklich vorhanden. Die Selbstdualität des Gitters schließt die Poisson-Transformation auf dasselbe Gitter. Poisson-Summation gilt auch für nichtselbstduale Gitter und verbindet dann Gitter und 
+Die ersten sechs Werte sind [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] und [formula in source] . Daraus folgt für [formula in source] Hier ist der Primzahlbezug wirklich vorhanden. Die Selbstdualität des Gitters schließt die Poisson-Transformation auf dasselbe Gitter. Poisson-Summation gilt auch für nichtselbstduale Gitter und verbindet dann Gitter und
 
 ## Die neue Quantenphasen-Arbeit von 2026
 
@@ -291,7 +291,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/update_body_v16.tex:45-61](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/update_body_v16.tex#L45) · `section:75d5bed5cd6e2597de2b` · chapter
 
-Die drei hermiteschen Matrizen [formula in source] erfüllen die Pauli-Relationen. Für [formula in source] setze [formula in source] Jede Matrix hat Rang eins und Normquadrat [formula in source] ; vier ist jeweils der kleinste ganzzahlige Faktor, der sie in [formula in source] bringt. Das Produkt [formula in source] ist für alle [formula in source] unitär und hat den linearen Grenzterm [formula in source] . Sämtliche 
+Die drei hermiteschen Matrizen [formula in source] erfüllen die Pauli-Relationen. Für [formula in source] setze [formula in source] Jede Matrix hat Rang eins und Normquadrat [formula in source] ; vier ist jeweils der kleinste ganzzahlige Faktor, der sie in [formula in source] bringt. Das Produkt [formula in source] ist für alle [formula in source] unitär und hat den linearen Grenzterm [formula in source] . Sämtliche
 
 ## 3. Neue unabhängige Rechnung: die Zustandswahl bleibt echt
 

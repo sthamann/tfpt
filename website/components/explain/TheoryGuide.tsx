@@ -91,7 +91,7 @@ export function TheoryGuide() {
     </section>
     <PatternConnections embedded />
     <section className="guide-section" id="source">
-      <h2>From connected mathematics to a common physical source</h2><p className="guide-lead">The original papers already provide a common conditional route from the boundary source to fields, state and positive time. Read its actual reconstruction hypotheses alongside the later source and event results.</p>
+      <h2>From connected mathematics to a common physical source</h2><p className="guide-lead">The original papers provide the common reconstruction route, complete reference transport and a geometric action realization. The later work calculates the full classical Clifford kernel with its fields and time. The remaining equation determines the full original interacting source on its actual physical fields and tests its identification with the calculated callers.</p>
       <CommonSourcePath/>
       <details className="guide-details mt-7"><summary>Related local Higgs, event and gravitational results</summary>
       <p>Later dynamical Higgs responses and the specified 1+1 dimensional cylinder construction retain their own geometry and premises.</p>

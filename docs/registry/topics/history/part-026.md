@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Zuse und Wolfram: eine Verwandtschaft ohne Rangordnung
+
+[experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/10_ausblick.tex:5-18](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/10_ausblick.tex#L5) · `section:10bdb8ed130d9a5dbe47` · section
+
+Der eingefügte Gesprächstext vergleicht den Universalraum mit Konrad Zuse und Stephen Wolfram. Zuses Werk heißt Rechnender Raum, nicht „denkender Raum“. In seinem Buch von 1969 untersucht er digitale Beschreibungen physikalischer Felder und Teilchen und die Rolle von Automaten. Das ist ein historischer Bezugspunkt für die Vorstellung von Physik als regelgeleitetem Prozess. https://link.springer.com/book/10.1007/978-3
+
 ## Was noch offen ist und wie es weitergehen sollte
 
 [experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/10_ausblick.tex:40-44](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/10_ausblick.tex#L40) · `section:c5f4b4e6c8bd108a0511` · chapter
@@ -63,7 +69,7 @@ Explicit source references:
 
 [tex-artefacts/toe_research_20260909.tex:97-114](../../../../tex-artefacts/toe_research_20260909.tex#L97) · `section:7c988c39ac7db581aaf5` · subsection
 
-For the same strip and filled projector, the alternating four-word [formula in source] cancels the outer history ramps. Normal ordering is the actual finite-sea trace subtraction. Positive heat regularization, Jensen and Cauchy–Schwarz give uniform [formula in source] bounds for [formula in source] on the full four-endpoint torus, including collisions. They promote the separated-point limit to an [formula in source] 
+For the same strip and filled projector, the alternating four-word [formula in source] cancels the outer history ramps. Normal ordering is the actual finite-sea trace subtraction. Positive heat regularization, Jensen and Cauchy–Schwarz give uniform [formula in source] bounds for [formula in source] on the full four-endpoint torus, including collisions. They promote the separated-point limit to an [formula in source]
 
 ## Non-RH research through Round 27: a full-reference control theorem
 
@@ -79,7 +85,7 @@ Explicit source references:
 
 [tex-artefacts/toe_round4_proofs.tex:9-22](../../../../tex-artefacts/toe_round4_proofs.tex#L9) · `section:9e0ba325fdce5ca83fef` · paragraph
 
-SEAM.MMST.TELB.NORM.01. For the frozen [formula in source] , [formula in source] collar, the original remainder obeys [formula in source] The interval inputs are v1022 (TV and potential), v1025 (C1/C2a), and v1026_ telb_ round4_ closure.py (CF, DG, signed CROSS, validated Fourier core and all-volume aliases). This is not a proof of the historical sharper [formula in source] or Bound-B target [formula in source] . In 
+SEAM.MMST.TELB.NORM.01. For the frozen [formula in source] , [formula in source] collar, the original remainder obeys [formula in source] The interval inputs are v1022 (TV and potential), v1025 (C1/C2a), and v1026_ telb_ round4_ closure.py (CF, DG, signed CROSS, validated Fourier core and all-volume aliases). This is not a proof of the historical sharper [formula in source] or Bound-B target [formula in source] . In
 
 Explicit source references:
 
@@ -97,6 +103,46 @@ Use the sigma- [formula in source] basis [formula in source] , [formula in sourc
 Explicit source references:
 
 - [verification/v1022_telb_round3_certificates.py](../../../../verification/v1022_telb_round3_certificates.py#L1) · explicit_script_identifier
+
+## Dated continuation: the actual residual time form (R111)
+
+[tex-artefacts/toe_source_completion_20261103.tex:430-488](../../../../tex-artefacts/toe_source_completion_20261103.tex#L430) · `section:0f8ee3912de706f173b8` · subsection
+
+The literal original positive-parent clause leaves its residual [formula in source] unspecified. Once the parent and the actual reducing physical/source map have been supplied, the original annihilating admissibility penalties vanish on their admitted range. The remaining binding equation is the whole source-time form minus the represented parent form. If one realization of the printed parent clause exists, its state
+
+## Source and reproducibility route
+
+[tex-artefacts/toe_source_completion_20261103.tex:489-532](../../../../tex-artefacts/toe_source_completion_20261103.tex#L489) · `section:5a9ea639ada21fb1a3c4` · subsection
+
+The dated report labels resolve through docs/research/fundamental-plan/RESULTS.md and the synthesis docs/research/fundamental-plan/CONSOLIDATION-R110-20261103.md. The main proof owners are: A and B: experiments/theory-contracts/puncture-metric-joint-completion-20261102/PROOF.txt and experiments/theory-contracts/joint-source-clock-field-closure-20261102/PROOF.txt. C: experiments/theory-contracts/original-paper-source-
+
+Explicit source references:
+
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/VARIABLE-BACKGROUND-PROOF.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/VARIABLE-BACKGROUND-PROOF.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/GROUND-SOURCE.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/GROUND-SOURCE.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/joint-source-clock-field-closure-20261102/PROOF.txt](../../../../experiments/theory-contracts/joint-source-clock-field-closure-20261102/PROOF.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/LARGER-CHARGED-SOURCE-EVALUATION.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/LARGER-CHARGED-SOURCE-EVALUATION.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/ZERO-FREE-JOINT.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/ZERO-FREE-JOINT.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/SEED-FIELD.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/SEED-FIELD.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/SHARED-METRIC-SOURCE.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/SHARED-METRIC-SOURCE.txt#L1) · explicit_file_citation
+- [docs/research/fundamental-plan/RESULTS.md](../../../../docs/research/fundamental-plan/RESULTS.md#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-paper-source-reconciliation-20261102/AUDIT.txt](../../../../experiments/theory-contracts/original-paper-source-reconciliation-20261102/AUDIT.txt#L1) · explicit_file_citation
+- [docs/research/fundamental-plan/CONSOLIDATION-R110-20261103.md](../../../../docs/research/fundamental-plan/CONSOLIDATION-R110-20261103.md#L1) · explicit_file_citation
+- [experiments/theory-contracts/puncture-metric-joint-completion-20261102/PROOF.txt](../../../../experiments/theory-contracts/puncture-metric-joint-completion-20261102/PROOF.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/FULL-SOURCE-CORRECTION.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/FULL-SOURCE-CORRECTION.txt#L1) · explicit_file_citation
+- [verification/v1027_signed_det_car_wall.py](../../../../verification/v1027_signed_det_car_wall.py#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/PHYSICAL-THERMAL-SOURCE.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/PHYSICAL-THERMAL-SOURCE.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/TRANSFER-EXTRACTION.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/TRANSFER-EXTRACTION.txt#L1) · explicit_file_citation
+- [verification/v1002_spin10_mirror_projector.py](../../../../verification/v1002_spin10_mirror_projector.py#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/ZERO-FREE-ORIGIN.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/ZERO-FREE-ORIGIN.txt#L1) · explicit_file_citation
+- [verification/v252_full_finite_triple.py](../../../../verification/v252_full_finite_triple.py#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/PAIRED-DYSON-PROOF.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/PAIRED-DYSON-PROOF.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/REFERENCE-SOURCE-COMPLETION.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/REFERENCE-SOURCE-COMPLETION.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/SOURCE-GENERATOR-RESIDUAL-20261103.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/SOURCE-GENERATOR-RESIDUAL-20261103.txt#L1) · explicit_file_citation
+
+Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
+
+- [(* v1027: exact signed-wall determinant and unsquared low branch. *) {a, delta, lambda, g} = Unique /@ {"a", "delta", "lambda", "g"}; mass = delta + lambda; beta = lambda g^2; eta = lambda g; c = beta - eta^2/mass; h = {{a + beta a^2, eta a}, {eta a, mass}}; check["v1027 signed determinant M a (1+c a)", Together[Det[h] - mass a (1 + c a)] === 0]; check["v1027 physical kernel remains one-dimensional at a=0", NullSpace[h /. a -> 0] === {{1, 0}}]; (* v1028: exact characteristic-five reduction of the full 192-mode one-site character. P^12 == P^2 P(z^5)^2 mod 5 is evaluated by coefficient dictionaries, never by floating group quadrature. *)](../../../../verification/wolfram/tfpt_round4.wl#L28)
 
 ## Scope and evidence, 12 September 2026.
 

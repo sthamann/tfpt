@@ -1,0 +1,40 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/original-local-source-variable-background-20261102/check_source_c6_time_response.py
+Original file SHA-256: 716443ef97d6a55653511dd18c0be97421edc3eb6039f89272fd1880ef7ff29b
+Inclusive original lines: 1-32
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Exact marked response of the original EM005 C6 Green operator.
+000002 | 
+000003 | No physical H_adm identification, fitted parameters or new source model.
+000004 | """
+000005 | import json
+000006 | import sympy as s
+000007 | 
+000008 | a, b = s.symbols("a b", positive=True)
+000009 | u = s.zeros(6)
+000010 | for j in range(6):
+000011 |     u[(j + 1) % 6, j] = 1
+000012 | r = (a - 2*b) * (a*s.eye(6) - b*(u + u.T)).inv()
+000013 | e = s.ones(6, 1)
+000014 | o = s.diag(1, 0, 0, 0, 0, 0) - s.eye(6)/6
+000015 | rates = [(a-2*b)/(a-b), (a-2*b)/(a+b), (a-2*b)/(a+2*b)]
+000016 | moments = []
+000017 | residuals = []
+000018 | for k in range(3):
+000019 |     actual = s.factor((e.T * o * r**k * o * e)[0]/6)
+000020 |     expected = (2*rates[0]**k + 2*rates[1]**k + rates[2]**k)/36
+000021 |     residual = s.factor(actual - expected)
+000022 |     assert residual == 0
+000023 |     moments.append(actual)
+000024 |     residuals.append(str(residual))
+000025 | defect = s.factor(moments[0]*moments[2] - moments[1]**2)
+000026 | expected_defect = b**2*(a-2*b)**2*(3*a**2+8*a*b+7*b**2)/(108*(a-b)**2*(a+b)**2*(a+2*b)**2)
+000027 | assert s.factor(defect - expected_defect) == 0
+000028 | print(json.dumps({"verdict": "PASS_SCOPED_ORIGINAL_RESPONSE", "exact_identities": 4,
+000029 |                   "response_residuals": residuals, "defect_identity_residual": "0",
+000030 |                   "moments": [str(x) for x in moments], "positive_defect": str(defect),
+000031 |                   "positivity_domain": "a>2*b>0", "physical_source_identified": False,
+000032 |                   "primitive_generator": None, "joint_physical_spectrum": None}, indent=2))

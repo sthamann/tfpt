@@ -200,7 +200,7 @@ One useful coarse-grained record algebra is [formula in source] As [formula in s
 
 [documents/archive--paper-latex--tfpt-31/sections/017-section-yukawa-kernels-and-positivity-lemmas.tex:206-221](../../../../documents/archive--paper-latex--tfpt-31/sections/017-section-yukawa-kernels-and-positivity-lemmas.tex#L206) · `section:d032fad29d6c21961faa` · subsection
 
-An observer is modeled as a stable pointer subalgebra [formula in source] With orthogonal projectors [formula in source] one writes the measurement channel [formula in source] In finite-dimensional sectors, positivity, additivity on orthogonal decompositions, and phase invariance lead to the standard Born-type assignment [formula in source] The claim is therefore only a constrained evaluation principle on admissible 
+An observer is modeled as a stable pointer subalgebra [formula in source] With orthogonal projectors [formula in source] one writes the measurement channel [formula in source] In finite-dimensional sectors, positivity, additivity on orthogonal decompositions, and phase invariance lead to the standard Born-type assignment [formula in source] The claim is therefore only a constrained evaluation principle on admissible
 
 ## Horizons as conjectural inner seams
 
@@ -230,7 +230,7 @@ This appendix collects the full Standard Model output of the carrier-first compi
 
 [documents/archive--paper-latex--tfpt-31/sections/017-section-yukawa-kernels-and-positivity-lemmas.tex:320-378](../../../../documents/archive--paper-latex--tfpt-31/sections/017-section-yukawa-kernels-and-positivity-lemmas.tex#L320) · `section:162b2943036b7a704049` · subsection
 
-round-mode=none, group-minimum-digits=20 ! @llllrlrrl@ Quantity & Sector & TFPT formula or source & Obs.\ map & TFPT\ & Unit & Reference\ & Residual & Status \\ 9@l Exact algebraic surface: \\ [formula in source] & EM & exact [formula in source] closure & on-shell Thomson & 137.0359992 & — & 137.03599918 & [formula in source] & EA \\ [formula in source] & EM & unbroken [formula in source] & — & [formula in source] & 
+round-mode=none, group-minimum-digits=20 ! @llllrlrrl@ Quantity & Sector & TFPT formula or source & Obs.\ map & TFPT\ & Unit & Reference\ & Residual & Status \\ 9@l Exact algebraic surface: \\ [formula in source] & EM & exact [formula in source] closure & on-shell Thomson & 137.0359992 & — & 137.03599918 & [formula in source] & EA \\ [formula in source] & EM & unbroken [formula in source] & — & [formula in source] &
 
 ## Strict benchmark surface
 
@@ -272,7 +272,7 @@ The compact main-text mass ledgers intentionally suppress explicit formula detai
 
 [documents/archive--paper-latex--tfpt-31/sections/018-subsection-strict-benchmark-surface.tex:183-234](../../../../documents/archive--paper-latex--tfpt-31/sections/018-subsection-strict-benchmark-surface.tex#L183) · `section:c5c52d149c66e7fb784e` · subsection
 
-round-mode=none, group-minimum-digits=20 @> p0.15 > p0.33 > p0.15 Y@ Row & TFPT source or target & TFPT value & Status note \\ [formula in source] & exact unbroken [formula in source] direction & [formula in source] & exact structural row \\ [formula in source] & exact color gauge direction before confinement & [formula in source] & exact structural row \\ [formula in source] & intrinsic threshold output at [formula 
+round-mode=none, group-minimum-digits=20 @> p0.15 > p0.33 > p0.15 Y@ Row & TFPT source or target & TFPT value & Status note \\ [formula in source] & exact unbroken [formula in source] direction & [formula in source] & exact structural row \\ [formula in source] & exact color gauge direction before confinement & [formula in source] & exact structural row \\ [formula in source] & intrinsic threshold output at [formula
 
 ## Novelty boundary and literature positioning
 
@@ -296,7 +296,7 @@ A minimal carrier [formula in source] on the oriented double cover is shown to b
 
 [documents/archive--paper-latex--tfpt-32/sections/001-section-reading-guide-and-claim-map.tex:25-127](../../../../documents/archive--paper-latex--tfpt-32/sections/001-section-reading-guide-and-claim-map.tex#L25) · `section:44d833b825fd27c41145` · section
 
-The paper is organized in three reading layers: Big picture: one section explains what TFPT claims in plain language before the detailed datum and conventions begin. Detail: the main body then runs from primitive core and hard carrier kernel through kernel numerics, the two closure-architecture sections, the closure theorem stack, the particle/mass compiler, and the benchmark interface. Proof sketches: the main text 
+The paper is organized in three reading layers: Big picture: one section explains what TFPT claims in plain language before the detailed datum and conventions begin. Detail: the main body then runs from primitive core and hard carrier kernel through kernel numerics, the two closure-architecture sections, the closure theorem stack, the particle/mass compiler, and the benchmark interface. Proof sketches: the main text
 
 ## Big picture: what TFPT actually claims
 
@@ -314,7 +314,7 @@ No opening prose excerpt; see the source.
 
 [documents/archive--paper-latex--tfpt-32/sections/001-section-reading-guide-and-claim-map.tex:270-299](../../../../documents/archive--paper-latex--tfpt-32/sections/001-section-reading-guide-and-claim-map.tex#L270) · `section:7c2542b2b2bd544da229` · subsection
 
-We use natural units [formula in source] . Relative operators are formulated in Euclidean signature and compared through a declared Wick-rotation bridge when Lorentzian language is needed. Higgs fields are denoted by [formula in source] , Hamiltonians by [formula in source] , and the cosmological Hubble rate by [formula in source] ; this avoids overloading the letter [formula in source] . Newton's constant is always 
+We use natural units [formula in source] . Relative operators are formulated in Euclidean signature and compared through a declared Wick-rotation bridge when Lorentzian language is needed. Higgs fields are denoted by [formula in source] , Hamiltonians by [formula in source] , and the cosmological Hubble rate by [formula in source] ; this avoids overloading the letter [formula in source] . Newton's constant is always
 
 ## Primitive relative spectral dynamics
 
@@ -536,7 +536,7 @@ A physical E [formula in source] representation is not the stage label [formula 
 
 [documents/archive--paper-latex--tfpt-32/sections/013-subsection-rg-map-for-compiler-outputs.tex:319-344](../../../../documents/archive--paper-latex--tfpt-32/sections/013-subsection-rg-map-for-compiler-outputs.tex#L319) · `section:41d0b47c0db1a821a95c` · subsection
 
-] Under the restricted trace grammar, stages [formula in source] and [formula in source] have no unambiguous physical target. If [formula in source] is allowed to scan over all simple rationals, these stages can mimic almost any scale between [formula in source] and [formula in source] GeV. They mark the exact boundary where E [formula in source] without a derived block-trace theorem becomes too permissive. The open 
+] Under the restricted trace grammar, stages [formula in source] and [formula in source] have no unambiguous physical target. If [formula in source] is allowed to scan over all simple rationals, these stages can mimic almost any scale between [formula in source] and [formula in source] GeV. They mark the exact boundary where E [formula in source] without a derived block-trace theorem becomes too permissive. The open
 
 ## Primary benchmark map and prediction ledger
 
@@ -560,7 +560,7 @@ The main benchmark table shows only a narrow comparison surface. To keep the com
 
 [documents/archive--paper-latex--tfpt-32/sections/014-section-primary-benchmark-map-and-prediction-ledger.tex:120-123](../../../../documents/archive--paper-latex--tfpt-32/sections/014-section-primary-benchmark-map-and-prediction-ledger.tex#L120) · `section:88d5f46d5372a2a592cb` · subsection
 
-The present comparison surface is deliberately uneven, and that unevenness is informative rather than embarrassing. Carrier algebra and the self-consistent [formula in source] row are the sharpest parts of the manuscript. The seed-driven bridge rows are useful because they are transparent and mutually constrained, not because they are independent. In the mass sector, the manuscript should be read as a mixed surface: 
+The present comparison surface is deliberately uneven, and that unevenness is informative rather than embarrassing. Carrier algebra and the self-consistent [formula in source] row are the sharpest parts of the manuscript. The seed-driven bridge rows are useful because they are transparent and mutually constrained, not because they are independent. In the mass sector, the manuscript should be read as a mixed surface:
 
 ## Residual map and principal comparison refinements
 

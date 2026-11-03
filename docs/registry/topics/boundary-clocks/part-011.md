@@ -177,7 +177,7 @@ positioning,arrows.meta,fit,backgrounds,calc,shapes.geometric,shapes.misc
 
 [documents/introduction/sections/001-section-what-this-is-about-the-jump-in-construction-prin.tex:1-86](../../../../documents/introduction/sections/001-section-what-this-is-about-the-jump-in-construction-prin.tex#L1) · `section:ac978079d55f2c41f62b` · frontmatter
 
-Topological Fixed-Point Theory (TFPT) constructs, from exactly two inputs — a boundary constant [formula in source] (P1) and a five-slot carrier [formula in source] (P2) — a discrete compiler for the Standard-Model skeleton: the gauge group, three families, hypercharges and the flavor matrix, with [formula in source] ( [formula in source] ) as the consistency checksum. The algebraic core is machine-checkable and the 
+Topological Fixed-Point Theory (TFPT) constructs, from exactly two inputs — a boundary constant [formula in source] (P1) and a five-slot carrier [formula in source] (P2) — a discrete compiler for the Standard-Model skeleton: the gauge group, three families, hypercharges and the flavor matrix, with [formula in source] ( [formula in source] ) as the consistency checksum. The algebraic core is machine-checkable and the
 
 Explicit source references:
 
@@ -199,7 +199,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/introduction/sections/001-section-what-this-is-about-the-jump-in-construction-prin.tex:90-127](../../../../documents/introduction/sections/001-section-what-this-is-about-the-jump-in-construction-prin.tex#L90) · `section:fcaeea1db58206830da9` · subsection
 
-What we found. TFPT reproduces dozens of real numbers of physics (particle masses, the fine-structure constant, dark-energy and inflation values) from a small set of inputs — and the compiler closure says why the same handful of small integers ( [formula in source] ) reappears in every sector: those numbers are not separate lucky hits. A single tiny ``machine'' — fed by just two inputs (a boundary number [formula in 
+What we found. TFPT reproduces dozens of real numbers of physics (particle masses, the fine-structure constant, dark-energy and inflation values) from a small set of inputs — and the compiler closure says why the same handful of small integers ( [formula in source] ) reappears in every sector: those numbers are not separate lucky hits. A single tiny ``machine'' — fed by just two inputs (a boundary number [formula in
 
 Explicit source references:
 
@@ -652,7 +652,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/origin_theory/sections/004-section-interpretation-mc-the-self-reproducing-cosmic-cy.tex:141-392](../../../../documents/origin_theory/sections/004-section-interpretation-mc-the-self-reproducing-cosmic-cy.tex#L141) · `section:56ca118419000d5423f4` · section
 
-The precise reformulation ( ). The seam is not identical to an event horizon. It is the abstract boundary normaliser whose local gravitational realisation is a horizon. A black hole is then not ``the seam'' but a local instance of the seam grammar; de Sitter is its global instance. This is stronger and cleaner than a direct identification — it avoids importing Schwarzschild analogies wholesale, and it makes [formula 
+The precise reformulation ( ). The seam is not identical to an event horizon. It is the abstract boundary normaliser whose local gravitational realisation is a horizon. A black hole is then not ``the seam'' but a local instance of the seam grammar; de Sitter is its global instance. This is stronger and cleaner than a direct identification — it avoids importing Schwarzschild analogies wholesale, and it makes [formula
 
 Explicit source references:
 
@@ -720,7 +720,7 @@ Explicit source references:
 
 ## Honest status
 
-[documents/origin_theory/sections/006-section-honest-status-label-sec-status.tex:1-316](../../../../documents/origin_theory/sections/006-section-honest-status-label-sec-status.tex#L1) · `section:888628823bf71f709698` · section
+[documents/origin_theory/sections/006-section-honest-status-label-sec-status.tex:1-318](../../../../documents/origin_theory/sections/006-section-honest-status-label-sec-status.tex#L1) · `section:888628823bf71f709698` · section
 
 @p5.4cmp2.0cmY@ claim & status & basis \\ [formula in source] generates the integer skeleton; Pythagorean [formula in source] split & & v53_compiler_core.py \\ the [formula in source] in [formula in source] is triply forced (geo [formula in source] lattice [formula in source] gravity) & & v54_seam_horizon_keystones.py \\ one boundary transport for flavor and horizon ( [formula in source] ) & & v54_seam_horizon_keysto
 
@@ -900,7 +900,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 ## Appendix: computational verification
 
-[documents/origin_theory/sections/006-section-honest-status-label-sec-status.tex:317-338](../../../../documents/origin_theory/sections/006-section-honest-status-label-sec-status.tex#L317) · `section:5ef9533c2bf93b6ac923` · section
+[documents/origin_theory/sections/006-section-honest-status-label-sec-status.tex:319-340](../../../../documents/origin_theory/sections/006-section-honest-status-label-sec-status.tex#L319) · `section:5ef9533c2bf93b6ac923` · section
 
 Every \ statement here is machine-checked in the TFPT suite and re-derived independently in Wolfram: @p4.7cmY@ script & content \\ v53_compiler_core.py & [formula in source] skeleton, Pythagorean [formula in source] split, anchor char-poly uniqueness \\ v54_seam_horizon_keystones.py & triply-forced [formula in source] ; shared transport [formula in source] ; de Sitter constants \\ v55_coxeter_cycle.py & computed [for
 
@@ -926,7 +926,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/tfpt_1_architecture_e8/sections/001-source.tex:51-391](../../../../documents/tfpt_1_architecture_e8/sections/001-source.tex#L51) · `section:1234c1fa7fdc0d6d5b35` · section
 
-Notation convention. We write [formula in source] for the root-lattice direct sum (used in the glue/lattice statements: discriminant forms, [formula in source] glue, [formula in source] as an even unimodular lattice), and [formula in source] for the group/representation branching (used for subalgebra embeddings and [formula in source] -rep decompositions). The objects are the same atoms; the symbol marks whether the 
+Notation convention. We write [formula in source] for the root-lattice direct sum (used in the glue/lattice statements: discriminant forms, [formula in source] glue, [formula in source] as an even unimodular lattice), and [formula in source] for the group/representation branching (used for subalgebra embeddings and [formula in source] -rep decompositions). The objects are the same atoms; the symbol marks whether the
 
 Explicit source references:
 
@@ -1113,7 +1113,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/tfpt_1_architecture_e8/sections/004-source.tex:351-366](../../../../documents/tfpt_1_architecture_e8/sections/004-source.tex#L351) · `section:e2ac56d63dc5b474ddb4` · subsection
 
-With [formula in source] , the quadratic hypercharge trace on one family is [formula in source] , and it generates the whole integer chain: The flavor budget, the [formula in source] budget, the [formula in source] count and the second seam defect all hang on the second hypercharge moment [formula in source] . \ Round-22 sharpening: the moment itself is one symbolic identity, [formula in source] — the Coxeter number 
+With [formula in source] , the quadratic hypercharge trace on one family is [formula in source] , and it generates the whole integer chain: The flavor budget, the [formula in source] budget, the [formula in source] count and the second seam defect all hang on the second hypercharge moment [formula in source] . \ Round-22 sharpening: the moment itself is one symbolic identity, [formula in source] — the Coxeter number
 
 Explicit source references:
 
@@ -1301,7 +1301,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/tfpt_2_standard_model/sections/001-part-the-standard-model-in-one-master-formula.tex:1-24](../../../../documents/tfpt_2_standard_model/sections/001-part-the-standard-model-in-one-master-formula.tex#L1) · `section:3b5318f0d65e3c120bab` · frontmatter
 
-The Standard Model as one [formula in source] -ladder mass formula (all masses, CKM, PMNS, neutrinos), the flavor matrix from parabolic transport on [formula in source] , the five worked closures ( [formula in source] , quark [formula in source] , the explicit mass gap, Starobinsky [formula in source] , the H2 splitting), and gravity/quantum gravity as the seam response (the Seam Response Grammar [formula in source] 
+The Standard Model as one [formula in source] -ladder mass formula (all masses, CKM, PMNS, neutrinos), the flavor matrix from parabolic transport on [formula in source] , the five worked closures ( [formula in source] , quark [formula in source] , the explicit mass gap, Starobinsky [formula in source] , the H2 splitting), and gravity/quantum gravity as the seam response (the Seam Response Grammar [formula in source]
 
 ## Front matter / support
 
@@ -1408,7 +1408,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/tfpt_2_standard_model/sections/005-subsection-closing-the-audit-gates-is-m-41-k-q-derived-o.tex:1-160](../../../../documents/tfpt_2_standard_model/sections/005-subsection-closing-the-audit-gates-is-m-41-k-q-derived-o.tex#L1) · `section:26a7469d80cd6b47c2b6` · frontmatter
 
-The ``which sheet does parity select'' question above had a blocker: no independently motivated sector [formula in source] sheet map. The cover supplies one itself. At each branch point the anchor block is rank one, with canonical integer kernels: [formula in source] — at the carrier point the block annihilates the democratic vector itself. Collapse lemma : rank one forces [formula in source] , hence proportional to 
+The ``which sheet does parity select'' question above had a blocker: no independently motivated sector [formula in source] sheet map. The cover supplies one itself. At each branch point the anchor block is rank one, with canonical integer kernels: [formula in source] — at the carrier point the block annihilates the democratic vector itself. Collapse lemma : rank one forces [formula in source] , hence proportional to
 
 Explicit source references:
 
@@ -1567,7 +1567,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 ## Status: what is now written out, and what is honestly left
 
-[documents/tfpt_2_standard_model/sections/011-subsection-seam-response-grammar-gravity-is-the-inverse-.tex:307-358](../../../../documents/tfpt_2_standard_model/sections/011-subsection-seam-response-grammar-gravity-is-the-inverse-.tex#L307) · `section:00b05ea692eac25e3d3e` · section
+[documents/tfpt_2_standard_model/sections/011-subsection-seam-response-grammar-gravity-is-the-inverse-.tex:307-360](../../../../documents/tfpt_2_standard_model/sections/011-subsection-seam-response-grammar-gravity-is-the-inverse-.tex#L307) · `section:00b05ea692eac25e3d3e` · section
 
 tocsectionStatus @p5.6cmcY@ Item & Status & Result \\ Dynamics / clustering (Lemma Gravity Fredholm (Lemma [formula in source] truncation (Lemma Starobinsky [formula in source] / [formula in source] & / & [formula in source] GeV exact ; [formula in source] a \ band over [formula in source] \\ [formula in source] typing (Prop. [formula in source] (Prop. quark [formula in source] -rationals & / & hierarchy + source rat
 
@@ -1585,7 +1585,7 @@ Explicit source references:
 
 ## Appendix: computational verification
 
-[documents/tfpt_2_standard_model/sections/011-subsection-seam-response-grammar-gravity-is-the-inverse-.tex:359-376](../../../../documents/tfpt_2_standard_model/sections/011-subsection-seam-response-grammar-gravity-is-the-inverse-.tex#L359) · `section:59464fe2623d8f56dc12` · section
+[documents/tfpt_2_standard_model/sections/011-subsection-seam-response-grammar-gravity-is-the-inverse-.tex:361-378](../../../../documents/tfpt_2_standard_model/sections/011-subsection-seam-response-grammar-gravity-is-the-inverse-.tex#L361) · `section:59464fe2623d8f56dc12` · section
 
 The Standard-Model identities used here (marked , , ) are re-derived from [formula in source] and machine-checked by the suite in the repository folder verification/; the inline tags [verification/ [formula in source] ] point to the exact script. Relevant here: v2_carrier_pascal.py — the carrier/Pascal packet ( [formula in source] , [formula in source] ). v3_em_alpha.py — the EM fixed point [formula in source] . v4_f
 
@@ -1679,7 +1679,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/tfpt_3_e8_audit_bootstrap/sections/009-section-further-audit-lemmas-machine-verified-this-round.tex:1-189](../../../../documents/tfpt_3_e8_audit_bootstrap/sections/009-section-further-audit-lemmas-machine-verified-this-round.tex#L1) · `section:e7e7f78a69bea2986c9f` · frontmatter
 
-The Wick functor arc ( SEAM.CFIN. WICKFUNCTOR.01 [O]). Three probes ( [formula in source] ; wickfunctor-partial, wickmix-measured (wickmix-obstructed), wickblock-measured (blockfunctor-constructed / seam-diagonal); embedded byte-exact; exact integer/rational/symbolic in every decision typed proved or symbolic). The six compiler roles exist in the deployed seam ( [formula in source] slot pairs [formula in source] the 
+The Wick functor arc ( SEAM.CFIN. WICKFUNCTOR.01 [O]). Three probes ( [formula in source] ; wickfunctor-partial, wickmix-measured (wickmix-obstructed), wickblock-measured (blockfunctor-constructed / seam-diagonal); embedded byte-exact; exact integer/rational/symbolic in every decision typed proved or symbolic). The six compiler roles exist in the deployed seam ( [formula in source] slot pairs [formula in source] the
 
 Explicit source references:
 
@@ -1706,7 +1706,7 @@ Explicit source references:
 
 [documents/tfpt_3_e8_audit_bootstrap/sections/010-section-three-views-of-one-spine.tex:146-156](../../../../documents/tfpt_3_e8_audit_bootstrap/sections/010-section-three-views-of-one-spine.tex#L146) · `section:94633ceeb8bde750f4e4` · part
 
-The question, and the honest answer. The theory rests on two inputs, [formula in source] and [formula in source] . The old theory had a Möbius seam and the seed was the start of the [formula in source] cascade. Run it backwards: can the cascade/ [formula in source] return [formula in source] and [formula in source] , closing a self-consistent loop? Answer: the discrete content is a closed, overdetermined fixed point 
+The question, and the honest answer. The theory rests on two inputs, [formula in source] and [formula in source] . The old theory had a Möbius seam and the seed was the start of the [formula in source] cascade. Run it backwards: can the cascade/ [formula in source] return [formula in source] and [formula in source] , closing a self-consistent loop? Answer: the discrete content is a closed, overdetermined fixed point
 
 ## The loop for [formula in source] — the `` [formula in source] '' is the [formula in source] rank
 
@@ -1832,7 +1832,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/tfpt_4_frontier/sections/001-source.tex:262-300](../../../../documents/tfpt_4_frontier/sections/001-source.tex#L262) · `section:cc7b2d0df421c394451c` · section
 
-The seam UV is the free chiral [formula in source] fixed point ( v158_fixed_point_stable.py): Gaussian, with no relevant and no marginal interactions. The Higgs self-coupling [formula in source] is the one marginal scalar coupling, so a free seam forces it to the Gaussian point there: [formula in source] the Shaposhnikov–Wetterich double-criticality condition — here derived from the free seam rather than postulated. 
+The seam UV is the free chiral [formula in source] fixed point ( v158_fixed_point_stable.py): Gaussian, with no relevant and no marginal interactions. The Higgs self-coupling [formula in source] is the one marginal scalar coupling, so a free seam forces it to the Gaussian point there: [formula in source] the Shaposhnikov–Wetterich double-criticality condition — here derived from the free seam rather than postulated.
 
 Explicit source references:
 
@@ -2095,7 +2095,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/tfpt_5_redteam/sections/001-section-method.tex:267-367](../../../../documents/tfpt_5_redteam/sections/001-section-method.tex#L267) · `section:3bc2480a0b64fd3112f1` · section
 
-Minimal claim. The compiler's residual discrete carrier input is one symmetry-lift bit — flag transitivity of the four marks [formula in source] ( v512) — and the free-seam OS/RP structure that the Woit bridge ( WOIT.OS.TWISTOR.01) builds on survives adversarial attack. The red-team questions are two: can the bit be derived (in which case calling it an input would be a hidden redundancy), and can the OS/RP structure 
+Minimal claim. The compiler's residual discrete carrier input is one symmetry-lift bit — flag transitivity of the four marks [formula in source] ( v512) — and the free-seam OS/RP structure that the Woit bridge ( WOIT.OS.TWISTOR.01) builds on survives adversarial attack. The red-team questions are two: can the bit be derived (in which case calling it an input would be a hidden redundancy), and can the OS/RP structure
 
 Explicit source references:
 
@@ -2125,7 +2125,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/tfpt_5_redteam/sections/002-section-outcome.tex:1-355](../../../../documents/tfpt_5_redteam/sections/002-section-outcome.tex#L1) · `section:7a7de20f53ed3e69fb6f` · section
 
-What the red team changed. No target broke on the load-bearing surface. The hardest gate (A) is now closed modulo cited theorems on its MMST route SEAM.EQUIV.MMST.01 (the lattice/ [formula in source] round pins it at every computable level, Lean-formalised, only an external published existence theorem left, v367/ v368/ v376– v379); four targets (B, D, E, F) survive once a silent assumption is named; one (C) survives 
+What the red team changed. No target broke on the load-bearing surface. The hardest gate (A) is now closed modulo cited theorems on its MMST route SEAM.EQUIV.MMST.01 (the lattice/ [formula in source] round pins it at every computable level, Lean-formalised, only an external published existence theorem left, v367/ v368/ v376– v379); four targets (B, D, E, F) survive once a silent assumption is named; one (C) survives
 
 Explicit source references:
 
@@ -2348,7 +2348,7 @@ Für das vorhandene Clock-Automorphismusdatum gibt es die vier Gradprojektionen 
 
 [documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/001-section-korrektur-der-suchrichtung-am-29-september.tex:263-281](../../../../documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/001-section-korrektur-der-suchrichtung-am-29-september.tex#L263) · `section:3c068534676f49153f21` · subsection
 
-Das vorhandene Programm enthält eine passende Vorwärtskette; sie muss nicht durch eine neue freie Matrix ersetzt werden: [formula in source] Die Symbole stehen für ursprünglichen Randkern, Zustand, Zeit, Reflexion und markierte Deckwirkung sowie ihre gemeinsame Operatorfamilie und Determinantenverbindung. Die Variationen nach Eichfeld [formula in source] , Metrik [formula in source] und Familientransport [formula in 
+Das vorhandene Programm enthält eine passende Vorwärtskette; sie muss nicht durch eine neue freie Matrix ersetzt werden: [formula in source] Die Symbole stehen für ursprünglichen Randkern, Zustand, Zeit, Reflexion und markierte Deckwirkung sowie ihre gemeinsame Operatorfamilie und Determinantenverbindung. Die Variationen nach Eichfeld [formula in source] , Metrik [formula in source] und Familientransport [formula in
 
 Explicit source references:
 

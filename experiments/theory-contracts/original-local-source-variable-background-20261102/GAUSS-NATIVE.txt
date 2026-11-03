@@ -1,0 +1,158 @@
+ACTUAL NATIVE GAUSS SUPPORT AND PROJECTED GIBBS TEST
+L20261102H, 2 November2026. Original v989 callable, no new Hamiltonian.
+Canonical files unchanged. Results: GAUSS-NATIVE.json.
+
+RESULT
+
+The unchanged v989 Hamiltonian is gauge invariant under its two ORIGINAL
+complete interior stars, but its unprojected finite Gibbs state is not
+supported on their G_x=1 sector. At the diagnostic beta=1 its weight
+outside that sector is
+ 0.8551616360789673.
+
+The actual common Gauss projector is nonzero, has rank64 in the full
+1024-dimensional original space, and commutes exactly with H. Projecting
+the SAME Gibbs operator to it produces a positive normalized state that
+satisfies BOTH original interior G_x=1 conditions and is KMS on the
+actual invariant observable algebra. No coupling, hopping, mass, seam
+term, boundary condition or physical temperature was selected by this test.
+
+1. EXACT ORIGINAL BUILDER AND SCOPE
+
+Freshly hash-read original:
+ source:ee2976cb57382871a493:1-70,331-470,670-785,
+ verification/v989_lattice_gate_battery.py,
+ SHA256 f44d3784698a1fd487024e43effcc4144f6bdc642e4772c56cfa7fabd9e90408.
+Code discovery used the indexed repository graph before the source read.
+
+The native calls executed directly were
+ psi,num=_build_ham_ops(),
+ H=build_H(psi,num),
+ G_x=gauss_unitary(num,x), x=1,2.
+The imported run() and other gate studies were not executed. Python
+bytecode writing was disabled; only the requested work JSON was written.
+
+All original defaults were retained:
+ NS_H=4, NLQ_H=3, local links Z4 regular representation,
+ LAM_E=1, W_HOP=0.7, MASS=0.5, k_seam=0.
+Thus dimH=4^3*2^4=1024. The original H includes its electric terms,
+all three gauge-dressed link hoppings, staggered masses and the stated
+undressed endpoint seam hopping. Nothing was removed to obtain the result.
+
+The original run674-684 checks precisely the two INTERIOR Gauss stars
+x=1,2. The present test uses that same contract. It does not impose the
+endpoint stars0,3, whose commutators with this native H have maximum
+entry0.9899494936611666. Those are boundary data, not a numerical failure
+of the two original interior constraints. Imposing them as if they also
+commuted would silently change this source problem.
+
+The later v1011 B6 builder was also inspected through its actual callable:
+gauge_matter_hamiltonian uses divergence_occupancy to construct the
+already constrained sector. A comparison with an unconstrained Gibbs
+state would require another full-space construction there. The present
+test instead uses the EXISTING full-space v989 callable, with its original
+complete interior stars, rather than inventing that construction.
+
+2. ACTUAL PROJECTOR, EXACT NONEMPTY SUPPORT
+
+The native G_x are commuting unitary Z4 generators, G_x^4=I. Hence their
+given G_x=1 constraint has the unique orthogonal group-average projector
+
+ P_G=product_(x=1,2) (I+G_x+G_x^2+G_x^3)/4.               (1)
+
+This introduces no chosen auxiliary sector or arbitrary projector.
+The execution gives exactly zero residual for
+ P_G^2-P_G, P_G*-P_G, [H,P_G], [G1,G2], G_x^4-I,
+and [H,G_x] for both original stars. A basis Q of Ran(P_G) was extracted
+from this actual projector. Q*Q=I, QQ*=P_G and Q*G_xQ=I also have
+zero residual at the matrix-entry level.
+
+Nonemptiness is analytic in this original regular-link case. The interior
+gauge element G1^a G2^b shifts the three original link coordinates by
+ (-a,a-b,b) mod4.
+It fixes a link configuration only for a=b=0. The action is therefore
+free on each original link orbit, independently of the finite matter
+phase. Every orbit has16 points and carries one invariant vector.
+Consequently
+ rank P_G=1024/16=64>0.
+For an immediate invariant vector, take the original empty matter state
+and the uniform vector on each regular link. No new background charge or
+periodic-lattice neutrality constraint is needed for this interior-star
+statement. The full open-boundary generalization is reviewed separately
+by joint_origin; no periodic counting formula is imported here.
+
+3. INVARIANCE DOES NOT IMPLY THE GIVEN GAUSS SUPPORT
+
+For finite beta the original full kinematic Gibbs state is
+ rho_beta=exp(-beta H)/Tr exp(-beta H).
+Because [H,G_x]=0 it is invariant under each original gauge conjugation.
+But exp(-beta H) is strictly positive on the FULL finite-dimensional
+space. As0<P_G<I, the nonzero positive complement has strictly positive
+weight for EVERY finite beta:
+ Tr[rho_beta(I-P_G)]>0.                                 (2)
+
+This proves the distinction without depending on a selected eigenbasis.
+The actual beta=1 evaluation gives
+ omega_beta(P_G)=0.14483836392103266,
+ omega_beta(I-P_G)=0.8551616360789673.
+Gauge invariance of this state therefore cannot be relabeled support
+on the physical G_x=1 sector.
+
+The diagnostic beta=1 is merely one evaluation of the existing Gibbs
+family, not a derived physical thermal scale. For numerical conditioning
+the SAME scalar energy shift E0=-7.729844052718033 was used in both
+partition traces; it cancels from every ratio and changes no original
+Hamiltonian or vacuum normalization. The shifted traces were
+ Z=10.05673621782408, Z_G=1.4566012201750331.
+The independently computed ratio Z_G/Z agrees with omega_beta(P_G)
+within5.56e-17.
+
+4. PROJECT THE SAME GIBBS STATE; KMS AND GAUSS BOTH HOLD
+
+Use the original constraint, not a new Hamiltonian:
+ rho_beta,G=P_G exp(-beta H)/Tr[P_G exp(-beta H)].         (3)
+The denominator is strictly positive because P_G is nonzero and
+exp(-beta H)>0. Since [P_G,H]=0, (3) is a positive normalized state.
+It has P_G support, hence G1=G2=1 exactly. On the physical corner its
+Hamiltonian is simply H_G=Q*HQ, the restriction of the SAME native H.
+
+Every invariant observable A commutes with P_G. The original evolution
+therefore preserves its physical corner and cyclicity of its finite
+trace gives, for all invariant A,B and all real t,
+ omega_beta,G(A tau_(t+i beta)(B))
+     =omega_beta,G(tau_t(B) A).                         (4)
+Here tau_t(B)=exp(itH)B exp(-itH); neither time nor H is rescaled.
+Thus the projected state remains KMS on the actual invariant algebra.
+It need not be KMS on the full algebra of charged sector-changing fields;
+that is not the original gauge-invariant observable claim.
+
+The concrete native test uses actual noncommuting invariant terms:
+ A=n1,
+ B=psi1* Z_link1 psi2+its original adjoint.
+Both commute exactly with G1 and G2, while max-entry|[A,B]|=1.
+At the diagnostic real time t=0.37 and beta=1,
+ left side(4)=-0.0843970939528475-0.014792228485994003i,
+ right side(4)=-0.08439709395284752-0.014792228485994022i.
+The KMS residual is2.359479019930958e-17. The physical stationarity
+residual is1.138091725164796e-15. The largest tested residual is the
+latter, below the recorded tolerance2e-10. All native checks passed.
+The analytic proof(4), rather than this one pair of insertions, establishes
+the invariant-observable KMS statement.
+
+5. CONSEQUENCE AND EXACT LIMIT OF THE RESULT
+
+This test supplies an actual nonempty, Gauss-supported positive KMS
+finite source in the existing native Hamiltonian route, with the entire
+original link/matter Hamiltonian preserved. The physical projection is
+the supplied Gauss condition and introduces no coupling or fitted state
+parameter. It also decisively shows why invariance of an unprojected
+Gibbs state alone was insufficient for that stronger support claim.
+
+The result is a finite native Z4 staggered-source check, within the
+original v9891+1D/reduced-size scope. It is not a3+1D continuum or full
+geometric/Higgs/matter identification. Nor is it a proof that finite
+physical density matrices at different outer volumes are exactly
+projective. The independent H limit-state argument handles consistent
+restrictions after the actual limit, with complete interior stars and
+the original invariant observables. Existing G transport, the whole
+relative source, projective full moments and reference factors remain.

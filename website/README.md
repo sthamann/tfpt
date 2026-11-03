@@ -134,3 +134,31 @@ Its ~6.5k inline formulas are **rendered client-side** (`ChangelogMath.tsx`) rat
 ## License
 
 Papers and predictions distributed for academic use. © Stefan Hamann & Alessandro Rizzo.
+
+
+## Reviewed research snapshot
+
+The public Atlas ships a frozen scientific snapshot and bounded, line-numbered
+source excerpts. Rebuild or check it from this directory without a local Atlas:
+
+```sh
+python3 scripts/build-research-inventory.py
+python3 scripts/build-research-inventory.py --check
+```
+
+For an intentional new research cutoff, use `--source-root` for the maintained
+local research repository and `--publication-root` for this publication
+checkout. Research authoring and its source pins come from the former; the
+published ledger, script register, predictions, document registry and module
+code come from the latter. The metadata records both owners and input hashes.
+This avoids importing unrelated local publication edits into a separate build.
+Generate the public document registry before freezing, then keep that cutoff
+fixed while testing and deploying it.
+
+The private Atlas graph, caches, unpublished original sources and raw browser
+consultation captures are not publication inputs. Reviewed conclusions retain
+their precise premises and scopes; omitted excerpt paragraphs are explicit.
+The complete source/reference transport, canonical vacuum attachment and given
+classical Clifford kernel are distinguished from the still uncomputed primitive
+physical source identification. Source checks and publication do not promote
+physical claims or report a new full scientific verification run.

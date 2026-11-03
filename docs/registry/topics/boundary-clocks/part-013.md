@@ -68,7 +68,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tfpt_research_contracts.tex:14397-14558](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tfpt_research_contracts.tex#L14397) · `section:03b9058ca08ba4829ac7` · section
 
-Typing. This section is a hand-off document: it packages the one remaining seam obligation as a self-contained problem statement for an outside specialist in conformal nets / vertex operator algebras / algebraic QFT. It documents, it does not close: the ledger row SEAM.EQUIV.01 stays \ (its conditional route SEAM.EQUIV.MMST.01 is closed modulo cited theorems; the unconditional parent is the target below). Nothing in 
+Typing. This section is a hand-off document: it packages the one remaining seam obligation as a self-contained problem statement for an outside specialist in conformal nets / vertex operator algebras / algebraic QFT. It documents, it does not close: the ledger row SEAM.EQUIV.01 stays \ (its conditional route SEAM.EQUIV.MMST.01 is closed modulo cited theorems; the unconditional parent is the target below). Nothing in
 
 Explicit source references:
 
@@ -218,7 +218,7 @@ The exact Gram inverse satisfies [formula in source] , so [formula in source] , 
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex:147-1673](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex#L147) · `section:8872501633bb702220cd` · section
 
-Notation convention. We write [formula in source] for the root-lattice direct sum (used in the glue/lattice statements: discriminant forms, [formula in source] glue, [formula in source] as an even unimodular lattice), and [formula in source] for the group/representation branching (used for subalgebra embeddings and [formula in source] -rep decompositions). The objects are the same atoms; the symbol marks whether the 
+Notation convention. We write [formula in source] for the root-lattice direct sum (used in the glue/lattice statements: discriminant forms, [formula in source] glue, [formula in source] as an even unimodular lattice), and [formula in source] for the group/representation branching (used for subalgebra embeddings and [formula in source] -rep decompositions). The objects are the same atoms; the symbol marks whether the
 
 Explicit source references:
 
@@ -390,7 +390,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex:1781-1796](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex#L1781) · `section:38538ebfe54ea1f0dd1c` · subsection
 
-With [formula in source] , the quadratic hypercharge trace on one family is [formula in source] , and it generates the whole integer chain: The flavor budget, the [formula in source] budget, the [formula in source] count and the second seam defect all hang on the second hypercharge moment [formula in source] . \ Round-22 sharpening: the moment itself is one symbolic identity, [formula in source] — the Coxeter number 
+With [formula in source] , the quadratic hypercharge trace on one family is [formula in source] , and it generates the whole integer chain: The flavor budget, the [formula in source] budget, the [formula in source] count and the second seam defect all hang on the second hypercharge moment [formula in source] . \ Round-22 sharpening: the moment itself is one symbolic identity, [formula in source] — the Coxeter number
 
 Explicit source references:
 
@@ -882,7 +882,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_research_contracts.tex:12571-12632](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_research_contracts.tex#L12571) · `section:ea28e660b1549c41a88a` · section
 
-Typing. A standing discipline rule, in force immediately (ledger row DIMENSION.UPLIFT.FIREWALL.01); the uplift theorems it names are separate \ contracts. It formalizes the core diagnosis of the 2026-08-27 external deep review: a chiral [formula in source] D seam net does not imply a local, interacting [formula in source] D quantum world. The corpus's strongest finite results are boundary/kinematic building blocks — 
+Typing. A standing discipline rule, in force immediately (ledger row DIMENSION.UPLIFT.FIREWALL.01); the uplift theorems it names are separate \ contracts. It formalizes the core diagnosis of the 2026-08-27 external deep review: a chiral [formula in source] D seam net does not imply a local, interacting [formula in source] D quantum world. The corpus's strongest finite results are boundary/kinematic building blocks —
 
 Explicit source references:
 
@@ -1134,7 +1134,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_research_contracts.tex:14397-14558](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_research_contracts.tex#L14397) · `section:fd15b9954fc0175fba1b` · section
 
-Typing. This section is a hand-off document: it packages the one remaining seam obligation as a self-contained problem statement for an outside specialist in conformal nets / vertex operator algebras / algebraic QFT. It documents, it does not close: the ledger row SEAM.EQUIV.01 stays \ (its conditional route SEAM.EQUIV.MMST.01 is closed modulo cited theorems; the unconditional parent is the target below). Nothing in 
+Typing. This section is a hand-off document: it packages the one remaining seam obligation as a self-contained problem statement for an outside specialist in conformal nets / vertex operator algebras / algebraic QFT. It documents, it does not close: the ledger row SEAM.EQUIV.01 stays \ (its conditional route SEAM.EQUIV.MMST.01 is closed modulo cited theorems; the unconditional parent is the target below). Nothing in
 
 Explicit source references:
 
@@ -1314,7 +1314,7 @@ Eine gewöhnliche kritische SU(4)-Kette hat links- und rechtslaufende Sektoren, 
 
 [experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/07_seam.tex:98-103](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/07_seam.tex#L98) · `section:c4ffd1636c079cfb84f5` · section
 
-Die innere Glue- [formula in source] wirkt auf den 248 Strömen mit Phasen [formula in source] auf Sektoren der Größen [formula in source] . Ihre Spur ist null. Die geometrische Vierteldrehung [formula in source] hat auf Stufe eins dagegen Spur [formula in source] . Die Operatoren sind somit nicht identisch. Eine Clock kann eine geometrische Drehung mit innerem Twist kombinieren; die beiden Faktoren bleiben getrennt. 
+Die innere Glue- [formula in source] wirkt auf den 248 Strömen mit Phasen [formula in source] auf Sektoren der Größen [formula in source] . Ihre Spur ist null. Die geometrische Vierteldrehung [formula in source] hat auf Stufe eins dagegen Spur [formula in source] . Die Operatoren sind somit nicht identisch. Eine Clock kann eine geometrische Drehung mit innerem Twist kombinieren; die beiden Faktoren bleiben getrennt.
 
 ## Mehrzeitdaten statt einer einzigen Dichtematrix
 
@@ -1398,7 +1398,7 @@ Eine gewöhnliche kritische SU(4)-Kette hat links- und rechtslaufende Sektoren, 
 
 [experiments/theory-contracts/universalraum-five-source-frontier-20260914/main-v1.4/chapters/07_seam.tex:98-103](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/main-v1.4/chapters/07_seam.tex#L98) · `section:3181c3942c8b50d2b8d9` · section
 
-Die innere Glue- [formula in source] wirkt auf den 248 Strömen mit Phasen [formula in source] auf Sektoren der Größen [formula in source] . Ihre Spur ist null. Die geometrische Vierteldrehung [formula in source] hat auf Stufe eins dagegen Spur [formula in source] . Die Operatoren sind somit nicht identisch. Eine Clock kann eine geometrische Drehung mit innerem Twist kombinieren; die beiden Faktoren bleiben getrennt. 
+Die innere Glue- [formula in source] wirkt auf den 248 Strömen mit Phasen [formula in source] auf Sektoren der Größen [formula in source] . Ihre Spur ist null. Die geometrische Vierteldrehung [formula in source] hat auf Stufe eins dagegen Spur [formula in source] . Die Operatoren sind somit nicht identisch. Eine Clock kann eine geometrische Drehung mit innerem Twist kombinieren; die beiden Faktoren bleiben getrennt.
 
 ## Mehrzeitdaten statt einer einzigen Dichtematrix
 
@@ -1518,7 +1518,7 @@ Eine gewöhnliche kritische SU(4)-Kette hat links- und rechtslaufende Sektoren, 
 
 [experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/07_seam.tex:98-103](../../../../experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/07_seam.tex#L98) · `section:0d359d1ab7db2c14501d` · section
 
-Die innere Glue- [formula in source] wirkt auf den 248 Strömen mit Phasen [formula in source] auf Sektoren der Größen [formula in source] . Ihre Spur ist null. Die geometrische Vierteldrehung [formula in source] hat auf Stufe eins dagegen Spur [formula in source] . Die Operatoren sind somit nicht identisch. Eine Clock kann eine geometrische Drehung mit innerem Twist kombinieren; die beiden Faktoren bleiben getrennt. 
+Die innere Glue- [formula in source] wirkt auf den 248 Strömen mit Phasen [formula in source] auf Sektoren der Größen [formula in source] . Ihre Spur ist null. Die geometrische Vierteldrehung [formula in source] hat auf Stufe eins dagegen Spur [formula in source] . Die Operatoren sind somit nicht identisch. Eine Clock kann eine geometrische Drehung mit innerem Twist kombinieren; die beiden Faktoren bleiben getrennt.
 
 ## Mehrzeitdaten statt einer einzigen Dichtematrix
 
@@ -1602,7 +1602,7 @@ Der Standard-Multiplizitätsblock des führenden C16-Singuletts ist als 80-mal-8
 
 [experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex:147-1673](../../../../experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex#L147) · `section:0739148b5a5974d0d662` · section
 
-Notation convention. We write [formula in source] for the root-lattice direct sum (used in the glue/lattice statements: discriminant forms, [formula in source] glue, [formula in source] as an even unimodular lattice), and [formula in source] for the group/representation branching (used for subalgebra embeddings and [formula in source] -rep decompositions). The objects are the same atoms; the symbol marks whether the 
+Notation convention. We write [formula in source] for the root-lattice direct sum (used in the glue/lattice statements: discriminant forms, [formula in source] glue, [formula in source] as an even unimodular lattice), and [formula in source] for the group/representation branching (used for subalgebra embeddings and [formula in source] -rep decompositions). The objects are the same atoms; the symbol marks whether the
 
 Explicit source references:
 
@@ -1774,7 +1774,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex:1781-1796](../../../../experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex#L1781) · `section:93683d7c3fd300bd9861` · subsection
 
-With [formula in source] , the quadratic hypercharge trace on one family is [formula in source] , and it generates the whole integer chain: The flavor budget, the [formula in source] budget, the [formula in source] count and the second seam defect all hang on the second hypercharge moment [formula in source] . \ Round-22 sharpening: the moment itself is one symbolic identity, [formula in source] — the Coxeter number 
+With [formula in source] , the quadratic hypercharge trace on one family is [formula in source] , and it generates the whole integer chain: The flavor budget, the [formula in source] budget, the [formula in source] count and the second seam defect all hang on the second hypercharge moment [formula in source] . \ Round-22 sharpening: the moment itself is one symbolic identity, [formula in source] — the Coxeter number
 
 Explicit source references:
 

@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## 6.4 Nachgereichter Text: die interessante Fortsetzung liegt in Matrixmomenten
+
+[documents/universal_room--new-2--TFPT_Universalraum_Forschungspaper_2026-09-15--TFPT_Universalraum_Forschungspaper_2026-09-15/sections/003-subsection-6-2-lanczos-z-hlt-hamiltonschritte-nicht.tex:56-122](../../../../documents/universal_room--new-2--TFPT_Universalraum_Forschungspaper_2026-09-15--TFPT_Universalraum_Forschungspaper_2026-09-15/sections/003-subsection-6-2-lanczos-z-hlt-hamiltonschritte-nicht.tex#L56) · `section:de3911512aacedb26eb6` · subsection
+
+Der während dieser Arbeit nachgereichte Text Operationssatz, nativer Grundzustand und Feldwörterbuch, beschriftet als v1.6.3, ist byteidentisch mit dem bereits gelesenen aktuellen Repositorybericht derselben Linie. Sein Tensor, Lochbild, Kommutantenstufen und Nichtschlussbefund sind deshalb bereits berücksichtigt. Seine Priorität „den Zwei-Boson-Singulettraum ausschreiben`` ist in v1.6.7 inzwischen durch die vier exp
+
 ## 7. Präparation, Restantwort und die Herkunft von Teilen
 
 [documents/universal_room--new-2--TFPT_Universalraum_Forschungspaper_2026-09-15--TFPT_Universalraum_Forschungspaper_2026-09-15/sections/003-subsection-6-2-lanczos-z-hlt-hamiltonschritte-nicht.tex:123-125](../../../../documents/universal_room--new-2--TFPT_Universalraum_Forschungspaper_2026-09-15--TFPT_Universalraum_Forschungspaper_2026-09-15/sections/003-subsection-6-2-lanczos-z-hlt-hamiltonschritte-nicht.tex#L123) · `section:b70dc3cb92dc794af317` · section
@@ -470,7 +476,7 @@ Die einfache Kette entsteht aus [formula in source] durch Orthogonalisierung:
 
 [documents/universal_room--new-3--TFPT_Universalraum_Forschungspaper_2026-09-15--TFPT_Universalraum_Forschungspaper_2026-09-15/sections/003-subsection-6-2-lanczos-z-hlt-hamiltonschritte-nicht.tex:41-55](../../../../documents/universal_room--new-3--TFPT_Universalraum_Forschungspaper_2026-09-15--TFPT_Universalraum_Forschungspaper_2026-09-15/sections/003-subsection-6-2-lanczos-z-hlt-hamiltonschritte-nicht.tex#L41) · `section:2a6f282e67401793a13f` · subsection
 
-Das ergibt [formula in source] bei [formula in source] , aber [formula in source] bei [formula in source] . Beide Modelle besitzen dasselbe [formula in source] , dieselben inneren Symmetrien und denselben kommutierenden Clock. Die dimensionslose Differenz ist keine Einheitenfrage. Damit ist belegt, dass diese Grunddaten allein die physikalische Dynamik nicht eindeutig auswählen. Die Referenz [formula in source] muss 
+Das ergibt [formula in source] bei [formula in source] , aber [formula in source] bei [formula in source] . Beide Modelle besitzen dasselbe [formula in source] , dieselben inneren Symmetrien und denselben kommutierenden Clock. Die dimensionslose Differenz ist keine Einheitenfrage. Damit ist belegt, dass diese Grunddaten allein die physikalische Dynamik nicht eindeutig auswählen. Die Referenz [formula in source] muss
 
 ## 6.4 Nachgereichter Text: die interessante Fortsetzung liegt in Matrixmomenten
 
@@ -597,9 +603,3 @@ Sind [formula in source] bloße Basiswechsel vollständiger unitärer Rahmen, te
 [documents/universal_room--new-3--TFPT_Universalraum_Forschungspaper_2026-09-15--TFPT_Universalraum_Forschungspaper_2026-09-15/sections/004-subsection-9-1-was-der-vorhandene-vierzustandszeuge-bere.tex:235-285](../../../../documents/universal_room--new-3--TFPT_Universalraum_Forschungspaper_2026-09-15--TFPT_Universalraum_Forschungspaper_2026-09-15/sections/004-subsection-9-1-was-der-vorhandene-vierzustandszeuge-bere.tex#L235) · `section:2b88220849ae1015e84b` · subsection
 
 Aus demselben Projektor folgt die reelle Quantenmetrik
-
-## 10.5 Ein bedingter dynamischer Parent
-
-[documents/universal_room--new-3--TFPT_Universalraum_Forschungspaper_2026-09-15--TFPT_Universalraum_Forschungspaper_2026-09-15/sections/004-subsection-9-1-was-der-vorhandene-vierzustandszeuge-bere.tex:286-312](../../../../documents/universal_room--new-3--TFPT_Universalraum_Forschungspaper_2026-09-15--TFPT_Universalraum_Forschungspaper_2026-09-15/sections/004-subsection-9-1-was-der-vorhandene-vierzustandszeuge-bere.tex#L286) · `section:4ec06540b8c273ec0116` · subsection
-
-hat bei festem Parameter eine Lücke [formula in source] und einen Rang-eins-Grundraum [formula in source] . Bei kontrollierter langsamer Parameteränderung liefert er die bekannte geometrische Phase, mit separat zu kontrollierendem adiabatischem Fehler. Er zeigt konstruktiv, dass ein bewegter ausgewählter Unterraum die falsche „alles teleskopiert``-Abkürzung umgehen kann.

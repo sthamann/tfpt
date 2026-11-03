@@ -1,0 +1,100 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/original-local-source-variable-background-20261102/check_variable_background.py
+Original file SHA-256: 4aec8350583dd2ac20b8a78d35bd7101f67cac13820e78e11b16ce77d0a16064
+Inclusive original lines: 1-92
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Native variable-background control; the accompanying proof owns the limit."""
+000002 | from pathlib import Path
+000003 | import sys,json,hashlib
+000004 | import numpy as np
+000005 | from scipy.linalg import expm
+000006 | from scipy.special import expit
+000007 | 
+000008 | [OMITTED: non-scientific conversation or execution metadata]
+000009 | sys.path.insert(0,str(REPO/'verification'))
+000010 | import v252_full_finite_triple as original
+000011 | 
+000012 | checks={}
+000013 | def need(name,value):
+000014 |     checks[name]=bool(value)
+000015 |     if not value:raise RuntimeError(name)
+000016 | def small(a,tol=1e-8):return np.linalg.norm(a)<tol
+000017 | rng=np.random.default_rng(252)
+000018 | ys=[rng.normal(size=(3,3))+1j*rng.normal(size=(3,3)) for _ in range(4)]
+000019 | mr=rng.normal(size=(3,3));D=original.full_D(*ys,mr+mr.T)
+000020 | gamma=original.grading();K=original.Kswap()
+000021 | Q=[np.array([[0,1],[-1,0]],complex),np.array([[0,1j],[1j,0]],complex),np.eye(2),np.diag([-1j,1j])]
+000022 | bp=original.rep(1,np.zeros((2,2)),np.zeros((3,3)))
+000023 | V=[]
+000024 | for q in Q:
+000025 |     a=original.rep(0,q,np.zeros((3,3)));om=a@(D@bp-bp@D)
+000026 |     sa=om+om.conj().T;V.append(sa+K@sa.conj()@K)
+000027 | ix=[i for i,f in enumerate(original.P) if f[0] in ('u','d')]
+000028 | sub=lambda a:a[np.ix_(ix,ix)]
+000029 | g=sub(gamma);T=[-1j*g@sub(a) for a in V]
+000030 | need('full96_original_has_reducing_quark36',len(ix)==36 and all(small(a[np.ix_(ix,[j for j in range(96) if j not in ix])]) for a in [D,*V]))
+000031 | need('original_four_derivatives_are_Hermitian_and_odd',all(small(a-a.conj().T) and small(a@g+g@a) for a in T))
+000032 | need('original_constant_radial_background_is_preserved',small(-1j*g@sub(D)-T[2]))
+000033 | 
+000034 | # Real, nonconstant coefficients of the SAME original four Higgs directions.
+000035 | potential={0:T[2],1:.065*T[0]-.045j*T[1],-1:.065*T[0]+.045j*T[1],2:.035*T[3],-2:.035*T[3]}
+000036 | probe={0:.02*T[2],1:.002*T[2]-.0015j*T[3],-1:.002*T[2]+.0015j*T[3]}
+000037 | def add(d,k,a):d[k]=d.get(k,np.zeros((36,36),complex))+a
+000038 | B={k:k*g@a for k,a in probe.items()}
+000039 | for j,v in potential.items():
+000040 |     for k,t in probe.items():add(B,j+k,v@t+t@v)
+000041 | def mult(coeff,ns):
+000042 |     return np.block([[coeff.get(int(n-m),np.zeros((36,36),complex)) for m in ns] for n in ns])
+000043 | def source(c,a,b):
+000044 |     U=expm(1j*a)@expm(1j*b);L=a+b;I=np.eye(len(c))
+000045 |     X=c[:,None]*(U-I)
+000046 |     sign,logabs=np.linalg.slogdet(I+X)
+000047 |     direct=sign*np.exp(logabs-1j*np.sum(c*np.diag(L)))
+000048 |     det2=sign*np.exp(logabs-np.trace(X))
+000049 |     corrected=det2*np.exp(np.sum(c*np.diag(U-I-1j*L)))
+000050 |     return direct,corrected
+000051 | rows=[]
+000052 | for alpha in [.25,.75]:
+000053 |     for ncut in [2,4,8]:
+000054 |         ns=np.arange(-ncut,ncut);size=36*len(ns)
+000055 |         Vn=mult(potential,ns);Fn=mult(probe,ns)
+000056 |         h=np.kron(np.diag(ns+alpha),g)+Vn
+000057 |         Bn=mult(B,ns);anti=h@Fn+Fn@h
+000058 |         inner=np.arange(36*2,size-36*2)
+000059 |         if len(inner):
+000060 |             need(f'weak_anticommutator_interior_alpha{alpha}_N{ncut}',small((anti-Bn)[np.ix_(inner,inner)]))
+000061 |             bare=Bn-mult({k:k*g@a for k,a in probe.items()},ns)
+000062 |             need(f'spatial_derivative_is_required_alpha{alpha}_N{ncut}',np.linalg.norm((anti-bare)[np.ix_(inner,inner)])>1e-3)
+000063 |         e,u=np.linalg.eigh(h);delta=e[:,None]-e[None,:]
+000064 |         fe=u.conj().T@Fn@u
+000065 |         A=fe*np.exp(-.07*delta**2/2)
+000066 |         # g'(t) Fourier transform is -i*w*g_hat(w).
+000067 |         derivative=-1j*delta*A
+000068 |         timeidentity=(e[:,None]+e[None,:])*A+1j*derivative-2*e[:,None]*A
+000069 |         need(f'time_and_anticommutator_identity_alpha{alpha}_N{ncut}',small(timeidentity))
+000070 |         need(f'actual_variable_h_is_not_momentum_diagonal_alpha{alpha}_N{ncut}',np.linalg.norm(Vn-np.kron(np.eye(len(ns)),T[2]))>1)
+000071 |         need(f'selfadjoint_source_alpha{alpha}_N{ncut}',small(A-A.conj().T))
+000072 |         c=expit(2*e);variance=float(np.sum(c[:,None]*(1-c)[None,:]*abs(A)**2))
+000073 |         norm=float(np.linalg.norm(A,2));hs2=float(np.linalg.norm(A)**2)
+000074 |         Btest=fe*np.exp(-.09*delta**2/2+1j*.3*delta)
+000075 |         direct,corrected=source(c,A,Btest)
+000076 |         need(f'exact_ordered_det2_correction_alpha{alpha}_N{ncut}',abs(direct-corrected)<1e-10)
+000077 |         mg=[]
+000078 |         ae=np.linalg.eigvalsh(A)
+000079 |         for s in [-.7,.7]:
+000080 |             # Similar positive matrix avoids a complex log determinant.
+000081 |             rootc=np.sqrt(c);X=rootc[:,None]*(expm(s*A)-np.eye(size))*rootc[None,:]
+000082 |             z=np.linalg.eigvalsh(np.eye(size)+(X+X.conj().T)/2)
+000083 |             need(f'positive_MGF_matrix_alpha{alpha}_N{ncut}_s{s}',min(z)>0)
+000084 |             logmgf=float(np.sum(np.log(z))-s*np.sum(c*np.diag(A)).real)
+000085 |             bound=s*s/2*np.exp(abs(s)*norm)*hs2
+000086 |             need(f'uniform_exponential_moment_bound_alpha{alpha}_N{ncut}_s{s}',logmgf<=bound+1e-9)
+000087 |             mg.append({'s':s,'log_MGF':logmgf,'analytic_upper_bound':float(bound)})
+000088 |         rows.append({'alpha':alpha,'N':ncut,'dimension':size,'HS_squared':hs2,'operator_norm':norm,'variance':variance,'ordered_source':[float(direct.real),float(direct.imag)],'moment_bounds':mg})
+000089 | 
+000090 | result={'result_id':'L20261102D','all_passed':all(checks.values()),'checks':checks,'rows':rows,'original_builder':str(REPO/'verification/v252_full_finite_triple.py'),'builder_sha256':hashlib.sha256((REPO/'verification/v252_full_finite_triple.py').read_bytes()).hexdigest(),'scope':'Original given circle and variable smooth Higgs coefficient; native seed252 diagnostics. The continuum theorem is analytical. No primitive field/state selection, H probability, 3+1 physics, absolute normalization or ledger promotion.'}
+000091 | Path(__file__).with_name('variable-background-results.json').write_text(json.dumps(result,indent=2)+'\n')
+000092 | print(json.dumps({'all_passed':result['all_passed'],'checks':len(checks),'rows':rows},indent=2))

@@ -104,7 +104,7 @@ Let [formula in source] This makes the phase grammar concrete rather than rhetor
 
 [documents/archive--tfpt-45--source_extracts--03_em_flavor_source/sections/003-subsection-discrete-phase-operator-and-transport-grammar.tex:88-352](../../../../documents/archive--tfpt-45--source_extracts--03_em_flavor_source/sections/003-subsection-discrete-phase-operator-and-transport-grammar.tex#L88) · `section:4f28881002e138056680` · subsection
 
-For each fermion sector define the structural positive transport kernel by [formula in source] whenever the inverse exists on [formula in source] . The final admissible kernel is the restriction of this operator to the gap-stable branch selected below. The transport pole [formula in source] is fixed by the structural stationarity of the exact determinant functional [formula in source] with [formula in source] On the 
+For each fermion sector define the structural positive transport kernel by [formula in source] whenever the inverse exists on [formula in source] . The final admissible kernel is the restriction of this operator to the gap-stable branch selected below. The transport pole [formula in source] is fixed by the structural stationarity of the exact determinant functional [formula in source] with [formula in source] On the
 
 ## Front matter / support
 
@@ -410,7 +410,7 @@ The present draft does not ask the reader to accept one undifferentiated output 
 
 [documents/archive--tfpt-45--source_extracts--06_cosmology_source/sections/002-subsection-falsification-matrix.tex:62-130](../../../../documents/archive--tfpt-45--source_extracts--06_cosmology_source/sections/002-subsection-falsification-matrix.tex#L62) · `section:6ac286160fd9206948ae` · subsection
 
-To keep proof status, interface assumptions, and comparison-only layers visibly separated, we record the present audit path explicitly. We use five status classes: ] full proof in manuscript; ] full proof modulo an explicit standard theorem; ] proof sketch in main text with full proof deferred; ] readout or comparison only; ] programmatic closure target with a fixed mathematical statement but without a claimed proof 
+To keep proof status, interface assumptions, and comparison-only layers visibly separated, we record the present audit path explicitly. We use five status classes: ] full proof in manuscript; ] full proof modulo an explicit standard theorem; ] proof sketch in main text with full proof deferred; ] readout or comparison only; ] programmatic closure target with a fixed mathematical statement but without a claimed proof
 
 Explicit source references:
 

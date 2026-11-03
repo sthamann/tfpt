@@ -1,0 +1,205 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/seam-positive-kernel-search-20261015/origin_hypothesis_search.py
+Original file SHA-256: 9ca8da3ea6388229581a548ca5dafa129fd1df1a2f1c673b8299d6c331e9f11e
+Inclusive original lines: 200-396
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000200 |             (unknown_sources, unknown_premises, unknown_tests)))
+000201 |     declared = set(proposal['premises'])
+000202 |     missing = {test: sorted(set(catalog[test].get('premise_ids', []))-declared)
+000203 |                for test in proposal['tests']}
+000204 |     missing = {key: value for key, value in missing.items() if value}
+000205 |     if missing:
+000206 |         raise ValueError('Test scope prerequisites not explicitly declared: '+str(missing))
+000207 | 
+000208 | 
+000209 | def proposal_schema(catalog):
+000210 |     strings = {'type': 'array', 'items': {'type': 'string'}}
+000211 |     props = {'hypothesis': {'type': 'string'}, 'source_ids': strings,
+000212 |              'premises': strings, 'additional_assumptions': strings,
+000213 |              'tests': {'type': 'array', 'items': {'type': 'string', 'enum': list(catalog)}},
+000214 |              'proposed_predictions': {'type': 'array', 'minItems': 1, 'items': {
+000215 |                  'type': 'object', 'additionalProperties': False,
+000216 |                  'required': ['check_id', 'claim_id', 'expects'],
+000217 |                  'properties': {'check_id': {'type': 'string', 'enum': list(catalog)},
+000218 |                     'claim_id': {'type': 'string', 'enum': [ALLOWED[k] for k in catalog]},
+000219 |                     'expects': {'type': 'boolean'}}}}}
+000220 |     if 'matter-word-spinor-current' in catalog:
+000221 |         props['source_candidate'] = {'type': 'string', 'maxLength': 12000}
+000222 |     return {'type': 'object', 'additionalProperties': False,
+000223 |             'required': list(props), 'properties': props}
+000224 | 
+000225 | 
+000226 | def scoped_predictions_match(entry):
+000227 |     return (entry.get('source_candidate_assessment', {}).get('verdict') != 'typing_error'
+000228 |             and all(p['matches'] for p in entry.get('prediction_checks', [])))
+000229 | 
+000230 | 
+000231 | def main():
+000232 |     parser = argparse.ArgumentParser(description=__doc__)
+000233 |     parser.add_argument('--model', default='qwen3.6:35b')
+000234 |     parser.add_argument('--catalog', type=Path, required=True)
+000235 |     parser.add_argument('--output', type=Path, required=True)
+000236 |     parser.add_argument('--rounds', type=int, default=2)
+000237 |     parser.add_argument('--index-only', action='store_true')
+000238 |     parser.add_argument('--reuse-inventory', type=Path)
+000239 |     parser.add_argument('--question', default='Propose a new minimal source principle joining P1, double cover, information and the compiler, with an explicit mathematical rule and an independently checkable consequence. Do not merely restate the source audit or methodological corrections. Name which declared input the principle would replace, and keep unproved bridges explicit.')
+000240 |     args = parser.parse_args()
+000241 |     if args.rounds < 1:
+000242 |         parser.error('rounds must be positive')
+000243 |     if args.output.exists():
+000244 |         parser.error('output already exists; use a new run path')
+000245 |     catalog_raw = json.loads(args.catalog.read_text())
+000246 |     # This file must be supplied and reviewed by the project owner.  Never
+000247 |     # accept commands, paths or executable text from the model response.
+000248 |     if catalog_raw.get('schema') != 'tfpt.genesis-checks.v1':
+000249 |         raise ValueError('Unexpected curated catalogue schema')
+000250 |     catalog = {entry['id']: entry for entry in catalog_raw['checks']}
+000251 |     if len(catalog) != len(catalog_raw['checks']) or set(catalog) - set(ALLOWED):
+000252 |         raise ValueError('Duplicate curated test ID')
+000253 |     idx = reuse_inventory(args.reuse_inventory) if args.reuse_inventory else index_corpus()
+000254 |     pack = evidence(idx, [{'id': key, 'meaning': item.get('question', ''),
+000255 |                            'scope': item.get('scope', ''),
+000256 |                            'premise_ids': item.get('premise_ids', []),
+000257 |                            'source_ids': item.get('source_ids', []),
+000258 |                            'allowed_claim_id': ALLOWED[key]}
+000259 |                           for key, item in catalog.items()])
+000260 |     result = {'schema': 'tfpt.origin-hypothesis-search.v1',
+000261 |               'started_utc': dt.datetime.now(dt.timezone.utc).isoformat(),
+000262 |               'inventory': pack['counts'], 'atlas_revision': idx['atlas_revision'],
+000263 |               'sources_sha256': {'program': digest(PROGRAM),
+000264 |                                  'registry': digest(ROOT/'verification/script_registry.csv'),
+000265 |                                  'ledger': digest(ROOT/'verification/status_ledger.csv'),
+000266 |                                  'curated_catalog': digest(args.catalog)},
+000267 |               'evidence': pack, 'rounds': [], 'physical_solution': False,
+000268 |               'scope': 'Inventory and proposals do not constitute renewed proof verification.',
+000269 |               'driver_sha256': digest(Path(__file__)),
+000270 |               'checker_sha256': digest(ROOT/CHECK_SCRIPT),
+000271 |               'checker_sha256_by_id': {key: digest(ROOT/CHECK_SCRIPTS[key]) for key in catalog}}
+000272 |     args.output.parent.mkdir(parents=True, exist_ok=True)
+000273 |     inventory_path = args.output.with_name(args.output.stem+'.inventory.json')
+000274 |     with inventory_path.open('x') as stream:
+000275 |         json.dump(idx, stream, indent=2, ensure_ascii=False)
+000276 |         stream.write('\n')
+000277 |     result['full_static_inventory'] = str(inventory_path)
+000278 |     def save():
+000279 |         args.output.write_text(json.dumps(result, indent=2, ensure_ascii=False)+'\n')
+000280 |     if args.index_only:
+000281 |         result['status'] = 'STATIC_INDEX_ONLY'
+000282 |         save(); return
+000283 |     sys.path.insert(0, str(ENGINE))
+000284 |     sys.path.insert(0, str(POSITIVE))
+000285 |     from tfpt_local.engine import Ollama, parse_response
+000286 |     from adaptive_discriminator import import_hypotheses
+000287 |     known = source_ids(idx)
+000288 |     known_premises = premise_ids(idx)
+000289 |     system = ('Work on the original TFPT source chain, preserving its complete declared P1 kernel. '
+000290 |               'Use only listed known source IDs and curated test IDs. Return JSON object with fields '
+000291 |               'hypothesis (string), source_ids (list of IDs), premises (list of known premise/claim IDs), '
+000292 |               'additional_assumptions (list of strings), tests (list of curated test IDs), '
+000293 |               'proposed_predictions (list of {check_id, claim_id, expects}, where expects is boolean). '
+000294 |               'Each prediction must use the specified check ID and its listed allowed_claim_id. '
+000295 |               'Do not assume an optional CAR clock condition is a universal P1 requirement. '
+000296 |               'Distinguish conjecture, existing original result, scoped counterexample, and actual physical proof.')
+000297 |     if 'matter-word-spinor-current' in catalog:
+000298 |         system += (' Also return source_candidate: a JSON-encoded string describing the actual operator expression. '
+000299 |                    'Allowed AST: {"op":"primitive","name":NAME} with NAME matter_spinor, tensor_boson, '
+000300 |                    'scalar_quarter_current or clifford_vector; {"op":"product","args":[AST,...]}, '
+000301 |                    '{"op":"sum","args":[AST,...]}, {"op":"adjoint","arg":AST}, '
+000302 |                    '{"op":"derivative","arg":AST}, or '
+000303 |                    '{"op":"proposed_sector_insertion","source_ref":"original source handle or explicit unproved proposal"}. '
+000304 |                    'The last form is never an admitted original field merely because you name it. '
+000305 |                    'The program checks the actual expression independently of your predictions. '
+000306 |                    'Do not hide an extra sector generator in a scalar-current expression.')
+000307 |     messages = [{'role': 'system', 'content': system},
+000308 | [OMITTED: non-scientific conversation or execution metadata]
+000309 |     result['question'] = args.question
+000310 |     try:
+000311 |         backend = Ollama(model=args.model, schema=False, num_predict=1600,
+000312 |                          response_schema=proposal_schema(catalog))
+000313 |         result['backend_identity'] = backend.identity
+000314 |         for iteration in range(args.rounds):
+000315 |             raw, metrics = backend(messages)
+000316 |             entry = {'round': iteration+1, 'raw': raw, 'metrics': metrics}
+000317 |             try:
+000318 |                 proposal = parse_response(raw)
+000319 |                 if not isinstance(proposal, dict) or 'proposed_predictions' not in proposal:
+000320 |                     raise ValueError('Missing proposed_predictions')
+000321 |                 base = {key: value for key, value in proposal.items()
+000322 |                         if key not in {'proposed_predictions', 'source_candidate'}}
+000323 |                 import_hypotheses([base])
+000324 |                 predictions = proposal['proposed_predictions']
+000325 |                 if not isinstance(predictions, list) or not predictions:
+000326 |                     raise ValueError('At least one testable prediction is required')
+000327 |                 for prediction in predictions:
+000328 |                     if (not isinstance(prediction, dict) or
+000329 |                         set(prediction) != {'check_id', 'claim_id', 'expects'} or
+000330 |                         type(prediction['expects']) is not bool or
+000331 |                         prediction['check_id'] not in base['tests'] or
+000332 |                         ALLOWED.get(prediction['check_id']) != prediction['claim_id']):
+000333 |                         raise ValueError('Prediction must use an allowed check/claim and a boolean')
+000334 |                 validate_proposal_ids(proposal, known, known_premises, catalog)
+000335 |                 assessment = None
+000336 |                 if 'matter-word-spinor-current' in catalog:
+000337 |                     from source_charge_checks import assess_expression
+000338 |                     encoded = proposal.get('source_candidate')
+000339 |                     if not isinstance(encoded, str) or len(encoded) > 12000:
+000340 |                         raise ValueError('A bounded JSON source_candidate expression is required')
+000341 |                     assessment = assess_expression(json.loads(encoded))
+000342 |                 test_results = run_checks(proposal, catalog)
+000343 |                 checks = {x['test_id']: x['output'] for x in test_results}
+000344 |                 verdicts = []
+000345 |                 for prediction in predictions:
+000346 |                     output = checks[prediction['check_id']]
+000347 |                     facts = output.get('inference_claims', [])
+000348 |                     claim = next((x for x in facts if x.get('id') == prediction['claim_id']), None)
+000349 |                     if claim is None or type(claim.get('holds')) is not bool:
+000350 |                         raise ValueError('Check lacks specified boolean inference claim')
+000351 |                     verdicts.append({**prediction, 'observed': claim['holds'],
+000352 |                                      'matches': claim['holds'] == prediction['expects']})
+000353 |                 entry.update(proposal=proposal, schema_and_ids='accepted',
+000354 |                              proof_status='unverified_hypothesis',
+000355 |                              exclusion_scope='manual atlas premise/strategy review required; not a lexical no-go',
+000356 |                              tests=test_results, prediction_checks=verdicts)
+000357 |                 if assessment is not None:
+000358 |                     entry['source_candidate_assessment'] = assessment
+000359 |                     if assessment['verdict'] == 'excluded_scoped':
+000360 |                         entry['proof_status'] = 'excluded_source_candidate_in_declared_inventory'
+000361 |                     elif assessment['verdict'] == 'typing_error':
+000362 |                         entry['proof_status'] = 'rejected_source_candidate_type'
+000363 |                 feedback = ('Curated scoped checks and prediction comparisons: '+json.dumps(verdicts)+
+000364 |                             '. Evidence: '+json.dumps(test_results, ensure_ascii=False)+
+000365 |                             '. Revise the proposal and predictions; a matching check does not prove the entire hypothesis.')
+000366 |                 if assessment is not None:
+000367 |                     feedback += (' Actual source-expression decision: '+json.dumps(assessment)+
+000368 |                                  '. A failed operator cannot be repaired by unchanged explanatory prose. '
+000369 |                                  'A proposed sector insertion needs its actual original field binding and full locality/time/norm proof.')
+000370 |             except (ValueError, TypeError, KeyError, RecursionError, subprocess.TimeoutExpired) as error:
+000371 |                 entry.update(schema_and_ids='rejected', error=str(error))
+000372 |                 feedback = 'Validation/check failed: '+str(error)+'. Return revised JSON using only IDs from the evidence packet.'
+000373 |             result['rounds'].append(entry)
+000374 | [OMITTED: non-scientific conversation or execution metadata]
+000375 |             save()
+000376 |         accepted = [x for x in result['rounds'] if x.get('schema_and_ids') == 'accepted']
+000377 |         result['accepted_proposal_rounds'] = len(accepted)
+000378 |         result['matching_scoped_prediction_rounds'] = sum(
+000379 |             scoped_predictions_match(x) for x in accepted)
+000380 |         if 'matter-word-spinor-current' in catalog:
+000381 |             result['source_candidate_verdict_counts'] = {
+000382 |                 verdict: sum(x.get('source_candidate_assessment', {}).get('verdict') == verdict
+000383 |                              for x in accepted)
+000384 |                 for verdict in ('excluded_scoped', 'needs_original_source', 'typing_error')}
+000385 |             result['original_source_binding_proved'] = False
+000386 |         result['status'] = ('PROPOSALS_AND_CURATED_CHECKS_RECORDED' if accepted
+000387 |                             else 'NO_VALID_PROPOSAL_RECORDED')
+000388 |     except Exception as error:
+000389 |         result['status'] = 'BACKEND_OR_DRIVER_ERROR'
+000390 |         result['error'] = type(error).__name__+': '+str(error)
+000391 |     result['finished_utc'] = dt.datetime.now(dt.timezone.utc).isoformat()
+000392 |     save()
+000393 | 
+000394 | 
+000395 | if __name__ == '__main__':
+000396 |     main()

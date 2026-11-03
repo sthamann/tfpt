@@ -1,0 +1,38 @@
+TFPT scientific source excerpt
+Original repository path: verification/v1002_spin10_mirror_projector.py
+Original file SHA-256: 84f7cd7987887ee071d7e05872285ab274ae329f6bcfa693be69bb52add19a4c
+Inclusive original lines: 123-152
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000123 | def positive_weyl_generators():
+000124 |     gammas = gamma_matrices_10d()
+000125 |     clifford_deviation = max(
+000126 |         np.max(
+000127 |             np.abs(
+000128 |                 gammas[a] @ gammas[b]
+000129 |                 + gammas[b] @ gammas[a]
+000130 |                 - (
+000131 |                     2.0 * np.eye(32, dtype=complex)
+000132 |                     if a == b
+000133 |                     else np.zeros((32, 32), dtype=complex)
+000134 |                 )
+000135 |             )
+000136 |         )
+000137 |         for a in range(10)
+000138 |         for b in range(10)
+000139 |     )
+000140 |     gamma_product = np.eye(32, dtype=complex)
+000141 |     for gamma in gammas:
+000142 |         gamma_product = gamma_product @ gamma
+000143 |     chirality = ((-1j) ** 5) * gamma_product
+000144 |     positive = np.flatnonzero(np.real(np.diag(chirality)) > 0.5)
+000145 |     if len(positive) != SPIN10_MODES or clifford_deviation > TOL:
+000146 |         raise RuntimeError("failed to reconstruct the positive Weyl module")
+000147 |     pairs = list(itertools.combinations(range(10), 2))
+000148 |     generators = [
+000149 |         (0.5j * gammas[a] @ gammas[b])[np.ix_(positive, positive)]
+000150 |         for a, b in pairs
+000151 |     ]
+000152 |     return generators, pairs

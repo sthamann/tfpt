@@ -1030,7 +1030,7 @@ _The quantum-gravity measure contract, the audit ledger, the data scorecard, and
 - **v1001_nu_pentagon_chain** [-] `(no ledger claim)` — FLAV.NUSCALE.06 Kandidat [C]/[N] (Review-Welle 4, 2026-08-29; KEIN Schluss; Mechanismus = Q_+-zu-Flavor-Operator [O]): U_e=I Inventar + analytische 13/23-Fehlausrichtung; Pentagon-
   - cited: introduction, 2 standard model, 4 frontier, research contracts
 - **v1002_spin10_mirror_projector** [-] `(no ledger claim)` — CHIRAL4D.MIRROR.DET16.01 Kandidat [C] (Review-Welle 5, 2026-08-29; genaues endliches-Cluster-Gapping; offen: dynamische Eichfelder, Domain-Wall-Geometrie, 4D-Volumentheorem): DET16
-  - cited: introduction, 4 frontier, research contracts
+  - cited: introduction, origin theory, 1 architecture e8, 2 standard model, 4 frontier, research contracts
 - **v1003_nu_structural_nulls** [-] `(no ledger claim)` — FLAV.NU.TEXTURE.MECHANISM.01 [O] (Review-Welle 5, 2026-08-29; bindende Constraints, keine Texture): [E] geladener Sektor h=(1,1,1), d=(64,60,64); [X] Schur-Texture-NULL 8/8 (K,B) s
   - cited: introduction, 2 standard model, 4 frontier, research contracts
 - **v1004_milnor_frobenius_gray** [-] `(no ledger claim)` — SEAM.MILNOR.LOCALRING.01 [O] (Review-Welle 6, 2026-08-30; endliche Algebra; Korpus-Identifikation bleibt offen): KLASSISCH (zitiert, kein Claim) Milnor-Algebra von x^2+y^3+z^5 cong
@@ -1072,7 +1072,7 @@ _The quantum-gravity measure contract, the audit ledger, the data scorecard, and
 - **v1026_telb_round4_closure** [E/O] `SEAM.MMST.TELB.NORM.01` — Native interval TEL-B norm below 2.995906 at fixed M=1, Ny=8 for all even N>=16; CF/DG/CROSS and validated Fourier aliases; ALG-EXH/MMST open
   - deps: v1022_telb_round3_certificates, v1025_telb_c1_c2a_certificates · cited: introduction, origin theory, 4 frontier, research contracts
 - **v1027_signed_det_car_wall** [E/C/O] `CHIRAL4D.MIRROR.SIGNED.CAR.01` — Exact canonical DET modes and signed z=1 wall for fixed classical gauge fields; no hard bare-mirror gap or chiral continuum
-  - deps: v1023_derivative_filtered_wall, v1002_spin10_mirror_projector.py; v1007_det16_stability_battery.py; v1016_state_gap_batteries.py; v1023_derivative_filtered_wall · cited: introduction, 4 frontier, research contracts
+  - deps: v1023_derivative_filtered_wall, v1002_spin10_mirror_projector.py; v1007_det16_stability_battery.py; v1016_state_gap_batteries.py; v1023_derivative_filtered_wall · cited: introduction, origin theory, 1 architecture e8, 2 standard model, 4 frontier, research contracts
 - **v1028_gauss_d4_cap** [E/C/O] `PARENT.GAUSS.D4.ROUND4.01` — Gauss residues with full 192-mode site characters and specified nine-irrep cube links; symmetric selected-pair-space D4 cap; no canonical clock family, mass texture or global state
   - deps: v1003_nu_structural_nulls.py; v1012_toe_gate_witnesses.py; v1024_parent_internal_boundaries, v1000_spin2_sk_witnesses.py; v1009_rho0_minimizer.py; v1012_toe_gate_witnesses.py; v1016_state_gap_batteries.py; v1024_parent_internal_boundaries · cited: introduction, 4 frontier, research contracts
 - **v1029_local_tensor_constraints** [E/C/O] `GRAV.SPIN2.LOCAL.CONSTRAINT.01` — Local tensor constraints give two z=1 radiative modes after explicit global zero-mode removal; no TFPT embedding
@@ -1368,7 +1368,7 @@ _The frozen prediction registry and the follow-up rounds: Target A merged to one
 - **v251_first_order_sigma** [E/C/O] `PS.DIRAC.01` — the first-order condition is violated EXACTLY by the Majorana/σ term (Chamseddine–Connes–van Suijlekom 'beyond first order' → Pati-Salam + σ), exhibited on a faithful lepton-block
   - deps: v250_dirac_triple_contract, v248_ps_algebra · cited: introduction, research contracts
 - **v252_full_finite_triple** [E/C/O] `PS.DIRAC.02` — the FULL 96-dim finite spectral triple (A_F,H_F,D_F,J,γ) built explicitly with NCG axioms verified; advances v250 from a 7-obligation contract to a concrete object discharging 5 to
-  - deps: v250_dirac_triple_contract, v251_first_order_sigma, v248_ps_algebra · cited: introduction, 2 standard model, research contracts
+  - deps: v250_dirac_triple_contract, v251_first_order_sigma, v248_ps_algebra · cited: introduction, origin theory, 1 architecture e8, 2 standard model, 4 frontier, research contracts
 - **v253_kappa_scalaron_ps** [E/C/O/X] `PS.KAPPA.01` — pinning κ in M_PS = κ·M_s, discharging residual 6(b) of v249. M_s = c₃^{7/2}·Mbar ≈ 3.06e13 GeV (exact). [E] scalaron scale exact; [E] κ pinned by RG (scan PDG errors × the two E8-
   - deps: v249_ps_unification, v252_full_finite_triple · cited: introduction, research contracts
 - **v254_inner_fluctuations** [E/C] `PS.NCG.FLUCT.01` — the inner fluctuations Ω¹_D(A_F) of the finite Dirac operator computed explicitly (reuses the v252 triple); closes v250 #5 (Higgs content, not 126) + the no-junk obligation + the σ

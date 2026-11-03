@@ -1,0 +1,95 @@
+TFPT scientific source excerpt
+Original repository path: documents/articles--2026-08-30--tfpt_thermodynamic_dynamics_en/sections/001-section-the-concrete-uniformly-local-class.tex
+Original file SHA-256: 9f53a07911c9e2e8f6b2f594b7c154f5a8dc0faeb2e9a429cc04a229cc6f4294
+Inclusive original lines: 32-118
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000032 | 
+000033 | Let \(\Gamma=\Z^2\) with graph distance \(d\) and coordination \(z=4\).
+000034 | For a finite \(\Lambda\Subset\Gamma\), put
+000035 | \[
+000036 |  \Hh_\Lambda=\bigotimes_{x\in\Lambda}\Hh_x,\qquad
+000037 |  \A_\Lambda=\mathcal B(\Hh_\Lambda),
+000038 |  \qquad
+000039 |  \iota_{\Lambda,\Lambda'}(A)=A\otimes\id_{\Lambda'\setminus\Lambda}.
+000040 | \tag{1.1}\label{eq:ambient}
+000041 | \]
+000042 | One cell contains the four representative physical edge modes, a mirror
+000043 | Fock factor, the two positively oriented outgoing finite-group gauge links,
+000044 | and a four-state seam clock.  Thus
+000045 | \[
+000046 |  \dim\Hh_x=16\cdot 2^{n_{\rm mir}}\cdot 2^2\cdot4,
+000047 |  \qquad n_{\rm mir}\in\{4,16\}.
+000048 | \tag{1.2}\label{eq:localdim}
+000049 | \]
+000050 | The DET4 numerical analogue has dimension \(4096\); the full DET16 cell has
+000051 | dimension \(16\,777\,216\).  Only finiteness and a volume-independent upper
+000052 | bound are used below.  The quasilocal algebra is
+000053 | \[
+000054 |  \A=\overline{\bigcup_{\Lambda\Subset\Gamma}\A_\Lambda}^{\norm{\cdot}}.
+000055 | \tag{1.3}\label{eq:quasilocal}
+000056 | \]
+000057 | 
+000058 | \begin{definition}[TFPT assembled interaction]
+000059 | For finite \(X\Subset\Gamma\), let \(\Phi(X)=\Phi(X)^*\), with
+000060 | \(\Phi(X)=0\) unless \(X\) is one of the supports in
+000061 | Table~\ref{tab:terms}.  The free-boundary finite-volume Hamiltonian is
+000062 | \[
+000063 |  H_\Lambda=\sum_{X\subseteq\Lambda}\Phi(X).
+000064 | \tag{1.4}\label{eq:H}
+000065 | \]
+000066 | Scalar multiples of the identity may be removed termwise, since they do
+000067 | not change \(e^{itH_\Lambda}Ae^{-itH_\Lambda}\).
+000068 | \end{definition}
+000069 | 
+000070 | \begin{table}[ht]
+000071 | \centering
+000072 | \small
+000073 | \begin{tabularx}{\textwidth}{@{}lXccc@{}}
+000074 | \toprule
+000075 | term & frozen operator and coefficient & \(\norm{\Phi(X)}\) & \(|X|\) &
+000076 | \(\diam X\)\\
+000077 | \midrule
+000078 | electric &
+000079 | \(\frac{g^2}{2}E_\ell^2,\ g=1.2\), with each positive link assigned to
+000080 | its tail cell & \(18/25=0.72\) & 1 & 0\\
+000081 | plaquette &
+000082 | \(\frac1{2g^2}(2-U_p-U_p^*)\); its dynamical representative is
+000083 | \(-\frac1{2g^2}(U_p+U_p^*)\) & \(25/36\) & 4 & 2\\
+000084 | hopping &
+000085 | \(-t\sum_{a=1}^4(c_{y,a}^*U_{xy}c_{x,a}+\mathrm{h.c.}),\ t=0.6\)
+000086 | & \(\leq4t=12/5\) & 2 & 1\\
+000087 | DET16 &
+000088 | \(2(\id-P_{\phi,x})\), where \(P_{\phi,x}\) is the rank-one
+000089 | Spin(10)-invariant determinant projector & \(2\) & 1 & 0\\
+000090 | seam clock &
+000091 | \(-0.5(\Psi_x+\Psi_x^*)\), \(\Psi_x^4=\id\) & \(1\) & 1 & 0\\
+000092 | seam charge &
+000093 | \(0.2(\Psi_x+\Psi_x^*) (n_{Q,x}-1/2)/2\) & \(1/10\) & 1 & 0\\
+000094 | staggered mass &
+000095 | \(0.2\sum_{a=1}^4(-1)^x(n_{x,a}-n^{\rm bg}_{x,a})\) & \(\leq4/5\) & 1 & 0\\
+000096 | \bottomrule
+000097 | \end{tabularx}
+000098 | \caption{Supports and norm bounds extracted from the frozen assembled
+000099 | models.  The positive plaquette term itself has norm at most
+000100 | \(2/g^2=25/18\); after deleting its scalar part, the norm relevant to
+000101 | dynamics and commutators is \(1/g^2=25/36\).}
+000102 | \label{tab:terms}
+000103 | \end{table}
+000104 | 
+000105 | The determinant identity checked in
+000106 | \texttt{verification/v1002\_spin10\_mirror\_projector.py} gives
+000107 | \(P_{\phi,x}=P_{\phi,x}^*=P_{\phi,x}^2\), so its row has norm exactly
+000108 | two.  The clock and charge bounds follow from
+000109 | \(\norm{\Psi}=1\), \(\norm{(\Psi+\Psi^*)/2}=1\), and
+000110 | \(\norm{n_Q-1/2}=1/2\).
+000111 | 
+000112 | \subsection{Uniform constants}
+000113 | 
+000114 | Define the finite-range interaction moment
+000115 | \[
+000116 |  \kappa:=\sup_{x\in\Gamma}
+000117 |  \sum_{X\ni x}|X|\,\norm{\Phi(X)}.
+000118 | \tag{1.5}\label{eq:kappa}

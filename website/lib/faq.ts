@@ -10,7 +10,7 @@ export interface FaqItem {
 export const FAQ_ITEMS: FaqItem[] = [
   {
     q: "What is Topological Fixed-Point Theory?",
-    a: "TFPT is a research programme by Stefan Hamann and Alessandro Rizzo. It connects an oriented boundary structure and a five slot carrier to representations, E₈ lattice structure, flavour relations and numerical readouts. Its mathematical results retain their assumptions. Connecting the whole construction to one physical source remains a separate research goal.",
+    a: "TFPT is a research programme by Stefan Hamann and Alessandro Rizzo. It connects an oriented boundary structure and a five slot carrier to representations, E₈ lattice structure, flavour relations and numerical readouts. Its mathematical results retain their assumptions. Complete source transports and a classical Clifford kernel are available; identifying the full original interacting physical source remains the central research goal.",
     sources: [{ label: "Work through the construction", href: "/explain" }],
   },
   {
@@ -20,7 +20,7 @@ export const FAQ_ITEMS: FaqItem[] = [
   },
   {
     q: "Is TFPT a completed physical theory of everything?",
-    a: "A completed physical theory of everything has not been established. The mathematical construction already contains precise particle, charge, flavour, quantum and source results. A common local physical realization, the actual observables and events, physical spacetime and gravity still have distinct obligations. A solved subproblem retains its value while its parent goal remains open.",
+    a: "A completed physical theory of everything has not been established. The mathematical construction already contains precise particle, charge, flavour, quantum and source results. The original source route already reconstructs its state, vacuum and time jointly under its stated hypotheses. A complete interacting physical realization, its chiral and infrared behavior, and universal gravitational coupling retain their own obligations.",
     sources: [{ label: "Physical source and remaining connections", href: "/explain#source" }, { label: "Results in their stated scope", href: "/results" }],
   },
   {
@@ -50,8 +50,13 @@ export const FAQ_ITEMS: FaqItem[] = [
   },
   {
     q: "What is still open?",
-    a: "The central question is the common original physical source: how its local fields, state, time, admissible events and gravitational response are realized together. Later research supplies local source constructions, intrinsic event geometry and explicit response results under named premises. These achievements narrow the remaining connection without establishing physical 3+1 dimensional spacetime or a complete gravitational theory.",
+    a: "The central task is to identify the full original interacting source with its actual field insertions, admissible projection and time, retaining the dynamical bosonic weight and all remaining couplings. Complete reference transport, vacuum reconstruction and the whole classical Clifford transfer are already available in their stated scopes. The next calculation must use that full physical source; a separate choice of vacuum or an optional DET16 parent does not replace it.",
     sources: [{ label: "The common physical source", href: "/explain#source" }, { label: "Current source research", href: "/results?search=source" }],
+  },
+  {
+    q: "What does the latest transfer calculation exclude?",
+    a: "For the given unprojected quasifree positive heat source, the complete kernel is calculated. A partition function theorem excludes a literal independent flat factor of dimension greater than two under any unitary field identification that preserves that same transfer and boundary sewing. Physical Gauss projection, dynamical bosons and a general interacting source are outside this theorem. A larger declared interacting source also has nonzero charged transitions carried jointly by fields and environment. Its derivation from the primitive source is still a separate equation.",
+    sources: [{ label: "Whole source calculation and scope", href: "/explain#source" }, { label: "Consolidated source results", href: "/results?record=finding%3Ar110-consolidated-source-results-and-atlas-provenance-audit" }],
   },
   {
     q: "Why compare alpha with CODATA at about 1.9 standard deviations?",

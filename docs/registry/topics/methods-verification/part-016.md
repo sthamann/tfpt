@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Weitere architektonisch wichtige Korrekturen
+
+[experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/18_audit_v13.tex:99-113](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/18_audit_v13.tex#L99) · `section:b6eb85a2f386143c59c2` · section
+
+Zwei Singulettläufe finden mindestens vier orthogonale Moden bei [formula in source] über [formula in source] , Residuen unter [formula in source] . Das Dublett ist widerlegt; ein exakter oberer Multiplizitätsbeweis fehlt. -Typen.] 960 gleichgradige Wurzelsummen gehen nach [formula in source] ; gemischt ergeben sich 640 und 192 Summen nach Grad null sowie 64 Cartanfälle. Der vorgeschlagene gemischte Kanal nach [formu
+
 ## Neue Quellen und unveränderte Originale
 
 [experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/20_release_v13.tex:8-18](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/20_release_v13.tex#L8) · `section:2674cdfc38ac21ad58d7` · section
@@ -335,7 +341,7 @@ Explicit source references:
 
 [tex-artefacts/toe_round27_full_reference.tex:66-113](../../../../tex-artefacts/toe_round27_full_reference.tex#L66) · `section:65b04690e3cfb4c58e6c` · paragraph
 
-Let [formula in source] be the sum of moduli before cancellation, resolved into elementary hopping words, initial charge profiles and scalar integrals. Then Every elementary hop changes the complete profile, hence [formula in source] . Scalar spectral Jensen gives [formula in source] . Pinching [formula in source] into its charge blocks [formula in source] contracts the Schatten [formula in source] norm, so [formula 
+Let [formula in source] be the sum of moduli before cancellation, resolved into elementary hopping words, initial charge profiles and scalar integrals. Then Every elementary hop changes the complete profile, hence [formula in source] . Scalar spectral Jensen gives [formula in source] . Pinching [formula in source] into its charge blocks [formula in source] contracts the Schatten [formula in source] norm, so [formula
 
 ## Front matter / support
 
@@ -357,7 +363,7 @@ Explicit source references:
 
 [tex-artefacts/toe_round4_proofs.tex:9-22](../../../../tex-artefacts/toe_round4_proofs.tex#L9) · `section:9e0ba325fdce5ca83fef` · paragraph
 
-SEAM.MMST.TELB.NORM.01. For the frozen [formula in source] , [formula in source] collar, the original remainder obeys [formula in source] The interval inputs are v1022 (TV and potential), v1025 (C1/C2a), and v1026_ telb_ round4_ closure.py (CF, DG, signed CROSS, validated Fourier core and all-volume aliases). This is not a proof of the historical sharper [formula in source] or Bound-B target [formula in source] . In 
+SEAM.MMST.TELB.NORM.01. For the frozen [formula in source] , [formula in source] collar, the original remainder obeys [formula in source] The interval inputs are v1022 (TV and potential), v1025 (C1/C2a), and v1026_ telb_ round4_ closure.py (CF, DG, signed CROSS, validated Fourier core and all-volume aliases). This is not a proof of the historical sharper [formula in source] or Bound-B target [formula in source] . In
 
 Explicit source references:
 
@@ -398,7 +404,7 @@ Explicit source references:
 
 [tex-artefacts/toe_round4_proofs.tex:243-303](../../../../tex-artefacts/toe_round4_proofs.tex#L243) · `section:7f5d6cd7af591d8d1ecc` · paragraph
 
-CHIRAL4D.MIRROR.SIGNED.CAR.01. v1027_ signed_ det_ car_ wall.py checks the following algebra and its finite countermodels. The old Hubbard operators [formula in source] satisfy [formula in source] , not CAR, and [formula in source] . For even [formula in source] (in particular [formula in source] ), write [formula in source] and define [formula in source] This is a two-dimensional rotation and identity elsewhere. It 
+CHIRAL4D.MIRROR.SIGNED.CAR.01. v1027_ signed_ det_ car_ wall.py checks the following algebra and its finite countermodels. The old Hubbard operators [formula in source] satisfy [formula in source] , not CAR, and [formula in source] . For even [formula in source] (in particular [formula in source] ), write [formula in source] and define [formula in source] This is a two-dimensional rotation and identity elsewhere. It
 
 Explicit source references:
 
@@ -586,7 +592,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [tex-artefacts/toe_round7_parent_mirror.tex:155-175](../../../../tex-artefacts/toe_round7_parent_mirror.tex#L155) · `section:a503bfae31300975fb93` · paragraph
 
-For [formula in source] , differentiation of minimum and substitution gives [formula in source] . The other empty/full eigenstate costs at least [formula in source] , and the [formula in source] sector also costs at least [formula in source] , so neither undercuts tensor product and energies add. Any state orthogonal to the product ground excites at least one cell, proving the same bound independently of [formula in 
+For [formula in source] , differentiation of minimum and substitution gives [formula in source] . The other empty/full eigenstate costs at least [formula in source] , and the [formula in source] sector also costs at least [formula in source] , so neither undercuts tensor product and energies add. Any state orthogonal to the product ground excites at least one cell, proving the same bound independently of [formula in
 
 Explicit source references:
 
@@ -674,6 +680,40 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 - [(* v1031: exact rational-fibre curvature projector and positivity. *) p = {1, 2, 2}; {r2, b, trace, scalar, kp, kq, c} = tensorData[p]; ptt = Simplify[explicitPTT[p, r2]]; check["v1031 C=r^4 PTT with a symmetric rank-two projector", zeroQ[c - r2^2 ptt] && zeroQ[ptt - Transpose[ptt]] && zeroQ[ptt.ptt - ptt] && MatrixRank[ptt] === 2]; cFactor = r2 ptt; check["v1031 exact PSD factorization has spectrum {0^4,r^4,r^4}", zeroQ[c - cFactor.Transpose[cFactor]] && MatrixRank[c] === 2 && Sort[Simplify[Eigenvalues[c]]] === {0, 0, 0, 0, r2^2, r2^2}]; (* v1032: a separate Lorentz-covariant curvature calculation at one exact nonzero null momentum. Pi is the de Donder trace-reversed numerator; positivity is inferred only after the curvature sandwich. *)](../../../../verification/wolfram/tfpt_round7.wl#L79)
 
+## Source and reproducibility route
+
+[tex-artefacts/toe_source_completion_20261103.tex:489-532](../../../../tex-artefacts/toe_source_completion_20261103.tex#L489) · `section:5a9ea639ada21fb1a3c4` · subsection
+
+The dated report labels resolve through docs/research/fundamental-plan/RESULTS.md and the synthesis docs/research/fundamental-plan/CONSOLIDATION-R110-20261103.md. The main proof owners are: A and B: experiments/theory-contracts/puncture-metric-joint-completion-20261102/PROOF.txt and experiments/theory-contracts/joint-source-clock-field-closure-20261102/PROOF.txt. C: experiments/theory-contracts/original-paper-source-
+
+Explicit source references:
+
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/VARIABLE-BACKGROUND-PROOF.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/VARIABLE-BACKGROUND-PROOF.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/GROUND-SOURCE.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/GROUND-SOURCE.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/joint-source-clock-field-closure-20261102/PROOF.txt](../../../../experiments/theory-contracts/joint-source-clock-field-closure-20261102/PROOF.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/LARGER-CHARGED-SOURCE-EVALUATION.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/LARGER-CHARGED-SOURCE-EVALUATION.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/ZERO-FREE-JOINT.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/ZERO-FREE-JOINT.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/SEED-FIELD.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/SEED-FIELD.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/SHARED-METRIC-SOURCE.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/SHARED-METRIC-SOURCE.txt#L1) · explicit_file_citation
+- [docs/research/fundamental-plan/RESULTS.md](../../../../docs/research/fundamental-plan/RESULTS.md#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-paper-source-reconciliation-20261102/AUDIT.txt](../../../../experiments/theory-contracts/original-paper-source-reconciliation-20261102/AUDIT.txt#L1) · explicit_file_citation
+- [docs/research/fundamental-plan/CONSOLIDATION-R110-20261103.md](../../../../docs/research/fundamental-plan/CONSOLIDATION-R110-20261103.md#L1) · explicit_file_citation
+- [experiments/theory-contracts/puncture-metric-joint-completion-20261102/PROOF.txt](../../../../experiments/theory-contracts/puncture-metric-joint-completion-20261102/PROOF.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/FULL-SOURCE-CORRECTION.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/FULL-SOURCE-CORRECTION.txt#L1) · explicit_file_citation
+- [verification/v1027_signed_det_car_wall.py](../../../../verification/v1027_signed_det_car_wall.py#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/PHYSICAL-THERMAL-SOURCE.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/PHYSICAL-THERMAL-SOURCE.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/TRANSFER-EXTRACTION.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/TRANSFER-EXTRACTION.txt#L1) · explicit_file_citation
+- [verification/v1002_spin10_mirror_projector.py](../../../../verification/v1002_spin10_mirror_projector.py#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/ZERO-FREE-ORIGIN.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/ZERO-FREE-ORIGIN.txt#L1) · explicit_file_citation
+- [verification/v252_full_finite_triple.py](../../../../verification/v252_full_finite_triple.py#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/PAIRED-DYSON-PROOF.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/PAIRED-DYSON-PROOF.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/REFERENCE-SOURCE-COMPLETION.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/REFERENCE-SOURCE-COMPLETION.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/SOURCE-GENERATOR-RESIDUAL-20261103.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/SOURCE-GENERATOR-RESIDUAL-20261103.txt#L1) · explicit_file_citation
+
+Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
+
+- [(* v1027: exact signed-wall determinant and unsquared low branch. *) {a, delta, lambda, g} = Unique /@ {"a", "delta", "lambda", "g"}; mass = delta + lambda; beta = lambda g^2; eta = lambda g; c = beta - eta^2/mass; h = {{a + beta a^2, eta a}, {eta a, mass}}; check["v1027 signed determinant M a (1+c a)", Together[Det[h] - mass a (1 + c a)] === 0]; check["v1027 physical kernel remains one-dimensional at a=0", NullSpace[h /. a -> 0] === {{1, 0}}]; (* v1028: exact characteristic-five reduction of the full 192-mode one-site character. P^12 == P^2 P(z^5)^2 mod 5 is evaluated by coefficient dictionaries, never by floating group quadrature. *)](../../../../verification/wolfram/tfpt_round4.wl#L28)
+
 ## F0: Independent reproduction.
 
 [tex-artefacts/toe_universalraum_synthesis_20260912.tex:345-352](../../../../tex-artefacts/toe_universalraum_synthesis_20260912.tex#L345) · `section:9555ea49608875a0d622` · paragraph
@@ -694,7 +734,7 @@ Explicit source references:
 
 [tex-artefacts/verification.tex:1-738](../../../../tex-artefacts/verification.tex#L1) · `section:ab9e7e520130ecc7da7c` · frontmatter
 
-@p3.5cmY@ Script & What it machine-checks \\ Script & What it machine-checks (continued) \\ 2r@ continued on next page\\ v1_ e8_ glue.py & glue theorem [formula in source] : [formula in source] , [formula in source] , [formula in source] , [formula in source] \\ v2_ carrier_ pascal.py & [formula in source] unique Pascal solution; [formula in source] , [formula in source] , [formula in source] , [formula in source] , 
+@p3.5cmY@ Script & What it machine-checks \\ Script & What it machine-checks (continued) \\ 2r@ continued on next page\\ v1_ e8_ glue.py & glue theorem [formula in source] : [formula in source] , [formula in source] , [formula in source] , [formula in source] \\ v2_ carrier_ pascal.py & [formula in source] unique Pascal solution; [formula in source] , [formula in source] , [formula in source] , [formula in source] ,
 
 Explicit source references:
 
@@ -2060,7 +2100,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_4_origin_theory.tex:1166-1454](../../../../universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_4_origin_theory.tex#L1166) · `section:4e5537e69e05316e0599` · section
 
-The precise reformulation ( ). The seam is not identical to an event horizon. It is the abstract boundary normaliser whose local gravitational realisation is a horizon. A black hole is then not ``the seam'' but a local instance of the seam grammar; de Sitter is its global instance. This is stronger and cleaner than a direct identification — it avoids importing Schwarzschild analogies wholesale, and it makes [formula 
+The precise reformulation ( ). The seam is not identical to an event horizon. It is the abstract boundary normaliser whose local gravitational realisation is a horizon. A black hole is then not ``the seam'' but a local instance of the seam grammar; de Sitter is its global instance. This is stronger and cleaner than a direct identification — it avoids importing Schwarzschild analogies wholesale, and it makes [formula
 
 Explicit source references:
 
@@ -2370,7 +2410,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_5_tfpt_3_e8_audit_bootstrap.tex:161-170](../../../../universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_5_tfpt_3_e8_audit_bootstrap.tex#L161) · `section:efe9ff39cbd3e1d03d9e` · part
 
-Purpose and discipline. This note does not introduce new physics. It builds an audit raster: the claim that every load-bearing TFPT number should appear in at least one [formula in source] branching projection. A number that appears in none is suspect; a number appearing in several independent projections becomes structurally strong. All arithmetic identities below are exact ; the physical readings are audit-level \ 
+Purpose and discipline. This note does not introduce new physics. It builds an audit raster: the claim that every load-bearing TFPT number should appear in at least one [formula in source] branching projection. A number that appears in none is suspect; a number appearing in several independent projections becomes structurally strong. All arithmetic identities below are exact ; the physical readings are audit-level \
 
 ## The compiler core (where this note sits)
 
@@ -2785,7 +2825,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_5_tfpt_3_e8_audit_bootstrap.tex:11948-11956](../../../../universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_5_tfpt_3_e8_audit_bootstrap.tex#L11948) · `section:eb6d340846c695ccd44a` · part
 
-The connection in one sentence. The old E [formula in source] cascade (Paper V1.06: the nilpotent-orbit chain [formula in source] , [formula in source] ) and the new compiler/atlas are the same even-integer [formula in source] spine, read three ways: the cascade orders the numbers [formula in source] as a scale ladder, the atlas reads them as [formula in source] subalgebra branchings, and the compiler generates them 
+The connection in one sentence. The old E [formula in source] cascade (Paper V1.06: the nilpotent-orbit chain [formula in source] , [formula in source] ) and the new compiler/atlas are the same even-integer [formula in source] spine, read three ways: the cascade orders the numbers [formula in source] as a scale ladder, the atlas reads them as [formula in source] subalgebra branchings, and the compiler generates them
 
 ## The old cascade, recalled
 
@@ -2812,7 +2852,7 @@ Reading [formula in source] against today's compiler atoms, the secondary-branch
 
 [universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_5_tfpt_3_e8_audit_bootstrap.tex:12070-12117](../../../../universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_5_tfpt_3_e8_audit_bootstrap.tex#L12070) · `section:f9fc5d05530250150dda` · section
 
-at (0.35,58) [formula in source] — E-series / atlas branchings (UV); at (0.35,40) [formula in source] ; at (0.35,30) [formula in source] \,(Coxeter rung, [formula in source] ); at (0.35,24) [formula in source] — [formula in source] , [formula in source] , [formula in source] ; at (0.35,15) [formula in source] (IR atoms); at (0.35,8) [formula in source] \,(flavor selector, end); at (0,60.5) [formula in source] start; 
+at (0.35,58) [formula in source] — E-series / atlas branchings (UV); at (0.35,40) [formula in source] ; at (0.35,30) [formula in source] \,(Coxeter rung, [formula in source] ); at (0.35,24) [formula in source] — [formula in source] , [formula in source] , [formula in source] ; at (0.35,15) [formula in source] (IR atoms); at (0.35,8) [formula in source] \,(flavor selector, end); at (0,60.5) [formula in source] start;
 
 Explicit source references:
 
@@ -2857,7 +2897,7 @@ The flavor selector [formula in source] is the terminal orbit of the [formula in
 
 [universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_5_tfpt_3_e8_audit_bootstrap.tex:12215-12225](../../../../universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_5_tfpt_3_e8_audit_bootstrap.tex#L12215) · `section:6cbdf01f901e64cc2b62` · part
 
-The question, and the honest answer. The theory rests on two inputs, [formula in source] and [formula in source] . The old theory had a Möbius seam and the seed was the start of the [formula in source] cascade. Run it backwards: can the cascade/ [formula in source] return [formula in source] and [formula in source] , closing a self-consistent loop? Answer: the discrete content is a closed, overdetermined fixed point 
+The question, and the honest answer. The theory rests on two inputs, [formula in source] and [formula in source] . The old theory had a Möbius seam and the seed was the start of the [formula in source] cascade. Run it backwards: can the cascade/ [formula in source] return [formula in source] and [formula in source] , closing a self-consistent loop? Answer: the discrete content is a closed, overdetermined fixed point
 
 ## The loop for [formula in source] — an overdetermined fixed point
 
@@ -3070,39 +3110,3 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 - [(* ---- (v216) QGEO.MARKS.03: the four marks from Gauss-Bonnet + Euclidean-orbifold uniqueness ---- *) Module[{orbs, gb, nn}, orbs = {{2, 3, 6}, {2, 4, 4}, {3, 3, 3}, {2, 2, 2, 2}}; gb = nn /. Solve[nn (2 Pi - Pi) == 2 Pi 2, nn][[1]]; (* Z2 deficit pi, chi(S^2)=2 *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L1740)
 - [(* ==== v499 round: P2.TYPING.01 -- the P2 weight-typing postulate hardened: the anchor a = (1,1,2) as the Birkhoff-Grothendieck splitting exponents of the Deligne canonical extension E of the flavor connection (types the v491 check-9 residual). Exact content mirrored: (i) partition enumeration under the full typing (BG dictionary h^0 = 0 <=> a_i >= 1, exhaustive window) + the naive- typing negative control (h^1(E') = 3 forces deg -6, three splittings, e2 never 5) + the h^1 discrepancy (h^1(anchor bundle) = 1 != 3); (ii) the Deligne residue-trace degree (cusp exponents {0,1/3,2/3} = the unique lift of spec(lam^3 - 1) to [0,1), trace 1 per mark, deg E = -4, par-deg 0, witness A0* charpoly); (iii) the Schur-Horn permutohedron integer points {(2,2,0),(2,1,1)} with h^0 = 0 killing {2,2,0}; (iv) the Biswas Z3-cover degree arithmetic (genus 2, eigensheaves O(-2)^2, chi cross-check, regular-rep weights, the decomposable model {0,2,2} with h^0 = 1 = the unstable companion; deck double genus 1, j = 1728); (v) the n-mark formula e2 = (n-2)(n+1)/2 = 5 only at n = 4. The sympy symbolic parts (H^1 residue basis, monodromy group closure |<U,M0>| = 24, the 324-case stability skeleton) stay Python-side (v499). Mirrors v499. ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L3620)
 - [(* ==== v510 round: SEAM.BIT.FREEDOM.01 -- the freedom attack on the v506/v507 alignment bit: the POSITION half of the bit is topology. Exact content mirrored: (i) the DIHEDRAL CENSUS -- on the refined 2N-point seam circle D_16 has 17 involutions with EXACTLY ONE free (the antipodal shift by 8) and all 16 reflections have exactly 2 circle fixed points (8 site-axis + 8 edge-axis; robustness N = 8, 12; odd control N = 9: zero free), plus the quotient topology chi(C/antipode) = 0 (circle) vs chi(C/reflection) = 1 (interval, 2 boundary corners); (ii) the AUT COMPLETENESS -- Aut(C_8) = D_8 by brute force over all 8! = 40320 permutations and Aut(C_16) = D_16 by degree-2 propagation (all 32 candidates), so the census covers ALL circle symmetries; (iii) the Cl(16) DICHOTOMY CENSUS -- on explicit 256x256 Jordan-Wigner gammas the free deck's NS implementer squares to 256 gamma_1...gamma_16 = 256 (-1)^F (nonsplit) while the implementers of ALL 16 reflections exist (one of the two spin lifts +-R) and square to SCALARS {2^7 (site-axis), 2^8 (edge-axis)} (split): NONSPLIT <=> FREE over the complete census; root dichotomy 2 (the +-quarter shifts) vs 0 total over all 16 reflections; (iv) the REAL-STRUCTURE TABLE -- the deck-commuting antiholomorphic involutions solve symbolically to exactly two families (M diagonal: mu conj z, fix line through the poles; M antidiagonal: mu/conj z, fix circle |z| = sqrt mu), and the unique mark-fixing real structure per configuration is equatorial/FREE for mu4 and generic-unit, real-axis/NOT-free for silver and generic-real, and NONEXISTENT for the hexagonal frame; (v) HARMONIC + FREE => mu4 -- the deck-pair cross-ratio (1-b)^2/(1+b)^2 = -1 solves exactly to b = +-i, with the lambda table (2, 1/2, 3/4, 5/4) real and the hexagonal lambda complex; (vi) the HONEST COUNTERWITNESSES -- the discrete witness {0,1,8,9} (shift-invariant, crossing, but not quarter-shift-invariant) and the continuous witness {+-1, +-(3+4i)/5} (pair cross-ratio -1/4, j = 148176/25 != 1728, clock does not preserve): the Fock dichotomy measures the CLASS, not the modulus. The Moebius/Klein covering models and the pillowcase branch control stay Python-side (v510). Mirrors v510. ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L5155)
-
-## Open items and the [formula in source] -slice scan
-
-[universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_5_tfpt_3_e8_audit_bootstrap.tex:13556-13558](../../../../universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_5_tfpt_3_e8_audit_bootstrap.tex#L13556) · `section:921ef9540a81414133a6` · part
-
-No opening prose excerpt; see the source.
-
-## The honest open-items list
-
-[universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_5_tfpt_3_e8_audit_bootstrap.tex:13559-13627](../../../../universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_5_tfpt_3_e8_audit_bootstrap.tex#L13559) · `section:91c49cb4658c6aa96d2e` · section
-
-This is the complete current ledger of what is not fully closed, graded by how hard the gap is.
-
-Explicit source references:
-
-- [verification/v69_d4_q_geometry.py](../../../../verification/v69_d4_q_geometry.py#L1) · explicit_script_identifier
-- [verification/v380_grav_kms_hessian.py](../../../../verification/v380_grav_kms_hessian.py#L1) · explicit_script_identifier
-- [verification/v359_grav_nonlinear_einstein.py](../../../../verification/v359_grav_nonlinear_einstein.py#L1) · explicit_script_identifier
-- [verification/v371_ftransfer_pole.py](../../../../verification/v371_ftransfer_pole.py#L1) · explicit_script_identifier
-- [verification/v369_qgamb_redundancy.py](../../../../verification/v369_qgamb_redundancy.py#L1) · explicit_script_identifier
-- [verification/v71_simple_r_bridge.py](../../../../verification/v71_simple_r_bridge.py#L1) · explicit_script_identifier
-- [verification/v49_readout_rigidity.py](../../../../verification/v49_readout_rigidity.py#L1) · explicit_script_identifier
-- [verification/v9_neutrino_texture.py](../../../../verification/v9_neutrino_texture.py#L1) · explicit_file_citation
-- [verification/v358_grav_entropy_equilibrium.py](../../../../verification/v358_grav_entropy_equilibrium.py#L1) · explicit_script_identifier
-- [verification/v375_observatory_registry.py](../../../../verification/v375_observatory_registry.py#L1) · explicit_script_identifier
-- [verification/v370_grav_spin2_unitarity.py](../../../../verification/v370_grav_spin2_unitarity.py#L1) · explicit_script_identifier
-- [verification/v304_idg_nonlocal_ghost.py](../../../../verification/v304_idg_nonlocal_ghost.py#L1) · explicit_script_identifier
-
-Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
-
-- [(* ==== v359 GRAV.NONLINEAR.01: full covariant Einstein eq, both coefficients parameter-free ==== *) Module[{c3, eta, d, Rs, traceG, dtop, prefactor}, c3 = 1/(8 Pi); eta = 1/4; traceG = (1 - d/2); (* g^{ab}G_ab = (1-d/2) R; coefficient of R *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2382)
-- [(* ---- (v71) SIMPLE R-bridge: selector stratum derived => ratios are integer Plucker, no monodromy ---- *) checkExact["det ladder (Q,K,R,L)=(3,4,8,20)=(N_fam,|mu4|,rank E8,det L); det R=8=rank E8=g+n; det Q=3=N_fam", {Det[Q], Det[K], Det[R], Det[L]} == {3, 4, 8, 20} && Det[R] == 8 == gcar + Nfam && Det[Q] == Nfam]; checkExact["selector stratum derived => c_u/c_d=55/117 is a pure integer Plucker readout (13=8+5=9+4)", (gcar*11)/(Nfam^2*13) == 55/117 && 13 == 8 + 5 == Nfam^2 + 4]; (* ---- (v72) det Q = N_fam from the cusp class: order = weight denominator = |coker Q| ---- *)](../../../../verification/wolfram/tfpt_readouts.wl#L342)
-- [(* ---- (v69) D4-equivariant Q-geometry: Q_+ from cusp weights, Q_- E-block coupling ---- *) checkExact["Z4 4-cycle eigenvalues {1,i,-1,-i}; H_1(sum=0) families = {i,-1,-i}", Sort[Eigenvalues[{{0,0,0,1},{1,0,0,0},{0,1,0,0},{0,0,1,0}}]] == Sort[{1, I, -1, -I}]]; checkExact["Q_+=3 diag(0,1/3,2/3)+1=diag(1,2,3): Spec{1,2,3}; Q_-=E-coupling sqrt3: Spec{0,+-sqrt3}", Sort[Eigenvalues[3 DiagonalMatrix[{0, 1/3, 2/3}] + IdentityMatrix[3]]] == {1, 2, 3} && Sort[Eigenvalues[{{0, 0, 0}, {0, 0, Sqrt[3]}, {0, Sqrt[3], 0}}]] == Sort[{0, Sqrt[3], -Sqrt[3]}]]; (* ---- (v70) integer-lift of Q: Z4 puncture action unimodular, det Q = N_fam ---- *)](../../../../verification/wolfram/tfpt_readouts.wl#L329)
-- [(* ==== v358 GRAV.ENTROPY.EQUILIBRIUM.01: parameter-free linearised Einstein + thermo=geo ==== *) Module[{c3, eta, Z2, mu4, chi, r, R, w, wint}, c3 = 1/(8 Pi); eta = 1/4; Z2 = 2; mu4 = 4; chi = 2; w = (R^2 - r^2)/(2 R); wint = Integrate[w * 4 Pi r^2, {r, 0, R}]; (* CHM 3-ball weight integral *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2371)
-- [experiments/lean4-carrier-rigidity/TfptCarrier/YukawaStageDExistence.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/YukawaStageDExistence.lean#L1)
-- [(* ---- (v50) Q geometry (Theorem Q): Sigma-split char polys ---- *) Qp = (Q + Sig.Q.Sig)/2; Qm = (Q - Sig.Q.Sig)/2; checkExact["Q_+ char poly = (t-1)(t-2)(t-3) => Spec(Q_+)={1,2,3}", Sort[Eigenvalues[Qp]] == {1, 2, 3}]; checkExact["Q_- char poly = t(t^2-3) => Q_-^2 eigenvalues {0,3} (3=N_fam)", Sort[Eigenvalues[Qm]] == Sort[{0, Sqrt[3], -Sqrt[3]}] && Sort[Eigenvalues[Qm.Qm]] == {0, 3, 3}]; (* ---- (v49) Readout Rigidity: c_u/c_d constant on the selector stratum ---- *)](../../../../verification/wolfram/tfpt_readouts.wl#L194)

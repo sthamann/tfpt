@@ -102,7 +102,7 @@ The seam descent logic is intentionally separated into two pieces: the spin-lift
 
 [documents/archive--paper-latex--tfpt-v29/sections/003-subsection-flavor-and-the-phase-grammar.tex:123-142](../../../../documents/archive--paper-latex--tfpt-v29/sections/003-subsection-flavor-and-the-phase-grammar.tex#L123) · `section:c857c002ffa7ed94e137` · section
 
-@> Xcccc@ Branch & [formula in source] & [formula in source] & [formula in source] & [formula in source] \\ canonical carrier branch & [formula in source] & [formula in source] & [formula in source] & 137.03599921615843 \\ boundary multiplicity deformation & [formula in source] & [formula in source] & [formula in source] & 156.094045457 \\ boundary multiplicity deformation & [formula in source] & [formula in source] 
+@> Xcccc@ Branch & [formula in source] & [formula in source] & [formula in source] & [formula in source] \\ canonical carrier branch & [formula in source] & [formula in source] & [formula in source] & 137.03599921615843 \\ boundary multiplicity deformation & [formula in source] & [formula in source] & [formula in source] & 156.094045457 \\ boundary multiplicity deformation & [formula in source] & [formula in source]
 
 ## TFPT: Carrier Algebra, Compression Identities, and Finite Completion\\[0.5em] An overdetermined rank-5 spectral theory on the oriented double cover
 
@@ -144,7 +144,7 @@ Once the carrier packet and family bridge are fixed, the focused main-text compl
 
 [documents/archive--paper-latex--tfpt-v30/sections/003-subsection-occupancy-and-boundary-to-bulk-transgression.tex:32-43](../../../../documents/archive--paper-latex--tfpt-v30/sections/003-subsection-occupancy-and-boundary-to-bulk-transgression.tex#L32) · `section:abddd8b0a1c1d0ac1ab5` · subsection
 
-The geometric completion is formulated on a graded bundle [formula in source] with a declared reference pair [formula in source] and APS-type boundary conditions on the seam [formula in source] ; see Appendix [formula in source] This is a construction, not yet a theorem. Its value is to keep grading, reference subtraction, seam data, and the [formula in source] channel in one object from the start rather than mixing 
+The geometric completion is formulated on a graded bundle [formula in source] with a declared reference pair [formula in source] and APS-type boundary conditions on the seam [formula in source] ; see Appendix [formula in source] This is a construction, not yet a theorem. Its value is to keep grading, reference subtraction, seam data, and the [formula in source] channel in one object from the start rather than mixing
 
 ## Bosonic relative index and Higgs selection
 
@@ -198,7 +198,7 @@ E [formula in source] is not part of the primitive carrier ontology and should n
 
 [documents/archive--paper-latex--tfpt-v30/sections/004-subsection-strong-cp-closure-as-conditional-steps.tex:261-288](../../../../documents/archive--paper-latex--tfpt-v30/sections/004-subsection-strong-cp-closure-as-conditional-steps.tex#L261) · `section:fa38cdf61469ef638bf8` · subsection
 
-] Under the restricted trace grammar, stages [formula in source] and [formula in source] have no unambiguous physical target. If [formula in source] is allowed to scan over all simple rationals, these stages can mimic almost any scale between [formula in source] and [formula in source] GeV. They mark the exact boundary where E [formula in source] without a derived block-trace theorem becomes too permissive. The open 
+] Under the restricted trace grammar, stages [formula in source] and [formula in source] have no unambiguous physical target. If [formula in source] is allowed to scan over all simple rationals, these stages can mimic almost any scale between [formula in source] and [formula in source] GeV. They mark the exact boundary where E [formula in source] without a derived block-trace theorem becomes too permissive. The open
 
 ## Falsification matrix
 
@@ -222,7 +222,7 @@ Assume the hard carrier and kernel layers summarized in tab:status-matrix, toget
 
 [documents/archive--paper-latex--tfpt-v30/sections/005-subsection-residual-map-and-principal-unresolved-compari.tex:121-128](../../../../documents/archive--paper-latex--tfpt-v30/sections/005-subsection-residual-map-and-principal-unresolved-compari.tex#L121) · `section:70b254bd9df14d93caf8` · section
 
-The present paper argues that a small carrier-first core already fixes nontrivial physics: the minimal [formula in source] carrier, the global Standard Model quotient, one chiral family, the carrier norm [formula in source] , the abelian index, the seam constant [formula in source] , the corrected opening [formula in source] , and the electromagnetic closure channel. The compression identities and exclusion theorems 
+The present paper argues that a small carrier-first core already fixes nontrivial physics: the minimal [formula in source] carrier, the global Standard Model quotient, one chiral family, the carrier norm [formula in source] , the abelian index, the seam constant [formula in source] , the corrected opening [formula in source] , and the electromagnetic closure channel. The compression identities and exclusion theorems
 
 ## Global rotation angle and constants atlas
 
@@ -478,7 +478,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/archive--tfpt-45--02_carrier_rigidity_standard_model_packet/sections/002-section-seam-winding-as-source-of-the-integer-conditions.tex:266-310](../../../../documents/archive--tfpt-45--02_carrier_rigidity_standard_model_packet/sections/002-section-seam-winding-as-source-of-the-integer-conditions.tex#L266) · `section:1d17cb67633074f90691` · section
 
-Use : Sections 3.3, 3.4, and 3.5 for carrier normal form, internal stabilizer, one-family packet, character identities, trace identities, and abelian index. Sections 5.1–5.3 only for carrier-relevant compression identities. Sections 6.1–6.6 for families, occupancy, and compact Higgs index. Sections 8.11–8.15 for the Yukawa-based discharge of carrier premises. Section 8.19 and Section 9.11 only for the joint discrete 
+Use : Sections 3.3, 3.4, and 3.5 for carrier normal form, internal stabilizer, one-family packet, character identities, trace identities, and abelian index. Sections 5.1–5.3 only for carrier-relevant compression identities. Sections 6.1–6.6 for families, occupancy, and compact Higgs index. Sections 8.11–8.15 for the Yukawa-based discharge of carrier premises. Section 8.19 and Section 9.11 only for the joint discrete
 
 ## Not Used Here
 
@@ -490,7 +490,7 @@ Exact [formula in source] numerics, CKM/PMNS closure, pole-mass ledgers, OS/CAR 
 
 [documents/archive--tfpt-45--03_electromagnetic_closure_flavor_transport/sections/001-section-electromagnetic-closure.tex:126-177](../../../../documents/archive--tfpt-45--03_electromagnetic_closure_flavor_transport/sections/001-section-electromagnetic-closure.tex#L126) · `section:06db7a3e9e3e1c287faf` · subsection
 
-Before the determinant-line response is invoked in its full form, the same retained seed admits a short bridge derivation that connects the boundary-normalised axion–photon coupling to the cosmological birefringence amplitude. Starting from the unified-field-equation reduction of the seam transfer, the dimensionless axion–photon anomaly coefficient is [formula in source] and the modified Maxwell sector responds to a 
+Before the determinant-line response is invoked in its full form, the same retained seed admits a short bridge derivation that connects the boundary-normalised axion–photon coupling to the cosmological birefringence amplitude. Starting from the unified-field-equation reduction of the seam transfer, the dimensionless axion–photon anomaly coefficient is [formula in source] and the modified Maxwell sector responds to a
 
 ## No-Knobs Audit
 
@@ -642,7 +642,7 @@ Four sub-claims, jointly: Proof skeletons. [formula in source] is a 4D radiation
 
 [documents/archive--tfpt-45--07_cmb_operational_closure_planck_pipeline/sections/002-section-the-five-lemmas-native-closure-conjecture-v4-6.tex:112-137](../../../../documents/archive--tfpt-45--07_cmb_operational_closure_planck_pipeline/sections/002-section-the-five-lemmas-native-closure-conjecture-v4-6.tex#L112) · `section:6322f7e4c6b01cc9fa93` · paragraph
 
-where [formula in source] is the admissible primordial-curvature Hessian, [formula in source] is the primitive seam branch state with winding class [formula in source] , [formula in source] is the Calderon sheet involution (which enforces the reality constraint [formula in source] ), [formula in source] is the observer embedding (worldline + tetrad + orientation + last-scattering light cone), and [formula in source] 
+where [formula in source] is the admissible primordial-curvature Hessian, [formula in source] is the primitive seam branch state with winding class [formula in source] , [formula in source] is the Calderon sheet involution (which enforces the reality constraint [formula in source] ), [formula in source] is the observer embedding (worldline + tetrad + orientation + last-scattering light cone), and [formula in source]
 
 ## The TFPT primitives ledger and audit table
 

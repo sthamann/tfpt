@@ -1,0 +1,77 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/joint-source-clock-field-closure-20261102/check_actual_clock_time.py
+Original file SHA-256: bf7408af6128d767a8a5c9e6a638b7278488e7ff7709d15d6fe72c4507abd147
+Inclusive original lines: 1-69
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Exact replay of the original fixed-background clock/time comparison."""
+000002 | import ast
+000003 | import hashlib
+000004 | import json
+000005 | from pathlib import Path
+000006 | 
+000007 | import sympy as sp
+000008 | 
+000009 | 
+000010 | ROOT = Path(__file__).resolve().parents[3]
+000011 | HERE = Path(__file__).resolve().parent
+000012 | M_PATH = ROOT / "experiments/theory-contracts/v16-operator-pullback-20261014/fold-results.json"
+000013 | SIGMA_PATH = ROOT / "verification/v634_st31_structure.py"
+000014 | checks = []
+000015 | 
+000016 | 
+000017 | def require(name, condition):
+000018 |     if condition is not True and condition != sp.true:
+000019 |         raise ArithmeticError(name)
+000020 |     checks.append(name)
+000021 | 
+000022 | 
+000023 | module = ast.parse(SIGMA_PATH.read_text())
+000024 | sigma_assignments = [node.value for node in module.body if isinstance(node, ast.Assign)
+000025 |                      and any(isinstance(t, ast.Name) and t.id == "SIGMA_IDX"
+000026 |                              for t in node.targets)]
+000027 | require("one original sigma literal", len(sigma_assignments) == 1)
+000028 | idx = ast.literal_eval(sigma_assignments[0])
+000029 | M = sp.Matrix(json.loads(M_PATH.read_text())["explicit_Weyl_matrix"])
+000030 | R = M.T * sp.eye(8)[idx, :] * M
+000031 | require("orthogonal original map", R.T * R == sp.eye(8))
+000032 | require("original order three", R**3 == sp.eye(8) and R != sp.eye(8))
+000033 | p = sp.eye(8)[:, 0] + sp.eye(8)[:, 2]
+000034 | orbit = [R**k * p for k in range(3)]
+000035 | require("actual marked root orbit", orbit == [p, sp.Matrix([1, 1, -1, 1, -1, 1, 1, 1])/2,
+000036 |                                             sp.eye(8)[:, 1]-sp.eye(8)[:, 5]])
+000037 | require("three norm-two roots", all(v.dot(v) == 2 for v in orbit))
+000038 | variables = sp.Matrix(sp.symbols("p0:8"))
+000039 | cases = []
+000040 | for alpha in [sp.Rational(1, 4), sp.Rational(3, 4)]:
+000041 |     delta = sp.Matrix([(k+alpha)/8-sp.Rational(1, 2) for k in range(8)])
+000042 |     K = lambda v, d: v.dot(v)/2+d.dot(v)
+000043 |     energies = [8*K(v, delta) for v in orbit]
+000044 |     require(f"alpha {alpha}: exact source energies", energies == [2+2*alpha, 8+2*alpha, 4])
+000045 |     require(f"alpha {alpha}: source cost six", energies[1]-energies[0] == 6)
+000046 |     require(f"alpha {alpha}: quotient cost 3/4", (energies[1]-energies[0])/8 == sp.Rational(3, 4))
+000047 |     b = R*delta-delta
+000048 |     require(f"alpha {alpha}: full affine polynomial identity",
+000049 |             sp.expand(K(R*variables+b, delta)-K(variables, delta)) == 0)
+000050 |     require(f"alpha {alpha}: unique affine coefficient",
+000051 |             R.T*(b+delta) == delta)
+000052 |     require(f"alpha {alpha}: original lattice pairing nonintegral", b.dot(p).q != 1)
+000053 |     require(f"alpha {alpha}: full transported-background identity",
+000054 |             sp.expand(K(R*variables, R*delta)-K(variables, delta)) == 0)
+000055 |     require(f"alpha {alpha}: full fixed-background energy response",
+000056 |             sp.expand(K(R*variables, delta)-K(variables, delta)
+000057 |                       -(R.T*delta-delta).dot(variables)) == 0)
+000058 |     cases.append({"alpha": str(alpha), "source_H_energies": list(map(str, energies)),
+000059 |                   "quotient_K_energies": [str(v/8) for v in energies],
+000060 |                   "forced_affine_b": list(map(str, b)), "b_squared": str(b.dot(b)),
+000061 |                   "b_dot_original_root": str(b.dot(p)),
+000062 |                   "normalized_root_return_ratio": "exp(-3*t/4), t in original K units"})
+000063 | result = {"verdict": "PASS_SCOPED_FIXED_SOURCE_TIME_TEST", "checks_passed": len(checks),
+000064 |           "checks": checks, "cases": cases,
+000065 |           "source_sha256": {str(f.relative_to(ROOT)): hashlib.sha256(f.read_bytes()).hexdigest()
+000066 |                             for f in [M_PATH, SIGMA_PATH]},
+000067 |           "scope": "Given source K and actual R; excludes only fixed-background energy-preserving affine charge maps with unchanged oscillator number. Not an exclusion of driven clocks or transported backgrounds, and not a primitive P1 realization."}
+000068 | (HERE / "actual-clock-time-results.json").write_text(json.dumps(result, indent=2)+"\n")
+000069 | print(json.dumps(result, indent=2))

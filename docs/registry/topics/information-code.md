@@ -2,7 +2,7 @@
 
 [Registry index](../INDEX.md) · Topic ID: `information-code`
 
-295 physical section matches. Topic assignment is a lexical navigation suggestion, not semantic review. The excerpts and citations below come from source; no proof or status promotion is asserted.
+296 physical section matches. Topic assignment is a lexical navigation suggestion, not semantic review. The excerpts and citations below come from source; no proof or status promotion is asserted.
 
 
 ## Bounded reading parts
@@ -11,7 +11,7 @@ Each part contains at most 100 physical section records and their actual explici
 
 - [Part 1: section matches 1–100](information-code/part-001.md)
 - [Part 2: section matches 101–200](information-code/part-002.md)
-- [Part 3: section matches 201–295](information-code/part-003.md)
+- [Part 3: section matches 201–296](information-code/part-003.md)
 
 ## First 20 source locations
 

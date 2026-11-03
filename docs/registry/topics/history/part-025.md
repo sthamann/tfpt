@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## 2026-06-12 (later)
+
+[documents/changelog/sections/024-source.tex:1-11](../../../../documents/changelog/sections/024-source.tex#L1) · `section:e2e448f834c8b18c1b82` · subsection
+
+Shared style and central status artifact. Two new single-source fragments: tfpt_style.tex (the canonical palette, status markers, marker key, veri reference, the four tcolorbox families with back-compat aliases, and one running header/footer) is now input by all eight documents — the per-paper duplicated preambles are gone; and tfpt_status.tex (``TFPT status at a glance'') gives one canonical overall-status card impo
+
 ## 2026-06-12
 
 [documents/changelog/sections/024-source.tex:12-75](../../../../documents/changelog/sections/024-source.tex#L12) · `section:a7ddfbed7669a08bf2ee` · subsection
@@ -130,7 +136,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/changelog/sections/024-source.tex:127-136](../../../../documents/changelog/sections/024-source.tex#L127) · `section:b7a05826756c1fc3ef1e` · subsection
 
-Compiler-closure consolidation. The TFPT development is consolidated into the current document set with the verification suite (modules v1–v82: [formula in source] glue, carrier Pascal, EM fixed point, flavor matrix, cascade, bootstrap, gravity/cosmology, transport, masses, registry and gate audits) as the single proof layer; manifests ( manifest.sha256, lean_manifest.sha256) as content identity; website mirrors the 
+Compiler-closure consolidation. The TFPT development is consolidated into the current document set with the verification suite (modules v1–v82: [formula in source] glue, carrier Pascal, EM fixed point, flavor matrix, cascade, bootstrap, gravity/cosmology, transport, masses, registry and gate audits) as the single proof layer; manifests ( manifest.sha256, lean_manifest.sha256) as content identity; website mirrors the
 
 Explicit source references:
 
@@ -570,7 +576,7 @@ Der Ausgangskorpus umfasst 74 eingefrorene Dokumentdateien einschließlich des n
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tex-artefacts/toe_round4_proofs.tex:9-22](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tex-artefacts/toe_round4_proofs.tex#L9) · `section:83c8266dcbf844e64c6b` · paragraph
 
-SEAM.MMST.TELB.NORM.01. For the frozen [formula in source] , [formula in source] collar, the original remainder obeys [formula in source] The interval inputs are v1022 (TV and potential), v1025 (C1/C2a), and v1026_ telb_ round4_ closure.py (CF, DG, signed CROSS, validated Fourier core and all-volume aliases). This is not a proof of the historical sharper [formula in source] or Bound-B target [formula in source] . In 
+SEAM.MMST.TELB.NORM.01. For the frozen [formula in source] , [formula in source] collar, the original remainder obeys [formula in source] The interval inputs are v1022 (TV and potential), v1025 (C1/C2a), and v1026_ telb_ round4_ closure.py (CF, DG, signed CROSS, validated Fourier core and all-volume aliases). This is not a proof of the historical sharper [formula in source] or Bound-B target [formula in source] . In
 
 Explicit source references:
 
@@ -604,7 +610,7 @@ Explicit source references:
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tex-artefacts/toe_research_20260909.tex:97-114](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tex-artefacts/toe_research_20260909.tex#L97) · `section:65daa31841ba9073fdfb` · subsection
 
-For the same strip and filled projector, the alternating four-word [formula in source] cancels the outer history ramps. Normal ordering is the actual finite-sea trace subtraction. Positive heat regularization, Jensen and Cauchy–Schwarz give uniform [formula in source] bounds for [formula in source] on the full four-endpoint torus, including collisions. They promote the separated-point limit to an [formula in source] 
+For the same strip and filled projector, the alternating four-word [formula in source] cancels the outer history ramps. Normal ordering is the actual finite-sea trace subtraction. Positive heat regularization, Jensen and Cauchy–Schwarz give uniform [formula in source] bounds for [formula in source] on the full four-endpoint torus, including collisions. They promote the separated-point limit to an [formula in source]
 
 ## Non-RH research through Round 27: a full-reference control theorem
 
@@ -991,9 +997,3 @@ L41mmL46mmL63mm Zweig& Historischer Quellwert& Offener Anteil\\ Starke CP-Phase&
 [experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/10_ausblick.tex:1-4](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/10_ausblick.tex#L1) · `section:e8f690eae2dbba6f5a74` · chapter
 
 Historischer Forschungsauftrag v1.4 Der folgende Ausblick bleibt als Grundrahmen erhalten. Die sechs inzwischen weiterbearbeiteten Fragen und die neuesten Ergebnisse stehen gesammelt in Kapitel
-
-## Zuse und Wolfram: eine Verwandtschaft ohne Rangordnung
-
-[experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/10_ausblick.tex:5-18](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/10_ausblick.tex#L5) · `section:10bdb8ed130d9a5dbe47` · section
-
-Der eingefügte Gesprächstext vergleicht den Universalraum mit Konrad Zuse und Stephen Wolfram. Zuses Werk heißt Rechnender Raum, nicht „denkender Raum“. In seinem Buch von 1969 untersucht er digitale Beschreibungen physikalischer Felder und Teilchen und die Rolle von Automaten. Das ist ein historischer Bezugspunkt für die Vorstellung von Physik als regelgeleitetem Prozess. https://link.springer.com/book/10.1007/978-3

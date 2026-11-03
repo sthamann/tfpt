@@ -487,7 +487,7 @@ The minimal import block for this application note is [formula in source] This b
 
 [documents/archive--paper-latex--rare_kaeon_scaffold/sections/002-section-matching-to-short-distance-amplitudes.tex:297-369](../../../../documents/archive--paper-latex--rare_kaeon_scaffold/sections/002-section-matching-to-short-distance-amplitudes.tex#L297) · `section:34daaa424312caa6a903` · section
 
-@> p0.17 > Y> p0.16 > p0.17 > p0.11 @ Observable & TFPT value & Imported input & Sector input & Status \\ [formula in source] & [formula in source] & [formula in source] & [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] & prediction \\[6pt] [formula in source] & [formula in source] & [formula in source] & [formula in source] , [formula in source] , [formula 
+@> p0.17 > Y> p0.16 > p0.17 > p0.11 @ Observable & TFPT value & Imported input & Sector input & Status \\ [formula in source] & [formula in source] & [formula in source] & [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] & prediction \\[6pt] [formula in source] & [formula in source] & [formula in source] & [formula in source] , [formula in source] , [formula
 
 ## Falsification matrix
 
@@ -538,7 +538,7 @@ The complete chain from [formula in source] to [formula in source] :
 
 [documents/archive--paper-latex--tffpt-theory-fullv2/sections/006-section-verification-suite-summary.tex:72-86](../../../../documents/archive--paper-latex--tffpt-theory-fullv2/sections/006-section-verification-suite-summary.tex#L72) · `section:35ffe854593515c057a8` · subsection
 
-The uniqueness is verified by: Constructing the complete Hasse diagram of [formula in source] from standard tables. Computing all cover relations with [formula in source] . Running dynamic programming to find all paths from [formula in source] to [formula in source] . Applying the cost function [formula in source] (second-difference smoothness). Verifying that the minimum-cost path is unique (cost gap to second-best 
+The uniqueness is verified by: Constructing the complete Hasse diagram of [formula in source] from standard tables. Computing all cover relations with [formula in source] . Running dynamic programming to find all paths from [formula in source] to [formula in source] . Applying the cost function [formula in source] (second-difference smoothness). Verifying that the minimum-cost path is unique (cost gap to second-best
 
 ## Boundary Trace Derivation
 

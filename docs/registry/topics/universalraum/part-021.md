@@ -4,6 +4,31 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## (1) Flavor residual — ratios closed combinatorially; only the absolute scale is the wall-selection [formula in source] /
+
+[experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_2_standard_model.tex:2176-2205](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_2_standard_model.tex#L2176) · `section:2546f93b78129f0fded4` · subsection
+
+Mehta–Seshadri supplies the equivalence-class framework — stable parabolic bundles [formula in source] irreducible unitary representations — but it does not by itself give ``parabolic-stable [formula in source] transport-minimal'' or the hexagonal word-lengths; that is the TFPT-specific step. The family connection [formula in source] provides the representation, its weights are the cusp exponents, the stable degree i
+
+Explicit source references:
+
+- [verification/v27_wall_representative.py](../../../../verification/v27_wall_representative.py#L1) · explicit_file_citation
+- [verification/v33_explicit_flat_bundle.py](../../../../verification/v33_explicit_flat_bundle.py#L1) · explicit_file_citation
+- [verification/v70_q_integer_lift.py](../../../../verification/v70_q_integer_lift.py#L1) · explicit_script_identifier
+- [verification/v49_readout_rigidity.py](../../../../verification/v49_readout_rigidity.py#L1) · explicit_script_identifier
+- [verification/v30_d4_character_variety.py](../../../../verification/v30_d4_character_variety.py#L1) · explicit_file_citation
+- [verification/v69_d4_q_geometry.py](../../../../verification/v69_d4_q_geometry.py#L1) · explicit_script_identifier
+- [verification/v71_simple_r_bridge.py](../../../../verification/v71_simple_r_bridge.py#L1) · explicit_script_identifier
+- [verification/v34_h2_bridge_attempt.py](../../../../verification/v34_h2_bridge_attempt.py#L1) · explicit_file_citation
+- [verification/v31_R_dictionary.py](../../../../verification/v31_R_dictionary.py#L1) · explicit_file_citation
+
+Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
+
+- [(* ---- (v71) SIMPLE R-bridge: selector stratum derived => ratios are integer Plucker, no monodromy ---- *) checkExact["det ladder (Q,K,R,L)=(3,4,8,20)=(N_fam,|mu4|,rank E8,det L); det R=8=rank E8=g+n; det Q=3=N_fam", {Det[Q], Det[K], Det[R], Det[L]} == {3, 4, 8, 20} && Det[R] == 8 == gcar + Nfam && Det[Q] == Nfam]; checkExact["selector stratum derived => c_u/c_d=55/117 is a pure integer Plucker readout (13=8+5=9+4)", (gcar*11)/(Nfam^2*13) == 55/117 && 13 == 8 + 5 == Nfam^2 + 4]; (* ---- (v72) det Q = N_fam from the cusp class: order = weight denominator = |coker Q| ---- *)](../../../../verification/wolfram/tfpt_readouts.wl#L342)
+- [(* ---- (v69) D4-equivariant Q-geometry: Q_+ from cusp weights, Q_- E-block coupling ---- *) checkExact["Z4 4-cycle eigenvalues {1,i,-1,-i}; H_1(sum=0) families = {i,-1,-i}", Sort[Eigenvalues[{{0,0,0,1},{1,0,0,0},{0,1,0,0},{0,0,1,0}}]] == Sort[{1, I, -1, -I}]]; checkExact["Q_+=3 diag(0,1/3,2/3)+1=diag(1,2,3): Spec{1,2,3}; Q_-=E-coupling sqrt3: Spec{0,+-sqrt3}", Sort[Eigenvalues[3 DiagonalMatrix[{0, 1/3, 2/3}] + IdentityMatrix[3]]] == {1, 2, 3} && Sort[Eigenvalues[{{0, 0, 0}, {0, 0, Sqrt[3]}, {0, Sqrt[3], 0}}]] == Sort[{0, Sqrt[3], -Sqrt[3]}]]; (* ---- (v70) integer-lift of Q: Z4 puncture action unimodular, det Q = N_fam ---- *)](../../../../verification/wolfram/tfpt_readouts.wl#L329)
+- [(* ---- (v97) sheet-conjugation bridge (P1 -> one [P]) ---- *) TA = {{0, 1, 0}, {1, 0, 0}, {2, -2, 1}}; SigM = DiagonalMatrix[{1, -1, -1}]; sig12 = {{0, 1, 0}, {1, 0, 0}, {0, 0, 1}}; e1v = {0, 0, 1}; e2v = {0, 1, 2}; e3v = {1, 0, 0}; QPm = (Q + SigM.Q.SigM)/2; checkExact["v97 Q_+ eigenvectors e1=(0,0,1) [l=1], e2=(0,1,2) [l=2], e3=(1,0,0) [l=3]", (QPm.e1v == 1 e1v) && (QPm.e2v == 2 e2v) && (QPm.e3v == 3 e3v)]; checkExact["v97 T_A integer involution, det -1, fixes 1 and a; T_A swaps e2 <-> e3, fixes e1", (TA.TA == IdentityMatrix[3]) && (Det[TA] == -1) && (TA.one == one) && (TA.av == av) && (TA.e2v == e3v) && (TA.e3v == e2v) && (TA.e1v == e1v)]; checkExact["v97 anchor = conjugation-symmetric vector: a = e2+e3, 1 = a-e1; odd line e2-e3", (av == e2v + e3v) && (one == av - e1v) && (TA.(e2v - e3v) == -(e2v - e3v))]; ddir = {-1, 1, 0}; coeffs = LinearSolve[Transpose[{one, av, ddir}], TA.ddir]; checkExact["v97 one deck action: T_A = -1 on R^3/span{1,a} (like sigma_12); parity det T_A = det sigma_12 = -1, det Sigma = +1", (coeffs[[3]] == -1) && (sig12.ddir == -ddir) && (Det[sig12] == -1) && (Det[SigM] == 1)]; Gm = TA.SigM; RrotM = {{0, 0, -1}, {1, 0, -1}, {0, 1, -1}}; checkExact["v97 D4 closure: G = T_A.Sigma has order 4, char (t+1)(t^2+1) = char(v70 R_rot)", (MatrixPower[Gm, 4] == IdentityMatrix[3]) && (MatrixPower[Gm, 2] != IdentityMatrix[3]) && (Expand[CharacteristicPolynomial[Gm, t] + (t + 1) (t^2 + 1)] === 0) && (Expand[CharacteristicPolynomial[Gm, t] - CharacteristicPolynomial[RrotM, t]] === 0)]; Svars = Array[sv, {3, 3}]; solS = Quiet[Solve[Flatten[Svars.Gm - RrotM.Svars] == 0, Flatten[Svars]], Solve::svars]; Sgen = Svars /. First[solS]; detSgen = Factor[Det[Sgen]]; checkExact["v97 sheet-index lemma: det S always EVEN on the integer intertwiner space, minimum |det| = 2 = |Z2|", Module[{vars = Variables[detSgen], vals}, vals = Select[Abs[detSgen /. Thread[vars -> #]] & /@ Tuples[Range[-2, 2], Length[vars]], # =!= 0 &]; (And @@ (EvenQ /@ vals)) && (Min[vals] == 2)]]; checkExact["v97 Q (det = N_fam) does NOT intertwine G -> R_rot (independent bridge)", Q.Gm != RrotM.Q]; (* ---- (v98) discriminant dictionary derived ---- *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L249)
+- [(* ---- (v50) Q geometry (Theorem Q): Sigma-split char polys ---- *) Qp = (Q + Sig.Q.Sig)/2; Qm = (Q - Sig.Q.Sig)/2; checkExact["Q_+ char poly = (t-1)(t-2)(t-3) => Spec(Q_+)={1,2,3}", Sort[Eigenvalues[Qp]] == {1, 2, 3}]; checkExact["Q_- char poly = t(t^2-3) => Q_-^2 eigenvalues {0,3} (3=N_fam)", Sort[Eigenvalues[Qm]] == Sort[{0, Sqrt[3], -Sqrt[3]}] && Sort[Eigenvalues[Qm.Qm]] == {0, 3, 3}]; (* ---- (v49) Readout Rigidity: c_u/c_d constant on the selector stratum ---- *)](../../../../verification/wolfram/tfpt_readouts.wl#L194)
+
 ## (2) Gravity — the classical covariant field equation carries no free dimensionless Newton coupling under the named QFT/entanglement premises ; the [formula in source] inflation layer up to one truncation /
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_2_standard_model.tex:2206-2255](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_2_standard_model.tex#L2206) · `section:2e4923f3fd42adc44e3d` · subsection
@@ -145,7 +170,7 @@ Constructing the rigid [formula in source] -symmetric local system explicitly (f
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_2_standard_model.tex:2669-2726](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_2_standard_model.tex#L2669) · `section:10dfd6e9f65946a0b7ff` · section
 
-Status (no drift). The splitting type is now closed: the unique partition [formula in source] fixes the anchor and [formula in source] fixes the residue branch (verified, below and v4_flavor_matrix.py), and the solar texture is built ( v9_neutrino_texture.py). The roadmap below is kept as the derivation record of how [formula in source] is obtained; it is no longer an open project. The only residual is the parabolic 
+Status (no drift). The splitting type is now closed: the unique partition [formula in source] fixes the anchor and [formula in source] fixes the residue branch (verified, below and v4_flavor_matrix.py), and the solar texture is built ( v9_neutrino_texture.py). The roadmap below is kept as the derivation record of how [formula in source] is obtained; it is no longer an open project. The only residual is the parabolic
 
 Explicit source references:
 
@@ -1584,7 +1609,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_research_contracts.tex:12571-12632](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_research_contracts.tex#L12571) · `section:ea28e660b1549c41a88a` · section
 
-Typing. A standing discipline rule, in force immediately (ledger row DIMENSION.UPLIFT.FIREWALL.01); the uplift theorems it names are separate \ contracts. It formalizes the core diagnosis of the 2026-08-27 external deep review: a chiral [formula in source] D seam net does not imply a local, interacting [formula in source] D quantum world. The corpus's strongest finite results are boundary/kinematic building blocks — 
+Typing. A standing discipline rule, in force immediately (ledger row DIMENSION.UPLIFT.FIREWALL.01); the uplift theorems it names are separate \ contracts. It formalizes the core diagnosis of the 2026-08-27 external deep review: a chiral [formula in source] D seam net does not imply a local, interacting [formula in source] D quantum world. The corpus's strongest finite results are boundary/kinematic building blocks —
 
 Explicit source references:
 
@@ -2184,7 +2209,7 @@ Explicit source references:
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_research_contracts.tex:14397-14558](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_research_contracts.tex#L14397) · `section:fd15b9954fc0175fba1b` · section
 
-Typing. This section is a hand-off document: it packages the one remaining seam obligation as a self-contained problem statement for an outside specialist in conformal nets / vertex operator algebras / algebraic QFT. It documents, it does not close: the ledger row SEAM.EQUIV.01 stays \ (its conditional route SEAM.EQUIV.MMST.01 is closed modulo cited theorems; the unconditional parent is the target below). Nothing in 
+Typing. This section is a hand-off document: it packages the one remaining seam obligation as a self-contained problem statement for an outside specialist in conformal nets / vertex operator algebras / algebraic QFT. It documents, it does not close: the ledger row SEAM.EQUIV.01 stays \ (its conditional route SEAM.EQUIV.MMST.01 is closed modulo cited theorems; the unconditional parent is the target below). Nothing in
 
 Explicit source references:
 
@@ -2476,7 +2501,7 @@ Die beiden positiven Wurzelgitter [formula in source] und [formula in source] be
 
 [experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/02_algebra.tex:58-83](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/02_algebra.tex#L58) · `section:16e8821413eeadbb7954` · section
 
-Die 240 Wurzeln sind besondere Vektoren in einem acht-dimensionalen Raum. Hinzu kommen acht Cartanrichtungen, sodass die Lie-Algebra 248 Dimensionen besitzt. Unter [formula in source] lautet ihre komplexe Zerlegung L47mmrY Sektor& Wurzeln& Generatoren einschließlich Cartan\\ [formula in source] &40& [formula in source] \\ [formula in source] &12& [formula in source] \\ Gemischter Vektorsektor&60& [formula in source] 
+Die 240 Wurzeln sind besondere Vektoren in einem acht-dimensionalen Raum. Hinzu kommen acht Cartanrichtungen, sodass die Lie-Algebra 248 Dimensionen besitzt. Unter [formula in source] lautet ihre komplexe Zerlegung L47mmrY Sektor& Wurzeln& Generatoren einschließlich Cartan\\ [formula in source] &40& [formula in source] \\ [formula in source] &12& [formula in source] \\ Gemischter Vektorsektor&60& [formula in source]
 
 ## Das endliche Fenster: 60 Strahlen und 15 Kontexte
 
@@ -2572,10 +2597,4 @@ No opening prose excerpt; see the source.
 
 [experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/04_zellen.tex:3-24](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/04_zellen.tex#L3) · `section:b6f998b1c0cd688874c9` · section
 
-Vier Träger mit je vier Basiswerten besitzen den total antisymmetrischen Zustand Jedes Basiswort verwendet alle vier Werte genau einmal. Die 24 Permutationen erhalten passende Vorzeichen. Das Ergebnis ist ein reiner gemeinsamer Zustand. Jeder einzelne Träger sieht für sich trotzdem maximal gemischt aus: Die Paarreduktion hat Rang sechs und sechs gleich große Eigenwerte [formula in source] . Die Ordnung steckt in den 
-
-## Der Hüllensatz und seine genaue Voraussetzung
-
-[experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/04_zellen.tex:25-38](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/04_zellen.tex#L25) · `section:832b78a30b5ba8bd9db5` · section
-
-Sei [formula in source] der Projektor auf den symmetrischen Paarraum. Wenn für alle Paare [formula in source] gilt, dann hat jeder Swap Eigenwert minus eins. Da Transpositionen alle Permutationen erzeugen, folgt Für [formula in source] ist dieser Raum eindimensional, für [formula in source] null. Auch gemischte Zustände mit entsprechender Trägerbedingung erfüllen die Aussage. Für [formula in source] existieren aber e
+Vier Träger mit je vier Basiswerten besitzen den total antisymmetrischen Zustand Jedes Basiswort verwendet alle vier Werte genau einmal. Die 24 Permutationen erhalten passende Vorzeichen. Das Ergebnis ist ein reiner gemeinsamer Zustand. Jeder einzelne Träger sieht für sich trotzdem maximal gemischt aus: Die Paarreduktion hat Rang sechs und sechs gleich große Eigenwerte [formula in source] . Die Ordnung steckt in den

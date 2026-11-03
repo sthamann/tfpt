@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Relaxation: konstruktiv möglich, aber nicht durch Bosonenverlust allein
+
+[experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/21_new_inputs_v13.tex:112-132](../../../../experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/21_new_inputs_v13.tex#L112) · `section:f77d7a4e0a9f7c8c0f55` · section
+
+Gewöhnliche Vermittlerverluste [formula in source] lassen vollständig symmetrische Farbzustände mit Vermittlervakuum dunkel. Auf 16 Trägern hat [formula in source] Dimension [formula in source] . Dieser Raum verhindert einen eindeutigen globalen Attraktor dieser Verlustdynamik.
+
 ## Der isolierte mikroskopische Stern: vollständiger kleiner Block
 
 [experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/21_new_inputs_v13.tex:133-149](../../../../experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/21_new_inputs_v13.tex#L133) · `section:4ae8950a2eb7b49d6f24` · section
@@ -104,7 +110,7 @@ Für ausschließlich kantenlokale Vermittler ohne Hopping sind die lokalen Ladun
 
 [experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/23_micro_v14.tex:30-41](../../../../experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/23_micro_v14.tex#L30) · `section:2709ea9ff79d52d76649` · section
 
-Die Kopplung [formula in source] zwischen 256 Materie- und 288 Vermittlerzuständen wurde neu aufgebaut. Sie erfüllt [formula in source] . Der volle Hamiltonoperator ist Seine 14 verschiedenen Energien sind sieben niedrige Werte sechs obere [formula in source] für [formula in source] und [formula in source] mit Multiplizität 67. Die niedrigen Multiplizitäten sind [formula in source] ; die sechs oberen wiederholen die 
+Die Kopplung [formula in source] zwischen 256 Materie- und 288 Vermittlerzuständen wurde neu aufgebaut. Sie erfüllt [formula in source] . Der volle Hamiltonoperator ist Seine 14 verschiedenen Energien sind sieben niedrige Werte sechs obere [formula in source] für [formula in source] und [formula in source] mit Multiplizität 67. Die niedrigen Multiplizitäten sind [formula in source] ; die sechs oberen wiederholen die
 
 ## Ein exakter endlicher Filter aus wirklichen Entwicklungszeiten
 
@@ -287,7 +293,7 @@ Für den antisymmetrischen Paarannihilator gilt im harten Materieraum einschlie�
 
 [experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/25_revision_v15.tex:175-185](../../../../experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/25_revision_v15.tex#L175) · `section:e2cdd77b6aa76eff2321` · section
 
-Sei [formula in source] eine endliche Zelle mit eindeutigem Grundzustand [formula in source] , Energie [formula in source] und Gap [formula in source] . Auf einem beliebigen endlichen verbundenen Graphen definiere [formula in source] Jeder Swapterm ist positiv. Mit [formula in source] folgt [formula in source] . Der Produktgrundzustand ist eindeutig. Die gleichförmige Einanregung wird von jedem Swap festgehalten und 
+Sei [formula in source] eine endliche Zelle mit eindeutigem Grundzustand [formula in source] , Energie [formula in source] und Gap [formula in source] . Auf einem beliebigen endlichen verbundenen Graphen definiere [formula in source] Jeder Swapterm ist positiv. Mit [formula in source] folgt [formula in source] . Der Produktgrundzustand ist eindeutig. Die gleichförmige Einanregung wird von jedem Swap festgehalten und
 
 ## Der entscheidende Unterschied: innere Kritikalität bei massiven Vermittlern
 
@@ -527,7 +533,7 @@ Der gewichtete Bandbeweis, der Feedbackattraktor und die mikroskopische Sternlö
 
 [experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/update_body_v14.tex:19-39](../../../../experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/update_body_v14.tex#L19) · `section:1fed5bca52dc61d1fc6e` · section
 
-Für kantenlokale Vermittler lässt sich die vierte Ordnung schreiben als Die Ganzzahligkeit des lokalen Spektrums wurde durch eine exakte 720-dimensionale reguläre [formula in source] -Rechnung kontrolliert. Zusätzlich gilt auf dem ganzen Materieraum Das verkleinert eine komplizierte Korrektur zu lokalen positiven Bausteinen. Positivität des Operators bedeutet dabei nicht automatisch eine positive Gapänderung; Grund- 
+Für kantenlokale Vermittler lässt sich die vierte Ordnung schreiben als Die Ganzzahligkeit des lokalen Spektrums wurde durch eine exakte 720-dimensionale reguläre [formula in source] -Rechnung kontrolliert. Zusätzlich gilt auf dem ganzen Materieraum Das verkleinert eine komplizierte Korrektur zu lokalen positiven Bausteinen. Positivität des Operators bedeutet dabei nicht automatisch eine positive Gapänderung; Grund-
 
 ## 3. Ein gemeinsamer mikroskopischer Ablauf mit Rohwahrscheinlichkeiten
 
@@ -593,7 +599,7 @@ Ein Pointer-Hadamard verwandelt R exakt in einen kontrollierten Ququart-Swap. Au
 
 [experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/update_body_v15.tex:67-75](../../../../experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/update_body_v15.tex#L67) · `section:6cb3353d7f1110d683fc` · section
 
-Für die dokumentierte Regel [formula in source] und das vollständige Starobinsky-Potential gilt in erster Potential-Slow-Roll-Ordnung, ohne große-N-Abschneidung, [formula in source] Die ACT-Tabellenspalte P-ACT-LB2 mit [formula in source] und [formula in source] erreicht zentral nur 0.49299564 der Untergrenze. Das volle Potential repariert den zuvor gefundenen Widerspruch in dieser Ordnung nicht. Amplitudenanpassung 
+Für die dokumentierte Regel [formula in source] und das vollständige Starobinsky-Potential gilt in erster Potential-Slow-Roll-Ordnung, ohne große-N-Abschneidung, [formula in source] Die ACT-Tabellenspalte P-ACT-LB2 mit [formula in source] und [formula in source] erreicht zentral nur 0.49299564 der Untergrenze. Das volle Potential repariert den zuvor gefundenen Widerspruch in dieser Ordnung nicht. Amplitudenanpassung
 
 ## 6. Die nächsten entscheidenden Ziele
 
@@ -617,7 +623,7 @@ This document develops the architecture layer of TFPT: the two axioms, the deriv
 
 [experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex:147-1673](../../../../experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex#L147) · `section:0739148b5a5974d0d662` · section
 
-Notation convention. We write [formula in source] for the root-lattice direct sum (used in the glue/lattice statements: discriminant forms, [formula in source] glue, [formula in source] as an even unimodular lattice), and [formula in source] for the group/representation branching (used for subalgebra embeddings and [formula in source] -rep decompositions). The objects are the same atoms; the symbol marks whether the 
+Notation convention. We write [formula in source] for the root-lattice direct sum (used in the glue/lattice statements: discriminant forms, [formula in source] glue, [formula in source] as an even unimodular lattice), and [formula in source] for the group/representation branching (used for subalgebra embeddings and [formula in source] -rep decompositions). The objects are the same atoms; the symbol marks whether the
 
 Explicit source references:
 
@@ -806,7 +812,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex:1732-1780](../../../../experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex#L1732) · `section:baf89b99d7afc0a0ef50` · subsection
 
-A family is exactly the complete Pascal truncation to degree two: the unique positive-integer solution of [formula in source] . Proof of uniqueness. Direct evaluation gives [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] ; so [formula in source] is the only root in [formula in source] . For [formula in source] the forward difference is 
+A family is exactly the complete Pascal truncation to degree two: the unique positive-integer solution of [formula in source] . Proof of uniqueness. Direct evaluation gives [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] ; so [formula in source] is the only root in [formula in source] . For [formula in source] the forward difference is
 
 Explicit source references:
 
@@ -823,13 +829,3 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 - [(* ---- (v2) carrier / Pascal ---- *) checkExact["dim S+ = 2^(g_car-1) = 16", 2^(gcar - 1) == 16]; checkExact["16 = 1 + 5 + 10 = C(5,0)+C(5,1)+C(5,2)", Binomial[5, 0] + Binomial[5, 1] + Binomial[5, 2] == 16]; checkExact["N_fam = 3", Nfam == 3]; checkExact["rank E8 = g_car + N_fam = 8", gcar + Nfam == 8]; (* ---- (v13) M = 41 budget ---- *)](../../../../verification/wolfram/tfpt_readouts.wl#L50)
 - [(* ---- (v45) the '11' = exterior algebra of the family fundamental 4=mu4 (Pascal) ---- *) checkExact["Lambda^k(4)=Pascal row 4=(1,4,6,4,1), sum=2^4=16=dim S+", Table[Binomial[4, k], {k, 0, 4}] == {1, 4, 6, 4, 1} && Total[Table[Binomial[4, k], {k, 0, 4}]] == 16]; checkExact["|Pl(K)|={1,4,6}={Lambda^0,Lambda^1,Lambda^2}(mu4); ||Pl(K)||_1=11=sum_{k<=2}C(4,k)=16-g_car", Sort[Abs[plLeft[K]]] == {1, 4, 6} && Total[Abs[plLeft[K]]] == Sum[Binomial[4, k], {k, 0, 2}] == 16 - gcar]; checkExact["family(x)carrier=15=dim su(4)=Lambda^2(5)+Lambda^4(5)=10+5=N_fam*g_car", 4^2 - 1 == Binomial[5, 2] + Binomial[5, 4] == Nfam gcar == 15]; (* ---- (v46) Grand Mass Volume: absolute mass-scaling = det ~ u^25 ---- *)](../../../../verification/wolfram/tfpt_readouts.wl#L168)
 - [experiments/lean4-carrier-rigidity/TfptCarrier/ArfSpinorCompiler.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/ArfSpinorCompiler.lean#L1)
-
-## One master moment generates [formula in source] , [formula in source] , [formula in source] , [formula in source]
-
-[experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex:1781-1796](../../../../experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex#L1781) · `section:93683d7c3fd300bd9861` · subsection
-
-With [formula in source] , the quadratic hypercharge trace on one family is [formula in source] , and it generates the whole integer chain: The flavor budget, the [formula in source] budget, the [formula in source] count and the second seam defect all hang on the second hypercharge moment [formula in source] . \ Round-22 sharpening: the moment itself is one symbolic identity, [formula in source] — the Coxeter number 
-
-Explicit source references:
-
-- [verification/v810_cutcode_moment.py](../../../../verification/v810_cutcode_moment.py#L1) · explicit_file_citation

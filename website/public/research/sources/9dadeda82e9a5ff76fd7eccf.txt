@@ -1,0 +1,69 @@
+TFPT scientific source excerpt
+Original repository path: verification/v1034_parent_mirror.py
+Original file SHA-256: a4f7d7712f1d0525ab496e4430a28bda7a51eb3c5ae909c949c4374b9c3107e2
+Inclusive original lines: 87-147
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000087 | def source_contract_certificate() -> None:
+000088 |     c1008, f1008, s1008 = module_contract(V1008)
+000089 |     _c1002, f1002, s1002 = module_contract(V1002)
+000090 |     _c1024, f1024, s1024 = module_contract(V1024)
+000091 |     _c1027, f1027, s1027 = module_contract(V1027)
+000092 | 
+000093 |     check(
+000094 |         "v1008 source fixes the tested parent coefficients",
+000095 |         c1008.get("FLAVORS") == 4
+000096 |         and c1008.get("DET_STRENGTH") == 2.0
+000097 |         and c1008.get("HOPPING_VALUES") == (0.0, 0.2, 0.4, 0.6),
+000098 |         "n=4, J=2, |d|<=0.6",
+000099 |         category="source_contract",
+000100 |     )
+000101 |     edge = f1008.get("edge_cluster_hamiltonian", "")
+000102 |     check(
+000103 |         "v1008 parent is exactly d(N-n/2)+JQ",
+000104 |         "dispersion * (NUMBER - 0.5 * FLAVORS" in edge
+000105 |         and "DET_STRENGTH * H_DET" in edge
+000106 |         and "H_DET = np.eye(1 << FLAVORS" in s1008
+000107 |         and "- P_PHI" in s1008,
+000108 |         category="source_contract",
+000109 |     )
+000110 |     check(
+000111 |         "v1008 samples d=t sin(k) on exactly 129 momentum points",
+000112 |         "MOMENTA = np.linspace(-math.pi, math.pi, 129)" in s1008
+000113 |         and "dispersion = chirality_sign * hopping * math.sin(float(momentum))" in s1008,
+000114 |         category="source_contract",
+000115 |     )
+000116 |     # A standard symmetric nearest-neighbour term
+000117 |     # s sum_x(c_x^dagger c_{x+1}+h.c.) has dispersion 2s cos(k), up to a
+000118 |     # harmless momentum/phase convention.  Therefore the source amplitude
+000119 |     # |d|<=3/5 would correspond to |s|=3/10, not 3/5.
+000120 |     dispersion_amplitude = sp.Rational(3, 5)
+000121 |     symmetric_bond_magnitude = dispersion_amplitude / 2
+000122 |     check(
+000123 |         "Fourier normalization gives symmetric NN bond magnitude |s|=t/2",
+000124 |         2 * symmetric_bond_magnitude == dispersion_amplitude
+000125 |         and symmetric_bond_magnitude == sp.Rational(3, 10),
+000126 |         "v1008 t=3/5 implies |s|=3/10",
+000127 |     )
+000128 |     check(
+000129 |         "v1002 source uses a flat DET16 defect projector",
+000130 |         "SPIN10_MODES = 16" in s1002
+000131 |         and "hamiltonian = identity - projector" in f1002.get("spin10_single_cluster", ""),
+000132 |         "h_mir=Q, onsite gap one",
+000133 |         category="source_contract",
+000134 |     )
+000135 |     check(
+000136 |         "v1027 distinguishes additive N_a from flat Q",
+000137 |         "number_a = sum" in f1027.get("determinant_canonicalization", "")
+000138 |         and "flat Delta*Q is not silently identified" in s1027,
+000139 |         category="source_contract",
+000140 |     )
+000141 |     check(
+000142 |         "v1024 parent is a separate positive seam/number construction",
+000143 |         "h0 = delta_seam *" in f1024.get("parent_internal_intertwiner", "")
+000144 |         and "interaction += coupling * a_operator.conj().T @ a_operator" in f1024.get("parent_internal_intertwiner", ""),
+000145 |         "not used as a DET hopping bound",
+000146 |         category="source_contract",
+000147 |     )

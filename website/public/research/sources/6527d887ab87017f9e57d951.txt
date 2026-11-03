@@ -1,0 +1,53 @@
+TFPT scientific source excerpt
+Original repository path: experiments/tfpt-discovery/spin10_det16_projector_probe.py
+Original file SHA-256: 945b5bd8cc0d21e75bf894a5f153ab9e14557b02c41d2b7352d2f8e38a1becfb
+Inclusive original lines: 1-45
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | #!/usr/bin/env python3
+000002 | r"""spin10_det16_projector_probe -- EXPLORATION ONLY.
+000003 | 
+000004 | This probe tests the number-violating determinant vertex on the complete
+000005 | 2^16-dimensional Fock space of one positive-chirality Spin(10) spinor.  The
+000006 | 45 one-body generators are the verified Clifford/Weyl construction used by
+000007 | ``spin10_mirror_projector_probe.py``:
+000008 | 
+000009 |     T_ab = (i/2 gamma_a gamma_b)|_16,  0 <= a < b < 10.
+000010 | 
+000011 | Let Omega^dagger = chi_1^dagger ... chi_16^dagger, with
+000012 | |F> = Omega^dagger|0>, and Omega its adjoint.  In the occupation-basis
+000013 | convention used here the exact partial-isometry algebra is
+000014 | 
+000015 |     Omega^dagger Omega = P_16,       Omega Omega^dagger = P_0,
+000016 |     P_16 Omega^dagger = Omega^dagger = Omega^dagger P_0,
+000017 |     P_0 Omega = Omega = Omega P_16,
+000018 |     (Omega)^2 = (Omega^dagger)^2 = 0.
+000019 | 
+000020 | Consequently A_phi = P_0 + P_16 + exp(-i phi) Omega
+000021 | + exp(i phi) Omega^dagger obeys A_phi^2 = 2 A_phi, and
+000022 | P_phi = A_phi/2 is the rank-one projector onto
+000023 | 
+000024 |     |Omega_phi> = (|0> + exp(i phi)|F>)/sqrt(2).
+000025 | 
+000026 | Thus h_mir = 1-P_phi has exact spectrum {0^1, 1^(2^16-1)}.  For disjoint
+000027 | clusters every h_x is even: P_0/P_16 preserve number and Omega contains 16
+000028 | fermion operators.  Even operators with disjoint fermionic support commute,
+000029 | so [h_x,h_y]=0 and sum_x h_x has the unique product ground state
+000030 | tensor_x |Omega_phi_x> and exact, volume-independent gap 1.  The same
+000031 | statement is checked explicitly for two and three four-mode determinant
+000032 | clusters (dimensions 2^8 and 2^12); the four-operator vertex is also even.
+000033 | 
+000034 | Gauge invariance is checked infinitesimally.  Each chiral-16 generator is
+000035 | traceless, so det(exp(i theta T_a)) = exp(i theta tr(T_a)) = 1.  Its second
+000036 | quantization annihilates both |0> and |F>, hence commutes with P_phi.  This
+000037 | finite-cluster identity does not supply dynamical gauge fields, a domain-wall
+000038 | geometry, or a 4D thermodynamic/volume theorem.
+000039 | 
+000040 | CONTRACT: CHIRAL4D.MIRROR.DET16.01 remains [O].
+000041 | 
+000042 | VERDICT ENUM:
+000043 |   DET16_PROJECTOR_EXACT(gap=1,hopping_stability=PASS_t<=0.2_toy)
+000044 |   DET16_PROJECTOR_FAILS(where)
+000045 | """

@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## 1. Der neue Nichtschluss ist exakt bestätigt
+
+[documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/025-subsection-6-feldtyp-was-tats-chlich-erzwungen.tex:82-121](../../../../documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/025-subsection-6-feldtyp-was-tats-chlich-erzwungen.tex#L82) · `section:ba4b2f7292a59b400c07` · subsection
+
+Für v_n=(T†) n F habe ich u=T T† v_2=T v_3 unmittelbar aus den 480 nativen Paaren neu kontrahiert. Das materialisiert nicht die 15.252.960 Komponenten von v₃. Es arbeitet mit 108.240 Komponenten von v₂ und 293.280 nichtverschwindenden Komponenten des Ergebnisses u. Es wurden 45.771.360 zulässige Erzeugungsübergänge und 139.289.760 anschließende Entnahmebeiträge exakt mit ganzzahliger Fermion-Parität und Boson-Multipl
+
 ## 2. Das mitgelieferte Ground-JSON ist veraltet und teilweise falsch
 
 [documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/025-subsection-6-feldtyp-was-tats-chlich-erzwungen.tex:122-147](../../../../documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/025-subsection-6-feldtyp-was-tats-chlich-erzwungen.tex#L122) · `section:b2c5ada82dde693b1731` · subsection
@@ -152,7 +158,7 @@ Der Clock-Ausschluss allein wäre zu schwach. Die Orbitsumme
 
 [documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/027-subsection-5-was-dies-f-r-die-fundamentale-suche.tex:229-248](../../../../documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/027-subsection-5-was-dies-f-r-die-fundamentale-suche.tex#L229) · `section:4b2eb4ab3c6e089818a9` · subsubsection
 
-Für den hier exakt spezifizierten Zeugen fehlt mindestens eine Operation, die nicht mit dem betrachteten Farb-Cartan des ursprünglichen Systems kommutiert, oder eine aus einer erweiterten globalen Quelle abgeleitete Kopplung mit einer expliziten Ausgleichsressource für diese Cartanladung. Ein zusätzlicher aktiver SU(4)-Generator wäre ein neuer Operationsvertrag; außerdem bewegt sein simultaner Fermion-/Boson-Lift im 
+Für den hier exakt spezifizierten Zeugen fehlt mindestens eine Operation, die nicht mit dem betrachteten Farb-Cartan des ursprünglichen Systems kommutiert, oder eine aus einer erweiterten globalen Quelle abgeleitete Kopplung mit einer expliziten Ausgleichsressource für diese Cartanladung. Ein zusätzlicher aktiver SU(4)-Generator wäre ein neuer Operationsvertrag; außerdem bewegt sein simultaner Fermion-/Boson-Lift im
 
 ## Reproduktion und Status
 
@@ -613,7 +619,7 @@ Angenommen, es gäbe nur je eine Entnahme- und Additionslinie mit Energien [form
 
 [documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/033-subsection-5-dieselbe-antwort-auf-demselben.tex:233-289](../../../../documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/033-subsection-5-dieselbe-antwort-auf-demselben.tex#L233) · `section:54cbcf599c630cf6bf53` · subsection
 
-@ > p( - 4 ) * 0.3333 > p( - 4 ) * 0.3333 > p( - 4 ) * 0.3333@ Vertrag & Mathematisch abgesichert & Nicht dadurch verfügbar \\ Markierter endlicher Matrixcompiler & Matrizen, Ordnungen, konkrete endliche Syntheseidentitäten & Vollständiges Fockinstrument, Präparation, physischer Zeitgenerator \\ H allein & Modellzeitentwicklung & Unabhängiges Schalten von X und [formula in source] \\ X und [formula in source] , wenn 
+@ > p( - 4 ) * 0.3333 > p( - 4 ) * 0.3333 > p( - 4 ) * 0.3333@ Vertrag & Mathematisch abgesichert & Nicht dadurch verfügbar \\ Markierter endlicher Matrixcompiler & Matrizen, Ordnungen, konkrete endliche Syntheseidentitäten & Vollständiges Fockinstrument, Präparation, physischer Zeitgenerator \\ H allein & Modellzeitentwicklung & Unabhängiges Schalten von X und [formula in source] \\ X und [formula in source] , wenn
 
 ## 8.1 Konkrete Präparationsgrenze
 
@@ -638,9 +644,3 @@ Die Indexfrage darf nicht nachträglich durch einen Namen beantwortet werden. Di
 [documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/033-subsection-5-dieselbe-antwort-auf-demselben.tex:330-338](../../../../documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/033-subsection-5-dieselbe-antwort-auf-demselben.tex#L330) · `section:8f931ab70c6db9cebc91` · subsubsection
 
 Für 64 gleichhändige Weylfelder mit innerem Index I und einen skalaren Vermittler ist [formula in source] symmetrisch. Die Grassmann-Antisymmetrisierung verschwindet daher identisch, für alle 60 W-Zeilen. Außerdem lässt die volle irreduzible innere Darstellung [formula in source] auf denselben 64 Komponenten nach Schur keine zusätzliche kommutierende nichttriviale Lorentzspinorwirkung zu.
-
-## 9.2 Bereits bekannter nichtverschwindender Typ
-
-[documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/033-subsection-5-dieselbe-antwort-auf-demselben.tex:339-347](../../../../documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/033-subsection-5-dieselbe-antwort-auf-demselben.tex#L339) · `section:e2289fde0561e9823dbc` · subsubsection
-
-Ein symmetrischer Lorentzspinortensor koppelt an das antisymmetrische M. Der Vermittler hat dann einen passenden dualen (1,0)-Typ samt adjungiertem Typ. Diese Variante besteht den algebraischen Nichtnulltest, aber noch keinen vollständigen Kinetik-, Positivitäts-, Constraints- oder Herkunftstest.

@@ -86,7 +86,7 @@ Die komplexe Vierdimensionalität ist für den bestehenden Pauli-/Spinorbaukaste
 
 [experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/13_schatten_quanten.tex:76-81](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/13_schatten_quanten.tex#L76) · `section:54eadd1112a5751773d2` · section
 
-Die bisherigen Registerbeispiele erklären, wie ein global kohärenter Ablauf nach eingeschränktem Zugriff wie ein irreversibler Prozess aussehen kann. Sie liefern noch keine eindeutige Lösung des Messproblems: Insbesondere folgt aus einer diagonalen reduzierten Dichtematrix allein keine Auswahl eines einzelnen Ereignisses. Eine zusätzliche Kollapsdynamik müsste messbare Abweichungen angeben; eine unitäre Beschreibung 
+Die bisherigen Registerbeispiele erklären, wie ein global kohärenter Ablauf nach eingeschränktem Zugriff wie ein irreversibler Prozess aussehen kann. Sie liefern noch keine eindeutige Lösung des Messproblems: Insbesondere folgt aus einer diagonalen reduzierten Dichtematrix allein keine Auswahl eines einzelnen Ereignisses. Eine zusätzliche Kollapsdynamik müsste messbare Abweichungen angeben; eine unitäre Beschreibung
 
 ## Schwarze Löcher: Information kann die Aufteilung selbst betreffen
 
@@ -242,7 +242,7 @@ Die komplexe Vierdimensionalität ist für den bestehenden Pauli-/Spinorbaukaste
 
 [experiments/theory-contracts/universalraum-five-source-frontier-20260914/main-v1.4/chapters/13_schatten_quanten.tex:76-81](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/main-v1.4/chapters/13_schatten_quanten.tex#L76) · `section:a797c057d92647ff05f4` · section
 
-Die bisherigen Registerbeispiele erklären, wie ein global kohärenter Ablauf nach eingeschränktem Zugriff wie ein irreversibler Prozess aussehen kann. Sie liefern noch keine eindeutige Lösung des Messproblems: Insbesondere folgt aus einer diagonalen reduzierten Dichtematrix allein keine Auswahl eines einzelnen Ereignisses. Eine zusätzliche Kollapsdynamik müsste messbare Abweichungen angeben; eine unitäre Beschreibung 
+Die bisherigen Registerbeispiele erklären, wie ein global kohärenter Ablauf nach eingeschränktem Zugriff wie ein irreversibler Prozess aussehen kann. Sie liefern noch keine eindeutige Lösung des Messproblems: Insbesondere folgt aus einer diagonalen reduzierten Dichtematrix allein keine Auswahl eines einzelnen Ereignisses. Eine zusätzliche Kollapsdynamik müsste messbare Abweichungen angeben; eine unitäre Beschreibung
 
 ## Schwarze Löcher: Information kann die Aufteilung selbst betreffen
 
@@ -296,13 +296,13 @@ No opening prose excerpt; see the source.
 
 [experiments/theory-contracts/universalraum-five-source-frontier-20260914/main-v1.4/update_body_v14.tex:19-39](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/main-v1.4/update_body_v14.tex#L19) · `section:bb04f619ceadd47138fd` · section
 
-Für kantenlokale Vermittler lässt sich die vierte Ordnung schreiben als Die Ganzzahligkeit des lokalen Spektrums wurde durch eine exakte 720-dimensionale reguläre [formula in source] -Rechnung kontrolliert. Zusätzlich gilt auf dem ganzen Materieraum Das verkleinert eine komplizierte Korrektur zu lokalen positiven Bausteinen. Positivität des Operators bedeutet dabei nicht automatisch eine positive Gapänderung; Grund- 
+Für kantenlokale Vermittler lässt sich die vierte Ordnung schreiben als Die Ganzzahligkeit des lokalen Spektrums wurde durch eine exakte 720-dimensionale reguläre [formula in source] -Rechnung kontrolliert. Zusätzlich gilt auf dem ganzen Materieraum Das verkleinert eine komplizierte Korrektur zu lokalen positiven Bausteinen. Positivität des Operators bedeutet dabei nicht automatisch eine positive Gapänderung; Grund-
 
 ## 2. Eine neue Vereinfachung der Dynamik
 
 [experiments/theory-contracts/universalraum-five-source-frontier-20260914/update_body_v14.tex:19-39](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/update_body_v14.tex#L19) · `section:31f180b76b18f0ac7d46` · section
 
-Für kantenlokale Vermittler lässt sich die vierte Ordnung schreiben als Die Ganzzahligkeit des lokalen Spektrums wurde durch eine exakte 720-dimensionale reguläre [formula in source] -Rechnung kontrolliert. Zusätzlich gilt auf dem ganzen Materieraum Das verkleinert eine komplizierte Korrektur zu lokalen positiven Bausteinen. Positivität des Operators bedeutet dabei nicht automatisch eine positive Gapänderung; Grund- 
+Für kantenlokale Vermittler lässt sich die vierte Ordnung schreiben als Die Ganzzahligkeit des lokalen Spektrums wurde durch eine exakte 720-dimensionale reguläre [formula in source] -Rechnung kontrolliert. Zusätzlich gilt auf dem ganzen Materieraum Das verkleinert eine komplizierte Korrektur zu lokalen positiven Bausteinen. Positivität des Operators bedeutet dabei nicht automatisch eine positive Gapänderung; Grund-
 
 ## Warum Spektren und Einzelbilder nicht genügten
 
@@ -416,7 +416,7 @@ Die komplexe Vierdimensionalität ist für den bestehenden Pauli-/Spinorbaukaste
 
 [experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/13_schatten_quanten.tex:76-81](../../../../experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/13_schatten_quanten.tex#L76) · `section:472b8e12ec7e00a99875` · section
 
-Die bisherigen Registerbeispiele erklären, wie ein global kohärenter Ablauf nach eingeschränktem Zugriff wie ein irreversibler Prozess aussehen kann. Sie liefern noch keine eindeutige Lösung des Messproblems: Insbesondere folgt aus einer diagonalen reduzierten Dichtematrix allein keine Auswahl eines einzelnen Ereignisses. Eine zusätzliche Kollapsdynamik müsste messbare Abweichungen angeben; eine unitäre Beschreibung 
+Die bisherigen Registerbeispiele erklären, wie ein global kohärenter Ablauf nach eingeschränktem Zugriff wie ein irreversibler Prozess aussehen kann. Sie liefern noch keine eindeutige Lösung des Messproblems: Insbesondere folgt aus einer diagonalen reduzierten Dichtematrix allein keine Auswahl eines einzelnen Ereignisses. Eine zusätzliche Kollapsdynamik müsste messbare Abweichungen angeben; eine unitäre Beschreibung
 
 ## Schwarze Löcher: Information kann die Aufteilung selbst betreffen
 
@@ -494,7 +494,7 @@ Für RH fehlt weiterhin die Identifikation des tatsächlichen signierten Weil-Ob
 
 [experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/update_body_v14.tex:19-39](../../../../experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/update_body_v14.tex#L19) · `section:1fed5bca52dc61d1fc6e` · section
 
-Für kantenlokale Vermittler lässt sich die vierte Ordnung schreiben als Die Ganzzahligkeit des lokalen Spektrums wurde durch eine exakte 720-dimensionale reguläre [formula in source] -Rechnung kontrolliert. Zusätzlich gilt auf dem ganzen Materieraum Das verkleinert eine komplizierte Korrektur zu lokalen positiven Bausteinen. Positivität des Operators bedeutet dabei nicht automatisch eine positive Gapänderung; Grund- 
+Für kantenlokale Vermittler lässt sich die vierte Ordnung schreiben als Die Ganzzahligkeit des lokalen Spektrums wurde durch eine exakte 720-dimensionale reguläre [formula in source] -Rechnung kontrolliert. Zusätzlich gilt auf dem ganzen Materieraum Das verkleinert eine komplizierte Korrektur zu lokalen positiven Bausteinen. Positivität des Operators bedeutet dabei nicht automatisch eine positive Gapänderung; Grund-
 
 ## 3. Masselose Dynamik braucht nicht masselose Vermittler
 
@@ -553,7 +553,7 @@ All scales sit on the integer lattice spanned by two generators — the gauge un
 
 [experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex:4405-4425](../../../../experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex#L4405) · `section:d37a9102b32421719eb3` · subsection
 
-Use the universal root-system identity [formula in source] (Coxeter number [formula in source] ). With the carrier values [formula in source] and [formula in source] , The Coxeter number of [formula in source] is exactly three families times the cosmological pair action: each family contributes one [formula in source] -decuple ( [formula in source] ) to the Coxeter period. Equivalently the action ladder is a Coxeter 
+Use the universal root-system identity [formula in source] (Coxeter number [formula in source] ). With the carrier values [formula in source] and [formula in source] , The Coxeter number of [formula in source] is exactly three families times the cosmological pair action: each family contributes one [formula in source] -decuple ( [formula in source] ) to the Coxeter period. Equivalently the action ladder is a Coxeter
 
 ## Closures that the architecture rests on
 

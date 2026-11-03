@@ -1,0 +1,217 @@
+R104. Exact original DET16 source and its whole-word reduction
+2 November2026. Conditional original Hamiltonian application.
+
+1. SOURCE AND DECISION
+
+L20261102G/H already give the full original geometric package transport
+and a complete physical thermal word source for their stated Hamiltonian
+class. They are retained. No new universal CAR, Gibbs-reference, bosonic
+measure or a->0 requirement is introduced. R103's source-type exclusions
+and the existing E8 minimal-extension theorem remain unchanged.
+
+The actual v1013 table declares a cell with four physical edge fermions,
+a separate mirror Fock factor, two outgoing links and a four-state clock.
+Only its DET row acts on the mirror factor:
+
+       H_m=2(I-P),   P=|phi><phi|,
+       |phi>=(|0>+exp(i vartheta)|F>)/sqrt(2),
+       n=16, d=2^16=65536, vartheta=the original v1002.PHI=pi/7.
+
+The other six table rows act on the rest. In particular the assembly
+source explicitly couples the seam to the PHYSICAL edge Q density.
+For this literal table, H_Lambda=H_R,Lambda+sum_x H_m,x. Its rest factor
+has dimension16*4*4=256 per cell. This is an operator factorization of
+the declared table, not a new physical choice or a test of all other
+Hamiltonians. v1007 explicitly contains mirror hopping and falls outside
+this factorization. v1034 likewise distinguishes source parent classes;
+no statement here supersedes its locality or mirror-coupling boundaries.
+
+Original sources reviewed:
+ paper-source:4cc6102a923009e972617edc, source001:32-118;
+ documents/articles--2026-08-30--tfpt_thermodynamic_dynamics_en/sections/
+ 001-section-the-concrete-uniformly-local-class.tex.
+ verification/v1002_spin10_mirror_projector.py:204-267,311-315;
+ experiments/tfpt-discovery/tfpt2p1d_master_assembly_probe.py:26-35,66-73.
+The latter is its declared2+1D/DET4 provenance, not a full4D proof.
+
+2. COMPLETE THERMAL MIRROR SOURCE, INCLUDING Z[0]
+
+For beta>=0 put a=exp(-2 beta), b=1-a. Since P^2=P,
+
+ E_beta=exp(-beta H_m)=a I+b P,
+ Z_m=Tr E_beta=d a+b=1+(d-1)exp(-2 beta),
+ rho_m=E_beta/Z_m.                                      (1)
+
+For EVERY mirror operator A,
+
+ omega_beta(A)=[a Tr A+b<phi|A|phi>]/Z_m.                (2)
+
+This is the entire finite source state, not a covariance fit. The scalar
+identity part of H_m is retained. Removing it from a commutator is valid;
+removing it from this unnormalized source would change Z_m and energy.
+The same original reference source, if present, contributes its actual
+corresponding factor; no equality of reference factors is assumed.
+
+The native original CAR trace gives for all i,j
+
+ <c_i^*c_j>=delta_ij/2,    <c_i c_j>=0,
+ <n_i n_j>=1/4+b/(4Z_m),  i!=j,
+ <Omega_16>=b exp(i vartheta)/(2Z_m).                    (3)
+
+Here Omega_16=|0><F| has the actual original determinant sign. For beta>0
+the density-pair excess is positive: the source is not quasifree even
+though its full EQUAL-TIME normal and anomalous covariance matrices equal
+their infinite-temperature values. Its temporal two-point functions are
+not claimed equal. A covariance-logit inverse cannot reconstruct this
+interacting thermal Hamiltonian just from (3)'s covariance.
+This is a concrete original application of the already known full-word
+requirement, not a new global no-Gaussian statement for every TFPT source.
+
+At different fixed vartheta, words shorter than16 cannot connect |0> and
+|F>, so they do not see the relative phase. The16-letter determinant word
+does. A simultaneous original field/frame transport can change the phase
+convention; this is not a new physical parameter prediction.
+
+3. ALL GEOMETRICALLY ORDERED MIRROR WORDS
+
+Let A_0,...,A_(k-1) be actual mirror CAR letters in their written order,
+and let nonnegative heat intervals t_0,...,t_k sum to beta. The complete
+unnormalized Euclidean coefficient is
+
+ W=Tr[E_t0 A_0 E_t1 A_1 ... A_(k-1) E_tk].              (4)
+
+Each E_t is exactly a_t I+b_t P. Expanding this identity is a proof for
+every finite word, but its literal2^(k+1) expansion is unnecessary.
+For each term with projector cuts use
+
+ Tr(P B_1 P B_2 ... P B_r)=product_j <phi|B_j|phi>.      (5)
+
+The blocks B_j keep the actual order and original fermion signs. The
+P-free term is exp(-2 beta) times the ordinary CAR Fock trace.
+
+4. MATRIX-FREE CYCLIC RENEWAL, POLYNOMIAL IN WORD LENGTH
+
+By cyclicity combine the last and first heat intervals. Write the resulting
+k cyclic intervals as delta_i, each immediately before A_i. For i<j<=i+k
+define, with periodic indices,
+
+ e(i,j)=b_(delta_i) exp[-2 sum_(r=i+1)^(j-1)delta_r]
+                  *<phi|A_i A_(i+1)...A_(j-1)|phi>.     (6)
+
+For any nonempty set of selected P cuts, multiplying the consecutive
+cyclic edge weights gives exactly that term of (4): every selected cut
+contributes its b, every unselected interval its a, every block its
+matrix element. No reordering of CAR letters is made.
+
+There is a unique smallest cut i in {0,...,k-1}. Fix it, put D_i=1, and
+compute for j=i+1,...,k-1
+
+ D_j=sum_(h=i)^(j-1) D_h e(h,j).
+
+Its complete closing contribution is sum_(h=i)^(k-1)D_h e(h,i+k).
+Sum over i and add the P-free term. Every nonempty subset of cuts is
+counted exactly once by its unique ordered path and smallest cut.
+The empty word is Z_m itself. Divide by Z_m only for normalized answers.
+
+For a CAR-letter block, <phi|B|phi> requires only applying that word to
+the two bit states0 andF. For its full Fock trace, work right to left:
+the first action on each used mode forces its initial occupation. Check
+the resulting word on that initial bit choice. If it is zero or changes
+the initial state, the trace is zero. Otherwise its sign is independent
+of unused spectator bits: every acted mode flips an even number of times,
+so the total Jordan-Wigner exponent of any spectator bit is even.
+Thus Tr B=sign*2^(16-number_of_used_modes).
+
+There are O(k^2) possible edges, each calculated in O(k), and the dynamic
+path sums cost O(k^3). Stored edges cost O(k^2). These are exact arithmetic
+operation counts at the fixed original16-mode factor. Floating evaluation
+retains ordinary numerical precision limits; no uniform relative-error
+claim for arbitrarily tiny answers or arbitrary bit-complexity is made.
+The evaluator uses no Hilbert-space matrix for this renewal calculation.
+It does not claim efficient input access to arbitrary unspecified operators.
+
+5. ATTACHMENT TO THE WHOLE ORIGINAL HAMILTONIAN SOURCE
+
+In the declared decoupled ambient table, for rest-only source legs,
+
+ Z_Lambda^amb[J_R]=Z_R,Lambda[J_R] product_x Z_m.
+
+This is exact partial trace, at every volume; the interacting H_R is NOT
+solved or discarded. Its normalized rest words factor, while its actual
+unnormalized source retains all mirror free-energy factors. The free-box
+KMS subnet therefore has these same finite mirror thermal factors together
+with the rest subnet state. This is not a unique-phase theorem for H_R.
+
+The physical Gauss projection must not be replaced by this ambient product.
+Suppose the ACTUAL supplied gauge action factors as
+ U(g)=U_R(g) tensor product_x U_m,x(g_x), and use its SAME original
+P_G=|G|^(-|V_int|)sum_g U(g). For gauge-compatible rest source legs,
+
+ Z_phys[J_R]=|G|^(-|V_int|) sum_g
+   Tr_R[U_R(g) exp(-beta H_R) original_ordered_source[J_R]]
+   * product_x z_m,x(g_x),
+ z_m(g)=a Tr U_m(g)+b<phi|U_m(g)|phi>.                  (7)
+
+Proof: substitute the actual group projector into the full trace, retain
+its order, then take the mirror partial traces using (1). This performs
+exact reduction of the65536-dimensional factor. It does NOT replace the
+sum by independent projected Hilbert factors or solve the256-dimensional
+rest lattice. Nonfactorizing gauge actions require their actual map.
+
+For the expressly given canonical second quantization U_m=Gamma(r),
+with det r=1 and no extra implementer phase, both0 andF are invariant.
+Exterior-algebra trace gives Tr Gamma(r)=det(I+r), hence
+
+                  z_m(g)=a det(I+r(g))+b.              (8)
+
+Actual Spin10 central q=1,i,-1,-i acts as q^N on this native spinor Fock
+factor. It fixes phi, and its four weights are
+ a(1+q)^16+b: a*65536+b, a*256+b, b, a*256+b.
+The native code verifies them directly. This is not an identified v1013
+gauge embedding or an equality to the P1 clock just because both have
+order4. That actual mirror gauge representation was not printed in the
+reviewed v1013 table.
+
+With mirror source legs, replace z_m by the entire alternating heat/word
+trace (4), with its actual U_m insertion. Keep the original graded tensor
+ordering and gauge carriers for mixed even observables. The untwined
+renewal routine does not pretend to implement these unknown gauge maps.
+
+6. GAP, THERMAL WEIGHT AND THE NEXT ORIGINAL SOURCE COMPARISON
+
+In this ambient factor the ground probability is p0=1/Z_m; it is not
+determined by the energy gap alone. The65535 excited states retain their
+entropy. Diagnostics beta=1,2pi,8pi give about0.000112737,0.813972,1.
+These are not a selected physical temperature, KMS circumference or P1
+clock calibration. No thermal no-mirror claim follows by deleting that
+weight. At independent ambient cells p0^|Lambda| tends to0 for finite
+beta while each local state still has its specified p0; global ground
+overlap is not a criterion for local IR decoupling. Coupled original
+mirror models and their stability theorems keep their own hypotheses.
+
+This result evaluates an original complete factor and its non-Gaussian
+word source. It makes the literal Hamiltonian process substantially more
+tractable without choosing another model or scanning new constants.
+It does not derive the frozen coefficients, the actual full master-field
+dictionary, IR universality, a physical4D limit or the fundamental solution.
+
+The next decisive comparison uses the ACTUAL original field/gauge map:
+does the common S_adm/Z_rel insertion produce this same rank-one vertex,
+its coefficient, its16-field coherence and the resulting weights in (7)?
+The existing full geometric G source is preserved, not declared absent.
+A mere covariance match or a newly named source leg cannot settle that
+comparison. The new matrix-free whole-word evaluator can execute the
+Hamiltonian side once the actual compared original legs are specified.
+
+7. EXECUTION
+
+check_det16_source.py uses the actual sparse v1002 projector (four nonzero
+entries), all16 actual CAR mode operators and the original PHI. All256
+normal and256 anomalous pairs and120 distinct density pairs were checked
+at three diagnostic beta values. Twelve native four-word responses match
+the independent I/P expansion to at most3.34e-16. Seven length4/8/16 words,
+including Omega16 and its adjoint, match the matrix-free renewal to at most
+2.10e-17. All four original center weights are also verified. Run uses -OO
+with explicit raising checks. det16-source-results.json retains hashes
+and scopes. No16,777,216-dimensional full cell, new Lean theorem, original
+paper, ledger promotion or complete physical TFPT solution is claimed.

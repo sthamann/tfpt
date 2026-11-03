@@ -1,0 +1,165 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/seam-positive-kernel-search-20261015/integral_origin_checks.py
+Original file SHA-256: 7a4c677afaa4ef72c450e0febd720c18ed4e4d7e2df405ca70f9e84f789b56d2
+Inclusive original lines: 1-157
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Exact scoped origin checks for the given D/A completion and divisor.
+000002 | 
+000003 | These are conditional mathematical tests, not a P1 or physical-origin proof.
+000004 | """
+000005 | from __future__ import annotations
+000006 | import argparse
+000007 | import ast
+000008 | from fractions import Fraction as F
+000009 | from math import gcd
+000010 | import hashlib
+000011 | import json
+000012 | from pathlib import Path
+000013 | import sympy as sp
+000014 | 
+000015 | ROOT = Path(__file__).resolve().parents[3]
+000016 | 
+000017 | 
+000018 | def need(condition, label, checks):
+000019 |     if not condition:
+000020 |         raise ArithmeticError('Failed: '+label)
+000021 |     checks.append(label)
+000022 | 
+000023 | 
+000024 | def family_fundamental(n, b):
+000025 |     return [F(n-b, n)]*b + [F(-b, n)]*(n-b)
+000026 | 
+000027 | 
+000028 | def dot(x, y):
+000029 |     return sum((a*b for a, b in zip(x, y)), F(0))
+000030 | 
+000031 | 
+000032 | def simple_roots_d(rank):
+000033 |     roots = []
+000034 |     for j in range(rank-1):
+000035 |         r = [0]*rank; r[j], r[j+1] = 1, -1; roots.append(r)
+000036 |     r = [0]*rank; r[-2], r[-1] = 1, 1; roots.append(r)
+000037 |     return roots
+000038 | 
+000039 | 
+000040 | def simple_roots_a(n):
+000041 |     roots = []
+000042 |     for j in range(n-1):
+000043 |         r = [0]*n; r[j], r[j+1] = 1, -1; roots.append(r)
+000044 |     return roots
+000045 | 
+000046 | 
+000047 | def original_lambda_check():
+000048 |     """Compare source AST, never import or execute the original module."""
+000049 |     path = ROOT/'verification/v983_simple_current_generator.py'
+000050 |     text = path.read_text()
+000051 |     tree = ast.parse(text)
+000052 |     assignments = {node.targets[0].id: node.value for node in tree.body
+000053 |                    if isinstance(node, ast.Assign) and len(node.targets) == 1
+000054 |                    and isinstance(node.targets[0], ast.Name)}
+000055 |     expected = {'OMEGA_S': '[sp.Rational(1, 2)] * 5',
+000056 |                 'OMEGA_F': '[sp.Rational(3, 4), sp.Rational(-1, 4), sp.Rational(-1, 4), sp.Rational(-1, 4)]',
+000057 |                 'LAM': 'OMEGA_S + OMEGA_F'}
+000058 |     for key, expression in expected.items():
+000059 |         if key not in assignments or ast.dump(assignments[key], include_attributes=False) != ast.dump(ast.parse(expression, mode='eval').body, include_attributes=False):
+000060 |             raise ValueError('Original v983 generator AST changed: '+key)
+000061 |     return {'path': str(path.relative_to(ROOT)), 'sha256': hashlib.sha256(path.read_bytes()).hexdigest(),
+000062 |             'scope': 'Static AST identification of the supplied original generator; original module not executed.'}
+000063 | 
+000064 | 
+000065 | def primitive_integral_completion():
+000066 |     checks = []
+000067 |     survivors = []
+000068 |     enumerated = 0
+000069 |     # Quadratic residue classes of D_(n+1)^*: 0, vector, spin+, spin-.
+000070 |     # These residues require no unimodularity or evenness of the extension.
+000071 |     for n in range(3, 97):
+000072 |         classes = [F(0), F(1), F(n+1, 4), F(n+1, 4)]
+000073 |         for b in range(1, n):
+000074 |             if gcd(b, n) != 1:
+000075 |                 continue
+000076 |             for label, dnorm in zip(('zero','vector','spin+','spin-'), classes):
+000077 |                 enumerated += 1
+000078 |                 fnorm = F(b*b*(n-1), n)
+000079 |                 if (dnorm+fnorm).denominator == 1:
+000080 |                     survivors.append({'n': n, 'b': b, 'class': label,
+000081 |                                       'norm_residue': str(dnorm+fnorm)})
+000082 |     need({x['n'] for x in survivors} == {4}, 'primitive integral scan selects n=4', checks)
+000083 |     need({(x['b'],x['class']) for x in survivors} == {(1,'spin+'),(1,'spin-'),(3,'spin+'),(3,'spin-')},
+000084 |          'four oriented representatives form two inverse-paired glues', checks)
+000085 |     spin = [F(1,2)]*5; family = family_fundamental(4,1)
+000086 |     need(dot(spin,spin)+dot(family,family)==2, 'v983 generator has norm 2', checks)
+000087 |     need(all(dot(spin,r).denominator == 1 for r in simple_roots_d(5)), 'spinor pairs integrally with D5', checks)
+000088 |     need(all(dot(family,r).denominator == 1 for r in simple_roots_a(4)), 'family weight pairs integrally with A3', checks)
+000089 |     need((F(4)*F(4))/F(4*4)==1, 'index-four extension determinant 1', checks)
+000090 |     # Nonprimitive input: same R101 representative s + 2 omega_1.
+000091 |     s16 = [F(1,2)]*17; w16 = [2*x for x in family_fundamental(16,1)]
+000092 |     need(gcd(2,16)>1 and dot(s16,s16)+dot(w16,w16)==8, 'n16 nonprimitive generator has norm 8', checks)
+000093 |     need(dot(w16,w16)==F(15,4) and dot(family_fundamental(16,2),family_fundamental(16,2))==F(7,4),
+000094 |          '2 omega1 is not silently replaced by omega2', checks)
+000095 |     need(all(dot(s16,r).denominator==1 for r in simple_roots_d(17)) and
+000096 |          all(dot(w16,r).denominator==1 for r in simple_roots_a(16)), 'n16 nonprimitive generator pairs integrally', checks)
+000097 |     s5=[F(1,2)]*6; w5=family_fundamental(5,1)
+000098 |     norm5 = dot(s5,s5)+dot(w5,w5)
+000099 |     need(norm5==F(23,10), 'n5 primitive generator fails integrality', checks)
+000100 |     need(20*norm5==46 and all((20*dot(s5,r)).denominator==1 for r in simple_roots_d(6)) and
+000101 |          all((20*dot(w5,r)).denominator==1 for r in simple_roots_a(5)),
+000102 |          'scaled-by-20 n5 is even integral under changed pairing', checks)
+000103 |     r5 = [[*r, *([0]*5)] for r in simple_roots_d(6)] + [[*([0]*6), *r] for r in simple_roots_a(5)]
+000104 |     need(all((20*dot(x,y)).denominator==1 for x in r5 for y in r5) and
+000105 |          all((20*dot(x,x)).denominator==1 and int(20*dot(x,x))%2==0 for x in r5),
+000106 |          'scaled n5 root pairing integral with even diagonal', checks)
+000107 |     # Full doubled braiding form B_L-B_R, not its positive Hilbert energy.
+000108 |     doubled = norm5-norm5
+000109 |     need(doubled==0 and 2*norm5==F(23,5) and norm5.denominator!=1,
+000110 |          'doubled braid cancellation does not imply one-sided integrality or zero positive norm', checks)
+000111 |     need(all(dot(s5,r).denominator==1 for r in simple_roots_d(6)) and
+000112 |          all(dot(w5,r).denominator==1 for r in simple_roots_a(5)), 'doubled diagonal pairs integrally with both root copies', checks)
+000113 |     return {'id':'primitive-integral-completion','status':'pass','checks':checks,
+000114 |             'facts':{'scan_n':[3,96], 'representatives_checked':enumerated,'survivors':survivors,
+000115 |                      'n4_inverse_paired_glue_count':2,'v983_norm':'2','n16_nonprimitive_norm':'8',
+000116 |                      'n5_original_norm':'23/10','n5_scaled_norm':'46',
+000117 |                      'n5_scaled_label_scope':'original A4 weight class; not claimed to be the full discriminant of the rescaled lattice',
+000118 |                      'n5_doubled_braiding_norm':'0','n5_doubled_positive_norm':'23/5'}, 'original_source':original_lambda_check(),
+000119 |             'analytic_argument':'Integral norm implies n divides 4b² since 4 times every D dual norm is integer; gcd(b,n)=1 gives n divides 4. With n>=3, n=4.',
+000120 |             'inference_claims':[{'id':'primitive_integral_projection_allows_n_other_than_4','holds':False}],
+000121 |             'excluded_inference':'Standard positive D/A pairing, integral completion and primitive family projection are premises. Doubled braiding locality does not establish positive one-sided integrality. No P1 origin or physical source selection.'}
+000122 | 
+000123 | 
+000124 | def function_differential_typing():
+000125 |     checks=[]
+000126 |     # Four simple poles on P1: RR dimensions, with the residue at infinity explicit.
+000127 |     functions, constants, principal_parts, differentials = 5, 1, 4, 3
+000128 |     need(functions == constants+principal_parts, 'function principal-parts exact-sequence dimensions', checks)
+000129 |     need(functions != constants+differentials, 'C to five functions to three outputs cannot be short exact', checks)
+000130 |     # f(z)=1/(z-1), f(z)dz = -du/[u(1-u)] at z=1/u.
+000131 |     z,u=sp.symbols('z u')
+000132 |     f=1/(z-1)
+000133 |     residue_at_one=sp.residue(f,z,1)
+000134 |     residue_at_infinity=sp.residue(-f.subs(z,1/u)/u**2,u,0)
+000135 |     need(residue_at_one+residue_at_infinity==0, 'global differential residue sum including infinity', checks)
+000136 |     need(residue_at_one != 0, 'residue sum on marked finite points need not vanish', checks)
+000137 |     return {'id':'function-differential-typing','status':'pass','checks':checks,
+000138 |             'facts':{'h0_O_D':functions, 'constants':constants, 'principal_parts':principal_parts,
+000139 |                      'h0_K_D':differentials,'f':'1/(z-1)',
+000140 |                      'residue_at_1':int(residue_at_one),'residue_at_infinity':int(residue_at_infinity)},
+000141 |             'inference_claims':[{'id':'function_quotient_equals_three_differentials','holds':False}],
+000142 |             'excluded_inference':'Given genus-zero four-point divisor; this separates spaces, not a P1 field map. Clifford evaluation is neutral, not an automatically positive observable.'}
+000143 | 
+000144 | 
+000145 | CHECKS = {'primitive-integral-completion':primitive_integral_completion,
+000146 |           'function-differential-typing':function_differential_typing}
+000147 | 
+000148 | 
+000149 | def main():
+000150 |     parser=argparse.ArgumentParser(description=__doc__)
+000151 |     parser.add_argument('--check', required=True, choices=sorted(CHECKS))
+000152 |     args=parser.parse_args()
+000153 |     print(json.dumps(CHECKS[args.check](), indent=2))
+000154 | 
+000155 | 
+000156 | if __name__=='__main__':
+000157 |     main()

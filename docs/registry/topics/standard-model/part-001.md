@@ -272,7 +272,7 @@ TFPT is presented here as a carrier-first theory of admissible vacua on the orie
 
 [documents/archive--paper-latex--tfpt-31/sections/001-section-reading-guide-and-claim-map.tex:311-346](../../../../documents/archive--paper-latex--tfpt-31/sections/001-section-reading-guide-and-claim-map.tex#L311) · `section:e9071b9a3e70c8d16b5d` · subsection
 
-We use natural units [formula in source] . Relative operators are formulated in Euclidean signature and compared through a declared Wick-rotation bridge when Lorentzian language is needed. Higgs fields are denoted by [formula in source] , Hamiltonians by [formula in source] , and the cosmological Hubble rate by [formula in source] ; this avoids overloading the letter [formula in source] . Newton's constant is always 
+We use natural units [formula in source] . Relative operators are formulated in Euclidean signature and compared through a declared Wick-rotation bridge when Lorentzian language is needed. Higgs fields are denoted by [formula in source] , Hamiltonians by [formula in source] , and the cosmological Hubble rate by [formula in source] ; this avoids overloading the letter [formula in source] . Newton's constant is always
 
 ## Global gauge group and one-family packet
 
@@ -284,7 +284,7 @@ The determinant-preserving connected stabilizer of the minimal carrier split is 
 
 [documents/archive--paper-latex--tfpt-31/sections/006-subsection-the-texorpdfstring-41-41-integrity-index.tex:234-237](../../../../documents/archive--paper-latex--tfpt-31/sections/006-subsection-the-texorpdfstring-41-41-integrity-index.tex#L234) · `section:07a29e6c08c8bd5ee1cd` · section
 
-This first closure-architecture block is the shortest route from the hard carrier packet to a broader Standard Model plus gravity compiler. It has three moves: the local patch-deficit count gives the carrier-side family count, the topological family closure globalizes it into the family space [formula in source] , the bosonic relative index selects the unique light Higgs doublet, and the local spectral-scale channel 
+This first closure-architecture block is the shortest route from the hard carrier packet to a broader Standard Model plus gravity compiler. It has three moves: the local patch-deficit count gives the carrier-side family count, the topological family closure globalizes it into the family space [formula in source] , the bosonic relative index selects the unique light Higgs doublet, and the local spectral-scale channel
 
 ## Occupancy and boundary-to-bulk bridge
 
@@ -344,7 +344,7 @@ round-mode=none, group-minimum-digits=20 ! @> p0.22 > p0.24 > p0.12 > p0.38 @ Te
 
 [documents/archive--paper-latex--tfpt-31/sections/018-subsection-strict-benchmark-surface.tex:183-234](../../../../documents/archive--paper-latex--tfpt-31/sections/018-subsection-strict-benchmark-surface.tex#L183) · `section:c5c52d149c66e7fb784e` · subsection
 
-round-mode=none, group-minimum-digits=20 @> p0.15 > p0.33 > p0.15 Y@ Row & TFPT source or target & TFPT value & Status note \\ [formula in source] & exact unbroken [formula in source] direction & [formula in source] & exact structural row \\ [formula in source] & exact color gauge direction before confinement & [formula in source] & exact structural row \\ [formula in source] & intrinsic threshold output at [formula 
+round-mode=none, group-minimum-digits=20 @> p0.15 > p0.33 > p0.15 Y@ Row & TFPT source or target & TFPT value & Status note \\ [formula in source] & exact unbroken [formula in source] direction & [formula in source] & exact structural row \\ [formula in source] & exact color gauge direction before confinement & [formula in source] & exact structural row \\ [formula in source] & intrinsic threshold output at [formula
 
 ## Front matter / support
 
@@ -362,7 +362,7 @@ TFPT is presented here as a carrier-first theory of admissible vacua on the orie
 
 [documents/archive--paper-latex--tfpt-32/sections/001-section-reading-guide-and-claim-map.tex:270-299](../../../../documents/archive--paper-latex--tfpt-32/sections/001-section-reading-guide-and-claim-map.tex#L270) · `section:7c2542b2b2bd544da229` · subsection
 
-We use natural units [formula in source] . Relative operators are formulated in Euclidean signature and compared through a declared Wick-rotation bridge when Lorentzian language is needed. Higgs fields are denoted by [formula in source] , Hamiltonians by [formula in source] , and the cosmological Hubble rate by [formula in source] ; this avoids overloading the letter [formula in source] . Newton's constant is always 
+We use natural units [formula in source] . Relative operators are formulated in Euclidean signature and compared through a declared Wick-rotation bridge when Lorentzian language is needed. Higgs fields are denoted by [formula in source] , Hamiltonians by [formula in source] , and the cosmological Hubble rate by [formula in source] ; this avoids overloading the letter [formula in source] . Newton's constant is always
 
 ## Global gauge group and one-family packet
 
@@ -434,7 +434,7 @@ round-mode=none, group-minimum-digits=20 @> p0.15 > p0.33 > p0.15 Y@ Row & TFPT 
 
 [documents/archive--paper-latex--tfpt-42/sections/002-section-big-picture-what-tfpt-actually-claims.tex:238-288](../../../../documents/archive--paper-latex--tfpt-42/sections/002-section-big-picture-what-tfpt-actually-claims.tex#L238) · `section:3ad677837e8bb56c5eb0` · subsection
 
-We use natural units [formula in source] . Relative operators are formulated in Euclidean signature and compared through a declared Wick-rotation bridge when Lorentzian language is needed. Higgs fields are denoted by [formula in source] , Hamiltonians by [formula in source] , and the cosmological Hubble rate by [formula in source] ; this avoids overloading the letter [formula in source] . Newton's constant is always 
+We use natural units [formula in source] . Relative operators are formulated in Euclidean signature and compared through a declared Wick-rotation bridge when Lorentzian language is needed. Higgs fields are denoted by [formula in source] , Hamiltonians by [formula in source] , and the cosmological Hubble rate by [formula in source] ; this avoids overloading the letter [formula in source] . Newton's constant is always
 
 ## Carrier algebraic normal form
 
@@ -488,7 +488,7 @@ The same geometric closure sector defines the canonical spectral gravity branch 
 
 [documents/archive--paper-latex--tfpt-42/sections/017-subsection-regularized-yukawa-kernels-and-path-length-ma.tex:1-395](../../../../documents/archive--paper-latex--tfpt-42/sections/017-subsection-regularized-yukawa-kernels-and-path-length-ma.tex#L1) · `section:35e6f8e393c2de55dcf6` · subsection
 
-For each fermion sector define the structural positive transport kernel by [formula in source] whenever the inverse exists on [formula in source] . The final admissible kernel is the restriction of this operator to the gap-stable branch selected below. The transport pole [formula in source] is fixed by the structural stationarity of the exact determinant functional [formula in source] with [formula in source] On the 
+For each fermion sector define the structural positive transport kernel by [formula in source] whenever the inverse exists on [formula in source] . The final admissible kernel is the restriction of this operator to the gap-stable branch selected below. The transport pole [formula in source] is fixed by the structural stationarity of the exact determinant functional [formula in source] with [formula in source] On the
 
 ## [P] Pole masses, Higgs readout, and full flavor output
 

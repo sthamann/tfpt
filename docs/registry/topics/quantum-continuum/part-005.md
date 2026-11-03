@@ -6,7 +6,7 @@ Exact ledger statuses remain at the linked original rows and in registry.json. C
 
 ## =150 2026-08-20 (CXI) (the externalization contracts — the two open non-RH kind-(A) external-math targets SEAM.EQUIV.01 and ALPHA.QUILLEN.EXACT.01 packaged as short, self-contained EXTERNALIZATION CONTRACTS for outside specialist mathematicians (conformal nets/VOA/AQFT for the seam; determinant lines/ [formula in source] -invariants/index theory for alpha), added as two new sections at the end of tfpt_research_contracts (before ``Certifiability and recommended order''), plus a one-sentence pointer in the head keybox; DOCUMENTATION ONLY — no module touched, no number changed, no status marker moved, no gate closed or narrowed, NO RH claim: (1) the SEAM.EQUIV.01 contract states the minimal theorem (the scaling limit of the gapped [formula in source] -equivariant CAR collar exists in local-net topology; the index-4 simple-current extension functor commutes with the limit; the OS reconstruction is the holomorphic [formula in source] lattice net) broken into the four review-named lemmata L1 (uniform energy/nuclearity bounds — honestly typed: NO uniform nuclearity estimate exists in the corpus), L2 (convergence of local algebras, the cited Osborne–Stottmeister scaling-limit theorem with the [formula in source] -equivariant structure retained), L3 (crossed product commutes with the limit; the finite index-4 Q-system is explicit, v125/ v154/ v469) and L4 (uniqueness of the holomorphic [formula in source] reconstruction; [formula in source] vs the same- [formula in source] rival [formula in source] ), with the complete typed hypothesis list (12 PROVEN-FINITE rows citing v302/ v113/ v155/ v160/ v356/ v366/ v367/ v368/ v461/ v376/ v377/ v378/ v379/ v125/ v154/ v216/ v286, 5 CITED-CLASSICAL rows, 1 OPEN target), the runnable finite models, the HONEST Lean axiom surface ( SeamScalingLimit.lean kernel-proves only the arithmetic hypotheses by decide; the analytic content is named cited axioms over opaque Props; no sorry; explicitly flagged: L1–L4 have ZERO Lean content beyond the composition audit), five must-fail controls (MF-S1: [formula in source] alone must NOT suffice — the red-team point; MF-S2: index-2 glue must yield [formula in source] ; MF-S3: the trivial [formula in source] collar must give no chiral limit; MF-S4: non-order-4 clock breaks the marks; MF-S5: the v286 import firewall) and four acceptance tests; (2) the ALPHA.QUILLEN.EXACT.01 contract states the two-step theorem T1 (gap-stable continuum limit [formula in source] under norm-resolvent convergence with the Fermi gap uniformly open over the twist torus — the Dai–Freed section has no zero; finite side computed, v472) and T2 ( [formula in source] [formula in source] Bismut–Freed curvature [formula in source] inflow response with the exact corpus coefficients [formula in source] , [formula in source] , [formula in source] , [formula in source] , exponent [formula in source] ), the two named open faces (the analytic diagonal- [formula in source] /multiplicity face v484/ v485 and the topological EM1 lemma v48/ v435), the typed hypothesis list (10 PROVEN-FINITE rows citing v3/ v48/ v341/ v382/ v434/ v470/ v435/ v342/ v367/ v472/ v484/ v485/ v391/ v433, 5 CITED-CLASSICAL rows, 1 OPEN target), the runnable finite models, the HONEST Lean statement (there is NO Lean formalisation of this target — stated plainly), four must-fail controls (MF-A1: no experimental [formula in source] anywhere in the construction; MF-A2: deck/carrier/Chern-level ablations must destroy the CODATA match; MF-A3: [formula in source] , [formula in source] ; MF-A4: the [formula in source] [formula in source] -power/metric-independence partition) and the review's three acceptance tests verbatim (no experimental [formula in source] input; unique physical fixed point [formula in source] ; ablations destroy the hit) plus one structural test; (3) the website paper mirror of tfpt_research_contracts ( papers.ts) gains one section entry covering both contracts; tfpt_research_contracts.pdf and changelog.pdf recompiled and mirrored via bash build.sh website; maps and changelog.ts regenerated via bash build.sh gen; bash build.sh audit [formula in source] AUDIT OK; manifests regenerated LAST. Both targets stay [O]; NO RH claim anywhere)
 
-[documents/changelog/sections/001-source.tex:313-314](../../../../documents/changelog/sections/001-source.tex#L313) · `section:7144b70a605254dfecbc` · subsection
+[documents/changelog/sections/001-source.tex:373-374](../../../../documents/changelog/sections/001-source.tex#L373) · `section:7144b70a605254dfecbc` · subsection
 
 No opening prose excerpt; see the source.
 
@@ -71,7 +71,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 ## =150 2026-08-01 (XXXII) (the interacting gamma slice lands at toy level ( v615 promoted): the gamma battery executed ON the RP-surviving interaction class (the alignment bit [formula in source] , positive coupling, v534) — THE INTERACTING MIRROR FLIP: at the forced twist [formula in source] the mirror state's odd sector is STRICTLY NEGATIVE DEFINITE on every cut and every coupling [formula in source] (bounded away from zero: kill test (3) cannot fire on the surviving class — v608 upgraded from [formula in source] to the full grid); the mark transport exists interacting (kill test (7) does not fire); the odd transfer spectrum stays multiplicity-free; and the dead member has no RP home — the dynamical bit selection and the chirality data CO-LOCATE on the same member)
 
-[documents/changelog/sections/001-source.tex:353-368](../../../../documents/changelog/sections/001-source.tex#L353) · `section:b4f8dafdea7dae9c5e81` · subsection
+[documents/changelog/sections/001-source.tex:413-428](../../../../documents/changelog/sections/001-source.tex#L413) · `section:b4f8dafdea7dae9c5e81` · subsection
 
 v615_gamma_toy_interacting.py ( WOIT.GAMMA.TOY.01, [formula in source] checks; probe 11/11, GAMMA-TOY-LANDED). Chiral/mirror parents ( [formula in source] , gap [formula in source] ); v534 survivor anchor reproduced; sector-exact mirror flip (even [formula in source] PD, odd [formula in source] ND, max odd eigenvalue [formula in source] ); [formula in source] convention control; mark transport [formula in source] exa
 
@@ -143,7 +143,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/changelog/sections/003-source.tex:107-148](../../../../documents/changelog/sections/003-source.tex#L107) · `section:708d06b08bf9729fd162` · subsection
 
-New module v534 ( SEAM.STRADDLE.CONE.01). The 2026-07-23 review-round contract (recorded ``not promoted'' in entry (X)) is executed, double-verdicted. V2 [formula in source] ERFOLG — the selection law (the central datum): with independent couplings [formula in source] on the four mark quartets of [formula in source] and the equivariant (uniform) direction, reflection positivity holds on every admissible cut over the 
+New module v534 ( SEAM.STRADDLE.CONE.01). The 2026-07-23 review-round contract (recorded ``not promoted'' in entry (X)) is executed, double-verdicted. V2 [formula in source] ERFOLG — the selection law (the central datum): with independent couplings [formula in source] on the four mark quartets of [formula in source] and the equivariant (uniform) direction, reflection positivity holds on every admissible cut over the
 
 Explicit source references:
 
@@ -206,7 +206,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/changelog/sections/003-source.tex:263-271](../../../../documents/changelog/sections/003-source.tex#L263) · `section:d9dfc4ce2d7febed0290` · subsection
 
-Suite. New module v526_seam_thermal_kms_nariai_bridge.py ( [formula in source] checks, [formula in source] s). Ledger. New row SEAM.THERMAL.KMS.01; no status moves. Papers. tfpt_3 Step 27; tfpt_horizon_readouts (third leg of [formula in source] ); tfpt_research_contracts (thermal follow-on); introduction. Wolfram. Three exact mirrors (Q-polynomial/ [formula in source] measurement; [formula in source] chain; [formula 
+Suite. New module v526_seam_thermal_kms_nariai_bridge.py ( [formula in source] checks, [formula in source] s). Ledger. New row SEAM.THERMAL.KMS.01; no status moves. Papers. tfpt_3 Step 27; tfpt_horizon_readouts (third leg of [formula in source] ); tfpt_research_contracts (thermal follow-on); introduction. Wolfram. Three exact mirrors (Q-polynomial/ [formula in source] measurement; [formula in source] chain; [formula
 
 Explicit source references:
 
@@ -308,7 +308,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/changelog/sections/004-source.tex:1-31](../../../../documents/changelog/sections/004-source.tex#L1) · `section:2bbe8c5924cafd6c6187` · subsection
 
-v521_seam_bit_rp_blind.py ( SEAM.BIT.RPBLIND.01, 25 checks, [formula in source] 25 s; exact sympy solvesets [formula in source] exact Gram entries [formula in source] exact [formula in source] Fractions; inertia via [formula in source] -digit spectra, tolerance [formula in source] ; deterministic). S the anti-linear census (family D/A, counterwitness, face \#13 closure, cut incidence, side conditions); L the lattice 
+v521_seam_bit_rp_blind.py ( SEAM.BIT.RPBLIND.01, 25 checks, [formula in source] 25 s; exact sympy solvesets [formula in source] exact Gram entries [formula in source] exact [formula in source] Fractions; inertia via [formula in source] -digit spectra, tolerance [formula in source] ; deterministic). S the anti-linear census (family D/A, counterwitness, face \#13 closure, cut incidence, side conditions); L the lattice
 
 Explicit source references:
 
@@ -467,7 +467,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/changelog/sections/004-source.tex:212-244](../../../../documents/changelog/sections/004-source.tex#L212) · `section:e01862309e920e04fb7f` · subsection
 
-v516_celestial_wp5e_m2_twisted_ks_measure.py ( CELEST.WP5E.M2.01, 23 checks, [formula in source] 1 s; exact sympy/Fraction, no floats; deterministic). S0 replication (roots, class quartics, [formula in source] two routes, bulk Okubo); S1 the index bridge [formula in source] the completion weights (no free scale, parameter-free locks); S2 the contact term (two forms, genuine-contact certificate); S3 the success table 
+v516_celestial_wp5e_m2_twisted_ks_measure.py ( CELEST.WP5E.M2.01, 23 checks, [formula in source] 1 s; exact sympy/Fraction, no floats; deterministic). S0 replication (roots, class quartics, [formula in source] two routes, bulk Okubo); S1 the index bridge [formula in source] the completion weights (no free scale, parameter-free locks); S2 the contact term (two forms, genuine-contact certificate); S3 the success table
 
 Explicit source references:
 
@@ -831,7 +831,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/changelog/sections/006-source.tex:331-374](../../../../documents/changelog/sections/006-source.tex#L331) · `section:b18b388084f449438cbb` · subsection
 
-v501_celestial_wp5d_two_interval_index.py ( CELEST.WP5D.01, 39 checks, numpy/scipy Gaussian machinery [formula in source] exact Fractions). The WP5d roadmap discriminator — [formula in source] (Haag-dual two-interval net, one sector) vs [formula in source] — executed at the [formula in source] (lattice-index) stage on the v367 seam edge ( [formula in source] critical Majorana layers, [formula in source] , v450-style 
+v501_celestial_wp5d_two_interval_index.py ( CELEST.WP5D.01, 39 checks, numpy/scipy Gaussian machinery [formula in source] exact Fractions). The WP5d roadmap discriminator — [formula in source] (Haag-dual two-interval net, one sector) vs [formula in source] — executed at the [formula in source] (lattice-index) stage on the v367 seam edge ( [formula in source] critical Majorana layers, [formula in source] , v450-style
 
 Explicit source references:
 
@@ -1309,7 +1309,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/changelog/sections/011-source.tex:226-270](../../../../documents/changelog/sections/011-source.tex#L226) · `section:c6b6da016e7f30bbb7c1` · subsection
 
-Context. The keystone SEAM.EQUIV.01 is ``closed modulo a cited theorem'': its one open input is the continuum existence of the seam's chiral massless scaling limit. Six new modules attack that residual from independent directions; each is honest about not closing it. All six are vN-registered, run in run_all.py (suite ends ALL CHECKS PASSED), and are veri-cited in the body of tfpt_research_contracts (the [formula in 
+Context. The keystone SEAM.EQUIV.01 is ``closed modulo a cited theorem'': its one open input is the continuum existence of the seam's chiral massless scaling limit. Six new modules attack that residual from independent directions; each is honest about not closing it. All six are vN-registered, run in run_all.py (suite ends ALL CHECKS PASSED), and are veri-cited in the body of tfpt_research_contracts (the [formula in
 
 Explicit source references:
 
@@ -1419,7 +1419,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/changelog/sections/012-source.tex:329-351](../../../../documents/changelog/sections/012-source.tex#L329) · `section:2ee299d2f97d03685885` · subsection
 
-New module v423 ( QGAMB.NODEP.01). Sharpens the v369/ v384 prose redundancy (`` QG.AMB.01 is a \ redundancy, not dynamics'') into a machine-checked DAG [formula in source] script fact, told honestly. \ gap-decoupling margin [formula in source] ( [formula in source] ), susceptibility [formula in source] finite (negative control [formula in source] ); \ QG.AMB.01 is a certification sink (every claim that lists it is a 
+New module v423 ( QGAMB.NODEP.01). Sharpens the v369/ v384 prose redundancy (`` QG.AMB.01 is a \ redundancy, not dynamics'') into a machine-checked DAG [formula in source] script fact, told honestly. \ gap-decoupling margin [formula in source] ( [formula in source] ), susceptibility [formula in source] finite (negative control [formula in source] ); \ QG.AMB.01 is a certification sink (every claim that lists it is a
 
 Explicit source references:
 
@@ -1547,7 +1547,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/changelog/sections/013-source.tex:295-307](../../../../documents/changelog/sections/013-source.tex#L295) · `section:6b87e1b142e887eedca7` · subsection
 
-Website — the UniversalGapLab animation on /verification. A new client component (Framer Motion, no new dependency) with three linked, module-grounded views: (A) every sector as the gap contraction [formula in source] racing to its attractor at [formula in source] (seam-gapped, v303/ v387/ v388) or the golden [formula in source] ( v312), with a gapless [formula in source] track that never forgets its start (the Lean 
+Website — the UniversalGapLab animation on /verification. A new client component (Framer Motion, no new dependency) with three linked, module-grounded views: (A) every sector as the gap contraction [formula in source] racing to its attractor at [formula in source] (seam-gapped, v303/ v387/ v388) or the golden [formula in source] ( v312), with a gapless [formula in source] track that never forgets its start (the Lean
 
 Explicit source references:
 
@@ -1572,7 +1572,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/changelog/sections/013-source.tex:324-339](../../../../documents/changelog/sections/013-source.tex#L324) · `section:fddca2e76a3d11b710e6` · subsection
 
-FORM.SPECTRALGAP.01 — a Lean 4 proof of the gap [formula in source] unique-attractor [formula in source] parameter-free core (door 4). New module TfptCarrier/SpectralGapAttractor.lean ( lake build OK, no sorry, only the three standard kernel axioms), formalising the meta-theorem of v303/ v383/ v387 at the one-dimensional reduction — the affine gap contraction [formula in source] with multiplier [formula in source] . 
+FORM.SPECTRALGAP.01 — a Lean 4 proof of the gap [formula in source] unique-attractor [formula in source] parameter-free core (door 4). New module TfptCarrier/SpectralGapAttractor.lean ( lake build OK, no sorry, only the three standard kernel axioms), formalising the meta-theorem of v303/ v383/ v387 at the one-dimensional reduction — the affine gap contraction [formula in source] with multiplier [formula in source] .
 
 Explicit source references:
 
@@ -1626,7 +1626,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/changelog/sections/014-source.tex:49-77](../../../../documents/changelog/sections/014-source.tex#L49) · `section:8b1a1c6a205860e21edc` · subsection
 
-v383 ( DYNAMICS.UNIVERSAL.01) — the universal spectral-gap / Perron–Frobenius principle. A fresh bird's-eye pass found that every TFPT sector is the same structural object: a gapped operator with a unique leading attractor (the physics) and a spectral gap (the reason there is no free parameter). v303 named this only for [formula in source] ; this module extends it to the sectors made parameter-free after it. \ three 
+v383 ( DYNAMICS.UNIVERSAL.01) — the universal spectral-gap / Perron–Frobenius principle. A fresh bird's-eye pass found that every TFPT sector is the same structural object: a gapped operator with a unique leading attractor (the physics) and a spectral gap (the reason there is no free parameter). v303 named this only for [formula in source] ; this module extends it to the sectors made parameter-free after it. \ three
 
 Explicit source references:
 
@@ -1968,7 +1968,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/changelog/sections/017-source.tex:116-132](../../../../documents/changelog/sections/017-source.tex#L116) · `section:0968f1b6845750a87eeb` · subsection
 
-v303_ftransfer_dynamics.py asks whether the main-branch mechanism — a gapped, positivity-preserving relaxation to a unique attractor (the local-averaging update [formula in source] the [formula in source] marks, gap [formula in source] ) — is also the shape of the four F_transfer instances, or an unrelated bolt-on. It is the same shape: \ F_pole (Koide) is the seam dynamics (M\"obius multiplier [formula in source] , 
+v303_ftransfer_dynamics.py asks whether the main-branch mechanism — a gapped, positivity-preserving relaxation to a unique attractor (the local-averaging update [formula in source] the [formula in source] marks, gap [formula in source] ) — is also the shape of the four F_transfer instances, or an unrelated bolt-on. It is the same shape: \ F_pole (Koide) is the seam dynamics (M\"obius multiplier [formula in source] ,
 
 Explicit source references:
 
@@ -2050,7 +2050,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/changelog/sections/018-source.tex:55-67](../../../../documents/changelog/sections/018-source.tex#L55) · `section:63427eabab107d1a2a94` · subsection
 
-Published to Zenodo. Version 5.2 (rev 191) of the ten-PDF document set was published as a new version of the TFPT deposit — record 20743347, DOI 10.5281/zenodo.20743347. This release carries the perturbative 4D-QFT layer (the Epstein–Glaser [formula in source] skeleton v269, the concrete one-loop quartic v271 and gauge [formula in source] -coefficients v273), the complete complex PMNS matrix and leptonic CP strength 
+Published to Zenodo. Version 5.2 (rev 191) of the ten-PDF document set was published as a new version of the TFPT deposit — record 20743347, DOI 10.5281/zenodo.20743347. This release carries the perturbative 4D-QFT layer (the Epstein–Glaser [formula in source] skeleton v269, the concrete one-loop quartic v271 and gauge [formula in source] -coefficients v273), the complete complex PMNS matrix and leptonic CP strength
 
 Explicit source references:
 
@@ -2090,7 +2090,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/changelog/sections/018-source.tex:107-119](../../../../documents/changelog/sections/018-source.tex#L107) · `section:3116e55fdb4f7529082e` · subsection
 
-v270_pmns_jarlskog_assembly.py ( FLAV.PMNS.03) assembles the four TFPT channels ( [formula in source] , [formula in source] , [formula in source] , [formula in source] ) into one exactly-unitary complex PMNS matrix and derives the leptonic CP strength. \ [formula in source] is unitary; \ the Jarlskog [formula in source] ( [formula in source] ) is a derived number, the leptonic analogue of the CKM [formula in source] 
+v270_pmns_jarlskog_assembly.py ( FLAV.PMNS.03) assembles the four TFPT channels ( [formula in source] , [formula in source] , [formula in source] , [formula in source] ) into one exactly-unitary complex PMNS matrix and derives the leptonic CP strength. \ [formula in source] is unitary; \ the Jarlskog [formula in source] ( [formula in source] ) is a derived number, the leptonic analogue of the CKM [formula in source]
 
 Explicit source references:
 
@@ -2549,7 +2549,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/changelog/sections/022-source.tex:204-220](../../../../documents/changelog/sections/022-source.tex#L204) · `section:dd21f4d89cdafe68cd70` · subsection
 
-The free-bulk premise becomes a fixed-point property ( v157, simplicity-first). Instead of postulating Gaussianity, three facts click: (i) the DtN/Calder\'on symbol is universally [formula in source] (Lee–Uhlmann — order- [formula in source] [formula in source] DO, principal symbol [formula in source] ; interactions live in the irrelevant lower-order symbol), so the free dispersion is bulk-detail-independent; (ii) a 
+The free-bulk premise becomes a fixed-point property ( v157, simplicity-first). Instead of postulating Gaussianity, three facts click: (i) the DtN/Calder\'on symbol is universally [formula in source] (Lee–Uhlmann — order- [formula in source] [formula in source] DO, principal symbol [formula in source] ; interactions live in the irrelevant lower-order symbol), so the free dispersion is bulk-detail-independent; (ii) a
 
 Explicit source references:
 

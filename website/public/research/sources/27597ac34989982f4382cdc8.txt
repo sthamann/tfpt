@@ -1,0 +1,25 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/seam-positive-kernel-search-20261015/source_charge_checks.py
+Original file SHA-256: c5f5d7704dfc283b577e0aeee31d9875d4d90b1c7b6e4596037920b7d3cf5902
+Inclusive original lines: 201-217
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000201 |         'charged-one-point': 'invariant_state_has_nonzero_charge_one_onepoint',
+000202 |         'clifford-vector-spinor-typing': 'clifford_vector_is_spinor_current_under_same_spin_action',
+000203 |     }
+000204 |     parser.add_argument('--check', choices=sorted(claims))
+000205 |     args=parser.parse_args()
+000206 |     result=check()
+000207 |     if args.check:
+000208 |         result['id'] = args.check
+000209 |         result['inference_claims'] = [{'id': claims[args.check], 'holds': False}]
+000210 |     encoded=json.dumps(result,indent=2)+'\n'
+000211 |     if args.out:
+000212 |         args.out.parent.mkdir(parents=True,exist_ok=True)
+000213 |         with args.out.open('x') as stream: stream.write(encoded)
+000214 |     print(encoded,end='')
+000215 | 
+000216 | 
+000217 | if __name__=='__main__': main()

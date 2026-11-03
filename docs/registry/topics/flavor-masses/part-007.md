@@ -22,7 +22,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/012-section-die-quelle-bewegt-sich-wirklich-eine-exakte-zeit.tex:45-56](../../../../documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/012-section-die-quelle-bewegt-sich-wirklich-eine-exakte-zeit.tex#L45) · `section:2bcbb431d1bad8712643` · subsection
 
-Die ursprüngliche v258_dirac_covariance_induction.py verwendet Dabei ist [formula in source] der geometrische Maßstab und [formula in source] die Projektion auf den chiraliätsungeraden Anteil. Im ausgeführten chiralen Beispiel ist [formula in source] ; die Projektion ändert den eingesetzten Operator nicht. Die Rekonstruktion setzt neun Massen in [formula in source] ein, erzeugt daraus [formula in source] und gewinnt 
+Die ursprüngliche v258_dirac_covariance_induction.py verwendet Dabei ist [formula in source] der geometrische Maßstab und [formula in source] die Projektion auf den chiraliätsungeraden Anteil. Im ausgeführten chiralen Beispiel ist [formula in source] ; die Projektion ändert den eingesetzten Operator nicht. Die Rekonstruktion setzt neun Massen in [formula in source] ein, erzeugt daraus [formula in source] und gewinnt
 
 Explicit source references:
 
@@ -207,7 +207,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/tfpt_research_contracts/sections/006-source.tex:1-290](../../../../documents/tfpt_research_contracts/sections/006-source.tex#L1) · `section:95036dacfe44edfdb2c9` · frontmatter
 
-The address table acquires its structure — on word-length integers frozen in v18/ v20, long before today's readings (the red-team firewall). (i) The lepton words are the atoms : [formula in source] in mass order (longest word [formula in source] lightest lepton). (ii) Addresses [formula in source] division by the hexagon : [formula in source] with [formula in source] itself an atom: [formula in source] , [formula in 
+The address table acquires its structure — on word-length integers frozen in v18/ v20, long before today's readings (the red-team firewall). (i) The lepton words are the atoms : [formula in source] in mass order (longest word [formula in source] lightest lepton). (ii) Addresses [formula in source] division by the hexagon : [formula in source] with [formula in source] itself an atom: [formula in source] , [formula in
 
 Explicit source references:
 
@@ -391,7 +391,7 @@ Die frühen TFPT-Arbeiten enthalten zahlreiche Beziehungen für Kopplungen, Mass
 
 [experiments/ftransfer-clocks/ftransfer_clocks_contract.tex:61-92](../../../../experiments/ftransfer-clocks/ftransfer_clocks_contract.tex#L61) · `section:1d19ef4ba26a6869c8f3` · section
 
-@llll@ Solver & Clock & Operational definition & Chart / gauge (frozen) \\ [formula in source] (Koide) & proper time [formula in source] & @l@rest-frame proper time of the lepton\ -particle state [formula in source] the phase clock of\ propagator pole, [formula in source] (on-shell\ ; PDG pole masses) & @l@ [formula in source] ;\ v99 seam tick [formula in source] \ proper-phase e-fold \\[8.5mm] [formula in source] ( 
+@llll@ Solver & Clock & Operational definition & Chart / gauge (frozen) \\ [formula in source] (Koide) & proper time [formula in source] & @l@rest-frame proper time of the lepton\ -particle state [formula in source] the phase clock of\ propagator pole, [formula in source] (on-shell\ ; PDG pole masses) & @l@ [formula in source] ;\ v99 seam tick [formula in source] \ proper-phase e-fold \\[8.5mm] [formula in source] (
 
 Explicit source references:
 
@@ -677,7 +677,7 @@ This document develops the architecture layer of TFPT: the two axioms, the deriv
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex:1781-1796](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex#L1781) · `section:38538ebfe54ea1f0dd1c` · subsection
 
-With [formula in source] , the quadratic hypercharge trace on one family is [formula in source] , and it generates the whole integer chain: The flavor budget, the [formula in source] budget, the [formula in source] count and the second seam defect all hang on the second hypercharge moment [formula in source] . \ Round-22 sharpening: the moment itself is one symbolic identity, [formula in source] — the Coxeter number 
+With [formula in source] , the quadratic hypercharge trace on one family is [formula in source] , and it generates the whole integer chain: The flavor budget, the [formula in source] budget, the [formula in source] count and the second seam defect all hang on the second hypercharge moment [formula in source] . \ Round-22 sharpening: the moment itself is one symbolic identity, [formula in source] — the Coxeter number
 
 Explicit source references:
 
@@ -1192,7 +1192,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_2_standard_model.tex:1791-1822](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_2_standard_model.tex#L1791) · `section:de65561a933aa5ea02ba` · subsection
 
-The closed CKM point is not an end state — it feeds the theoretically cleanest flavor-changing neutral-current probe, the rare decays [formula in source] and [formula in source] . These are not a new compiler power: the only TFPT-specific content is the CKM point above; the short-distance loop functions ( [formula in source] , [formula in source] , [formula in source] , [formula in source] , Brod–Gorbahn–Stamou) are 
+The closed CKM point is not an end state — it feeds the theoretically cleanest flavor-changing neutral-current probe, the rare decays [formula in source] and [formula in source] . These are not a new compiler power: the only TFPT-specific content is the CKM point above; the short-distance loop functions ( [formula in source] , [formula in source] , [formula in source] , [formula in source] , Brod–Gorbahn–Stamou) are
 
 Explicit source references:
 
@@ -1203,7 +1203,7 @@ Explicit source references:
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_2_standard_model.tex:1829-2090](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_2_standard_model.tex#L1829) · `section:51b5da5a67a36e5155ae` · section
 
-The neutrino sector is the Majorana branch of the same construction: [formula in source] . @p3.6cmp5.2cmc@ Quantity & Origin & Value \\ [formula in source] & [formula in source] (UV), closure [formula in source] & [formula in source] \\ [formula in source] & primary (freeze): [formula in source] (seed, [formula in source] ); two derived variants in the named box & [formula in source] (NuFIT 6.0 [formula in source] ) 
+The neutrino sector is the Majorana branch of the same construction: [formula in source] . @p3.6cmp5.2cmc@ Quantity & Origin & Value \\ [formula in source] & [formula in source] (UV), closure [formula in source] & [formula in source] \\ [formula in source] & primary (freeze): [formula in source] (seed, [formula in source] ); two derived variants in the named box & [formula in source] (NuFIT 6.0 [formula in source] )
 
 Explicit source references:
 
@@ -1404,7 +1404,7 @@ The family curve is the rigid four-punctured sphere [formula in source] , [formu
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_2_standard_model.tex:2669-2726](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_2_standard_model.tex#L2669) · `section:10dfd6e9f65946a0b7ff` · section
 
-Status (no drift). The splitting type is now closed: the unique partition [formula in source] fixes the anchor and [formula in source] fixes the residue branch (verified, below and v4_flavor_matrix.py), and the solar texture is built ( v9_neutrino_texture.py). The roadmap below is kept as the derivation record of how [formula in source] is obtained; it is no longer an open project. The only residual is the parabolic 
+Status (no drift). The splitting type is now closed: the unique partition [formula in source] fixes the anchor and [formula in source] fixes the residue branch (verified, below and v4_flavor_matrix.py), and the solar texture is built ( v9_neutrino_texture.py). The roadmap below is kept as the derivation record of how [formula in source] is obtained; it is no longer an open project. The only residual is the parabolic
 
 Explicit source references:
 
@@ -1704,7 +1704,7 @@ Für freie massive bosonische Moden mit Lücke [formula in source] hat eine norm
 
 [experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/25_revision_v15.tex:175-185](../../../../experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/25_revision_v15.tex#L175) · `section:e2cdd77b6aa76eff2321` · section
 
-Sei [formula in source] eine endliche Zelle mit eindeutigem Grundzustand [formula in source] , Energie [formula in source] und Gap [formula in source] . Auf einem beliebigen endlichen verbundenen Graphen definiere [formula in source] Jeder Swapterm ist positiv. Mit [formula in source] folgt [formula in source] . Der Produktgrundzustand ist eindeutig. Die gleichförmige Einanregung wird von jedem Swap festgehalten und 
+Sei [formula in source] eine endliche Zelle mit eindeutigem Grundzustand [formula in source] , Energie [formula in source] und Gap [formula in source] . Auf einem beliebigen endlichen verbundenen Graphen definiere [formula in source] Jeder Swapterm ist positiv. Mit [formula in source] folgt [formula in source] . Der Produktgrundzustand ist eindeutig. Die gleichförmige Einanregung wird von jedem Swap festgehalten und
 
 ## Der entscheidende Unterschied: innere Kritikalität bei massiven Vermittlern
 
@@ -1734,7 +1734,7 @@ This document develops the architecture layer of TFPT: the two axioms, the deriv
 
 [experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex:1781-1796](../../../../experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex#L1781) · `section:93683d7c3fd300bd9861` · subsection
 
-With [formula in source] , the quadratic hypercharge trace on one family is [formula in source] , and it generates the whole integer chain: The flavor budget, the [formula in source] budget, the [formula in source] count and the second seam defect all hang on the second hypercharge moment [formula in source] . \ Round-22 sharpening: the moment itself is one symbolic identity, [formula in source] — the Coxeter number 
+With [formula in source] , the quadratic hypercharge trace on one family is [formula in source] , and it generates the whole integer chain: The flavor budget, the [formula in source] budget, the [formula in source] count and the second seam defect all hang on the second hypercharge moment [formula in source] . \ Round-22 sharpening: the moment itself is one symbolic identity, [formula in source] — the Coxeter number
 
 Explicit source references:
 

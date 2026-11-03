@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## 5. Was daran spannend ist und was als nächstes trägt
+
+[documents/experiments--theory-contracts--universalraum-source-composition-20260915--tmp--pdfs--TFPT_Universalraum_Quellkomposition_Konsolidierung_2026-09-15_v1.6.9/sections/013-subsection-beweisumfang-label-beweisumfang.tex:324-340](../../../../documents/experiments--theory-contracts--universalraum-source-composition-20260915--tmp--pdfs--TFPT_Universalraum_Quellkomposition_Konsolidierung_2026-09-15_v1.6.9/sections/013-subsection-beweisumfang-label-beweisumfang.tex#L324) · `section:c8886a87174ed386526d` · subsection
+
+Der gute neue Schritt ist die tatsächlich abgeschlossene fünfte Spurnetzwerk-Norm mit der daraus folgenden stärkeren strengen Energie- und Entnahmeschranke. Hinzu kommt unsere kleine CAR-Auswertung, die die geladenen ersten Momente auf den richtigen größeren Ritz-Zustand hebt. Das verbessert nachprüfbar die Rechnung im bestehenden nativen Modell.
+
 ## Reproduktionsbelege
 
 [documents/experiments--theory-contracts--universalraum-source-composition-20260915--tmp--pdfs--TFPT_Universalraum_Quellkomposition_Konsolidierung_2026-09-15_v1.6.9/sections/013-subsection-beweisumfang-label-beweisumfang.tex:341-368](../../../../documents/experiments--theory-contracts--universalraum-source-composition-20260915--tmp--pdfs--TFPT_Universalraum_Quellkomposition_Konsolidierung_2026-09-15_v1.6.9/sections/013-subsection-beweisumfang-label-beweisumfang.tex#L341) · `section:d85f88be07929d79fd46` · subsection
@@ -726,9 +732,3 @@ Die mitgelieferte Round37-Rechnung wurde exakt reproduziert. Ihre sechs Zuständ
 [documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/031-subsection-8-w-hrend-der-arbeit-entdeckte-nderung-kommut.tex:321-353](../../../../documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/031-subsection-8-w-hrend-der-arbeit-entdeckte-nderung-kommut.tex#L321) · `section:26c294848c4ee57b51a8` · subsection
 
 Der vorhandene native Satz beweist Eindeutigkeit, N=64, Singulett und positive Lücke bei μ=0 im angegebenen Kopplungsbereich. Eine komplette Clebsch-Gordan-Serie oder Voll-Diagonalisierung ist dafür nicht nötig; Vergleichsungleichungen und Minmax waren gerade der einfache Ausweg. Die physische Auswahl von H beziehungsweise μ=0 bleibt eine andere Frage.
-
-## Historischer Beweisanhang: vollständiger nativer Herleitungsstand v1.6.4
-
-[documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/032-subsubsection-5-1-anomalien-label-anomalien.tex:139-149](../../../../documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/032-subsubsection-5-1-anomalien-label-anomalien.tex#L139) · `section:eb47e1c679e877d523c3` · section
-
-Dieser Anhang bewahrt die frühere Herleitung vollständig. Seine damaligen Statussätze werden durch die aktuelle Konsolidierung und den Nachtrag oben ergänzt; er ist kein ungeprüft übernommener neuer Gesamtstatus. Die externe laufende Symmetrieergänzung wurde separat geprüft und ist nicht unbemerkt in diesen eingefrorenen Anhang eingegangen.

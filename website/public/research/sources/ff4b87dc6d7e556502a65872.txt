@@ -1,0 +1,72 @@
+TFPT scientific source excerpt
+Original repository path: verification/v1002_spin10_mirror_projector.py
+Original file SHA-256: 84f7cd7987887ee071d7e05872285ab274ae329f6bcfa693be69bb52add19a4c
+Inclusive original lines: 204-267
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000204 | def mode_operator(mode_count: int, mode: int, dagger: bool) -> sp.csr_matrix:
+000205 |     dimension = 1 << mode_count
+000206 |     states = np.arange(dimension, dtype=np.int64)
+000207 |     occupied = (states & (1 << mode)) != 0
+000208 |     allowed = ~occupied if dagger else occupied
+000209 |     columns = states[allowed]
+000210 |     rows = columns ^ (1 << mode)
+000211 |     lower_mask = (1 << mode) - 1
+000212 |     signs = 1 - 2 * parity_table(mode_count)[columns & lower_mask]
+000213 |     return sp.coo_matrix(
+000214 |         (signs.astype(complex), (rows, columns)),
+000215 |         shape=(dimension, dimension),
+000216 |     ).tocsr()
+000217 | 
+000218 | 
+000219 | def determinant_operators(total_modes: int, modes: tuple[int, ...]):
+000220 |     if tuple(sorted(modes)) != modes or len(set(modes)) != len(modes):
+000221 |         raise ValueError("determinant modes must be distinct and ordered")
+000222 |     dimension = 1 << total_modes
+000223 |     cluster_mask = sum(1 << mode for mode in modes)
+000224 |     all_states = np.arange(dimension, dtype=np.int64)
+000225 |     empty_states = all_states[(all_states & cluster_mask) == 0]
+000226 |     full_states = empty_states | cluster_mask
+000227 |     creation_amplitudes = np.ones(len(empty_states), dtype=complex)
+000228 |     for index, empty_state in enumerate(empty_states):
+000229 |         state = int(empty_state)
+000230 |         amplitude = 1
+000231 |         for mode in reversed(modes):
+000232 |             amplitude *= -1 if (state & ((1 << mode) - 1)).bit_count() & 1 else 1
+000233 |             state |= 1 << mode
+000234 |         if state != int(full_states[index]):
+000235 |             raise RuntimeError("determinant creation state mismatch")
+000236 |         creation_amplitudes[index] = amplitude
+000237 |     ones = np.ones(len(empty_states), dtype=complex)
+000238 |     p_empty = sp.coo_matrix(
+000239 |         (ones, (empty_states, empty_states)), shape=(dimension, dimension)
+000240 |     ).tocsr()
+000241 |     p_full = sp.coo_matrix(
+000242 |         (ones, (full_states, full_states)), shape=(dimension, dimension)
+000243 |     ).tocsr()
+000244 |     omega_dagger = sp.coo_matrix(
+000245 |         (creation_amplitudes, (full_states, empty_states)),
+000246 |         shape=(dimension, dimension),
+000247 |     ).tocsr()
+000248 |     omega = omega_dagger.getH().tocsr()
+000249 |     return p_empty, p_full, omega, omega_dagger
+000250 | 
+000251 | 
+000252 | def determinant_projector(
+000253 |     total_modes: int,
+000254 |     modes: tuple[int, ...],
+000255 |     phi: float,
+000256 |     normalization: float = 0.5,
+000257 | ) -> sp.csr_matrix:
+000258 |     p_empty, p_full, omega, omega_dagger = determinant_operators(total_modes, modes)
+000259 |     return (
+000260 |         normalization
+000261 |         * (
+000262 |             p_empty
+000263 |             + p_full
+000264 |             + np.exp(-1j * phi) * omega
+000265 |             + np.exp(1j * phi) * omega_dagger
+000266 |         )
+000267 |     ).tocsr()

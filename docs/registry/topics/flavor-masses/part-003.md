@@ -546,7 +546,7 @@ The relative Einstein target rests on the standard four-dimensional heat-kernel 
 
 [documents/archive--paper-latex--tfpt-v29/sections/003-subsection-flavor-and-the-phase-grammar.tex:123-142](../../../../documents/archive--paper-latex--tfpt-v29/sections/003-subsection-flavor-and-the-phase-grammar.tex#L123) · `section:c857c002ffa7ed94e137` · section
 
-@> Xcccc@ Branch & [formula in source] & [formula in source] & [formula in source] & [formula in source] \\ canonical carrier branch & [formula in source] & [formula in source] & [formula in source] & 137.03599921615843 \\ boundary multiplicity deformation & [formula in source] & [formula in source] & [formula in source] & 156.094045457 \\ boundary multiplicity deformation & [formula in source] & [formula in source] 
+@> Xcccc@ Branch & [formula in source] & [formula in source] & [formula in source] & [formula in source] \\ canonical carrier branch & [formula in source] & [formula in source] & [formula in source] & 137.03599921615843 \\ boundary multiplicity deformation & [formula in source] & [formula in source] & [formula in source] & 156.094045457 \\ boundary multiplicity deformation & [formula in source] & [formula in source]
 
 ## Reading guide and claim map
 
@@ -576,7 +576,7 @@ The simplest carrier-to-family bridge is to promote the three distinguished cycl
 
 [documents/archive--paper-latex--tfpt-v30/sections/003-subsection-occupancy-and-boundary-to-bulk-transgression.tex:32-43](../../../../documents/archive--paper-latex--tfpt-v30/sections/003-subsection-occupancy-and-boundary-to-bulk-transgression.tex#L32) · `section:abddd8b0a1c1d0ac1ab5` · subsection
 
-The geometric completion is formulated on a graded bundle [formula in source] with a declared reference pair [formula in source] and APS-type boundary conditions on the seam [formula in source] ; see Appendix [formula in source] This is a construction, not yet a theorem. Its value is to keep grading, reference subtraction, seam data, and the [formula in source] channel in one object from the start rather than mixing 
+The geometric completion is formulated on a graded bundle [formula in source] with a declared reference pair [formula in source] and APS-type boundary conditions on the seam [formula in source] ; see Appendix [formula in source] This is a construction, not yet a theorem. Its value is to keep grading, reference subtraction, seam data, and the [formula in source] channel in one object from the start rather than mixing
 
 ## Completion program B: Yukawas, masses, flavor, confinement, and strong CP
 

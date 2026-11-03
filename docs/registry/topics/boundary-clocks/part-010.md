@@ -155,7 +155,7 @@ Der Clock-Ausschluss allein wäre zu schwach. Die Orbitsumme
 
 [documents/experiments--theory-contracts--universalraum-singlet-observable-20260915--tmp--pdfs--TFPT_Universalraum_Richtige_Kette_Konsolidierung_2026-09-15_v1.6.7/sections/010-subsubsection-6-3-clock-mittelung-ist-m-glich-aber-der-f.tex:67-86](../../../../documents/experiments--theory-contracts--universalraum-singlet-observable-20260915--tmp--pdfs--TFPT_Universalraum_Richtige_Kette_Konsolidierung_2026-09-15_v1.6.7/sections/010-subsubsection-6-3-clock-mittelung-ist-m-glich-aber-der-f.tex#L67) · `section:6481640a7c15c08472e1` · subsubsection
 
-Für den hier exakt spezifizierten Zeugen fehlt mindestens eine Operation, die nicht mit dem betrachteten Farb-Cartan des ursprünglichen Systems kommutiert, oder eine aus einer erweiterten globalen Quelle abgeleitete Kopplung mit einer expliziten Ausgleichsressource für diese Cartanladung. Ein zusätzlicher aktiver SU(4)-Generator wäre ein neuer Operationsvertrag; außerdem bewegt sein simultaner Fermion-/Boson-Lift im 
+Für den hier exakt spezifizierten Zeugen fehlt mindestens eine Operation, die nicht mit dem betrachteten Farb-Cartan des ursprünglichen Systems kommutiert, oder eine aus einer erweiterten globalen Quelle abgeleitete Kopplung mit einer expliziten Ausgleichsressource für diese Cartanladung. Ein zusätzlicher aktiver SU(4)-Generator wäre ein neuer Operationsvertrag; außerdem bewegt sein simultaner Fermion-/Boson-Lift im
 
 ## Reproduktion und Status
 
@@ -522,7 +522,7 @@ Für den Grundzustand und die vier niedrigen Einlochblöcke ergibt die Resolvent
 
 [documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/002-subsection-7-derselbe-grundzustand-besitzt-eine-kontroll.tex:266-312](../../../../documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/002-subsection-7-derselbe-grundzustand-besitzt-eine-kontroll.tex#L266) · `section:71f08ad0e58f0de9456a` · subsection
 
-@ > p( - 4 ) * 0.3333 > p( - 4 ) * 0.3333 > p( - 4 ) * 0.3333@ Gate & Was diese Runde tatsächlich beiträgt & Was weiter fehlt \\ T1 Auswahl & Zwei Spin-Lifts, ein Clock-Intertwiner, ein bedingter Reflexionsselektor und Zustandsselektion in einer kleinen Klasse & Ursprüngliche gemeinsame Vertex-/Kantenreflexion, Kopienregel und Kopplungsvertrag \\ T2 markierte Seam & Die verlorene fermionische Hebungsinformation wird 
+@ > p( - 4 ) * 0.3333 > p( - 4 ) * 0.3333 > p( - 4 ) * 0.3333@ Gate & Was diese Runde tatsächlich beiträgt & Was weiter fehlt \\ T1 Auswahl & Zwei Spin-Lifts, ein Clock-Intertwiner, ein bedingter Reflexionsselektor und Zustandsselektion in einer kleinen Klasse & Ursprüngliche gemeinsame Vertex-/Kantenreflexion, Kopienregel und Kopplungsvertrag \\ T2 markierte Seam & Die verlorene fermionische Hebungsinformation wird
 
 ## 12. Die nächsten entscheidenden Prüfungen
 

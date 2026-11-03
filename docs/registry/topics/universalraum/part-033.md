@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Verschränkung legt die Zusammensetzung fest
+
+[experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/13_schatten_quanten.tex:41-52](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/13_schatten_quanten.tex#L41) · `section:80939f85a867f4930719` · section
+
+Für zwei räumlich getrennte Messstellen hat die CHSH-Kombination [formula in source] in einem lokalen Modell mit unabhängiger Wahl der Einstellungen die Grenze [formula in source] . Quantenmechanik erreicht [formula in source] . Mit [formula in source] , [formula in source] und [formula in source] ist der zugehörige Operator [formula in source] ; seine Eigenwerte sind [formula in source] . Beides wurde hier exakt nac
+
 ## Gleiche Energien können verschiedene Welten beschreiben
 
 [experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/13_schatten_quanten.tex:53-68](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/13_schatten_quanten.tex#L53) · `section:feaaee9d3eb0c7cb023b` · section
@@ -20,7 +26,7 @@ Die komplexe Vierdimensionalität ist für den bestehenden Pauli-/Spinorbaukaste
 
 [experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/13_schatten_quanten.tex:76-81](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/13_schatten_quanten.tex#L76) · `section:e55a82da55726a9b9b45` · section
 
-Die bisherigen Registerbeispiele erklären, wie ein global kohärenter Ablauf nach eingeschränktem Zugriff wie ein irreversibler Prozess aussehen kann. Sie liefern noch keine eindeutige Lösung des Messproblems: Insbesondere folgt aus einer diagonalen reduzierten Dichtematrix allein keine Auswahl eines einzelnen Ereignisses. Eine zusätzliche Kollapsdynamik müsste messbare Abweichungen angeben; eine unitäre Beschreibung 
+Die bisherigen Registerbeispiele erklären, wie ein global kohärenter Ablauf nach eingeschränktem Zugriff wie ein irreversibler Prozess aussehen kann. Sie liefern noch keine eindeutige Lösung des Messproblems: Insbesondere folgt aus einer diagonalen reduzierten Dichtematrix allein keine Auswahl eines einzelnen Ereignisses. Eine zusätzliche Kollapsdynamik müsste messbare Abweichungen angeben; eine unitäre Beschreibung
 
 ## Drei Raumrichtungen und eine Zeit: Welche Bedingungen bleiben?
 
@@ -140,7 +146,7 @@ No opening prose excerpt; see the source.
 
 [experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/17_schatten_quellen.tex:3-29](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/17_schatten_quellen.tex#L3) · `section:5627f4ea3d4943cc065d` · section
 
-Die Erweiterung wurde am 14. September 2026 gegen verfügbare Originalabschnitte im lokalen Repository tfpt-theoryv4 abgeglichen. Der gelesene Git-Stand war 66b91e40e245569f06ab440ead80f446c9be0ee5. Dies identifiziert den Checkout; es behauptet keinen frischen vollständigen Beweis- oder Testlauf. Die tatsächlich verwendeten Dateiinhalte sind zusätzlich mit SHA-256 im Paket erfasst, auch soweit der Arbeitsbaum von Git 
+Die Erweiterung wurde am 14. September 2026 gegen verfügbare Originalabschnitte im lokalen Repository tfpt-theoryv4 abgeglichen. Der gelesene Git-Stand war 66b91e40e245569f06ab440ead80f446c9be0ee5. Dies identifiziert den Checkout; es behauptet keinen frischen vollständigen Beweis- oder Testlauf. Die tatsächlich verwendeten Dateiinhalte sind zusätzlich mit SHA-256 im Paket erfasst, auch soweit der Arbeitsbaum von Git
 
 Explicit source references:
 
@@ -455,7 +461,7 @@ Erstens: Die Reaktion verrät die Verbindung. Im Zwei-Kupplungs-Modell stimmen d
 
 [experiments/theory-contracts/universalraum-source-composition-20260915/tmp/pdfs/TFPT_Universalraum_Quellkomposition_Einfach_2026-09-15_v1.6.9.tex:220-252](../../../../experiments/theory-contracts/universalraum-source-composition-20260915/tmp/pdfs/TFPT_Universalraum_Quellkomposition_Einfach_2026-09-15_v1.6.9.tex#L220) · `section:3086c5f24f372aae1a4c` · subsection
 
-@ > p( - 2 ) * 0.5000 > p( - 2 ) * 0.5000@ Vorher & Jetzt \\ „Uns fehlt die gemeinsame Verbindung.`` & Zwei kleine vollständige Vergleiche zeigen, was sie verändert und wie man sie zurückliest. \\ Zusätzlicher Einzelmoden-Handgriff im Versuch & Derselbe innere Prozess funktioniert mit dem schon dokumentierten Bosonzahl-Kontrolltyp. \\ Aufzeichnung musste die Interferenzgrenze beachten & Ein konkreter Zeiger und sein 
+@ > p( - 2 ) * 0.5000 > p( - 2 ) * 0.5000@ Vorher & Jetzt \\ „Uns fehlt die gemeinsame Verbindung.`` & Zwei kleine vollständige Vergleiche zeigen, was sie verändert und wie man sie zurückliest. \\ Zusätzlicher Einzelmoden-Handgriff im Versuch & Derselbe innere Prozess funktioniert mit dem schon dokumentierten Bosonzahl-Kontrolltyp. \\ Aufzeichnung musste die Interferenzgrenze beachten & Ein konkreter Zeiger und sein
 
 ## Wie könnte das gesuchte Gesamtbild aussehen?
 
@@ -939,7 +945,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [experiments/theory-contracts/universalraum-spin-lift-basics-20260915/sources/input_4_origin_theory.tex:1166-1454](../../../../experiments/theory-contracts/universalraum-spin-lift-basics-20260915/sources/input_4_origin_theory.tex#L1166) · `section:3bfc0afca092b381dee1` · section
 
-The precise reformulation ( ). The seam is not identical to an event horizon. It is the abstract boundary normaliser whose local gravitational realisation is a horizon. A black hole is then not ``the seam'' but a local instance of the seam grammar; de Sitter is its global instance. This is stronger and cleaner than a direct identification — it avoids importing Schwarzschild analogies wholesale, and it makes [formula 
+The precise reformulation ( ). The seam is not identical to an event horizon. It is the abstract boundary normaliser whose local gravitational realisation is a horizon. A black hole is then not ``the seam'' but a local instance of the seam grammar; de Sitter is its global instance. This is stronger and cleaner than a direct identification — it avoids importing Schwarzschild analogies wholesale, and it makes [formula
 
 Explicit source references:
 
@@ -1286,7 +1292,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [experiments/theory-contracts/universalraum-spin-lift-basics-20260915/sources/input_5_tfpt_3_e8_audit_bootstrap.tex:161-170](../../../../experiments/theory-contracts/universalraum-spin-lift-basics-20260915/sources/input_5_tfpt_3_e8_audit_bootstrap.tex#L161) · `section:6b3fedaf2ffd56e67e82` · part
 
-Purpose and discipline. This note does not introduce new physics. It builds an audit raster: the claim that every load-bearing TFPT number should appear in at least one [formula in source] branching projection. A number that appears in none is suspect; a number appearing in several independent projections becomes structurally strong. All arithmetic identities below are exact ; the physical readings are audit-level \ 
+Purpose and discipline. This note does not introduce new physics. It builds an audit raster: the claim that every load-bearing TFPT number should appear in at least one [formula in source] branching projection. A number that appears in none is suspect; a number appearing in several independent projections becomes structurally strong. All arithmetic identities below are exact ; the physical readings are audit-level \
 
 ## The compiler core (where this note sits)
 
@@ -1352,320 +1358,3 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 - [(* ---- (v170) E8 slice compression: seven slices from two alphabets ---- *) Module[{p, p0, p1, p2, p3, Delta, e1, e2, dimSp, dQ, dK, dR, dC, dL, dF, slices}, p = Table[2 + 2^n, {n, 0, 3}]; {p0, p1, p2, p3} = p; Delta = p0 + p3; e1 = 4; e2 = 5; dimSp = 16; {dQ, dK, dR, dC, dL, dF} = {3, 4, 8, 14, 20, 32}; slices = { p0 p1 p3 + p1 dF, (p1 p3 + e2) + (p0 p1 + p0) + p2 p3 + 2 e1 dimSp, p2 Delta + dR + 81 + 81, (p0 p1 p3 + Delta) + p0 + dR dC, (p1^2 + p2^2) + dC + Delta dC, 2 p1 p2 + 4 e2 p3, dK dL + 2 p2 dC}; checkExact["v170 E8 slice compression: P=(3,4,6,10), D=(3,4,8,14,20,32) sum 81=N_fam^4; K4 edges {12,18,30,24,40,60}; all seven E8 slices = 248; 78 = p2 Delta = dim E6", p === {3, 4, 6, 10} && Total[{dQ, dK, dR, dC, dL, dF}] == 81 && {p0 p1, p0 p2, p0 p3, p1 p2, p1 p3, p2 p3} === {12, 18, 30, 24, 40, 60} && AllTrue[slices, # == 248 &] && p2 Delta == 78]; ]; (* ---- (v171) atomic OS moment + Sugawara gap safety ---- *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L1465)
 - [(* v430 (3): the sheet/deck set is forced-disjoint from the unmapped region *) checkExact["v430 E8.OTHERSIDE.AUDIT.01 (iii): the sheet/deck integer set {2,16,32,128} has EMPTY intersection with the unmapped degrees {12,14,18,20,24}; its only degree-alphabet contact is the matched 2", sheet == {2, 16, 32, 128} && Intersection[sheet, unmapped] == {} && Intersection[sheet, degs] == {2}]; ]; (* ==== v431 round: E8.DEGREE.LADDER.01 -- unmapped degrees = 6*spine U det-ladder ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2643)
 - [(* v223 Coxeter totative clock: (Z/30)^x = E8 exponents, order-4 element 7 *) checkExact["v223 COX.CLOCK.01: (Z/30)^x = {1,7,11,13,17,19,23,29} = E8 exponents, " <> "phi(30)=8=rank E8, 30=2*3*5; mult-by-7 has order 4 (7^2=19, 7^4=1 mod 30): a " <> "mu4 clock <7>={1,7,13,19}; the conjugate pairs split into 4 invariant planes", Select[Range[29], CoprimeQ[#, 30] &] == {1, 7, 11, 13, 17, 19, 23, 29} && EulerPhi[30] == 8 && PowerMod[7, 2, 30] == 19 && PowerMod[7, 4, 30] == 1 && Sort[Mod[7^Range[0, 3], 30]] == {1, 7, 13, 19} && Length[Union[Sort /@ ({#, 30 - #} & /@ {1, 7, 11, 13, 17, 19, 23, 29})]] == 4]; (* v227 degree/exponent channel split: 248 = 120 + 128 *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L1804)
-
-## Group-theoretic audits (optional)
-
-[experiments/theory-contracts/universalraum-spin-lift-basics-20260915/sources/input_5_tfpt_3_e8_audit_bootstrap.tex:552-11869](../../../../experiments/theory-contracts/universalraum-spin-lift-basics-20260915/sources/input_5_tfpt_3_e8_audit_bootstrap.tex#L552) · `section:c4cf080b9ae6f25f7a71` · section
-
-Weyl completion index. Over the main stabiliser, [formula in source] A group-theory machine-check, not physics: it quantifies the Weyl symmetry created beyond the [formula in source] stabiliser. \ (arithmetic) / \ (reading)
-
-Explicit source references:
-
-- [DOILY.PFAFFIAN.WICK.01](../../../../verification/status_ledger.csv#L725) · explicit_claim_identifier · original status at linked ledger row
-- [ARF.VACUUM.SYNDROME.01](../../../../verification/status_ledger.csv#L709) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v2_carrier_pascal.py](../../../../verification/v2_carrier_pascal.py#L1) · explicit_script_identifier
-- [verification/v715_qgeo_car_continuum.py](../../../../verification/v715_qgeo_car_continuum.py#L1) · explicit_script_identifier
-- [verification/v601_equivariant_dual.py](../../../../verification/v601_equivariant_dual.py#L1) · explicit_file_citation
-- [QGEO.DUALFORMS.01](../../../../verification/status_ledger.csv#L620) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v737_seam48_intertwiner.py](../../../../verification/v737_seam48_intertwiner.py#L1) · explicit_file_citation
-- [verification/v798_seam_clifford_modular_s.py](../../../../verification/v798_seam_clifford_modular_s.py#L1) · explicit_file_citation
-- [SEAM.CFIN.MARGINAL.STABILITY.01](../../../../verification/status_ledger.csv#L734) · explicit_claim_identifier · original status at linked ledger row
-- [E8.ST31D8.01](../../../../verification/status_ledger.csv#L657) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v603_seam_marks.py](../../../../verification/v603_seam_marks.py#L1) · explicit_file_citation
-- [QGEO.SELRULE.01](../../../../verification/status_ledger.csv#L625) · explicit_claim_identifier · original status at linked ledger row
-- [experiments/lean4-carrier-rigidity/TfptCarrier/G31Orders.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/G31Orders.lean#L1) · explicit_file_citation
-- [verification/v613_canonical_periods.py](../../../../verification/v613_canonical_periods.py#L1) · explicit_file_citation
-- [verification/v622_seam_identification.py](../../../../verification/v622_seam_identification.py#L1) · explicit_file_citation
-- [verification/v752_projective_hamming_incidence.py](../../../../verification/v752_projective_hamming_incidence.py#L1) · explicit_script_identifier
-- [CARRIER.PETERSEN.RADIAL.01](../../../../verification/status_ledger.csv#L696) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v814_k5_sixstep_transport.py](../../../../verification/v814_k5_sixstep_transport.py#L1) · explicit_file_citation
-- [verification/v776_boundary_hamming_uniqueness.py](../../../../verification/v776_boundary_hamming_uniqueness.py#L1) · explicit_file_citation
-- [verification/v800_e8_torsor_fourier.py](../../../../verification/v800_e8_torsor_fourier.py#L1) · explicit_script_identifier
-- [verification/v880_finite_anchor_theorems.py](../../../../verification/v880_finite_anchor_theorems.py#L1) · explicit_file_citation
-- [verification/v746_phys_gnet_local_functor.py](../../../../verification/v746_phys_gnet_local_functor.py#L1) · explicit_script_identifier
-- [ANCHOR.AFFINE.01](../../../../verification/status_ledger.csv#L703) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v779_gnet_gns_arf.py](../../../../verification/v779_gnet_gns_arf.py#L1) · explicit_script_identifier
-- [verification/v781_one_object_clock_census.py](../../../../verification/v781_one_object_clock_census.py#L1) · explicit_file_citation
-- [verification/v614_transport_deck.py](../../../../verification/v614_transport_deck.py#L1) · explicit_file_citation
-- [QGEO.COVER.01](../../../../verification/status_ledger.csv#L615) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v590_involution_existence.py](../../../../verification/v590_involution_existence.py#L1) · explicit_file_citation
-- [E8.TRANSITIONBUS.01](../../../../verification/status_ledger.csv#L685) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v799_seam_code_typeii.py](../../../../verification/v799_seam_code_typeii.py#L1) · explicit_file_citation
-- [E8.ST31.01](../../../../verification/status_ledger.csv#L646) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v575_cr_continuous_uniflow.py](../../../../verification/v575_cr_continuous_uniflow.py#L1) · explicit_script_identifier
-- [verification/v616_su2_internal_kinematic.py](../../../../verification/v616_su2_internal_kinematic.py#L1) · explicit_file_citation
-- [verification/v725_phys_vgeo_torsor_audit.py](../../../../verification/v725_phys_vgeo_torsor_audit.py#L1) · explicit_file_citation
-- [QGEO.NCENSUS.01](../../../../verification/status_ledger.csv#L636) · explicit_claim_identifier · original status at linked ledger row
-- [experiments/lean4-carrier-rigidity/TfptCarrier/PositiveDescentMaster.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/PositiveDescentMaster.lean#L1) · explicit_file_citation
-- [SEAM.CFIN.KMSMIX.01](../../../../verification/status_ledger.csv#L727) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v726_phys_car_pp_index.py](../../../../verification/v726_phys_car_pp_index.py#L1) · explicit_file_citation
-- [verification/v510_seam_bit_freedom.py](../../../../verification/v510_seam_bit_freedom.py#L1) · explicit_script_identifier
-- [K5.SIXSTEP.TRANSPORT.01](../../../../verification/status_ledger.csv#L701) · explicit_claim_identifier · original status at linked ledger row
-- [E8.ORBITPACKET.01](../../../../verification/status_ledger.csv#L672) · explicit_claim_identifier · original status at linked ledger row
-- [SEAM.THEOREM.01](../../../../verification/status_ledger.csv#L131) · explicit_claim_identifier · original status at linked ledger row
-- [QGEO.EQORDER.01](../../../../verification/status_ledger.csv#L622) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v849_cfin_unique_cofinal_lean.py](../../../../verification/v849_cfin_unique_cofinal_lean.py#L1) · explicit_file_citation
-- [verification/v898_kms_schur_mixing.py](../../../../verification/v898_kms_schur_mixing.py#L1) · explicit_script_identifier
-- [E8.ST31DEG.01](../../../../verification/status_ledger.csv#L651) · explicit_claim_identifier · original status at linked ledger row
-- [ARF.BENT.CSS.01](../../../../verification/status_ledger.csv#L710) · explicit_claim_identifier · original status at linked ledger row
-- [SEAM.STATE.WIRING.SELECTOR.01](../../../../verification/status_ledger.csv#L736) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v875_shell_global_lean.py](../../../../verification/v875_shell_global_lean.py#L1) · explicit_script_identifier
-- [ARF.ROOTCLASS.01](../../../../verification/status_ledger.csv#L680) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v796_duad_syntheme_bridge.py](../../../../verification/v796_duad_syntheme_bridge.py#L1) · explicit_file_citation
-- [verification/v689_gaussian_code_bridge.py](../../../../verification/v689_gaussian_code_bridge.py#L1) · explicit_file_citation
-- [verification/v646_rm13_reverse.py](../../../../verification/v646_rm13_reverse.py#L1) · explicit_script_identifier
-- [verification/v705_chain_deck_sector.py](../../../../verification/v705_chain_deck_sector.py#L1) · explicit_file_citation
-- [verification/v602_duality_forms.py](../../../../verification/v602_duality_forms.py#L1) · explicit_script_identifier
-- [E8.CODE.01](../../../../verification/status_ledger.csv#L641) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v778_qgeo_gridsup_logsum.py](../../../../verification/v778_qgeo_gridsup_logsum.py#L1) · explicit_file_citation
-- [verification/v664_look_elsewhere.py](../../../../verification/v664_look_elsewhere.py#L1) · explicit_file_citation
-- [verification/v14_carrier_uniqueness.py](../../../../verification/v14_carrier_uniqueness.py#L1) · explicit_script_identifier
-- [FORM.QGEO.04](../../../../verification/status_ledger.csv#L374) · explicit_claim_identifier · original status at linked ledger row
-- [E8.SYNDROME.ALGEBRA.01](../../../../verification/status_ledger.csv#L695) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v803_e8_jetcode_affine_nsr.py](../../../../verification/v803_e8_jetcode_affine_nsr.py#L1) · explicit_script_identifier
-- [META.DISCIPLINE.01](../../../../verification/status_ledger.csv#L652) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v526_seam_thermal_kms_nariai_bridge.py](../../../../verification/v526_seam_thermal_kms_nariai_bridge.py#L1) · explicit_script_identifier
-- [QGEO.CARLIMIT.01](../../../../verification/status_ledger.csv#L666) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v903_seam_rp_exclusion.py](../../../../verification/v903_seam_rp_exclusion.py#L1) · explicit_file_citation
-- [verification/v639_twist_ope.py](../../../../verification/v639_twist_ope.py#L1) · explicit_script_identifier
-- [QGEO.CANON.01](../../../../verification/status_ledger.csv#L619) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v572_rp_bit_form.py](../../../../verification/v572_rp_bit_form.py#L1) · explicit_script_identifier
-- [E8.G31.CLOCK_ALPHABET.01](../../../../verification/status_ledger.csv#L712) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v647_st31_degree24.py](../../../../verification/v647_st31_degree24.py#L1) · explicit_file_citation
-- [verification/v600_joint_embedding.py](../../../../verification/v600_joint_embedding.py#L1) · explicit_file_citation
-- [E8.SEAM48.01](../../../../verification/status_ledger.csv#L673) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v782_e8_transition_bus.py](../../../../verification/v782_e8_transition_bus.py#L1) · explicit_file_citation
-- [verification/v23_anchor_generator.py](../../../../verification/v23_anchor_generator.py#L1) · explicit_script_identifier
-- [verification/v852_arf_vacuum_ovoid.py](../../../../verification/v852_arf_vacuum_ovoid.py#L1) · explicit_file_citation
-- [GAUSSIAN.RAMLADDER.01](../../../../verification/status_ledger.csv#L704) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v844_message_doily_rank.py](../../../../verification/v844_message_doily_rank.py#L1) · explicit_file_citation
-- [QGEO.CARL1.01](../../../../verification/status_ledger.csv#L674) · explicit_claim_identifier · original status at linked ledger row
-- [E8.ONEOBJECT.01](../../../../verification/status_ledger.csv#L684) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v1_e8_glue.py](../../../../verification/v1_e8_glue.py#L1) · explicit_script_identifier
-- [QGEO.PERNORM.01](../../../../verification/status_ledger.csv#L631) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v745_qgeo_car_l1_sector_lemma.py](../../../../verification/v745_qgeo_car_l1_sector_lemma.py#L1) · explicit_file_citation
-- [verification/v623_covered_seam.py](../../../../verification/v623_covered_seam.py#L1) · explicit_file_citation
-- [GATE.QGEO.01](../../../../verification/status_ledger.csv#L52) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v690_quartic_half.py](../../../../verification/v690_quartic_half.py#L1) · explicit_file_citation
-- [verification/v425_dyn_transfer_universal.py](../../../../verification/v425_dyn_transfer_universal.py#L1) · explicit_script_identifier
-- [P1.INDEX.KMS.01](../../../../verification/status_ledger.csv#L700) · explicit_claim_identifier · original status at linked ledger row
-- [E8.PROJHAMMING.01](../../../../verification/status_ledger.csv#L677) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v608_gamma_free_slice.py](../../../../verification/v608_gamma_free_slice.py#L1) · explicit_script_identifier
-- [verification/v611_periods.py](../../../../verification/v611_periods.py#L1) · explicit_file_citation
-- [FTRANSFER.COCYCLE.01](../../../../verification/status_ledger.csv#L669) · explicit_claim_identifier · original status at linked ledger row
-- [QGEO.FANODISC7.01](../../../../verification/status_ledger.csv#L678) · explicit_claim_identifier · original status at linked ledger row
-- [DOILY.PLUCKER.GR25.01](../../../../verification/status_ledger.csv#L723) · explicit_claim_identifier · original status at linked ledger row
-- [QGEO.DICT.01](../../../../verification/status_ledger.csv#L616) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v813_p1_index_kms.py](../../../../verification/v813_p1_index_kms.py#L1) · explicit_file_citation
-- [experiments/lean4-carrier-rigidity/TfptCarrier/OrbitPacket.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/OrbitPacket.lean#L1) · explicit_file_citation
-- [verification/v628_orbifold_casimir.py](../../../../verification/v628_orbifold_casimir.py#L1) · explicit_script_identifier
-- [verification/v221_seam_qecc.py](../../../../verification/v221_seam_qecc.py#L1) · explicit_script_identifier
-- [verification/v679_orbifold_continuum_os.py](../../../../verification/v679_orbifold_continuum_os.py#L1) · explicit_file_citation
-- [verification/v606_mode_separation.py](../../../../verification/v606_mode_separation.py#L1) · explicit_file_citation
-- [verification/v607_selection_rule.py](../../../../verification/v607_selection_rule.py#L1) · explicit_script_identifier
-- [verification/v533_ftransfer_disc7_norm.py](../../../../verification/v533_ftransfer_disc7_norm.py#L1) · explicit_script_identifier
-- [verification/v784_curve_code_2torsion.py](../../../../verification/v784_curve_code_2torsion.py#L1) · explicit_file_citation
-- [verification/v878_ledger_integrity.py](../../../../verification/v878_ledger_integrity.py#L1) · explicit_file_citation
-- [verification/v805_e8_syndrome_algebra.py](../../../../verification/v805_e8_syndrome_algebra.py#L1) · explicit_file_citation
-- [verification/v632_ftransfer_pgl2.py](../../../../verification/v632_ftransfer_pgl2.py#L1) · explicit_file_citation
-- [verification/v578_native_jets.py](../../../../verification/v578_native_jets.py#L1) · explicit_script_identifier
-- [E8.CODESEM.01](../../../../verification/status_ledger.csv#L647) · explicit_claim_identifier · original status at linked ledger row
-- [QGEO.BONDDEF.01](../../../../verification/status_ledger.csv#L656) · explicit_claim_identifier · original status at linked ledger row
-- [E8.QUARTICHALF.01](../../../../verification/status_ledger.csv#L661) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v3_em_alpha.py](../../../../verification/v3_em_alpha.py#L1) · explicit_script_identifier
-- [experiments/lean4-carrier-rigidity/TfptCarrier/CoverEmbedding.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/CoverEmbedding.lean#L1) · explicit_file_citation
-- [verification/v615_gamma_toy_interacting.py](../../../../verification/v615_gamma_toy_interacting.py#L1) · explicit_file_citation
-- [QGEO.DECKSECTOR.01](../../../../verification/status_ledger.csv#L665) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v183_koide_f_corner_transfer.py](../../../../verification/v183_koide_f_corner_transfer.py#L1) · explicit_script_identifier
-- [verification/v653_bond_defect.py](../../../../verification/v653_bond_defect.py#L1) · explicit_file_citation
-- [FTRANSFER.KMSCOSET.01](../../../../verification/status_ledger.csv#L688) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v777_ftransfer_clock_jets.py](../../../../verification/v777_ftransfer_clock_jets.py#L1) · explicit_file_citation
-- [SEAM.CFIN.MIXING.NORMALIZATION.01](../../../../verification/status_ledger.csv#L729) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v817_positive_descent_master.py](../../../../verification/v817_positive_descent_master.py#L1) · explicit_script_identifier
-- [E8.RAMIFIED.JETCODE.01](../../../../verification/status_ledger.csv#L694) · explicit_claim_identifier · original status at linked ledger row
-- [QGEO.SEAMMARKS.01](../../../../verification/status_ledger.csv#L621) · explicit_claim_identifier · original status at linked ledger row
-- [VGEO.TORSOR.01](../../../../verification/status_ledger.csv#L670) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v621_interacting_semigroup.py](../../../../verification/v621_interacting_semigroup.py#L1) · explicit_script_identifier
-- [verification/v92_glue_uniqueness.py](../../../../verification/v92_glue_uniqueness.py#L1) · explicit_script_identifier
-- [verification/v857_simplex_fourier_winding.py](../../../../verification/v857_simplex_fourier_winding.py#L1) · explicit_file_citation
-- [verification/v723_phys_modular_clock.py](../../../../verification/v723_phys_modular_clock.py#L1) · explicit_script_identifier
-- [QGEO.PERIODS.01](../../../../verification/status_ledger.csv#L629) · explicit_claim_identifier · original status at linked ledger row
-- [GNET.RAMIFIED.01](../../../../verification/status_ledger.csv#L667) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v486_transfer_full_rule.py](../../../../verification/v486_transfer_full_rule.py#L1) · explicit_script_identifier
-- [verification/v807_lorentz_nullselector.py](../../../../verification/v807_lorentz_nullselector.py#L1) · explicit_file_citation
-- [SEAM.CFIN.GAP.PENCIL.01](../../../../verification/status_ledger.csv#L733) · explicit_claim_identifier · original status at linked ledger row
-- [E8.ORBIT60.01](../../../../verification/status_ledger.csv#L664) · explicit_claim_identifier · original status at linked ledger row
-- [FLAVOR.GRAPH.FILTRATION.01](../../../../verification/status_ledger.csv#L699) · explicit_claim_identifier · original status at linked ledger row
-- [experiments/lean4-carrier-rigidity/TfptCarrier/ProjectiveHamming.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/ProjectiveHamming.lean#L1) · explicit_file_citation
-- [verification/v610_curve_landscape.py](../../../../verification/v610_curve_landscape.py#L1) · explicit_file_citation
-- [verification/v736_orbit_packet.py](../../../../verification/v736_orbit_packet.py#L1) · explicit_file_citation
-- [verification/v808_petersen_sixthroot.py](../../../../verification/v808_petersen_sixthroot.py#L1) · explicit_file_citation
-- [CONTRACT.F.01](../../../../verification/status_ledger.csv#L302) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v410_sheet_generator_binary.py](../../../../verification/v410_sheet_generator_binary.py#L1) · explicit_file_citation
-- [E8.WINDING.DECODER.01](../../../../verification/status_ledger.csv#L714) · explicit_claim_identifier · original status at linked ledger row
-- [QGEO.ORBASM.01](../../../../verification/status_ledger.csv#L654) · explicit_claim_identifier · original status at linked ledger row
-- [SEAM.CLIFFORD.MODULAR_S.01](../../../../verification/status_ledger.csv#L690) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v565_woit_beta3_pt_duality.py](../../../../verification/v565_woit_beta3_pt_duality.py#L1) · explicit_script_identifier
-- [QGEO.SEAMFORCE.01](../../../../verification/status_ledger.csv#L635) · explicit_claim_identifier · original status at linked ledger row
-- [experiments/lean4-carrier-rigidity/TfptCarrier/GaussianShells.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/GaussianShells.lean#L1) · explicit_file_citation
-- [verification/v874_feedback_decoder_lean.py](../../../../verification/v874_feedback_decoder_lean.py#L1) · explicit_file_citation
-- [QGEO.ORBOS.01](../../../../verification/status_ledger.csv#L659) · explicit_claim_identifier · original status at linked ledger row
-- [experiments/lean4-carrier-rigidity/TfptCarrier/GramCompactness.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/GramCompactness.lean#L1) · explicit_file_citation
-- [E8.RM13REV.01](../../../../verification/status_ledger.csv#L650) · explicit_claim_identifier · original status at linked ledger row
-- [ARF.BOUNDARY.CODE.01](../../../../verification/status_ledger.csv#L681) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v634_st31_structure.py](../../../../verification/v634_st31_structure.py#L1) · explicit_script_identifier
-- [verification/v810_cutcode_moment.py](../../../../verification/v810_cutcode_moment.py#L1) · explicit_file_citation
-- [E8.SHELL.GLOBAL.01](../../../../verification/status_ledger.csv#L716) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v908_seam_equilibrium_wiring.py](../../../../verification/v908_seam_equilibrium_wiring.py#L1) · explicit_file_citation
-- [QGEO.KLEINRP.01](../../../../verification/status_ledger.csv#L649) · explicit_claim_identifier · original status at linked ledger row
-- [CFIN.UNIQUE.01](../../../../verification/status_ledger.csv#L708) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v724_phys_t3b_modular_flows.py](../../../../verification/v724_phys_t3b_modular_flows.py#L1) · explicit_file_citation
-- [verification/v757_fano_disc7_bridge.py](../../../../verification/v757_fano_disc7_bridge.py#L1) · explicit_file_citation
-- [verification/v598_cover_dictionary.py](../../../../verification/v598_cover_dictionary.py#L1) · explicit_file_citation
-- [verification/v812_flavor_graph_filtration.py](../../../../verification/v812_flavor_graph_filtration.py#L1) · explicit_file_citation
-- [QGEO.TRANSPORT.01](../../../../verification/status_ledger.csv#L632) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v775_gaussian_class_d5_purity.py](../../../../verification/v775_gaussian_class_d5_purity.py#L1) · explicit_script_identifier
-- [verification/v792_ftransfer_kms_coset.py](../../../../verification/v792_ftransfer_kms_coset.py#L1) · explicit_file_citation
-- [verification/v609_translator_factorization.py](../../../../verification/v609_translator_factorization.py#L1) · explicit_file_citation
-- [SEAM.CFIN.MINIMAL.MEDIATOR.01](../../../../verification/status_ledger.csv#L730) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v651_orbifold_assembly.py](../../../../verification/v651_orbifold_assembly.py#L1) · explicit_file_citation
-- [verification/v638_code_semantics.py](../../../../verification/v638_code_semantics.py#L1) · explicit_script_identifier
-- [CFIN.AUT.FLAVOR.C6.01](../../../../verification/status_ledger.csv#L724) · explicit_claim_identifier · original status at linked ledger row
-- [QGEO.GRIDSUP.01](../../../../verification/status_ledger.csv#L682) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v624_external_lattice_audit.py](../../../../verification/v624_external_lattice_audit.py#L1) · explicit_file_citation
-- [verification/v654_st31_degree8.py](../../../../verification/v654_st31_degree8.py#L1) · explicit_file_citation
-- [experiments/lean4-carrier-rigidity/TfptCarrier/ParityWeightLaws.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/ParityWeightLaws.lean#L1) · explicit_file_citation
-- [NORMALFORM.CFIN.01](../../../../verification/status_ledger.csv#L707) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v645_klein_rp.py](../../../../verification/v645_klein_rp.py#L1) · explicit_script_identifier
-- [verification/v170_diamond_slice_compression.py](../../../../verification/v170_diamond_slice_compression.py#L1) · explicit_script_identifier
-- [E8.TORSOR.FOURIER.01](../../../../verification/status_ledger.csv#L692) · explicit_claim_identifier · original status at linked ledger row
-- [CURVE.CODE.DOILY.01](../../../../verification/status_ledger.csv#L697) · explicit_claim_identifier · original status at linked ledger row
-- [CURVE.CODE.OUTERSPIN.01](../../../../verification/status_ledger.csv#L689) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v834_pg32_flag_completion.py](../../../../verification/v834_pg32_flag_completion.py#L1) · explicit_file_citation
-- [verification/v722_phys_ramified_ns_r.py](../../../../verification/v722_phys_ramified_ns_r.py#L1) · explicit_script_identifier
-- [verification/v597_mu4_cover_model.py](../../../../verification/v597_mu4_cover_model.py#L1) · explicit_script_identifier
-- [verification/v605_translator.py](../../../../verification/v605_translator.py#L1) · explicit_script_identifier
-- [E8.GAUSSCODE.01](../../../../verification/status_ledger.csv#L660) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v612_polarization_frame.py](../../../../verification/v612_polarization_frame.py#L1) · explicit_file_citation
-- [verification/v604_equivariant_order.py](../../../../verification/v604_equivariant_order.py#L1) · explicit_file_citation
-- [REG.FREEZE.01](../../../../verification/status_ledger.csv#L158) · explicit_claim_identifier · original status at linked ledger row
-- [experiments/lean4-carrier-rigidity/TfptCarrier/WatataniIndexFour.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/WatataniIndexFour.lean#L1) · explicit_file_citation
-- [E8.CLIFFORD2Q.01](../../../../verification/status_ledger.csv#L686) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v566_parabolic_anchor_selfcode.py](../../../../verification/v566_parabolic_anchor_selfcode.py#L1) · explicit_script_identifier
-- [CARRIER.CUTCODE.01](../../../../verification/status_ledger.csv#L698) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v896_wick_block_functor.py](../../../../verification/v896_wick_block_functor.py#L1) · explicit_file_citation
-- [QGEO.EMBED.01](../../../../verification/status_ledger.csv#L618) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v112_selfcounting_channel.py](../../../../verification/v112_selfcounting_channel.py#L1) · explicit_script_identifier
-- [FTR.PGL2.01](../../../../verification/status_ledger.csv#L644) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v858_g31_clock_alphabet.py](../../../../verification/v858_g31_clock_alphabet.py#L1) · explicit_file_citation
-- [verification/v626_e8_code.py](../../../../verification/v626_e8_code.py#L1) · explicit_script_identifier
-- [verification/v534_seam_straddle_cone.py](../../../../verification/v534_seam_straddle_cone.py#L1) · explicit_script_identifier
-- [META.LOOKELSEWHERE.01](../../../../verification/status_ledger.csv#L658) · explicit_claim_identifier · original status at linked ledger row
-- [AX.P2.01](../../../../verification/status_ledger.csv#L3) · explicit_claim_identifier · original status at linked ledger row
-- [WOIT.GAMMA.TOY.01](../../../../verification/status_ledger.csv#L633) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v809_curve_code_doily.py](../../../../verification/v809_curve_code_doily.py#L1) · explicit_file_citation
-- [GNET.MARTINGALE.LIMIT.01](../../../../verification/status_ledger.csv#L693) · explicit_claim_identifier · original status at linked ledger row
-- [GATE.LEDGER.01](../../../../verification/status_ledger.csv#L718) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v629_root_incidence.py](../../../../verification/v629_root_incidence.py#L1) · explicit_file_citation
-- [verification/v650_orbifold_modular.py](../../../../verification/v650_orbifold_modular.py#L1) · explicit_file_citation
-- [QGEO.POLFRAME.01](../../../../verification/status_ledger.csv#L630) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v519_woit_theta_rp_free.py](../../../../verification/v519_woit_theta_rp_free.py#L1) · explicit_script_identifier
-- [verification/v783_two_qubit_clifford.py](../../../../verification/v783_two_qubit_clifford.py#L1) · explicit_file_citation
-- [experiments/lean4-carrier-rigidity/TfptCarrier/ArfSpinorCompiler.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/ArfSpinorCompiler.lean#L1) · explicit_file_citation
-- [verification/v972_seam_interaction_front.py](../../../../verification/v972_seam_interaction_front.py#L1) · explicit_file_citation
-- [verification/v802_gnet_martingale.py](../../../../verification/v802_gnet_martingale.py#L1) · explicit_file_citation
-- [E8.ZIQUOTIENT.01](../../../../verification/status_ledger.csv#L645) · explicit_claim_identifier · original status at linked ledger row
-- [SEAM.CODE.TYPEII.01](../../../../verification/status_ledger.csv#L691) · explicit_claim_identifier · original status at linked ledger row
-- [GNET.GNSLIMIT.01](../../../../verification/status_ledger.csv#L683) · explicit_claim_identifier · original status at linked ledger row
-- [QGEO.ORBARF.01](../../../../verification/status_ledger.csv#L655) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v310_carrier_sm_anomaly.py](../../../../verification/v310_carrier_sm_anomaly.py#L1) · explicit_script_identifier
-- [QGEO.COVERSEAM.01](../../../../verification/status_ledger.csv#L639) · explicit_claim_identifier · original status at linked ledger row
-- [QGEO.TRANSLATOR.01](../../../../verification/status_ledger.csv#L623) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v774_arf_spinor_compiler.py](../../../../verification/v774_arf_spinor_compiler.py#L1) · explicit_file_citation
-- [verification/v888_finite_pfaffian_signature.py](../../../../verification/v888_finite_pfaffian_signature.py#L1) · explicit_file_citation
-- [QGEO.ORBMOD.01](../../../../verification/status_ledger.csv#L653) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v584_ext_source_response.py](../../../../verification/v584_ext_source_response.py#L1) · explicit_file_citation
-- [E8.SIMPLEX.FOURIER.01](../../../../verification/status_ledger.csv#L711) · explicit_claim_identifier · original status at linked ledger row
-- [QGEO.ORBCAS.01](../../../../verification/status_ledger.csv#L642) · explicit_claim_identifier · original status at linked ledger row
-- [experiments/lean4-carrier-rigidity/TfptCarrier/FlavorFeedback.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/FlavorFeedback.lean#L1) · explicit_file_citation
-- [verification/v599_real_structure.py](../../../../verification/v599_real_structure.py#L1) · explicit_file_citation
-- [FTRANSFER.STT.01](../../../../verification/status_ledger.csv#L668) · explicit_claim_identifier · original status at linked ledger row
-- [QGEO.SEAMID.01](../../../../verification/status_ledger.csv#L638) · explicit_claim_identifier · original status at linked ledger row
-- [WOIT.GAMMA.SEMI.01](../../../../verification/status_ledger.csv#L637) · explicit_claim_identifier · original status at linked ledger row
-- [SEAM.CFIN.NESS.PARENT.01](../../../../verification/status_ledger.csv#L735) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v617_seam_cover_forcing.py](../../../../verification/v617_seam_cover_forcing.py#L1) · explicit_script_identifier
-- [verification/v845_cfin_normal_form.py](../../../../verification/v845_cfin_normal_form.py#L1) · explicit_file_citation
-- [WOIT.SU2.KIN.01](../../../../verification/status_ledger.csv#L634) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v649_discipline_audit.py](../../../../verification/v649_discipline_audit.py#L1) · explicit_file_citation
-- [QGEO.INVOL.01](../../../../verification/status_ledger.csv#L614) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v524_woit_beta2_os_quotient.py](../../../../verification/v524_woit_beta2_os_quotient.py#L1) · explicit_script_identifier
-- [PG32.FLAGS.01](../../../../verification/status_ledger.csv#L705) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v620_cyclic_n_census.py](../../../../verification/v620_cyclic_n_census.py#L1) · explicit_file_citation
-- [verification/v55_coxeter_cycle.py](../../../../verification/v55_coxeter_cycle.py#L1) · explicit_script_identifier
-- [verification/v652_orbifold_arf.py](../../../../verification/v652_orbifold_arf.py#L1) · explicit_file_citation
-- [QGEO.MODESEP.01](../../../../verification/status_ledger.csv#L624) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v633_orbit60_quotient.py](../../../../verification/v633_orbit60_quotient.py#L1) · explicit_file_citation
-- [QGEO.REAL.01](../../../../verification/status_ledger.csv#L617) · explicit_claim_identifier · original status at linked ledger row
-- [SEAM.CFIN.RP.DILATION.01](../../../../verification/status_ledger.csv#L732) · explicit_claim_identifier · original status at linked ledger row
-- [SEAM.CFIN.TWISTED.RP.01](../../../../verification/status_ledger.csv#L731) · explicit_claim_identifier · original status at linked ledger row
-- [FTRANSFER.CLOCKS.01](../../../../verification/status_ledger.csv#L676) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v911_wiring_freedom.py](../../../../verification/v911_wiring_freedom.py#L1) · explicit_file_citation
-- [SEAM.CFIN.WICKFUNCTOR.01](../../../../verification/status_ledger.csv#L726) · explicit_claim_identifier · original status at linked ledger row
-- [ARF.SPINORCOMPILER.01](../../../../verification/status_ledger.csv#L679) · explicit_claim_identifier · original status at linked ledger row
-- [FORM.QGEO.03](../../../../verification/status_ledger.csv#L298) · explicit_claim_identifier · original status at linked ledger row
-- [QGEO.SYM.01](../../../../verification/status_ledger.csv#L261) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v853_bent_css_mangoldt.py](../../../../verification/v853_bent_css_mangoldt.py#L1) · explicit_file_citation
-- [MESSAGE.LADDER.01](../../../../verification/status_ledger.csv#L706) · explicit_claim_identifier · original status at linked ledger row
-- [WOIT.GAMMA.FREE.01](../../../../verification/status_ledger.csv#L626) · explicit_claim_identifier · original status at linked ledger row
-- [GNET.PPINDEX.01](../../../../verification/status_ledger.csv#L671) · explicit_claim_identifier · original status at linked ledger row
-- [GNET.LOCALNET.01](../../../../verification/status_ledger.csv#L675) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v833_gaussian_ramification_ladder.py](../../../../verification/v833_gaussian_ramification_ladder.py#L1) · explicit_file_citation
-- [QGEO.CFACTOR.01](../../../../verification/status_ledger.csv#L627) · explicit_claim_identifier · original status at linked ledger row
-- [FLAVOR.FEEDBACK.NORMALFORM.01](../../../../verification/status_ledger.csv#L713) · explicit_claim_identifier · original status at linked ledger row
-- [TFPT.POSITIVE_DESCENT.MASTER.01](../../../../verification/status_ledger.csv#L702) · explicit_claim_identifier · original status at linked ledger row
-- [QGEO.TWISTOPE.01](../../../../verification/status_ledger.csv#L648) · explicit_claim_identifier · original status at linked ledger row
-- [QGEO.LANDSCAPE.01](../../../../verification/status_ledger.csv#L628) · explicit_claim_identifier · original status at linked ledger row
-- [EXTREV.LATTICE.01](../../../../verification/status_ledger.csv#L640) · explicit_claim_identifier · original status at linked ledger row
-- [E8.INCIDENCE.01](../../../../verification/status_ledger.csv#L643) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v700_orbit60_census.py](../../../../verification/v700_orbit60_census.py#L1) · explicit_file_citation
-- [DIAMOND.BIT.EXTSOURCE.01](../../../../verification/status_ledger.csv#L613) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v574_stageb_winding.py](../../../../verification/v574_stageb_winding.py#L1) · explicit_script_identifier
-- [verification/v832_anchor_flavor_checksum.py](../../../../verification/v832_anchor_flavor_checksum.py#L1) · explicit_file_citation
-
-Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
-
-- [experiments/lean4-carrier-rigidity/TfptCarrier/AnchorLadder.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/AnchorLadder.lean#L1)
-- [(* ---- (v55) cyclic element in the hull: E8 Coxeter order 30 + one-alpha cross-sector ---- *) checkExact["E8 exponents {1,7,11,13,17,19,23,29} = totatives of 30; count phi(30)=8=rank E8", {1, 7, 11, 13, 17, 19, 23, 29} == Select[Range[1, 29], CoprimeQ[#, 30] &] && EulerPhi[30] == 8 == gcar + Nfam]; checkExact["cycle order 30 = |Z2|*N_fam*g_car = 2*3*5", 30 == 2*Nfam*gcar == 2*3*5]; checkExact["one alpha^-1: S_dS*rho_Lambda = 1/(128 c3^4) = 32 pi^4 (de Sitter entropy ~ 1/Lambda)", Simplify[1/(128 (1/(8 Pi))^4) - 32 Pi^4] == 0]; checkExact["S_dS = 2^g_car pi^|mu4| e^{2 ainv}: 32=2^g_car=dim Dirac(D5)=16+16; 128=2^7, 7=g+n-1", 32 == 2^gcar == 16 + 16 && 128 == 2^7 && 7 == gcar + Nfam - 1]; (* ---- (v56) unique attractor: gapped transport, Coxeter planes ---- *)](../../../../verification/wolfram/tfpt_readouts.wl#L245)
-- [(* ==== v534 round: SEAM.STRADDLE.CONE.01 -- the RP cone on the interacting FK quartets (the first dynamical selection of the alignment bit). Exact mirrors: the stabilizer census of the mark family, the pi/2 partition + straddle incidence, the reflection-closure signs of the straddling quartets, and the equivariant Fix rays (uniform on m=2..6, NS-wrap-twisted on m=1,7). The 256-dim Fock spectra, the PT Gram corrections and the finite-g survival scan are Python-only (numpy), flagged per GATE.WOLFRAM.02. ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L8401)
-- [experiments/lean4-carrier-rigidity/TfptCarrier/WatataniIndexFour.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/WatataniIndexFour.lean#L1)
-- [(* ---- (v2) carrier / Pascal ---- *) checkExact["dim S+ = 2^(g_car-1) = 16", 2^(gcar - 1) == 16]; checkExact["16 = 1 + 5 + 10 = C(5,0)+C(5,1)+C(5,2)", Binomial[5, 0] + Binomial[5, 1] + Binomial[5, 2] == 16]; checkExact["N_fam = 3", Nfam == 3]; checkExact["rank E8 = g_car + N_fam = 8", gcar + Nfam == 8]; (* ---- (v13) M = 41 budget ---- *)](../../../../verification/wolfram/tfpt_readouts.wl#L50)
-- [(* ==== v235: the closing step in abelian Chern-Simons -- holomorphic <=> det K = 1 ==== *) Module[{cartanA, cartanD, e8edges, A3, D5, D8, E8, carrier}, cartanA[n_] := SparseArray[{{i_, i_} -> 2, {i_, j_} /; Abs[i - j] == 1 -> -1}, {n, n}] // Normal; cartanD[n_] := Module[{K}, K = 2 IdentityMatrix[n]; Do[K[[i, i + 1]] = K[[i + 1, i]] = -1, {i, n - 2}]; K[[n - 2, n]] = K[[n, n - 2]] = -1; K]; e8edges = {{1, 2}, {2, 3}, {3, 4}, {4, 5}, {5, 6}, {6, 7}, {5, 8}}; E8 = 2 IdentityMatrix[8] - Table[If[i != j && MemberQ[e8edges, Sort[{i, j}]], 1, 0], {i, 8}, {j, 8}]; A3 = cartanA[3]; D5 = cartanD[5]; D8 = cartanD[8]; carrier = ArrayFlatten[{{D5, 0}, {0, A3}}]; checkExact["v235 GATE.HOLO.02: the closing step in abelian Chern-Simons -- a free gapped bosonic 2+1d " <> "bulk = an even integer K-matrix with #anyons=|det K|, edge c=signature(K), holomorphic <=> det=1. " <> "The TFPT tower (v92) read by det: carrier D5(+)A3 (even, det 16, 16 anyons) -> SO(16)_1=D8 (det 4) " <> "-> (E8)_1 (det 1, holomorphic), all rank 8, c=signature=8=g_car+N_fam. Holomorphic <=> det 1 <=> E8 " <> "= the Kitaev E8 quantum-Hall state. Condensation: a Lagrangian glue of order sqrt(16)=|mu4|=4 takes " <> "det 16->1; an order-2 isotropic only ->4=D8. NEG: D8 free+bosonic but 4 anyons (not holomorphic). " <> "Residual: condense the |mu4| Lagrangian glue = the sheet/QGEO selection.", Det[E8] == 1 && Det[D8] == 4 && Det[carrier] == 16 && Det[A3] == 4 && Det[D5] == 4 && And @@ (EvenQ[#] & /@ Join[Diagonal[E8], Diagonal[D8], Diagonal[carrier]]) && Min[Eigenvalues[N[E8]]] > 0 && Min[Eigenvalues[N[D8]]] > 0 && Min[Eigenvalues[N[carrier]]] > 0 && Length[E8] == Length[D8] == Length[carrier] == 8 && 16/4^2 == 1 && 16/2^2 == 4 && (5 + 3 == 8)]; ]; (* ==== v236: the (2,3,5) Brieskorn singularity generates the skeleton ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L1950)
-- [(* ==== v260: one Kummer/K3 carries seam + carrier-16 + E8 (ARCH.K3.01) ==== *) Module[{e8edges, E8, U, L, sig, nodes, marks}, e8edges = {{1, 2}, {2, 3}, {3, 4}, {4, 5}, {5, 6}, {6, 7}, {5, 8}}; E8 = 2 IdentityMatrix[8] - Table[If[i != j && MemberQ[e8edges, Sort[{i, j}]], 1, 0], {i, 8}, {j, 8}]; U = {{0, 1}, {1, 0}}; L = ArrayFlatten[{{U, 0, 0, 0, 0}, {0, U, 0, 0, 0}, {0, 0, U, 0, 0}, {0, 0, 0, -E8, 0}, {0, 0, 0, 0, -E8}}]; sig = {Count[Eigenvalues[N[L]], x_ /; x > 0], Count[Eigenvalues[N[L]], x_ /; x < 0]}; nodes = 2^4; marks = 2^2; checkExact["v260 ARCH.K3.01: one Kummer/K3 surface carries seam + carrier-16 + E8. E8 Cartan even, det 1, " <> "positive-definite (the unique even unimodular pos-def rank-8 lattice); the K3 lattice U^3(+)E8(-1)^2 " <> "has rank 22=b_2, det -1 (unimodular), even, signature (3,19) with E8(-1)^2 an orthogonal summand; the " <> "seam T^2/(z->-z) has 4=|(Z/2)^2| marks (pillowcase); the carrier-16 = Kummer nodes |A[2]|=2^4=16 = " <> "dim S+ = 4x4 = (seam marks)^2. So the v1 glue D5(+)A3+mu4=>E8 is the lattice shadow of one object.", Det[E8] == 1 && AllTrue[Diagonal[E8], EvenQ] && PositiveDefiniteMatrixQ[E8] && Length[L] == 22 && Det[L] == -1 && AllTrue[Diagonal[L], EvenQ] && sig == {3, 19} && nodes == 16 && marks == 4 && nodes == marks^2]; ]; (* ==== v267: QGEO rigidity / minimal-axiom form of QGEO.SYM.01 (QGEO.SYM.02) ==== v262 (alpha_s RG), v263 (seesaw numpy), v264 (DtN FFT), v265 (RG+text guard), v266 (proton RG) are numerical -> Python-only; v267's exact cross-ratio/j core is mirrored here (the DtN/FFT part of v267 stays Python-only). *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2032)
-- [(* ==== v524 round: WOIT.BETA2.OS.01 -- "the OS quotient of the free system made explicit" (verdict SUCCESS, [C]-typed per contract precision (iii)). Four exact mirrors: (i) the euclidean-rotation preconditions (alpha_1^N = (-1)^F wrap arithmetic at N = 16 and N = 8) + the exact PD certificate identity sin^2(3pi/8) - sin(pi/8) sin(5pi/8) = 1/2; (ii) the Klein-Landau one-particle transfer forms tau_k on the shrinking domains at N = 16, k = 1..7: exactly Hermitian, odd k with exactly ZERO diagonal (the C(even) = 0 checkerboard), even k = 2j obeying the exact square identity tau_2j(a, b) = <alpha_j a, alpha_j b> entrywise; (iii) the clock identities (C(9) = C(7), C(11) = C(5), the transparency product formula sin(7pi/16) - sin(5pi/16) = 2 cos(3pi/8) sin(pi/16) > 0) + the N = 8 compressed clock spectrum EXACTLY {1, sqrt(2)-1} = {1, 1/delta_S} via the generalized eigenvalues of (tau_2, G) on the one-particle domain, with sin(pi/8)/sin(3pi/8) = sqrt(2)-1; (iv) the pre-declared KMS witnesses (C(1)/C(3) = 1 + sqrt(2) = delta_S at N = 8; -(C5-C7)((C3-C7)+(C5-C7)) < 0 exactly at N = 16, i.e. det(G - tau_4) < 0 on the odd one-particle clock block). The 37x37/16x16 H_phys Grams, the 40-digit inertia certificates, the spectral projections and the reconstructed rotation group are numerical (mpmath eighe), Python-only, flagged here. Mirrors v524. ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L7965)
-- [experiments/lean4-carrier-rigidity/TfptCarrier.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier.lean#L1)
-- [(* ---- (v16/v21) solar angle from the A3 glue-norm q(A3) = 3/4 ---- *) qA3 = 3/4; qD5 = 5/4; checkExact["E8 glue norm q(D5) + q(A3) = 2", qA3 + qD5 == 2]; checkExact["eps leading q(A3)/(6pi) = 1/(8pi) = c3", Simplify[qA3/(6 Pi) - c3] == 0]; s12 = 1/3 - (2/3) qA3 phi0; checkExact["sin^2 theta12 = 1/3 - phi0/2 (exact)", Simplify[s12 - (1/3 - phi0/2)] == 0]; (* ---- (v23) anchor generator a=(1,1,2) ---- *)](../../../../verification/wolfram/tfpt_readouts.wl#L88)
-- [experiments/lean4-carrier-rigidity/TfptCarrier/G31WordOrders.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/G31WordOrders.lean#L1)
-- [(* ==== v526 round: SEAM.THERMAL.KMS.01 -- the thermal seam / third leg of c3. Exact mirrors: (i) Q-polynomial / measured beta = N at N = 8; (ii) beta_angle = 2 pi = 1/(4 c3) chain + Hawking/Nariai identities; (iii) nu char-poly / closed modular spectrum at N = 8. Tomita 40-digit residuals and the entropy tower are Python-only. Mirrors v526. ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L8139)
-- [(* ---- (v170) E8 slice compression: seven slices from two alphabets ---- *) Module[{p, p0, p1, p2, p3, Delta, e1, e2, dimSp, dQ, dK, dR, dC, dL, dF, slices}, p = Table[2 + 2^n, {n, 0, 3}]; {p0, p1, p2, p3} = p; Delta = p0 + p3; e1 = 4; e2 = 5; dimSp = 16; {dQ, dK, dR, dC, dL, dF} = {3, 4, 8, 14, 20, 32}; slices = { p0 p1 p3 + p1 dF, (p1 p3 + e2) + (p0 p1 + p0) + p2 p3 + 2 e1 dimSp, p2 Delta + dR + 81 + 81, (p0 p1 p3 + Delta) + p0 + dR dC, (p1^2 + p2^2) + dC + Delta dC, 2 p1 p2 + 4 e2 p3, dK dL + 2 p2 dC}; checkExact["v170 E8 slice compression: P=(3,4,6,10), D=(3,4,8,14,20,32) sum 81=N_fam^4; K4 edges {12,18,30,24,40,60}; all seven E8 slices = 248; 78 = p2 Delta = dim E6", p === {3, 4, 6, 10} && Total[{dQ, dK, dR, dC, dL, dF}] == 81 && {p0 p1, p0 p2, p0 p3, p1 p2, p1 p3, p2 p3} === {12, 18, 30, 24, 40, 60} && AllTrue[slices, # == 248 &] && p2 Delta == 78]; ]; (* ---- (v171) atomic OS moment + Sugawara gap safety ---- *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L1465)
-- [(* ---- (v111) quadratic transport ---- *) Module[{jwOps, evensOf, buildQuads, runWorld}, jwOps[g_] := Module[{eye = IdentityMatrix[2], zee = {{1, 0}, {0, -1}}, am = {{0, 1}, {0, 0}}}, Table[KroneckerProduct @@ Join[ConstantArray[zee, i - 1], {am}, ConstantArray[eye, g - i]], {i, g}]]; evensOf[g_] := Select[Range[2^g], EvenQ[DigitCount[# - 1, 2, 1]] &]; buildQuads[g_] := Module[{a = jwOps[g], ad}, ad = Transpose /@ a; Join[ Flatten[Table[{ad[[i]] . ad[[j]], a[[i]] . a[[j]]}, {i, g}, {j, i + 1, g}], 2], Flatten[Table[ad[[i]] . a[[j]], {i, g}, {j, g}], 1]]]; runWorld[g_] := Module[{a = jwOps[g], ad, ev = evensOf[g], od, quads, vac, d1, d2, orbit, qr, words}, ad = Transpose /@ a; od = Complement[Range[2^g], ev]; quads = buildQuads[g]; vac = UnitVector[2^g, 1]; d1 = (# . vac) & /@ quads; d2 = Flatten[Outer[Dot, quads, d1, 1], 1]; orbit = (#[[ev]]) & /@ Join[{vac}, d1, d2]; qr = (#[[ev, ev]]) & /@ quads; words = Join[{IdentityMatrix[Length[ev]]}, qr, Flatten[Outer[Dot, qr, qr, 1], 1]]; {Length[quads], And @@ ((Max[Abs[#[[ev, ev]]]] == 0 && Max[Abs[#[[od, od]]]] == 0) & /@ Join[a, ad]), And @@ ((Max[Abs[#[[ev, od]]]] == 0 && Max[Abs[#[[od, ev]]]] == 0) & /@ quads), MatrixRank[orbit], MatrixRank[Flatten /@ words], Length[ev]}]; Module[{r5 = runWorld[5], r3 = runWorld[3]}, checkExact["v111 model: 45 quadratics = dim so(10); 10 linears sheet-ODD, 45 quadratics sheet-EVEN (exact block-zero)", r5[[1]] == 45 && r5[[2]] && r5[[3]]]; checkExact["v111 GENERATION: quadratic words of length <= 2 span all 16 code states from the vacuum", r5[[4]] == 16]; checkExact["v111 COMPLETENESS: products of length <= 2 of the 45 quadratics span End(S+) = 256 (transport degree exactly 2)", r5[[5]] == 256]; checkExact["v111 ladder genericity: g=3 world identical (15 quadratics -> End(S+) = 16) - degree selected, not rank", r3[[1]] == 15 && r3[[5]] == 16]; checkExact["v111 channel reading: certified tower 256 = 1 + 45 + 210 = norm + transport generators + pair sector", 1 + 45 + 210 == 256]; ]; ]; (* ---- (v112) self-counting channel ---- *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L542)
-- [experiments/lean4-carrier-rigidity/TfptCarrier/GlueUniqueness.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/GlueUniqueness.lean#L1)
-- [(* ==== v533 round: FTR.DISC7.NORM.01 -- the disc -7 norm line. Exact mirrors: norm identity, translation, norms (2,4,14,32), constant discriminant -7, vertex, negative controls. ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L8372)
-- [experiments/lean4-carrier-rigidity/TfptCarrier/GaussianCodeBridge.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/GaussianCodeBridge.lean#L1)
-- [(* ---- (v91) spine tetrahedron ---- *) spine = {2, 3, 4, 5}; checkExact["v91 edges/faces/volume of {2,3,4,5}", (Sort[Times @@@ Subsets[spine, {2}]] == {6, 8, 10, 12, 15, 20}) && (Sort[Times @@@ Subsets[spine, {3}]] == {24, 30, 40, 60}) && (Times @@ spine == 120) && (120 == Total[{1, 7, 11, 13, 17, 19, 23, 29}])]; checkExact["v91 graph reading 240 = |mu4| |E(K4)| |E(K5)|; breaks at K6", (4 Binomial[4, 2] Binomial[5, 2] == 240) && (Binomial[6, 2] == 15) && (1 + 1 + 2^4 != 15)]; chiT[t_] := (t - 2) (t - 3) (t - 4) (t - 5); checkExact["v91 chi_T audit: coeffs (14,71,154,120); chi(0)=chi(7)=120, chi(1)=chi(6)=24", (Expand[chiT[t]] == t^4 - 14 t^3 + 71 t^2 - 154 t + 120) && (chiT[0] == 120) && (chiT[7] == 120) && (chiT[1] == 24) && (chiT[6] == 24)]; (* ---- (v92) glue uniqueness ---- *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L136)
-- [experiments/lean4-carrier-rigidity/TfptCarrier/CoverEmbedding.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/CoverEmbedding.lean#L1)
-- [experiments/lean4-carrier-rigidity/TfptCarrier/AxiomCheck.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/AxiomCheck.lean#L1)
-- [(* ==== v510 round: SEAM.BIT.FREEDOM.01 -- the freedom attack on the v506/v507 alignment bit: the POSITION half of the bit is topology. Exact content mirrored: (i) the DIHEDRAL CENSUS -- on the refined 2N-point seam circle D_16 has 17 involutions with EXACTLY ONE free (the antipodal shift by 8) and all 16 reflections have exactly 2 circle fixed points (8 site-axis + 8 edge-axis; robustness N = 8, 12; odd control N = 9: zero free), plus the quotient topology chi(C/antipode) = 0 (circle) vs chi(C/reflection) = 1 (interval, 2 boundary corners); (ii) the AUT COMPLETENESS -- Aut(C_8) = D_8 by brute force over all 8! = 40320 permutations and Aut(C_16) = D_16 by degree-2 propagation (all 32 candidates), so the census covers ALL circle symmetries; (iii) the Cl(16) DICHOTOMY CENSUS -- on explicit 256x256 Jordan-Wigner gammas the free deck's NS implementer squares to 256 gamma_1...gamma_16 = 256 (-1)^F (nonsplit) while the implementers of ALL 16 reflections exist (one of the two spin lifts +-R) and square to SCALARS {2^7 (site-axis), 2^8 (edge-axis)} (split): NONSPLIT <=> FREE over the complete census; root dichotomy 2 (the +-quarter shifts) vs 0 total over all 16 reflections; (iv) the REAL-STRUCTURE TABLE -- the deck-commuting antiholomorphic involutions solve symbolically to exactly two families (M diagonal: mu conj z, fix line through the poles; M antidiagonal: mu/conj z, fix circle |z| = sqrt mu), and the unique mark-fixing real structure per configuration is equatorial/FREE for mu4 and generic-unit, real-axis/NOT-free for silver and generic-real, and NONEXISTENT for the hexagonal frame; (v) HARMONIC + FREE => mu4 -- the deck-pair cross-ratio (1-b)^2/(1+b)^2 = -1 solves exactly to b = +-i, with the lambda table (2, 1/2, 3/4, 5/4) real and the hexagonal lambda complex; (vi) the HONEST COUNTERWITNESSES -- the discrete witness {0,1,8,9} (shift-invariant, crossing, but not quarter-shift-invariant) and the continuous witness {+-1, +-(3+4i)/5} (pair cross-ratio -1/4, j = 148176/25 != 1728, clock does not preserve): the Fock dichotomy measures the CLASS, not the modulus. The Moebius/Klein covering models and the pillowcase branch control stay Python-side (v510). Mirrors v510. ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L5155)
-- [(* ==== v519 round: WOIT.THETA.FREE.01 -- the WOIT-alpha milestone of the OS twistor bridge: the real structure exists (two-family classification, mu4 torsor, Z8/C^4/Cl(16) levels) and the exact free-RP preconditions + site-cut degeneration + continuum control. The 40-digit positive- definiteness inertia certificates of the bond-cut Grams (R3/R5) are Python-only by the suite convention (mpmath eigh at dps 40). Mirrors v519. ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L7077)
-- [experiments/lean4-carrier-rigidity/TfptCarrier/CarrierRankUniqueness.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/CarrierRankUniqueness.lean#L1)
-- [(* ---- (v3) electromagnetic closure: alpha^-1 ---- *) M = 41; phiseam[a_] := phibase + (dtop Exp[-2 a]) (1 - dtop Exp[-2 a])^(-5/4); F[a_] := a^3 - 2 c3^3 a^2 - (4/5) c3^6 M Log[1/phiseam[a]]; aStar = a /. FindRoot[F[a] == 0, {a, 0.0073}, WorkingPrecision -> 40]; alphaInv = 1/aStar; check["alpha_* = 0.00729735256220985", aStar, 0.00729735256220985, 10^-15]; check["alpha^-1 = 137.0359992168407", alphaInv, 137.0359992168407, 10^-12]; (* ---- (v1) E8 glue arithmetic ---- *)](../../../../verification/wolfram/tfpt_readouts.wl#L36)
-- [(* ==== v410-v414 round: the sheet generator V as a binary internal compiler ==== *) Module[{R, Q, V, C, J, one, a, I3, t, lam, Mt, e1, e2, e3, d1, d2, en, num, den}, R = {{1, 3, 0}, {1, 5, 2}, {2, 5, 3}}; Q = {{3, 1, 0}, {3, 2, 0}, {3, 2, 1}}; V = Q . DiagonalMatrix[{0, 1, 1}]; C = R + Q . DiagonalMatrix[{1, 0, 0}]; J = C - 2 V; one = {1, 1, 1}; a = {1, 1, 2}; I3 = IdentityMatrix[3]; (* v410: closed form V^n, binary spine, bilinear families, theta cross-link *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2393)
-- [(* ---- (v183) Koide 53/54 = a^T(R+Q)1 / (2 1^T R a): missing Sheet-Diamond corner ---- *) Module[{R, Q, K, L, one, a, F, f, cubic, corner, ratio, detBF, others}, R = {{1, 3, 0}, {1, 5, 2}, {2, 5, 3}}; Q = {{3, 1, 0}, {3, 2, 0}, {3, 2, 1}}; K = {{4, 2, 0}, {4, 3, 2}, {5, 3, 2}}; L = {{7, 3, 0}, {7, 5, 2}, {8, 5, 3}}; one = {1, 1, 1}; a = {1, 1, 2}; F = R + Q; f[m_, u_, v_] := u . m . v; cubic = f[R, one, a]; (* 1^T R a = 27 *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L1546)
-- [experiments/lean4-carrier-rigidity/TfptCarrier/G31Orders.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/G31Orders.lean#L1)
-- [experiments/lean4-carrier-rigidity/TfptCarrier/ParityWeightLaws.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/ParityWeightLaws.lean#L1)
-- [experiments/lean4-carrier-rigidity/TfptCarrier/ArfSpinorCompiler.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/ArfSpinorCompiler.lean#L1)
-- [experiments/lean4-carrier-rigidity/TfptCarrier/OrbitPacket.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/OrbitPacket.lean#L1)
-- [experiments/lean4-carrier-rigidity/TfptCarrier/ProjectiveHamming.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/ProjectiveHamming.lean#L1)
-- [experiments/lean4-carrier-rigidity/TfptCarrier/AuditCheck.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/AuditCheck.lean#L1)
-- [experiments/lean4-carrier-rigidity/TfptCarrier/HammingCode.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/HammingCode.lean#L1)
-- [experiments/lean4-carrier-rigidity/TfptCarrier/SquareParity.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/SquareParity.lean#L1)
-- [experiments/lean4-carrier-rigidity/TfptCarrier/LorentzCongruence.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/LorentzCongruence.lean#L1)

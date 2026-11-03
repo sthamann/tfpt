@@ -1,0 +1,110 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/original-local-source-variable-background-20261102/check_charged_fields.py
+Original file SHA-256: 4cbb82929cba9a60fe26c1d4fe10594287098b82cfb0a076ccad31d06f65c71e
+Inclusive original lines: 1-102
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | #!/usr/bin/env python3
+000002 | """Exact evaluation of GIVEN charged lattice fields, not a new physical model.
+000003 | 
+000004 | No writes to original sources. V0 and Vc remain distinct. Canonical mirror
+000005 | embedding and primitive H_adm coefficient are explicitly NOT manufactured.
+000006 | """
+000007 | from pathlib import Path
+000008 | from itertools import product
+000009 | from collections import Counter
+000010 | from hashlib import sha256
+000011 | import json
+000012 | import sympy as S
+000013 | 
+000014 | [OMITTED: non-scientific conversation or execution metadata]
+000015 | OUT = Path(__file__).resolve().parent
+000016 | K = S.diag(*([1]*9+[-1]))
+000017 | n = S.Matrix([1,1,1,-1,-1,-1,-1,-1,-1,3])
+000018 | z = S.Matrix([0]*8+[1,-1])
+000019 | a = n[:8,0]
+000020 | u,v = (n+z)/2,(n-z)/2
+000021 | Vc = K+2*K*v*v.T*K
+000022 | Y = S.Matrix([-S.Rational(1,3)]*3+[S.Rational(1,2)]*2+[0]*3+[1,1])
+000023 | def T(p):
+000024 |     k=(a.T*p)[0]/2
+000025 |     return S.Matrix(list(p)+[-k,k])
+000026 | def B(x,y): return (x.T*K*y)[0]
+000027 | def cocycle(x,y):
+000028 |     return S.Integer(-1)**int(sum(x[i]*y[j] for i in range(10) for j in range(i)))
+000029 | def weights(x,V):
+000030 |     dim=(x.T*V*x)[0]/2
+000031 |     spin=B(x,x)/2
+000032 |     return [(dim+spin)/2,(dim-spin)/2]
+000033 | def serial(x):
+000034 |     if isinstance(x,S.MatrixBase): return [serial(t) for t in x]
+000035 |     if isinstance(x,S.Basic): return int(x) if x.is_Integer else str(x)
+000036 |     if isinstance(x,dict): return {str(k):serial(v) for k,v in x.items()}
+000037 |     if isinstance(x,(list,tuple)): return [serial(v) for v in x]
+000038 |     return x
+000039 | 
+000040 | # ONE already named bar4 family weight (+++). This is an algebraic component,
+000041 | # not a selected physical family state. All sixteen D5 weights are retained.
+000042 | ps=[S.Matrix([S.Rational(j,2) for j in signs+(1,1,1)])
+000043 |     for signs in product((-1,1),repeat=5) if signs.count(-1)%2==1]
+000044 | xs=[T(p)+u for p in ps]
+000045 | ys=[T(p)+v for p in ps]
+000046 | if len(xs)!=16 or not all(t.is_Integer for x in xs+ys for t in x):
+000047 |     raise RuntimeError('Original integral sixteen-component branch failed')
+000048 | if not all(B(x,x)==3 for x in xs): raise RuntimeError('Spinor-u norm')
+000049 | if not all(weights(x,Vc)==[S.Rational(3,2),0] for x in xs):
+000050 |     raise RuntimeError('Original Vc weights')
+000051 | if not all(weights(x,Vc)==[1,S.Rational(1,2)] for x in ys):
+000052 |     raise RuntimeError('Original Vc v-dressed weights')
+000053 | 
+000054 | # Two literal original vertices, already chiral at the unmodified V0.
+000055 | p=S.Matrix([1,-1,1,1,1,1,1,1])/2
+000056 | q=S.Matrix([-1,1,1,1,1,1,1,1])/2
+000057 | literal_x,literal_xp=T(p)+u,T(q)+u
+000058 | x,xp=literal_x,literal_xp
+000059 | if list(x)!=[1,0,1,0,0,0,0,0,1,0]: raise RuntimeError('Literal x')
+000060 | if list(xp)!=[0,1,1,0,0,0,0,0,1,0]: raise RuntimeError('Literal xprime')
+000061 | if B(x,xp)!=2 or x[-1]!=0 or xp[-1]!=0: raise RuntimeError('Original OPE test')
+000062 | 
+000063 | # Exact original lattice-vertex mode witness, with Y(e_x,z)=sum A_m z^-m-1.
+000064 | # x^2=3, B(x,xp)=2, r=xp-x. On |r>, A_1 vanishes because B=-1
+000065 | # has no z^-2 coefficient. B_0|r>=eps(-xp,r)|-x>, and A_1|-x>
+000066 | # reads the z^1 coefficient above its z^-3 leading term, namely x(-1)|0>.
+000067 | # Thus {A_1,B_0}|r> !=0 for distinct components, without choosing Vc.
+000068 | r=xp-x
+000069 | if B(x,r)!=-1 or B(-xp,r)!=-1 or B(-xp,xp)!=-3:
+000070 |     raise RuntimeError('Exact lattice mode exponents')
+000071 | osc=cocycle(-xp,r)*cocycle(x,-x)*x
+000072 | if osc==S.zeros(10,1): raise RuntimeError('Mode witness vanished')
+000073 | 
+000074 | rows=[]
+000075 | for p,x,y in zip(ps,xs,ys):
+000076 |     rows.append({'p':p,'x_u':x,'x_v':y,'V0_u':weights(x,S.eye(10)),
+000077 |                  'V0_v':weights(y,S.eye(10)), 'Vc_u':weights(x,Vc),
+000078 |                  'q':sum(x),'Y':Y.dot(x)})
+000079 | srcs=[
+000080 |  'experiments/theory-contracts/source-critical-local-fields-20260920/local_modules/PROOF.md',
+000081 |  'experiments/theory-contracts/source-critical-local-fields-20260920/local_modules/check_local_modules.py',
+000082 |  'experiments/theory-contracts/source-critical-local-fields-20260920/energy_bridge/PROOF.md',
+000083 |  'experiments/theory-contracts/source-sector-reconstruction-20260920/PROOF.txt',
+000084 |  'experiments/theory-contracts/source-dynamics-selection-20260920/PROOF.txt']
+000085 | result={
+000086 |  'result_id':'R109', 'verdict':'given_charged_fields_evaluated_not_primitive_mirror_embedding',
+000087 |  'family_weight':[1,1,1], 'given_lattice':'Z^(9,1)', 'fields':rows,
+000088 |  'V0_u_weights':dict(Counter(tuple(map(str,weights(x,S.eye(10)))) for x in xs)),
+000089 |  'V0_v_weights':dict(Counter(tuple(map(str,weights(y,S.eye(10)))) for y in ys)),
+000090 |  'u_branch_total_lattice_charge':sum(xs,S.zeros(10,1)),
+000091 |  'u_branch_total_original_number':sum(sum(x) for x in xs),
+000092 |  'u_branch_total_hypercharge':sum(Y.dot(x) for x in xs),
+000093 |  'literal_vertex_pair':{'x':literal_x,'xp':literal_xp,'Bself':B(literal_x,literal_x),'Bcross':B(literal_x,literal_xp),
+000094 |    'same_component_OPE_pole':3,'different_component_OPE_pole':2,
+000095 |    'nonzero_root':literal_x-literal_xp,'mode_input_charge':r,
+000096 |    'anticommutator_A1_B0_output_oscillator':osc,
+000097 |    'scope':'Exact UV lattice vertex modes. They are not canonical independent CAR generators. Other smearings, dressed/IR maps not excluded.'},
+000098 |  'primitive_H_adm_F0':None, 'primitive_H_adm_status':'not_computed',
+000099 |  'source_hashes':{p:sha256((ROOT/p).read_bytes()).hexdigest() for p in srcs}}
+000100 | result=serial(result)
+000101 | (OUT/'charged-field-results.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
+000102 | print(json.dumps({k:result[k] for k in ('V0_u_weights','V0_v_weights','u_branch_total_lattice_charge','u_branch_total_original_number','u_branch_total_hypercharge','literal_vertex_pair','primitive_H_adm_status')},ensure_ascii=False,indent=2))

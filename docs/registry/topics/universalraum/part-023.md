@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Drei unterschiedliche Hinweise führen zur Zahl drei
+
+[experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/14_schatten_dimension.tex:9-23](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/14_schatten_dimension.tex#L9) · `section:f2428b29d35438721755` · section
+
+Ein traceloses hermitesches [formula in source] -Objekt hat genau drei reelle Komponenten: [formula in source] Ergänzt man [formula in source] , ergibt die Determinante [formula in source] Der positive Kegel erfüllt [formula in source] . Das ist die präzise Lorentz-Brücke aus dem Ursprungsteil. Sie zeigt eine passende lokale algebraische Form. Noch fehlen ihre Interpretation als Ereignisse, die Verklebung zu einer Ra
+
 ## Eine neue Gegenprobe am Clebsch-Vorschlag
 
 [experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/14_schatten_dimension.tex:24-47](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/14_schatten_dimension.tex#L24) · `section:049384dfe146a60b52d8` · section
@@ -110,7 +116,7 @@ No opening prose excerpt; see the source.
 
 [experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/17_schatten_quellen.tex:3-29](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/17_schatten_quellen.tex#L3) · `section:1315342ad619cf8c4410` · section
 
-Die Erweiterung wurde am 14. September 2026 gegen verfügbare Originalabschnitte im lokalen Repository tfpt-theoryv4 abgeglichen. Der gelesene Git-Stand war 66b91e40e245569f06ab440ead80f446c9be0ee5. Dies identifiziert den Checkout; es behauptet keinen frischen vollständigen Beweis- oder Testlauf. Die tatsächlich verwendeten Dateiinhalte sind zusätzlich mit SHA-256 im Paket erfasst, auch soweit der Arbeitsbaum von Git 
+Die Erweiterung wurde am 14. September 2026 gegen verfügbare Originalabschnitte im lokalen Repository tfpt-theoryv4 abgeglichen. Der gelesene Git-Stand war 66b91e40e245569f06ab440ead80f446c9be0ee5. Dies identifiziert den Checkout; es behauptet keinen frischen vollständigen Beweis- oder Testlauf. Die tatsächlich verwendeten Dateiinhalte sind zusätzlich mit SHA-256 im Paket erfasst, auch soweit der Arbeitsbaum von Git
 
 Explicit source references:
 
@@ -176,7 +182,7 @@ Für genau zwei vollständige [formula in source] -Zellen und eine positive Brü
 
 [experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/18_audit_v13.tex:60-77](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/18_audit_v13.tex#L60) · `section:7fb3252a78c653eb2745` · section
 
-Im ausgewiesenen harmonischen Modell eines geteilten Vermittlers lautet der symmetrische aktive Block Sein niedriger Zweig beginnt mit [formula in source] ; der antisymmetrische mit [formula in source] . Deshalb ist auf dem aktiven [formula in source] -Raum Nach Abzug beider Einzelbondkorrekturen [formula in source] bleibt Beide Schreibweisen sind kompatibel. Eine Konstante auf dem aktiven Sektor ist außerhalb davon 
+Im ausgewiesenen harmonischen Modell eines geteilten Vermittlers lautet der symmetrische aktive Block Sein niedriger Zweig beginnt mit [formula in source] ; der antisymmetrische mit [formula in source] . Deshalb ist auf dem aktiven [formula in source] -Raum Nach Abzug beider Einzelbondkorrekturen [formula in source] bleibt Beide Schreibweisen sind kompatibel. Eine Konstante auf dem aktiven Sektor ist außerhalb davon
 
 ## Ein exakter Stern-Spektralfilter unter zusätzlichen Ressourcen
 
@@ -236,13 +242,13 @@ Akzeptiere in jeder Sternrunde die Recordfolge 111: Alle acht ersten Recordfolge
 
 [experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/19_execution_v13.tex:85-106](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/19_execution_v13.tex#L85) · `section:ca00fae1038eba17c369` · section
 
-Nach erfolgreicher Präparation folgen lokaler Quelltick [formula in source] , zweimal [formula in source] , Rücknahme [formula in source] und dasselbe [formula in source] -Runden-Filter. Ein ideales kostenloses [formula in source] -Messgerät wird nicht eingesetzt. Protokoll R behält denselben kohärenten Pointer; Protokoll F verwendet beim zweiten Schritt einen frischen. Mit [formula in source] lauten die gemeinsamen 
+Nach erfolgreicher Präparation folgen lokaler Quelltick [formula in source] , zweimal [formula in source] , Rücknahme [formula in source] und dasselbe [formula in source] -Runden-Filter. Ein ideales kostenloses [formula in source] -Messgerät wird nicht eingesetzt. Protokoll R behält denselben kohärenten Pointer; Protokoll F verwendet beim zweiten Schritt einen frischen. Mit [formula in source] lauten die gemeinsamen
 
 ## Was für eine native Implementierung noch fehlt
 
 [experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/19_execution_v13.tex:107-115](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/19_execution_v13.tex#L107) · `section:40dafc4839dc4fcdc6ef` · section
 
-Das neue Register ist nicht Clifford: Ein vierqubitiger Pauli hat Spur null oder [formula in source] . Noch konkreter erzeugt der Quellinput [formula in source] genau 13 nichtverschwindende Rechenbasisamplituden. Das ist kein reiner Stabilizerzustand, dessen Trägergröße eine Zweierpotenz ist. Nur Cliffordoperationen, Stabilizer-Hilfszustände und Pauli-Messungen reichen auch mit Feedback nicht aus. Andere Kodierungen 
+Das neue Register ist nicht Clifford: Ein vierqubitiger Pauli hat Spur null oder [formula in source] . Noch konkreter erzeugt der Quellinput [formula in source] genau 13 nichtverschwindende Rechenbasisamplituden. Das ist kein reiner Stabilizerzustand, dessen Trägergröße eine Zweierpotenz ist. Nur Cliffordoperationen, Stabilizer-Hilfszustände und Pauli-Messungen reichen auch mit Feedback nicht aus. Andere Kodierungen
 
 ## Ungelesener Austausch ist keine Kühlung
 
@@ -254,7 +260,7 @@ Alle [formula in source] kommutieren mit [formula in source] ; der ungelesene Ka
 
 [experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/19_execution_v13.tex:123-126](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/19_execution_v13.tex#L123) · `section:62d7b1f43455d28352a8` · section
 
-Ein nativer Adapter muss [formula in source] , [formula in source] , Kern und Belegung gemeinsam liefern, beim Half-Charge-Feld zusätzlich mit Domänen- und Energiekontrolle. Er muss den 13-Amplituden-Eingang, beide Recordzweige und die Acht-Runden-Echos reproduzieren, einschließlich Hilfszuständen und Fehlerausgängen. Erst anschließend ist eine skalierende Zellfamilie sinnvoll auf Geometrie, Chiralität und Spin 2 zu 
+Ein nativer Adapter muss [formula in source] , [formula in source] , Kern und Belegung gemeinsam liefern, beim Half-Charge-Feld zusätzlich mit Domänen- und Energiekontrolle. Er muss den 13-Amplituden-Eingang, beide Recordzweige und die Acht-Runden-Echos reproduzieren, einschließlich Hilfszuständen und Fehlerausgängen. Erst anschließend ist eine skalierende Zellfamilie sinnvoll auf Geometrie, Chiralität und Spin 2 zu
 
 ## Versionspaar v1.3: Quellen, Abdeckung und Reproduktion
 
@@ -464,7 +470,7 @@ Die beiden positiven Wurzelgitter [formula in source] und [formula in source] be
 
 [experiments/theory-contracts/universalraum-five-source-frontier-20260914/main-v1.4/chapters/02_algebra.tex:58-83](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/main-v1.4/chapters/02_algebra.tex#L58) · `section:48285b53f03c038bd0d0` · section
 
-Die 240 Wurzeln sind besondere Vektoren in einem acht-dimensionalen Raum. Hinzu kommen acht Cartanrichtungen, sodass die Lie-Algebra 248 Dimensionen besitzt. Unter [formula in source] lautet ihre komplexe Zerlegung L47mmrY Sektor& Wurzeln& Generatoren einschließlich Cartan\\ [formula in source] &40& [formula in source] \\ [formula in source] &12& [formula in source] \\ Gemischter Vektorsektor&60& [formula in source] 
+Die 240 Wurzeln sind besondere Vektoren in einem acht-dimensionalen Raum. Hinzu kommen acht Cartanrichtungen, sodass die Lie-Algebra 248 Dimensionen besitzt. Unter [formula in source] lautet ihre komplexe Zerlegung L47mmrY Sektor& Wurzeln& Generatoren einschließlich Cartan\\ [formula in source] &40& [formula in source] \\ [formula in source] &12& [formula in source] \\ Gemischter Vektorsektor&60& [formula in source]
 
 ## Das endliche Fenster: 60 Strahlen und 15 Kontexte
 
@@ -560,7 +566,7 @@ No opening prose excerpt; see the source.
 
 [experiments/theory-contracts/universalraum-five-source-frontier-20260914/main-v1.4/chapters/04_zellen.tex:3-24](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/main-v1.4/chapters/04_zellen.tex#L3) · `section:e97c3b05b1c2b1da7f12` · section
 
-Vier Träger mit je vier Basiswerten besitzen den total antisymmetrischen Zustand Jedes Basiswort verwendet alle vier Werte genau einmal. Die 24 Permutationen erhalten passende Vorzeichen. Das Ergebnis ist ein reiner gemeinsamer Zustand. Jeder einzelne Träger sieht für sich trotzdem maximal gemischt aus: Die Paarreduktion hat Rang sechs und sechs gleich große Eigenwerte [formula in source] . Die Ordnung steckt in den 
+Vier Träger mit je vier Basiswerten besitzen den total antisymmetrischen Zustand Jedes Basiswort verwendet alle vier Werte genau einmal. Die 24 Permutationen erhalten passende Vorzeichen. Das Ergebnis ist ein reiner gemeinsamer Zustand. Jeder einzelne Träger sieht für sich trotzdem maximal gemischt aus: Die Paarreduktion hat Rang sechs und sechs gleich große Eigenwerte [formula in source] . Die Ordnung steckt in den
 
 ## Der Hüllensatz und seine genaue Voraussetzung
 
@@ -609,9 +615,3 @@ S11 macht die zusätzliche Zuordnung: Ein [formula in source] -Spinorgewicht [fo
 [experiments/theory-contracts/universalraum-five-source-frontier-20260914/main-v1.4/chapters/04_zellen.tex:126-134](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/main-v1.4/chapters/04_zellen.tex#L126) · `section:773ac1973617d1f62b0a` · section
 
 Die Graphkombinatorik folgt aus der angegebenen Ortslesart. Um daraus einen Vielteilchen-Hamiltonoperator zu erhalten, braucht man außerdem eine Fock- oder Tensorproduktstruktur, Besetzungsbedingungen, die Bedeutung der virtuellen Zustände und ihre Energien. Betragsgleiche Chevalley-Strukturkonstanten wählen noch keine physikalischen Kopplungsstärken in normierten Mehrteilchenzuständen aus. Gleiche [formula in source
-
-## Die berichteten Clusterzahlen
-
-[experiments/theory-contracts/universalraum-five-source-frontier-20260914/main-v1.4/chapters/04_zellen.tex:135-153](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/main-v1.4/chapters/04_zellen.tex#L135) · `section:5c4d64ff4f77dc2a2751` · section
-
-L74mmY Clebsch-Cluster bei [formula in source] , nach S11& Berichteter Wert\\ Grundenergie& [formula in source] \\ Grundzustand&Eindeutiges [formula in source] -Singulett, Form [formula in source] \\ Erster angeregter Singulettwert& [formula in source] ; mindestens vier orthogonale Moden, Gap etwa [formula in source] \\ Erste adjungierte Anregung& [formula in source] , Gap etwa [formula in source] \\ Weitere Multiple

@@ -431,7 +431,7 @@ Explicit source references:
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex:1732-1780](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex#L1732) · `section:9656cb78a4cbdf493637` · subsection
 
-A family is exactly the complete Pascal truncation to degree two: the unique positive-integer solution of [formula in source] . Proof of uniqueness. Direct evaluation gives [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] ; so [formula in source] is the only root in [formula in source] . For [formula in source] the forward difference is 
+A family is exactly the complete Pascal truncation to degree two: the unique positive-integer solution of [formula in source] . Proof of uniqueness. Direct evaluation gives [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] ; so [formula in source] is the only root in [formula in source] . For [formula in source] the forward difference is
 
 Explicit source references:
 
@@ -655,7 +655,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex:1732-1780](../../../../experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex#L1732) · `section:baf89b99d7afc0a0ef50` · subsection
 
-A family is exactly the complete Pascal truncation to degree two: the unique positive-integer solution of [formula in source] . Proof of uniqueness. Direct evaluation gives [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] ; so [formula in source] is the only root in [formula in source] . For [formula in source] the forward difference is 
+A family is exactly the complete Pascal truncation to degree two: the unique positive-integer solution of [formula in source] . Proof of uniqueness. Direct evaluation gives [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] ; so [formula in source] is the only root in [formula in source] . For [formula in source] the forward difference is
 
 Explicit source references:
 
@@ -773,7 +773,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [experiments/theory-contracts/universalraum-spin-lift-basics-20260915/sources/input_5_tfpt_3_e8_audit_bootstrap.tex:12215-12225](../../../../experiments/theory-contracts/universalraum-spin-lift-basics-20260915/sources/input_5_tfpt_3_e8_audit_bootstrap.tex#L12215) · `section:f81e7d9852f1b4758b79` · part
 
-The question, and the honest answer. The theory rests on two inputs, [formula in source] and [formula in source] . The old theory had a Möbius seam and the seed was the start of the [formula in source] cascade. Run it backwards: can the cascade/ [formula in source] return [formula in source] and [formula in source] , closing a self-consistent loop? Answer: the discrete content is a closed, overdetermined fixed point 
+The question, and the honest answer. The theory rests on two inputs, [formula in source] and [formula in source] . The old theory had a Möbius seam and the seed was the start of the [formula in source] cascade. Run it backwards: can the cascade/ [formula in source] return [formula in source] and [formula in source] , closing a self-consistent loop? Answer: the discrete content is a closed, overdetermined fixed point
 
 ## Spectral geometry, gravity and thermal time.
 
@@ -886,5 +886,5 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_5_tfpt_3_e8_audit_bootstrap.tex:12215-12225](../../../../universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_5_tfpt_3_e8_audit_bootstrap.tex#L12215) · `section:6cbdf01f901e64cc2b62` · part
 
-The question, and the honest answer. The theory rests on two inputs, [formula in source] and [formula in source] . The old theory had a Möbius seam and the seed was the start of the [formula in source] cascade. Run it backwards: can the cascade/ [formula in source] return [formula in source] and [formula in source] , closing a self-consistent loop? Answer: the discrete content is a closed, overdetermined fixed point 
+The question, and the honest answer. The theory rests on two inputs, [formula in source] and [formula in source] . The old theory had a Möbius seam and the seed was the start of the [formula in source] cascade. Run it backwards: can the cascade/ [formula in source] return [formula in source] and [formula in source] , closing a self-consistent loop? Answer: the discrete content is a closed, overdetermined fixed point
 

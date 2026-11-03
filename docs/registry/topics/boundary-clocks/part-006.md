@@ -146,7 +146,7 @@ No opening prose excerpt; see the source.
 
 [documents/archive--tfpt-45--source_extracts--01_boundary_kernel_source/sections/001-section-primitive-core-and-carrier-interface-handoff.tex:7-57](../../../../documents/archive--tfpt-45--source_extracts--01_boundary_kernel_source/sections/001-section-primitive-core-and-carrier-interface-handoff.tex#L7) · `section:238b10aec16e96ddcb5a` · subsection
 
-We use natural units [formula in source] . Relative operators are formulated in Euclidean signature and compared through a declared Wick-rotation bridge when Lorentzian language is needed. Higgs fields are denoted by [formula in source] , Hamiltonians by [formula in source] , and the cosmological Hubble rate by [formula in source] ; this avoids overloading the letter [formula in source] . Newton's constant is always 
+We use natural units [formula in source] . Relative operators are formulated in Euclidean signature and compared through a declared Wick-rotation bridge when Lorentzian language is needed. Higgs fields are denoted by [formula in source] , Hamiltonians by [formula in source] , and the cosmological Hubble rate by [formula in source] ; this avoids overloading the letter [formula in source] . Newton's constant is always
 
 ## Primitive relative spectral dynamics
 
@@ -569,7 +569,7 @@ colorlinks=true, linkcolor=blue!55!black, citecolor=blue!55!black, urlcolor=blue
 
 [documents/articles--2026-08-28--psi_lambda_convergence_theorem_en/sections/001-section-scope-frozen-input-and-the-necessary-correction.tex:35-85](../../../../documents/articles--2026-08-28--psi_lambda_convergence_theorem_en/sections/001-section-scope-frozen-input-and-the-necessary-correction.tex#L35) · `section:b1ed2cc2005cadecb029` · subsection
 
-The one-particle lattice Hamiltonian used in the quantitative probes is the Qi–Wu–Zhang collar [formula in source] on a cylinder of circumference [formula in source] , open width [formula in source] , and boundary twist [formula in source] , [formula in source] . The topological and trivial controls are [formula in source] and [formula in source] , respectively. If [formula in source] denotes the finite one-particle 
+The one-particle lattice Hamiltonian used in the quantitative probes is the Qi–Wu–Zhang collar [formula in source] on a cylinder of circumference [formula in source] , open width [formula in source] , and boundary twist [formula in source] , [formula in source] . The topological and trivial controls are [formula in source] and [formula in source] , respectively. If [formula in source] denotes the finite one-particle
 
 ## Two edges and comparison with the QWZ measurement
 
@@ -609,7 +609,7 @@ Explicit source references:
 
 [documents/articles--2026-08-29--holomorphic_kms_extension_en/sections/002-subsection-the-frozen-car-covariance.tex:1-54](../../../../documents/articles--2026-08-29--holomorphic_kms_extension_en/sections/002-subsection-the-frozen-car-covariance.tex#L1) · `section:fdea0ce6860d24d01db0` · subsection
 
-The finite collar used by v995 has eight complex fermion modes, hence [formula in source] In dimensionless modular units the one-particle Hamiltonian is [formula in source] and the script sets [formula in source] . Therefore [formula in source] This is exactly Araki's covariance [formula in source] , so the finite CAR representation is factorial and the density matrix is faithful. On the occupation basis [formula in 
+The finite collar used by v995 has eight complex fermion modes, hence [formula in source] In dimensionless modular units the one-particle Hamiltonian is [formula in source] and the script sets [formula in source] . Therefore [formula in source] This is exactly Araki's covariance [formula in source] , so the finite CAR representation is factorial and the density matrix is faithful. On the occupation basis [formula in
 
 Explicit source references:
 

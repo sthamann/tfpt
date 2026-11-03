@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Das Echo des behaltenen Registers
+
+[experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/03_prozess.tex:166-179](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/03_prozess.tex#L166) · `section:6654401dc8d90c14e6ad` · section
+
+Für einen gleichförmigen reinen Eingang in der gewählten Kontextbasis erzeugt eine Vormessung maximale Verschränkung. Ohne Registerblick ist der Systemzustand [formula in source] . Nun gibt es zwei Ausführungen: Derselbe kohärente Speicher wird nochmals gekoppelt: [formula in source] stellt den reinen Eingang wieder her. Ein neuer Speicher wird benutzt: Im reduzierten System wird die Dephasierung wiederholt; [formula
+
 ## Reihenfolge bleibt wichtig
 
 [experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/03_prozess.tex:180-189](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/03_prozess.tex#L180) · `section:ab34b5516975fd2b96d5` · section
@@ -26,7 +32,7 @@ No opening prose excerpt; see the source.
 
 [experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/04_zellen.tex:3-24](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/04_zellen.tex#L3) · `section:a0b68c12ff57ae1ad04d` · section
 
-Vier Träger mit je vier Basiswerten besitzen den total antisymmetrischen Zustand Jedes Basiswort verwendet alle vier Werte genau einmal. Die 24 Permutationen erhalten passende Vorzeichen. Das Ergebnis ist ein reiner gemeinsamer Zustand. Jeder einzelne Träger sieht für sich trotzdem maximal gemischt aus: Die Paarreduktion hat Rang sechs und sechs gleich große Eigenwerte [formula in source] . Die Ordnung steckt in den 
+Vier Träger mit je vier Basiswerten besitzen den total antisymmetrischen Zustand Jedes Basiswort verwendet alle vier Werte genau einmal. Die 24 Permutationen erhalten passende Vorzeichen. Das Ergebnis ist ein reiner gemeinsamer Zustand. Jeder einzelne Träger sieht für sich trotzdem maximal gemischt aus: Die Paarreduktion hat Rang sechs und sechs gleich große Eigenwerte [formula in source] . Die Ordnung steckt in den
 
 ## Der Hüllensatz und seine genaue Voraussetzung
 
@@ -194,7 +200,7 @@ Der benötigte Zustand [formula in source] ist in der Acht-Qubit-Kodierung kein 
 
 [experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/06_zeit_echo.tex:102-123](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/06_zeit_echo.tex#L102) · `section:3dfe7c09d22f1bf766c8` · section
 
-Der einfache Eingang lautet Er ist mit dem in S02 angenommenen Clifford-Baukasten präparierbar und besitzt [formula in source] -Anteil [formula in source] . Der Antisymmetrisierer ist Die konkrete Schaltung erzeugt 32 Kontrollzweige, von denen 24 die Permutationen tragen. Acht ungültige Zweige werden markiert. Nach Interferenz und Erfolgsselektion ist der implementierte Operator Somit gilt Der erfolgreiche Zweig ist 
+Der einfache Eingang lautet Er ist mit dem in S02 angenommenen Clifford-Baukasten präparierbar und besitzt [formula in source] -Anteil [formula in source] . Der Antisymmetrisierer ist Die konkrete Schaltung erzeugt 32 Kontrollzweige, von denen 24 die Permutationen tragen. Acht ungültige Zweige werden markiert. Nach Interferenz und Erfolgsselektion ist der implementierte Operator Somit gilt Der erfolgreiche Zweig ist
 
 ## Das ursprüngliche Echo: eins gegen siebzehn Zweiunddreißigstel
 
@@ -260,7 +266,7 @@ Eine gewöhnliche kritische SU(4)-Kette hat links- und rechtslaufende Sektoren, 
 
 [experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/07_seam.tex:98-103](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/07_seam.tex#L98) · `section:41acf7fde27002fd60f1` · section
 
-Die innere Glue- [formula in source] wirkt auf den 248 Strömen mit Phasen [formula in source] auf Sektoren der Größen [formula in source] . Ihre Spur ist null. Die geometrische Vierteldrehung [formula in source] hat auf Stufe eins dagegen Spur [formula in source] . Die Operatoren sind somit nicht identisch. Eine Clock kann eine geometrische Drehung mit innerem Twist kombinieren; die beiden Faktoren bleiben getrennt. 
+Die innere Glue- [formula in source] wirkt auf den 248 Strömen mit Phasen [formula in source] auf Sektoren der Größen [formula in source] . Ihre Spur ist null. Die geometrische Vierteldrehung [formula in source] hat auf Stufe eins dagegen Spur [formula in source] . Die Operatoren sind somit nicht identisch. Eine Clock kann eine geometrische Drehung mit innerem Twist kombinieren; die beiden Faktoren bleiben getrennt.
 
 ## Wie eine vollständige Rekonstruktion aussehen könnte
 
@@ -434,7 +440,7 @@ No opening prose excerpt; see the source.
 
 [experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/10_ausblick.tex:39-49](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/10_ausblick.tex#L39) · `section:a2226652021a47148f24` · section
 
-L31mmL62mmL57mm Fuge& Erreichter Stand& Verbleibende Herkunft\\ Kopplungsstärke&Exakter antisymmetrischer Vermittler; [formula in source] unter benannten Bedingungen; S11 liefert [formula in source] in seiner Normierung.&Energien, Amplituden, konkurrierende Kanäle und ihre gemeinsame Auswahl.\\ Kopplungsgraph&Clebsch-Graph exakt unter „Ort = Spinorgewicht“; Tetramer, Kette und Clebsch getrennt.&Ortslesart, Belegung, 
+L31mmL62mmL57mm Fuge& Erreichter Stand& Verbleibende Herkunft\\ Kopplungsstärke&Exakter antisymmetrischer Vermittler; [formula in source] unter benannten Bedingungen; S11 liefert [formula in source] in seiner Normierung.&Energien, Amplituden, konkurrierende Kanäle und ihre gemeinsame Auswahl.\\ Kopplungsgraph&Clebsch-Graph exakt unter „Ort = Spinorgewicht“; Tetramer, Kette und Clebsch getrennt.&Ortslesart, Belegung,
 
 ## T1 bis T8: der vollständige Vertrag
 
@@ -452,7 +458,7 @@ L9mmL62mmL79mm Tor& Was gemeinsam nachzuweisen ist& Was bisher dazu vorliegt\\ T
 
 [experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/10_ausblick.tex:77-83](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/10_ausblick.tex#L77) · `section:b143c5f15479323b8a4b` · section
 
-Der Kandidat, auf den die Dokumente gemeinsam zulaufen Es gibt eine phasentreue Kompositionsregel mit positivem Zustandsfunktional, deren endliche Auslesungen die markierte TFPT-Struktur tragen. Aus ihren gekoppelten Anregungen und Aufzeichnungen entsteht ein kontrollierter gemeinsamer Grenzprozess. Erst dieser Grenzprozess liefert Raumzeit, chirale Materie, Wechselwirkungen und gegebenenfalls Gravitation. Die erste 
+Der Kandidat, auf den die Dokumente gemeinsam zulaufen Es gibt eine phasentreue Kompositionsregel mit positivem Zustandsfunktional, deren endliche Auslesungen die markierte TFPT-Struktur tragen. Aus ihren gekoppelten Anregungen und Aufzeichnungen entsteht ein kontrollierter gemeinsamer Grenzprozess. Erst dieser Grenzprozess liefert Raumzeit, chirale Materie, Wechselwirkungen und gegebenenfalls Gravitation. Die erste
 
 ## Korrekturregister und ergänzende Details
 
@@ -548,7 +554,7 @@ Die Unterlagen und der zusätzlich eingesehene Forschungsbestand ergeben keine a
 
 [experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/12_schatten_arithmetik.tex:82-96](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/12_schatten_arithmetik.tex#L82) · `section:cea61e7b26dca88ab9e4` · subsection
 
-Die ersten sechs Werte sind [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] und [formula in source] . Daraus folgt für [formula in source] Hier ist der Primzahlbezug wirklich vorhanden. Die Selbstdualität des Gitters schließt die Poisson-Transformation auf dasselbe Gitter. Poisson-Summation gilt auch für nichtselbstduale Gitter und verbindet dann Gitter und 
+Die ersten sechs Werte sind [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] und [formula in source] . Daraus folgt für [formula in source] Hier ist der Primzahlbezug wirklich vorhanden. Die Selbstdualität des Gitters schließt die Poisson-Transformation auf dasselbe Gitter. Poisson-Summation gilt auch für nichtselbstduale Gitter und verbindet dann Gitter und
 
 ## Warum die fehlende Positivität so hartnäckig ist
 
@@ -597,9 +603,3 @@ Für zwei Alternativen mit Amplituden [formula in source] und [formula in source
 [experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/13_schatten_quanten.tex:22-40](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/13_schatten_quanten.tex#L22) · `section:6c92baecb0e6fcd56bb5` · section
 
 Die 15 Zwei-Qubit-Pauli-Kontexte der Synthese enthalten das folgende Mermin–Peres-Quadrat. Hier bedeutet [formula in source] und entsprechend für die anderen Einträge: Jede Zeile und jede Spalte ist gemeinsam messbar. Alle Zeilenprodukte sind positiv, aber das letzte Spaltenprodukt ist negativ. Diese sechs Kontexte gehören zum bereits verwendeten Pauli-System.
-
-## Verschränkung legt die Zusammensetzung fest
-
-[experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/13_schatten_quanten.tex:41-52](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/13_schatten_quanten.tex#L41) · `section:80939f85a867f4930719` · section
-
-Für zwei räumlich getrennte Messstellen hat die CHSH-Kombination [formula in source] in einem lokalen Modell mit unabhängiger Wahl der Einstellungen die Grenze [formula in source] . Quantenmechanik erreicht [formula in source] . Mit [formula in source] , [formula in source] und [formula in source] ist der zugehörige Operator [formula in source] ; seine Eigenwerte sind [formula in source] . Beides wurde hier exakt nac

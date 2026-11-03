@@ -1,0 +1,152 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/source-critical-local-fields-20260920/local_modules/PROOF.md
+Original file SHA-256: 5d458c5fe3ceabfd12b5f637cff1fcad3ea0f618ba0e23d898bcbf6f9ba0ba00
+Inclusive original lines: 1-144
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | # Lokale Module am gemeinsamen \(T(D_8)\)-Konkurrenzpunkt
+000002 | 
+000003 | **Verdikt: PARTIAL.** Für das fixierte mikroskopische Gitter \(\Gamma=\mathbb Z^{9,1}\), seine Parität, die gemeinsame Einbettung \(T(D_8)\) und die ausgewählte Konkurrenzmetrik \(V_c\) ist die Modulstruktur exakt. Das Ergebnis wählt weder ein leichtes geladenes Kontinuumsfeld aus noch liefert es eine vierdimensionale Interpretation.
+000004 | 
+000005 | ## 1. Die Paritätstabelle gilt für alle Gitterfelder
+000006 | 
+000007 | Mit
+000008 | 
+000009 | \[
+000010 | T(p)=\bigl(p,-a\!\cdot\!p/2,a\!\cdot\!p/2\bigr),\qquad
+000011 | a=(1,1,1,-1,-1,-1,-1,-1)
+000012 | \]
+000013 | 
+000014 | ist das gemeinsame orthogonale Gitter
+000015 | 
+000016 | \[
+000017 | L_0=T(D_8),\qquad P_0=\mathbb Z n+\mathbb Z z,qquad
+000018 | M=L_0\oplus P_0.
+000019 | \]
+000020 | 
+000021 | Sein Index in \(\Gamma\) ist vier. Die vier Nebenklassen können durch
+000022 | 
+000023 | \[
+000024 | 0,\qquad f=T(e_1)+z/2,\qquad
+000025 | b=T(s)+n/2,\qquad f+b,qquad s=(1/2)^8
+000026 | \]
+000027 | 
+000028 | repräsentiert werden. Ihre \(T(D_8)\)-Projektionen sind die Diskriminantenklassen \(0,v,s,c\).
+000029 | 
+000030 | Das ist keine Zählung kurzer Vektoren. Das Gitter \(M\) ist ganzzahlig und gerade. Für jedes \(m\in M\) und jeden Repräsentanten \(r\) gilt daher
+000031 | 
+000032 | \[
+000033 | (r+m)^2-r^2=2B(r,m)+m^2\in2\mathbb Z.
+000034 | \]
+000035 | 
+000036 | Die Parität ist folglich auf jeder vollständigen Nebenklasse konstant. Aus
+000037 | 
+000038 | \[
+000039 | f^2=1,\qquad b^2=2,\qquad B(f,b)=1,qquad(f+b)^2=5
+000040 | \]
+000041 | 
+000042 | folgt exakt:
+000043 | 
+000044 | | gemeinsame \(T(D_8)\)-Klasse | \(0\) | \(v\) | \(s\) | \(c\) |
+000045 | |---|---:|---:|---:|---:|
+000046 | | mikroskopische Parität | gerade | ungerade | gerade | ungerade |
+000047 | 
+000048 | Die Tabelle ist phasen- und cocycleunabhängig, weil sie aus der quadratischen Form modulo zwei folgt. Bosonische Oszillator- und Stromnachkommen ändern diese Parität nicht.
+000049 | 
+000050 | ## 2. Orientierte \(D_5+A_3\)-Verzweigung
+000051 | 
+000052 | Wir verwenden exakt die Quellkonvention: Die ersten fünf Koordinaten bilden \(D_5\), die letzten drei \(D_3\cong A_3\), und
+000053 | 
+000054 | \[
+000055 | \lambda=(1/2,\ldots,1/2)
+000056 | \]
+000057 | 
+000058 | liegt nach der echten Quellgradierung im Zweig \((\overline{16},\overline4)\). Der vorhandene Glue-Clock ist
+000059 | 
+000060 | \[
+000061 | k(q)=2\sum_{j=1}^{5}q_j\pmod4.
+000062 | \]
+000063 | 
+000064 | Auf den verdoppelten Halbgewichten hat die \(16\) in dieser Quellkonvention den Exponenten \(3\), die \(\overline{16}\) den Exponenten \(1\). Der \(A_3\)-Grad \(2(q_6+q_7+q_8)\bmod4\) bezeichnet Grad eins als \(4\) und Grad drei als \(\overline4\). Gerade Gesamtzahl von Minuszeichen definiert die Quellklasse \(s\); ungerade Gesamtzahl die konjugierte \(c\)-Klasse. Die Minusparitäten der ersten fünf und letzten drei Koordinaten sind deshalb in \(s\) gleich und in \(c\) verschieden. Damit folgt
+000065 | 
+000066 | \[
+000067 | \begin{aligned}
+000068 | v&\downarrow D_5+A_3=(10,1)+(1,6),\\
+000069 | s&\downarrow D_5+A_3=(16,4)+(\overline{16},\overline4),\\
+000070 | c&\downarrow D_5+A_3=(16,\overline4)+(\overline{16},4).
+000071 | \end{aligned}
+000072 | \]
+000073 | 
+000074 | Der Checker vergleicht die 128 \(s\)-Halbgewichte direkt mit der echten `spinor_root_order` des nativen Wörterbuchs und prüft die Gradkonvention gegen die vorhandene Quellverzweigung. Er erzeugt zusätzlich die 128 Gewichte der anderen Chiralität und erhält je \(64+64\) Gewichte in den angegebenen Zweigen. Damit ist der native E8-Spinorzweig \(s\) im **gemeinsamen \(T\)-Wörterbuch** gerade, während der gekreuzt chirale Zweig \(c\) ungerade ist.
+000075 | 
+000076 | ## 3. Kleinste lokale Module an \(V_c\)
+000077 | 
+000078 | Setze
+000079 | 
+000080 | \[
+000081 | u=(n+z)/2,\qquad v=(n-z)/2,
+000082 | \qquad V_c=K+2Kvv^{\mathsf T}K.
+000083 | \]
+000084 | 
+000085 | Die gemeinsame \(T(D_8)\)-Ebene ist bezüglich \(V_c\) orthogonal zur neutralen Ebene; dort haben \(u,v\) beide positiven \(V_c\)-Normwert eins. Für \(\alpha,\beta\in\mathbb Z\) haben die neutralen Koeffizienten in den vier Klassen die Formen
+000086 | 
+000087 | \[
+000088 | \begin{array}{c|c|c}
+000089 | 0 &(\alpha+\beta,\alpha-\beta)&\min\|\cdot\|^2=0\\
+000090 | v &(\alpha+\beta+1/2,\alpha-\beta-1/2)&\min\|\cdot\|^2=1/2\\
+000091 | s &(\alpha+\beta+1/2,\alpha-\beta+1/2)&\min\|\cdot\|^2=1/2\\
+000092 | c &(1+\alpha+\beta,\alpha-\beta)&\min\|\cdot\|^2=1.
+000093 | \end{array}
+000094 | \]
+000095 | 
+000096 | Die minimalen euklidischen \(D_8\)-Normen der Klassen sind \(0,1,2,2\). Da \(\Delta(x)=x^{\mathsf T}V_cx/2\), ergeben sich die exakten Modulminima
+000097 | 
+000098 | | gemeinsame Klasse | Parität | minimales \(\Delta\) an \(V_c\) | orientierter Inhalt |
+000099 | |---|---:|---:|---|
+000100 | | \(0\) | gerade | \(0\) | Vakuummodul |
+000101 | | \(v\) | ungerade | \(3/4\) | \((10,1)+(1,6)\), mit neutralem Halbgitteranteil |
+000102 | | \(s\) | gerade | \(5/4\) | \((16,4)+(\overline{16},\overline4)\), mit neutralem Halbgitteranteil |
+000103 | | \(c\) | ungerade | \(3/2\) | \((16,\overline4)+(\overline{16},4)\), mit kritischem neutralem Dressing |
+000104 | 
+000105 | Die unteren Schranken werden erreicht. Für \(v\) ist ein Erreicher \(T(e_1)+z/2=f\). Für \(s\) ist es \(T(s)+n/2=b\). Für \(c\) kann man
+000106 | 
+000107 | \[
+000108 | c_{\min}=(1/2,-1/2,1/2,\ldots,1/2),\qquad T(c_{\min})+u
+000109 | \]
+000110 | 
+000111 | nehmen; dieser ganzzahlige Vektor liegt in der Nebenklasse \(f+b+M\). Der rohe Repräsentant \(f+b=T(e_1+s)+u\) ist nicht minimal: Er hat Lorentz-Norm \(5\) und \(\Delta_{V_c}=5/2\). Erst die Verschiebung um \(T(e_1+e_2)\in T(D_8)\) liefert den obigen Repräsentanten mit Lorentz-Norm \(3\) und \(\Delta_{V_c}=3/2\).
+000112 | 
+000113 | Damit sind die kleinsten **möglichen lokalen ungeraden** Module am diagnostischen Konkurrenzpunkt genau der \(v\)-Zweig bei \(\Delta=3/4\) und der gekreuzt chirale \(c\)-Zweig bei \(\Delta=3/2\). Der letztere ist algebraisch ein Spinorprojektionsanteil mit notwendigem neutralem kritischem Dressing. Weder \(u\) noch \(v\) allein ist ein ganzzahliger mikroskopischer Gittervektor. Daher ist der kritische Refermion kein unabhängiges lokales Quellfeld, und \(\Delta=3/2\) ist insbesondere keine vierdimensionale Weyl-Dimension.
+000114 | 
+000115 | Ein expliziter, vollständig integraler Erreicher macht den \(c\)-Befund konkret. Für
+000116 | 
+000117 | \[
+000118 | p=(1/2,-1/2,1/2,\ldots,1/2)
+000119 | \]
+000120 | 
+000121 | gelten
+000122 | 
+000123 | \[
+000124 | T(p)+u=(1,0,1,0,0,0,0,0,1,0),\qquad
+000125 | T(p)+v=(1,0,1,0,0,0,0,0,0,1).
+000126 | \]
+000127 | 
+000128 | Beide Felder sind ungerade, haben \(\Delta_{V_c}=3/2\), \(q=3\), \(Y=1/3\) und gehören wegen ungerader D5-, aber gerader D3-Minusparität zum Zweig \((16,\overline4)\). Sie unterscheiden sich um den lokalen neutralen Vektor \(z\). Das zeigt Existenz und Typ eines möglichen lokalen \(S_-\)-Komposits, jedoch nicht seine dynamische Auswahl oder Leichtigkeit.
+000129 | 
+000130 | ## 4. Unverzichtbare Einbettungsgrenze
+000131 | 
+000132 | Die obigen Gewichtsbezeichnungen gehören zur gemeinsamen Einbettung \(T(D_8)\). Für die andere Quellzerlegung gilt
+000133 | 
+000134 | \[
+000135 | F_{\rm aux}(p)=T(p)-k_a(p)n,\qquad
+000136 | B(F_{\rm aux}(p),x)=B(T(p),x)-k_a(p)B(n,x).
+000137 | \]
+000138 | 
+000139 | Sie liefert auf allgemeinen \(x\in\Gamma\) daher eine andere Cartanwirkung. Konkret sind die ursprünglichen Elementarfelder
+000140 | 
+000141 | \[
+000142 | e_i=F_{\rm aux}(r_i)-a_i m
+000143 | \]
+000144 | 

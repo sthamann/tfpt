@@ -4,6 +4,20 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Method
+
+[documents/tfpt_5_redteam/sections/001-section-method.tex:47-63](../../../../documents/tfpt_5_redteam/sections/001-section-method.tex#L47) · `section:f4722dc7a61b6484389b` · section
+
+The red team treats each reduction as a hostile witness. A confirmatory script that always passes is worthless here: the layer is built so that it may downgrade a claim. Four outcomes are allowed — survives (stands as worded), survives (narrowed) (stands only after a silent assumption is made explicit), reduced, not closed (the conservative wording is the correct one), and — reached by Target A after the lattice/ [fo
+
+Explicit source references:
+
+- [verification/v534_seam_straddle_cone.py](../../../../verification/v534_seam_straddle_cone.py#L1) · explicit_script_identifier
+
+Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
+
+- [(* ==== v534 round: SEAM.STRADDLE.CONE.01 -- the RP cone on the interacting FK quartets (the first dynamical selection of the alignment bit). Exact mirrors: the stabilizer census of the mark family, the pi/2 partition + straddle incidence, the reflection-closure signs of the straddling quartets, and the equivariant Fix rays (uniform on m=2..6, NS-wrap-twisted on m=1,7). The 256-dim Fock spectra, the PT Gram corrections and the finite-g survival scan are Python-only (numpy), flagged per GATE.WOLFRAM.02. ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L8401)
+
 ## Target B — carrier rank / the Pascal condition
 
 [documents/tfpt_5_redteam/sections/001-section-method.tex:90-109](../../../../documents/tfpt_5_redteam/sections/001-section-method.tex#L90) · `section:90278972f31acc1102a2` · section
@@ -18,7 +32,7 @@ Explicit source references:
 
 [documents/tfpt_5_redteam/sections/001-section-method.tex:267-367](../../../../documents/tfpt_5_redteam/sections/001-section-method.tex#L267) · `section:3bc2480a0b64fd3112f1` · section
 
-Minimal claim. The compiler's residual discrete carrier input is one symmetry-lift bit — flag transitivity of the four marks [formula in source] ( v512) — and the free-seam OS/RP structure that the Woit bridge ( WOIT.OS.TWISTOR.01) builds on survives adversarial attack. The red-team questions are two: can the bit be derived (in which case calling it an input would be a hidden redundancy), and can the OS/RP structure 
+Minimal claim. The compiler's residual discrete carrier input is one symmetry-lift bit — flag transitivity of the four marks [formula in source] ( v512) — and the free-seam OS/RP structure that the Woit bridge ( WOIT.OS.TWISTOR.01) builds on survives adversarial attack. The red-team questions are two: can the bit be derived (in which case calling it an input would be a hidden redundancy), and can the OS/RP structure
 
 Explicit source references:
 
@@ -48,7 +62,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/tfpt_5_redteam/sections/002-section-outcome.tex:1-355](../../../../documents/tfpt_5_redteam/sections/002-section-outcome.tex#L1) · `section:7a7de20f53ed3e69fb6f` · section
 
-What the red team changed. No target broke on the load-bearing surface. The hardest gate (A) is now closed modulo cited theorems on its MMST route SEAM.EQUIV.MMST.01 (the lattice/ [formula in source] round pins it at every computable level, Lean-formalised, only an external published existence theorem left, v367/ v368/ v376– v379); four targets (B, D, E, F) survive once a silent assumption is named; one (C) survives 
+What the red team changed. No target broke on the load-bearing surface. The hardest gate (A) is now closed modulo cited theorems on its MMST route SEAM.EQUIV.MMST.01 (the lattice/ [formula in source] round pins it at every computable level, Lean-formalised, only an external published existence theorem left, v367/ v368/ v376– v379); four targets (B, D, E, F) survive once a silent assumption is named; one (C) survives
 
 Explicit source references:
 
@@ -562,7 +576,7 @@ Der im Anwendungsteil verwendete Vergleich ist am datierten Original nachgelesen
 
 [documents/tfpt_horizon_readouts/sections/002-section-turnaround-radius-gravitational-waves-light.tex:342-353](../../../../documents/tfpt_horizon_readouts/sections/002-section-turnaround-radius-gravitational-waves-light.tex#L342) · `section:f14cd99bec2b5b92a146` · section
 
-The seam-unit identities of this note (the thermal grammar [formula in source] , the power denominator [formula in source] , the de Sitter entropy form, the Page fraction, the scrambling [formula in source] , and [formula in source] ) are re-derived and machine-checked in verification/v8_horizon.py. Run python verification/v8_horizon.py (needs mpmath); it imports the same [formula in source] primitive as the rest of 
+The seam-unit identities of this note (the thermal grammar [formula in source] , the power denominator [formula in source] , the de Sitter entropy form, the Page fraction, the scrambling [formula in source] , and [formula in source] ) are re-derived and machine-checked in verification/v8_horizon.py. Run python verification/v8_horizon.py (needs mpmath); it imports the same [formula in source] primitive as the rest of
 
 Explicit source references:
 
@@ -681,7 +695,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/tfpt_research_contracts/sections/006-source.tex:1-290](../../../../documents/tfpt_research_contracts/sections/006-source.tex#L1) · `section:95036dacfe44edfdb2c9` · frontmatter
 
-The address table acquires its structure — on word-length integers frozen in v18/ v20, long before today's readings (the red-team firewall). (i) The lepton words are the atoms : [formula in source] in mass order (longest word [formula in source] lightest lepton). (ii) Addresses [formula in source] division by the hexagon : [formula in source] with [formula in source] itself an atom: [formula in source] , [formula in 
+The address table acquires its structure — on word-length integers frozen in v18/ v20, long before today's readings (the red-team firewall). (i) The lepton words are the atoms : [formula in source] in mass order (longest word [formula in source] lightest lepton). (ii) Addresses [formula in source] division by the hexagon : [formula in source] with [formula in source] itself an atom: [formula in source] , [formula in
 
 Explicit source references:
 
@@ -922,7 +936,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/tfpt_research_contracts/sections/014-source.tex:183-244](../../../../documents/tfpt_research_contracts/sections/014-source.tex#L183) · `section:580c8e5b415ac9b79cec` · section
 
-Typing. A standing discipline rule, in force immediately (ledger row DIMENSION.UPLIFT.FIREWALL.01); the uplift theorems it names are separate \ contracts. It formalizes the core diagnosis of the 2026-08-27 external deep review: a chiral [formula in source] D seam net does not imply a local, interacting [formula in source] D quantum world. The corpus's strongest finite results are boundary/kinematic building blocks — 
+Typing. A standing discipline rule, in force immediately (ledger row DIMENSION.UPLIFT.FIREWALL.01); the uplift theorems it names are separate \ contracts. It formalizes the core diagnosis of the 2026-08-27 external deep review: a chiral [formula in source] D seam net does not imply a local, interacting [formula in source] D quantum world. The corpus's strongest finite results are boundary/kinematic building blocks —
 
 Explicit source references:
 
@@ -1434,7 +1448,7 @@ Explicit source references:
 
 [documents/tfpt_research_contracts/sections/020-source.tex:1-162](../../../../documents/tfpt_research_contracts/sections/020-source.tex#L1) · `section:f97072f658fe6bcec8d8` · section
 
-Typing. This section is a hand-off document: it packages the one remaining seam obligation as a self-contained problem statement for an outside specialist in conformal nets / vertex operator algebras / algebraic QFT. It documents, it does not close: the ledger row SEAM.EQUIV.01 stays \ (its conditional route SEAM.EQUIV.MMST.01 is closed modulo cited theorems; the unconditional parent is the target below). Nothing in 
+Typing. This section is a hand-off document: it packages the one remaining seam obligation as a self-contained problem statement for an outside specialist in conformal nets / vertex operator algebras / algebraic QFT. It documents, it does not close: the ledger row SEAM.EQUIV.01 stays \ (its conditional route SEAM.EQUIV.MMST.01 is closed modulo cited theorems; the unconditional parent is the target below). Nothing in
 
 Explicit source references:
 
@@ -1511,7 +1525,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 ## Certifiability and recommended order
 
-[documents/tfpt_research_contracts/sections/021-source.tex:1-307](../../../../documents/tfpt_research_contracts/sections/021-source.tex#L1) · `section:fdf63a1d99769ab37ccb` · section
+[documents/tfpt_research_contracts/sections/021-source.tex:1-309](../../../../documents/tfpt_research_contracts/sections/021-source.tex#L1) · `section:fdf63a1d99769ab37ccb` · section
 
 @Ylc@ Building block & Machine & Hardness \\ [formula in source] enumeration ( [formula in source] ) & Lean / Python / Wolfram & easy ( done) \\ [formula in source] fixed-locus polynomial ( [formula in source] ) & Sage / Mathematica & medium \\ selector uniqueness ( [formula in source] ) & interval arithmetic & medium \\ SNF, determinants, spectra & Lean & easy–medium \\ principal-symbol ellipticity (G1) & xAct / Cad
 
@@ -1739,7 +1753,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/tfpt_safeguards/sections/001-section-the-risk-and-the-shape-of-the-answer.tex:254-274](../../../../documents/tfpt_safeguards/sections/001-section-the-risk-and-the-shape-of-the-answer.tex#L254) · `section:d59ca752d5e1a51b75b5` · section
 
-@lYl@ Layer & What it defends against & Artefact \\ Status calculus & a \ claim read as & ledger [formula in source] audit_sync.py \\ No free pattern [formula in source] reverse audit & cherry-picking, decorative identities & v305/ v100/ v431/ E8.REVERSE.AUDIT.01 \\ Over-determination map & rhetorical ``everything multiplies'' (incl.\ our own miscount) & v427/ v428/ v432/ v436 \\ Firewall [formula in source] No-Unit 
+@lYl@ Layer & What it defends against & Artefact \\ Status calculus & a \ claim read as & ledger [formula in source] audit_sync.py \\ No free pattern [formula in source] reverse audit & cherry-picking, decorative identities & v305/ v100/ v431/ E8.REVERSE.AUDIT.01 \\ Over-determination map & rhetorical ``everything multiplies'' (incl.\ our own miscount) & v427/ v428/ v432/ v436 \\ Firewall [formula in source] No-Unit
 
 Explicit source references:
 
@@ -1919,7 +1933,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/origin_theory.tex:1166-1454](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/origin_theory.tex#L1166) · `section:0c131301948f5acf50d5` · section
 
-The precise reformulation ( ). The seam is not identical to an event horizon. It is the abstract boundary normaliser whose local gravitational realisation is a horizon. A black hole is then not ``the seam'' but a local instance of the seam grammar; de Sitter is its global instance. This is stronger and cleaner than a direct identification — it avoids importing Schwarzschild analogies wholesale, and it makes [formula 
+The precise reformulation ( ). The seam is not identical to an event horizon. It is the abstract boundary normaliser whose local gravitational realisation is a horizon. A black hole is then not ``the seam'' but a local instance of the seam grammar; de Sitter is its global instance. This is stronger and cleaner than a direct identification — it avoids importing Schwarzschild analogies wholesale, and it makes [formula
 
 Explicit source references:
 
@@ -2211,7 +2225,7 @@ Explicit source references:
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tex-artefacts/toe_round4_proofs.tex:9-22](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tex-artefacts/toe_round4_proofs.tex#L9) · `section:83c8266dcbf844e64c6b` · paragraph
 
-SEAM.MMST.TELB.NORM.01. For the frozen [formula in source] , [formula in source] collar, the original remainder obeys [formula in source] The interval inputs are v1022 (TV and potential), v1025 (C1/C2a), and v1026_ telb_ round4_ closure.py (CF, DG, signed CROSS, validated Fourier core and all-volume aliases). This is not a proof of the historical sharper [formula in source] or Bound-B target [formula in source] . In 
+SEAM.MMST.TELB.NORM.01. For the frozen [formula in source] , [formula in source] collar, the original remainder obeys [formula in source] The interval inputs are v1022 (TV and potential), v1025 (C1/C2a), and v1026_ telb_ round4_ closure.py (CF, DG, signed CROSS, validated Fourier core and all-volume aliases). This is not a proof of the historical sharper [formula in source] or Bound-B target [formula in source] . In
 
 Explicit source references:
 
@@ -2237,13 +2251,3 @@ The csc-squared finite product identity and trigamma recurrence for the original
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tex-artefacts/toe_round4_proofs.tex:143-174](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tex-artefacts/toe_round4_proofs.tex#L143) · `section:e65838beabd687268ea8` · paragraph
 
 Let [formula in source] be the unitary fractional shift with entries [formula in source] , let [formula in source] restrict to [formula in source] , [formula in source] , [formula in source] , [formula in source] and [formula in source] . Crucially [formula in source] . For the finite unitary overlap [formula in source] and [formula in source] , the source identity is [formula in source] Hence [formula in source] . P
-
-## Validated Fourier core and the missing finite-grid aliases.
-
-[experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tex-artefacts/toe_round4_proofs.tex:175-242](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tex-artefacts/toe_round4_proofs.tex#L175) · `section:bce0cf0522b937838636` · paragraph
-
-Use the sigma- [formula in source] basis [formula in source] , [formula in source] , [formula in source] . The jump is [formula in source] (zero-based indices), and [formula in source] for [formula in source] . At the 512 midpoint nodes, 256-bit Acb validated eigensystems strictly separate eight occupied and eight unoccupied eigenvalues. The outward matrix DFT [formula in source] obeys the exact midpoint alias formul
-
-Explicit source references:
-
-- [verification/v1022_telb_round3_certificates.py](../../../../verification/v1022_telb_round3_certificates.py#L1) · explicit_script_identifier

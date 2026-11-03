@@ -176,7 +176,7 @@ ink FORSCHUNGSDOKUMENTATION 17mm 3237 TFPT und Universalraum 7mm Vom geometrisch
 
 [documents/TFPT_Universalraum_Sitzungsdokumentation_2026-09-20/sections/001-chapter-leserbrief.tex:27-42](../../../../documents/TFPT_Universalraum_Sitzungsdokumentation_2026-09-20/sections/001-chapter-leserbrief.tex#L27) · `section:e220d28239ac26270ec0` · chapter
 
-tocchapterLeserbrief Das Ziel dieser Sitzung war von Anfang an groß: eine gemeinsame, möglichst einfache Ursprungstheorie finden, die den TFPT-Compiler, Quantenprozesse, Materie, Raumzeit und Gravitation aus derselben Struktur verständlich macht. Die Untersuchungen dürfen deshalb nicht nur daran gemessen werden, ob irgendwo eine schöne Matrix entsteht. Entscheidend ist, ob die verschiedenen Matrizen dieselbe Quelle, 
+tocchapterLeserbrief Das Ziel dieser Sitzung war von Anfang an groß: eine gemeinsame, möglichst einfache Ursprungstheorie finden, die den TFPT-Compiler, Quantenprozesse, Materie, Raumzeit und Gravitation aus derselben Struktur verständlich macht. Die Untersuchungen dürfen deshalb nicht nur daran gemessen werden, ob irgendwo eine schöne Matrix entsteht. Entscheidend ist, ob die verschiedenen Matrizen dieselbe Quelle,
 
 ## Was eine vollständige Lösung leisten müsste
 
@@ -188,7 +188,7 @@ Die gesuchte Gesamtlösung soll nicht nur bestehende Zahlen nachbilden. Sie müs
 
 [documents/TFPT_Universalraum_Sitzungsdokumentation_2026-09-20/sections/001-chapter-leserbrief.tex:111-125](../../../../documents/TFPT_Universalraum_Sitzungsdokumentation_2026-09-20/sections/001-chapter-leserbrief.tex#L111) · `section:d031d3eb45237edc80be` · section
 
-Ein wichtiger früher Test betraf die Rekonstruktion des Generators aus einer Zustands- oder Randbeschreibung. Der Projektor [formula in source] kennt die positiven und negativen Energierichtungen, verliert aber die Beträge [formula in source] . Schon [formula in source] hat [formula in source] ; jede Dichtematrix kommutiert mit [formula in source] , aber nicht jede mit [formula in source] . Die Rückrichtung [formula 
+Ein wichtiger früher Test betraf die Rekonstruktion des Generators aus einer Zustands- oder Randbeschreibung. Der Projektor [formula in source] kennt die positiven und negativen Energierichtungen, verliert aber die Beträge [formula in source] . Schon [formula in source] hat [formula in source] ; jede Dichtematrix kommutiert mit [formula in source] , aber nicht jede mit [formula in source] . Die Rückrichtung [formula
 
 ## Gleicher Populationstransfer, verschiedene Quantenfortsetzungen
 
@@ -218,7 +218,7 @@ Eine Wurzelpermutation ist noch keine Automorphie der E8-Stromklammer. Beim Vert
 
 [documents/TFPT_Universalraum_Sitzungsdokumentation_2026-09-20/sections/003-section-das-alte-bell10-erscheint-aus-echten-stromproduk.tex:101-121](../../../../documents/TFPT_Universalraum_Sitzungsdokumentation_2026-09-20/sections/003-section-das-alte-bell10-erscheint-aus-echten-stromproduk.tex#L101) · `section:089d8afed3b3424a2643` · section
 
-@P.25 P.42 P.25 @ Frühere naheliegende Deutung & Heutiger belastbarer Stand & Konsequenz\\ Frühere Deutung & Heutiger Stand & Konsequenz\\ Zustand bzw. Vorzeichenprojektor bestimmt den Generator & Energiegrößen und Kohärenzdynamik bleiben im Allgemeinen frei. & Mehrzeitgesetz oder Generatorursprung nötig.\\[4pt] Acht reale Richtungen sind die acht nativen CAR-Moden & Charaktere und Skalarkörper unterscheiden sich. & 
+@P.25 P.42 P.25 @ Frühere naheliegende Deutung & Heutiger belastbarer Stand & Konsequenz\\ Frühere Deutung & Heutiger Stand & Konsequenz\\ Zustand bzw. Vorzeichenprojektor bestimmt den Generator & Energiegrößen und Kohärenzdynamik bleiben im Allgemeinen frei. & Mehrzeitgesetz oder Generatorursprung nötig.\\[4pt] Acht reale Richtungen sind die acht nativen CAR-Moden & Charaktere und Skalarkörper unterscheiden sich. &
 
 ## Priorität 5: aus Beziehungen wirkliche Lokalität rekonstruieren
 
@@ -248,7 +248,7 @@ ink FORSCHUNGSDOKUMENTATION 17mm 3237 TFPT und Universalraum 7mm Vom geometrisch
 
 [documents/TFPT_Universalraum_Sitzungsdokumentation_2026-09-20_v2/sections/001-chapter-leserbrief.tex:29-44](../../../../documents/TFPT_Universalraum_Sitzungsdokumentation_2026-09-20_v2/sections/001-chapter-leserbrief.tex#L29) · `section:59c30eba3c935582bb49` · chapter
 
-tocchapterLeserbrief Das Ziel dieser Sitzung war von Anfang an groß: eine gemeinsame, möglichst einfache Ursprungstheorie finden, die den TFPT-Compiler, Quantenprozesse, Materie, Raumzeit und Gravitation aus derselben Struktur verständlich macht. Die Untersuchungen dürfen deshalb nicht nur daran gemessen werden, ob irgendwo eine schöne Matrix entsteht. Entscheidend ist, ob die verschiedenen Matrizen dieselbe Quelle, 
+tocchapterLeserbrief Das Ziel dieser Sitzung war von Anfang an groß: eine gemeinsame, möglichst einfache Ursprungstheorie finden, die den TFPT-Compiler, Quantenprozesse, Materie, Raumzeit und Gravitation aus derselben Struktur verständlich macht. Die Untersuchungen dürfen deshalb nicht nur daran gemessen werden, ob irgendwo eine schöne Matrix entsteht. Entscheidend ist, ob die verschiedenen Matrizen dieselbe Quelle,
 
 ## Was eine vollständige Lösung leisten müsste
 
@@ -260,7 +260,7 @@ Die gesuchte Gesamtlösung soll nicht nur bestehende Zahlen nachbilden. Sie müs
 
 [documents/TFPT_Universalraum_Sitzungsdokumentation_2026-09-20_v2/sections/001-chapter-leserbrief.tex:113-127](../../../../documents/TFPT_Universalraum_Sitzungsdokumentation_2026-09-20_v2/sections/001-chapter-leserbrief.tex#L113) · `section:5e24fd90f3f1e990d21a` · section
 
-Ein wichtiger früher Test betraf die Rekonstruktion des Generators aus einer Zustands- oder Randbeschreibung. Der Projektor [formula in source] kennt die positiven und negativen Energierichtungen, verliert aber die Beträge [formula in source] . Schon [formula in source] hat [formula in source] ; jede Dichtematrix kommutiert mit [formula in source] , aber nicht jede mit [formula in source] . Die Rückrichtung [formula 
+Ein wichtiger früher Test betraf die Rekonstruktion des Generators aus einer Zustands- oder Randbeschreibung. Der Projektor [formula in source] kennt die positiven und negativen Energierichtungen, verliert aber die Beträge [formula in source] . Schon [formula in source] hat [formula in source] ; jede Dichtematrix kommutiert mit [formula in source] , aber nicht jede mit [formula in source] . Die Rückrichtung [formula
 
 ## Gleicher Populationstransfer, verschiedene Quantenfortsetzungen
 
@@ -302,7 +302,7 @@ Die späteren Arbeiten zur Rand-, Gitter- und Eichstruktur bilden eine logisch z
 
 [documents/TFPT_Universalraum_Sitzungsdokumentation_2026-09-20_v2/sections/004-chapter-randgitter-dynamik-und-lokale-rekonstruktion.tex:46-109](../../../../documents/TFPT_Universalraum_Sitzungsdokumentation_2026-09-20_v2/sections/004-chapter-randgitter-dynamik-und-lokale-rekonstruktion.tex#L46) · `section:792e4664e03a4f0a3f4f` · section
 
-37 beginnt mit allen primitiven charakteristischen Nullvektoren minimaler euklidischer Länge im Gitter [formula in source] . Die Charakteristik erzwingt ungerade Komponenten; Minimalität gibt [formula in source] . Die globale Quellenladung, der Glue und die orientierte Farb-/Schwach-/Familienzerlegung reduzieren die Kandidaten stufenweise. 38 ersetzt dabei eine zunächst separat angenommene Blockpermutationssymmetrie 
+37 beginnt mit allen primitiven charakteristischen Nullvektoren minimaler euklidischer Länge im Gitter [formula in source] . Die Charakteristik erzwingt ungerade Komponenten; Minimalität gibt [formula in source] . Die globale Quellenladung, der Glue und die orientierte Farb-/Schwach-/Familienzerlegung reduzieren die Kandidaten stufenweise. 38 ersetzt dabei eine zunächst separat angenommene Blockpermutationssymmetrie
 
 ## Das vollständige Gitter trägt die Statistik
 
@@ -599,7 +599,7 @@ The theorem stack proved here is narrower than a full theory-of-everything claim
 
 [documents/archive--paper-latex--tfpt-32/sections/014-section-primary-benchmark-map-and-prediction-ledger.tex:300-332](../../../../documents/archive--paper-latex--tfpt-32/sections/014-section-primary-benchmark-map-and-prediction-ledger.tex#L300) · `section:1601d0f18313bfa38afc` · subsection
 
-The cleanest route from the present carrier-first compiler to a genuinely generative architecture is not to blur status labels, but to isolate six explicit theorem paths: Master closure theorem: derive APS, Bernstein positivity, reflection positivity, [formula in source] holonomy, and Hamiltonian coercivity from canonical doubling, positive spectral measure, and total Hodge admissibility instead of keeping them as a 
+The cleanest route from the present carrier-first compiler to a genuinely generative architecture is not to blur status labels, but to isolate six explicit theorem paths: Master closure theorem: derive APS, Bernstein positivity, reflection positivity, [formula in source] holonomy, and Hamiltonian coercivity from canonical doubling, positive spectral measure, and total Hodge admissibility instead of keeping them as a
 
 ## Relative objects
 

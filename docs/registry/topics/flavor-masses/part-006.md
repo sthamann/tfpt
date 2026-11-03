@@ -72,7 +72,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/tfpt_1_architecture_e8/sections/004-source.tex:351-366](../../../../documents/tfpt_1_architecture_e8/sections/004-source.tex#L351) · `section:e2ac56d63dc5b474ddb4` · subsection
 
-With [formula in source] , the quadratic hypercharge trace on one family is [formula in source] , and it generates the whole integer chain: The flavor budget, the [formula in source] budget, the [formula in source] count and the second seam defect all hang on the second hypercharge moment [formula in source] . \ Round-22 sharpening: the moment itself is one symbolic identity, [formula in source] — the Coxeter number 
+With [formula in source] , the quadratic hypercharge trace on one family is [formula in source] , and it generates the whole integer chain: The flavor budget, the [formula in source] budget, the [formula in source] count and the second seam defect all hang on the second hypercharge moment [formula in source] . \ Round-22 sharpening: the moment itself is one symbolic identity, [formula in source] — the Coxeter number
 
 Explicit source references:
 
@@ -280,7 +280,7 @@ arrows.meta,positioning,calc,fit,backgrounds,shapes.geometric,shapes.misc,decora
 
 [documents/tfpt_2_standard_model/sections/001-part-the-standard-model-in-one-master-formula.tex:1-24](../../../../documents/tfpt_2_standard_model/sections/001-part-the-standard-model-in-one-master-formula.tex#L1) · `section:3b5318f0d65e3c120bab` · frontmatter
 
-The Standard Model as one [formula in source] -ladder mass formula (all masses, CKM, PMNS, neutrinos), the flavor matrix from parabolic transport on [formula in source] , the five worked closures ( [formula in source] , quark [formula in source] , the explicit mass gap, Starobinsky [formula in source] , the H2 splitting), and gravity/quantum gravity as the seam response (the Seam Response Grammar [formula in source] 
+The Standard Model as one [formula in source] -ladder mass formula (all masses, CKM, PMNS, neutrinos), the flavor matrix from parabolic transport on [formula in source] , the five worked closures ( [formula in source] , quark [formula in source] , the explicit mass gap, Starobinsky [formula in source] , the H2 splitting), and gravity/quantum gravity as the seam response (the Seam Response Grammar [formula in source]
 
 ## The Standard Model in one master formula
 
@@ -532,7 +532,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/tfpt_2_standard_model/sections/005-subsection-closing-the-audit-gates-is-m-41-k-q-derived-o.tex:325-356](../../../../documents/tfpt_2_standard_model/sections/005-subsection-closing-the-audit-gates-is-m-41-k-q-derived-o.tex#L325) · `section:9cb3b04ab25cb016cf69` · subsection
 
-The closed CKM point is not an end state — it feeds the theoretically cleanest flavor-changing neutral-current probe, the rare decays [formula in source] and [formula in source] . These are not a new compiler power: the only TFPT-specific content is the CKM point above; the short-distance loop functions ( [formula in source] , [formula in source] , [formula in source] , [formula in source] , Brod–Gorbahn–Stamou) are 
+The closed CKM point is not an end state — it feeds the theoretically cleanest flavor-changing neutral-current probe, the rare decays [formula in source] and [formula in source] . These are not a new compiler power: the only TFPT-specific content is the CKM point above; the short-distance loop functions ( [formula in source] , [formula in source] , [formula in source] , [formula in source] , Brod–Gorbahn–Stamou) are
 
 Explicit source references:
 
@@ -543,7 +543,7 @@ Explicit source references:
 
 [documents/tfpt_2_standard_model/sections/006-section-neutrinos.tex:1-262](../../../../documents/tfpt_2_standard_model/sections/006-section-neutrinos.tex#L1) · `section:697c671889813baf24f5` · section
 
-The neutrino sector is the Majorana branch of the same construction: [formula in source] . @p3.6cmp5.2cmc@ Quantity & Origin & Value \\ [formula in source] & [formula in source] (UV), closure [formula in source] & [formula in source] \\ [formula in source] & primary (freeze): [formula in source] (seed, [formula in source] ); two derived variants in the named box & [formula in source] (NuFIT 6.0 [formula in source] ) 
+The neutrino sector is the Majorana branch of the same construction: [formula in source] . @p3.6cmp5.2cmc@ Quantity & Origin & Value \\ [formula in source] & [formula in source] (UV), closure [formula in source] & [formula in source] \\ [formula in source] & primary (freeze): [formula in source] (seed, [formula in source] ); two derived variants in the named box & [formula in source] (NuFIT 6.0 [formula in source] )
 
 Explicit source references:
 
@@ -786,7 +786,7 @@ The family curve is the rigid four-punctured sphere [formula in source] , [formu
 
 [documents/tfpt_2_standard_model/sections/008-section-the-setup-parabolic-data-on-the-family-curve.tex:115-172](../../../../documents/tfpt_2_standard_model/sections/008-section-the-setup-parabolic-data-on-the-family-curve.tex#L115) · `section:95ef9c8e927ef9e25379` · section
 
-Status (no drift). The splitting type is now closed: the unique partition [formula in source] fixes the anchor and [formula in source] fixes the residue branch (verified, below and v4_flavor_matrix.py), and the solar texture is built ( v9_neutrino_texture.py). The roadmap below is kept as the derivation record of how [formula in source] is obtained; it is no longer an open project. The only residual is the parabolic 
+Status (no drift). The splitting type is now closed: the unique partition [formula in source] fixes the anchor and [formula in source] fixes the residue branch (verified, below and v4_flavor_matrix.py), and the solar texture is built ( v9_neutrino_texture.py). The roadmap below is kept as the derivation record of how [formula in source] is obtained; it is no longer an open project. The only residual is the parabolic
 
 Explicit source references:
 
@@ -1031,7 +1031,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/tfpt_3_e8_audit_bootstrap/sections/009-section-further-audit-lemmas-machine-verified-this-round.tex:1-189](../../../../documents/tfpt_3_e8_audit_bootstrap/sections/009-section-further-audit-lemmas-machine-verified-this-round.tex#L1) · `section:e7e7f78a69bea2986c9f` · frontmatter
 
-The Wick functor arc ( SEAM.CFIN. WICKFUNCTOR.01 [O]). Three probes ( [formula in source] ; wickfunctor-partial, wickmix-measured (wickmix-obstructed), wickblock-measured (blockfunctor-constructed / seam-diagonal); embedded byte-exact; exact integer/rational/symbolic in every decision typed proved or symbolic). The six compiler roles exist in the deployed seam ( [formula in source] slot pairs [formula in source] the 
+The Wick functor arc ( SEAM.CFIN. WICKFUNCTOR.01 [O]). Three probes ( [formula in source] ; wickfunctor-partial, wickmix-measured (wickmix-obstructed), wickblock-measured (blockfunctor-constructed / seam-diagonal); embedded byte-exact; exact integer/rational/symbolic in every decision typed proved or symbolic). The six compiler roles exist in the deployed seam ( [formula in source] slot pairs [formula in source] the
 
 Explicit source references:
 
@@ -1064,7 +1064,7 @@ Five more exact identities tie the flavor matrices and the [formula in source] e
 
 [documents/tfpt_3_e8_audit_bootstrap/sections/010-section-three-views-of-one-spine.tex:1-48](../../../../documents/tfpt_3_e8_audit_bootstrap/sections/010-section-three-views-of-one-spine.tex#L1) · `section:b19a7595d83b1a10d11a` · section
 
-at (0.35,58) [formula in source] — E-series / atlas branchings (UV); at (0.35,40) [formula in source] ; at (0.35,30) [formula in source] \,(Coxeter rung, [formula in source] ); at (0.35,24) [formula in source] — [formula in source] , [formula in source] , [formula in source] ; at (0.35,15) [formula in source] (IR atoms); at (0.35,8) [formula in source] \,(flavor selector, end); at (0,60.5) [formula in source] start; 
+at (0.35,58) [formula in source] — E-series / atlas branchings (UV); at (0.35,40) [formula in source] ; at (0.35,30) [formula in source] \,(Coxeter rung, [formula in source] ); at (0.35,24) [formula in source] — [formula in source] , [formula in source] , [formula in source] ; at (0.35,15) [formula in source] (IR atoms); at (0.35,8) [formula in source] \,(flavor selector, end); at (0,60.5) [formula in source] start;
 
 Explicit source references:
 
@@ -1525,7 +1525,7 @@ Im ausdrücklich phasenoffenen Zweig mit [formula in source] verbleibt eine phys
 
 [documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/007-subsection-die-vollst-ndige-neutrinomatrix-besitzt-ein-n.tex:120-155](../../../../documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/007-subsection-die-vollst-ndige-neutrinomatrix-besitzt-ein-n.tex#L120) · `section:32f4278cfa35e310cbcd` · paragraph
 
-Die beiden ursprünglichen markierten Generatoren liefern einen zusätzlichen exakten Test. In der zyklischen Darstellung seien sie [formula in source] und [formula in source] . Sie erfüllen [formula in source] . Für eine gemeinsame Charakterlinie des symmetrischen Paarraums folgen daraus [formula in source] , also [formula in source] . Eine [formula in source] -invariante symmetrische Matrix besitzt die Form [formula 
+Die beiden ursprünglichen markierten Generatoren liefern einen zusätzlichen exakten Test. In der zyklischen Darstellung seien sie [formula in source] und [formula in source] . Sie erfüllen [formula in source] . Für eine gemeinsame Charakterlinie des symmetrischen Paarraums folgen daraus [formula in source] , also [formula in source] . Eine [formula in source] -invariante symmetrische Matrix besitzt die Form [formula
 
 ## Der jetzt genau bestimmte Auswahlgegenstand.
 
@@ -1587,7 +1587,7 @@ Die Wand-Idee liefert einen bedingten geometrischen Anschluss, aber keinen Zwang
 
 [documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/008-subsection-die-wand-lesart-gemeinsamer-geometrischer-ans.tex:127-133](../../../../documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/008-subsection-die-wand-lesart-gemeinsamer-geometrischer-ans.tex#L127) · `section:9873d8728c127f20b433` · paragraph
 
-Die Wand-Lesart darf die vorhandenen [formula in source] -, Massen- und Flavorherleitungen nicht durch freie Kompaktifizierungsparameter ersetzen. Schon dimensionsanalytisch ist [formula in source] von der Dimension Länge hoch sechs, während [formula in source] dimensionslos ist. In einer unverwobenen Produktkompaktifizierung mit konstantem Hintergrund gilt schematisch [formula in source] ; Normierung, Schwellen und 
+Die Wand-Lesart darf die vorhandenen [formula in source] -, Massen- und Flavorherleitungen nicht durch freie Kompaktifizierungsparameter ersetzen. Schon dimensionsanalytisch ist [formula in source] von der Dimension Länge hoch sechs, während [formula in source] dimensionslos ist. In einer unverwobenen Produktkompaktifizierung mit konstantem Hintergrund gilt schematisch [formula in source] ; Normierung, Schwellen und
 
 ## Vom Quellenfeld zum wirklichen Massenblock und zur gemeinsamen Vergröberung
 
@@ -1603,7 +1603,7 @@ Explicit source references:
 
 [documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/009-subsection-zustand-und-wirkung-aus-derselben-r-ckwirkung.tex:1-9](../../../../documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/009-subsection-zustand-und-wirkung-aus-derselben-r-ckwirkung.tex#L1) · `section:fb5a79ad28f8f85f979b` · subsection
 
-Die gemeinsame Information ist jetzt genauer bestimmt. Eine korrekte Vergröberung muss sowohl die dynamische Antwort als auch den reduzierten Zustand aus demselben vollständigen Kern gewinnen. Am ursprünglichen Neutrinooperator ist diese Verbindung nun berechnet. Der aus einer Momentaufnahme rekonstruierte Operator ist im Allgemeinen nicht die ruhende Massenantwort. Unter passender Trennung der schweren und leichten 
+Die gemeinsame Information ist jetzt genauer bestimmt. Eine korrekte Vergröberung muss sowohl die dynamische Antwort als auch den reduzierten Zustand aus demselben vollständigen Kern gewinnen. Am ursprünglichen Neutrinooperator ist diese Verbindung nun berechnet. Der aus einer Momentaufnahme rekonstruierte Operator ist im Allgemeinen nicht die ruhende Massenantwort. Unter passender Trennung der schweren und leichten
 
 ## Wann die Zustandsauswertung die leichte Massenmatrix wiedergibt.
 

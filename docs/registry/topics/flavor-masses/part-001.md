@@ -514,7 +514,7 @@ This appendix derives the M\"obius structure of flavor relations from boundary m
 
 [documents/archive--paper-latex--tfpt-31/sections/001-section-reading-guide-and-claim-map.tex:60-165](../../../../documents/archive--paper-latex--tfpt-31/sections/001-section-reading-guide-and-claim-map.tex#L60) · `section:5ad6c8ac0fb46f8da1fd` · section
 
-The paper is organized in three reading layers: Big picture: one section explains what TFPT claims in plain language before the detailed datum and conventions begin. Detail: the main body then runs from primitive core and hard carrier kernel through kernel numerics, the two closure-architecture sections, the closure theorem stack, the particle/mass compiler, and the benchmark interface. Proof sketches: the main text 
+The paper is organized in three reading layers: Big picture: one section explains what TFPT claims in plain language before the detailed datum and conventions begin. Detail: the main body then runs from primitive core and hard carrier kernel through kernel numerics, the two closure-architecture sections, the closure theorem stack, the particle/mass compiler, and the benchmark interface. Proof sketches: the main text
 
 ## Single-seed compression and the Cabibbo inversion
 
@@ -574,7 +574,7 @@ Define [formula in source] On the admissible branch, [formula in source] Moreove
 
 [documents/archive--paper-latex--tfpt-31/sections/012-section-particle-and-mass-compiler.tex:137-392](../../../../documents/archive--paper-latex--tfpt-31/sections/012-section-particle-and-mass-compiler.tex#L137) · `section:3559395957442aff0f78` · section
 
-This section is the phenomenological heart of the manuscript. It is not meant to flatten all rows into one uniform notion of prediction. Instead it makes the relation between derived theorem outputs and intrinsic observation rows explicit: a declared numerical preconditioner, a kernel-output map, and a mass ledger that separates internal theorem outputs from their observation-surface images. Accordingly this section 
+This section is the phenomenological heart of the manuscript. It is not meant to flatten all rows into one uniform notion of prediction. Instead it makes the relation between derived theorem outputs and intrinsic observation rows explicit: a declared numerical preconditioner, a kernel-output map, and a mass ledger that separates internal theorem outputs from their observation-surface images. Accordingly this section
 
 ## Mass-closure ledgers
 

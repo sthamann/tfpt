@@ -1,0 +1,71 @@
+TFPT scientific source excerpt
+Original repository path: verification/v983_simple_current_generator.py
+Original file SHA-256: 769a9c5cb5e6518d8d2a445d347150f5ce0d1410c95db263ca2db72466e176c8
+Inclusive original lines: 1-63
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """v983 -- SEAM.SIMPLECURRENT.GENERATOR.01 [O update: the generator is
+000002 | IDENTIFIED and its complete lattice-arithmetic shadow is machine-checked];
+000003 | SEAM.EQUIV.LATTICEVOA.01 / v1 companions (read-only anchors).
+000004 | 
+000005 | THE POINT (external master-object review, wave 2, 2026-08-28).  The contract
+000006 | asks for ONE normalized simple-current/spin-field generator whose fusion
+000007 | powers generate the whole 128-dimensional extension sector, collapsing the
+000008 | v973 residuals N1 + N2 + N4 onto one convergence theorem.  This module
+000009 | verifies EXACTLY, at the lattice/VOA-arithmetic level, that the candidate
+000010 | 
+000011 |     lambda = (omega_s, omega_f)   (D5 spinor weight, A3 fundamental weight)
+000012 | 
+000013 | is that generator, in explicit coordinates (omega_s = (1/2)^5 in R^5,
+000014 | omega_f = (3/4, -1/4, -1/4, -1/4) in R^4, L0 = D5 (+) A3):
+000015 | 
+000016 |   [E] 1. NORMS: |omega_s|^2 = 5/4, |omega_f|^2 = 3/4, |lambda|^2 = 2, so the
+000017 |         conformal weight h_lambda = |lambda|^2/2 = 1 is an INTEGER -- the
+000018 |         vertex operator Y(e^lambda, z) has trivial self-monodromy (the
+000019 |         arithmetic precondition for a bosonic simple current).
+000020 |   [E] 2. ORDER FOUR: 4*lambda in L0 while lambda, 2*lambda are NOT in L0 --
+000021 |         the class [lambda] generates the diagonal Z4 in the discriminant
+000022 |         group Z4 x Z4 of L0.
+000023 |   [E] 3. EVEN + UNIMODULAR: lambda . L0 subset Z (checked on a generator
+000024 |         set), so every coset L0 + k*lambda has even norms (isotropic glue
+000025 |         group); det(L0) = 4*4 = 16 and the index-4 extension gives
+000026 |         det L = 16/4^2 = 1.  Even + unimodular + rank 8 => L ~= E8
+000027 |         (classification, [C] cited; the explicit E8 certificate is v1).
+000028 |   [E] 4. COSET ROOT CENSUS (the fusion-power decomposition made exact):
+000029 |         norm-2 vectors per coset = [52, 64, 60, 64] for k = 0..3 (total
+000030 |         240); with the rank-8 Cartan sector this is exactly
+000031 |         248 = (45 + 15) + (16, 4) + (10, 6) + (16bar, 4bar); the odd
+000032 |         fusion powers k = 1, 3 carry 64 + 64 = 128 = the FULL missing
+000033 |         spinor sector -- one field generates all four cosets.
+000034 |   [E] 5. KILL TESTS (a wrong glue must not close): the vector-class glue
+000035 |         (v, omega_f) has norm 7/4 and the mismatched glue (omega_s,
+000036 |         omega_2) has norm 9/4 -- both NOT in 2Z, so the glued lattice is
+000037 |         NOT even and cannot be E8.
+000038 |   [E] 6. HOLOMORPHY SHADOW (sector-count arithmetic of the N4 residual):
+000039 |         the glued lattice has det 1 => a SINGLE irreducible sector
+000040 |         (mu-index 1 at the lattice level), while the rival D8 (SO(16)_1)
+000041 |         has det(Cartan D8) = 4 => four sectors.  This is the lattice
+000042 |         shadow of the holomorphy selector, NOT the operator-algebraic
+000043 |         statement.
+000044 | 
+000045 | HONEST SCOPE (firewall): everything here is exact lattice arithmetic in
+000046 | explicit rational coordinates -- the ARITHMETIC half of the contract.  The
+000047 | analytic half stays [O]: strong convergence of the finite-collar
+000048 | implementers Psi_{lambda,N} (Lemma S1/S2 type: trace-class covariance
+000049 | convergence + Shale-Stinespring), the crossed-product/scaling-limit
+000050 | exchange (Lemma S3), and the operator-algebraic holomorphy selector
+000051 | (Lemma S4 / N4).  No net-level, no 4D and no status-marker claim is made;
+000052 | 1+1D in and out per the contract.
+000053 | """
+000054 | import itertools
+000055 | 
+000056 | import sympy as sp
+000057 | 
+000058 | from tfpt_constants import check, summary, reset, dim_Splus
+000059 | 
+000060 | OMEGA_S = [sp.Rational(1, 2)] * 5
+000061 | OMEGA_F = [sp.Rational(3, 4), sp.Rational(-1, 4),
+000062 |            sp.Rational(-1, 4), sp.Rational(-1, 4)]
+000063 | LAM = OMEGA_S + OMEGA_F

@@ -212,7 +212,7 @@ Use : Appendix-level empirical readout sections. Technical conventions and data 
 
 [documents/TFPT_Universalraum_Sitzungsdokumentation_2026-09-20/sections/001-chapter-leserbrief.tex:27-42](../../../../documents/TFPT_Universalraum_Sitzungsdokumentation_2026-09-20/sections/001-chapter-leserbrief.tex#L27) · `section:e220d28239ac26270ec0` · chapter
 
-tocchapterLeserbrief Das Ziel dieser Sitzung war von Anfang an groß: eine gemeinsame, möglichst einfache Ursprungstheorie finden, die den TFPT-Compiler, Quantenprozesse, Materie, Raumzeit und Gravitation aus derselben Struktur verständlich macht. Die Untersuchungen dürfen deshalb nicht nur daran gemessen werden, ob irgendwo eine schöne Matrix entsteht. Entscheidend ist, ob die verschiedenen Matrizen dieselbe Quelle, 
+tocchapterLeserbrief Das Ziel dieser Sitzung war von Anfang an groß: eine gemeinsame, möglichst einfache Ursprungstheorie finden, die den TFPT-Compiler, Quantenprozesse, Materie, Raumzeit und Gravitation aus derselben Struktur verständlich macht. Die Untersuchungen dürfen deshalb nicht nur daran gemessen werden, ob irgendwo eine schöne Matrix entsteht. Entscheidend ist, ob die verschiedenen Matrizen dieselbe Quelle,
 
 ## Priorität 6: chirale Materie, 3+1D und Gravitation gemeinsam
 
@@ -224,7 +224,7 @@ Frage. Kann dieselbe erfolgreiche Realisierung anschließend das chirale Standar
 
 [documents/TFPT_Universalraum_Sitzungsdokumentation_2026-09-20_v2/sections/001-chapter-leserbrief.tex:29-44](../../../../documents/TFPT_Universalraum_Sitzungsdokumentation_2026-09-20_v2/sections/001-chapter-leserbrief.tex#L29) · `section:59c30eba3c935582bb49` · chapter
 
-tocchapterLeserbrief Das Ziel dieser Sitzung war von Anfang an groß: eine gemeinsame, möglichst einfache Ursprungstheorie finden, die den TFPT-Compiler, Quantenprozesse, Materie, Raumzeit und Gravitation aus derselben Struktur verständlich macht. Die Untersuchungen dürfen deshalb nicht nur daran gemessen werden, ob irgendwo eine schöne Matrix entsteht. Entscheidend ist, ob die verschiedenen Matrizen dieselbe Quelle, 
+tocchapterLeserbrief Das Ziel dieser Sitzung war von Anfang an groß: eine gemeinsame, möglichst einfache Ursprungstheorie finden, die den TFPT-Compiler, Quantenprozesse, Materie, Raumzeit und Gravitation aus derselben Struktur verständlich macht. Die Untersuchungen dürfen deshalb nicht nur daran gemessen werden, ob irgendwo eine schöne Matrix entsteht. Entscheidend ist, ob die verschiedenen Matrizen dieselbe Quelle,
 
 ## The Cubic Fixed-Point Equation (CFE)
 
@@ -308,13 +308,13 @@ At this stage the Letter needs more than the vacuum-sector inputs alone: the lat
 
 [documents/archive--paper-latex--tfpt-31/sections/001-section-reading-guide-and-claim-map.tex:311-346](../../../../documents/archive--paper-latex--tfpt-31/sections/001-section-reading-guide-and-claim-map.tex#L311) · `section:e9071b9a3e70c8d16b5d` · subsection
 
-We use natural units [formula in source] . Relative operators are formulated in Euclidean signature and compared through a declared Wick-rotation bridge when Lorentzian language is needed. Higgs fields are denoted by [formula in source] , Hamiltonians by [formula in source] , and the cosmological Hubble rate by [formula in source] ; this avoids overloading the letter [formula in source] . Newton's constant is always 
+We use natural units [formula in source] . Relative operators are formulated in Euclidean signature and compared through a declared Wick-rotation bridge when Lorentzian language is needed. Higgs fields are denoted by [formula in source] , Hamiltonians by [formula in source] , and the cosmological Hubble rate by [formula in source] ; this avoids overloading the letter [formula in source] . Newton's constant is always
 
 ## Closure architecture A: families, Higgs, and local spectral scale
 
 [documents/archive--paper-latex--tfpt-31/sections/006-subsection-the-texorpdfstring-41-41-integrity-index.tex:234-237](../../../../documents/archive--paper-latex--tfpt-31/sections/006-subsection-the-texorpdfstring-41-41-integrity-index.tex#L234) · `section:07a29e6c08c8bd5ee1cd` · section
 
-This first closure-architecture block is the shortest route from the hard carrier packet to a broader Standard Model plus gravity compiler. It has three moves: the local patch-deficit count gives the carrier-side family count, the topological family closure globalizes it into the family space [formula in source] , the bosonic relative index selects the unique light Higgs doublet, and the local spectral-scale channel 
+This first closure-architecture block is the shortest route from the hard carrier packet to a broader Standard Model plus gravity compiler. It has three moves: the local patch-deficit count gives the carrier-side family count, the topological family closure globalizes it into the family space [formula in source] , the bosonic relative index selects the unique light Higgs doublet, and the local spectral-scale channel
 
 ## Downstream cosmology module on the observation-closed branch
 
@@ -392,7 +392,7 @@ The axion rows are read as intrinsic observation outputs of the downstream cosmo
 
 [documents/archive--paper-latex--tfpt-32/sections/001-section-reading-guide-and-claim-map.tex:270-299](../../../../documents/archive--paper-latex--tfpt-32/sections/001-section-reading-guide-and-claim-map.tex#L270) · `section:7c2542b2b2bd544da229` · subsection
 
-We use natural units [formula in source] . Relative operators are formulated in Euclidean signature and compared through a declared Wick-rotation bridge when Lorentzian language is needed. Higgs fields are denoted by [formula in source] , Hamiltonians by [formula in source] , and the cosmological Hubble rate by [formula in source] ; this avoids overloading the letter [formula in source] . Newton's constant is always 
+We use natural units [formula in source] . Relative operators are formulated in Euclidean signature and compared through a declared Wick-rotation bridge when Lorentzian language is needed. Higgs fields are denoted by [formula in source] , Hamiltonians by [formula in source] , and the cosmological Hubble rate by [formula in source] ; this avoids overloading the letter [formula in source] . Newton's constant is always
 
 ## Closure architecture A: families, Higgs, and local spectral scale
 
@@ -434,7 +434,7 @@ The paper is organized in three reading layers: Big picture: one section explain
 
 [documents/archive--paper-latex--tfpt-42/sections/002-section-big-picture-what-tfpt-actually-claims.tex:238-288](../../../../documents/archive--paper-latex--tfpt-42/sections/002-section-big-picture-what-tfpt-actually-claims.tex#L238) · `section:3ad677837e8bb56c5eb0` · subsection
 
-We use natural units [formula in source] . Relative operators are formulated in Euclidean signature and compared through a declared Wick-rotation bridge when Lorentzian language is needed. Higgs fields are denoted by [formula in source] , Hamiltonians by [formula in source] , and the cosmological Hubble rate by [formula in source] ; this avoids overloading the letter [formula in source] . Newton's constant is always 
+We use natural units [formula in source] . Relative operators are formulated in Euclidean signature and compared through a declared Wick-rotation bridge when Lorentzian language is needed. Higgs fields are denoted by [formula in source] , Hamiltonians by [formula in source] , and the cosmological Hubble rate by [formula in source] ; this avoids overloading the letter [formula in source] . Newton's constant is always
 
 ## Front matter / support
 

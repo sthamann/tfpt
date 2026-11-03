@@ -200,7 +200,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/origin_theory/sections/004-section-interpretation-mc-the-self-reproducing-cosmic-cy.tex:141-392](../../../../documents/origin_theory/sections/004-section-interpretation-mc-the-self-reproducing-cosmic-cy.tex#L141) · `section:56ca118419000d5423f4` · section
 
-The precise reformulation ( ). The seam is not identical to an event horizon. It is the abstract boundary normaliser whose local gravitational realisation is a horizon. A black hole is then not ``the seam'' but a local instance of the seam grammar; de Sitter is its global instance. This is stronger and cleaner than a direct identification — it avoids importing Schwarzschild analogies wholesale, and it makes [formula 
+The precise reformulation ( ). The seam is not identical to an event horizon. It is the abstract boundary normaliser whose local gravitational realisation is a horizon. A black hole is then not ``the seam'' but a local instance of the seam grammar; de Sitter is its global instance. This is stronger and cleaner than a direct identification — it avoids importing Schwarzschild analogies wholesale, and it makes [formula
 
 Explicit source references:
 
@@ -257,7 +257,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 ## Honest status
 
-[documents/origin_theory/sections/006-section-honest-status-label-sec-status.tex:1-316](../../../../documents/origin_theory/sections/006-section-honest-status-label-sec-status.tex#L1) · `section:888628823bf71f709698` · section
+[documents/origin_theory/sections/006-section-honest-status-label-sec-status.tex:1-318](../../../../documents/origin_theory/sections/006-section-honest-status-label-sec-status.tex#L1) · `section:888628823bf71f709698` · section
 
 @p5.4cmp2.0cmY@ claim & status & basis \\ [formula in source] generates the integer skeleton; Pythagorean [formula in source] split & & v53_compiler_core.py \\ the [formula in source] in [formula in source] is triply forced (geo [formula in source] lattice [formula in source] gravity) & & v54_seam_horizon_keystones.py \\ one boundary transport for flavor and horizon ( [formula in source] ) & & v54_seam_horizon_keysto
 
@@ -507,7 +507,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/tfpt_1_architecture_e8/sections/008-source.tex:241-261](../../../../documents/tfpt_1_architecture_e8/sections/008-source.tex#L241) · `section:98d7438dbd43ec4fd921` · subsection
 
-Use the universal root-system identity [formula in source] (Coxeter number [formula in source] ). With the carrier values [formula in source] and [formula in source] , The Coxeter number of [formula in source] is exactly three families times the cosmological pair action: each family contributes one [formula in source] -decuple ( [formula in source] ) to the Coxeter period. Equivalently the action ladder is a Coxeter 
+Use the universal root-system identity [formula in source] (Coxeter number [formula in source] ). With the carrier values [formula in source] and [formula in source] , The Coxeter number of [formula in source] is exactly three families times the cosmological pair action: each family contributes one [formula in source] -decuple ( [formula in source] ) to the Coxeter period. Equivalently the action ladder is a Coxeter
 
 ## Lepton flavor decuple: the charged-lepton determinant carries [formula in source]
 
@@ -555,7 +555,7 @@ This short companion compresses the TFPT bridge layer to a single discrete objec
 
 [documents/tfpt_2_standard_model/sections/001-part-the-standard-model-in-one-master-formula.tex:1-24](../../../../documents/tfpt_2_standard_model/sections/001-part-the-standard-model-in-one-master-formula.tex#L1) · `section:3b5318f0d65e3c120bab` · frontmatter
 
-The Standard Model as one [formula in source] -ladder mass formula (all masses, CKM, PMNS, neutrinos), the flavor matrix from parabolic transport on [formula in source] , the five worked closures ( [formula in source] , quark [formula in source] , the explicit mass gap, Starobinsky [formula in source] , the H2 splitting), and gravity/quantum gravity as the seam response (the Seam Response Grammar [formula in source] 
+The Standard Model as one [formula in source] -ladder mass formula (all masses, CKM, PMNS, neutrinos), the flavor matrix from parabolic transport on [formula in source] , the five worked closures ( [formula in source] , quark [formula in source] , the explicit mass gap, Starobinsky [formula in source] , the H2 splitting), and gravity/quantum gravity as the seam response (the Seam Response Grammar [formula in source]
 
 ## (2) Gravity — the classical covariant field equation carries no free dimensionless Newton coupling under the named QFT/entanglement premises ; the [formula in source] inflation layer up to one truncation /
 
@@ -810,7 +810,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 ## Status: what is now written out, and what is honestly left
 
-[documents/tfpt_2_standard_model/sections/011-subsection-seam-response-grammar-gravity-is-the-inverse-.tex:307-358](../../../../documents/tfpt_2_standard_model/sections/011-subsection-seam-response-grammar-gravity-is-the-inverse-.tex#L307) · `section:00b05ea692eac25e3d3e` · section
+[documents/tfpt_2_standard_model/sections/011-subsection-seam-response-grammar-gravity-is-the-inverse-.tex:307-360](../../../../documents/tfpt_2_standard_model/sections/011-subsection-seam-response-grammar-gravity-is-the-inverse-.tex#L307) · `section:00b05ea692eac25e3d3e` · section
 
 tocsectionStatus @p5.6cmcY@ Item & Status & Result \\ Dynamics / clustering (Lemma Gravity Fredholm (Lemma [formula in source] truncation (Lemma Starobinsky [formula in source] / [formula in source] & / & [formula in source] GeV exact ; [formula in source] a \ band over [formula in source] \\ [formula in source] typing (Prop. [formula in source] (Prop. quark [formula in source] -rationals & / & hierarchy + source rat
 
@@ -828,7 +828,7 @@ Explicit source references:
 
 ## Appendix: computational verification
 
-[documents/tfpt_2_standard_model/sections/011-subsection-seam-response-grammar-gravity-is-the-inverse-.tex:359-376](../../../../documents/tfpt_2_standard_model/sections/011-subsection-seam-response-grammar-gravity-is-the-inverse-.tex#L359) · `section:59464fe2623d8f56dc12` · section
+[documents/tfpt_2_standard_model/sections/011-subsection-seam-response-grammar-gravity-is-the-inverse-.tex:361-378](../../../../documents/tfpt_2_standard_model/sections/011-subsection-seam-response-grammar-gravity-is-the-inverse-.tex#L361) · `section:59464fe2623d8f56dc12` · section
 
 The Standard-Model identities used here (marked , , ) are re-derived from [formula in source] and machine-checked by the suite in the repository folder verification/; the inline tags [verification/ [formula in source] ] point to the exact script. Relevant here: v2_carrier_pascal.py — the carrier/Pascal packet ( [formula in source] , [formula in source] ). v3_em_alpha.py — the EM fixed point [formula in source] . v4_f
 
@@ -887,7 +887,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/tfpt_4_frontier/sections/001-source.tex:95-109](../../../../documents/tfpt_4_frontier/sections/001-source.tex#L95) · `section:84d26a09031108cede24` · paragraph
 
-The seed already fixes the baryon fraction (the [formula in source] decoder): [formula in source] matching the observed [formula in source] . The baryon-to-photon ratio is then the standard cosmological readout [formula in source] . With the TFPT Hubble value ( [formula in source] , from [formula in source] ), [formula in source] So [formula in source] is a downstream cosmological readout from the closed [formula in 
+The seed already fixes the baryon fraction (the [formula in source] decoder): [formula in source] matching the observed [formula in source] . The baryon-to-photon ratio is then the standard cosmological readout [formula in source] . With the TFPT Hubble value ( [formula in source] , from [formula in source] ), [formula in source] So [formula in source] is a downstream cosmological readout from the closed [formula in
 
 ## Dark matter — the candidate is fixed, the scale is pending
 
@@ -1084,7 +1084,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 ## Appendix: computational verification
 
-[documents/tfpt_4_frontier/sections/004-source.tex:198-213](../../../../documents/tfpt_4_frontier/sections/004-source.tex#L198) · `section:0c7b2f5d7f77f90fe85c` · section
+[documents/tfpt_4_frontier/sections/004-source.tex:200-215](../../../../documents/tfpt_4_frontier/sections/004-source.tex#L200) · `section:0c7b2f5d7f77f90fe85c` · section
 
 These are the frontier items: most carry \ (open) or \ (conditional) and are therefore not part of the pass/fail suite. The one quantitative handle that is reproduced is [formula in source] (whence the [formula in source] order) in verification/v7_gravity_cosmo.py. The [formula in source] structure and the gap-decoupling of the physical QG sector are machine-checked ( v28_gravity_fR.py, v36_spectral_action_g2.py); th
 
@@ -1184,7 +1184,7 @@ Die charakteristische Klasse des Trägers lässt sich für alle ursprünglichen 
 
 [documents/tfpt_horizon_readouts/sections/001-section-the-seam-constant-is-the-universal-horizon-tempe.tex:1-63](../../../../documents/tfpt_horizon_readouts/sections/001-section-the-seam-constant-is-the-universal-horizon-tempe.tex#L1) · `section:0d5c0120adefeb817d59` · frontmatter
 
-A change of bookkeeping, not new gravitational physics: if gravity is the geometry-channel readout of the seam, then all horizons read the same boundary constant [formula in source] . This note collects the readouts — Hawking, de Sitter and Unruh temperature, black-hole thermodynamics, the Page time, scrambling, the Nariai bound, [formula in source] and cosmic birefringence — in seam units, with two genuine compiler 
+A change of bookkeeping, not new gravitational physics: if gravity is the geometry-channel readout of the seam, then all horizons read the same boundary constant [formula in source] . This note collects the readouts — Hawking, de Sitter and Unruh temperature, black-hole thermodynamics, the Page time, scrambling, the Nariai bound, [formula in source] and cosmic birefringence — in seam units, with two genuine compiler
 
 Explicit source references:
 
@@ -1356,7 +1356,7 @@ Black-hole echoes / horizonless compactness: any near-horizon echo amplitude rat
 
 [documents/tfpt_horizon_readouts/sections/002-section-turnaround-radius-gravitational-waves-light.tex:342-353](../../../../documents/tfpt_horizon_readouts/sections/002-section-turnaround-radius-gravitational-waves-light.tex#L342) · `section:f14cd99bec2b5b92a146` · section
 
-The seam-unit identities of this note (the thermal grammar [formula in source] , the power denominator [formula in source] , the de Sitter entropy form, the Page fraction, the scrambling [formula in source] , and [formula in source] ) are re-derived and machine-checked in verification/v8_horizon.py. Run python verification/v8_horizon.py (needs mpmath); it imports the same [formula in source] primitive as the rest of 
+The seam-unit identities of this note (the thermal grammar [formula in source] , the power denominator [formula in source] , the de Sitter entropy form, the Page fraction, the scrambling [formula in source] , and [formula in source] ) are re-derived and machine-checked in verification/v8_horizon.py. Run python verification/v8_horizon.py (needs mpmath); it imports the same [formula in source] primitive as the rest of
 
 Explicit source references:
 
@@ -1840,7 +1840,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/origin_theory.tex:1166-1454](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/origin_theory.tex#L1166) · `section:0c131301948f5acf50d5` · section
 
-The precise reformulation ( ). The seam is not identical to an event horizon. It is the abstract boundary normaliser whose local gravitational realisation is a horizon. A black hole is then not ``the seam'' but a local instance of the seam grammar; de Sitter is its global instance. This is stronger and cleaner than a direct identification — it avoids importing Schwarzschild analogies wholesale, and it makes [formula 
+The precise reformulation ( ). The seam is not identical to an event horizon. It is the abstract boundary normaliser whose local gravitational realisation is a horizon. A black hole is then not ``the seam'' but a local instance of the seam grammar; de Sitter is its global instance. This is stronger and cleaner than a direct identification — it avoids importing Schwarzschild analogies wholesale, and it makes [formula
 
 Explicit source references:
 
@@ -2284,7 +2284,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex:4405-4425](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex#L4405) · `section:911b129fc3e3dd46c69d` · subsection
 
-Use the universal root-system identity [formula in source] (Coxeter number [formula in source] ). With the carrier values [formula in source] and [formula in source] , The Coxeter number of [formula in source] is exactly three families times the cosmological pair action: each family contributes one [formula in source] -decuple ( [formula in source] ) to the Coxeter period. Equivalently the action ladder is a Coxeter 
+Use the universal root-system identity [formula in source] (Coxeter number [formula in source] ). With the carrier values [formula in source] and [formula in source] , The Coxeter number of [formula in source] is exactly three families times the cosmological pair action: each family contributes one [formula in source] -decuple ( [formula in source] ) to the Coxeter period. Equivalently the action ladder is a Coxeter
 
 ## Lepton flavor decuple: the charged-lepton determinant carries [formula in source]
 

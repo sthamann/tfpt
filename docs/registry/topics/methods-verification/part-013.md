@@ -4,11 +4,21 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Validated Fourier core and the missing finite-grid aliases.
+
+[experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tex-artefacts/toe_round4_proofs.tex:175-242](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tex-artefacts/toe_round4_proofs.tex#L175) · `section:bce0cf0522b937838636` · paragraph
+
+Use the sigma- [formula in source] basis [formula in source] , [formula in source] , [formula in source] . The jump is [formula in source] (zero-based indices), and [formula in source] for [formula in source] . At the 512 midpoint nodes, 256-bit Acb validated eigensystems strictly separate eight occupied and eight unoccupied eigenvalues. The outward matrix DFT [formula in source] obeys the exact midpoint alias formul
+
+Explicit source references:
+
+- [verification/v1022_telb_round3_certificates.py](../../../../verification/v1022_telb_round3_certificates.py#L1) · explicit_script_identifier
+
 ## T3/T4: canonical DET excitations and the signed wall.
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tex-artefacts/toe_round4_proofs.tex:243-303](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tex-artefacts/toe_round4_proofs.tex#L243) · `section:e34efc6d3388a546fda0` · paragraph
 
-CHIRAL4D.MIRROR.SIGNED.CAR.01. v1027_ signed_ det_ car_ wall.py checks the following algebra and its finite countermodels. The old Hubbard operators [formula in source] satisfy [formula in source] , not CAR, and [formula in source] . For even [formula in source] (in particular [formula in source] ), write [formula in source] and define [formula in source] This is a two-dimensional rotation and identity elsewhere. It 
+CHIRAL4D.MIRROR.SIGNED.CAR.01. v1027_ signed_ det_ car_ wall.py checks the following algebra and its finite countermodels. The old Hubbard operators [formula in source] satisfy [formula in source] , not CAR, and [formula in source] . For even [formula in source] (in particular [formula in source] ), write [formula in source] and define [formula in source] This is a two-dimensional rotation and identity elsewhere. It
 
 Explicit source references:
 
@@ -153,7 +163,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tfpt_research_contracts.tex:12571-12632](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tfpt_research_contracts.tex#L12571) · `section:fd8a259cd96f2b7b4df5` · section
 
-Typing. A standing discipline rule, in force immediately (ledger row DIMENSION.UPLIFT.FIREWALL.01); the uplift theorems it names are separate \ contracts. It formalizes the core diagnosis of the 2026-08-27 external deep review: a chiral [formula in source] D seam net does not imply a local, interacting [formula in source] D quantum world. The corpus's strongest finite results are boundary/kinematic building blocks — 
+Typing. A standing discipline rule, in force immediately (ledger row DIMENSION.UPLIFT.FIREWALL.01); the uplift theorems it names are separate \ contracts. It formalizes the core diagnosis of the 2026-08-27 external deep review: a chiral [formula in source] D seam net does not imply a local, interacting [formula in source] D quantum world. The corpus's strongest finite results are boundary/kinematic building blocks —
 
 Explicit source references:
 
@@ -665,7 +675,7 @@ Explicit source references:
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tfpt_research_contracts.tex:14397-14558](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tfpt_research_contracts.tex#L14397) · `section:03b9058ca08ba4829ac7` · section
 
-Typing. This section is a hand-off document: it packages the one remaining seam obligation as a self-contained problem statement for an outside specialist in conformal nets / vertex operator algebras / algebraic QFT. It documents, it does not close: the ledger row SEAM.EQUIV.01 stays \ (its conditional route SEAM.EQUIV.MMST.01 is closed modulo cited theorems; the unconditional parent is the target below). Nothing in 
+Typing. This section is a hand-off document: it packages the one remaining seam obligation as a self-contained problem statement for an outside specialist in conformal nets / vertex operator algebras / algebraic QFT. It documents, it does not close: the ledger row SEAM.EQUIV.01 stays \ (its conditional route SEAM.EQUIV.MMST.01 is closed modulo cited theorems; the unconditional parent is the target below). Nothing in
 
 Explicit source references:
 
@@ -847,13 +857,13 @@ Explicit source references:
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tex-artefacts/toe_round27_full_reference.tex:66-113](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tex-artefacts/toe_round27_full_reference.tex#L66) · `section:f6a4452580c2f7e16d7b` · paragraph
 
-Let [formula in source] be the sum of moduli before cancellation, resolved into elementary hopping words, initial charge profiles and scalar integrals. Then Every elementary hop changes the complete profile, hence [formula in source] . Scalar spectral Jensen gives [formula in source] . Pinching [formula in source] into its charge blocks [formula in source] contracts the Schatten [formula in source] norm, so [formula 
+Let [formula in source] be the sum of moduli before cancellation, resolved into elementary hopping words, initial charge profiles and scalar integrals. Then Every elementary hop changes the complete profile, hence [formula in source] . Scalar spectral Jensen gives [formula in source] . Pinching [formula in source] into its charge blocks [formula in source] contracts the Schatten [formula in source] norm, so [formula
 
 ## [formula in source] as the Pascal closure
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex:1732-1780](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex#L1732) · `section:9656cb78a4cbdf493637` · subsection
 
-A family is exactly the complete Pascal truncation to degree two: the unique positive-integer solution of [formula in source] . Proof of uniqueness. Direct evaluation gives [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] ; so [formula in source] is the only root in [formula in source] . For [formula in source] the forward difference is 
+A family is exactly the complete Pascal truncation to degree two: the unique positive-integer solution of [formula in source] . Proof of uniqueness. Direct evaluation gives [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] ; so [formula in source] is the only root in [formula in source] . For [formula in source] the forward difference is
 
 Explicit source references:
 
@@ -938,7 +948,7 @@ The decuple bridge is one rung of a tower. Writing [formula in source] for the s
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex:4344-4404](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex#L4344) · `section:5e1509353325b787484d` · subsection
 
-Identify [formula in source] with the even-weight binary code on five bits. A transition [formula in source] has flip [formula in source] , even and nonempty, so [formula in source] ; per state there are [formula in source] flips, giving and the [formula in source] undirected flips match the [formula in source] [formula in source] root pairs ( , counting). This makes the atlas conjecture testable: a genuine root map 
+Identify [formula in source] with the even-weight binary code on five bits. A transition [formula in source] has flip [formula in source] , even and nonempty, so [formula in source] ; per state there are [formula in source] flips, giving and the [formula in source] undirected flips match the [formula in source] [formula in source] root pairs ( , counting). This makes the atlas conjecture testable: a genuine root map
 
 Explicit source references:
 
@@ -1116,7 +1126,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_2_standard_model.tex:1791-1822](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_2_standard_model.tex#L1791) · `section:de65561a933aa5ea02ba` · subsection
 
-The closed CKM point is not an end state — it feeds the theoretically cleanest flavor-changing neutral-current probe, the rare decays [formula in source] and [formula in source] . These are not a new compiler power: the only TFPT-specific content is the CKM point above; the short-distance loop functions ( [formula in source] , [formula in source] , [formula in source] , [formula in source] , Brod–Gorbahn–Stamou) are 
+The closed CKM point is not an end state — it feeds the theoretically cleanest flavor-changing neutral-current probe, the rare decays [formula in source] and [formula in source] . These are not a new compiler power: the only TFPT-specific content is the CKM point above; the short-distance loop functions ( [formula in source] , [formula in source] , [formula in source] , [formula in source] , Brod–Gorbahn–Stamou) are
 
 Explicit source references:
 
@@ -1171,7 +1181,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_2_standard_model.tex:2669-2726](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_2_standard_model.tex#L2669) · `section:10dfd6e9f65946a0b7ff` · section
 
-Status (no drift). The splitting type is now closed: the unique partition [formula in source] fixes the anchor and [formula in source] fixes the residue branch (verified, below and v4_flavor_matrix.py), and the solar texture is built ( v9_neutrino_texture.py). The roadmap below is kept as the derivation record of how [formula in source] is obtained; it is no longer an open project. The only residual is the parabolic 
+Status (no drift). The splitting type is now closed: the unique partition [formula in source] fixes the anchor and [formula in source] fixes the residue branch (verified, below and v4_flavor_matrix.py), and the solar texture is built ( v9_neutrino_texture.py). The roadmap below is kept as the derivation record of how [formula in source] is obtained; it is no longer an open project. The only residual is the parabolic
 
 Explicit source references:
 
@@ -1359,7 +1369,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_research_contracts.tex:12571-12632](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_research_contracts.tex#L12571) · `section:ea28e660b1549c41a88a` · section
 
-Typing. A standing discipline rule, in force immediately (ledger row DIMENSION.UPLIFT.FIREWALL.01); the uplift theorems it names are separate \ contracts. It formalizes the core diagnosis of the 2026-08-27 external deep review: a chiral [formula in source] D seam net does not imply a local, interacting [formula in source] D quantum world. The corpus's strongest finite results are boundary/kinematic building blocks — 
+Typing. A standing discipline rule, in force immediately (ledger row DIMENSION.UPLIFT.FIREWALL.01); the uplift theorems it names are separate \ contracts. It formalizes the core diagnosis of the 2026-08-27 external deep review: a chiral [formula in source] D seam net does not imply a local, interacting [formula in source] D quantum world. The corpus's strongest finite results are boundary/kinematic building blocks —
 
 Explicit source references:
 
@@ -1871,7 +1881,7 @@ Explicit source references:
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_research_contracts.tex:14397-14558](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_research_contracts.tex#L14397) · `section:fd15b9954fc0175fba1b` · section
 
-Typing. This section is a hand-off document: it packages the one remaining seam obligation as a self-contained problem statement for an outside specialist in conformal nets / vertex operator algebras / algebraic QFT. It documents, it does not close: the ledger row SEAM.EQUIV.01 stays \ (its conditional route SEAM.EQUIV.MMST.01 is closed modulo cited theorems; the unconditional parent is the target below). Nothing in 
+Typing. This section is a hand-off document: it packages the one remaining seam obligation as a self-contained problem statement for an outside specialist in conformal nets / vertex operator algebras / algebraic QFT. It documents, it does not close: the ledger row SEAM.EQUIV.01 stays \ (its conditional route SEAM.EQUIV.MMST.01 is closed modulo cited theorems; the unconditional parent is the target below). Nothing in
 
 Explicit source references:
 
@@ -2080,7 +2090,7 @@ L32mmL56mmL60mm Thema& Was den Ansatz einschränkt& Was eine Erklärung liefern 
 
 [experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/17_schatten_quellen.tex:3-29](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/17_schatten_quellen.tex#L3) · `section:1315342ad619cf8c4410` · section
 
-Die Erweiterung wurde am 14. September 2026 gegen verfügbare Originalabschnitte im lokalen Repository tfpt-theoryv4 abgeglichen. Der gelesene Git-Stand war 66b91e40e245569f06ab440ead80f446c9be0ee5. Dies identifiziert den Checkout; es behauptet keinen frischen vollständigen Beweis- oder Testlauf. Die tatsächlich verwendeten Dateiinhalte sind zusätzlich mit SHA-256 im Paket erfasst, auch soweit der Arbeitsbaum von Git 
+Die Erweiterung wurde am 14. September 2026 gegen verfügbare Originalabschnitte im lokalen Repository tfpt-theoryv4 abgeglichen. Der gelesene Git-Stand war 66b91e40e245569f06ab440ead80f446c9be0ee5. Dies identifiziert den Checkout; es behauptet keinen frischen vollständigen Beweis- oder Testlauf. Die tatsächlich verwendeten Dateiinhalte sind zusätzlich mit SHA-256 im Paket erfasst, auch soweit der Arbeitsbaum von Git
 
 Explicit source references:
 
@@ -2109,9 +2119,3 @@ Die sechs zusätzlichen Unterlagen heißen im neuen Quellenregister N1 bis N6; d
 [experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/18_audit_v13.tex:6-28](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/18_audit_v13.tex#L6) · `section:a736ece557b95fcb2fb0` · section
 
 Setze [formula in source] und [formula in source] . Der Wedge-Kanal besitzt Für [formula in source] verschwindet [formula in source] . Beide geordneten Wege enden im gleichen virtuellen Zustand und interferieren. Orthogonale Records für [formula in source] und [formula in source] ersetzen dies durch [formula in source] : Der antisymmetrische Rang-6-Kanal wird zum Rang-12-Kanal. Bei gleichem Energienenner entsteht ein
-
-## Der erste Schatten wählt die Fortsetzung noch nicht
-
-[experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/18_audit_v13.tex:29-35](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/18_audit_v13.tex#L29) · `section:d1d7ed4cb3c96e4c4450` · section
-
-Mit [formula in source] und [formula in source] ist auf [formula in source] unitär und kollektiv [formula in source] -kovariant. Alle [formula in source] liefern für Materieeingänge denselben ersten blockdephasierten Schatten. Dennoch wirkt [formula in source] dort als [formula in source] , während [formula in source] als [formula in source] wirkt: [formula in source] kehrt als [formula in source] oder als [formula i

@@ -1,0 +1,80 @@
+TFPT scientific source excerpt
+Original repository path: verification/v1027_signed_det_car_wall.py
+Original file SHA-256: 6679297c3c53a86f4ef7d40c169caab64708885e891e68db365acfadfe9f0f4d
+Inclusive original lines: 82-153
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000082 | def determinant_canonicalization() -> dict[str, float]:
+000083 |     # The matrix regression uses n=4.  The proof is conjugation by the same
+000084 |     # explicit even unitary for every even n, including inherited DET32.
+000085 |     n = 4
+000086 |     canonical = annihilators(n)
+000087 |     dimension = 2**n
+000088 |     identity = np.eye(dimension)
+000089 |     vacuum = identity[:, 0]
+000090 |     full = identity[:, -1]
+000091 |     p0 = np.outer(vacuum, vacuum)
+000092 |     pf = np.outer(full, full)
+000093 |     f = np.outer(full, vacuum)
+000094 |     omega = (vacuum + full) / math.sqrt(2)
+000095 |     p = np.outer(omega, omega)
+000096 |     q = identity - p
+000097 |     unitary = identity + (1/math.sqrt(2)-1)*(p0+pf) + (f-dagger(f))/math.sqrt(2)
+000098 |     check("onsite determinant rotation is unitary",
+000099 |           np.linalg.norm(dagger(unitary) @ unitary - identity) < TOL)
+000100 |     check("onsite rotation maps empty vacuum to DET ground state",
+000101 |           np.linalg.norm(unitary @ vacuum - omega) < TOL)
+000102 |     parity = np.diag([(-1)**state.bit_count() for state in range(dimension)])
+000103 |     check("even-n rotation preserves fermion parity",
+000104 |           np.linalg.norm(unitary @ parity - parity @ unitary) < TOL)
+000105 |     dressed = [unitary @ operator @ dagger(unitary) for operator in canonical]
+000106 |     car_defect = max(
+000107 |         np.linalg.norm(a @ dagger(b) + dagger(b) @ a - (identity if i == j else 0))
+000108 |         for i, a in enumerate(dressed) for j, b in enumerate(dressed)
+000109 |     )
+000110 |     nil_defect = max(np.linalg.norm(a @ b + b @ a) for a in dressed for b in dressed)
+000111 |     check("dressed operators satisfy complete CAR",
+000112 |           max(car_defect, nil_defect) < TOL, car_defect)
+000113 |     check("dressed annihilators annihilate DET vacuum",
+000114 |           max(np.linalg.norm(a @ omega) for a in dressed) < TOL)
+000115 |     old_excitations = [math.sqrt(2)*q @ dagger(c) @ omega for c in canonical]
+000116 |     check("dressed creators reproduce old one-excitation states",
+000117 |           max(np.linalg.norm(dagger(a) @ omega - e)
+000118 |               for a, e in zip(dressed, old_excitations, strict=True)) < TOL)
+000119 |     hubbard = [np.outer(omega, np.conj(e)) for e in old_excitations]
+000120 |     hubbard_defect = np.linalg.norm(
+000121 |         hubbard[0] @ dagger(hubbard[0]) + dagger(hubbard[0]) @ hubbard[0] - identity, 2
+000122 |     )
+000123 |     check("old Hubbard-operator CAR mutant rejected",
+000124 |           abs(hubbard_defect - 1) < TOL, hubbard_defect)
+000125 |     check("Hubbard creators cannot build a two-particle state",
+000126 |           np.linalg.norm(dagger(hubbard[0]) @ dagger(hubbard[1]) @ omega) < TOL)
+000127 |     check("canonical creators build a normalized two-particle state",
+000128 |           abs(np.linalg.norm(dagger(dressed[0]) @ dagger(dressed[1]) @ omega)-1) < TOL)
+000129 |     number = sum(dagger(a) @ a for a in canonical)
+000130 |     number_a = sum(dagger(a) @ a for a in dressed)
+000131 |     formula = number + n/2*(p0-pf-f-dagger(f))
+000132 |     check("explicit additive DET number-parent identity",
+000133 |           np.linalg.norm(number_a-formula) < TOL)
+000134 |     check("Q <= N_a <= nQ",
+000135 |           min(np.linalg.eigvalsh(number_a-q).min(),
+000136 |               np.linalg.eigvalsh(n*q-number_a).min()) > -TOL)
+000137 |     spectrum = np.linalg.eigvalsh(number_a)
+000138 |     check("additive parent has the same unique vacuum and gap one",
+000139 |           np.sum(abs(spectrum) < TOL) == 1 and abs(spectrum[1]-1) < TOL)
+000140 |     check("flat Delta*Q is not silently identified with additive Delta*N_a",
+000141 |           np.linalg.norm(number_a-q, 2) > 2.9)
+000142 |     charges = [1, -1, 2, -2]
+000143 |     charge = sum(value*dagger(a) @ a for value, a in zip(charges, canonical, strict=True))
+000144 |     check("neutral-determinant rotation commutes with a traceless gauge generator",
+000145 |           np.linalg.norm(unitary @ charge - charge @ unitary) < TOL)
+000146 |     check("dressed operators retain their original charges",
+000147 |           max(np.linalg.norm(charge @ a - a @ charge + value*a)
+000148 |               for a, value in zip(dressed, charges, strict=True)) < TOL)
+000149 |     charged_mutant = charge + dagger(canonical[0]) @ canonical[0]
+000150 |     check("charged-determinant mutant rejected",
+000151 |           np.linalg.norm(unitary @ charged_mutant - charged_mutant @ unitary) > 0.9)
+000152 |     return {"canonical_CAR_defect": float(car_defect),
+000153 |             "Hubbard_CAR_operator_norm_defect": float(hubbard_defect)}

@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## 2. Exakter CAR-Baustein aus einem geteilten Boson und Fermion
+
+[documents/experiments--theory-contracts--universalraum-source-composition-20260915--tmp--pdfs--TFPT_Universalraum_Quellkomposition_Konsolidierung_2026-09-15_v1.6.9/sections/023-subsection-reproduktion-und-status-label-reproduktion-un.tex:111-173](../../../../documents/experiments--theory-contracts--universalraum-source-composition-20260915--tmp--pdfs--TFPT_Universalraum_Quellkomposition_Konsolidierung_2026-09-15_v1.6.9/sections/023-subsection-reproduktion-und-status-label-reproduktion-un.tex#L111) · `section:02ba22bfb1e82e46b50c` · subsection
+
+Betrachtet werden drei CAR-Moden [formula in source] , ein CCR-Boson b und
+
 ## Vollständige Transferrechnung im Vergleichsmodell
 
 [documents/experiments--theory-contracts--universalraum-source-composition-20260915--tmp--pdfs--TFPT_Universalraum_Quellkomposition_Konsolidierung_2026-09-15_v1.6.9/sections/023-subsection-reproduktion-und-status-label-reproduktion-un.tex:174-210](../../../../documents/experiments--theory-contracts--universalraum-source-composition-20260915--tmp--pdfs--TFPT_Universalraum_Quellkomposition_Konsolidierung_2026-09-15_v1.6.9/sections/023-subsection-reproduktion-und-status-label-reproduktion-un.tex#L174) · `section:af464685433b314ff708` · subsubsection
@@ -70,7 +76,7 @@ Der Clock-Ausschluss allein wäre zu schwach. Die Orbitsumme
 
 [documents/experiments--theory-contracts--universalraum-source-composition-20260915--tmp--pdfs--TFPT_Universalraum_Quellkomposition_Konsolidierung_2026-09-15_v1.6.9/sections/024-subsection-5-was-dies-f-r-die-fundamentale-suche.tex:229-248](../../../../documents/experiments--theory-contracts--universalraum-source-composition-20260915--tmp--pdfs--TFPT_Universalraum_Quellkomposition_Konsolidierung_2026-09-15_v1.6.9/sections/024-subsection-5-was-dies-f-r-die-fundamentale-suche.tex#L229) · `section:05e0db19e778159401a2` · subsubsection
 
-Für den hier exakt spezifizierten Zeugen fehlt mindestens eine Operation, die nicht mit dem betrachteten Farb-Cartan des ursprünglichen Systems kommutiert, oder eine aus einer erweiterten globalen Quelle abgeleitete Kopplung mit einer expliziten Ausgleichsressource für diese Cartanladung. Ein zusätzlicher aktiver SU(4)-Generator wäre ein neuer Operationsvertrag; außerdem bewegt sein simultaner Fermion-/Boson-Lift im 
+Für den hier exakt spezifizierten Zeugen fehlt mindestens eine Operation, die nicht mit dem betrachteten Farb-Cartan des ursprünglichen Systems kommutiert, oder eine aus einer erweiterten globalen Quelle abgeleitete Kopplung mit einer expliziten Ausgleichsressource für diese Cartanladung. Ein zusätzlicher aktiver SU(4)-Generator wäre ein neuer Operationsvertrag; außerdem bewegt sein simultaner Fermion-/Boson-Lift im
 
 ## Reproduktion und Status
 
@@ -531,7 +537,7 @@ Angenommen, es gäbe nur je eine Entnahme- und Additionslinie mit Energien [form
 
 [documents/experiments--theory-contracts--universalraum-source-composition-20260915--tmp--pdfs--TFPT_Universalraum_Quellkomposition_Konsolidierung_2026-09-15_v1.6.9/sections/030-subsection-5-dieselbe-antwort-auf-demselben.tex:233-289](../../../../documents/experiments--theory-contracts--universalraum-source-composition-20260915--tmp--pdfs--TFPT_Universalraum_Quellkomposition_Konsolidierung_2026-09-15_v1.6.9/sections/030-subsection-5-dieselbe-antwort-auf-demselben.tex#L233) · `section:ac171a227805b18f43c2` · subsection
 
-@ > p( - 4 ) * 0.3333 > p( - 4 ) * 0.3333 > p( - 4 ) * 0.3333@ Vertrag & Mathematisch abgesichert & Nicht dadurch verfügbar \\ Markierter endlicher Matrixcompiler & Matrizen, Ordnungen, konkrete endliche Syntheseidentitäten & Vollständiges Fockinstrument, Präparation, physischer Zeitgenerator \\ H allein & Modellzeitentwicklung & Unabhängiges Schalten von X und [formula in source] \\ X und [formula in source] , wenn 
+@ > p( - 4 ) * 0.3333 > p( - 4 ) * 0.3333 > p( - 4 ) * 0.3333@ Vertrag & Mathematisch abgesichert & Nicht dadurch verfügbar \\ Markierter endlicher Matrixcompiler & Matrizen, Ordnungen, konkrete endliche Syntheseidentitäten & Vollständiges Fockinstrument, Präparation, physischer Zeitgenerator \\ H allein & Modellzeitentwicklung & Unabhängiges Schalten von X und [formula in source] \\ X und [formula in source] , wenn
 
 ## 8.1 Konkrete Präparationsgrenze
 
@@ -635,16 +641,10 @@ Explicit source references:
 
 [documents/experiments--theory-contracts--universalraum-source-composition-20260915--tmp--pdfs--TFPT_Universalraum_Quellkomposition_Konsolidierung_2026-09-15_v1.6.9/sections/032-subsection-0-gesamtlage-zwei-spuren-label-gesamtlage-zwe.tex:102-131](../../../../documents/experiments--theory-contracts--universalraum-source-composition-20260915--tmp--pdfs--TFPT_Universalraum_Quellkomposition_Konsolidierung_2026-09-15_v1.6.9/sections/032-subsection-0-gesamtlage-zwei-spuren-label-gesamtlage-zwe.tex#L102) · `section:c5a23310574e7caa23dd` · subsubsection
 
-@lrrrll@ Block & Dim & Mult & S-Eigenwert & (C_S, C_U) & Rolle \\ (144, 20) & 2880 & 2 & 7 & (85, 39) & hell, X-gekoppelt \\ (144, 4̄) & 576 & 2 & 10 & (85, 15) & hell, X-gekoppelt \\ (16′, 20) & 320 & 2 & 12 & (45, 39) & hell, X-gekoppelt \\ (16′, 4̄) & 64 & 1 & 0 (ker S) & (45, 15) & χ-Kompositblock \\ (672, 4̄) & 2688 & 1 & - & (165, 15) & dunkel \\ (1200, 20) & 24 000 & 1 & - & (141, 39) & dunkel \\ (560, 20′) & 
+@lrrrll@ Block & Dim & Mult & S-Eigenwert & (C_S, C_U) & Rolle \\ (144, 20) & 2880 & 2 & 7 & (85, 39) & hell, X-gekoppelt \\ (144, 4̄) & 576 & 2 & 10 & (85, 15) & hell, X-gekoppelt \\ (16′, 20) & 320 & 2 & 12 & (45, 39) & hell, X-gekoppelt \\ (16′, 4̄) & 64 & 1 & 0 (ker S) & (45, 15) & χ-Kompositblock \\ (672, 4̄) & 2688 & 1 & - & (165, 15) & dunkel \\ (1200, 20) & 24 000 & 1 & - & (141, 39) & dunkel \\ (560, 20′) &
 
 ## Das Verfügbarkeits-Theorem (Parallelsession, symmetry_availability.py)Das Verfügbarkeits-Theorem (Parallelsession, )
 
 [documents/experiments--theory-contracts--universalraum-source-composition-20260915--tmp--pdfs--TFPT_Universalraum_Quellkomposition_Konsolidierung_2026-09-15_v1.6.9/sections/032-subsection-0-gesamtlage-zwei-spuren-label-gesamtlage-zwe.tex:132-153](../../../../documents/experiments--theory-contracts--universalraum-source-composition-20260915--tmp--pdfs--TFPT_Universalraum_Quellkomposition_Konsolidierung_2026-09-15_v1.6.9/sections/032-subsection-0-gesamtlage-zwei-spuren-label-gesamtlage-zwe.tex#L132) · `section:07e6cbc4eee55cbfbfe0` · subsubsection
 
 Die gewährte Dynamik (Wörter aus X, N_b) liegt in der Verflechteralgebra (Dim Σmᵢ² = 16); die 60 Lie-Erzeuger liegen nicht darin - keine Komposition gewährter Dynamik erzeugt sie. Die Symmetrie ist ein eigenständiges Primitiv: gewährt oder nicht gewährt. Der gesamte verbleibende symmetrieverträgliche Spielraum ist exakt 2 Dimensionen breit = die Fähigkeit, die drei dunklen Blöcke getrennt anzusprechen (= beide Casimi
-
-## 3. WP-C: Relativistisches Feldwörterbuch (fertig, 2161 exakte Guards, -OO-stabil)
-
-[documents/experiments--theory-contracts--universalraum-source-composition-20260915--tmp--pdfs--TFPT_Universalraum_Quellkomposition_Konsolidierung_2026-09-15_v1.6.9/sections/032-subsection-0-gesamtlage-zwei-spuren-label-gesamtlage-zwe.tex:154-205](../../../../documents/experiments--theory-contracts--universalraum-source-composition-20260915--tmp--pdfs--TFPT_Universalraum_Quellkomposition_Konsolidierung_2026-09-15_v1.6.9/sections/032-subsection-0-gesamtlage-zwei-spuren-label-gesamtlage-zwe.tex#L154) · `section:40ca3a041da6aca37d9d` · subsection
-
-@ > p( - 4 ) * 0.3000 > p( - 4 ) * 0.4000 > p( - 4 ) * 0.3000@ Kanal & Norm² pro Zeile & Status \\ Skalar, gleichhändig ε_\αβ\ψψ & 0 (alle 60 Zeilen, exakt) & verboten \\ Skalar, gepunktet (0,0) & 0 & verboten \\ (1,0) symmetrisch \I, σˣ, σᶻ\ & je 64, Summe 192 & erlaubt - der Vertex ist rein (1,0)+h.c. \\ (0,1) konjugiert & je 64 & erlaubt \\

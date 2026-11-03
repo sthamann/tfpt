@@ -27,15 +27,15 @@ export interface ReleaseAsset {
 
 const COMMON = {
   version: "TFPT 5.4",
-  releaseDate: "2026-10-18",
+  releaseDate: "2026-11-03",
 };
 
 export const RELEASE_ASSETS: Record<string, ReleaseAsset> = {
   "/papers/introduction_guide.pdf": {
     href: "/papers/introduction_guide.pdf",
     ...COMMON,
-    bytes: 960737,
-    sha256: "76ea3fbf96448944cda2ae323d71b13ed31adab27d5b98e2874239d4b5264d10",
+    bytes: 1001593,
+    sha256: "560c0fa7161309ddff7543d1ebaf47e8fea1f2f2c18a0a3527a8eac7c24e8163",
     changelog: "Core chapters of the original introduction; the computational appendix and history remain in the complete edition.",
   },
   "/papers/verification_catalog.pdf": {
@@ -48,27 +48,27 @@ export const RELEASE_ASSETS: Record<string, ReleaseAsset> = {
   "/papers/introduction.pdf": {
     href: "/papers/introduction.pdf",
     ...COMMON,
-    bytes: 3515706,
+    bytes: 3554983,
     sha256:
-      "d564ea7bb15a23d518388b8d8d36daa47578e9d7c746b44ef31442658128c7b9",
+      "6c8ecbf8c105ff8414a495998f3a44241163a7856b35970a4605ff3422a2d08f",
     changelog:
       "Compiler-closure reading guide: two axioms, the dependency DAG, the predictions and the proof ledger.",
   },
   "/papers/tfpt_1_architecture_e8.pdf": {
     href: "/papers/tfpt_1_architecture_e8.pdf",
     ...COMMON,
-    bytes: 1333558,
+    bytes: 1369130,
     sha256:
-      "d1d4736161ef457f18f0cca5ca5955572c5015f920fcb12a2788f50138ff6764",
+      "b51d8a8920d0c8c06c4df37c30fb57467b9b91ad43b7e069eaee23813de42803",
     changelog:
       "Architecture: the two axioms, the D₅ × A₃ → E₈ construction, and the EM fixed point with existence + uniqueness.",
   },
   "/papers/tfpt_2_standard_model.pdf": {
     href: "/papers/tfpt_2_standard_model.pdf",
     ...COMMON,
-    bytes: 1338412,
+    bytes: 1373166,
     sha256:
-      "887ab1426e88f897c27b91643b20e5f85414c6e613d712df8a04797abf951011",
+      "2fe81ece6437d8dd2cd24e154efb0cd6c52e614aecff972ca0d948680a99b0c2",
     changelog:
       "The Standard Model in one φ₀-ladder, the flavor residue matrix, and the derived solar angle θ₁₂.",
   },
@@ -84,9 +84,9 @@ export const RELEASE_ASSETS: Record<string, ReleaseAsset> = {
   "/papers/tfpt_4_frontier.pdf": {
     href: "/papers/tfpt_4_frontier.pdf",
     ...COMMON,
-    bytes: 854537,
+    bytes: 896905,
     sha256:
-      "3c44e557544c94d4cf56d2ed91f53ec10cd3a0ba8f3f6e8cdced5cd81adbcbda",
+      "3e5150b4b59590bee2c8a0a1349199d2595d2ec4639f567de2de7f67ab88b8ee",
     changelog:
       "Honest status of η_B, m_p/m_e, Koide, dark matter and full quantum gravity — not forced onto the ladder.",
   },
@@ -102,18 +102,18 @@ export const RELEASE_ASSETS: Record<string, ReleaseAsset> = {
   "/papers/origin_theory.pdf": {
     href: "/papers/origin_theory.pdf",
     ...COMMON,
-    bytes: 1145456,
+    bytes: 1186329,
     sha256:
-      "69b631e4d5ce1a61f121b1913dd0053200ce762a05359893a0dd93872f4e6935",
+      "6867b64ea7eb54e51fed313ebe3b0b4fb0a524bfbf723e2929eb9b482bbe7f64",
     changelog:
       "Origin Theory: the (5,3) skeleton, the triply-forced 8, the order-30 Coxeter cycle, and the gapped unique attractor.",
   },
   "/papers/tfpt_research_contracts.pdf": {
     href: "/papers/tfpt_research_contracts.pdf",
     ...COMMON,
-    bytes: 2317201,
+    bytes: 2349361,
     sha256:
-      "5c08d5858ac1ae944c65da671a7d42051deacb6dfaa6364407dd19276ebb9b93",
+      "3ec3d4c8d9aa2c2ece46a2b78eaf8efdd74e13ec3446a3e40871086e207e9072",
     changelog:
       "Research contracts separate compiler Rest = v_geo ⊕ G_net ⊕ F_transfer from Rest_TOE. Round 4 (v1026–v1030) closes the relaxed TEL-B norm at fixed M=1, Ny=8: ||R_N||HS < 2.995906 < 3 for every even N≥16, with the former CF/DG estimates discharged for this bound by native v1026 using v1022/v1025. It also adds narrow T3/T4/T6–T8 identities and counterbounds, but closes no T-gate: FE-GEN/ALG-EXH, T1–T8, TFPT.TOE.COMPLETE.01 and the shared complete 3+1D parent remain [O]. The v1029 tensor target requires global zero-mode removal and is not a TFPT embedding. Round 7 (v1031–v1035; 233 typed checks) adds full free quantum/covariant curvature proofs, auxiliary charged corners, the factorized mirror bound and prescribed-source Ward identities. Microscopic TFPT emergence and universal nonlinear interaction remain open; v1033/v1034 require full repository sources. Wave 4: v998–v1001 + lattice-fundamental quasilocal-family amendment + ALPHA relative-det note.",
   },
@@ -147,9 +147,9 @@ export const RELEASE_ASSETS: Record<string, ReleaseAsset> = {
   "/papers/changelog.pdf": {
     href: "/papers/changelog.pdf",
     ...COMMON,
-    bytes: 1869579,
+    bytes: 1873210,
     sha256:
-      "f1757054c466419fea535a899233e7e3ab8f2435c461e3b091797600f16ca87e",
+      "97a880ba9043ae318669769c05a7cca38a82e716030013258cbf5783a3998b15",
     changelog:
       "The canonical dated changelog of every change to the theory, the suite, the papers and the website.",
   },

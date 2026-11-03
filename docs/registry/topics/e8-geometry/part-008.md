@@ -94,7 +94,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex:4318-4334](../../../../experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex#L4318) · `section:6b9dec719137c69d70de` · subsection
 
-Coxeter/gauge typing of the lcm–gcd pair. Writing [formula in source] and [formula in source] , the relations become [formula in source] and [formula in source] : the local SM algebra is the gcd of the Coxeter double-period and the [formula in source] rank-occupancy, and the [formula in source] root count is their lcm. Likewise the EW exponent reads [formula in source] (Coxeter principal part plus a rank singlet). \ 
+Coxeter/gauge typing of the lcm–gcd pair. Writing [formula in source] and [formula in source] , the relations become [formula in source] and [formula in source] : the local SM algebra is the gcd of the Coxeter double-period and the [formula in source] rank-occupancy, and the [formula in source] root count is their lcm. Likewise the EW exponent reads [formula in source] (Coxeter principal part plus a rank singlet). \
 
 ## Level 2 — new exact counting identities ( )
 
@@ -106,7 +106,7 @@ with [formula in source] the number of non-empty occupation words of the [formul
 
 [experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex:4344-4404](../../../../experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex#L4344) · `section:4e9f1abfa575088fe498` · subsection
 
-Identify [formula in source] with the even-weight binary code on five bits. A transition [formula in source] has flip [formula in source] , even and nonempty, so [formula in source] ; per state there are [formula in source] flips, giving and the [formula in source] undirected flips match the [formula in source] [formula in source] root pairs ( , counting). This makes the atlas conjecture testable: a genuine root map 
+Identify [formula in source] with the even-weight binary code on five bits. A transition [formula in source] has flip [formula in source] , even and nonempty, so [formula in source] ; per state there are [formula in source] flips, giving and the [formula in source] undirected flips match the [formula in source] [formula in source] root pairs ( , counting). This makes the atlas conjecture testable: a genuine root map
 
 Explicit source references:
 
@@ -126,7 +126,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex:4405-4425](../../../../experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex#L4405) · `section:d37a9102b32421719eb3` · subsection
 
-Use the universal root-system identity [formula in source] (Coxeter number [formula in source] ). With the carrier values [formula in source] and [formula in source] , The Coxeter number of [formula in source] is exactly three families times the cosmological pair action: each family contributes one [formula in source] -decuple ( [formula in source] ) to the Coxeter period. Equivalently the action ladder is a Coxeter 
+Use the universal root-system identity [formula in source] (Coxeter number [formula in source] ). With the carrier values [formula in source] and [formula in source] , The Coxeter number of [formula in source] is exactly three families times the cosmological pair action: each family contributes one [formula in source] -decuple ( [formula in source] ) to the Coxeter period. Equivalently the action ladder is a Coxeter
 
 ## Level 2.8 — positive-root moment: [formula in source]
 
@@ -333,7 +333,7 @@ tocsectionTheorem 4 From the three atoms [formula in source] , with [formula in 
 
 [experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex:5039-5064](../../../../experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex#L5039) · `section:80b04dc909a66aaa2095` · section
 
-tocsectionTheorem 5 The directed even-flips of [formula in source] are the complete graph [formula in source] : ( [formula in source] .) So the positive [formula in source] roots are the unordered transitions of one family; the second hypercharge moment, the positive-root count and the sum of the [formula in source] exponents coincide at [formula in source] . The CP pairing [formula in source] of the exponents gives 
+tocsectionTheorem 5 The directed even-flips of [formula in source] are the complete graph [formula in source] : ( [formula in source] .) So the positive [formula in source] roots are the unordered transitions of one family; the second hypercharge moment, the positive-root count and the sum of the [formula in source] exponents coincide at [formula in source] . The CP pairing [formula in source] of the exponents gives
 
 ## Theorem 6 — downstream readouts from [formula in source]
 
@@ -489,7 +489,7 @@ Die beiden positiven Wurzelgitter [formula in source] und [formula in source] be
 
 [experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/07_seam.tex:98-103](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/07_seam.tex#L98) · `section:8640f78cf233ec4c920a` · section
 
-Die innere Glue- [formula in source] wirkt auf den 248 Strömen mit Phasen [formula in source] auf Sektoren der Größen [formula in source] . Ihre Spur ist null. Die geometrische Vierteldrehung [formula in source] hat auf Stufe eins dagegen Spur [formula in source] . Die Operatoren sind somit nicht identisch. Eine Clock kann eine geometrische Drehung mit innerem Twist kombinieren; die beiden Faktoren bleiben getrennt. 
+Die innere Glue- [formula in source] wirkt auf den 248 Strömen mit Phasen [formula in source] auf Sektoren der Größen [formula in source] . Ihre Spur ist null. Die geometrische Vierteldrehung [formula in source] hat auf Stufe eins dagegen Spur [formula in source] . Die Operatoren sind somit nicht identisch. Eine Clock kann eine geometrische Drehung mit innerem Twist kombinieren; die beiden Faktoren bleiben getrennt.
 
 ## T1 bis T8: der vollständige Vertrag
 
@@ -501,7 +501,7 @@ L9mmL62mmL79mm Tor& Was gemeinsam nachzuweisen ist& Was bisher dazu vorliegt\\ T
 
 [experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/12_schatten_arithmetik.tex:82-96](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/12_schatten_arithmetik.tex#L82) · `section:db4ce8259c120ac5a95a` · subsection
 
-Die ersten sechs Werte sind [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] und [formula in source] . Daraus folgt für [formula in source] Hier ist der Primzahlbezug wirklich vorhanden. Die Selbstdualität des Gitters schließt die Poisson-Transformation auf dasselbe Gitter. Poisson-Summation gilt auch für nichtselbstduale Gitter und verbindet dann Gitter und 
+Die ersten sechs Werte sind [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] und [formula in source] . Daraus folgt für [formula in source] Hier ist der Primzahlbezug wirklich vorhanden. Die Selbstdualität des Gitters schließt die Poisson-Transformation auf dasselbe Gitter. Poisson-Summation gilt auch für nichtselbstduale Gitter und verbindet dann Gitter und
 
 ## Was die negativen Routen konkret lehren
 
@@ -617,7 +617,7 @@ Die beiden positiven Wurzelgitter [formula in source] und [formula in source] be
 
 [experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/07_seam.tex:98-103](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/07_seam.tex#L98) · `section:41acf7fde27002fd60f1` · section
 
-Die innere Glue- [formula in source] wirkt auf den 248 Strömen mit Phasen [formula in source] auf Sektoren der Größen [formula in source] . Ihre Spur ist null. Die geometrische Vierteldrehung [formula in source] hat auf Stufe eins dagegen Spur [formula in source] . Die Operatoren sind somit nicht identisch. Eine Clock kann eine geometrische Drehung mit innerem Twist kombinieren; die beiden Faktoren bleiben getrennt. 
+Die innere Glue- [formula in source] wirkt auf den 248 Strömen mit Phasen [formula in source] auf Sektoren der Größen [formula in source] . Ihre Spur ist null. Die geometrische Vierteldrehung [formula in source] hat auf Stufe eins dagegen Spur [formula in source] . Die Operatoren sind somit nicht identisch. Eine Clock kann eine geometrische Drehung mit innerem Twist kombinieren; die beiden Faktoren bleiben getrennt.
 
 ## T1 bis T8: der vollständige Vertrag
 
@@ -629,7 +629,7 @@ L9mmL62mmL79mm Tor& Was gemeinsam nachzuweisen ist& Was bisher dazu vorliegt\\ T
 
 [experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/12_schatten_arithmetik.tex:82-96](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/12_schatten_arithmetik.tex#L82) · `section:cea61e7b26dca88ab9e4` · subsection
 
-Die ersten sechs Werte sind [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] und [formula in source] . Daraus folgt für [formula in source] Hier ist der Primzahlbezug wirklich vorhanden. Die Selbstdualität des Gitters schließt die Poisson-Transformation auf dasselbe Gitter. Poisson-Summation gilt auch für nichtselbstduale Gitter und verbindet dann Gitter und 
+Die ersten sechs Werte sind [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] und [formula in source] . Daraus folgt für [formula in source] Hier ist der Primzahlbezug wirklich vorhanden. Die Selbstdualität des Gitters schließt die Poisson-Transformation auf dasselbe Gitter. Poisson-Summation gilt auch für nichtselbstduale Gitter und verbindet dann Gitter und
 
 ## Was die negativen Routen konkret lehren
 
@@ -1009,7 +1009,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [experiments/theory-contracts/universalraum-spin-lift-basics-20260915/sources/input_5_tfpt_3_e8_audit_bootstrap.tex:161-170](../../../../experiments/theory-contracts/universalraum-spin-lift-basics-20260915/sources/input_5_tfpt_3_e8_audit_bootstrap.tex#L161) · `section:6b3fedaf2ffd56e67e82` · part
 
-Purpose and discipline. This note does not introduce new physics. It builds an audit raster: the claim that every load-bearing TFPT number should appear in at least one [formula in source] branching projection. A number that appears in none is suspect; a number appearing in several independent projections becomes structurally strong. All arithmetic identities below are exact ; the physical readings are audit-level \ 
+Purpose and discipline. This note does not introduce new physics. It builds an audit raster: the claim that every load-bearing TFPT number should appear in at least one [formula in source] branching projection. A number that appears in none is suspect; a number appearing in several independent projections becomes structurally strong. All arithmetic identities below are exact ; the physical readings are audit-level \
 
 ## The compiler core (where this note sits)
 
@@ -1424,7 +1424,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [experiments/theory-contracts/universalraum-spin-lift-basics-20260915/sources/input_5_tfpt_3_e8_audit_bootstrap.tex:11948-11956](../../../../experiments/theory-contracts/universalraum-spin-lift-basics-20260915/sources/input_5_tfpt_3_e8_audit_bootstrap.tex#L11948) · `section:46e5fb87d8b363676201` · part
 
-The connection in one sentence. The old E [formula in source] cascade (Paper V1.06: the nilpotent-orbit chain [formula in source] , [formula in source] ) and the new compiler/atlas are the same even-integer [formula in source] spine, read three ways: the cascade orders the numbers [formula in source] as a scale ladder, the atlas reads them as [formula in source] subalgebra branchings, and the compiler generates them 
+The connection in one sentence. The old E [formula in source] cascade (Paper V1.06: the nilpotent-orbit chain [formula in source] , [formula in source] ) and the new compiler/atlas are the same even-integer [formula in source] spine, read three ways: the cascade orders the numbers [formula in source] as a scale ladder, the atlas reads them as [formula in source] subalgebra branchings, and the compiler generates them
 
 ## The old cascade, recalled
 
@@ -1451,7 +1451,7 @@ Reading [formula in source] against today's compiler atoms, the secondary-branch
 
 [experiments/theory-contracts/universalraum-spin-lift-basics-20260915/sources/input_5_tfpt_3_e8_audit_bootstrap.tex:12070-12117](../../../../experiments/theory-contracts/universalraum-spin-lift-basics-20260915/sources/input_5_tfpt_3_e8_audit_bootstrap.tex#L12070) · `section:4197dff00d3e35e63045` · section
 
-at (0.35,58) [formula in source] — E-series / atlas branchings (UV); at (0.35,40) [formula in source] ; at (0.35,30) [formula in source] \,(Coxeter rung, [formula in source] ); at (0.35,24) [formula in source] — [formula in source] , [formula in source] , [formula in source] ; at (0.35,15) [formula in source] (IR atoms); at (0.35,8) [formula in source] \,(flavor selector, end); at (0,60.5) [formula in source] start; 
+at (0.35,58) [formula in source] — E-series / atlas branchings (UV); at (0.35,40) [formula in source] ; at (0.35,30) [formula in source] \,(Coxeter rung, [formula in source] ); at (0.35,24) [formula in source] — [formula in source] , [formula in source] , [formula in source] ; at (0.35,15) [formula in source] (IR atoms); at (0.35,8) [formula in source] \,(flavor selector, end); at (0,60.5) [formula in source] start;
 
 Explicit source references:
 
@@ -1496,7 +1496,7 @@ The flavor selector [formula in source] is the terminal orbit of the [formula in
 
 [experiments/theory-contracts/universalraum-spin-lift-basics-20260915/sources/input_5_tfpt_3_e8_audit_bootstrap.tex:12215-12225](../../../../experiments/theory-contracts/universalraum-spin-lift-basics-20260915/sources/input_5_tfpt_3_e8_audit_bootstrap.tex#L12215) · `section:f81e7d9852f1b4758b79` · part
 
-The question, and the honest answer. The theory rests on two inputs, [formula in source] and [formula in source] . The old theory had a Möbius seam and the seed was the start of the [formula in source] cascade. Run it backwards: can the cascade/ [formula in source] return [formula in source] and [formula in source] , closing a self-consistent loop? Answer: the discrete content is a closed, overdetermined fixed point 
+The question, and the honest answer. The theory rests on two inputs, [formula in source] and [formula in source] . The old theory had a Möbius seam and the seed was the start of the [formula in source] cascade. Run it backwards: can the cascade/ [formula in source] return [formula in source] and [formula in source] , closing a self-consistent loop? Answer: the discrete content is a closed, overdetermined fixed point
 
 ## The loop for [formula in source] — an overdetermined fixed point
 

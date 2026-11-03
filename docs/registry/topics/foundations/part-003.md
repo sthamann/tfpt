@@ -510,7 +510,7 @@ At finite volume or with a declared cutoff, an admissible vacuum candidate is wr
 
 [documents/archive--paper-latex--tfpt-v30/sections/006-subsection-compression-identities-on-the-minimal-branch.tex:311-326](../../../../documents/archive--paper-latex--tfpt-v30/sections/006-subsection-compression-identities-on-the-minimal-branch.tex#L311) · `section:acacf2d161164be81b1a` · subsection
 
-An observer is modeled as a stable pointer subalgebra [formula in source] With orthogonal projectors [formula in source] one writes the measurement channel [formula in source] In finite-dimensional sectors, positivity, additivity on orthogonal decompositions, and phase invariance lead to the standard Born-type assignment [formula in source] The claim is therefore only a constrained evaluation principle on admissible 
+An observer is modeled as a stable pointer subalgebra [formula in source] With orthogonal projectors [formula in source] one writes the measurement channel [formula in source] In finite-dimensional sectors, positivity, additivity on orthogonal decompositions, and phase invariance lead to the standard Born-type assignment [formula in source] The claim is therefore only a constrained evaluation principle on admissible
 
 ## Front matter / support
 

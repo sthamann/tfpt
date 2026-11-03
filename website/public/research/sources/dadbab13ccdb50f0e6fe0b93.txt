@@ -1,0 +1,69 @@
+TFPT scientific source excerpt
+Original repository path: verification/v1023_derivative_filtered_wall.py
+Original file SHA-256: a6850b0acc2c2cd47579b290d02aeb8b48ba32836f4141570c6daaad8f35f69a
+Inclusive original lines: 1-61
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | #!/usr/bin/env python3
+000002 | """v1023 -- derivative-filtered physical--mirror wall certificate.
+000003 | 
+000004 | Exact/numerical certificate for the derivative-filtered wall coupling.
+000005 | 
+000006 | The certificate addresses the conflict found by the full-rank onsite wall
+000007 | term: a nonzero onsite pairing lifts every physical GW zero mode.  Replacing
+000008 | the physical annihilator p by D_GW p makes the mixing vanish precisely on
+000009 | ker(D_GW), while keeping a uniformly separated mirror-continuation band.
+000010 | The canonical bare mirror operator is not itself an invariant sector: for
+000011 | every nonzero singular value it has low-band weight tending to zero only as
+000012 | O(s^2).  Thus the result does not establish a gap in the bare-mirror response
+000013 | and the infrared branch is quadratic (z=2), not a Weyl cone.
+000014 | 
+000015 | This is a finite one-particle/quasi-free theorem.  It is deliberately not
+000016 | advertised as a proof of an interacting Standard-Model continuum limit.
+000017 | 
+000018 | Contracts: CHIRAL4D.NOMIRROR.01 [O], CHIRAL4D.MIRROR.DET16.01 [C],
+000019 | and TFPT.TOE.COMPLETE.01 [O].  No marker moves.  The exact algebra is
+000020 | SymPy; the finite covariance/spectrum witnesses are deterministic float64.
+000021 | Python-only / Wolfram mirror deferred.  NO RH CLAIM.
+000022 | """
+000023 | 
+000024 | from __future__ import annotations
+000025 | 
+000026 | import json
+000027 | import math
+000028 | import os
+000029 | 
+000030 | os.environ.setdefault("OMP_NUM_THREADS", "1")
+000031 | os.environ.setdefault("MKL_NUM_THREADS", "1")
+000032 | os.environ.setdefault("OPENBLAS_NUM_THREADS", "1")
+000033 | os.environ.setdefault("NUMEXPR_NUM_THREADS", "1")
+000034 | 
+000035 | import numpy as np
+000036 | import sympy as sp
+000037 | 
+000038 | from tfpt_constants import check as suite_check, reset, summary
+000039 | 
+000040 | 
+000041 | TOL = 2.0e-10
+000042 | 
+000043 | 
+000044 | def check(name: str, condition: bool, detail: str = "") -> None:
+000045 |     label = name if not detail else f"{name} -- {detail}"
+000046 |     suite_check(label, bool(condition))
+000047 | 
+000048 | 
+000049 | def dagger(a: np.ndarray) -> np.ndarray:
+000050 |     return a.conj().T
+000051 | 
+000052 | 
+000053 | def wall_block(d: np.ndarray, delta: float, lam: float, g: float) -> np.ndarray:
+000054 |     """Block on physical right-singular and mirror left-singular spaces."""
+000055 |     n = d.shape[0]
+000056 |     return np.block(
+000057 |         [
+000058 |             [lam * g * g * dagger(d) @ d, lam * g * dagger(d)],
+000059 |             [lam * g * d, (delta + lam) * np.eye(n)],
+000060 |         ]
+000061 |     )

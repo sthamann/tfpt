@@ -104,7 +104,7 @@ Use : Appendix-level empirical readout sections. Technical conventions and data 
 
 [documents/TFPT_Universalraum_Sitzungsdokumentation_2026-09-20/sections/001-chapter-leserbrief.tex:27-42](../../../../documents/TFPT_Universalraum_Sitzungsdokumentation_2026-09-20/sections/001-chapter-leserbrief.tex#L27) · `section:e220d28239ac26270ec0` · chapter
 
-tocchapterLeserbrief Das Ziel dieser Sitzung war von Anfang an groß: eine gemeinsame, möglichst einfache Ursprungstheorie finden, die den TFPT-Compiler, Quantenprozesse, Materie, Raumzeit und Gravitation aus derselben Struktur verständlich macht. Die Untersuchungen dürfen deshalb nicht nur daran gemessen werden, ob irgendwo eine schöne Matrix entsteht. Entscheidend ist, ob die verschiedenen Matrizen dieselbe Quelle, 
+tocchapterLeserbrief Das Ziel dieser Sitzung war von Anfang an groß: eine gemeinsame, möglichst einfache Ursprungstheorie finden, die den TFPT-Compiler, Quantenprozesse, Materie, Raumzeit und Gravitation aus derselben Struktur verständlich macht. Die Untersuchungen dürfen deshalb nicht nur daran gemessen werden, ob irgendwo eine schöne Matrix entsteht. Entscheidend ist, ob die verschiedenen Matrizen dieselbe Quelle,
 
 ## Der Ausgangspunkt der Theorie
 
@@ -122,7 +122,7 @@ Die Sitzung hat die Ursprungsidee nicht auf eine weitere Zahlenübereinstimmung 
 
 [documents/TFPT_Universalraum_Sitzungsdokumentation_2026-09-20/sections/003-section-das-alte-bell10-erscheint-aus-echten-stromproduk.tex:101-121](../../../../documents/TFPT_Universalraum_Sitzungsdokumentation_2026-09-20/sections/003-section-das-alte-bell10-erscheint-aus-echten-stromproduk.tex#L101) · `section:089d8afed3b3424a2643` · section
 
-@P.25 P.42 P.25 @ Frühere naheliegende Deutung & Heutiger belastbarer Stand & Konsequenz\\ Frühere Deutung & Heutiger Stand & Konsequenz\\ Zustand bzw. Vorzeichenprojektor bestimmt den Generator & Energiegrößen und Kohärenzdynamik bleiben im Allgemeinen frei. & Mehrzeitgesetz oder Generatorursprung nötig.\\[4pt] Acht reale Richtungen sind die acht nativen CAR-Moden & Charaktere und Skalarkörper unterscheiden sich. & 
+@P.25 P.42 P.25 @ Frühere naheliegende Deutung & Heutiger belastbarer Stand & Konsequenz\\ Frühere Deutung & Heutiger Stand & Konsequenz\\ Zustand bzw. Vorzeichenprojektor bestimmt den Generator & Energiegrößen und Kohärenzdynamik bleiben im Allgemeinen frei. & Mehrzeitgesetz oder Generatorursprung nötig.\\[4pt] Acht reale Richtungen sind die acht nativen CAR-Moden & Charaktere und Skalarkörper unterscheiden sich. &
 
 ## Priorität 1: dieselbe Quelle, dieselben geladenen Operatoren
 
@@ -176,7 +176,7 @@ Quelle: SESSION/outputs/gemeinsamer-ursprung/Universalraum-gemeinsamer-Ursprung.
 
 [documents/TFPT_Universalraum_Sitzungsdokumentation_2026-09-20_v2/sections/001-chapter-leserbrief.tex:29-44](../../../../documents/TFPT_Universalraum_Sitzungsdokumentation_2026-09-20_v2/sections/001-chapter-leserbrief.tex#L29) · `section:59c30eba3c935582bb49` · chapter
 
-tocchapterLeserbrief Das Ziel dieser Sitzung war von Anfang an groß: eine gemeinsame, möglichst einfache Ursprungstheorie finden, die den TFPT-Compiler, Quantenprozesse, Materie, Raumzeit und Gravitation aus derselben Struktur verständlich macht. Die Untersuchungen dürfen deshalb nicht nur daran gemessen werden, ob irgendwo eine schöne Matrix entsteht. Entscheidend ist, ob die verschiedenen Matrizen dieselbe Quelle, 
+tocchapterLeserbrief Das Ziel dieser Sitzung war von Anfang an groß: eine gemeinsame, möglichst einfache Ursprungstheorie finden, die den TFPT-Compiler, Quantenprozesse, Materie, Raumzeit und Gravitation aus derselben Struktur verständlich macht. Die Untersuchungen dürfen deshalb nicht nur daran gemessen werden, ob irgendwo eine schöne Matrix entsteht. Entscheidend ist, ob die verschiedenen Matrizen dieselbe Quelle,
 
 ## Der Ausgangspunkt der Theorie
 

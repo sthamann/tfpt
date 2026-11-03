@@ -141,7 +141,7 @@ Innerhalb der unitären affinen E8-Vakuumklasse gilt Die erste affine Integrabil
 
 [documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/015-subsection-der-uniforme-sewing-test-wird-zu-einem-exakt-.tex:210-225](../../../../documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/015-subsection-der-uniforme-sewing-test-wird-zu-einem-exakt-.tex#L210) · `section:a64ffa59c53c508ec739` · subsection
 
-Die tatsächlichen komplexen Reflexionen sind Produkte zweier reeller E8-Weylreflexionen: Für die drei verwendeten Strahlen wurde dies an der ursprünglichen Wurzelwirkung geprüft. Solche Gitterisometrien besitzen passende Vakuum-erhaltende Lifts zur Gitterquelle dongnagjoint. Der Lift samt Kokzyklus gehört zu den Daten: Eine [formula in source] -Wortgleichheit auf der markierten Zweierebene ist nicht automatisch eine 
+Die tatsächlichen komplexen Reflexionen sind Produkte zweier reeller E8-Weylreflexionen: Für die drei verwendeten Strahlen wurde dies an der ursprünglichen Wurzelwirkung geprüft. Solche Gitterisometrien besitzen passende Vakuum-erhaltende Lifts zur Gitterquelle dongnagjoint. Der Lift samt Kokzyklus gehört zu den Daten: Eine [formula in source] -Wortgleichheit auf der markierten Zweierebene ist nicht automatisch eine
 
 ## Der vorgeschlagene Raumlauf scheitert bei direkter Übertragung auf die Quelle
 
@@ -171,7 +171,7 @@ Die ursprüngliche Verklebung enthält die Zwischenstufe Sie wird nicht nachträ
 
 [documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/016-subsection-die-zur-ckgewonnene-darstellung-ist-der-urspr.tex:1-27](../../../../documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/016-subsection-die-zur-ckgewonnene-darstellung-ist-der-urspr.tex#L1) · `section:6abb2035d8cd61ed5f6d` · subsection
 
-Die sechzehn Gewichte zerfallen entlang der ursprünglichen ersten fünf und letzten drei Gitterrichtungen als Jede der [formula in source] ursprünglichen [formula in source] -Wurzeln verbindet tatsächlich zwei Gewichtspaare dieser Darstellung. Auf P2 lauten ihre Ladungen Das rekonstruiert die vorher geometrisch gewonnene Darstellung mitsamt ihrer Wirkung. Es identifiziert diese Richtungen weiterhin nicht mit sechzehn 
+Die sechzehn Gewichte zerfallen entlang der ursprünglichen ersten fünf und letzten drei Gitterrichtungen als Jede der [formula in source] ursprünglichen [formula in source] -Wurzeln verbindet tatsächlich zwei Gewichtspaare dieser Darstellung. Auf P2 lauten ihre Ladungen Das rekonstruiert die vorher geometrisch gewonnene Darstellung mitsamt ihrer Wirkung. Es identifiziert diese Richtungen weiterhin nicht mit sechzehn
 
 ## Ausführbare Prüfung und ihr genauer Umfang
 
@@ -597,7 +597,7 @@ Explicit source references:
 
 [documents/tfpt_safeguards/sections/001-section-the-risk-and-the-shape-of-the-answer.tex:254-274](../../../../documents/tfpt_safeguards/sections/001-section-the-risk-and-the-shape-of-the-answer.tex#L254) · `section:d59ca752d5e1a51b75b5` · section
 
-@lYl@ Layer & What it defends against & Artefact \\ Status calculus & a \ claim read as & ledger [formula in source] audit_sync.py \\ No free pattern [formula in source] reverse audit & cherry-picking, decorative identities & v305/ v100/ v431/ E8.REVERSE.AUDIT.01 \\ Over-determination map & rhetorical ``everything multiplies'' (incl.\ our own miscount) & v427/ v428/ v432/ v436 \\ Firewall [formula in source] No-Unit 
+@lYl@ Layer & What it defends against & Artefact \\ Status calculus & a \ claim read as & ledger [formula in source] audit_sync.py \\ No free pattern [formula in source] reverse audit & cherry-picking, decorative identities & v305/ v100/ v431/ E8.REVERSE.AUDIT.01 \\ Over-determination map & rhetorical ``everything multiplies'' (incl.\ our own miscount) & v427/ v428/ v432/ v436 \\ Firewall [formula in source] No-Unit
 
 Explicit source references:
 
@@ -1016,7 +1016,7 @@ This document develops the architecture layer of TFPT: the two axioms, the deriv
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex:147-1673](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex#L147) · `section:8872501633bb702220cd` · section
 
-Notation convention. We write [formula in source] for the root-lattice direct sum (used in the glue/lattice statements: discriminant forms, [formula in source] glue, [formula in source] as an even unimodular lattice), and [formula in source] for the group/representation branching (used for subalgebra embeddings and [formula in source] -rep decompositions). The objects are the same atoms; the symbol marks whether the 
+Notation convention. We write [formula in source] for the root-lattice direct sum (used in the glue/lattice statements: discriminant forms, [formula in source] glue, [formula in source] as an even unimodular lattice), and [formula in source] for the group/representation branching (used for subalgebra embeddings and [formula in source] -rep decompositions). The objects are the same atoms; the symbol marks whether the
 
 Explicit source references:
 
@@ -1205,7 +1205,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex:1732-1780](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex#L1732) · `section:9656cb78a4cbdf493637` · subsection
 
-A family is exactly the complete Pascal truncation to degree two: the unique positive-integer solution of [formula in source] . Proof of uniqueness. Direct evaluation gives [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] ; so [formula in source] is the only root in [formula in source] . For [formula in source] the forward difference is 
+A family is exactly the complete Pascal truncation to degree two: the unique positive-integer solution of [formula in source] . Proof of uniqueness. Direct evaluation gives [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] ; so [formula in source] is the only root in [formula in source] . For [formula in source] the forward difference is
 
 Explicit source references:
 
@@ -1227,7 +1227,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex:1781-1796](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex#L1781) · `section:38538ebfe54ea1f0dd1c` · subsection
 
-With [formula in source] , the quadratic hypercharge trace on one family is [formula in source] , and it generates the whole integer chain: The flavor budget, the [formula in source] budget, the [formula in source] count and the second seam defect all hang on the second hypercharge moment [formula in source] . \ Round-22 sharpening: the moment itself is one symbolic identity, [formula in source] — the Coxeter number 
+With [formula in source] , the quadratic hypercharge trace on one family is [formula in source] , and it generates the whole integer chain: The flavor budget, the [formula in source] budget, the [formula in source] count and the second seam defect all hang on the second hypercharge moment [formula in source] . \ Round-22 sharpening: the moment itself is one symbolic identity, [formula in source] — the Coxeter number
 
 Explicit source references:
 
@@ -1310,7 +1310,7 @@ Explicit source references:
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex:1928-1961](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex#L1928) · `section:26a174b789c650ed0ebe` · subsection
 
-The carrier geometry fixes [formula in source] , [formula in source] , rigid [formula in source] generated by [formula in source] . The twelve puncture-difference cycles [formula in source] carry the residue pairing [formula in source] and form the [formula in source] root system: The corner rotation [formula in source] acts on [formula in source] as the [formula in source] Coxeter element (order [formula in source] 
+The carrier geometry fixes [formula in source] , [formula in source] , rigid [formula in source] generated by [formula in source] . The twelve puncture-difference cycles [formula in source] carry the residue pairing [formula in source] and form the [formula in source] root system: The corner rotation [formula in source] acts on [formula in source] as the [formula in source] Coxeter element (order [formula in source]
 
 Explicit source references:
 
@@ -1616,7 +1616,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex:4318-4334](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex#L4318) · `section:9cd02b2b0f5af263291c` · subsection
 
-Coxeter/gauge typing of the lcm–gcd pair. Writing [formula in source] and [formula in source] , the relations become [formula in source] and [formula in source] : the local SM algebra is the gcd of the Coxeter double-period and the [formula in source] rank-occupancy, and the [formula in source] root count is their lcm. Likewise the EW exponent reads [formula in source] (Coxeter principal part plus a rank singlet). \ 
+Coxeter/gauge typing of the lcm–gcd pair. Writing [formula in source] and [formula in source] , the relations become [formula in source] and [formula in source] : the local SM algebra is the gcd of the Coxeter double-period and the [formula in source] rank-occupancy, and the [formula in source] root count is their lcm. Likewise the EW exponent reads [formula in source] (Coxeter principal part plus a rank singlet). \
 
 ## Level 2 — new exact counting identities ( )
 
@@ -1628,7 +1628,7 @@ with [formula in source] the number of non-empty occupation words of the [formul
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex:4344-4404](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex#L4344) · `section:5e1509353325b787484d` · subsection
 
-Identify [formula in source] with the even-weight binary code on five bits. A transition [formula in source] has flip [formula in source] , even and nonempty, so [formula in source] ; per state there are [formula in source] flips, giving and the [formula in source] undirected flips match the [formula in source] [formula in source] root pairs ( , counting). This makes the atlas conjecture testable: a genuine root map 
+Identify [formula in source] with the even-weight binary code on five bits. A transition [formula in source] has flip [formula in source] , even and nonempty, so [formula in source] ; per state there are [formula in source] flips, giving and the [formula in source] undirected flips match the [formula in source] [formula in source] root pairs ( , counting). This makes the atlas conjecture testable: a genuine root map
 
 Explicit source references:
 
@@ -1648,7 +1648,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex:4405-4425](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex#L4405) · `section:911b129fc3e3dd46c69d` · subsection
 
-Use the universal root-system identity [formula in source] (Coxeter number [formula in source] ). With the carrier values [formula in source] and [formula in source] , The Coxeter number of [formula in source] is exactly three families times the cosmological pair action: each family contributes one [formula in source] -decuple ( [formula in source] ) to the Coxeter period. Equivalently the action ladder is a Coxeter 
+Use the universal root-system identity [formula in source] (Coxeter number [formula in source] ). With the carrier values [formula in source] and [formula in source] , The Coxeter number of [formula in source] is exactly three families times the cosmological pair action: each family contributes one [formula in source] -decuple ( [formula in source] ) to the Coxeter period. Equivalently the action ladder is a Coxeter
 
 ## Level 2.8 — positive-root moment: [formula in source]
 

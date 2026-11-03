@@ -1,0 +1,117 @@
+TFPT scientific source excerpt
+Original repository path: documents/archive--tfpt-45--source_extracts--03_em_flavor_source/sections/005-source.tex
+Original file SHA-256: 786d2619e775775d70adf177794138485b261968042a880b2f0f617bb0111814
+Inclusive original lines: 114-222
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000114 | \begin{proposition}[Finite positive transport algebra]
+000115 | \label{prop:finite-positive-transport-algebra}
+000116 | Let
+000117 | \[
+000118 | C:=\frac12\bigl(U_6+U_6^\dagger\bigr),
+000119 | \qquad
+000120 | a:=y^2+\delta_{\mathrm{ph}}^2+\varepsilon^2,
+000121 | \qquad
+000122 | b:=y\delta_{\mathrm{ph}}.
+000123 | \]
+000124 | Then
+000125 | \[
+000126 | D_y^\dagger D_y+\varepsilon^2=a\,\mathbf 1-2b\,C.
+000127 | \]
+000128 | The cosine operator $C$ has spectrum
+000129 | \[
+000130 | \mathrm{Spec}(C)=\left\{1,\frac12,-\frac12,-1\right\}
+000131 | \]
+000132 | and satisfies
+000133 | \begin{equation}
+000134 | \label{eq:c6-cosine-polynomial}
+000135 | 4C^4-5C^2+\mathbf 1=0.
+000136 | \end{equation}
+000137 | Consequently the regularized positive transport kernel reduces to the cubic polynomial
+000138 | \begin{equation}
+000139 | \label{eq:finite-positive-transport-kernel}
+000140 | \mathcal Y_y^{(\varepsilon)}
+000141 | =
+000142 | \frac{
+000143 | a^3-5ab^2
+000144 | +2b(a^2-5b^2)C
+000145 | +4ab^2C^2
+000146 | +8b^3C^3
+000147 | }{
+000148 | (a^2-b^2)(a^2-4b^2)
+000149 | }.
+000150 | \end{equation}
+000151 | \end{proposition}
+000152 | 
+000153 | \begin{proof}
+000154 | Because $U_6$ is unitary,
+000155 | \[
+000156 | D_y^\dagger D_y
+000157 | =
+000158 | \bigl(y\,\mathbf 1-\delta_{\mathrm{ph}}U_6^\dagger\bigr)
+000159 | \bigl(y\,\mathbf 1-\delta_{\mathrm{ph}}U_6\bigr)
+000160 | =
+000161 | \bigl(y^2+\delta_{\mathrm{ph}}^2\bigr)\mathbf 1
+000162 | -y\delta_{\mathrm{ph}}(U_6+U_6^\dagger),
+000163 | \]
+000164 | which gives the first identity after adding $\varepsilon^2$. The eigenvalues of $C$ are $\cos(n\pi/3)$ for $n=0,\dots,5$, namely $1,\frac12,-\frac12,-1$. Hence $C$ obeys the minimal polynomial \Cref{eq:c6-cosine-polynomial}. The inverse of $a-2bc$ on this four-point spectrum is therefore represented by a unique cubic interpolation polynomial in $c$, and evaluating that interpolation yields \Cref{eq:finite-positive-transport-kernel}.
+000165 | \end{proof}
+000166 | 
+000167 | \begin{proposition}[Strict positivity of the finite admissible $C_6$ Green kernel]
+000168 | \label{prop:strict-positive-c6-green}
+000169 | For each admissible cusp
+000170 | \[
+000171 | y\in\left\{1,\frac13,\frac23\right\}
+000172 | \]
+000173 | and each $\varepsilon\ge 0$, set
+000174 | \[
+000175 | a_y:=y^2+\delta_{\mathrm{ph}}^2+\varepsilon^2,
+000176 | \qquad
+000177 | b_y:=y\,\delta_{\mathrm{ph}},
+000178 | \qquad
+000179 | r_y:=\frac{a_y-\sqrt{a_y^2-4b_y^2}}{2b_y}.
+000180 | \]
+000181 | Then
+000182 | \[
+000183 | a_y-2b_y=(y-\delta_{\mathrm{ph}})^2+\varepsilon^2>0,
+000184 | \qquad
+000185 | 0<r_y<1.
+000186 | \]
+000187 | If $d=d_{C_6}(i,j)$ denotes the cyclic graph distance on the hexagon, the regularized Green
+000188 | kernel satisfies
+000189 | \[
+000190 | (\mathcal Y_y^{(\varepsilon)})_{ij}
+000191 | =
+000192 | \frac{r_y^{d}+r_y^{6-d}}
+000193 | {\sqrt{a_y^2-4b_y^2}\,(1-r_y^6)}.
+000194 | \]
+000195 | Hence every matrix entry of $\mathcal Y_y^{(\varepsilon)}$ is strictly positive.
+000196 | \end{proposition}
+000197 | 
+000198 | \begin{proof}[Proof sketch]
+000199 | For the admissible cusps one has $y>0$ and $\delta_{\mathrm{ph}}\in(1/3,2/3)$, so $b_y>0$. The
+000200 | displayed identity for $a_y-2b_y$ implies $a_y>2b_y$, hence $a_y^2-4b_y^2>0$ and the smaller
+000201 | root $r_y$ lies strictly between $0$ and $1$. The operator
+000202 | \[
+000203 | \mathcal Y_y^{(\varepsilon)}=(a_y\mathbf 1-b_y(U_6+U_6^\dagger))^{-1}
+000204 | \]
+000205 | is circulant on the six-cycle, so its entries depend only on the cyclic distance
+000206 | $d=d_{C_6}(i,j)$. Solving the corresponding Green recursion on $C_6$ gives the displayed closed
+000207 | form, and every factor in that formula is strictly positive.
+000208 | \end{proof}
+000209 | 
+000210 | \begin{corollary}[Uniform positive lower bound on admissible local transport]
+000211 | \label{cor:uniform-positive-c6-green}
+000212 | On the admissible cusp set
+000213 | \[
+000214 | y\in\left\{1,\frac13,\frac23\right\}
+000215 | \]
+000216 | and on the closed branch $\varepsilon=0$, all matrix entries of $\mathcal Y_y^{(0)}$ are bounded
+000217 | below by a uniform constant
+000218 | \[
+000219 | g_{\mathrm{hex}}>0.
+000220 | \]
+000221 | One may take
+000222 | \[

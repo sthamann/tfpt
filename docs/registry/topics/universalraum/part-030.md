@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Energie und ein wirklicher Grundzustandsnachweis
+
+[experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/05_kopplung.tex:29-73](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/05_kopplung.tex#L29) · `section:6c03dd92bb9a1a1ff0f7` · section
+
+Mit lauten die beiden Eigenwerte Die negative Korrektur beschreibt die Absenkung gegenüber dem einfachen Produktwert [formula in source] .
+
 ## Verschränkung aus derselben Kopplung
 
 [experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/05_kopplung.tex:74-95](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/05_kopplung.tex#L74) · `section:ad3208df7043f2109636` · section
@@ -80,7 +86,7 @@ Der benötigte Zustand [formula in source] ist in der Acht-Qubit-Kodierung kein 
 
 [experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/06_zeit_echo.tex:105-126](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/06_zeit_echo.tex#L105) · `section:cd2d5b63e5d87fc44f31` · section
 
-Der einfache Eingang lautet Er ist mit dem in S02 angenommenen Clifford-Baukasten präparierbar und besitzt [formula in source] -Anteil [formula in source] . Der Antisymmetrisierer ist Die konkrete Schaltung erzeugt 32 Kontrollzweige, von denen 24 die Permutationen tragen. Acht ungültige Zweige werden markiert. Nach Interferenz und Erfolgsselektion ist der implementierte Operator Somit gilt Der erfolgreiche Zweig ist 
+Der einfache Eingang lautet Er ist mit dem in S02 angenommenen Clifford-Baukasten präparierbar und besitzt [formula in source] -Anteil [formula in source] . Der Antisymmetrisierer ist Die konkrete Schaltung erzeugt 32 Kontrollzweige, von denen 24 die Permutationen tragen. Acht ungültige Zweige werden markiert. Nach Interferenz und Erfolgsselektion ist der implementierte Operator Somit gilt Der erfolgreiche Zweig ist
 
 ## Das ursprüngliche Echo: eins gegen siebzehn Zweiunddreißigstel
 
@@ -146,7 +152,7 @@ Eine gewöhnliche kritische SU(4)-Kette hat links- und rechtslaufende Sektoren, 
 
 [experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/07_seam.tex:98-103](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/07_seam.tex#L98) · `section:8640f78cf233ec4c920a` · section
 
-Die innere Glue- [formula in source] wirkt auf den 248 Strömen mit Phasen [formula in source] auf Sektoren der Größen [formula in source] . Ihre Spur ist null. Die geometrische Vierteldrehung [formula in source] hat auf Stufe eins dagegen Spur [formula in source] . Die Operatoren sind somit nicht identisch. Eine Clock kann eine geometrische Drehung mit innerem Twist kombinieren; die beiden Faktoren bleiben getrennt. 
+Die innere Glue- [formula in source] wirkt auf den 248 Strömen mit Phasen [formula in source] auf Sektoren der Größen [formula in source] . Ihre Spur ist null. Die geometrische Vierteldrehung [formula in source] hat auf Stufe eins dagegen Spur [formula in source] . Die Operatoren sind somit nicht identisch. Eine Clock kann eine geometrische Drehung mit innerem Twist kombinieren; die beiden Faktoren bleiben getrennt.
 
 ## Wie eine vollständige Rekonstruktion aussehen könnte
 
@@ -320,7 +326,7 @@ Aktueller Stand v1.3 Der endliche Kern ist jetzt konkreter: Ein gemeinsamer korr
 
 [experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/10_ausblick.tex:42-52](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/10_ausblick.tex#L42) · `section:e56628d42ecce35be94d` · section
 
-L31mmL62mmL57mm Fuge& Erreichter Stand& Verbleibende Herkunft\\ Kopplungsstärke&Exakter antisymmetrischer Vermittler; [formula in source] unter benannten Bedingungen; S11 liefert [formula in source] in seiner Normierung.&Energien, Amplituden, konkurrierende Kanäle und ihre gemeinsame Auswahl.\\ Kopplungsgraph&Clebsch-Graph exakt unter „Ort = Spinorgewicht“; Tetramer, Kette und Clebsch getrennt.&Ortslesart, Belegung, 
+L31mmL62mmL57mm Fuge& Erreichter Stand& Verbleibende Herkunft\\ Kopplungsstärke&Exakter antisymmetrischer Vermittler; [formula in source] unter benannten Bedingungen; S11 liefert [formula in source] in seiner Normierung.&Energien, Amplituden, konkurrierende Kanäle und ihre gemeinsame Auswahl.\\ Kopplungsgraph&Clebsch-Graph exakt unter „Ort = Spinorgewicht“; Tetramer, Kette und Clebsch getrennt.&Ortslesart, Belegung,
 
 ## T1 bis T8: der vollständige Vertrag
 
@@ -338,7 +344,7 @@ L9mmL62mmL79mm Tor& Was gemeinsam nachzuweisen ist& Was bisher dazu vorliegt\\ T
 
 [experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/10_ausblick.tex:80-86](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/10_ausblick.tex#L80) · `section:ff4ade2147e0e5138113` · section
 
-Der Kandidat, auf den die Dokumente gemeinsam zulaufen Es gibt eine phasentreue Kompositionsregel mit positivem Zustandsfunktional, deren endliche Auslesungen die markierte TFPT-Struktur tragen. Aus ihren gekoppelten Anregungen und Aufzeichnungen entsteht ein kontrollierter gemeinsamer Grenzprozess. Erst dieser Grenzprozess liefert Raumzeit, chirale Materie, Wechselwirkungen und gegebenenfalls Gravitation. Die erste 
+Der Kandidat, auf den die Dokumente gemeinsam zulaufen Es gibt eine phasentreue Kompositionsregel mit positivem Zustandsfunktional, deren endliche Auslesungen die markierte TFPT-Struktur tragen. Aus ihren gekoppelten Anregungen und Aufzeichnungen entsteht ein kontrollierter gemeinsamer Grenzprozess. Erst dieser Grenzprozess liefert Raumzeit, chirale Materie, Wechselwirkungen und gegebenenfalls Gravitation. Die erste
 
 ## Korrekturregister und ergänzende Details
 
@@ -434,7 +440,7 @@ Die Unterlagen und der zusätzlich eingesehene Forschungsbestand ergeben keine a
 
 [experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/12_schatten_arithmetik.tex:82-96](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/12_schatten_arithmetik.tex#L82) · `section:db4ce8259c120ac5a95a` · subsection
 
-Die ersten sechs Werte sind [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] und [formula in source] . Daraus folgt für [formula in source] Hier ist der Primzahlbezug wirklich vorhanden. Die Selbstdualität des Gitters schließt die Poisson-Transformation auf dasselbe Gitter. Poisson-Summation gilt auch für nichtselbstduale Gitter und verbindet dann Gitter und 
+Die ersten sechs Werte sind [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] und [formula in source] . Daraus folgt für [formula in source] Hier ist der Primzahlbezug wirklich vorhanden. Die Selbstdualität des Gitters schließt die Poisson-Transformation auf dasselbe Gitter. Poisson-Summation gilt auch für nichtselbstduale Gitter und verbindet dann Gitter und
 
 ## Warum die fehlende Positivität so hartnäckig ist
 
@@ -506,7 +512,7 @@ Die komplexe Vierdimensionalität ist für den bestehenden Pauli-/Spinorbaukaste
 
 [experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/13_schatten_quanten.tex:76-81](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/13_schatten_quanten.tex#L76) · `section:52c829555ca26fb6d001` · section
 
-Die bisherigen Registerbeispiele erklären, wie ein global kohärenter Ablauf nach eingeschränktem Zugriff wie ein irreversibler Prozess aussehen kann. Sie liefern noch keine eindeutige Lösung des Messproblems: Insbesondere folgt aus einer diagonalen reduzierten Dichtematrix allein keine Auswahl eines einzelnen Ereignisses. Eine zusätzliche Kollapsdynamik müsste messbare Abweichungen angeben; eine unitäre Beschreibung 
+Die bisherigen Registerbeispiele erklären, wie ein global kohärenter Ablauf nach eingeschränktem Zugriff wie ein irreversibler Prozess aussehen kann. Sie liefern noch keine eindeutige Lösung des Messproblems: Insbesondere folgt aus einer diagonalen reduzierten Dichtematrix allein keine Auswahl eines einzelnen Ereignisses. Eine zusätzliche Kollapsdynamik müsste messbare Abweichungen angeben; eine unitäre Beschreibung
 
 ## Drei Raumrichtungen und eine Zeit: Welche Bedingungen bleiben?
 
@@ -597,9 +603,3 @@ Die folgenden Formeln sind eine neue Anschlusskonstruktion für dieses Buch. Ihr
 [experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/16_schatten_synthese.tex:62-69](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/16_schatten_synthese.tex#L62) · `section:67f1c15a3c2b1f292962` · subsection
 
 Ein Kontrollqubit speichert kohärent, welcher der beiden Wege durchlaufen wurde. Setze [formula in source] und [formula in source] . Nach einer Hadamard-Auslesung des Kontrollqubits gelten [formula in source] Ohne die lokalen [formula in source] -Markierungen wäre [formula in source] und damit [formula in source] . Die neue Rechnung kontrolliert dies im Zahlfenster [formula in source] exakt. Die benutzten Wege ab [fo
-
-## Was damit gelöst ist und was nicht
-
-[experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/16_schatten_synthese.tex:70-76](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/16_schatten_synthese.tex#L70) · `section:276f98ed530d865eac78` · subsection
-
-Gelöst ist eine kleine Kompatibilitätsfrage: Unbegrenzte arithmetische Zusammensetzung und ein endlicher lokaler Quantenbaukasten lassen sich in einem expliziten gemeinsamen Modell verbinden. Der rein arithmetische Schatten kann kommutativ sein, während kohärent zugängliche Wegrelationen eine nichttriviale Phase behalten. Das passt genau zum Motiv der vorherigen Echoexperimente.

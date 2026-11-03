@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Was damit gelöst ist und was nicht
+
+[experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/16_schatten_synthese.tex:70-76](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/16_schatten_synthese.tex#L70) · `section:276f98ed530d865eac78` · subsection
+
+Gelöst ist eine kleine Kompatibilitätsfrage: Unbegrenzte arithmetische Zusammensetzung und ein endlicher lokaler Quantenbaukasten lassen sich in einem expliziten gemeinsamen Modell verbinden. Der rein arithmetische Schatten kann kommutativ sein, während kohärent zugängliche Wegrelationen eine nichttriviale Phase behalten. Das passt genau zum Motiv der vorherigen Echoexperimente.
+
 ## Warum getrennte passende Modelle noch keine gemeinsame Quelle sind
 
 [experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/16_schatten_synthese.tex:77-97](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/16_schatten_synthese.tex#L77) · `section:ed6d1cfb4cdb3b9c17ef` · section
@@ -26,7 +32,7 @@ No opening prose excerpt; see the source.
 
 [experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/17_schatten_quellen.tex:3-29](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/17_schatten_quellen.tex#L3) · `section:7a1e6bf8f15ddab08d5f` · section
 
-Die Erweiterung wurde am 14. September 2026 gegen verfügbare Originalabschnitte im lokalen Repository tfpt-theoryv4 abgeglichen. Der gelesene Git-Stand war 66b91e40e245569f06ab440ead80f446c9be0ee5. Dies identifiziert den Checkout; es behauptet keinen frischen vollständigen Beweis- oder Testlauf. Die tatsächlich verwendeten Dateiinhalte sind zusätzlich mit SHA-256 im Paket erfasst, auch soweit der Arbeitsbaum von Git 
+Die Erweiterung wurde am 14. September 2026 gegen verfügbare Originalabschnitte im lokalen Repository tfpt-theoryv4 abgeglichen. Der gelesene Git-Stand war 66b91e40e245569f06ab440ead80f446c9be0ee5. Dies identifiziert den Checkout; es behauptet keinen frischen vollständigen Beweis- oder Testlauf. Die tatsächlich verwendeten Dateiinhalte sind zusätzlich mit SHA-256 im Paket erfasst, auch soweit der Arbeitsbaum von Git
 
 Explicit source references:
 
@@ -92,7 +98,7 @@ Für genau zwei vollständige [formula in source] -Zellen und eine positive Brü
 
 [experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/18_audit_v13.tex:60-77](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/18_audit_v13.tex#L60) · `section:48cd70c4ff928d9c300c` · section
 
-Im ausgewiesenen harmonischen Modell eines geteilten Vermittlers lautet der symmetrische aktive Block Sein niedriger Zweig beginnt mit [formula in source] ; der antisymmetrische mit [formula in source] . Deshalb ist auf dem aktiven [formula in source] -Raum Nach Abzug beider Einzelbondkorrekturen [formula in source] bleibt Beide Schreibweisen sind kompatibel. Eine Konstante auf dem aktiven Sektor ist außerhalb davon 
+Im ausgewiesenen harmonischen Modell eines geteilten Vermittlers lautet der symmetrische aktive Block Sein niedriger Zweig beginnt mit [formula in source] ; der antisymmetrische mit [formula in source] . Deshalb ist auf dem aktiven [formula in source] -Raum Nach Abzug beider Einzelbondkorrekturen [formula in source] bleibt Beide Schreibweisen sind kompatibel. Eine Konstante auf dem aktiven Sektor ist außerhalb davon
 
 ## Ein exakter Stern-Spektralfilter unter zusätzlichen Ressourcen
 
@@ -152,13 +158,13 @@ Akzeptiere in jeder Sternrunde die Recordfolge 111: Alle acht ersten Recordfolge
 
 [experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/19_execution_v13.tex:85-106](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/19_execution_v13.tex#L85) · `section:9c19a58c70d547bdec15` · section
 
-Nach erfolgreicher Präparation folgen lokaler Quelltick [formula in source] , zweimal [formula in source] , Rücknahme [formula in source] und dasselbe [formula in source] -Runden-Filter. Ein ideales kostenloses [formula in source] -Messgerät wird nicht eingesetzt. Protokoll R behält denselben kohärenten Pointer; Protokoll F verwendet beim zweiten Schritt einen frischen. Mit [formula in source] lauten die gemeinsamen 
+Nach erfolgreicher Präparation folgen lokaler Quelltick [formula in source] , zweimal [formula in source] , Rücknahme [formula in source] und dasselbe [formula in source] -Runden-Filter. Ein ideales kostenloses [formula in source] -Messgerät wird nicht eingesetzt. Protokoll R behält denselben kohärenten Pointer; Protokoll F verwendet beim zweiten Schritt einen frischen. Mit [formula in source] lauten die gemeinsamen
 
 ## Was für eine native Implementierung noch fehlt
 
 [experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/19_execution_v13.tex:107-115](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/19_execution_v13.tex#L107) · `section:19e63a6768238480db44` · section
 
-Das neue Register ist nicht Clifford: Ein vierqubitiger Pauli hat Spur null oder [formula in source] . Noch konkreter erzeugt der Quellinput [formula in source] genau 13 nichtverschwindende Rechenbasisamplituden. Das ist kein reiner Stabilizerzustand, dessen Trägergröße eine Zweierpotenz ist. Nur Cliffordoperationen, Stabilizer-Hilfszustände und Pauli-Messungen reichen auch mit Feedback nicht aus. Andere Kodierungen 
+Das neue Register ist nicht Clifford: Ein vierqubitiger Pauli hat Spur null oder [formula in source] . Noch konkreter erzeugt der Quellinput [formula in source] genau 13 nichtverschwindende Rechenbasisamplituden. Das ist kein reiner Stabilizerzustand, dessen Trägergröße eine Zweierpotenz ist. Nur Cliffordoperationen, Stabilizer-Hilfszustände und Pauli-Messungen reichen auch mit Feedback nicht aus. Andere Kodierungen
 
 ## Ungelesener Austausch ist keine Kühlung
 
@@ -170,7 +176,7 @@ Alle [formula in source] kommutieren mit [formula in source] ; der ungelesene Ka
 
 [experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/19_execution_v13.tex:123-126](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/19_execution_v13.tex#L123) · `section:ceb7420c310edbdbbc6d` · section
 
-Ein nativer Adapter muss [formula in source] , [formula in source] , Kern und Belegung gemeinsam liefern, beim Half-Charge-Feld zusätzlich mit Domänen- und Energiekontrolle. Er muss den 13-Amplituden-Eingang, beide Recordzweige und die Acht-Runden-Echos reproduzieren, einschließlich Hilfszuständen und Fehlerausgängen. Erst anschließend ist eine skalierende Zellfamilie sinnvoll auf Geometrie, Chiralität und Spin 2 zu 
+Ein nativer Adapter muss [formula in source] , [formula in source] , Kern und Belegung gemeinsam liefern, beim Half-Charge-Feld zusätzlich mit Domänen- und Energiekontrolle. Er muss den 13-Amplituden-Eingang, beide Recordzweige und die Acht-Runden-Echos reproduzieren, einschließlich Hilfszuständen und Fehlerausgängen. Erst anschließend ist eine skalierende Zellfamilie sinnvoll auf Geometrie, Chiralität und Spin 2 zu
 
 ## Versionspaar v1.3: Quellen, Abdeckung und Reproduktion
 
@@ -566,7 +572,7 @@ Die beiden positiven Wurzelgitter [formula in source] und [formula in source] be
 
 [experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/02_algebra.tex:58-83](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/02_algebra.tex#L58) · `section:55fc93b1b1aafa6cc296` · section
 
-Die 240 Wurzeln sind besondere Vektoren in einem acht-dimensionalen Raum. Hinzu kommen acht Cartanrichtungen, sodass die Lie-Algebra 248 Dimensionen besitzt. Unter [formula in source] lautet ihre komplexe Zerlegung L47mmrY Sektor& Wurzeln& Generatoren einschließlich Cartan\\ [formula in source] &40& [formula in source] \\ [formula in source] &12& [formula in source] \\ Gemischter Vektorsektor&60& [formula in source] 
+Die 240 Wurzeln sind besondere Vektoren in einem acht-dimensionalen Raum. Hinzu kommen acht Cartanrichtungen, sodass die Lie-Algebra 248 Dimensionen besitzt. Unter [formula in source] lautet ihre komplexe Zerlegung L47mmrY Sektor& Wurzeln& Generatoren einschließlich Cartan\\ [formula in source] &40& [formula in source] \\ [formula in source] &12& [formula in source] \\ Gemischter Vektorsektor&60& [formula in source]
 
 ## Das endliche Fenster: 60 Strahlen und 15 Kontexte
 
@@ -633,9 +639,3 @@ Ein klassisch-quantenmechanischer Zustand, kurz CQ-Zustand, besitzt 15 positive 
 [experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/03_prozess.tex:145-165](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/03_prozess.tex#L145) · `section:e61dd6eb62c77c2400b5` · section
 
 Für die vier Projektoren eines Kontexts sind [formula in source] Spiegelungen. In Dimension vier gilt Allgemein in Dimension [formula in source] wäre die linke Seite [formula in source] . Der kurze Auslöschungseffekt ist hier also tatsächlich viererspezifisch.
-
-## Das Echo des behaltenen Registers
-
-[experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/03_prozess.tex:166-179](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/03_prozess.tex#L166) · `section:6654401dc8d90c14e6ad` · section
-
-Für einen gleichförmigen reinen Eingang in der gewählten Kontextbasis erzeugt eine Vormessung maximale Verschränkung. Ohne Registerblick ist der Systemzustand [formula in source] . Nun gibt es zwei Ausführungen: Derselbe kohärente Speicher wird nochmals gekoppelt: [formula in source] stellt den reinen Eingang wieder her. Ein neuer Speicher wird benutzt: Im reduzierten System wird die Dephasierung wiederholt; [formula

@@ -4,11 +4,17 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Die gemeinsam zu prüfende kosmologische Ausgabe
+
+[experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/update_body_v16.tex:96-98](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/update_body_v16.tex#L96) · `section:1bf6936fbfe21011766b` · section
+
+Die dokumentierte vollständige Modenrechnung der Starobinsky-Branche [formula in source] trifft die verwendeten Zentralwerte für Amplitude und Neigung nicht gleichzeitig. Anpassung an [formula in source] ergibt [formula in source] , [formula in source] ; Anpassung an [formula in source] ergibt [formula in source] und eine etwa 2,05-fach größere Amplitude. Ein Retuning von [formula in source] wirkt gleichzeitig auf di
+
 ## 5. Welche starken Schlussfolgerungen nicht halten
 
 [experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/update_body_v16.tex:99-108](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/update_body_v16.tex#L99) · `section:90a4c5a46752ef5ee1be` · chapter
 
-[formula in source] allein erzwingt keine zweidimensionale komplexe Darstellung und keine dreidimensionale physische Raumstruktur. Ein einfacher zweikomponentiger Weyl-Walk besitzt in der vollständig geprüften Zone vier Knoten. Bei Quasienergie null und [formula in source] bleibt je ein Paar entgegengesetzter Chiralität. Falten entfernt keine Spiegelzustände. Die [formula in source] -Verzweigung ist kein automatisch 
+[formula in source] allein erzwingt keine zweidimensionale komplexe Darstellung und keine dreidimensionale physische Raumstruktur. Ein einfacher zweikomponentiger Weyl-Walk besitzt in der vollständig geprüften Zone vier Knoten. Bei Quasienergie null und [formula in source] bleibt je ein Paar entgegengesetzter Chiralität. Falten entfernt keine Spiegelzustände. Die [formula in source] -Verzweigung ist kein automatisch
 
 ## 6. Die nächsten drei Abnahmen
 
@@ -49,7 +55,7 @@ Fix the original complex, number-conserving QWZ strip at width eight, mass one a
 
 [tex-artefacts/toe_research_20260909.tex:97-114](../../../../tex-artefacts/toe_research_20260909.tex#L97) · `section:7c988c39ac7db581aaf5` · subsection
 
-For the same strip and filled projector, the alternating four-word [formula in source] cancels the outer history ramps. Normal ordering is the actual finite-sea trace subtraction. Positive heat regularization, Jensen and Cauchy–Schwarz give uniform [formula in source] bounds for [formula in source] on the full four-endpoint torus, including collisions. They promote the separated-point limit to an [formula in source] 
+For the same strip and filled projector, the alternating four-word [formula in source] cancels the outer history ramps. Normal ordering is the actual finite-sea trace subtraction. Positive heat regularization, Jensen and Cauchy–Schwarz give uniform [formula in source] bounds for [formula in source] on the full four-endpoint torus, including collisions. They promote the separated-point limit to an [formula in source]
 
 ## 3. Full lattice dynamics and a physical neutral ground representation
 
@@ -95,13 +101,13 @@ The geometry branch realizes the proposed elliptic boundary data but exposes its
 
 [tex-artefacts/toe_round27_full_reference.tex:36-65](../../../../tex-artefacts/toe_round27_full_reference.tex#L36) · `section:e74826b2aac9e22d1901` · paragraph
 
-Fix [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] , a time step [formula in source] , [formula in source] and [formula in source] . Every site's charge remains in [formula in source] . The original signed hopping and potential are [formula in source] The [formula in source] directed elementary shifts include their original phases. Thus [formula in source] 
+Fix [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] , a time step [formula in source] , [formula in source] and [formula in source] . Every site's charge remains in [formula in source] . The original signed hopping and potential are [formula in source] The [formula in source] directed elementary shifts include their original phases. Thus [formula in source]
 
 ## Full-reference theorem and proof.
 
 [tex-artefacts/toe_round27_full_reference.tex:66-113](../../../../tex-artefacts/toe_round27_full_reference.tex#L66) · `section:65b04690e3cfb4c58e6c` · paragraph
 
-Let [formula in source] be the sum of moduli before cancellation, resolved into elementary hopping words, initial charge profiles and scalar integrals. Then Every elementary hop changes the complete profile, hence [formula in source] . Scalar spectral Jensen gives [formula in source] . Pinching [formula in source] into its charge blocks [formula in source] contracts the Schatten [formula in source] norm, so [formula 
+Let [formula in source] be the sum of moduli before cancellation, resolved into elementary hopping words, initial charge profiles and scalar integrals. Then Every elementary hop changes the complete profile, hence [formula in source] . Scalar spectral Jensen gives [formula in source] . Pinching [formula in source] into its charge blocks [formula in source] contracts the Schatten [formula in source] norm, so [formula
 
 ## Three explicit error budgets.
 
@@ -146,7 +152,7 @@ Explicit source references:
 
 [tex-artefacts/toe_round4_proofs.tex:9-22](../../../../tex-artefacts/toe_round4_proofs.tex#L9) · `section:9e0ba325fdce5ca83fef` · paragraph
 
-SEAM.MMST.TELB.NORM.01. For the frozen [formula in source] , [formula in source] collar, the original remainder obeys [formula in source] The interval inputs are v1022 (TV and potential), v1025 (C1/C2a), and v1026_ telb_ round4_ closure.py (CF, DG, signed CROSS, validated Fourier core and all-volume aliases). This is not a proof of the historical sharper [formula in source] or Bound-B target [formula in source] . In 
+SEAM.MMST.TELB.NORM.01. For the frozen [formula in source] , [formula in source] collar, the original remainder obeys [formula in source] The interval inputs are v1022 (TV and potential), v1025 (C1/C2a), and v1026_ telb_ round4_ closure.py (CF, DG, signed CROSS, validated Fourier core and all-volume aliases). This is not a proof of the historical sharper [formula in source] or Bound-B target [formula in source] . In
 
 Explicit source references:
 
@@ -187,7 +193,7 @@ Explicit source references:
 
 [tex-artefacts/toe_round4_proofs.tex:243-303](../../../../tex-artefacts/toe_round4_proofs.tex#L243) · `section:7f5d6cd7af591d8d1ecc` · paragraph
 
-CHIRAL4D.MIRROR.SIGNED.CAR.01. v1027_ signed_ det_ car_ wall.py checks the following algebra and its finite countermodels. The old Hubbard operators [formula in source] satisfy [formula in source] , not CAR, and [formula in source] . For even [formula in source] (in particular [formula in source] ), write [formula in source] and define [formula in source] This is a two-dimensional rotation and identity elsewhere. It 
+CHIRAL4D.MIRROR.SIGNED.CAR.01. v1027_ signed_ det_ car_ wall.py checks the following algebra and its finite countermodels. The old Hubbard operators [formula in source] satisfy [formula in source] , not CAR, and [formula in source] . For even [formula in source] (in particular [formula in source] ), write [formula in source] and define [formula in source] This is a two-dimensional rotation and identity elsewhere. It
 
 Explicit source references:
 
@@ -497,7 +503,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [tex-artefacts/toe_round7_parent_mirror.tex:90-104](../../../../tex-artefacts/toe_round7_parent_mirror.tex#L90) · `section:a9ba40ee6565edd10c45` · paragraph
 
-The v1008 routine edge_cluster_hamiltonian is The scan uses [formula in source] . This is a separate Fock cell at every sampled momentum, not a real-space hopping Hamiltonian. In particular, a standard symmetric nearest-neighbour term [formula in source] has dispersion magnitude [formula in source] (up to a momentum/phase convention). Matching the v1008 dispersion amplitude would therefore give [formula in source] , 
+The v1008 routine edge_cluster_hamiltonian is The scan uses [formula in source] . This is a separate Fock cell at every sampled momentum, not a real-space hopping Hamiltonian. In particular, a standard symmetric nearest-neighbour term [formula in source] has dispersion magnitude [formula in source] (up to a momentum/phase convention). Matching the v1008 dispersion amplitude would therefore give [formula in source] ,
 
 Explicit source references:
 
@@ -525,7 +531,7 @@ Let [formula in source] be any finite set of momentum cells, with arbitrary disp
 
 [tex-artefacts/toe_round7_parent_mirror.tex:155-175](../../../../tex-artefacts/toe_round7_parent_mirror.tex#L155) · `section:a503bfae31300975fb93` · paragraph
 
-For [formula in source] , differentiation of minimum and substitution gives [formula in source] . The other empty/full eigenstate costs at least [formula in source] , and the [formula in source] sector also costs at least [formula in source] , so neither undercuts tensor product and energies add. Any state orthogonal to the product ground excites at least one cell, proving the same bound independently of [formula in 
+For [formula in source] , differentiation of minimum and substitution gives [formula in source] . The other empty/full eigenstate costs at least [formula in source] , and the [formula in source] sector also costs at least [formula in source] , so neither undercuts tensor product and energies add. Any state orthogonal to the product ground excites at least one cell, proving the same bound independently of [formula in
 
 Explicit source references:
 
@@ -687,6 +693,118 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 ## Front matter / support
 
+[tex-artefacts/toe_source_completion_20261103.tex:1-3](../../../../tex-artefacts/toe_source_completion_20261103.tex#L1) · `section:ad2887317a6d5e0bbe05` · frontmatter
+
+No opening prose excerpt; see the source.
+
+## Shared source and transfer update: 3 November 2026
+
+[tex-artefacts/toe_source_completion_20261103.tex:4-26](../../../../tex-artefacts/toe_source_completion_20261103.tex#L4) · `section:5bb11b878db66b765225` · section
+
+The original structured boundary source, its common action and the [formula in source] chain are retained. Several complete source calls, field maps and transfer kernels have now been evaluated in their stated classes. These results include conditional charge and metric selection, physical Gauss-sector sources, vacuum and ground-source reconstruction, and a complete fixed-background Clifford kernel. The primitive spa
+
+## The common source and the corrected starting point (C, F, G)
+
+[tex-artefacts/toe_source_completion_20261103.tex:27-75](../../../../tex-artefacts/toe_source_completion_20261103.tex#L27) · `section:066fe20f4d09268f3d38` · subsection
+
+P1 is a structured reflection-positive boundary kernel, not merely the number [formula in source] . The operational seed already supplies its local algebra, state, time, reflection and collar operator. The original source route is [formula in source] Each arrow retains its actual hypotheses and operator domains. A particular eightfold CAR/native-clock reconstruction is an available conditional route, not a global ext
+
+## Charge geometry and the actual clock completion (A, B)
+
+[tex-artefacts/toe_source_completion_20261103.tex:76-127](../../../../tex-artefacts/toe_source_completion_20261103.tex#L76) · `section:5d7a3f5da35a8ba21a7a` · subsection
+
+For the four-punctured family surface, [formula in source] With the declared root normalization, the meridians form the [formula in source] side, their differences the [formula in source] root side. All four meridians have the same discriminant class. A cyclic permutation of the marked points therefore acts trivially on that discriminant; it is not translation through the four glue classes. The earlier literal fourfo
+
+## Variable fields, ordered sources and retained reference factors (D, E)
+
+[tex-artefacts/toe_source_completion_20261103.tex:128-152](../../../../tex-artefacts/toe_source_completion_20261103.tex#L128) · `section:1f0121fb70d3450e5fe9` · subsection
+
+The original local source reader no longer needs constant Higgs backgrounds in its stated circle class. The smooth bounded variable one-form has the required Hilbert–Schmidt control, entire ordered [formula in source] source, trace correction and all local response orders. The actual Galerkin calls converge to that same source operator. This is an analytic application to the existing coefficient family; it is not a p
+
+Explicit source references:
+
+- [verification/v259_modular_cutoff_kappa.py](../../../../verification/v259_modular_cutoff_kappa.py#L1) · explicit_script_identifier
+
+Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
+
+- [(* ==== v237: closing step as physics -- no topological degeneracy <=> det K=1 <=> SRE ==== *) Module[{cartanA, cartanD, e8edges, E8, D8, A3, D5, carrier, gsd}, cartanA[n_] := SparseArray[{{i_, i_} -> 2, {i_, j_} /; Abs[i - j] == 1 -> -1}, {n, n}] // Normal; cartanD[n_] := Module[{K}, K = 2 IdentityMatrix[n]; Do[K[[i, i + 1]] = K[[i + 1, i]] = -1, {i, n - 2}]; K[[n - 2, n]] = K[[n, n - 2]] = -1; K]; e8edges = {{1, 2}, {2, 3}, {3, 4}, {4, 5}, {5, 6}, {6, 7}, {5, 8}}; E8 = 2 IdentityMatrix[8] - Table[If[i != j && MemberQ[e8edges, Sort[{i, j}]], 1, 0], {i, 8}, {j, 8}]; A3 = cartanA[3]; D5 = cartanD[5]; D8 = cartanD[8]; carrier = ArrayFlatten[{{D5, 0}, {0, A3}}]; gsd[K_, g_] := Abs[Det[K]]^g; checkExact["v237 GATE.HOLO.03: the closing step as a physical condition -- the abelian K-matrix " <> "ground-state degeneracy on a genus-g surface is |det K|^g (torus: carrier D5(+)A3 -> 16, D8 -> 4, " <> "E8 -> 1), so 'no topological ground-state degeneracy on any closed surface' <=> det K = 1 <=> the " <> "seam bulk is short-range-entangled (the unique bosonic SRE c=8 phase = the Kitaev E8 state, edge " <> "holomorphic). A unique vacuum on the plane (genus 0, always 1) is necessary but not sufficient; the " <> "torus sees |det K|. NEG: an LRE bulk (D8, det 4) has 4-fold torus degeneracy + non-holomorphic edge.", gsd[carrier, 1] == 16 && gsd[D8, 1] == 4 && gsd[E8, 1] == 1 && gsd[carrier, 2] == 256 && gsd[E8, 2] == 1 && gsd[carrier, 0] == 1 && gsd[E8, 0] == 1 && Det[E8] == 1 && (5 + 3 == 8)]; ]; (* ==== v259: the modular/KMS spectral-action cutoff fixes f_2/f_0 = 1 (PS.SPECACT.02) ==== v258 (Dirac as covariance induction) is numerical matrix-log linear algebra -> Python-only. *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L1991)
+
+## Physical source existence, ground words and common geometry (H, I, J)
+
+[tex-artefacts/toe_source_completion_20261103.tex:153-220](../../../../tex-artefacts/toe_source_completion_20261103.tex#L153) · `section:206a9bd3daad77367425` · subsection
+
+The given finite-range uniformly local Hamiltonian class has its thermodynamic real-time norm dynamics and ground/KMS states. Restrictions of one limiting state are compatible. Independently restarted small bare Gibbs weights need not be projective. Exact elimination carries the effective fiber weights, exterior determinants, higher vertices and memory, rather than imposing the original bare ansatz again at each cut.
+
+## The complete transfer comparison and its field requirements (K, R104–R108)
+
+[tex-artefacts/toe_source_completion_20261103.tex:221-309](../../../../tex-artefacts/toe_source_completion_20261103.tex#L221) · `section:2bbc10475616c74f0d3b` · subsection
+
+The complete original word source gives its actual pairing and time kernel, [formula in source] Its first derivative defines the generator form on the actual quotient. Equal full pairings and closed forms, with actual autonomous sewing, determine the whole transfer. A discrete source can instead be compared at its whole fixed step. In general [formula in source] is not [formula in source] ; a nonreducing compression
+
+Explicit source references:
+
+- [verification/v1002_spin10_mirror_projector.py](../../../../verification/v1002_spin10_mirror_projector.py#L1) · explicit_script_identifier
+- [verification/v474_entropic_hodge_carrier.py](../../../../verification/v474_entropic_hodge_carrier.py#L1) · explicit_script_identifier
+
+Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
+
+- [(* v474 (i): Q-target enumeration + mode-count ratio *) sols = Select[Table[{d, Sqrt[32/d]}, {d, 1, 32}], IntegerQ[#[[2]]] &]; q32 = (1/(8 Pi))^2; checkExact["v474 GRAV.ENTROPIC.HODGE.01 (i): the Q-target enumeration -- Tr Q^2 = d k^2 c3^4 = 32 c3^4 with INTEGER k has exactly the supports (d,k) = (2,4), (8,2), (32,1) = {|Z2|, g_car+N_fam = rank E8, 2^g_car = dim Lambda^* C^5}; the two-form block d = 10 needs Sqrt[16/5] and the fiber d = 16 needs Sqrt[2] (both irrational, the naive pair-block reading KILLED); minimal uniform q = c3^2 = 1/(64 pi^2); mode-ratio identity 32 c3^4 / delta_top = 32/48 = 2/3", sols == {{2, 4}, {8, 2}, {32, 1}} && ! Element[Sqrt[32/10], Rationals] && ! Element[Sqrt[32/16], Rationals] && Simplify[q32 - 1/(64 Pi^2)] == 0 && 32/48 == 2/3]; (* v474 (ii): the fold is the 5 -> 5bar conjugation (traceless u(5) weights) *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L3000)
+- [(* v473 (iii): the R^2 kill-test gap *) gap = Simplify[(1/(12 c3v^7))/((c3v/6)^2)]; checkExact["v473 GRAV.ENTROPIC.ACTION.01 (iii): the R^2 kill-test gap -- raw log-expansion coefficient (c3/6)^2 vs the TFPT Starobinsky 1/(12 c3^7) (M_scal^2 = c3^7 Mbar^2) mismatch EXACTLY 3 c3^-9 = 3 (8 pi)^9 ~ 1.2e13 (13 orders): direct identification FALSE without a mechanism -- the pre-registered kill test", gap == 3 (8 Pi)^9 && Abs[N[gap] - 1.2002728758784*^13]/1.2*^13 < 10^-3]; ]; (* ==== v474 round: the operator level of the entropic-action bridge -- the exact arithmetic content: the Q-target enumeration d k^2 = 32 with integer k has exactly the supports (2,4), (8,2), (32,1) = {|Z2|, rank E8, 2^g_car} with the 10/16 blocks excluded (irrational multipliers) and the mode-ratio identity Tr Q^2/delta_top = 32/48 = 2/3; and the fold-is-conjugation weight identity: the traceless u(5) weights of Lambda^4 are the negatives of those of Lambda^1 (5 -> 5bar), with the Pascal blocks {1,5,10} vs {1,10,5}; mirrors v474 (the 32x32 Fock/Clifford matrix checks are Python-only). ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2985)
+
+## The complete given Clifford field and kernel (L)
+
+[tex-artefacts/toe_source_completion_20261103.tex:310-399](../../../../tex-artefacts/toe_source_completion_20261103.tex#L310) · `section:fb5d115ad5ff0d511c2d` · subsection
+
+Retain the normal-independent product collar and its actual smooth classical odd coefficient: [formula in source] For [formula in source] , where [formula in source] , [formula in source] on the transported [formula in source] domain and [formula in source] on [formula in source] . No commutation of [formula in source] and [formula in source] is imposed.
+
+## Larger charged sources and the remaining actual insertion (R109, R110)
+
+[tex-artefacts/toe_source_completion_20261103.tex:400-429](../../../../tex-artefacts/toe_source_completion_20261103.tex#L400) · `section:2168da76f91bd76c19e5` · subsection
+
+The larger integral odd spinor vertices have their explicit original spatial vectors, cocycle and all sixteen [formula in source] time weights. Their separately supplied collective [formula in source] is not substituted for [formula in source] . A concrete original vertex-mode anticommutator is nonzero between two distinct components, so those components are not directly independent elementary CAR. This does not excl
+
+## Dated continuation: the actual residual time form (R111)
+
+[tex-artefacts/toe_source_completion_20261103.tex:430-488](../../../../tex-artefacts/toe_source_completion_20261103.tex#L430) · `section:0f8ee3912de706f173b8` · subsection
+
+The literal original positive-parent clause leaves its residual [formula in source] unspecified. Once the parent and the actual reducing physical/source map have been supplied, the original annihilating admissibility penalties vanish on their admitted range. The remaining binding equation is the whole source-time form minus the represented parent form. If one realization of the printed parent clause exists, its state
+
+## Source and reproducibility route
+
+[tex-artefacts/toe_source_completion_20261103.tex:489-532](../../../../tex-artefacts/toe_source_completion_20261103.tex#L489) · `section:5a9ea639ada21fb1a3c4` · subsection
+
+The dated report labels resolve through docs/research/fundamental-plan/RESULTS.md and the synthesis docs/research/fundamental-plan/CONSOLIDATION-R110-20261103.md. The main proof owners are: A and B: experiments/theory-contracts/puncture-metric-joint-completion-20261102/PROOF.txt and experiments/theory-contracts/joint-source-clock-field-closure-20261102/PROOF.txt. C: experiments/theory-contracts/original-paper-source-
+
+Explicit source references:
+
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/VARIABLE-BACKGROUND-PROOF.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/VARIABLE-BACKGROUND-PROOF.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/GROUND-SOURCE.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/GROUND-SOURCE.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/joint-source-clock-field-closure-20261102/PROOF.txt](../../../../experiments/theory-contracts/joint-source-clock-field-closure-20261102/PROOF.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/LARGER-CHARGED-SOURCE-EVALUATION.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/LARGER-CHARGED-SOURCE-EVALUATION.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/ZERO-FREE-JOINT.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/ZERO-FREE-JOINT.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/SEED-FIELD.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/SEED-FIELD.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/SHARED-METRIC-SOURCE.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/SHARED-METRIC-SOURCE.txt#L1) · explicit_file_citation
+- [docs/research/fundamental-plan/RESULTS.md](../../../../docs/research/fundamental-plan/RESULTS.md#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-paper-source-reconciliation-20261102/AUDIT.txt](../../../../experiments/theory-contracts/original-paper-source-reconciliation-20261102/AUDIT.txt#L1) · explicit_file_citation
+- [docs/research/fundamental-plan/CONSOLIDATION-R110-20261103.md](../../../../docs/research/fundamental-plan/CONSOLIDATION-R110-20261103.md#L1) · explicit_file_citation
+- [experiments/theory-contracts/puncture-metric-joint-completion-20261102/PROOF.txt](../../../../experiments/theory-contracts/puncture-metric-joint-completion-20261102/PROOF.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/FULL-SOURCE-CORRECTION.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/FULL-SOURCE-CORRECTION.txt#L1) · explicit_file_citation
+- [verification/v1027_signed_det_car_wall.py](../../../../verification/v1027_signed_det_car_wall.py#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/PHYSICAL-THERMAL-SOURCE.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/PHYSICAL-THERMAL-SOURCE.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/TRANSFER-EXTRACTION.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/TRANSFER-EXTRACTION.txt#L1) · explicit_file_citation
+- [verification/v1002_spin10_mirror_projector.py](../../../../verification/v1002_spin10_mirror_projector.py#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/ZERO-FREE-ORIGIN.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/ZERO-FREE-ORIGIN.txt#L1) · explicit_file_citation
+- [verification/v252_full_finite_triple.py](../../../../verification/v252_full_finite_triple.py#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/PAIRED-DYSON-PROOF.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/PAIRED-DYSON-PROOF.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/REFERENCE-SOURCE-COMPLETION.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/REFERENCE-SOURCE-COMPLETION.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/SOURCE-GENERATOR-RESIDUAL-20261103.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/SOURCE-GENERATOR-RESIDUAL-20261103.txt#L1) · explicit_file_citation
+
+Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
+
+- [(* v1027: exact signed-wall determinant and unsquared low branch. *) {a, delta, lambda, g} = Unique /@ {"a", "delta", "lambda", "g"}; mass = delta + lambda; beta = lambda g^2; eta = lambda g; c = beta - eta^2/mass; h = {{a + beta a^2, eta a}, {eta a, mass}}; check["v1027 signed determinant M a (1+c a)", Together[Det[h] - mass a (1 + c a)] === 0]; check["v1027 physical kernel remains one-dimensional at a=0", NullSpace[h /. a -> 0] === {{1, 0}}]; (* v1028: exact characteristic-five reduction of the full 192-mode one-site character. P^12 == P^2 P(z^5)^2 mod 5 is evaluated by coefficient dictionaries, never by floating group quadrature. *)](../../../../verification/wolfram/tfpt_round4.wl#L28)
+
+## Front matter / support
+
 [tex-artefacts/toe_universalraum_synthesis_20260912.tex:1-1](../../../../tex-artefacts/toe_universalraum_synthesis_20260912.tex#L1) · `section:210d0b40745aefdcdeaf` · frontmatter
 
 No opening prose excerpt; see the source.
@@ -730,87 +848,3 @@ For a pure eigenstate and a specified Hermitian family [formula in source] , the
 [tex-artefacts/toe_universalraum_synthesis_20260912.tex:173-215](../../../../tex-artefacts/toe_universalraum_synthesis_20260912.tex#L173) · `section:aa533949572e21b4b89f` · subsection
 
 For the pinned real matrices, [formula in source] the real ranks are ten and six and [formula in source] . The original boundary cyclic space equals [formula in source] . The induced Fock decomposition is [formula in source] ; with the unchanged split dynamics, finite adaptive boundary protocols depend only on the accessible marginal. Hidden occupation cannot be read out by such protocols, even if other initial corre
-
-## A covariant event channel with an actual boundary response
-
-[tex-artefacts/toe_universalraum_synthesis_20260912.tex:216-252](../../../../tex-artefacts/toe_universalraum_synthesis_20260912.tex#L216) · `section:2b3701d613b9b04d510e` · subsection
-
-Let [formula in source] be the Hermitian one-particle lift of the existing edge [formula in source] . It obeys [formula in source] . Define [formula in source] This is a covariant, trace-preserving completely positive map. Averaging the Hamiltonians first instead preserves the [formula in source] split. The two operations must not be confused. For the invariant hidden one-particle state [formula in source] , writing 
-
-## New continuation: transfer succeeds but state selection fails
-
-[tex-artefacts/toe_universalraum_synthesis_20260912.tex:253-286](../../../../tex-artefacts/toe_universalraum_synthesis_20260912.tex#L253) · `section:54b8eeee7af8d44f1fd3` · subsection
-
-A possible, explicitly added continuous event model is [formula in source] The event-only semigroup is the Poisson mixture of [formula in source] ; the rate [formula in source] is unselected. With the Hilbert–Schmidt inner product, [formula in source] The Hamiltonian part has zero real quadratic form. Consequently the fixed space of [formula in source] is the common commutant of all [formula in source] and [formula i
-
-## Arithmetic bridges, acceptance gates and provenance
-
-[tex-artefacts/toe_universalraum_synthesis_20260912.tex:287-335](../../../../tex-artefacts/toe_universalraum_synthesis_20260912.tex#L287) · `section:13353500113bc4f195bc` · subsection
-
-The archived 10 September rotor synthesis reports an exact change to residue/carry coordinates retaining the declared parent dynamics, arithmetic covering operations, conditional logarithmic weights, and finite-energy approximations with explicit error costs. Discarding the carry loses electric dynamics. Norm time, electric time and modular time are not interchangeable. A finite factoring example and static E8 counts
-
-Explicit source references:
-
-- [docs/TFPT_UNIVERSALRAUM_SYNTHESIS_2026-09-12.md](../../../../docs/TFPT_UNIVERSALRAUM_SYNTHESIS_2026-09-12.md#L1) · explicit_file_citation
-- [docs/TFPT_UNIVERSALRAUM_EINFACH_2026-09-12.md](../../../../docs/TFPT_UNIVERSALRAUM_EINFACH_2026-09-12.md#L1) · explicit_file_citation
-- [experiments/theory-contracts/primitive-transfer-selection-20260912/source_edge_access.py](../../../../experiments/theory-contracts/primitive-transfer-selection-20260912/source_edge_access.py#L1) · explicit_file_citation
-- [experiments/theory-contracts/primitive-transfer-selection-20260912/covariant_edge_channel.py](../../../../experiments/theory-contracts/primitive-transfer-selection-20260912/covariant_edge_channel.py#L1) · explicit_file_citation
-- [experiments/theory-contracts/primitive-transfer-selection-20260912/edge_channel_stationary.py](../../../../experiments/theory-contracts/primitive-transfer-selection-20260912/edge_channel_stationary.py#L1) · explicit_file_citation
-
-## Proposed follow-ups and discriminating research directions
-
-[tex-artefacts/toe_universalraum_synthesis_20260912.tex:336-344](../../../../tex-artefacts/toe_universalraum_synthesis_20260912.tex#L336) · `section:7446e557bd8a5894bf08` · subsection
-
-These are proposed investigations, not newly completed results or launched worker tasks. Their common acceptance rule is a forward derivation without importing the desired Hamiltonian, its eigenstates or target couplings. A genuinely independently derived primitive action may itself be the Hamiltonian; it need not be artificially required to be a different object.
-
-## F0: Independent reproduction.
-
-[tex-artefacts/toe_universalraum_synthesis_20260912.tex:345-352](../../../../tex-artefacts/toe_universalraum_synthesis_20260912.tex#L345) · `section:9555ea49608875a0d622` · paragraph
-
-Obtain and pin the original 17- and 66-family certificates before using their strongest claims as local premises; then audit the non-Slater and cyclotomic irreducibility certificates. Keep the 133-dimensional product extension separate. Success means the same exact ranks, coefficient fields and class definitions, with numerical conditioning reported separately. Unavailable originals mean ``not reproduced'', not ``fal
-
-## F1: Freeze the elementary grammar.
-
-[tex-artefacts/toe_universalraum_synthesis_20260912.tex:353-360](../../../../tex-artefacts/toe_universalraum_synthesis_20260912.tex#L353) · `section:b7cd6722b6a2986cc80f` · paragraph
-
-For one original finite sector, map each primitive rule to its operator, phase, support, adjoint and composition. Distinguish physical operations from gauge identifications and elementary generators from composite words. A source-derived filtration or equivalent primitive rule must explain why composition does not automatically introduce independently weighted energy terms. Reject a cutoff chosen only to enforce the 
-
-## F2: Derive process type and measure.
-
-[tex-artefacts/toe_universalraum_synthesis_20260912.tex:361-369](../../../../tex-artefacts/toe_universalraum_synthesis_20260912.tex#L361) · `section:fb728a422a27b707299d` · paragraph
-
-Construct one source step or collar without the target generator as input. Declare whether the output is a Hamiltonian, a positive Hilbert-space transfer or a reduced quantum channel. Derive weights, step duration and any traced environment from the stated inputs. Test alternative weights with identical symmetry and fixed vector. A freely chosen metric in [formula in source] , pulse angle or event rate remains an add
-
-## F3: State selection and correlation content.
-
-[tex-artefacts/toe_universalraum_synthesis_20260912.tex:370-378](../../../../tex-artefacts/toe_universalraum_synthesis_20260912.tex#L370) · `section:0fb52de974ef66f9a8dd` · paragraph
-
-Compute the exact fixed algebra or ground space of the F2 candidate. Use eigenstate covariance, thermal stationarity or full two-particle data only under their respective contracts. Test identical one-body data with different four-point responses, and identical ground rays with different energy ratios. Repetition of the current channel and free flow cannot remove their common fixed algebra. Any operation removing tha
-
-## F4: Operational response and costs.
-
-[tex-artefacts/toe_universalraum_synthesis_20260912.tex:379-387](../../../../tex-artefacts/toe_universalraum_synthesis_20260912.tex#L379) · `section:6727615a78ca0e90e90d` · paragraph
-
-For a source-derived intervention, compare admissible preparations with the same initial accessible marginal at the original boundary. Bound the remainder in the conditional [formula in source] signal on an explicit finite time interval, and include preparation energy, precision and sampling costs. Preserve the no-intervention control. Exact cyclic rank alone is not successful physical control, and arbitrarily small 
-
-## F5: Source-to-model maps.
-
-[tex-artefacts/toe_universalraum_synthesis_20260912.tex:388-395](../../../../tex-artefacts/toe_universalraum_synthesis_20260912.tex#L388) · `section:cd1723da0d4006f7214f` · paragraph
-
-An explicit map between the successful candidate and H70, the rotor parent or the charged seam must preserve the relevant adjunction, charge/Clock action, states, dynamics and readouts on named domains. Matching spectra, dimensions or group names alone is insufficient. An open chain must not be identified with a winding rotor, nor a free source with an interacting state without the additional operation being derived.
-
-## Four exploratory hypotheses, not established mechanisms.
-
-[tex-artefacts/toe_universalraum_synthesis_20260912.tex:396-412](../../../../tex-artefacts/toe_universalraum_synthesis_20260912.tex#L396) · `section:8b8d6e0ab5f094a9e541` · paragraph
-
-Positive frustrated selection: derive the unavoidable positive minimum and relative defect weights from the source. The failed equal-weight H70 selector is not revived by adjusting its weights to the target. A genuine collar transfer: derive a positive transfer directly from the actual boundary construction and its composition. Reflection positivity must not be inferred merely from a positive Gram matrix. An internal
-
-## F6: Separate downstream acceptance.
-
-[tex-artefacts/toe_universalraum_synthesis_20260912.tex:413-427](../../../../tex-artefacts/toe_universalraum_synthesis_20260912.tex#L413) · `section:5baa612f347f165009b7` · paragraph
-
-The half-charge, common [formula in source] D parent, chiral, continuum, coupling and gravity obligations remain separate after any finite success. No new RH or factoring mechanism is proposed in this roadmap; future arithmetic work must first consult the existing source-bound proof and counterexample registers. A later Hyl an application could test order-independent consolidation on frozen inputs while preserving di
-
-Explicit source references:
-
-- [docs/TFPT_UNIVERSALRAUM_FOLLOWUPS_2026-09-12.md](../../../../docs/TFPT_UNIVERSALRAUM_FOLLOWUPS_2026-09-12.md#L1) · explicit_file_citation

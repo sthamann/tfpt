@@ -1,0 +1,139 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/seam-positive-kernel-search-20261015/registry_ast_inventory.py
+Original file SHA-256: 01d4a058b02a4d5c0f4b070519c5b62e7a5045aace12a32123d1c23a58a4d904
+Inclusive original lines: 1-131
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Static AST inventory of every file named by the TFPT script registry.
+000002 | 
+000003 | Parsing is not execution: extracted check strings can describe assumptions,
+000004 | and neither their truth nor their runtime coverage is established here.
+000005 | """
+000006 | from __future__ import annotations
+000007 | import argparse
+000008 | import ast
+000009 | import csv
+000010 | import hashlib
+000011 | import io
+000012 | import json
+000013 | from pathlib import Path
+000014 | import re
+000015 | import sys
+000016 | import tokenize
+000017 | 
+000018 | 
+000019 | def source_segment(text, node):
+000020 |     return ast.get_source_segment(text, node) or ''
+000021 | 
+000022 | 
+000023 | class Extractor(ast.NodeVisitor):
+000024 |     def __init__(self, text):
+000025 |         self.text, self.scope = text, []
+000026 |         self.imports, self.assignments, self.checks = [], [], []
+000027 | 
+000028 |     def record(self, node, kind):
+000029 |         return {'kind': kind, 'line': node.lineno,
+000030 |                 'end_line': getattr(node, 'end_lineno', node.lineno),
+000031 |                 'scope': '.'.join(self.scope) or '<module>',
+000032 |                 'source': source_segment(self.text, node)}
+000033 | 
+000034 |     def visit_FunctionDef(self, node):
+000035 |         self.scope.append(node.name)
+000036 |         self.generic_visit(node)
+000037 |         self.scope.pop()
+000038 | 
+000039 |     visit_AsyncFunctionDef = visit_FunctionDef
+000040 |     visit_ClassDef = visit_FunctionDef
+000041 | 
+000042 |     def visit_Import(self, node):
+000043 |         self.imports.append(self.record(node, 'import'))
+000044 | 
+000045 |     visit_ImportFrom = visit_Import
+000046 | 
+000047 |     def visit_Assert(self, node):
+000048 |         self.checks.append(self.record(node, 'assert'))
+000049 |         self.generic_visit(node)
+000050 | 
+000051 |     def visit_Call(self, node):
+000052 |         f = node.func
+000053 |         name = f.id if isinstance(f, ast.Name) else f.attr if isinstance(f, ast.Attribute) else ''
+000054 |         if name in {'check', 'require', 'need', 'verify', 'ensure'} or name.startswith('assert_'):
+000055 |             self.checks.append(self.record(node, 'call:'+name))
+000056 |         self.generic_visit(node)
+000057 | 
+000058 |     def visit_Assign(self, node):
+000059 |         try:
+000060 |             ast.literal_eval(node.value)
+000061 |         except (ValueError, TypeError, SyntaxError, MemoryError, RecursionError):
+000062 |             pass
+000063 |         else:
+000064 |             self.assignments.append(self.record(node, 'literal_assignment'))
+000065 |         self.generic_visit(node)
+000066 | 
+000067 |     def visit_AnnAssign(self, node):
+000068 |         if node.value is not None:
+000069 |             self.visit_Assign(node)
+000070 | 
+000071 | 
+000072 | def inventory(root):
+000073 |     if sys.flags.optimize >= 2:
+000074 |         raise RuntimeError('Run without -OO: Python AST parsing can discard source docstrings')
+000075 |     root = Path(root)
+000076 |     registry = root/'verification/script_registry.csv'
+000077 |     with registry.open(newline='', encoding='utf-8') as stream:
+000078 |         rows = list(csv.DictReader(stream))
+000079 |     records = []
+000080 |     for row in rows:
+000081 |         name = row['script']
+000082 |         record = {'registry': row, 'source_path': None, 'status': 'unread'}
+000083 |         if not re.fullmatch(r'[A-Za-z0-9_]+', name):
+000084 |             record.update(status='invalid_registry_name'); records.append(record); continue
+000085 |         path = root/'verification'/(name+'.py')
+000086 |         record['source_path'] = str(path.relative_to(root))
+000087 |         if not path.is_file():
+000088 |             record['status'] = 'missing'; records.append(record); continue
+000089 |         try:
+000090 |             data = path.read_bytes()
+000091 |             record['sha256'] = hashlib.sha256(data).hexdigest()
+000092 |             encoding, _ = tokenize.detect_encoding(io.BytesIO(data).readline)
+000093 |             text = data.decode(encoding)
+000094 |             tree = ast.parse(text, filename=str(path))
+000095 |             extractor = Extractor(text)
+000096 |             extractor.visit(tree)
+000097 |             doc = ast.get_docstring(tree, clean=False)
+000098 |             doc_node = tree.body[0] if doc is not None else None
+000099 |             record.update(status='parsed', docstring=doc,
+000100 |                           docstring_line=doc_node.lineno if doc_node else None,
+000101 |                           docstring_source=source_segment(text, doc_node) if doc_node else None,
+000102 |                           checks=extractor.checks, imports=extractor.imports,
+000103 |                           literal_assignments=extractor.assignments)
+000104 |         except (OSError, UnicodeError, SyntaxError, ValueError, MemoryError, RecursionError) as error:
+000105 |             record.update(status='parse_error', error=f'{type(error).__name__}: {error}')
+000106 |         records.append(record)
+000107 |     counts = {status: sum(x['status'] == status for x in records)
+000108 |               for status in ('parsed', 'missing', 'parse_error', 'invalid_registry_name')}
+000109 |     return {'schema': 'tfpt.registry-static-ast.v1', 'registry_entries': len(rows),
+000110 |             'registry_sha256': hashlib.sha256(registry.read_bytes()).hexdigest(),
+000111 |             'counts': counts, 'records': records,
+000112 |             'scope': 'Static source extraction only; no verification script execution, proof validation, or claim promotion.'}
+000113 | 
+000114 | 
+000115 | def main():
+000116 |     parser = argparse.ArgumentParser(description=__doc__)
+000117 |     parser.add_argument('--root', type=Path, required=True)
+000118 |     parser.add_argument('--out', type=Path, required=True)
+000119 |     args = parser.parse_args()
+000120 |     result = inventory(args.root)
+000121 |     with args.out.open('x', encoding='utf-8') as stream:
+000122 |         json.dump(result, stream, indent=2, ensure_ascii=False)
+000123 |         stream.write('\n')
+000124 |     print(json.dumps({'registry_entries': result['registry_entries'], 'counts': result['counts'],
+000125 |                       'checks_extracted': sum(len(x.get('checks', [])) for x in result['records']),
+000126 |                       'imports_extracted': sum(len(x.get('imports', [])) for x in result['records']),
+000127 |                       'literal_assignments_extracted': sum(len(x.get('literal_assignments', [])) for x in result['records'])}))
+000128 | 
+000129 | 
+000130 | if __name__ == '__main__':
+000131 |     main()

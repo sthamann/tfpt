@@ -1,0 +1,254 @@
+INDEPENDENT REVIEW: VARIABLE ORIGINAL HIGGS BACKGROUND AND FORCE MOMENTS
+2 November 2026. Original-path continuation. Canonical repository read only.
+
+Verdict
+
+The proposed anticommutator/commutator proof is correct, with one domain
+clarification: define the time integral initially in the strong/weak operator
+sense, not as an unproved norm-Bochner integral in B(H). The two weak
+identities then prove the required H1 range and the bounded hA identity.
+The log-MGF inequality is also correct without [C,A]=0. It yields all
+single-force exponential moments and uniform integrability. All ORDERED
+mixed force moments follow from the existing determinant source by a short
+locally uniform complex-analytic argument, not from a noncommutative
+Holder inference using only the separate scalar MGFs.
+
+1. Given original data and actual changed premise
+
+Reuse the SAME given circle, finite original internal space, gamma=gamma*,
+gamma^2=I, D0=-i partial_theta+alpha, alpha=1/4 or3/4, fixed Yukawa/MR
+coefficients and original positive ell. On periodic H1 sections put
+ h=gamma D0+V(theta), V=V*, ||V||<=M,
+ C=expit(2ell h).
+The original V=-i gamma Phi(H(theta)) is included. H now varies smoothly
+in space instead of the constant background of R080. It is time independent
+in the h used to define exp(ith). This is not a theorem for arbitrary
+time-dependent background propagators without the corresponding proof.
+
+For the actual Higgs-force insertion let F(t,theta)=F(t,theta)* be a smooth
+compactly time-supported multiplication operator with {gamma,F}=0. It
+is a real linear combination of the original Ta force matrices. Its
+spatial and time derivatives are bounded and integrable in time. Circle
+domains/twists and fiber endomorphisms are the original compatible ones.
+
+V is a bounded selfadjoint perturbation, so h is selfadjoint on Dom(D0)=H1.
+No derivative bound on V is needed for the estimate below. Smooth variable
+H belongs to this larger bounded class. The covariance is the original
+conditional quasifree covariance of THIS h, not an average-covariance
+Gaussian replacement for an integrated interacting Higgs source.
+
+Source basis freshly reread:
+research-source:8f6a57abe438221d13e6e0d7,
+LOCAL-SPACETIME-FORCE-SOURCE-PROOF.txt:1-161, hash
+2bee4ef1df14985eaceab4b83d00108ce420f31e46bed1d15d29dcc51eb66c8a.
+R080 already supplies the constant-background force field, centered det2
+source, Stone realization, higher ordered unitary words and actual circle
+locality. Those results are extended in their given source class, not
+reconstructed as newly missing objects.
+
+2. Anticommutator identity, time-commutator sign and domains
+
+For each t, multiplication by F(t) preserves H1. On H1,
+ {h,F(t)}=B(t),
+ B(t)=-i gamma partial_theta F(t)+{V,F(t)}.               (1)
+The derivative terms cancel exactly because {gamma,F}=0. The scalar twist
+alpha also cancels in that anticommutator. B(t) is bounded; for real force
+tests it is selfadjoint, since gamma partial_theta F is antihermitian.
+
+Define
+ A=int exp(ith) F(t) exp(-ith) dt,
+ B_int=int exp(ith) B(t) exp(-ith) dt,
+ D_int=int exp(ith) partial_t F(t) exp(-ith) dt.          (2)
+These exist as strong operator integrals by strong continuity and compact
+support, with ||A||<=int ||F(t)||dt. Strong integrability is sufficient.
+For example an odd constant matrix conjugated by an unbounded Dirac
+generator need not vary continuously in operator norm, so norm-Bochner
+integrability should not be assumed without argument. A=A*.
+
+Test between psi,phi in H1. Moving h onto the test vectors justifies
+integration of (1) as a form identity:
+ {h,A}=B_int.                                          (3)
+The time derivative of the conjugated insertion, again as an H1 form, is
+ d_t[exp(ith)F(t)exp(-ith)]
+   =i[h,exp(ith)F(t)exp(-ith)]
+      +exp(ith)partial_t F(t)exp(-ith).
+Its time integral vanishes at both endpoints. Therefore the correct sign is
+ [h,A]=i D_int.                                        (4)
+Adding the two forms gives, for phi in H1,
+ 2 <h psi,A phi>=<psi,(B_int+i D_int)phi>.
+The right side is bounded in ||psi||. Selfadjointness of h therefore
+implies A phi in Dom(h) and
+ 2hA phi=(B_int+i D_int)phi.
+Now approximate arbitrary phi by H1 vectors. Boundedness of A and the
+displayed right side, together with closedness of h, proves
+ A(H) subset Dom(h), 2hA=B_int+i D_int in B(H).          (5)
+In particular this conclusion was derived, not presupposed when using
+the weak identities.
+
+3. Uniform Hilbert-Schmidt estimate, no spectral diagonalization required
+
+Write f0=int||F||dt, ftheta=int||partial_theta F||dt,
+ft=int||partial_t F||dt. From (1)-(5),
+ ||hA|| <= (ftheta+ft)/2+M f0,
+ ||D0 A||=||gamma(hA-VA)|| <= (ftheta+ft)/2+2M f0.
+Since
+ A=(D0+i)^-1 (D0 A+iA),
+and the resolvent on this original one-dimensional compact circle obeys
+ ||(D0+i)^-1||_2^2
+   =d_int sum_(n in Z) [1+(n+alpha)^2]^-1 <infinity,
+we obtain
+ ||A||_2 <= ||(D0+i)^-1||_2
+             [(ftheta+ft)/2+(2M+1)f0].                (6)
+This proves S2 for all such actual space/time force tests, uniformly over
+the bounded original background class ||V||<=M. It even works for bounded
+selfadjoint spatial V, since no derivative of V entered. No parameter,
+mode weight or time law has been fitted.
+
+The extension concerns SMOOTH spatial force tests. The older R080 proof
+also allowed bounded rectangular spatial windows at constant background;
+(6) does not remove its spatial derivative requirement or replace that
+older stronger nonsmooth-test result.
+
+4. Actual Galerkin recomputation, if used by the native controls
+
+If A_N means P_N A P_N, S2 convergence is immediate. If it is recomputed
+using h_N=P_N h P_N and F_N=P_N F P_N, the limit can also be justified.
+Use the extension htilde_N=D0 gamma+P_N V P_N on the whole space. Fourier
+P_N commutes with D0 and gamma. Bounded P_N V P_N converges strongly to V,
+uniformly in norm, so htilde_N converges strongly in resolvent sense to h;
+the corresponding unitary groups converge strongly on compact time sets.
+Thus A_N -> A strongly. The SAME finite-dimensional identities give a
+uniform bound on ||(D0+i)A_N||. Hence
+ ||(1-P_K)A_N||_2
+  <=||(1-P_K)(D0+i)^-1||_2 sup_N||(D0+i)A_N|| ->0
+as K->infinity, uniformly in N. Selfadjointness of A_N supplies the
+analogous right tail. Strong convergence on each fixed finite corner
+becomes norm/HS convergence there; combining both tails proves
+ A_N -> A in S2.                                      (7)
+This is a consistency proof for the actual recomputed cutoff, not a new
+choice of background. A thermal C_N recomputed from h_N converges strongly
+to C after its finite embedding and stays in [0,I]. Products with S2/S1
+convergent operators therefore have the needed S2/S1 limits. This does not
+identify different finite thermal representations by a guessed unitary:
+the old Stone construction may use the SAME actual infinite C throughout.
+
+5. Exact log-MGF proof, including noncommuting C and A
+
+In a finite CAR cutoff let 0<=C_N<=I be the actual covariance, A_N=A_N*,
+and W_N=dGamma(A_N)-Tr(C_N A_N) I. The finite quasifree trace formula gives
+ log omega_N(exp(s W_N))
+ =-s Tr(C_N A_N)+log det[I+C_N(exp(sA_N)-I)], s real.
+Use Sylvester's determinant identity to write the determinant with
+ Y_N=I+C_N^(1/2)(exp(sA_N)-I)C_N^(1/2)>0.
+Indeed Y_N>=exp(-|s| ||A_N||)I, so its real logarithm is legitimate.
+The elementary positive-matrix inequality logdetY<=Tr(Y-I) yields
+ log omega_N(exp(s W_N))
+ <=Tr[C_N(exp(sA_N)-I-sA_N)]
+ <=(s^2/2) exp(|s| ||A_N||) Tr(C_N A_N^2)
+ <=(s^2/2) exp(|s| ||A_N||) ||A_N||_2^2.              (8)
+The middle inequality follows by scalar Taylor remainder on the spectrum
+of selfadjoint A_N and then positive functional calculus. [C_N,A_N]=0
+was never used. The same proof applies to either cutoff construction
+above. All constants are uniform on ||V||<=M by(6).
+
+For every t>0, (8) on both signs implies
+ sup_N omega_N(exp(t|W_N|))
+ <=2 exp[(t^2/2)exp(t a)b^2],                          (9)
+where a bounds ||A_N|| and b bounds ||A_N||_2. For each p>0,
+ sup_N omega_N(|W_N|^p 1_(|W_N|>R))
+ <=the RHS(9) sup_(x>R) x^p exp(-t x) ->0.
+Thus single-force spectral distributions have all moments and uniformly
+integrable powers. Weak convergence from the existing characteristic
+source plus (9) gives convergence of all their moments; a stronger
+exponential bound gives convergence of each fixed real MGF as well.
+
+6. All ordered mixed moments: use the existing complete source
+
+Separate scalar MGFs alone do not prove arbitrary noncommuting ordered
+moment convergence. For actual forces A1,...,Ar use the existing R080
+centered source, now with complex z_j:
+ U(z)=product_j exp(z_j A_j), L(z)=sum_j z_j A_j,
+ chi(z)=det2[I+C(U(z)-I)] exp Tr C[U(z)-I-L(z)].       (10)
+For imaginary z it is the old ordered unitary word, with original order.
+For real z in a finite cutoff it is the ordered centered exponential word.
+No independent infinite linear trace or uncentered determinant is used.
+
+Put S=sum_j |z_j| ||A_j||, B=sum_j |z_j| ||A_j||_2.
+Telescoping the product gives ||U-I||_2<=exp(S)B.
+For U(t)=product_j exp(t z_j A_j), U(0)=I, U'(0)=L.
+Every term of U''(t) contains two S2 factors, so
+ ||U''(t)||_1<=exp(t S) B^2.
+Integrating its second-order remainder yields
+ ||U-I-L||_1<=(exp(S)/2) B^2.                         (11)
+The estimates hold on every complex compact set, uniformly in the actual
+cutoffs and bounded background class. S2 continuity of the exponential
+product and S1 continuity of the remainder, with det2 continuity, give
+locally uniform convergence of(10). All functions involved are entire in
+the finitely many z_j. Cauchy's formula therefore passes every ordered
+mixed derivative to the limit. This supplies the full ordered moment
+functional, not just Gaussian cumulants or symmetrized responses.
+The positive real unitary-word kernel and the existing Stone realization
+are retained. An additional essential-selfadjointness core claim is not
+needed or inferred from this calculation.
+
+7. First assumptions, scope and novelty
+
+The changed premise is the SAME original force source at bounded variable
+spatial H(theta). Within the given circle/source class, the smoothing
+proof is analytic and uniform; it avoids mode-by-mode diagonalization.
+No new geometry, coupling, state rule, thermal calibration, probability
+law for H, Gaussianization or physical active-clock assumption is added.
+If an original positive H measure is later used and is supported on this
+bounded class, the uniform estimates pass through that existing integral.
+No such support restriction or new measure is selected here. Unbounded
+background ensembles need their own actual integrability control.
+
+The same zero-order Hermitian V also preserves the original circle
+finite-propagation argument: it cancels in the energy-current identity.
+This retains the given cylinder locality where the R080 spacelike support
+hypotheses hold; it derives no physical spatial dimension or Lorentz
+invariance. The Hilbert-Schmidt step uses the given one-dimensional
+compact Dirac resolvent and is not a3+1 source theorem.
+
+R080 already supplies the S2 constant-background det2 source, centering,
+trace correction, whole ordered words and supported circle net. The
+present useful extension is the direct variable-background anticommutator
+bound and its uniform exponential-moment control. It does not repair or
+rederive the primitive H law, absolute Z_adm/Z_ref, Euclidean physical OS
+reflection, Γ background normalization or full TFPT origin. Those claims
+are outside the theorem, not negative conclusions from this review.
+
+Independent review performed analytically. Root owns native controls;
+none were duplicated here. No canonical or Atlas write.
+
+8. Review of the saved root proof
+
+VARIABLE-BACKGROUND-PROOF.txt:1-188 was read in full after it was saved.
+Its corrected htilde_N=gammaD0+P_N V P_N, explicit weak-form domain
+argument, positive-matrix MGF proof, ordered complex-Cauchy step and
+Galerkin boundary-defect treatment agree with this independent review.
+No blocking mathematical error was found. The stated limited physical
+scope and preservation of the original common S/Z route are appropriate.
+
+One minor bookkeeping distinction is already implicit in its formulation:
+the bound using ||A_F|| and ||A_F||_2 directly applies to A_N=P_N A_F P_N.
+For a recomputed Galerkin A_N, use its own norms in(8), or the common
+f0 and(6) bounds, rather than claiming its norms are bounded by the exact
+untruncated A_F norms. Its limit and common uniform bound are proved by
+the separate Galerkin argument. The root proof explicitly distinguishes
+the two cutoffs; this is not a failure of the theorem.
+
+The root reports59 native checks under -B -OO. That is recorded as root's
+observed execution, not a second run or an independent numerical receipt
+by this reviewer. The infinite statement follows from the analytic proof.
+
+Primary formulas checked live
+
+Klich, cond-mat/0209642v1, Section2 Eq8 and following multi-factor remark:
+finite Fock traces become ordered one-particle determinants.
+https://arxiv.org/html/cond-mat/0209642v1
+Britz et al,2007.12834v3, Eqs1.3-1.5: det2 definition, continuity and
+the trace correction in its product formula.
+https://arxiv.org/html/2007.12834v3
+The variable-background domain argument and inequality(8) are the explicit
+calculations above; they are not attributed as TFPT results of these papers.

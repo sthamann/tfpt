@@ -1,0 +1,208 @@
+TFPT scientific source excerpt
+Original repository path: documents/archive--tfpt-45--source_extracts--04_qft_source/sections/007-subsection-renormalized-physical-and-scheme-readout-laye.tex
+Original file SHA-256: 9c1c587cbd61fc4034649d778d16f1ee0e8c1e1189885babb3d8148a6fe72d7c
+Inclusive original lines: 1-200
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | \subsection{Renormalized, physical, and scheme readout layers}
+000002 | 
+000003 | \begin{definition}[Admissible effective average action]
+000004 | \label{def:admissible-effective-average-action}
+000005 | Let $R_k$ be an admissible infrared regulator commuting with the structural sector selection.
+000006 | Define
+000007 | \[
+000008 | e^{W_k[J]}
+000009 | :=
+000010 | \int_{\mathcal H_{\mathrm{adm}}}\mathcal D\varphi\,
+000011 | \exp\!\Bigl(
+000012 | -S_{\mathrm{adm}}[\varphi]
+000013 | -\frac12\langle \varphi,R_k\varphi\rangle
+000014 | +\langle J,\varphi\rangle
+000015 | \Bigr),
+000016 | \]
+000017 | and set
+000018 | \[
+000019 | \Gamma_k[\phi]
+000020 | :=
+000021 | \sup_J\{\langle J,\phi\rangle-W_k[J]\}
+000022 | -\frac12\langle \phi,R_k\phi\rangle.
+000023 | \]
+000024 | The renormalized admissible effective action is
+000025 | \[
+000026 | \Gamma_{\mathrm{TFPT}}^{\mathrm{ren}}:=\lim_{k\to0}\Gamma_k.
+000027 | \]
+000028 | \end{definition}
+000029 | 
+000030 | \begin{theorem}[Exact admissible renormalization-group flow]
+000031 | \label{thm:exact-admissible-rg-flow}
+000032 | The admissible effective average action satisfies the exact functional flow equation
+000033 | \[
+000034 | \partial_t \Gamma_k[\phi]
+000035 | =
+000036 | \frac12\,
+000037 | \operatorname{STr}_{\mathcal H_{\mathrm{adm}}}
+000038 | \Bigl[
+000039 | \bigl(\Gamma_k^{(2)}[\phi]+R_k\bigr)^{-1}
+000040 | \partial_t R_k
+000041 | \Bigr],
+000042 | \qquad
+000043 | t:=\log k.
+000044 | \]
+000045 | Thus the running couplings of the admissible theory are generated dynamically on $\Gamma_k$, not by
+000046 | the static projector $\Padm$.
+000047 | \end{theorem}
+000048 | 
+000049 | \begin{proof}
+000050 | Differentiate the Legendre transform defining $\Gamma_k$ at fixed mean field $\phi$. Using
+000051 | \[
+000052 | \frac{\delta^2 W_k}{\delta J\,\delta J}
+000053 | =
+000054 | \bigl(\Gamma_k^{(2)}+R_k\bigr)^{-1},
+000055 | \]
+000056 | one obtains
+000057 | \[
+000058 | \partial_t \Gamma_k
+000059 | =
+000060 | \frac12 \operatorname{STr}
+000061 | \bigl[
+000062 | \bigl(\Gamma_k^{(2)}+R_k\bigr)^{-1}\partial_t R_k
+000063 | \bigr].
+000064 | \]
+000065 | The supertrace is taken on the admissible physical sector because the regulated functional integral
+000066 | itself is defined there.
+000067 | \end{proof}
+000068 | 
+000069 | \begin{corollary}[One-loop shadow of the exact admissible flow]
+000070 | \label{cor:one-loop-shadow-exact-flow}
+000071 | On the canonical branch with three families and one Higgs doublet, the exact admissible flow has
+000072 | the perturbative shadow
+000073 | \[
+000074 | \partial_t g_i^{-2}(k)=-\frac{b_i}{8\pi^2}+O(g_i^0),
+000075 | \qquad
+000076 | (b_1,b_2,b_3)=\left(\frac{41}{10},-\frac{19}{6},-7\right),
+000077 | \]
+000078 | with $g_1$ in the standard hypercharge normalization. Equivalently,
+000079 | \[
+000080 | \partial_t \alpha_1^{-1}(k)=-\frac{41}{20\pi}+O(\alpha_1).
+000081 | \]
+000082 | \end{corollary}
+000083 | 
+000084 | \begin{proof}
+000085 | Expanding \Cref{thm:exact-admissible-rg-flow} around the Gaussian region yields the standard
+000086 | one-loop coefficients determined by the field content of the canonical branch. The carrier and
+000087 | family theorems fix exactly three families and one light Higgs doublet, so the resulting shadow
+000088 | coefficients are the displayed Standard Model values.
+000089 | \end{proof}
+000090 | 
+000091 | \begin{corollary}[Infrared boundary condition for the electromagnetic coupling]
+000092 | \label{cor:em-ir-boundary-condition}
+000093 | Let $\alpha_\ast$ be the exact positive solution of the admissible electromagnetic closure equation.
+000094 | Then
+000095 | \[
+000096 | \alpha_{\mathrm{em}}(0)=\alpha_\ast
+000097 | \]
+000098 | is the infrared boundary value of the exact admissible flow. For $\mu>0$ one has
+000099 | \[
+000100 | \alpha_{\mathrm{em}}^{-1}(\mu)
+000101 | =
+000102 | \alpha_\ast^{-1}
+000103 | -\int_0^{\log\mu}\beta_{\alpha^{-1}}(t)\,dt
+000104 | -\Delta_{\mathrm{thr}}(\mu),
+000105 | \]
+000106 | where $\Delta_{\mathrm{thr}}$ records electroweak mixing and threshold decoupling.
+000107 | \end{corollary}
+000108 | 
+000109 | \begin{proof}
+000110 | \TFPTxref{thm:alpha-canonical} fixes the unique branch value $\alpha_\ast$ at the infrared endpoint.
+000111 | The exact flow of \Cref{thm:exact-admissible-rg-flow} then propagates that value to finite scales,
+000112 | while threshold effects are collected in the declared correction term $\Delta_{\mathrm{thr}}$.
+000113 | \end{proof}
+000114 | 
+000115 | \begin{theorem}[Admissible 1PI graph expansion]
+000116 | \label{thm:admissible-1pi-graph-expansion}
+000117 | Around any admissible background field $\phi$, the effective action admits the loop expansion
+000118 | \[
+000119 | \Gamma_k[\phi]
+000120 | =
+000121 | S_{\mathrm{adm}}[\phi]
+000122 | +\frac{\hbar}{2}\operatorname{STr}\log\!\bigl(S_{\mathrm{adm}}^{(2)}[\phi]+R_k\bigr)
+000123 | +\sum_{\ell\ge 2}\hbar^\ell\Gamma_{\ell,k}^{\mathrm{1PI}}[\phi].
+000124 | \]
+000125 | Each coefficient $\Gamma_{\ell,k}^{\mathrm{1PI}}$ is the sum of admissible one-particle-irreducible
+000126 | Feynman graphs with propagator
+000127 | \[
+000128 | G_{k,\phi}:=\bigl(S_{\mathrm{adm}}^{(2)}[\phi]+R_k\bigr)^{-1}
+000129 | \]
+000130 | and vertices given by the higher functional derivatives $S_{\mathrm{adm}}^{(n)}[\phi]$.
+000131 | \end{theorem}
+000132 | 
+000133 | \begin{proof}
+000134 | Set $\varphi=\phi+\sqrt{\hbar}\eta$ and expand
+000135 | \[
+000136 | S_{\mathrm{adm}}[\phi+\sqrt{\hbar}\eta]
+000137 | =
+000138 | S_{\mathrm{adm}}[\phi]
+000139 | +\frac{\hbar}{2}\langle \eta,S_{\mathrm{adm}}^{(2)}[\phi]\eta\rangle
+000140 | +\sum_{n\ge 3}\frac{\hbar^{n/2}}{n!}S_{\mathrm{adm}}^{(n)}[\phi](\eta^n).
+000141 | \]
+000142 | The regulated functional integral therefore becomes a Gaussian measure with covariance
+000143 | $G_{k,\phi}$ dressed by higher interaction vertices. Taking the logarithm produces the connected
+000144 | diagram expansion, and the Legendre transform removes one-particle-reducible pieces. The resulting
+000145 | coefficients are exactly the admissible 1PI graph sums recorded above.
+000146 | \end{proof}
+000147 | 
+000148 | \begin{definition}[Canonical renormalized 1PI package]
+000149 | \label{def:renormalized-low-energy-package}
+000150 | Let $\GrenTFPT$ denote the category whose objects are renormalized low-energy packages
+000151 | \[
+000152 | \mathcal G=
+000153 | \bigl(
+000154 | \{\Sigma_f^{\mathrm{TFPT}}(p)\}_f,\,
+000155 | G_F^{\mathrm{TFPT}},\,
+000156 | \mathcal R_{\det},\,
+000157 | \mathcal B_{\mathrm{cos}},\,
+000158 | \mathcal A_{\mathrm{pole}}
+000159 | \bigr)
+000160 | \]
+000161 | built canonically from the rigid object $\Tstar$. They are extracted from the infrared limit of the
+000162 | exact admissible flow,
+000163 | \[
+000164 | \Gamma_{\mathrm{TFPT}}^{\mathrm{ren}}[\Phi_c]
+000165 | :=
+000166 | \lim_{k\to0}\Gamma_k[\Phi_c],
+000167 | \]
+000168 | equivalently the Legendre transform of the retained relative generating functional after removing
+000169 | the infrared regulator. Here $\mathcal A_{\mathrm{pole}}$ collects the dressed inverse propagators,
+000170 | $\mathcal R_{\det}$ the determinant-line response kernels, and $\mathcal B_{\mathrm{cos}}$ the
+000171 | FRW / reheating / Boltzmann interface data on the closed branch. Morphisms are RG-compatible field
+000172 | reparameterizations preserving the branch-fixed pole and response data.
+000173 | \end{definition}
+000174 | 
+000175 | \begin{definition}[Physical observable category]
+000176 | \label{def:physical-observable-category}
+000177 | Let $\OphysTFPT$ denote the category whose objects are triples
+000178 | \[
+000179 | \mathcal O_{\mathrm{phys}}=(v_{\mathrm{phys}},\Sigma,\mathcal D),
+000180 | \]
+000181 | where $v_{\mathrm{phys}}$ is a package of physical observables (pole masses, widths, mixing angles,
+000182 | response coefficients, and closed-branch cosmology interface packages before late-time
+000183 | continuation), $\Sigma$ collects their covariance data, and
+000184 | $\mathcal D$ is a dependency DAG recording algebraic and statistical non-independence.
+000185 | \end{definition}
+000186 | 
+000187 | \begin{definition}[Scheme groupoid]
+000188 | \label{def:scheme-groupoid}
+000189 | Let $\SchGrp$ be the groupoid whose objects are declared comparison-scheme packages
+000190 | \[
+000191 | s=(s_{\mathrm{EM}},s_{\mathrm{EW}},s_{\nu},s_{\mathrm{QCD}},s_{\mathrm{cos}},\Sigma_{\mathrm{snap}})
+000192 | \]
+000193 | consisting of threshold conventions, mass schemes, oscillation conventions, cosmology snapshot
+000194 | rules, and covariance bookkeeping. Morphisms
+000195 | \[
+000196 | \psi:s\to s'
+000197 | \]
+000198 | are finite renormalization, threshold-transfer, snapshot-transfer, and covariance-preserving
+000199 | scheme changes.
+000200 | \end{definition}

@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## 5. Vollständig gelöst: die innere bilineare Zerlegung
+
+[documents/experiments--theory-contracts--universalraum-common-process-20260915--tmp--pdfs--TFPT_Universalraum_Gemeinsamer_Prozess_Konsolidierung_2026-09-15_v1.6.8/sections/011-subsubsection-4-3-zehn-vollst-ndige-energiemomente-der-g.tex:76-114](../../../../documents/experiments--theory-contracts--universalraum-common-process-20260915--tmp--pdfs--TFPT_Universalraum_Gemeinsamer_Prozess_Konsolidierung_2026-09-15_v1.6.8/sections/011-subsubsection-4-3-zehn-vollst-ndige-energiemomente-der-g.tex#L76) · `section:4d6a7360e14985993664` · subsection
+
+Die sechs Dimensionen sind 1, 45, 210, 15, 675 und 3150. Der offene Rest ist also nicht mehr unbestimmt:
+
 ## 6. Welche Operationen wirklich verfügbar sein müssten
 
 [documents/experiments--theory-contracts--universalraum-common-process-20260915--tmp--pdfs--TFPT_Universalraum_Gemeinsamer_Prozess_Konsolidierung_2026-09-15_v1.6.8/sections/011-subsubsection-4-3-zehn-vollst-ndige-energiemomente-der-g.tex:115-117](../../../../documents/experiments--theory-contracts--universalraum-common-process-20260915--tmp--pdfs--TFPT_Universalraum_Gemeinsamer_Prozess_Konsolidierung_2026-09-15_v1.6.8/sections/011-subsubsection-4-3-zehn-vollst-ndige-energiemomente-der-g.tex#L115) · `section:be28fc631b0f53b48a8c` · subsection
@@ -522,7 +528,7 @@ Der Clock-Ausschluss allein wäre zu schwach. Die Orbitsumme
 
 [documents/experiments--theory-contracts--universalraum-common-process-20260915--tmp--pdfs--TFPT_Universalraum_Gemeinsamer_Prozess_Konsolidierung_2026-09-15_v1.6.8/sections/019-subsubsection-6-4-kleinste-noch-zu-suchende.tex:1-20](../../../../documents/experiments--theory-contracts--universalraum-common-process-20260915--tmp--pdfs--TFPT_Universalraum_Gemeinsamer_Prozess_Konsolidierung_2026-09-15_v1.6.8/sections/019-subsubsection-6-4-kleinste-noch-zu-suchende.tex#L1) · `section:314ef532c9ea6273f24e` · subsubsection
 
-Für den hier exakt spezifizierten Zeugen fehlt mindestens eine Operation, die nicht mit dem betrachteten Farb-Cartan des ursprünglichen Systems kommutiert, oder eine aus einer erweiterten globalen Quelle abgeleitete Kopplung mit einer expliziten Ausgleichsressource für diese Cartanladung. Ein zusätzlicher aktiver SU(4)-Generator wäre ein neuer Operationsvertrag; außerdem bewegt sein simultaner Fermion-/Boson-Lift im 
+Für den hier exakt spezifizierten Zeugen fehlt mindestens eine Operation, die nicht mit dem betrachteten Farb-Cartan des ursprünglichen Systems kommutiert, oder eine aus einer erweiterten globalen Quelle abgeleitete Kopplung mit einer expliziten Ausgleichsressource für diese Cartanladung. Ein zusätzlicher aktiver SU(4)-Generator wäre ein neuer Operationsvertrag; außerdem bewegt sein simultaner Fermion-/Boson-Lift im
 
 ## Reproduktion und Status
 
@@ -623,9 +629,3 @@ September 2026, v1.6.6. Quellenprüfung des nachgereichten Textes 59dc0059-8914-
 [documents/experiments--theory-contracts--universalraum-common-process-20260915--tmp--pdfs--TFPT_Universalraum_Gemeinsamer_Prozess_Konsolidierung_2026-09-15_v1.6.8/sections/020-subsection-10-ein-korrigierter-wirklich-entscheidbarer.tex:63-71](../../../../documents/experiments--theory-contracts--universalraum-common-process-20260915--tmp--pdfs--TFPT_Universalraum_Gemeinsamer_Prozess_Konsolidierung_2026-09-15_v1.6.8/sections/020-subsection-10-ein-korrigierter-wirklich-entscheidbarer.tex#L63) · `section:1c12262e7bfa1adc13ac` · subsection
 
 Ein globaler Wegraum ist eine sinnvolle Suchklasse; ein Eulerprodukt über primitive Wege ist noch nicht das Eulerprodukt der Riemannschen Zetafunktion. Die im Text vorgeschlagene Xi-Determinante bleibt ein hinreichendes Ziel unter expliziten Operatorannahmen. Das Umbenennen ihres noch fehlenden Operators in „Generator der primitiven Schleifen`` konstruiert ihn nicht.
-
-## 1. Was die endliche Bank tatsächlich ausschließt
-
-[documents/experiments--theory-contracts--universalraum-common-process-20260915--tmp--pdfs--TFPT_Universalraum_Gemeinsamer_Prozess_Konsolidierung_2026-09-15_v1.6.8/sections/020-subsection-10-ein-korrigierter-wirklich-entscheidbarer.tex:72-100](../../../../documents/experiments--theory-contracts--universalraum-common-process-20260915--tmp--pdfs--TFPT_Universalraum_Gemeinsamer_Prozess_Konsolidierung_2026-09-15_v1.6.8/sections/020-subsection-10-ein-korrigierter-wirklich-entscheidbarer.tex#L72) · `section:1c7886264b00443951b2` · subsection
-
-Der beibehaltene Beweis aus v1.6.5 gilt für den ursprünglichen Hamiltonoperator mit 64 Fermion- und 60 Bosonmoden, Δ 0. Der Hilbertraum ist wegen der Bosonen nicht endlichdimensional. Endlich ist die Zahl der Moden. Mit C=960g²/Δ folgt aus quadratischem Ergänzen

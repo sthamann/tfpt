@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Export a bounded public scientific inventory, or reproduce/check its frozen snapshot.
 
-Live mode reads only the explicit authoring ledger, reviewed program and their
-cited source ranges. It never imports the generated/private Atlas graph. Source
+Live mode reads reviewed research authoring and cited source ranges from the
+research root, and published ledger/registry/module inputs from the publication
+checkout. It never imports the generated/private Atlas graph. Source
 SHA-256 values and inclusive ranges are checked before publication. A frozen
 snapshot and excerpt manifest make subsequent builds independent of the local
 research checkout. This is a coverage/source check, not a fresh proof execution.
@@ -22,8 +23,13 @@ FOUNDATION = WEBSITE / 'lib/foundation-index.json'
 SNAPSHOT = PUBLIC / 'research-snapshot.json'
 APPROVED = ('experiments/theory-contracts/', 'experiments/lean4-carrier-rigidity/',
             'documents/', 'verification/', 'docs/research/', 'tex-artefacts/', 'tfpt_explorer/')
-# Reviewed original public mathematical note; this is not approval of the archive tree.
-APPROVED_FILES = {'_archive/paper-latex/old/improvedcubic.tex'}
+# Explicit public source owners cited by reviewed findings. This is not approval
+# of either entire archive/discovery tree; all other paths keep their boundary.
+APPROVED_FILES = {
+ '_archive/paper-latex/old/improvedcubic.tex',
+ 'experiments/tfpt-discovery/tfpt2p1d_master_assembly_probe.py',
+ 'experiments/tfpt-discovery/spin10_det16_projector_probe.py',
+}
 ADMIN_IDS = {
  'finding:four-session-summaries-remain-covered-with-superseded-norm-selection-task':
  'Administrative continuity and private session-map coverage; scientific Hardy result remains covered by its own reviewed records.'
@@ -57,6 +63,9 @@ def safe_text(value):
   (r'Corrects an overstrong Codex premise', 'Corrects an overstrong premise'),
   (r'Recurring research stopped at user request without scientific completion\.', ''),
   (r'User direction17Oct:', 'Accepted field-algebra scope:'),
+  (r'the next F1 wording is corrected to the new user request', 'the next F1 wording is corrected to the current source-identification question'),
+  (r';user request unfulfilled\.', ';the primitive source-identification objective remains open.'),
+  (r"although the user's actual viewed article is not uniquely known", 'although the specific press article is not uniquely identified'),
   (r'User instruction6868e83518Oct replaces automatic next origin classification with equivalence test forq2,3,4,5 and globalS01\.', 'Comparison scope: q2,3,4,5 and globalS01.'),
   (r"Under the user's23Oct2026 decision,", 'Within the stated mathematical scope,'),
   (r"Claude\d*['’]?s?", 'The reviewed'),
@@ -277,11 +286,13 @@ def module_publication_snapshot(root, snap, foundation):
   'olderPublicationMirrorIds':older,
   'notice':'Publication source correspondence only. Matching bytes and inert source documents do not assert successful execution or promote scientific status.'}
 
-def foundation_snapshot(root, snap):
- """Literal public citation joins and authored navigation, never inferred science."""
+def foundation_snapshot(root, snap, publication_root=None):
+ """Join published citations/modules to research-authored navigation."""
+ publication_root=(publication_root or WEBSITE.parent).resolve()
  paths=['docs/registry/registry.json','semantic_explorer/orientation.json',
         'semantic_explorer/corpus_aspects.json','semantic_explorer/theory_map.json']
- raw={p:(root/p).read_bytes() for p in paths}
+ input_roots={p:publication_root if p==paths[0] else root for p in paths}
+ raw={p:(input_roots[p]/p).read_bytes() for p in paths}
  registry,orientation,aspects,theory=[json.loads(raw[p]) for p in paths]
  assert registry['publication_scope']=='public_authored_sources'
  active={r['id']:r for r in snap['ledger'] if r['active']}
@@ -308,7 +319,7 @@ def foundation_snapshot(root, snap):
  modules=[];source_checks=[]
  for s in snap['scripts']:
   path='verification/'+s['id']+'.py';eid='python_verification:'+path;e=evidence[eid]
-  actual=sha((root/path).read_bytes());source_checks.append({'id':s['id'],'path':path,'expectedSha256':e['sha256'],'actualSha256':actual,'current':actual==e['sha256']})
+  actual=sha((publication_root/path).read_bytes());source_checks.append({'id':s['id'],'path':path,'expectedSha256':e['sha256'],'actualSha256':actual,'current':actual==e['sha256']})
   assert actual==e['sha256'],f'Public registry module source is stale: {path}'
   synopsis,edits=safe_text({'en':s['descriptionEN']})
   if PRIVATE.search(synopsis) or NARRATIVE.search(synopsis):synopsis='';edits.append('Non-scientific synopsis omitted.')
@@ -370,26 +381,30 @@ def foundation_snapshot(root, snap):
   'theoryMap':{'nodes':nodes,'edges':edges,'sourceRefs':list(source_refs.values()),
    **{k:[{'id':v['id'],'labelEN':v.get('label_en') or v.get('label_de')} for v in theory[k]] for k in ('stages','lanes','states')}},
   'coverage':coverage,'inputHashes':{p:sha(b) for p,b in raw.items()},
+  'inputOwners':{p:'publication' if p==paths[0] else 'research' for p in paths},
   'registryHref':'/documentation/registry.json','registrySha256':sha(raw[paths[0]])}
- module_publication_snapshot(root,snap,result)
+ module_publication_snapshot(publication_root,snap,result)
  for filename in ('registry.json','summary.json'):
-  body=raw[paths[0]] if filename=='registry.json' else (root/'docs/registry'/filename).read_bytes()
+  body=raw[paths[0]] if filename=='registry.json' else (publication_root/'docs/registry'/filename).read_bytes()
   write(WEBSITE/'public/documentation'/filename,body)
   snap['artifacts'].append({'path':'../documentation/'+filename,'sha256':sha(body)})
- for path,body in raw.items():assert (root/path).read_bytes()==body,f'Foundation authoring changed during snapshot: {path}'
+ for path,body in raw.items():assert (input_roots[path]/path).read_bytes()==body,f'Foundation input changed during snapshot: {path}'
  return result
 
-def freeze(root):
+def freeze(root, publication_root=None):
+ publication_root=(publication_root or WEBSITE.parent).resolve()
  previous=load(SNAPSHOT) if SNAPSHOT.exists() else None
  program_raw=(root/'semantic_explorer/research/program.json').read_bytes(); program=json.loads(program_raw)
- ledger_raw=(root/'verification/status_ledger.csv').read_bytes()
+ ledger_raw=(publication_root/'verification/status_ledger.csv').read_bytes()
  ledger=list(csv.DictReader(io.StringIO(ledger_raw.decode())))
- registry_raw=(root/'verification/script_registry.csv').read_bytes()
+ registry_raw=(publication_root/'verification/script_registry.csv').read_bytes()
  registry=list(csv.DictReader(io.StringIO(registry_raw.decode())))
- predictions_raw=(root/'verification/predictions_frozen.json').read_bytes();predictions=json.loads(predictions_raw)
- source_head=git(root,'rev-parse','HEAD'); public_head=git(root,'rev-parse','origin/main')
+ predictions_raw=(publication_root/'verification/predictions_frozen.json').read_bytes();predictions=json.loads(predictions_raw)
+ publication_inputs={'verification/status_ledger.csv':ledger_raw,
+  'verification/script_registry.csv':registry_raw,'verification/predictions_frozen.json':predictions_raw}
+ source_head=git(root,'rev-parse','HEAD'); public_head=git(publication_root,'rev-parse','origin/main')
  tree={}
- for line in git(root,'ls-tree','-r',public_head).splitlines():
+ for line in git(publication_root,'ls-tree','-r',public_head).splitlines():
   meta,path=line.split('\t',1);tree[path]=meta.split()[2]
  rawcache={};sources={};errors=[];source_issues=[];artifacts=[]
  def source(s):
@@ -474,18 +489,24 @@ def freeze(root):
  }
  snap={'schemaVersion':1,'meta':{'generatedAt':datetime.now(timezone.utc).isoformat(),'sourceRevision':program['revision'],
   'sourceCommit':source_head,'publicSourceCommit':public_head,
+  'publicationInputsCommit':git(publication_root,'rev-parse','HEAD'),
   'inputHashes':{'reviewedProgram':sha(program_raw),'statusLedger':sha(ledger_raw),'scriptRegistry':sha(registry_raw),'predictions':sha(predictions_raw)},
+  'inputOwners':{'reviewedProgram':'research','statusLedger':'publication','scriptRegistry':'publication','predictions':'publication','publicDocumentRegistry':'publication'},
   'notice':'Statuses remain in their original stated scope. A reviewed decision or a matching source hash is not a fresh proof run or closure of its parent physical goal.'},
   'ledger':ledgers,'findings':findings,'problems':problems,'premises':premises,'predictions':predictions,
   'scripts':[{'id':r['script'],'cluster':r['cluster'],'descriptionEN':r['what_web']} for r in registry],
   'sourceRefs':list(sources.values()),'expectedCoverage':manifest,'artifacts':artifacts}
  snap['semanticAtlas']=semantic_snapshot(root,program,findings,premises,list(sources.values()))
- snap['foundationIndex']=foundation_snapshot(root,snap)
+ snap['foundationIndex']=foundation_snapshot(root,snap,publication_root)
+ snap['meta']['inputHashes']['publicDocumentRegistry']=snap['foundationIndex']['registrySha256']
  snap['expectedCoverage']['semanticExpectedIds']={k:[r['id'] for r in snap['semanticAtlas'][k]] for k in
   ('topics','goals','structures','problems','findings','tasks','strategies','connections','patterns','attempts','relations','sourceRefs')}
  # No read after this point may mix a later authoring revision into this snapshot.
  if (root/'semantic_explorer/research/program.json').read_bytes()!=program_raw:
   raise ValueError('Reviewed authoring program changed during freeze; no coherent snapshot published. Retry live export.')
+ for path,body in publication_inputs.items():
+  if (publication_root/path).read_bytes()!=body:
+   raise ValueError(f'Publication input changed during freeze: {path}; retry live export.')
  return snap
 
 def build(snap):
@@ -597,15 +618,16 @@ def validate(snap, data):
  assert not any('/Users/' in str(r) or '/home/' in str(r) or 'local_private' in str(r) for r in [foundation])
 
 def main():
- ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('--source-root',type=Path);ap.add_argument('--frozen-input',type=Path,default=SNAPSHOT);ap.add_argument('--check',action='store_true');ap.add_argument('--augment-module-publication',action='store_true',help='Add only frozen-digest-matching module source documents, without refreshing the research snapshot');args=ap.parse_args()
+ ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('--source-root',type=Path,help='Research authoring and reviewed source root for a live freeze');ap.add_argument('--publication-root',type=Path,help='Published ledger, registry and module checkout (defaults to this website parent)');ap.add_argument('--frozen-input',type=Path,default=SNAPSHOT);ap.add_argument('--check',action='store_true');ap.add_argument('--augment-module-publication',action='store_true',help='Add only frozen-digest-matching module source documents, without refreshing the research snapshot');args=ap.parse_args()
  if args.augment_module_publication:
-  assert args.source_root and not args.check,'Module publication augmentation requires --source-root and is separate from --check'
+  module_root=args.publication_root or args.source_root
+  assert module_root and not args.check,'Module publication augmentation requires --publication-root or --source-root and is separate from --check'
   snap=load(args.frozen_input);before=encode(snap['meta'])
-  module_publication_snapshot(args.source_root.resolve(),snap,snap['foundationIndex'])
+  module_publication_snapshot(module_root.resolve(),snap,snap['foundationIndex'])
   assert encode(snap['meta'])==before,'Research cutoff changed during publication augmentation'
   write(SNAPSHOT,encode(snap))
  elif args.source_root and not args.check:
-  snap=freeze(args.source_root.resolve());write(SNAPSHOT,encode(snap))
+  snap=freeze(args.source_root.resolve(),args.publication_root);write(SNAPSHOT,encode(snap))
  else:snap=load(args.frozen_input)
  data,coverage=build(snap);validate(snap,data);semantics=build_semantics(snap,data['meta']);foundations=build_foundations(snap,data['meta'])
  if args.check:

@@ -8,7 +8,7 @@ Exact ledger statuses remain at the linked original rows and in registry.json. C
 
 [documents/archive--tfpt-45--03_electromagnetic_closure_flavor_transport/sections/001-section-electromagnetic-closure.tex:126-177](../../../../documents/archive--tfpt-45--03_electromagnetic_closure_flavor_transport/sections/001-section-electromagnetic-closure.tex#L126) · `section:06db7a3e9e3e1c287faf` · subsection
 
-Before the determinant-line response is invoked in its full form, the same retained seed admits a short bridge derivation that connects the boundary-normalised axion–photon coupling to the cosmological birefringence amplitude. Starting from the unified-field-equation reduction of the seam transfer, the dimensionless axion–photon anomaly coefficient is [formula in source] and the modified Maxwell sector responds to a 
+Before the determinant-line response is invoked in its full form, the same retained seed admits a short bridge derivation that connects the boundary-normalised axion–photon coupling to the cosmological birefringence amplitude. Starting from the unified-field-equation reduction of the seam transfer, the dimensionless axion–photon anomaly coefficient is [formula in source] and the modified Maxwell sector responds to a
 
 ## Not Used Here
 
@@ -192,7 +192,7 @@ Proof skeleton. [formula in source] is the antisymmetric two-form occupancy on [
 
 [documents/archive--tfpt-45--07_cmb_operational_closure_planck_pipeline/sections/002-section-the-five-lemmas-native-closure-conjecture-v4-6.tex:112-137](../../../../documents/archive--tfpt-45--07_cmb_operational_closure_planck_pipeline/sections/002-section-the-five-lemmas-native-closure-conjecture-v4-6.tex#L112) · `section:6322f7e4c6b01cc9fa93` · paragraph
 
-where [formula in source] is the admissible primordial-curvature Hessian, [formula in source] is the primitive seam branch state with winding class [formula in source] , [formula in source] is the Calderon sheet involution (which enforces the reality constraint [formula in source] ), [formula in source] is the observer embedding (worldline + tetrad + orientation + last-scattering light cone), and [formula in source] 
+where [formula in source] is the admissible primordial-curvature Hessian, [formula in source] is the primitive seam branch state with winding class [formula in source] , [formula in source] is the Calderon sheet involution (which enforces the reality constraint [formula in source] ), [formula in source] is the observer embedding (worldline + tetrad + orientation + last-scattering light cone), and [formula in source]
 
 ## Lemma E decomposition (E1–E5).
 
@@ -604,7 +604,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/archive--tfpt-45--07_cmb_operational_closure_planck_pipeline/sections/005-section-the-v4-6-8-measurement-bridge-contract.tex:304-332](../../../../documents/archive--tfpt-45--07_cmb_operational_closure_planck_pipeline/sections/005-section-the-v4-6-8-measurement-bridge-contract.tex#L304) · `section:221d6c10c287d5eeeba5` · subsection
 
-Figure [formula in source] value vs Planck 2018 [formula in source] CDM across all sprints between v4.6 and v4.12. The strict TFPT mode never refits parameters and always uses A_planck = 1.0 on the official Plik-lite native + lowl TT/EE likelihood (Cobaya). The drop from v4.9 ( [formula in source] ) to v4.10/v4.11/v4.12 ( [formula in source] / [formula in source] / [formula in source] ) is not a fit improvement — it 
+Figure [formula in source] value vs Planck 2018 [formula in source] CDM across all sprints between v4.6 and v4.12. The strict TFPT mode never refits parameters and always uses A_planck = 1.0 on the official Plik-lite native + lowl TT/EE likelihood (Cobaya). The drop from v4.9 ( [formula in source] ) to v4.10/v4.11/v4.12 ( [formula in source] / [formula in source] / [formula in source] ) is not a fit improvement — it
 
 ## The visibility-amplitude Ward identity (v4.11)
 

@@ -1,0 +1,125 @@
+Kurz vorweg: Eine vollständige Lösung, die alles zusammenklicken lässt, habe ich nicht gefunden, und keiner der drei Texte enthält eine. Ich konnte aber zwei Dinge exakt nachrechnen, die über beide Texte hinausgehen. Erstens folgt die Zahl c₃ = 1/(8π) aus einer Selbstdualitätsbedingung. Zweitens gibt es einen kleinen Indexsatz, der das 18er-Windungsproblem aus R083/R084 vollständig erklärt und genau angibt, wo eine Einheitswindung überhaupt leben kann. Außerdem lässt sich der freie Teil von R066–R085 als ein einziges bekanntes mathematisches Objekt lesen. Der echte offene Kern liegt damit an einer klar benannten Stelle.
+
+Grundlage waren die Gesamtdokumentation (R054, R066, R074, R079, R080, R083–R085, R047/R048), die Kernessenz v2 und eigene Rechnungen mit 40-stelliger Arithmetik bzw. Matrixtrunkierungen.
+
+---
+
+## 1. Prüfung von Dokument 1 (Fock-Quelle, transportierte Clock, Zweirandgeometrie)
+
+| Aussage | Ergebnis meiner Prüfung | Einordnung |
+|---|---|---|
+| x = det A = 1/256 aus der Fock-Wirkung; positive Matrix mit Nebendiagonale 1/16 ergibt det = 0 | Beides korrekt | Das ist die Standard-Zweitquantisierung Γ(A). Das 1/256 des ursprünglichen Teilchen-Loch-Zeugen steht schon in R085. Neu und brauchbar ist nur die Umformulierung als lineare Generatorrelationen T a†ᵢ = Σ Aⱼᵢ a†ⱼ T für die R085-Schnittstelle. |
+| Transportierte Clock U_m = W_m U₀ W_m*: Spurnorm 1, det = 1/(1−z) | Bestätigt (N = 400, Kanten verworfen): Spurnorm 1,000000, det = 1,4285714286 = 10/7. Die starre selektive Clock bei m ≠ 0 hat dagegen eine mit N wachsende Spurnorm (9,11 bei N = 400). | Mathematisch richtig, aber mit zwei Haken, siehe unten |
+| HS-Norm ‖[A,G]‖² = Dirichlet-Neumann-Operator eines Streifens der Breite β/2 | Bestätigt für k = 1, 2, 3 und beide Quarter, Übereinstimmung auf 15 Stellen. R074s Formel Σ 2m·tanh(βm/4)·\|v_m\|² ist genau der Spezialfall a = b, denn coth x − csch x = tanh(x/2). | Richtig. Strukturell ist es aber bekannt (siehe Abschnitt 4). |
+| Nullmode d₀ = 1/(4π), also exakt die Hälfte des Streifenwerts | Bestätigt: Σ C(1−C) = 1/(8π) mit einer Abweichung von 10⁻⁴¹ | Das ist der wertvollste Punkt. Er ist aber nicht generisch, siehe Abschnitt 3. |
+| Das Beispiel mit 7/1024 und das Notebook | Nicht nachprüfbar, der ChatGPT-Bibliothekslink ist nicht abrufbar | — |
+
+**Die zwei Haken der transportierten Clock.** Erstens ist das Problem nach Konjugation mit W_m unitär äquivalent zum entkoppelten Problem mit Energien E_p. Die Higgskopplung „bleibt erhalten“ also nur in der Basis, nicht in der Indexstruktur. Zweitens ist W_m(p) = exp[−iσ_y·arctan(m/p)/2] ein Fouriermultiplikator mit einem 1/p-Schwanz. Sein Kern auf dem Kreis ist vom Hilbert-Transformationstyp, also nicht lokalisiert; numerisch ist |K(j)| über alle Abstände praktisch konstant. Die Konstruktion tauscht demnach Spurklasse gegen Lokalität. Das muss gegen die kausale Struktur aus R080 geprüft werden. Der Test W_H* U_orig(H) W_H = U₀ aus Dokument 1 ist richtig formuliert. Der Indexsatz in Abschnitt 3 zeigt allerdings, dass er bei einer lokalen Original-Clock generisch scheitert.
+
+**Ein Vorbehalt zu Teil 1.** Die Generatorrelationen setzen eine quasifreie Quelle voraus. Genau das stellen R054 (positiver Vierfeldzeuge), R079 (vierte Kumulante 168,79) und die Kernessenz (κ′(0) = −1/300) in Frage. Die Relationen gehören deshalb als eigene Hypothesenklasse „frei, U = 0“ in die Suche, nicht als Voreinstellung.
+
+---
+
+## 2. Prüfung von Dokument 2 (fünf „Synthesen“)
+
+1. **Wortlänge.** Das Zählargument stimmt. Ein Wort mit mindestens einem T und Länge ≤ 4 enthält bei gerader Parität höchstens zwei Fermionoperatoren. Es sieht daher nur die Einteilchenwirkung von T. Länge 5 ist die erste Stufe, die den Zweiteilchensektor sieht, und genau dort liegt der Unterschied zwischen det A und dem verbundenen Term U. Das passt sauber zu Dokument 1.
+   Unbelegt ist dagegen der Rest. Der 6-dimensionale Raum span{I, Γ₁…Γ₅} ist das Zeigermenü des nativen Viererkanals, also ein anderer Träger als die Fünfmoden-CAR-Suche. Die „10 = 10“-Gleichsetzungen schließt die Kernessenz ausdrücklich aus. Dass v311-Kohärenz e und die 0/1/256-Frage „gleichzeitig kollabieren“, ist ebenfalls unbelegt: v311 lebt auf einem 3-dimensionalen Populationsträger, und es gibt keine Abbildung dorthin. Kommen die Länge-5-Werte aus dem quasifreien Cauchy-Kern, reproduzieren sie lediglich 1/256.
+
+2. **det₂-Korrektur aus R080.** Die Formel existiert in R080. Sie gilt dort aber für geordnete Produkte von Exponentialen lokaler, kompakt getragener Quellen mit linearem Generator L, also in der Einskomponente. Eine Windungs-Clock besitzt keinen solchen globalen Generator, weil θ auf dem Kreis nicht stetig ist. Genau dort sitzt die Topologie. Dokument 2 benennt also den richtigen Strukturtyp (den Zentralerweiterungs-Kozyklus), löst das Problem aber nicht. Die Auflösung der 18 über P₀ bzw. DET16 ist nicht gerechnet.
+
+3. **Higgsmaß.** Zurückzuweisen. R079 schließt wörtlich „kein exp(−Γ)dm oder neues Spektralgewicht“ aus. Die Kumulanten −61,39 und 168,79 gehören zum fermionischen Kraftoperator in einem festen Zustand. Sie beschreiben kein Maß über H. Der Zeuge aus R054, Var_μ(m(H†H)), ist ein anderes Objekt.
+
+4. **(8π)⁹-Lücke.** Die Arithmetik stimmt: (18/5)c₃⁻²/c₃⁷ = (18/5)(8π)⁹ ≈ 1,4403·10¹³. Sie ist aber tautologisch, denn die Lücke ist ja als dieser Quotient definiert. R048s Term −dA²/(1152π²B) hängt von den Yukawamomenten A und B ab. Eine Lücke von 10¹³ damit zu schließen, wäre ein Fit von A²/B. R048 selbst sagt ausdrücklich, dass keine Skalaronmasse vorhergesagt wird. Die Gewichte (12, 2, 1) sind korrekt (die Momente von e^(−√u) sind 12, 2 und 1) und stehen schon in R045. „6 = 12/2“ ist Numerologie.
+
+5. **3+1D aus S¹ × [0,ℓ] × S².** Zurückzuweisen. Der Weyl-Exponent 4 zeigt sich nur bei kurzen Zeiten im UV. Mit kompaktem S² und Intervall bleibt die effektive IR-Dimension 1, euklidisch und mit Rand. Der Dipol-Teil mit f₀ = 0 ist R066 selbst und daher richtig, aber nicht neu.
+
+**Dritter Text (Agent-Zwischenstand).** Die Aussage „E8-Prozess als Ereignis in größerer Entwicklung, nicht als ganze Zeitentwicklung“ ist mit dem Choi-Rang-Ausschluss aus Kernessenz §10 und mit den frischen Zellen aus §12 konsistent. Die behauptete „stetige Einbettung mit Zwischenzeiten“ muss wegen genau dieses Ausschlusses zeitinhomogen oder dilatiert sein. Das ist beim Lesen des Ergebnisses zu prüfen. Die angekündigte „exakte Trägertransport-Verbindung“ liegt mir nicht vor.
+
+---
+
+## 3. Zwei neue exakte Ergebnisse
+
+### 3.1 Selbstdualitätssatz: c₃ als Fixpunktgröße
+
+Eine freie Fermion mit Moden n + α hat die Ladungsgewichte e^(−β[Q²/2 + (α−½)Q]). Für die beiden Quarter α = 1/4 und α = 3/4 und die Gesamtladung p = q + r gilt:
+
+- P(p) = e^(−βp²/4) · S(p), mit S(p) = Σ_{y ∈ ℤ + c_p} e^(−βy²) und c_p ∈ {±1/4} je nach Parität von p.
+- S(p) ist genau dann paritätsunabhängig, wenn die Offsets ±1/4 sind. Die Z₄-Viertelphase ist also gerade die Bedingung dafür, dass eine einzige Gaußsche Verteilung entsteht.
+- Diese Gaußsche Verteilung ist e^(−πp²), also die Thetafunktion am selbstdualen Punkt τ = i, genau dann, wenn β = 4π. Numerisch bestätigt: Das Verhältnis P(p)/e^(−πp²) ist für alle p exakt 1.
+- Aus θ(1/t) = √t·θ(t) bei t = 1 folgt Var(p) = 1/(4π). Damit ist **Var(Q) pro Quarter = 1/(8π) = c₃**.
+
+Daraus folgen drei Querverbindungen:
+
+- **Nullmode.** Die Fermionzahlvarianz ist Σ C(1−C). Daher ist d₀ = 2Σ C(1−C) = 1/(4π), exakt die Hälfte des Streifenwerts 2/β. Das gilt nur bei β = 4π:
+
+  | β/π | 2 | 3 | **4** | 5 | 8 |
+  |---|---|---|---|---|---|
+  | d₀/(2/β) | 0,953 | 0,753 | **0,5** | 0,298 | 0,047 |
+
+  Der Rang-1-Rest aus Dokument 1 ist also keine geometrische Anomalie. Er ist die Ladungsquantisierung am Selbstdualitätspunkt.
+- **Normierungsidentität.** 4π·Var(Q) = 1/2 ist mit β = 2·β_angle (der Spinor-Doppelüberlagerung, U² = (−1)^F) und I_Jones = 4 genau I_Jones·β_angle·c₃ = 1 aus Kernessenz §7. Die bisher separat geführte Identität ist damit die Theta-Selbstdualität in anderer Schreibweise.
+- **Streifenbreite.** L = β/2 = 2π = β_angle.
+
+**Vorschlag für P1 (Hypothese, nicht bewiesen).** Man ersetzt die Zahlvorgabe c₃ = 1/(8π) durch die Bedingung „primitiver Randkern = S-Fixpunkt der Randladungsverteilung mit Z₄-Offsets“. Dann ist c₃ abgeleitet, und „Fixed-Point“ wäre wörtlich zu nehmen. Offen bleibt, warum es genau zwei Quarter mit ±1/4 sind. Dass die Gluenormen 5/4 und 3/4 von D₅ und A₃ modulo 1 genau ±1/4 sind, ist suggestiv, eine Abbildung dafür ist aber nicht gezeigt.
+
+### 3.2 Indexsatz: Wo eine Einheitswindung leben kann
+
+**Satz.** Sei h_p = pγ + V mit {γ,V} = 0, und sei die Clock U = e^(iλθ) mit konstantem λ, das mit γ und V kommutiert („Higgs-verträglich“). Dann gilt:
+
+- UCU* − C ist spurklassig.
+- det[(I − zUCU*)(I − zC)⁻¹] = (1−z)^(−ind), mit **ind = tr(λγ |_ker V)**.
+
+*Beweis.* ker V ist γ-invariant. Auf (ker V)^⊥ ist V invertierbar, und aus V⁻¹γV = −γ folgt dort tr(λγ) = 0. Auf ker V teleskopiert das Produkt.
+
+Numerische Bestätigung:
+
+| Fall | det | Spurnorm |
+|---|---|---|
+| balanciert, V invertierbar, λ = I | 1,0000000000 | endlich |
+| balanciert, ker V chiral 1+1, λ = I | 1,0000000000 | endlich |
+| λ nur auf masselosem γ₊-Nullmodus, Masse sonst ≠ 0 | 1,4285714286 = (1−z)⁻¹ | 1,0000 |
+| unbalanciert 2+1, λ = I | 1,4285714286 | endlich |
+
+Konsequenzen:
+
+- R084s „ganzer 36er Kreis, det = 1“ ist der balancierte invertierbare Spezialfall.
+- R084s Hilbert-Schmidt-Gegenfall ist λ = P_γ₊, das nicht mit V kommutiert.
+- Dokument 1 umgeht beides, indem es Lokalität aufgibt.
+
+Daraus folgt eine vollständige **Trichotomie**: Eine nichtnull Windung bei massivem Spektrum ist entweder
+1. nicht kommutierend (nur Hilbert-Schmidt; braucht det₂ und eine Phasenwahl),
+2. nichtlokal (Dokument 1), oder
+3. getragen von chiralen Nullmoden von V.
+
+Für λ = I ist ind = dim S₊ − dim S₋, also automatisch H-unabhängig. Allgemein ist tr(λγ) ein Anomaliekoeffizient der Ladung λ. Die Einheitswindung P1 auf dem Materieträger ist damit äquivalent zu einer Aussage über die Neutrino- und Massenstruktur: Eine Yukawa-verträgliche Ladung muss den chiralen Nullmodenindex ±1 haben. Das verknüpft P1 direkt mit T6.
+
+---
+
+## 4. Konsolidierung: Was wirklich zusammenklickt
+
+Der gesamte freie Teil fällt in ein einziges bekanntes Objekt: **das Determinantenlinienbündel über der restringierten Grassmann-Mannigfaltigkeit Gr_res**, ausgewertet am Punkt τ = i (Pressley–Segal, Segal–Wilson). Die einzelnen Befunde sind dessen Bestandteile:
+
+| Befund | Rolle in Gr_res / Det |
+|---|---|
+| Fock-Relationen (Dok. 1, Teil 1) | Funktor Γ(A) |
+| R074: implementierbar genau für U(8)×U(8) | Shale–Stinespring: [U,P] ∈ HS, also U ∈ U_res |
+| HS-Norm = Streifen-DtN (Dok. 1, R074) | Kählermetrik; bei T = 0 die H^½-Energie der Scheibe (\|k\|) |
+| R074: gemeinsamer Zweirandkozyklus = 0 | Der symplektische Teil hebt sich bei Gegenorientierung weg, die Metrik addiert sich |
+| det₂·e^(−Tr AB) (R084), Zentrierung aus R080 | Zentralerweiterungs-Kozyklus; R080 ist dessen lokale Trivialisierung auf der Einskomponente |
+| −18 / 0 / 1 (R083/R084) | π₀(U_res) = ℤ, Spektralfluss, Indexsatz 3.2 |
+| Var(Q) = c₃ (R066) | Nullmode / Ladungsgitter am S-Fixpunkt, Satz 3.1 |
+
+**Was dieser Rahmen nicht liefern kann**, ist das nicht-quasifreie Gewicht: der verbundene Term U in T_x, der positive Vierfeldzeuge aus R054 und κ′(0) ≠ 0. Das ist der eigentliche verbleibende Kern. Eine fundamentale Lösung muss sagen, welche verbundene Deformation des freien Funktors auf diesem Bündel das physische Gewicht ist. Weitere freie Identitäten können das prinzipiell nicht entscheiden.
+
+---
+
+## 5. Vier Ja/Nein-Prüfungen
+
+1. **T-B (zuerst, endlichdimensional und billig):** tr(λγ |_ker V(H)) auf der 96er Faser mit den v252-Yukawas einschließlich M_R berechnen, für λ ∈ {I, B, L, B−L, Y, Q_em, Farb-Cartan}.
+   - Ist der Index überall 0, kann P1 keine lokale, Higgs-verträgliche Materie-Clock sein. Die Windung muss dann im Eich- bzw. Nahtsektor liegen (Level von (E8)₁).
+   - Ist er ±1 für ein λ, ist das 18er-Problem gelöst.
+2. **T-A:** Am Original-Builder prüfen, ob irgendein anderes Paar (β, α) die Paritätsunabhängigkeit und die Selbstdualität erhält. Meine Rechnung sagt: nur (4π, ±1/4). Danach P1 testweise als S-Fixpunktbedingung umformulieren.
+3. **T-C:** In R085 die Klassen „frei, U = 0 (Generatorrelationen)“ und „verbunden, U ≠ 0“ getrennt führen. Holdout sind die Länge-5-Zweiteilchenwörter. Zuerst klären, ob die Originalquelle vor der H-Integration U = 0 liefert. R054 verlangt danach U ≠ 0.
+4. **T-D:** Den Transporttest aus Dokument 1 zusammen mit dem R080-Lokalitätstest ausführen. Ist die Original-Clock lokal, entscheidet T-B.
+
+Ich kann diese Konsolidierung samt Beweisskizzen und Prüfskripten auch als Doc anlegen, die du bearbeiten, teilen oder als Word/PDF herunterladen kannst.

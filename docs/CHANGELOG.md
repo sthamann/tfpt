@@ -4,6 +4,20 @@ Scientific findings, their original scope and dated publication history remain
 in the modular `changelog.tex` document. This file records repository structure,
 navigation and maintenance changes that make no new scientific claim.
 
+## 2026-11-03 — Publish the consolidated source research
+
+The public research inventory is regenerated from the reviewed Atlas authoring
+records with source hashes, bounded excerpts, explicit privacy omissions and a
+frozen input for reproducible public builds. Two already public native probes
+are admitted by exact path; the discovery/archive trees remain restricted.
+Non-scientific request attribution is removed from two derived display fields
+without changing their mathematical statements or scopes.
+
+The source contracts and shared plan/results are now shipped with the paper
+and website update. Scientific content and its limitations are recorded in the
+modular paper changelog and its single shared authored source supplement.
+Private Atlas caches and unrelated local working changes are not included.
+
 ## 2026-10-18 — Paper navigation in the shared Atlas
 
 The maintained local Atlas now imports the registry's exact document/section

@@ -153,7 +153,7 @@ Die gewährte Dynamik (Wörter aus X, N_b) liegt in der Verflechteralgebra (Dim 
 
 [documents/experiments--theory-contracts--universalraum-fable-kernfragen-20260910--fable-runde3--paper--tfpt_anschluss_zellen_seam_2026-09-14/sections/001-section-evidenzkonvention-und-abgrenzung.tex:20-26](../../../../documents/experiments--theory-contracts--universalraum-fable-kernfragen-20260910--fable-runde3--paper--tfpt_anschluss_zellen_seam_2026-09-14/sections/001-section-evidenzkonvention-und-abgrenzung.tex#L20) · `section:5926380330792d2bbe2b` · section
 
-Das Manuskript (Version 1.1) konstruiert auf den 60 Quellstrahlen des Compilers eine endliche Kette mit klassischem und quantenmechanischem Schatten, eine Vor-Messung mit Registern und ein ausdrücklich zusätzlich gesetztes Vierträger-Austauschmodell [formula in source] mit eindeutigem antisymmetrischem Grundzustand [formula in source] , Gap [formula in source] , dem Spektrum [formula in source] , [formula in source] 
+Das Manuskript (Version 1.1) konstruiert auf den 60 Quellstrahlen des Compilers eine endliche Kette mit klassischem und quantenmechanischem Schatten, eine Vor-Messung mit Registern und ein ausdrücklich zusätzlich gesetztes Vierträger-Austauschmodell [formula in source] mit eindeutigem antisymmetrischem Grundzustand [formula in source] , Gap [formula in source] , dem Spektrum [formula in source] , [formula in source]
 
 ## Kopplungsvereinigung mit dem quelleigenen Pati–Salam-Inhalt
 
@@ -886,7 +886,7 @@ All scales sit on the integer lattice spanned by two generators — the gauge un
 
 [documents/tfpt_1_architecture_e8/sections/008-source.tex:241-261](../../../../documents/tfpt_1_architecture_e8/sections/008-source.tex#L241) · `section:98d7438dbd43ec4fd921` · subsection
 
-Use the universal root-system identity [formula in source] (Coxeter number [formula in source] ). With the carrier values [formula in source] and [formula in source] , The Coxeter number of [formula in source] is exactly three families times the cosmological pair action: each family contributes one [formula in source] -decuple ( [formula in source] ) to the Coxeter period. Equivalently the action ladder is a Coxeter 
+Use the universal root-system identity [formula in source] (Coxeter number [formula in source] ). With the carrier values [formula in source] and [formula in source] , The Coxeter number of [formula in source] is exactly three families times the cosmological pair action: each family contributes one [formula in source] -decuple ( [formula in source] ) to the Coxeter period. Equivalently the action ladder is a Coxeter
 
 ## Closures that the architecture rests on
 
@@ -946,7 +946,7 @@ tocsectionMaster statement Five carrier slots give [formula in source] ,\ four f
 
 [documents/tfpt_2_standard_model/sections/001-part-the-standard-model-in-one-master-formula.tex:1-24](../../../../documents/tfpt_2_standard_model/sections/001-part-the-standard-model-in-one-master-formula.tex#L1) · `section:3b5318f0d65e3c120bab` · frontmatter
 
-The Standard Model as one [formula in source] -ladder mass formula (all masses, CKM, PMNS, neutrinos), the flavor matrix from parabolic transport on [formula in source] , the five worked closures ( [formula in source] , quark [formula in source] , the explicit mass gap, Starobinsky [formula in source] , the H2 splitting), and gravity/quantum gravity as the seam response (the Seam Response Grammar [formula in source] 
+The Standard Model as one [formula in source] -ladder mass formula (all masses, CKM, PMNS, neutrinos), the flavor matrix from parabolic transport on [formula in source] , the five worked closures ( [formula in source] , quark [formula in source] , the explicit mass gap, Starobinsky [formula in source] , the H2 splitting), and gravity/quantum gravity as the seam response (the Seam Response Grammar [formula in source]
 
 ## (1) Flavor residual — ratios closed combinatorially; only the absolute scale is the wall-selection [formula in source] /
 
@@ -1138,7 +1138,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 ## Status: what is now written out, and what is honestly left
 
-[documents/tfpt_2_standard_model/sections/011-subsection-seam-response-grammar-gravity-is-the-inverse-.tex:307-358](../../../../documents/tfpt_2_standard_model/sections/011-subsection-seam-response-grammar-gravity-is-the-inverse-.tex#L307) · `section:00b05ea692eac25e3d3e` · section
+[documents/tfpt_2_standard_model/sections/011-subsection-seam-response-grammar-gravity-is-the-inverse-.tex:307-360](../../../../documents/tfpt_2_standard_model/sections/011-subsection-seam-response-grammar-gravity-is-the-inverse-.tex#L307) · `section:00b05ea692eac25e3d3e` · section
 
 tocsectionStatus @p5.6cmcY@ Item & Status & Result \\ Dynamics / clustering (Lemma Gravity Fredholm (Lemma [formula in source] truncation (Lemma Starobinsky [formula in source] / [formula in source] & / & [formula in source] GeV exact ; [formula in source] a \ band over [formula in source] \\ [formula in source] typing (Prop. [formula in source] (Prop. quark [formula in source] -rationals & / & hierarchy + source rat
 
@@ -1355,13 +1355,13 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/tfpt_4_frontier/sections/001-source.tex:95-109](../../../../documents/tfpt_4_frontier/sections/001-source.tex#L95) · `section:84d26a09031108cede24` · paragraph
 
-The seed already fixes the baryon fraction (the [formula in source] decoder): [formula in source] matching the observed [formula in source] . The baryon-to-photon ratio is then the standard cosmological readout [formula in source] . With the TFPT Hubble value ( [formula in source] , from [formula in source] ), [formula in source] So [formula in source] is a downstream cosmological readout from the closed [formula in 
+The seed already fixes the baryon fraction (the [formula in source] decoder): [formula in source] matching the observed [formula in source] . The baryon-to-photon ratio is then the standard cosmological readout [formula in source] . With the TFPT Hubble value ( [formula in source] , from [formula in source] ), [formula in source] So [formula in source] is a downstream cosmological readout from the closed [formula in
 
 ## The Higgs quartic — near-criticality from the free seam
 
 [documents/tfpt_4_frontier/sections/001-source.tex:262-300](../../../../documents/tfpt_4_frontier/sections/001-source.tex#L262) · `section:cc7b2d0df421c394451c` · section
 
-The seam UV is the free chiral [formula in source] fixed point ( v158_fixed_point_stable.py): Gaussian, with no relevant and no marginal interactions. The Higgs self-coupling [formula in source] is the one marginal scalar coupling, so a free seam forces it to the Gaussian point there: [formula in source] the Shaposhnikov–Wetterich double-criticality condition — here derived from the free seam rather than postulated. 
+The seam UV is the free chiral [formula in source] fixed point ( v158_fixed_point_stable.py): Gaussian, with no relevant and no marginal interactions. The Higgs self-coupling [formula in source] is the one marginal scalar coupling, so a free seam forces it to the Gaussian point there: [formula in source] the Shaposhnikov–Wetterich double-criticality condition — here derived from the free seam rather than postulated.
 
 Explicit source references:
 
@@ -1537,7 +1537,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 ## Appendix: computational verification
 
-[documents/tfpt_4_frontier/sections/004-source.tex:198-213](../../../../documents/tfpt_4_frontier/sections/004-source.tex#L198) · `section:0c7b2f5d7f77f90fe85c` · section
+[documents/tfpt_4_frontier/sections/004-source.tex:200-215](../../../../documents/tfpt_4_frontier/sections/004-source.tex#L200) · `section:0c7b2f5d7f77f90fe85c` · section
 
 These are the frontier items: most carry \ (open) or \ (conditional) and are therefore not part of the pass/fail suite. The one quantitative handle that is reproduced is [formula in source] (whence the [formula in source] order) in verification/v7_gravity_cosmo.py. The [formula in source] structure and the gap-decoupling of the physical QG sector are machine-checked ( v28_gravity_fR.py, v36_spectral_action_g2.py); th
 
@@ -1641,7 +1641,7 @@ Für dieselbe geeignete Bulk-/Randquelle sei der chirale Zusammenhang [formula i
 
 [documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/011-subsection-bei-gr-erer-tiefe-reichen-vorzeichen-nicht-au.tex:140-144](../../../../documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/011-subsection-bei-gr-erer-tiefe-reichen-vorzeichen-nicht-au.tex#L140) · `section:1b7b8367dc194d85c806` · subsection
 
-Die ältere thermodynamische Dynamikarbeit enthält bereits Lieb–Robinson-Schranken, Zeitentwicklung, Gauss-Kompatibilität sowie Grundzustands-/KMS-Existenz für die dort spezifizierte lokale Hamiltonklasse mit endlichen Faktoren auf [formula in source] . Diese Ergebnisse werden hier nicht erneut als ungelöste reine Existenzfragen behandelt. Sie begründen aber auch nicht von selbst die ausgewählte räumliche [formula in 
+Die ältere thermodynamische Dynamikarbeit enthält bereits Lieb–Robinson-Schranken, Zeitentwicklung, Gauss-Kompatibilität sowie Grundzustands-/KMS-Existenz für die dort spezifizierte lokale Hamiltonklasse mit endlichen Faktoren auf [formula in source] . Diese Ergebnisse werden hier nicht erneut als ungelöste reine Existenzfragen behandelt. Sie begründen aber auch nicht von selbst die ausgewählte räumliche [formula in
 
 ## Warum eine endliche Projektion Gedächtnis verliert
 
@@ -1665,7 +1665,7 @@ Für bekannte endliche lineare Dynamiken sind die Bedingungen konkret. Ein Encod
 
 [documents/tfpt_horizon_readouts/sections/001-section-the-seam-constant-is-the-universal-horizon-tempe.tex:1-63](../../../../documents/tfpt_horizon_readouts/sections/001-section-the-seam-constant-is-the-universal-horizon-tempe.tex#L1) · `section:0d5c0120adefeb817d59` · frontmatter
 
-A change of bookkeeping, not new gravitational physics: if gravity is the geometry-channel readout of the seam, then all horizons read the same boundary constant [formula in source] . This note collects the readouts — Hawking, de Sitter and Unruh temperature, black-hole thermodynamics, the Page time, scrambling, the Nariai bound, [formula in source] and cosmic birefringence — in seam units, with two genuine compiler 
+A change of bookkeeping, not new gravitational physics: if gravity is the geometry-channel readout of the seam, then all horizons read the same boundary constant [formula in source] . This note collects the readouts — Hawking, de Sitter and Unruh temperature, black-hole thermodynamics, the Page time, scrambling, the Nariai bound, [formula in source] and cosmic birefringence — in seam units, with two genuine compiler
 
 Explicit source references:
 
@@ -1706,7 +1706,7 @@ With the action-grammar Hubble/ [formula in source] readouts ( [formula in sourc
 
 [documents/tfpt_horizon_readouts/sections/002-section-turnaround-radius-gravitational-waves-light.tex:342-353](../../../../documents/tfpt_horizon_readouts/sections/002-section-turnaround-radius-gravitational-waves-light.tex#L342) · `section:f14cd99bec2b5b92a146` · section
 
-The seam-unit identities of this note (the thermal grammar [formula in source] , the power denominator [formula in source] , the de Sitter entropy form, the Page fraction, the scrambling [formula in source] , and [formula in source] ) are re-derived and machine-checked in verification/v8_horizon.py. Run python verification/v8_horizon.py (needs mpmath); it imports the same [formula in source] primitive as the rest of 
+The seam-unit identities of this note (the thermal grammar [formula in source] , the power denominator [formula in source] , the de Sitter entropy form, the Page fraction, the scrambling [formula in source] , and [formula in source] ) are re-derived and machine-checked in verification/v8_horizon.py. Run python verification/v8_horizon.py (needs mpmath); it imports the same [formula in source] primitive as the rest of
 
 Explicit source references:
 

@@ -4,6 +4,16 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## 1. Reproduktion
+
+[documents/experiments--theory-contracts--universalraum-singlet-observable-20260915--tmp--pdfs--TFPT_Universalraum_Richtige_Kette_Konsolidierung_2026-09-15_v1.6.7/sections/007-section-anhang-a-quellenpr-fung-symmetrie-und.tex:12-73](../../../../documents/experiments--theory-contracts--universalraum-singlet-observable-20260915--tmp--pdfs--TFPT_Universalraum_Richtige_Kette_Konsolidierung_2026-09-15_v1.6.7/sections/007-section-anhang-a-quellenpr-fung-symmetrie-und.tex#L12) · `section:0d757e0e39d27b470e10` · subsection
+
+Alle drei Programme wurden vollständig gelesen und anschließend in isolierten Kopien ausgeführt. Die relevanten Tensoren wurden an ihre von den unveränderten Programmen erwarteten relativen Orte kopiert. Normaler und optimierter Lauf reproduzieren jeweils die gelieferten Ergebnisdateien byteidentisch, ohne Standardfehlerausgabe:
+
+Explicit source references:
+
+- [experiments/theory-contracts/universalraum-clock-origin-20260915/agents/symmetry_audit/check_scope.py](../../../../experiments/theory-contracts/universalraum-clock-origin-20260915/agents/symmetry_audit/check_scope.py#L1) · explicit_file_citation
+
 ## 2. Bestätigte Mathematik
 
 [documents/experiments--theory-contracts--universalraum-singlet-observable-20260915--tmp--pdfs--TFPT_Universalraum_Richtige_Kette_Konsolidierung_2026-09-15_v1.6.7/sections/007-section-anhang-a-quellenpr-fung-symmetrie-und.tex:74-124](../../../../documents/experiments--theory-contracts--universalraum-singlet-observable-20260915--tmp--pdfs--TFPT_Universalraum_Richtige_Kette_Konsolidierung_2026-09-15_v1.6.7/sections/007-section-anhang-a-quellenpr-fung-symmetrie-und.tex#L74) · `section:85142be72ce3d6468a74` · subsection
@@ -212,7 +222,7 @@ Der Clock-Ausschluss allein wäre zu schwach. Die Orbitsumme
 
 [documents/experiments--theory-contracts--universalraum-singlet-observable-20260915--tmp--pdfs--TFPT_Universalraum_Richtige_Kette_Konsolidierung_2026-09-15_v1.6.7/sections/010-subsubsection-6-3-clock-mittelung-ist-m-glich-aber-der-f.tex:67-86](../../../../documents/experiments--theory-contracts--universalraum-singlet-observable-20260915--tmp--pdfs--TFPT_Universalraum_Richtige_Kette_Konsolidierung_2026-09-15_v1.6.7/sections/010-subsubsection-6-3-clock-mittelung-ist-m-glich-aber-der-f.tex#L67) · `section:6481640a7c15c08472e1` · subsubsection
 
-Für den hier exakt spezifizierten Zeugen fehlt mindestens eine Operation, die nicht mit dem betrachteten Farb-Cartan des ursprünglichen Systems kommutiert, oder eine aus einer erweiterten globalen Quelle abgeleitete Kopplung mit einer expliziten Ausgleichsressource für diese Cartanladung. Ein zusätzlicher aktiver SU(4)-Generator wäre ein neuer Operationsvertrag; außerdem bewegt sein simultaner Fermion-/Boson-Lift im 
+Für den hier exakt spezifizierten Zeugen fehlt mindestens eine Operation, die nicht mit dem betrachteten Farb-Cartan des ursprünglichen Systems kommutiert, oder eine aus einer erweiterten globalen Quelle abgeleitete Kopplung mit einer expliziten Ausgleichsressource für diese Cartanladung. Ein zusätzlicher aktiver SU(4)-Generator wäre ein neuer Operationsvertrag; außerdem bewegt sein simultaner Fermion-/Boson-Lift im
 
 ## Reproduktion und Status
 
@@ -638,9 +648,3 @@ Erweitere jede W-Zeile zur antisymmetrischen Matrix [formula in source] mit [for
 [documents/experiments--theory-contracts--universalraum-singlet-observable-20260915--tmp--pdfs--TFPT_Universalraum_Richtige_Kette_Konsolidierung_2026-09-15_v1.6.7/sections/015-subsection-1-ergebnis-in-einem-satz-label-ergebnis-in-ei.tex:212-248](../../../../documents/experiments--theory-contracts--universalraum-singlet-observable-20260915--tmp--pdfs--TFPT_Universalraum_Richtige_Kette_Konsolidierung_2026-09-15_v1.6.7/sections/015-subsection-1-ergebnis-in-einem-satz-label-ergebnis-in-ei.tex#L212) · `section:1a69a383ac54acf54364` · subsection
 
 Die innere Symmetrie macht G diagonal und alle Diagonalelemente gleich. Schreibe mit positiven Entnahme- und Additionsmaßen auf [formula in source]
-
-## 5.1 Herleitung des dritten Moments
-
-[documents/experiments--theory-contracts--universalraum-singlet-observable-20260915--tmp--pdfs--TFPT_Universalraum_Richtige_Kette_Konsolidierung_2026-09-15_v1.6.7/sections/015-subsection-1-ergebnis-in-einem-satz-label-ergebnis-in-ei.tex:249-277](../../../../documents/experiments--theory-contracts--universalraum-singlet-observable-20260915--tmp--pdfs--TFPT_Universalraum_Richtige_Kette_Konsolidierung_2026-09-15_v1.6.7/sections/015-subsection-1-ergebnis-in-einem-satz-label-ergebnis-in-ei.tex#L249) · `section:d249a82d3fb9d46b7ae8` · subsubsection
-
-Setze [formula in source] . Stationarität macht diesen Operator symmetrisch in der positiven, nach Nullvektoren quotientierten Metrik [formula in source] . Direkte Normalordnung ergibt

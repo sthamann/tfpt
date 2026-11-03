@@ -1,0 +1,199 @@
+H: INDEPENDENT REVIEW OF THE WHOLE THERMAL EUCLIDEAN SOURCE
+2 November2026. relational_logic. Canonical unchanged.
+
+VERDICT
+
+The proposed construction is correct for the ACTUAL v1013 bounded local
+Hamiltonian class, at each given beta>0, with the qualifications below.
+It constructs ALL finite ordered Euclidean words and their entire bounded
+source functional, with a positive reflected half-circle word kernel.
+It uses the same Hamiltonians, dynamics and selected weak-* subnet state;
+there is no new measure, new spacetime or independently chosen interaction.
+
+Three precision corrections are necessary:
+ (i) v1013 itself uses ambient finite Gibbs traces, then A^G restriction.
+     A Gauss-projected Gibbs construction is also covered if [P,H]=0 and
+     the physical insertions commute with P, but can select another state.
+ (ii) With tau_t(A)=exp(itH)A exp(-itH), the latest-left Schwinger trace
+     below uses tau_(-is), not tau_(+is) in that same order.
+ (iii) RP is the CANONICAL thermal reflection s->beta-s with adjoint and
+     word reversal. Identifying it with a separate P1 seam Theta is not
+     automatic from v1013. The full-source/master identity is not claimed.
+
+1. THE FINITE COMPLETE WORD AND ITS UNIFORM BOUND
+
+For precisely the original finite H_Lambda, put
+ rho_Lambda=exp(-beta H_Lambda)/Tr exp(-beta H_Lambda).
+For 0<=s1<=...<=sk<=beta define
+
+ S_Lambda(Ak,sk;...;A1,s1)
+ =Tr[ exp(-(beta-sk)H) Ak exp(-(sk-s(k-1))H) ...
+                        A1 exp(-s1 H)] / Z_Lambda.       (1)
+
+All other original finite terms in H are retained. Constant energy shifts
+cancel in this normalized expression; this does not delete their actual
+unnormalized partition factors from another caller.
+
+Let a0=(beta-sk)/beta, a1=(sk-s(k-1))/beta,...,ak=s1/beta.
+They are nonnegative and sum to1. Expression(1) is
+ Tr[rho^a0 Ak rho^a1 ... A1 rho^ak]. Schatten Holder with
+ ||rho^a||_(1/a)=1 and ||Ai||_infinity=||Ai|| gives exactly
+
+ |S_Lambda(Ak,...,A1)| <= PRODUCT_i ||Ai||.               (2)
+
+For zero a use the infinity norm of the identity. Thus coincident times
+and the closed endpoints are included; keep their specified word order.
+Multilinearity and telescoping also give
+ |S_Lambda(A)-S_Lambda(B)|
+ <=SUM_j ||Aj-Bj|| PRODUCT_(i!=j) max(||Ai||,||Bi||).       (3)
+These bounds are independent of volume and of the extensive energy norm.
+No spectral gap, unbounded moment estimate or positive classical ghost
+measure is used.
+
+For the projected physical trace, replace the trace space by P_Lambda H
+and H by its restriction. Equations(1)–(3) remain exact if P is an
+orthogonal original projection with [P,H]=[P,Ai]=0 and P H is nonzero.
+Alternatively embed its density P exp(-beta H)/Tr(P exp(-beta H)) in the
+ambient matrix algebra. Do not tensor-embed projected physical spaces.
+The actual original v1013 equations4.1–4.3 use the consistent algebra A^G;
+equation5.2 is its separate ambient Gibbs construction. Both callers must
+retain their own subnet state and normalization.
+
+2. GAUSSIAN SMEARING CLOSES THE COMPLEX-TIME STEP
+
+For a fixed bounded original local A, finite range and the fixed original
+interaction give
+ C_A=sup_Lambda ||delta_Lambda(A)||<infinity,
+for example C_A<=2|supp A| kappa ||A|| using the original interaction bound.
+Hence ||tau_t^Lambda(A)-A||<=C_A |t| uniformly in Lambda.
+Set
+ g_e(t)=(4pi e)^(-1/2) exp(-t^2/(4e)),
+ A_e,Lambda=int g_e(t)tau_t^Lambda(A)dt.
+Then
+
+ ||A_e,Lambda-A||<=2 C_A sqrt(e/pi),
+ ||A_e,Lambda||<=||A||.                                  (4)
+
+For each FIXED e>0 its entire analytic continuation has the exact formula
+
+ tau_z^Lambda(A_e,Lambda)
+    =int g_e(t-z)tau_t^Lambda(A)dt.                       (5)
+
+The existing real-time compact-uniform norm convergence from v1013,
+the bound ||tau_t^Lambda(A)||=||A||, and the Gaussian tails imply norm
+convergence in(5), uniformly for z in every compact strip subset.
+For |Im z|<=beta its L1 kernel norm is <=exp(beta^2/(4e)).
+This constant may diverge as e->0; NO bound uniform in e is needed.
+The order of limits is fixed e first, thermodynamic limit second,
+and unsmearing last.
+
+The sign/order identity for(1), using precisely v1013's real-time convention,
+is
+ S_Lambda =omega_Lambda( tau_(-isk)^Lambda(Ak) ...
+                                      tau_(-is1)^Lambda(A1)). (6)
+For smeared Ai, all factors in(6) converge in norm by(5). The SAME
+weak-* convergent state subnet therefore gives the limit of their
+complete product. No assumption about norm convergence of UNSMEARED
+imaginary-time operators is made.
+
+Now use(3) and(4) to bound the difference between the original Schwinger
+word and its smeared word uniformly in Lambda by a constant times sqrt(e).
+The limiting smeared words consequently form a Cauchy family as e->0.
+The usual three-term error bound proves convergence of the ORIGINAL
+unsmeared words along the same thermodynamic subnet.
+
+This proves the limit for EVERY fixed ordered word. It also gives uniform
+convergence on the closed ordered-time simplex for each fixed tuple Ai:
+for fixed e the analytic product's time-image is norm compact, and weak-*
+convergence of uniformly bounded states is uniform on such compact sets;
+the unsmearing estimate is already independent of the times. No extra
+word-wise choice of subnet is required once the original state subnet is
+fixed. Nonuniqueness of that thermodynamic state is not erased.
+
+3. THE REFLECTED WORD GRAM IS AN EXACT SQUARE
+
+For a positive half-circle word F=(A1,s1;...;Ak,sk),
+ 0<=s1<=...<=sk<=beta/2, define the finite transfer amplitude
+
+ X_Lambda(F)=exp(-(beta/2-sk)H) Ak exp(-(sk-s(k-1))H)...
+                                               A1 exp(-s1 H).
+For the empty word use X_Lambda(1)=exp(-beta H/2).
+Reflect by beta-s, replace each insertion by its adjoint, and keep the
+induced reversed word order. The complete reflected mixed Schwinger word
+is exactly
+
+ K_Lambda(F,G)=Tr[X_Lambda(F)^* X_Lambda(G)]/Z_Lambda.       (7)
+
+Thus for every finite set of original words and complex coefficients,
+ SUM_ij conjugate(c_i)c_j K_Lambda(F_i,F_j)
+       =||SUM_j c_j X_Lambda(F_j)||_2^2/Z_Lambda >=0.      (8)
+
+Every entry is one of the convergent complete Euclidean words from
+section2. Passing to the SAME subnet limit in this finite sum proves RP
+of the entire limiting half-circle word kernel. Coincident-time order
+and the endpoints remain the original ones in(7).
+
+Equations(7)–(8) need no physical time-reversal symmetry of H. They use
+selfadjointness, the thermal trace and adjoint reflection. They establish
+thermal-circle RP, not zero-temperature vacuum spectral positivity or
+four-dimensional Euclidean covariance.
+
+Use(7) directly on the actual even physical observable algebra. With odd
+fermion fields, their graded Euclidean time ordering and original reflected
+adjoint/twist must be transported consistently before applying the square.
+One may not add fermionic permutation signs to(1) but leave the reflection
+untwisted and then call it the same Gram. The ordinary even physical
+algebra theorem is already complete for that original scope; it does not
+postulate a positive ghost or Grassmann configuration measure.
+
+4. FULL BOUNDED EUCLIDEAN SOURCE, NOT A FINITE MOMENT BATTERY
+
+For a finite list of these original bounded local source directions and
+integrable time profiles, integrate the ordered coefficients(1) over their
+time simplexes to form the full Euclidean ordered source series. Put
+ M=int_0^beta SUM_j |J_j(s)| ||Aj|| ds.
+Equation(2) bounds its degree-k term by M^k/k!. Hence the full series is
+entire in these source parameters with volume-independent majorant e^M.
+Coefficientwise convergence from section2 and this majorant give the
+complete limiting Euclidean source and all its ordered source derivatives.
+The RP Gram also extends to the corresponding positive-half source
+exponentials by this absolute series convergence.
+
+This source uses the original bounded finite-local-dimension Hamiltonian
+class. There is no additional unbounded-field UI premise for these actual
+operators. Original external unnormalized relative factors, if attached
+by another caller, remain attached; the normalized Gibbs construction
+does not determine or reset an independent original Z_rel[0].
+
+5. ORIGINAL AND PRIMARY EVIDENCE
+
+Actual original dynamics, Gaussian KMS passage and Gauss consistency:
+ documents/articles--2026-08-30--tfpt_thermodynamic_dynamics_en/
+ sections/001-section-the-concrete-uniformly-local-class.tex:225–362,
+ paper-source:4cc6102a923009e972617edc,
+ SHA2569f53a07911c9e2e8f6b2f594b7c154f5a8dc0faeb2e9a429cc04a229cc6f4294.
+ sections/002-section-existence-of-equilibrium-states.tex:1–62,
+ paper-source:d5493e3dbebe594aa35c7b65,
+ SHA25632dea10dc2686956bf07afc299b9ebd65c7dd25b39783a1bf87579a87d9056c0.
+Both source ranges were independently read through validated read_source.
+
+Primary literature confirmation of the thermal KMS/circle-RP distinction:
+ Neeb and Olafsson, Reflection positivity for the circle group,
+ section5, Proposition5.2 and Remark5.3:
+ https://arxiv.org/pdf/1411.2439 .
+It formulates the strip boundary relation on sesquilinear forms and
+derives circle RP for selfadjoint insertion directions. It does not turn
+this into a higher-dimensional interacting-field theorem. The complete
+finite-word proof(1)–(8) above was checked directly, rather than inferred
+from a two-point statement in that paper.
+
+REVIEW SCOPE
+
+This is a positive complete thermal Euclidean functional and RP kernel
+for the same original Hamiltonian class. The selected ambient v1013 KMS
+state and the separately constructed physical-Gauss state are kept
+distinct. The actual original S_adm/master equality, P1 reflection
+dictionary, phase uniqueness and controlled IR universality are not
+asserted by this theorem. An a->0 continuum limit is not introduced as a
+universal requirement; the original lattice-fundamental decision remains.
+No numerical harness, different source model or canonical edit was used.

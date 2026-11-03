@@ -8,7 +8,7 @@ Exact ledger statuses remain at the linked original rows and in registry.json. C
 
 [tex-artefacts/toe_round4_proofs.tex:9-22](../../../../tex-artefacts/toe_round4_proofs.tex#L9) · `section:9e0ba325fdce5ca83fef` · paragraph
 
-SEAM.MMST.TELB.NORM.01. For the frozen [formula in source] , [formula in source] collar, the original remainder obeys [formula in source] The interval inputs are v1022 (TV and potential), v1025 (C1/C2a), and v1026_ telb_ round4_ closure.py (CF, DG, signed CROSS, validated Fourier core and all-volume aliases). This is not a proof of the historical sharper [formula in source] or Bound-B target [formula in source] . In 
+SEAM.MMST.TELB.NORM.01. For the frozen [formula in source] , [formula in source] collar, the original remainder obeys [formula in source] The interval inputs are v1022 (TV and potential), v1025 (C1/C2a), and v1026_ telb_ round4_ closure.py (CF, DG, signed CROSS, validated Fourier core and all-volume aliases). This is not a proof of the historical sharper [formula in source] or Bound-B target [formula in source] . In
 
 Explicit source references:
 
@@ -120,6 +120,58 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 - [(* v1033: exact Z4 deck algebra and the load-bearing weight mismatch. *) z4 = DiagonalMatrix[{1, I, -1, -I}]; x4 = Sum[SparseArray[{{Mod[col, 4] + 1, col} -> 1}, {4, 4}], {col, 1, 4}]; check["v1033 local flux register is an exact Z4 Weyl pair", zeroQ[MatrixPower[z4, 4] - IdentityMatrix[4]] && zeroQ[MatrixPower[x4, 4] - IdentityMatrix[4]] && zeroQ[z4.x4.ConjugateTranspose[z4] - I x4]]; qDeck = ConstantArray[1/4, 8]; check["v1033 common quarter deck charge has norm 1/2 and h=1/4", qDeck.qDeck === 1/2 && qDeck.qDeck/2 === 1/4]; omegaS = ConstantArray[1/2, 5]; omegaF = Join[{3/4}, ConstantArray[-1/4, 3]]; lambdaNorm2 = omegaS.omegaS + omegaF.omegaF; check["v1033 D5+A3 lambda has h=1, distinct from deck h=1/4", omegaS.omegaS === 5/4 && omegaF.omegaF === 3/4 && lambdaNorm2 === 2 && lambdaNorm2/2 === 1 && lambdaNorm2/2 =!= qDeck.qDeck/2]; (* v1034: exact source parent envelope. The source's 3/5 is a dispersion amplitude; a standard symmetric NN bond has half of it. *)](../../../../verification/wolfram/tfpt_round7.wl#L141)
 
+## Shared source and transfer update: 3 November 2026
+
+[tex-artefacts/toe_source_completion_20261103.tex:4-26](../../../../tex-artefacts/toe_source_completion_20261103.tex#L4) · `section:5bb11b878db66b765225` · section
+
+The original structured boundary source, its common action and the [formula in source] chain are retained. Several complete source calls, field maps and transfer kernels have now been evaluated in their stated classes. These results include conditional charge and metric selection, physical Gauss-sector sources, vacuum and ground-source reconstruction, and a complete fixed-background Clifford kernel. The primitive spa
+
+## The common source and the corrected starting point (C, F, G)
+
+[tex-artefacts/toe_source_completion_20261103.tex:27-75](../../../../tex-artefacts/toe_source_completion_20261103.tex#L27) · `section:066fe20f4d09268f3d38` · subsection
+
+P1 is a structured reflection-positive boundary kernel, not merely the number [formula in source] . The operational seed already supplies its local algebra, state, time, reflection and collar operator. The original source route is [formula in source] Each arrow retains its actual hypotheses and operator domains. A particular eightfold CAR/native-clock reconstruction is an available conditional route, not a global ext
+
+## Charge geometry and the actual clock completion (A, B)
+
+[tex-artefacts/toe_source_completion_20261103.tex:76-127](../../../../tex-artefacts/toe_source_completion_20261103.tex#L76) · `section:5d7a3f5da35a8ba21a7a` · subsection
+
+For the four-punctured family surface, [formula in source] With the declared root normalization, the meridians form the [formula in source] side, their differences the [formula in source] root side. All four meridians have the same discriminant class. A cyclic permutation of the marked points therefore acts trivially on that discriminant; it is not translation through the four glue classes. The earlier literal fourfo
+
+## Source and reproducibility route
+
+[tex-artefacts/toe_source_completion_20261103.tex:489-532](../../../../tex-artefacts/toe_source_completion_20261103.tex#L489) · `section:5a9ea639ada21fb1a3c4` · subsection
+
+The dated report labels resolve through docs/research/fundamental-plan/RESULTS.md and the synthesis docs/research/fundamental-plan/CONSOLIDATION-R110-20261103.md. The main proof owners are: A and B: experiments/theory-contracts/puncture-metric-joint-completion-20261102/PROOF.txt and experiments/theory-contracts/joint-source-clock-field-closure-20261102/PROOF.txt. C: experiments/theory-contracts/original-paper-source-
+
+Explicit source references:
+
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/VARIABLE-BACKGROUND-PROOF.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/VARIABLE-BACKGROUND-PROOF.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/GROUND-SOURCE.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/GROUND-SOURCE.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/joint-source-clock-field-closure-20261102/PROOF.txt](../../../../experiments/theory-contracts/joint-source-clock-field-closure-20261102/PROOF.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/LARGER-CHARGED-SOURCE-EVALUATION.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/LARGER-CHARGED-SOURCE-EVALUATION.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/ZERO-FREE-JOINT.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/ZERO-FREE-JOINT.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/SEED-FIELD.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/SEED-FIELD.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/SHARED-METRIC-SOURCE.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/SHARED-METRIC-SOURCE.txt#L1) · explicit_file_citation
+- [docs/research/fundamental-plan/RESULTS.md](../../../../docs/research/fundamental-plan/RESULTS.md#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-paper-source-reconciliation-20261102/AUDIT.txt](../../../../experiments/theory-contracts/original-paper-source-reconciliation-20261102/AUDIT.txt#L1) · explicit_file_citation
+- [docs/research/fundamental-plan/CONSOLIDATION-R110-20261103.md](../../../../docs/research/fundamental-plan/CONSOLIDATION-R110-20261103.md#L1) · explicit_file_citation
+- [experiments/theory-contracts/puncture-metric-joint-completion-20261102/PROOF.txt](../../../../experiments/theory-contracts/puncture-metric-joint-completion-20261102/PROOF.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/FULL-SOURCE-CORRECTION.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/FULL-SOURCE-CORRECTION.txt#L1) · explicit_file_citation
+- [verification/v1027_signed_det_car_wall.py](../../../../verification/v1027_signed_det_car_wall.py#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/PHYSICAL-THERMAL-SOURCE.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/PHYSICAL-THERMAL-SOURCE.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/TRANSFER-EXTRACTION.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/TRANSFER-EXTRACTION.txt#L1) · explicit_file_citation
+- [verification/v1002_spin10_mirror_projector.py](../../../../verification/v1002_spin10_mirror_projector.py#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/ZERO-FREE-ORIGIN.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/ZERO-FREE-ORIGIN.txt#L1) · explicit_file_citation
+- [verification/v252_full_finite_triple.py](../../../../verification/v252_full_finite_triple.py#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/PAIRED-DYSON-PROOF.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/PAIRED-DYSON-PROOF.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/REFERENCE-SOURCE-COMPLETION.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/REFERENCE-SOURCE-COMPLETION.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/SOURCE-GENERATOR-RESIDUAL-20261103.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/SOURCE-GENERATOR-RESIDUAL-20261103.txt#L1) · explicit_file_citation
+
+Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
+
+- [(* v1027: exact signed-wall determinant and unsquared low branch. *) {a, delta, lambda, g} = Unique /@ {"a", "delta", "lambda", "g"}; mass = delta + lambda; beta = lambda g^2; eta = lambda g; c = beta - eta^2/mass; h = {{a + beta a^2, eta a}, {eta a, mass}}; check["v1027 signed determinant M a (1+c a)", Together[Det[h] - mass a (1 + c a)] === 0]; check["v1027 physical kernel remains one-dimensional at a=0", NullSpace[h /. a -> 0] === {{1, 0}}]; (* v1028: exact characteristic-five reduction of the full 192-mode one-site character. P^12 == P^2 P(z^5)^2 mod 5 is evaluated by coefficient dictionaries, never by floating group quadrature. *)](../../../../verification/wolfram/tfpt_round4.wl#L28)
+
 ## Exact access results in the local quadratic candidate
 
 [tex-artefacts/toe_universalraum_synthesis_20260912.tex:173-215](../../../../tex-artefacts/toe_universalraum_synthesis_20260912.tex#L173) · `section:aa533949572e21b4b89f` · subsection
@@ -130,7 +182,7 @@ For the pinned real matrices, [formula in source] the real ranks are ten and six
 
 [tex-artefacts/toe_universalraum_synthesis_20260912.tex:216-252](../../../../tex-artefacts/toe_universalraum_synthesis_20260912.tex#L216) · `section:2b3701d613b9b04d510e` · subsection
 
-Let [formula in source] be the Hermitian one-particle lift of the existing edge [formula in source] . It obeys [formula in source] . Define [formula in source] This is a covariant, trace-preserving completely positive map. Averaging the Hamiltonians first instead preserves the [formula in source] split. The two operations must not be confused. For the invariant hidden one-particle state [formula in source] , writing 
+Let [formula in source] be the Hermitian one-particle lift of the existing edge [formula in source] . It obeys [formula in source] . Define [formula in source] This is a covariant, trace-preserving completely positive map. Averaging the Hamiltonians first instead preserves the [formula in source] split. The two operations must not be confused. For the invariant hidden one-particle state [formula in source] , writing
 
 ## Arithmetic bridges, acceptance gates and provenance
 
@@ -150,7 +202,7 @@ Explicit source references:
 
 [tex-artefacts/toe_universalraum_synthesis_20260912.tex:379-387](../../../../tex-artefacts/toe_universalraum_synthesis_20260912.tex#L379) · `section:6727615a78ca0e90e90d` · paragraph
 
-For a source-derived intervention, compare admissible preparations with the same initial accessible marginal at the original boundary. Bound the remainder in the conditional [formula in source] signal on an explicit finite time interval, and include preparation energy, precision and sampling costs. Preserve the no-intervention control. Exact cyclic rank alone is not successful physical control, and arbitrarily small 
+For a source-derived intervention, compare admissible preparations with the same initial accessible marginal at the original boundary. Bound the remainder in the conditional [formula in source] signal on an explicit finite time interval, and include preparation energy, precision and sampling costs. Preserve the no-intervention control. Exact cyclic rank alone is not successful physical control, and arbitrarily small
 
 ## F5: Source-to-model maps.
 
@@ -531,7 +583,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_4_origin_theory.tex:1166-1454](../../../../universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_4_origin_theory.tex#L1166) · `section:4e5537e69e05316e0599` · section
 
-The precise reformulation ( ). The seam is not identical to an event horizon. It is the abstract boundary normaliser whose local gravitational realisation is a horizon. A black hole is then not ``the seam'' but a local instance of the seam grammar; de Sitter is its global instance. This is stronger and cleaner than a direct identification — it avoids importing Schwarzschild analogies wholesale, and it makes [formula 
+The precise reformulation ( ). The seam is not identical to an event horizon. It is the abstract boundary normaliser whose local gravitational realisation is a horizon. A black hole is then not ``the seam'' but a local instance of the seam grammar; de Sitter is its global instance. This is stronger and cleaner than a direct identification — it avoids importing Schwarzschild analogies wholesale, and it makes [formula
 
 Explicit source references:
 
@@ -807,7 +859,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_5_tfpt_3_e8_audit_bootstrap.tex:12215-12225](../../../../universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_5_tfpt_3_e8_audit_bootstrap.tex#L12215) · `section:6cbdf01f901e64cc2b62` · part
 
-The question, and the honest answer. The theory rests on two inputs, [formula in source] and [formula in source] . The old theory had a Möbius seam and the seed was the start of the [formula in source] cascade. Run it backwards: can the cascade/ [formula in source] return [formula in source] and [formula in source] , closing a self-consistent loop? Answer: the discrete content is a closed, overdetermined fixed point 
+The question, and the honest answer. The theory rests on two inputs, [formula in source] and [formula in source] . The old theory had a Möbius seam and the seed was the start of the [formula in source] cascade. Run it backwards: can the cascade/ [formula in source] return [formula in source] and [formula in source] , closing a self-consistent loop? Answer: the discrete content is a closed, overdetermined fixed point
 
 ## The loop for [formula in source] — the `` [formula in source] '' is the [formula in source] rank
 

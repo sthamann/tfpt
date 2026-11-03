@@ -1,0 +1,180 @@
+TFPT scientific source excerpt
+Original repository path: documents/archive--tfpt-45--source_extracts--04_qft_source/sections/007-subsection-renormalized-physical-and-scheme-readout-laye.tex
+Original file SHA-256: 9c1c587cbd61fc4034649d778d16f1ee0e8c1e1189885babb3d8148a6fe72d7c
+Inclusive original lines: 201-372
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000201 | 
+000202 | \begin{definition}[Scheme observable category]
+000203 | \label{def:obs-category}
+000204 | Let $\OschemeTFPT$ denote the category whose objects are triples
+000205 | \[
+000206 | \mathcal O_{\mathrm{scheme}}=(v,\Sigma,\mathcal D),
+000207 | \]
+000208 | where $v$ is a scheme-specified representative of a physical observable package, $\Sigma$ its
+000209 | declared covariance data, and $\mathcal D$ the induced dependency DAG. Morphisms are smooth
+000210 | covariance-preserving reparameterizations respecting $\mathcal D$.
+000211 | \end{definition}
+000212 | 
+000213 | \begin{definition}[Canonical readout hierarchy]
+000214 | \label{def:canonical-measurement-orbit}
+000215 | Define the functors
+000216 | \[
+000217 | \Rren:\mathbf{TFPT}^{\mathrm{rig}}\to\GrenTFPT,
+000218 | \qquad
+000219 | \Mphys:\GrenTFPT\to\OphysTFPT,
+000220 | \qquad
+000221 | \Mscheme:\OphysTFPT\to\OschemeTFPT/\SchGrp.
+000222 | \]
+000223 | For every scheme object $s\in\SchGrp$, let
+000224 | \[
+000225 | \Mscheme^{(s)}\bigl(\Mphys(\Rren(\Tstar))\bigr)\in\OschemeTFPT
+000226 | \]
+000227 | be the chosen scheme representative. The canonical appendix comparison orbit is
+000228 | \[
+000229 | [\Mop(\Tstar)]_{\SchGrp}
+000230 | :=
+000231 | \Mscheme\bigl(\Mphys(\Rren(\Tstar))\bigr)
+000232 | \in \OschemeTFPT/\SchGrp,
+000233 | \]
+000234 | and the appendix comparison map is any chosen representative
+000235 | \[
+000236 | \Rcmp^{(s)}(\Tstar):=
+000237 | \Mscheme^{(s)}\bigl(\Mphys(\Rren(\Tstar))\bigr).
+000238 | \]
+000239 | \end{definition}
+000240 | 
+000241 | \begin{definition}[Minimal independent observable basis]
+000242 | \label{def:minimal-observable-basis}
+000243 | Define the minimal independent basis package
+000244 | \[
+000245 | \Bind(\Tstar):=
+000246 | \bigl(
+000247 | C_{\mathrm{em}},
+000248 | K_{\mathrm{UV}},
+000249 | F_{\mathrm{fl}},
+000250 | N_{\nu},
+000251 | R_{\mathrm{CS}},
+000252 | T_{\mathrm{phys}},
+000253 | C_{\mathrm{cos}},
+000254 | C_{\mathrm{CP}}
+000255 | \bigr),
+000256 | \]
+000257 | where
+000258 | \[
+000259 | C_{\mathrm{em}}:=\alpha^{-1}(0),
+000260 | \qquad
+000261 | K_{\mathrm{UV}}:=\phiz,
+000262 | \qquad
+000263 | F_{\mathrm{fl}}:=(\lambda_C,\delta_{\mathrm{CKM}}),
+000264 | \qquad
+000265 | R_{\mathrm{CS}}:=\beta,
+000266 | \qquad
+000267 | C_{\mathrm{CP}}:=\theta_{\mathrm{eff}},
+000268 | \]
+000269 | \[
+000270 | N_{\nu}:=(\sin^2\theta_{13},\delta_{\mathrm{CP}}^\nu,\sin^2\theta_{23},\Sigma m_\nu,m_{\beta\beta},M_R),
+000271 | \]
+000272 | \[
+000273 | T_{\mathrm{phys}}
+000274 | :=
+000275 | \bigl(
+000276 | G_F^{\mathrm{TFPT}},
+000277 | m_W^{\mathrm{pole}},
+000278 | m_Z^{\mathrm{pole}},
+000279 | m_H^{\mathrm{pole}},
+000280 | \{m_f^{\mathrm{pole}}\}_f
+000281 | \bigr),
+000282 | \]
+000283 | \[
+000284 | C_{\mathrm{cos}}
+000285 | :=
+000286 | \bigl(
+000287 | \Omega_b,S_\Sigma,\Lambda_{\mathrm{IR}},T_R,f_a,m_a,\nu_a,\eta_B
+000288 | \bigr).
+000289 | \]
+000290 | The retained seed $K_{\mathrm{UV}}=\phiz$ is part of the UV kernel package; it is no longer the
+000291 | direct basis package of the flavor, neutrino, determinant-response, or cosmology observables.
+000292 | \end{definition}
+000293 | 
+000294 | \begin{theorem}[Renormalized observable hierarchy from the admissible 1PI action]
+000295 | \label{thm:operational-completeness}
+000296 | There exist functors
+000297 | \[
+000298 | \Rren:\mathbf{TFPT}^{\mathrm{rig}}\to\GrenTFPT,
+000299 | \qquad
+000300 | \Mphys:\GrenTFPT\to\OphysTFPT,
+000301 | \qquad
+000302 | \Mscheme:\OphysTFPT\to\OschemeTFPT/\SchGrp
+000303 | \]
+000304 | with the following properties:
+000305 | \begin{enumerate}[label=\textbf{(O\arabic*)}, leftmargin=2em, topsep=3pt, itemsep=3pt]
+000306 |     \item \textbf{Reality first.}
+000307 |     Main-text observables factor through $\Mphys\!\circ\!\Rren$ and therefore belong to
+000308 |     $\OphysTFPT$ before any scheme choice is made.
+000309 |     \item \textbf{Unique factorization through the basis.}
+000310 |     Every physical readout row and every appendix scheme row factors through exactly one component
+000311 |     package of $\Bind(\Tstar)$ via a declared physical or scheme map.
+000312 |     \item \textbf{Scheme covariance.}
+000313 |     For every scheme morphism $\psi:s\to s'$ one has
+000314 |     \[
+000315 |     \psi\!\left(\Mscheme^{(s)}(\Mphys(\Rren(\Tstar)))\right)
+000316 |     =
+000317 |     \Mscheme^{(s')}(\Mphys(\Rren(\Tstar))).
+000318 |     \]
+000319 |     \item \textbf{No hidden continuous fit parameter.}
+000320 |     Any continuous freedom in a readout row is either a declared scheme degree of freedom in
+000321 |     $\SchGrp$ or already a theorem-level branch parameter fixed in $\Tstar$.
+000322 |     \item \textbf{Complete kill surface.}
+000323 |     Every admissible empirical kill test of the manuscript is the pullback of a component test on
+000324 |     $\OphysTFPT$ and only afterwards, if needed, of a scheme representative in $\OschemeTFPT$.
+000325 | \end{enumerate}
+000326 | \end{theorem}
+000327 | 
+000328 | \begin{proof}
+000329 | Define $\Rren$ by sending the rigid object $\Tstar$ to the renormalized 1PI package extracted from
+000330 | the exact admissible flow of \Cref{thm:exact-admissible-rg-flow}. Its infrared endpoint is
+000331 | \[
+000332 | \Gamma_{\mathrm{TFPT}}^{\mathrm{ren}}[\Phi_c]
+000333 | =
+000334 | \lim_{k\to0}\Gamma_k[\Phi_c],
+000335 | \]
+000336 | equivalently the Legendre transform of the retained admissible generating functional after removing
+000337 | the infrared regulator. By \Cref{thm:admissible-1pi-graph-expansion}, the same object carries the
+000338 | admissible 1PI graph expansion around each admissible background. Reflection positivity, lower
+000339 | boundedness, and coercivity on the admissible sector ensure the convexity needed for this Legendre
+000340 | construction in a neighborhood of the closed branch. Hence the dressed inverse propagators,
+000341 | determinant-response kernels, and cosmology saddle system belong to one and the same renormalized
+000342 | package $\GrenTFPT$.
+000343 | 
+000344 | Next define $\Mphys$ by reading physical observables from that 1PI package before any scheme choice:
+000345 | pole masses are the zeros of the dressed inverse propagators, mixing data are the branch invariants
+000346 | of the corresponding residue matrices, determinant-response observables are read from the exact
+000347 | response kernels, and cosmology rows factor through the same FRW / reheating / Boltzmann interface
+000348 | block. Final late-time numerical representatives are attached only after the declared comparison
+000349 | map. This proves \textbf{(O1)}.
+000350 | 
+000351 | For \textbf{(O2)}, the factorization through the minimal basis package $\Bind(\Tstar)$ is exactly
+000352 | the theorem-level content of the rewritten sector split. The flavor rows factor through
+000353 | $F_{\mathrm{fl}}$, neutrino rows through $N_\nu$, determinant-response rows through
+000354 | $R_{\mathrm{CS}}$, strong-CP rows through $C_{\mathrm{CP}}$, cosmology rows through
+000355 | $C_{\mathrm{cos}}$, and the retained seed $\phiz$ survives only in the UV kernel package
+000356 | $K_{\mathrm{UV}}$. No row uses two basis packages at once.
+000357 | 
+000358 | For \textbf{(O3)}, every scheme morphism in $\SchGrp$ acts only after $\Mphys$ has produced a
+000359 | physical observable package. Therefore threshold transfer, finite renormalization, and snapshot
+000360 | change act on scheme representatives without altering the underlying physical point, exactly as in
+000361 | the displayed covariance identity.
+000362 | 
+000363 | For \textbf{(O4)}, every continuous parameter entering a readout row is already fixed either by the
+000364 | closed branch $\Tstar$ or by the declared scheme object $s\in\SchGrp$. Since $\Rren$ and $\Mphys$
+000365 | are defined from the fixed admissible measure and its 1PI action, no extra continuous fit parameter
+000366 | can appear in between.
+000367 | 
+000368 | Finally, \textbf{(O5)} follows because every empirical kill criterion in the manuscript is attached
+000369 | to one of the physical rows in $\OphysTFPT$ and only afterwards, if needed, represented by a scheme
+000370 | object in $\OschemeTFPT/\SchGrp$. Thus the whole observable hierarchy factors through the same
+000371 | admissible 1PI action and then through the declared physical / scheme split.
+000372 | \end{proof}

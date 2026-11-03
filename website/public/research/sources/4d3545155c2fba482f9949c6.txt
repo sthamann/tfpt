@@ -1,0 +1,18 @@
+TFPT scientific source excerpt
+Original repository path: verification/v1024_parent_internal_boundaries.py
+Original file SHA-256: ea084268a20960c1d237f5b4625c7ae444567a17983ac5e461276e92e142a9fd
+Inclusive original lines: 331-340
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000331 |     # positive term acting trivially on mirrors cannot reduce the mirror
+000332 |     # operator inequality H >= Delta_M Q_mir.
+000333 |     h_massless_nonmirror = delta_seam * np.kron(seam_excitation_projector, identity_fock) + interaction
+000334 |     check(
+000335 |         "nonmirror Hamiltonian stays positive at zero physical regulator",
+000336 |         np.min(np.linalg.eigvalsh(h_massless_nonmirror)) > -TOL,
+000337 |     )
+000338 |     check(
+000339 |         "volume-uniform mirror lower bound is untouched",
+000340 |         delta_mirror == 3.0 and np.min(np.linalg.eigvalsh(h_massless_nonmirror)) > -TOL,

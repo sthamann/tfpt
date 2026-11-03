@@ -1,0 +1,127 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/original-local-source-variable-background-20261102/check_det16_origin.py
+Original file SHA-256: 6c289c666342ff3184c53999ecb3884221e3ea664e74ca710666bc7aab140b65
+Inclusive original lines: 1-119
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Original finite DET16 generator, direct operator and transfer comparison."""
+000002 | import hashlib
+000003 | import json
+000004 | import math
+000005 | import sys
+000006 | import time
+000007 | from pathlib import Path
+000008 | from collections import Counter
+000009 | import numpy as np
+000010 | import scipy
+000011 | import scipy.sparse as sp
+000012 | import check_det16_source as ref
+000013 | 
+000014 | 
+000015 | def need(condition, reason):
+000016 |     if not bool(condition): raise ArithmeticError(reason)
+000017 | 
+000018 | 
+000019 | def maxabs(matrix):
+000020 |     matrix=matrix.tocsr()
+000021 |     return float(np.max(np.abs(matrix.data))) if matrix.nnz else 0.0
+000022 | 
+000023 | 
+000024 | def complex_json(v): return [float(v.real),float(v.imag)]
+000025 | 
+000026 | 
+000027 | def main():
+000028 |     start=time.perf_counter()
+000029 |     ref.initialize_native_controls()
+000030 |     p,identity=ref.P,ref.I
+000031 |     n=16; dim=ref.D; phase=np.exp(1j*ref.phi)
+000032 |     p0,p16,omega,omegad=ref.native.determinant_operators(n,tuple(range(n)))
+000033 |     h=2*(identity-p)
+000034 |     explicit=2*identity-p0-p16-phase*omegad-phase.conjugate()*omega
+000035 |     need(maxabs(h-explicit)<1e-13,'original full generator identity')
+000036 |     diag=h.diagonal()
+000037 |     need(abs(diag[0]-1)<1e-13 and abs(diag[-1]-1)<1e-13 and np.all(diag[1:-1]==2),
+000038 |          'native diagonal entries')
+000039 |     need(abs(h[dim-1,0]+phase)<1e-13 and abs(h[0,dim-1]+phase.conjugate())<1e-13,
+000040 |          'native empty/full transfer phase')
+000041 |     # Direct native sparse powers provide Taylor jets at zero. For j>=1,
+000042 |     # H^j=2^j(I-P), so full/empty coefficient is -2^(j-1) exp(i phi).
+000043 |     power=identity; jets=[]
+000044 |     for j in range(4):
+000045 |         predicted=identity if j==0 else (2**j)*(identity-p)
+000046 |         err=maxabs(power-predicted)
+000047 |         need(err<1e-12,'native H power '+str(j))
+000048 |         coefficient=power[dim-1,0]*((-1)**j)/math.factorial(j)
+000049 |         expected=0 if j==0 else ((-1)**(j+1))*(2**(j-1))*phase/math.factorial(j)
+000050 |         need(abs(coefficient-expected)<1e-13,'transfer jet '+str(j))
+000051 |         jets.append({'order':j,'coefficient':complex_json(coefficient),'operator_error':err})
+000052 |         power=power@h
+000053 |     semigroup=[]
+000054 |     for eps in (0.01,0.17,0.5):
+000055 |         a=math.exp(-2*eps); b=-math.expm1(-2*eps)
+000056 |         e=a*identity+b*p
+000057 |         a2=math.exp(-4*eps); b2=-math.expm1(-4*eps)
+000058 |         error=maxabs(e@e-(a2*identity+b2*p))
+000059 |         need(error<1e-12,'original finite semigroup')
+000060 |         semigroup.append({'epsilon':eps,'max_abs_error':error,
+000061 |                           'empty_to_full':complex_json(e[dim-1,0])})
+000062 |     # Direct original mode operators build the two number projectors.
+000063 |     pp0=identity; pp16=identity
+000064 |     for c in ref.ann:
+000065 |         number=c.getH()@c
+000066 |         pp0=pp0@(identity-number); pp16=pp16@number
+000067 |     need(maxabs(pp0-p0)<1e-13 and maxabs(pp16-p16)<1e-13,'native number projectors')
+000068 |     # For each Fock basis state evaluate the complete normal-ordered diagonal
+000069 |     # polynomial using binomial(N,m), without building 2^16 matrix monomials.
+000070 |     coefficients=[1]+[(-1)**(m+1) for m in range(1,16)]+[-2]
+000071 |     predicted_by_occupancy=[sum(coefficients[m]*math.comb(k,m) for m in range(k+1))
+000072 |                             for k in range(17)]
+000073 |     target=[1]+[2]*15+[1]
+000074 |     need(predicted_by_occupancy==target,'all normal-ordered polynomial coefficients')
+000075 |     for state in range(dim):
+000076 |         need(abs(diag[state]-predicted_by_occupancy[state.bit_count()])<1e-13,
+000077 |              'native diagonal polynomial')
+000078 |     # Original chiral16 weights, restricted to the root SU(2), not a new field map.
+000079 |     weights=ref.native.spin10_chiral_weights_doubled()
+000080 |     root_weights=Counter((w[0]-w[1])//2 for w in weights)
+000081 |     need(root_weights==Counter({-1:4,0:8,1:4}),'native root SU2 restriction')
+000082 |     # Number-phase conjugation is a diagnostic, not an assumed U(1) symmetry.
+000083 |     coo=h.tocoo()
+000084 |     charge=np.fromiter((int(i).bit_count()-int(j).bit_count()
+000085 |                         for i,j in zip(coo.row,coo.col)),dtype=int,count=coo.nnz)
+000086 |     active=set(int(q) for q,v in zip(charge,coo.data) if abs(v)>1e-14)
+000087 |     need(active=={-16,0,16},'original number-charge support')
+000088 |     top=sp.coo_matrix((coo.data[charge==16],(coo.row[charge==16],coo.col[charge==16])),
+000089 |                      shape=h.shape).tocsr()
+000090 |     need(maxabs(top+phase*omegad)<1e-13,'unique top-charge coefficient')
+000091 |     theta=2*np.pi*np.arange(33)/33
+000092 |     fourier_error=max(abs(np.mean(np.exp(1j*(q-16)*theta))-(1 if q==16 else 0))
+000093 |                       for q in range(-16,17))
+000094 |     need(fourier_error<1e-12,'all33 number-charge Fourier sectors')
+000095 |     src=Path(ref.native.__file__).resolve(); code=Path(__file__).resolve()
+000096 |     report={'status':'pass','native_dimension':dim,'phi':ref.phi,
+000097 |             'generator':'H=2I-P0-P16-exp(i phi) Omega_dagger-exp(-i phi) Omega',
+000098 |             'original_sparse_identity_max_error':maxabs(h-explicit),
+000099 |             'vacuum_to_full':complex_json(h[dim-1,0]),'short_time_taylor_jets':jets,
+000100 |             'semigroup_checks':semigroup,'diagonal_squarefree_degree_coefficients':coefficients,
+000101 |             'diagonal_by_occupation':predicted_by_occupancy,
+000102 |             'original_root_su2_weights':dict(sorted(root_weights.items())),
+000103 |             'root_su2_scope':'Four doublets plus eight singlets under the specified root SU2. Only with the separately supplied 4D Weyl index and unit instanton normalization does this imply four chiral zero modes, not sixteen. No spacetime, topological sector, DET16 vertex or coupling is derived.',
+000104 |             'original_number_charge_support':sorted(active),
+000105 |             'top_charge_component_max_error':maxabs(top+phase*omegad),
+000106 |             'number_phase_fourier_max_error':float(fourier_error),
+000107 |             'quarter_average_aliases':[q for q in range(-16,17) if q%4==0],
+000108 |             'number_phase_scope':'33 diagnostic phase conjugations extract the complete number-charge band -16..16 without aliasing; the original quarter symmetry cannot distinguish charge16 from charge0. No physical continuous U1 symmetry or P1 clock identification is assumed.',
+000109 |             'degree_counting':'For monomials of at most r fermion operators, each factor can change occupation by at most r; hence any empty-to-full matrix element of H^j vanishes for jr<16. Bosonic factors do not change that count. This assumes a bare common Fock factor and bounded fermion degree for every generator term, and does not assert this assumption for full TFPT.',
+000110 |             'interpretation':'Normal-ordered Hamiltonian polynomial is not identified with an unrenormalized Euclidean action. This test neither selects coupling/phase from Spin(10) symmetry nor establishes the full TFPT source, its degree bound, or its physical transfer generator.',
+000111 |             'source_sha256':{str(src):hashlib.sha256(src.read_bytes()).hexdigest(),
+000112 |                              str(code):hashlib.sha256(code.read_bytes()).hexdigest(),
+000113 |                              str(Path(ref.__file__).resolve()):hashlib.sha256(Path(ref.__file__).read_bytes()).hexdigest()},
+000114 |             'python':sys.version,'numpy':np.__version__,'scipy':scipy.__version__,
+000115 |             'runtime_seconds':time.perf_counter()-start}
+000116 |     Path(__file__).with_name('det16-origin-results.json').write_text(json.dumps(report,indent=2)+'\n')
+000117 |     print(json.dumps(report,indent=2))
+000118 | 
+000119 | if __name__=='__main__': main()

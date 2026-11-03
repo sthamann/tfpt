@@ -260,7 +260,7 @@ L41mmL46mmL63mm Zweig& Historischer Quellwert& Offener Anteil\\ Starke CP-Phase&
 
 [experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/10_ausblick.tex:80-86](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/10_ausblick.tex#L80) · `section:63e8456f56f8b1ac13ba` · section
 
-Der Kandidat, auf den die Dokumente gemeinsam zulaufen Es gibt eine phasentreue Kompositionsregel mit positivem Zustandsfunktional, deren endliche Auslesungen die markierte TFPT-Struktur tragen. Aus ihren gekoppelten Anregungen und Aufzeichnungen entsteht ein kontrollierter gemeinsamer Grenzprozess. Erst dieser Grenzprozess liefert Raumzeit, chirale Materie, Wechselwirkungen und gegebenenfalls Gravitation. Die erste 
+Der Kandidat, auf den die Dokumente gemeinsam zulaufen Es gibt eine phasentreue Kompositionsregel mit positivem Zustandsfunktional, deren endliche Auslesungen die markierte TFPT-Struktur tragen. Aus ihren gekoppelten Anregungen und Aufzeichnungen entsteht ein kontrollierter gemeinsamer Grenzprozess. Erst dieser Grenzprozess liefert Raumzeit, chirale Materie, Wechselwirkungen und gegebenenfalls Gravitation. Die erste
 
 ## Dunkle Materie: unsichtbar heißt nicht frei wählbar
 
@@ -314,7 +314,7 @@ L41mmL46mmL63mm Zweig& Historischer Quellwert& Offener Anteil\\ Starke CP-Phase&
 
 [experiments/theory-contracts/universalraum-five-source-frontier-20260914/main-v1.4/chapters/10_ausblick.tex:83-89](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/main-v1.4/chapters/10_ausblick.tex#L83) · `section:3358164c58a74f39a8d9` · section
 
-Der Kandidat, auf den die Dokumente gemeinsam zulaufen Es gibt eine phasentreue Kompositionsregel mit positivem Zustandsfunktional, deren endliche Auslesungen die markierte TFPT-Struktur tragen. Aus ihren gekoppelten Anregungen und Aufzeichnungen entsteht ein kontrollierter gemeinsamer Grenzprozess. Erst dieser Grenzprozess liefert Raumzeit, chirale Materie, Wechselwirkungen und gegebenenfalls Gravitation. Die erste 
+Der Kandidat, auf den die Dokumente gemeinsam zulaufen Es gibt eine phasentreue Kompositionsregel mit positivem Zustandsfunktional, deren endliche Auslesungen die markierte TFPT-Struktur tragen. Aus ihren gekoppelten Anregungen und Aufzeichnungen entsteht ein kontrollierter gemeinsamer Grenzprozess. Erst dieser Grenzprozess liefert Raumzeit, chirale Materie, Wechselwirkungen und gegebenenfalls Gravitation. Die erste
 
 ## Dunkle Materie: unsichtbar heißt nicht frei wählbar
 
@@ -374,7 +374,7 @@ L41mmL46mmL63mm Zweig& Historischer Quellwert& Offener Anteil\\ Starke CP-Phase&
 
 [experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/10_ausblick.tex:83-89](../../../../experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/10_ausblick.tex#L83) · `section:f01e5e78bccaed50fbd6` · section
 
-Der Kandidat, auf den die Dokumente gemeinsam zulaufen Es gibt eine phasentreue Kompositionsregel mit positivem Zustandsfunktional, deren endliche Auslesungen die markierte TFPT-Struktur tragen. Aus ihren gekoppelten Anregungen und Aufzeichnungen entsteht ein kontrollierter gemeinsamer Grenzprozess. Erst dieser Grenzprozess liefert Raumzeit, chirale Materie, Wechselwirkungen und gegebenenfalls Gravitation. Die erste 
+Der Kandidat, auf den die Dokumente gemeinsam zulaufen Es gibt eine phasentreue Kompositionsregel mit positivem Zustandsfunktional, deren endliche Auslesungen die markierte TFPT-Struktur tragen. Aus ihren gekoppelten Anregungen und Aufzeichnungen entsteht ein kontrollierter gemeinsamer Grenzprozess. Erst dieser Grenzprozess liefert Raumzeit, chirale Materie, Wechselwirkungen und gegebenenfalls Gravitation. Die erste
 
 ## Dunkle Materie: unsichtbar heißt nicht frei wählbar
 
@@ -478,7 +478,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex:4405-4425](../../../../experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex#L4405) · `section:d37a9102b32421719eb3` · subsection
 
-Use the universal root-system identity [formula in source] (Coxeter number [formula in source] ). With the carrier values [formula in source] and [formula in source] , The Coxeter number of [formula in source] is exactly three families times the cosmological pair action: each family contributes one [formula in source] -decuple ( [formula in source] ) to the Coxeter period. Equivalently the action ladder is a Coxeter 
+Use the universal root-system identity [formula in source] (Coxeter number [formula in source] ). With the carrier values [formula in source] and [formula in source] , The Coxeter number of [formula in source] is exactly three families times the cosmological pair action: each family contributes one [formula in source] -decuple ( [formula in source] ) to the Coxeter period. Equivalently the action ladder is a Coxeter
 
 ## Lepton flavor decuple: the charged-lepton determinant carries [formula in source]
 
@@ -550,7 +550,7 @@ L41mmL46mmL63mm Zweig& Historischer Quellwert& Offener Anteil\\ Starke CP-Phase&
 
 [experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/10_ausblick.tex:80-86](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/10_ausblick.tex#L80) · `section:ff4ade2147e0e5138113` · section
 
-Der Kandidat, auf den die Dokumente gemeinsam zulaufen Es gibt eine phasentreue Kompositionsregel mit positivem Zustandsfunktional, deren endliche Auslesungen die markierte TFPT-Struktur tragen. Aus ihren gekoppelten Anregungen und Aufzeichnungen entsteht ein kontrollierter gemeinsamer Grenzprozess. Erst dieser Grenzprozess liefert Raumzeit, chirale Materie, Wechselwirkungen und gegebenenfalls Gravitation. Die erste 
+Der Kandidat, auf den die Dokumente gemeinsam zulaufen Es gibt eine phasentreue Kompositionsregel mit positivem Zustandsfunktional, deren endliche Auslesungen die markierte TFPT-Struktur tragen. Aus ihren gekoppelten Anregungen und Aufzeichnungen entsteht ein kontrollierter gemeinsamer Grenzprozess. Erst dieser Grenzprozess liefert Raumzeit, chirale Materie, Wechselwirkungen und gegebenenfalls Gravitation. Die erste
 
 ## Dunkle Materie: unsichtbar heißt nicht frei wählbar
 
@@ -604,7 +604,7 @@ L41mmL46mmL63mm Zweig& Historischer Quellwert& Offener Anteil\\ Starke CP-Phase&
 
 [experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/10_ausblick.tex:77-83](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/10_ausblick.tex#L77) · `section:b143c5f15479323b8a4b` · section
 
-Der Kandidat, auf den die Dokumente gemeinsam zulaufen Es gibt eine phasentreue Kompositionsregel mit positivem Zustandsfunktional, deren endliche Auslesungen die markierte TFPT-Struktur tragen. Aus ihren gekoppelten Anregungen und Aufzeichnungen entsteht ein kontrollierter gemeinsamer Grenzprozess. Erst dieser Grenzprozess liefert Raumzeit, chirale Materie, Wechselwirkungen und gegebenenfalls Gravitation. Die erste 
+Der Kandidat, auf den die Dokumente gemeinsam zulaufen Es gibt eine phasentreue Kompositionsregel mit positivem Zustandsfunktional, deren endliche Auslesungen die markierte TFPT-Struktur tragen. Aus ihren gekoppelten Anregungen und Aufzeichnungen entsteht ein kontrollierter gemeinsamer Grenzprozess. Erst dieser Grenzprozess liefert Raumzeit, chirale Materie, Wechselwirkungen und gegebenenfalls Gravitation. Die erste
 
 ## Dunkle Materie: unsichtbar heißt nicht frei wählbar
 
@@ -664,7 +664,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [experiments/theory-contracts/universalraum-spin-lift-basics-20260915/sources/input_4_origin_theory.tex:1166-1454](../../../../experiments/theory-contracts/universalraum-spin-lift-basics-20260915/sources/input_4_origin_theory.tex#L1166) · `section:3bfc0afca092b381dee1` · section
 
-The precise reformulation ( ). The seam is not identical to an event horizon. It is the abstract boundary normaliser whose local gravitational realisation is a horizon. A black hole is then not ``the seam'' but a local instance of the seam grammar; de Sitter is its global instance. This is stronger and cleaner than a direct identification — it avoids importing Schwarzschild analogies wholesale, and it makes [formula 
+The precise reformulation ( ). The seam is not identical to an event horizon. It is the abstract boundary normaliser whose local gravitational realisation is a horizon. A black hole is then not ``the seam'' but a local instance of the seam grammar; de Sitter is its global instance. This is stronger and cleaner than a direct identification — it avoids importing Schwarzschild analogies wholesale, and it makes [formula
 
 Explicit source references:
 
@@ -929,7 +929,7 @@ L41mmL46mmL63mm Zweig& Historischer Quellwert& Offener Anteil\\ Starke CP-Phase&
 
 [experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/10_ausblick.tex:85-91](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/10_ausblick.tex#L85) · `section:4a39d97adb15420253f1` · section
 
-Der Kandidat, auf den die Dokumente gemeinsam zulaufen Es gibt eine phasentreue Kompositionsregel mit positivem Zustandsfunktional, deren endliche Auslesungen die markierte TFPT-Struktur tragen. Aus ihren gekoppelten Anregungen und Aufzeichnungen entsteht ein kontrollierter gemeinsamer Grenzprozess. Erst dieser Grenzprozess liefert Raumzeit, chirale Materie, Wechselwirkungen und gegebenenfalls Gravitation. Die erste 
+Der Kandidat, auf den die Dokumente gemeinsam zulaufen Es gibt eine phasentreue Kompositionsregel mit positivem Zustandsfunktional, deren endliche Auslesungen die markierte TFPT-Struktur tragen. Aus ihren gekoppelten Anregungen und Aufzeichnungen entsteht ein kontrollierter gemeinsamer Grenzprozess. Erst dieser Grenzprozess liefert Raumzeit, chirale Materie, Wechselwirkungen und gegebenenfalls Gravitation. Die erste
 
 ## Dunkle Materie: unsichtbar heißt nicht frei wählbar
 
@@ -971,7 +971,7 @@ Die vorläufigen Markdown-Berichte vom 14. September mit Versionsnummer 1.6 ware
 
 [experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/26_v16_labor.tex:98-111](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/26_v16_labor.tex#L98) · `section:4145e7564d61ad844781` · section
 
-Die dokumentierte Robustheitsrechnung normiert erst nach Aufsummieren der vollständigen Zweige. Bei [formula in source] und [formula in source] ergibt sie unter den übrigen Idealannahmen Präparationsinfidelität höchstens [formula in source] . Für [formula in source] und [formula in source] bleibt die Vier-Record-Rohtrennung mindestens [formula in source] . Der alte F9-Filter mit dem neuen Eingang [formula in source] 
+Die dokumentierte Robustheitsrechnung normiert erst nach Aufsummieren der vollständigen Zweige. Bei [formula in source] und [formula in source] ergibt sie unter den übrigen Idealannahmen Präparationsinfidelität höchstens [formula in source] . Für [formula in source] und [formula in source] bleibt die Vier-Record-Rohtrennung mindestens [formula in source] . Der alte F9-Filter mit dem neuen Eingang [formula in source]
 
 ## Front matter / support
 
@@ -1070,7 +1070,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_4_origin_theory.tex:1166-1454](../../../../universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_4_origin_theory.tex#L1166) · `section:4e5537e69e05316e0599` · section
 
-The precise reformulation ( ). The seam is not identical to an event horizon. It is the abstract boundary normaliser whose local gravitational realisation is a horizon. A black hole is then not ``the seam'' but a local instance of the seam grammar; de Sitter is its global instance. This is stronger and cleaner than a direct identification — it avoids importing Schwarzschild analogies wholesale, and it makes [formula 
+The precise reformulation ( ). The seam is not identical to an event horizon. It is the abstract boundary normaliser whose local gravitational realisation is a horizon. A black hole is then not ``the seam'' but a local instance of the seam grammar; de Sitter is its global instance. This is stronger and cleaner than a direct identification — it avoids importing Schwarzschild analogies wholesale, and it makes [formula
 
 Explicit source references:
 

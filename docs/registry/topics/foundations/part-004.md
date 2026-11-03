@@ -44,7 +44,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/archive--tfpt-45--04_admissibility_strong_cp_qft_closure/sections/001-section-selector-versus-dynamics.tex:191-209](../../../../documents/archive--tfpt-45--04_admissibility_strong_cp_qft_closure/sections/001-section-selector-versus-dynamics.tex#L191) · `section:dc2548243d0e4165fe45` · section
 
-Use : Sections 7.4 and 7.5 for hadronic admissibility and strong-CP ingredients. Section 8 as the main technical body, with carrier repetition removed. Sections 8.20–8.22 for topological positivity and strong-CP closure. Sections 8.23–8.41 for reflection positivity, OS closure, local net, and scattering. Section 13.2 for exact admissible RG flow, 1PI expansion, and observable hierarchy. Appendices E, F, and H as the 
+Use : Sections 7.4 and 7.5 for hadronic admissibility and strong-CP ingredients. Section 8 as the main technical body, with carrier repetition removed. Sections 8.20–8.22 for topological positivity and strong-CP closure. Sections 8.23–8.41 for reflection positivity, OS closure, local net, and scattering. Section 13.2 for exact admissible RG flow, 1PI expansion, and observable hierarchy. Appendices E, F, and H as the
 
 ## Not Used Here
 
@@ -80,7 +80,7 @@ Proof skeleton. [formula in source] is the antisymmetric two-form occupancy on [
 
 [documents/archive--tfpt-45--07_cmb_operational_closure_planck_pipeline/sections/002-section-the-five-lemmas-native-closure-conjecture-v4-6.tex:112-137](../../../../documents/archive--tfpt-45--07_cmb_operational_closure_planck_pipeline/sections/002-section-the-five-lemmas-native-closure-conjecture-v4-6.tex#L112) · `section:6322f7e4c6b01cc9fa93` · paragraph
 
-where [formula in source] is the admissible primordial-curvature Hessian, [formula in source] is the primitive seam branch state with winding class [formula in source] , [formula in source] is the Calderon sheet involution (which enforces the reality constraint [formula in source] ), [formula in source] is the observer embedding (worldline + tetrad + orientation + last-scattering light cone), and [formula in source] 
+where [formula in source] is the admissible primordial-curvature Hessian, [formula in source] is the primitive seam branch state with winding class [formula in source] , [formula in source] is the Calderon sheet involution (which enforces the reality constraint [formula in source] ), [formula in source] is the observer embedding (worldline + tetrad + orientation + last-scattering light cone), and [formula in source]
 
 ## The TFPT primitives ledger and audit table
 
@@ -302,7 +302,7 @@ Let [formula in source] This makes the phase grammar concrete rather than rhetor
 
 [documents/archive--tfpt-45--source_extracts--03_em_flavor_source/sections/003-subsection-discrete-phase-operator-and-transport-grammar.tex:88-352](../../../../documents/archive--tfpt-45--source_extracts--03_em_flavor_source/sections/003-subsection-discrete-phase-operator-and-transport-grammar.tex#L88) · `section:4f28881002e138056680` · subsection
 
-For each fermion sector define the structural positive transport kernel by [formula in source] whenever the inverse exists on [formula in source] . The final admissible kernel is the restriction of this operator to the gap-stable branch selected below. The transport pole [formula in source] is fixed by the structural stationarity of the exact determinant functional [formula in source] with [formula in source] On the 
+For each fermion sector define the structural positive transport kernel by [formula in source] whenever the inverse exists on [formula in source] . The final admissible kernel is the restriction of this operator to the gap-stable branch selected below. The transport pole [formula in source] is fixed by the structural stationarity of the exact determinant functional [formula in source] with [formula in source] On the
 
 ## Front matter / support
 

@@ -113,7 +113,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/changelog/sections/024-source.tex:127-136](../../../../documents/changelog/sections/024-source.tex#L127) · `section:b7a05826756c1fc3ef1e` · subsection
 
-Compiler-closure consolidation. The TFPT development is consolidated into the current document set with the verification suite (modules v1–v82: [formula in source] glue, carrier Pascal, EM fixed point, flavor matrix, cascade, bootstrap, gravity/cosmology, transport, masses, registry and gate audits) as the single proof layer; manifests ( manifest.sha256, lean_manifest.sha256) as content identity; website mirrors the 
+Compiler-closure consolidation. The TFPT development is consolidated into the current document set with the verification suite (modules v1–v82: [formula in source] glue, carrier Pascal, EM fixed point, flavor matrix, cascade, bootstrap, gravity/cosmology, transport, masses, registry and gate audits) as the single proof layer; manifests ( manifest.sha256, lean_manifest.sha256) as content identity; website mirrors the
 
 Explicit source references:
 
@@ -551,9 +551,9 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 ## Appendix: computational verification (reproducibility)
 
-[documents/introduction/sections/004-section-tfpt-in-the-light-of-algorithmic-physics-zuse-sc.tex:171-214](../../../../documents/introduction/sections/004-section-tfpt-in-the-light-of-algorithmic-physics-zuse-sc.tex#L171) · `section:e77e5218c82783443690` · section
+[documents/introduction/sections/004-section-tfpt-in-the-light-of-algorithmic-physics-zuse-sc.tex:173-216](../../../../documents/introduction/sections/004-section-tfpt-in-the-light-of-algorithmic-physics-zuse-sc.tex#L173) · `section:e77e5218c82783443690` · section
 
-Every claim in this document marked \ (exact identity), \ (Lie/lattice theorem) or \ (numerical fixed point) is re-derived from the two axioms [formula in source] alone by a small, self-contained Python suite in the repository folder verification/. The inline references [verification/ [formula in source] ] throughout the documents point to the exact script; the table below is the master map (its source is the shared 
+Every claim in this document marked \ (exact identity), \ (Lie/lattice theorem) or \ (numerical fixed point) is re-derived from the two axioms [formula in source] alone by a small, self-contained Python suite in the repository folder verification/. The inline references [verification/ [formula in source] ] throughout the documents point to the exact script; the table below is the master map (its source is the shared
 
 Explicit source references:
 
@@ -683,7 +683,7 @@ Explicit source references:
 
 [documents/note_e8_gaussian_code/sections/002-section-explicit-character-basis-of-the-eight-coxeter-ch.tex:1-93](../../../../documents/note_e8_gaussian_code/sections/002-section-explicit-character-basis-of-the-eight-coxeter-ch.tex#L1) · `section:4924c7863d81853eba3d` · section
 
-The exponents of [formula in source] are the totatives [formula in source] of the Coxeter number [formula in source] . As a multiplicative group this set has element orders [formula in source] in that listing — explicitly the pairs (unit, order) [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] 
+The exponents of [formula in source] are the totatives [formula in source] of the Coxeter number [formula in source] . As a multiplicative group this set has element orders [formula in source] in that listing — explicitly the pairs (unit, order) [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source]
 
 Explicit source references:
 
@@ -878,7 +878,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 ## Honest status
 
-[documents/origin_theory/sections/006-section-honest-status-label-sec-status.tex:1-316](../../../../documents/origin_theory/sections/006-section-honest-status-label-sec-status.tex#L1) · `section:888628823bf71f709698` · section
+[documents/origin_theory/sections/006-section-honest-status-label-sec-status.tex:1-318](../../../../documents/origin_theory/sections/006-section-honest-status-label-sec-status.tex#L1) · `section:888628823bf71f709698` · section
 
 @p5.4cmp2.0cmY@ claim & status & basis \\ [formula in source] generates the integer skeleton; Pythagorean [formula in source] split & & v53_compiler_core.py \\ the [formula in source] in [formula in source] is triply forced (geo [formula in source] lattice [formula in source] gravity) & & v54_seam_horizon_keystones.py \\ one boundary transport for flavor and horizon ( [formula in source] ) & & v54_seam_horizon_keysto
 
@@ -1058,7 +1058,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 ## Appendix: computational verification
 
-[documents/origin_theory/sections/006-section-honest-status-label-sec-status.tex:317-338](../../../../documents/origin_theory/sections/006-section-honest-status-label-sec-status.tex#L317) · `section:5ef9533c2bf93b6ac923` · section
+[documents/origin_theory/sections/006-section-honest-status-label-sec-status.tex:319-340](../../../../documents/origin_theory/sections/006-section-honest-status-label-sec-status.tex#L319) · `section:5ef9533c2bf93b6ac923` · section
 
 Every \ statement here is machine-checked in the TFPT suite and re-derived independently in Wolfram: @p4.7cmY@ script & content \\ v53_compiler_core.py & [formula in source] skeleton, Pythagorean [formula in source] split, anchor char-poly uniqueness \\ v54_seam_horizon_keystones.py & triply-forced [formula in source] ; shared transport [formula in source] ; de Sitter constants \\ v55_coxeter_cycle.py & computed [for
 
@@ -1102,7 +1102,7 @@ This document develops the architecture layer of TFPT: the two axioms, the deriv
 
 [documents/tfpt_1_architecture_e8/sections/001-source.tex:51-391](../../../../documents/tfpt_1_architecture_e8/sections/001-source.tex#L51) · `section:1234c1fa7fdc0d6d5b35` · section
 
-Notation convention. We write [formula in source] for the root-lattice direct sum (used in the glue/lattice statements: discriminant forms, [formula in source] glue, [formula in source] as an even unimodular lattice), and [formula in source] for the group/representation branching (used for subalgebra embeddings and [formula in source] -rep decompositions). The objects are the same atoms; the symbol marks whether the 
+Notation convention. We write [formula in source] for the root-lattice direct sum (used in the glue/lattice statements: discriminant forms, [formula in source] glue, [formula in source] as an even unimodular lattice), and [formula in source] for the group/representation branching (used for subalgebra embeddings and [formula in source] -rep decompositions). The objects are the same atoms; the symbol marks whether the
 
 Explicit source references:
 
@@ -1346,7 +1346,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/tfpt_1_architecture_e8/sections/004-source.tex:302-350](../../../../documents/tfpt_1_architecture_e8/sections/004-source.tex#L302) · `section:33a1154dc0cb4b2f67f8` · subsection
 
-A family is exactly the complete Pascal truncation to degree two: the unique positive-integer solution of [formula in source] . Proof of uniqueness. Direct evaluation gives [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] ; so [formula in source] is the only root in [formula in source] . For [formula in source] the forward difference is 
+A family is exactly the complete Pascal truncation to degree two: the unique positive-integer solution of [formula in source] . Proof of uniqueness. Direct evaluation gives [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] ; so [formula in source] is the only root in [formula in source] . For [formula in source] the forward difference is
 
 Explicit source references:
 
@@ -1368,7 +1368,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/tfpt_1_architecture_e8/sections/004-source.tex:351-366](../../../../documents/tfpt_1_architecture_e8/sections/004-source.tex#L351) · `section:e2ac56d63dc5b474ddb4` · subsection
 
-With [formula in source] , the quadratic hypercharge trace on one family is [formula in source] , and it generates the whole integer chain: The flavor budget, the [formula in source] budget, the [formula in source] count and the second seam defect all hang on the second hypercharge moment [formula in source] . \ Round-22 sharpening: the moment itself is one symbolic identity, [formula in source] — the Coxeter number 
+With [formula in source] , the quadratic hypercharge trace on one family is [formula in source] , and it generates the whole integer chain: The flavor budget, the [formula in source] budget, the [formula in source] count and the second seam defect all hang on the second hypercharge moment [formula in source] . \ Round-22 sharpening: the moment itself is one symbolic identity, [formula in source] — the Coxeter number
 
 Explicit source references:
 
@@ -1451,7 +1451,7 @@ Explicit source references:
 
 [documents/tfpt_1_architecture_e8/sections/005-source.tex:132-165](../../../../documents/tfpt_1_architecture_e8/sections/005-source.tex#L132) · `section:0abd9d66066143e08405` · subsection
 
-The carrier geometry fixes [formula in source] , [formula in source] , rigid [formula in source] generated by [formula in source] . The twelve puncture-difference cycles [formula in source] carry the residue pairing [formula in source] and form the [formula in source] root system: The corner rotation [formula in source] acts on [formula in source] as the [formula in source] Coxeter element (order [formula in source] 
+The carrier geometry fixes [formula in source] , [formula in source] , rigid [formula in source] generated by [formula in source] . The twelve puncture-difference cycles [formula in source] carry the residue pairing [formula in source] and form the [formula in source] root system: The corner rotation [formula in source] acts on [formula in source] as the [formula in source] Coxeter element (order [formula in source]
 
 Explicit source references:
 

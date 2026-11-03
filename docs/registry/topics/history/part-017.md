@@ -8,7 +8,7 @@ Exact ledger statuses remain at the linked original rows and in registry.json. C
 
 [documents/archive--paper-latex--tfpt-v29/sections/003-subsection-flavor-and-the-phase-grammar.tex:123-142](../../../../documents/archive--paper-latex--tfpt-v29/sections/003-subsection-flavor-and-the-phase-grammar.tex#L123) · `section:c857c002ffa7ed94e137` · section
 
-@> Xcccc@ Branch & [formula in source] & [formula in source] & [formula in source] & [formula in source] \\ canonical carrier branch & [formula in source] & [formula in source] & [formula in source] & 137.03599921615843 \\ boundary multiplicity deformation & [formula in source] & [formula in source] & [formula in source] & 156.094045457 \\ boundary multiplicity deformation & [formula in source] & [formula in source] 
+@> Xcccc@ Branch & [formula in source] & [formula in source] & [formula in source] & [formula in source] \\ canonical carrier branch & [formula in source] & [formula in source] & [formula in source] & 137.03599921615843 \\ boundary multiplicity deformation & [formula in source] & [formula in source] & [formula in source] & 156.094045457 \\ boundary multiplicity deformation & [formula in source] & [formula in source]
 
 ## TFPT: Carrier Algebra, Compression Identities, and Finite Completion\\[0.5em] An overdetermined rank-5 spectral theory on the oriented double cover
 
@@ -44,7 +44,7 @@ No opening prose excerpt; see the source.
 
 [documents/archive--paper-latex--tfpt-v30/sections/001-section-reading-guide-and-claim-map.tex:132-152](../../../../documents/archive--paper-latex--tfpt-v30/sections/001-section-reading-guide-and-claim-map.tex#L132) · `section:f2e3c62d4e138468e600` · subsection
 
-We use natural units [formula in source] . Relative operators are formulated in Euclidean signature and compared through a declared Wick-rotation bridge when Lorentzian language is needed. Higgs fields are denoted by [formula in source] , Hamiltonians by [formula in source] , and the cosmological Hubble rate by [formula in source] ; this avoids overloading the letter [formula in source] . Newton's constant is always 
+We use natural units [formula in source] . Relative operators are formulated in Euclidean signature and compared through a declared Wick-rotation bridge when Lorentzian language is needed. Higgs fields are denoted by [formula in source] , Hamiltonians by [formula in source] , and the cosmological Hubble rate by [formula in source] ; this avoids overloading the letter [formula in source] . Newton's constant is always
 
 ## Minimal carrier theorem
 
@@ -80,7 +80,7 @@ On the retained hard branch the inherited topological corrections are Numericall
 
 [documents/archive--paper-latex--tfpt-v30/sections/002-subsection-character-trace-identities-and-the-abelian-in.tex:128-165](../../../../documents/archive--paper-latex--tfpt-v30/sections/002-subsection-character-trace-identities-and-the-abelian-in.tex#L128) · `section:af3ff89dbd6bc8eaf36f` · subsection
 
-The benchmark row for [formula in source] is defined by the positive self-consistent root of eq:carrier-cfe, not by freezing the opening at its retained seed value. On the canonical branch that positive root remains [formula in source] For the remaining one-seed relations we keep the retained branch opening and the same retained kernel package emits the compact seed chain row must stay self-consistent] The benchmark 
+The benchmark row for [formula in source] is defined by the positive self-consistent root of eq:carrier-cfe, not by freezing the opening at its retained seed value. On the canonical branch that positive root remains [formula in source] For the remaining one-seed relations we keep the retained branch opening and the same retained kernel package emits the compact seed chain row must stay self-consistent] The benchmark
 
 ## Compression identities and carrier exclusion
 
@@ -140,7 +140,7 @@ Once the carrier packet and family bridge are fixed, the focused main-text compl
 
 [documents/archive--paper-latex--tfpt-v30/sections/003-subsection-occupancy-and-boundary-to-bulk-transgression.tex:32-43](../../../../documents/archive--paper-latex--tfpt-v30/sections/003-subsection-occupancy-and-boundary-to-bulk-transgression.tex#L32) · `section:abddd8b0a1c1d0ac1ab5` · subsection
 
-The geometric completion is formulated on a graded bundle [formula in source] with a declared reference pair [formula in source] and APS-type boundary conditions on the seam [formula in source] ; see Appendix [formula in source] This is a construction, not yet a theorem. Its value is to keep grading, reference subtraction, seam data, and the [formula in source] channel in one object from the start rather than mixing 
+The geometric completion is formulated on a graded bundle [formula in source] with a declared reference pair [formula in source] and APS-type boundary conditions on the seam [formula in source] ; see Appendix [formula in source] This is a construction, not yet a theorem. Its value is to keep grading, reference subtraction, seam data, and the [formula in source] channel in one object from the start rather than mixing
 
 ## Bosonic relative index and Higgs selection
 
@@ -242,7 +242,7 @@ Two stages carry a particularly revealing double structure.
 
 [documents/archive--paper-latex--tfpt-v30/sections/004-subsection-strong-cp-closure-as-conditional-steps.tex:261-288](../../../../documents/archive--paper-latex--tfpt-v30/sections/004-subsection-strong-cp-closure-as-conditional-steps.tex#L261) · `section:fa38cdf61469ef638bf8` · subsection
 
-] Under the restricted trace grammar, stages [formula in source] and [formula in source] have no unambiguous physical target. If [formula in source] is allowed to scan over all simple rationals, these stages can mimic almost any scale between [formula in source] and [formula in source] GeV. They mark the exact boundary where E [formula in source] without a derived block-trace theorem becomes too permissive. The open 
+] Under the restricted trace grammar, stages [formula in source] and [formula in source] have no unambiguous physical target. If [formula in source] is allowed to scan over all simple rationals, these stages can mimic almost any scale between [formula in source] and [formula in source] GeV. They mark the exact boundary where E [formula in source] without a derived block-trace theorem becomes too permissive. The open
 
 ## Primary benchmark map and prediction ledger
 
@@ -296,7 +296,7 @@ Assume the hard carrier and kernel layers summarized in tab:status-matrix, toget
 
 [documents/archive--paper-latex--tfpt-v30/sections/005-subsection-residual-map-and-principal-unresolved-compari.tex:121-128](../../../../documents/archive--paper-latex--tfpt-v30/sections/005-subsection-residual-map-and-principal-unresolved-compari.tex#L121) · `section:70b254bd9df14d93caf8` · section
 
-The present paper argues that a small carrier-first core already fixes nontrivial physics: the minimal [formula in source] carrier, the global Standard Model quotient, one chiral family, the carrier norm [formula in source] , the abelian index, the seam constant [formula in source] , the corrected opening [formula in source] , and the electromagnetic closure channel. The compression identities and exclusion theorems 
+The present paper argues that a small carrier-first core already fixes nontrivial physics: the minimal [formula in source] carrier, the global Standard Model quotient, one chiral family, the carrier norm [formula in source] , the abelian index, the seam constant [formula in source] , the corrected opening [formula in source] , and the electromagnetic closure channel. The compression identities and exclusion theorems
 
 ## Technical conventions and data layers
 
@@ -392,7 +392,7 @@ The optional record algebra is [formula in source] As [formula in source] decrea
 
 [documents/archive--paper-latex--tfpt-v30/sections/006-subsection-compression-identities-on-the-minimal-branch.tex:311-326](../../../../documents/archive--paper-latex--tfpt-v30/sections/006-subsection-compression-identities-on-the-minimal-branch.tex#L311) · `section:acacf2d161164be81b1a` · subsection
 
-An observer is modeled as a stable pointer subalgebra [formula in source] With orthogonal projectors [formula in source] one writes the measurement channel [formula in source] In finite-dimensional sectors, positivity, additivity on orthogonal decompositions, and phase invariance lead to the standard Born-type assignment [formula in source] The claim is therefore only a constrained evaluation principle on admissible 
+An observer is modeled as a stable pointer subalgebra [formula in source] With orthogonal projectors [formula in source] one writes the measurement channel [formula in source] In finite-dimensional sectors, positivity, additivity on orthogonal decompositions, and phase invariance lead to the standard Born-type assignment [formula in source] The claim is therefore only a constrained evaluation principle on admissible
 
 ## Horizons as conjectural inner seams
 

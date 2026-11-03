@@ -314,7 +314,7 @@ Five more exact identities tie the flavor matrices and the [formula in source] e
 
 [experiments/theory-contracts/universalraum-spin-lift-basics-20260915/sources/input_5_tfpt_3_e8_audit_bootstrap.tex:12070-12117](../../../../experiments/theory-contracts/universalraum-spin-lift-basics-20260915/sources/input_5_tfpt_3_e8_audit_bootstrap.tex#L12070) · `section:4197dff00d3e35e63045` · section
 
-at (0.35,58) [formula in source] — E-series / atlas branchings (UV); at (0.35,40) [formula in source] ; at (0.35,30) [formula in source] \,(Coxeter rung, [formula in source] ); at (0.35,24) [formula in source] — [formula in source] , [formula in source] , [formula in source] ; at (0.35,15) [formula in source] (IR atoms); at (0.35,8) [formula in source] \,(flavor selector, end); at (0,60.5) [formula in source] start; 
+at (0.35,58) [formula in source] — E-series / atlas branchings (UV); at (0.35,40) [formula in source] ; at (0.35,30) [formula in source] \,(Coxeter rung, [formula in source] ); at (0.35,24) [formula in source] — [formula in source] , [formula in source] , [formula in source] ; at (0.35,15) [formula in source] (IR atoms); at (0.35,8) [formula in source] \,(flavor selector, end); at (0,60.5) [formula in source] start;
 
 Explicit source references:
 
@@ -422,7 +422,7 @@ Für freie massive bosonische Moden mit Lücke [formula in source] hat eine norm
 
 [experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/25_revision_v15.tex:175-185](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/25_revision_v15.tex#L175) · `section:718039774fdc30d71795` · section
 
-Sei [formula in source] eine endliche Zelle mit eindeutigem Grundzustand [formula in source] , Energie [formula in source] und Gap [formula in source] . Auf einem beliebigen endlichen verbundenen Graphen definiere [formula in source] Jeder Swapterm ist positiv. Mit [formula in source] folgt [formula in source] . Der Produktgrundzustand ist eindeutig. Die gleichförmige Einanregung wird von jedem Swap festgehalten und 
+Sei [formula in source] eine endliche Zelle mit eindeutigem Grundzustand [formula in source] , Energie [formula in source] und Gap [formula in source] . Auf einem beliebigen endlichen verbundenen Graphen definiere [formula in source] Jeder Swapterm ist positiv. Mit [formula in source] folgt [formula in source] . Der Produktgrundzustand ist eindeutig. Die gleichförmige Einanregung wird von jedem Swap festgehalten und
 
 ## Der entscheidende Unterschied: innere Kritikalität bei massiven Vermittlern
 
@@ -729,7 +729,7 @@ Five more exact identities tie the flavor matrices and the [formula in source] e
 
 [universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_5_tfpt_3_e8_audit_bootstrap.tex:12070-12117](../../../../universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_5_tfpt_3_e8_audit_bootstrap.tex#L12070) · `section:f9fc5d05530250150dda` · section
 
-at (0.35,58) [formula in source] — E-series / atlas branchings (UV); at (0.35,40) [formula in source] ; at (0.35,30) [formula in source] \,(Coxeter rung, [formula in source] ); at (0.35,24) [formula in source] — [formula in source] , [formula in source] , [formula in source] ; at (0.35,15) [formula in source] (IR atoms); at (0.35,8) [formula in source] \,(flavor selector, end); at (0,60.5) [formula in source] start; 
+at (0.35,58) [formula in source] — E-series / atlas branchings (UV); at (0.35,40) [formula in source] ; at (0.35,30) [formula in source] \,(Coxeter rung, [formula in source] ); at (0.35,24) [formula in source] — [formula in source] , [formula in source] , [formula in source] ; at (0.35,15) [formula in source] (IR atoms); at (0.35,8) [formula in source] \,(flavor selector, end); at (0,60.5) [formula in source] start;
 
 Explicit source references:
 

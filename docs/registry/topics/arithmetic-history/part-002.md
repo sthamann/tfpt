@@ -602,7 +602,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 ## Appendix: computational verification
 
-[documents/origin_theory/sections/006-section-honest-status-label-sec-status.tex:317-338](../../../../documents/origin_theory/sections/006-section-honest-status-label-sec-status.tex#L317) · `section:5ef9533c2bf93b6ac923` · section
+[documents/origin_theory/sections/006-section-honest-status-label-sec-status.tex:319-340](../../../../documents/origin_theory/sections/006-section-honest-status-label-sec-status.tex#L319) · `section:5ef9533c2bf93b6ac923` · section
 
 Every \ statement here is machine-checked in the TFPT suite and re-derived independently in Wolfram: @p4.7cmY@ script & content \\ v53_compiler_core.py & [formula in source] skeleton, Pythagorean [formula in source] split, anchor char-poly uniqueness \\ v54_seam_horizon_keystones.py & triply-forced [formula in source] ; shared transport [formula in source] ; de Sitter constants \\ v55_coxeter_cycle.py & computed [for
 
@@ -626,7 +626,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 ## Appendix: computational verification
 
-[documents/tfpt_1_architecture_e8/sections/012-source.tex:120-139](../../../../documents/tfpt_1_architecture_e8/sections/012-source.tex#L120) · `section:82538abb2ab515399dca` · section
+[documents/tfpt_1_architecture_e8/sections/012-source.tex:122-141](../../../../documents/tfpt_1_architecture_e8/sections/012-source.tex#L122) · `section:82538abb2ab515399dca` · section
 
 The load-bearing identities of this document (marked , , ) are re-derived from [formula in source] alone and machine-checked by the suite in the repository folder verification/; the inline tags [verification/ [formula in source] ] point to the exact script. Relevant here: v1_e8_glue.py — the [formula in source] glue ( [formula in source] , [formula in source] , [formula in source] ). v2_carrier_pascal.py — [formula i
 
@@ -699,7 +699,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 ## Appendix: computational verification
 
-[documents/tfpt_2_standard_model/sections/011-subsection-seam-response-grammar-gravity-is-the-inverse-.tex:359-376](../../../../documents/tfpt_2_standard_model/sections/011-subsection-seam-response-grammar-gravity-is-the-inverse-.tex#L359) · `section:59464fe2623d8f56dc12` · section
+[documents/tfpt_2_standard_model/sections/011-subsection-seam-response-grammar-gravity-is-the-inverse-.tex:361-378](../../../../documents/tfpt_2_standard_model/sections/011-subsection-seam-response-grammar-gravity-is-the-inverse-.tex#L361) · `section:59464fe2623d8f56dc12` · section
 
 The Standard-Model identities used here (marked , , ) are re-derived from [formula in source] and machine-checked by the suite in the repository folder verification/; the inline tags [verification/ [formula in source] ] point to the exact script. Relevant here: v2_carrier_pascal.py — the carrier/Pascal packet ( [formula in source] , [formula in source] ). v3_em_alpha.py — the EM fixed point [formula in source] . v4_f
 
@@ -757,7 +757,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 ## Appendix: computational verification
 
-[documents/tfpt_4_frontier/sections/004-source.tex:198-213](../../../../documents/tfpt_4_frontier/sections/004-source.tex#L198) · `section:0c7b2f5d7f77f90fe85c` · section
+[documents/tfpt_4_frontier/sections/004-source.tex:200-215](../../../../documents/tfpt_4_frontier/sections/004-source.tex#L200) · `section:0c7b2f5d7f77f90fe85c` · section
 
 These are the frontier items: most carry \ (open) or \ (conditional) and are therefore not part of the pass/fail suite. The one quantitative handle that is reproduced is [formula in source] (whence the [formula in source] order) in verification/v7_gravity_cosmo.py. The [formula in source] structure and the gap-decoupling of the physical QG sector are machine-checked ( v28_gravity_fR.py, v36_spectral_action_g2.py); th
 
@@ -781,7 +781,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/001-section-korrektur-der-suchrichtung-am-29-september.tex:251-262](../../../../documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/001-section-korrektur-der-suchrichtung-am-29-september.tex#L251) · `section:50a98a13a98faf94eaad` · subsection
 
-Die vorhandene seed-consistency-Auswertung ist besonders relevant, weil sie mehrere Sektoren an einen gemeinsamen Seed bindet. Die Originalanalysen v4–v6 wurden in dieser Prüfung direkt mit ihren eingefrorenen Messdaten erneut ausgeführt: Der gemeinsame Fit liefert [formula in source] bei drei Freiheitsgraden; der eingefrorene TFPT-Seed liefert [formula in source] bei vier Freiheitsgraden. Keiner der 14 untersuchten 
+Die vorhandene seed-consistency-Auswertung ist besonders relevant, weil sie mehrere Sektoren an einen gemeinsamen Seed bindet. Die Originalanalysen v4–v6 wurden in dieser Prüfung direkt mit ihren eingefrorenen Messdaten erneut ausgeführt: Der gemeinsame Fit liefert [formula in source] bei drei Freiheitsgraden; der eingefrorene TFPT-Seed liefert [formula in source] bei vier Freiheitsgraden. Keiner der 14 untersuchten
 
 Explicit source references:
 

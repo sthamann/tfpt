@@ -1,0 +1,148 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/original-local-source-variable-background-20261102/check_original_time16.py
+Original file SHA-256: 423cdc9dba8a7607bf647f9d148950d33aa8516a9e5cba6c27372ea7ee51ffea
+Inclusive original lines: 1-140
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Compare original v1027 additive CAR parent with original v1002 DET16 flat parent."""
+000002 | import hashlib
+000003 | import json
+000004 | import math
+000005 | import sys
+000006 | from pathlib import Path
+000007 | import numpy as np
+000008 | import scipy
+000009 | import scipy.sparse as sp
+000010 | import check_det16_source as ref
+000011 | 
+000012 | 
+000013 | def need(ok,label):
+000014 |     if not bool(ok): raise ArithmeticError(label)
+000015 | 
+000016 | 
+000017 | def maxabs(m):
+000018 |     m=m.tocsr()
+000019 |     return float(np.max(np.abs(m.data))) if m.nnz else 0.0
+000020 | 
+000021 | 
+000022 | def cj(z): return [float(z.real),float(z.imag)]
+000023 | 
+000024 | 
+000025 | def main():
+000026 |     ref.initialize_native_controls()
+000027 |     identity,p=ref.I,ref.P
+000028 |     d=ref.D; phase=np.exp(1j*ref.phi)
+000029 |     p0,pf,om,omd=ref.native.determinant_operators(16,tuple(range(16)))
+000030 |     u=identity+(1/math.sqrt(2)-1)*(p0+pf)+(phase*omd-phase.conjugate()*om)/math.sqrt(2)
+000031 |     ud=u.getH().tocsr()
+000032 |     need(maxabs(ud@u-identity)<1e-13,'rotation is unitary')
+000033 |     need(maxabs(u@p0@ud-p)<1e-13,'rotation reaches original phi projector')
+000034 |     # Construct every dressed annihilator from each native v1002 CAR mode.
+000035 |     dressed=[(u@c@ud).tocsr() for c in ref.ann]
+000036 |     na=sp.csr_matrix((d,d),dtype=complex)
+000037 |     for a in dressed: na+=a.getH()@a
+000038 |     numbers=np.fromiter((s.bit_count() for s in range(d)),dtype=np.int8,count=d)
+000039 |     nd=sp.diags(numbers.astype(float),format='csr')
+000040 |     need(maxabs(ud@na@u-nd)<1e-12,'actual sum of dressed numbers')
+000041 |     q=identity-p
+000042 |     difference_unit=ud@(na-q)@u-(nd-(identity-p0))
+000043 |     need(maxabs(difference_unit)<1e-12,'Delta=1 additive vs original flat Q')
+000044 |     unit_norm=float(np.max(np.abs((nd-(identity-p0)).diagonal())))
+000045 |     need(abs(unit_norm-15)<1e-12,'Delta=1 comparison norm')
+000046 |     need(maxabs(na-(nd+8*(p0-pf-phase*omd-phase.conjugate()*om)))<1e-12,
+000047 |          'v1027 explicit additive-number identity, phase extended')
+000048 |     delta=2.0
+000049 |     hadd=delta*na; hflat=2*q
+000050 |     diff=hadd-hflat
+000051 |     # Unitarly transported actual sparse difference must be diagonal; its
+000052 |     # largest absolute diagonal element is then the true operator norm.
+000053 |     diagonal_difference=delta*nd-2*(identity-p0)
+000054 |     need(maxabs(ud@diff@u-diagonal_difference)<1e-12,'difference in same 16-mode basis')
+000055 |     opnorm=float(np.max(np.abs(diagonal_difference.diagonal())))
+000056 |     need(abs(opnorm-30)<1e-12,'independent operator norm')
+000057 |     need(abs(hadd[d-1,0]+8*delta*phase)<1e-12 and abs(hflat[d-1,0]+phase)<1e-12,
+000058 |          'empty-full generators at same native phase and time')
+000059 |     # One- versus two-particle dressed states built from native U and bit states.
+000060 |     one=u[:,1]; two=u[:,3]; a=dressed[0]
+000061 |     comm_flat=hflat@a-a@hflat
+000062 |     comm_add=hadd@a-a@hadd
+000063 |     need(maxabs(comm_add+delta*a)<1e-12,'additive Heisenberg law for mode 0')
+000064 |     # All 16 dressed modes have the identical linear generator law.
+000065 |     all_res=max(maxabs(hadd@x-x@hadd+delta*x) for x in dressed)
+000066 |     need(all_res<1e-12,'additive Heisenberg law for all native dressed modes')
+000067 |     flat_one=float(np.linalg.norm((comm_flat@one+2*a@one).toarray()))
+000068 |     flat_two=float(np.linalg.norm((comm_flat@two+2*a@two).toarray()))
+000069 |     need(flat_one<1e-12 and abs(flat_two-2)<1e-12,'flat nonlinear field response on two sectors')
+000070 |     # Evaluate both exact semigroups as functions of the actual U N U^dagger.
+000071 |     t=.31; beta=1.0
+000072 |     eadd=u@sp.diags(np.exp(-delta*t*numbers),format='csr')@ud
+000073 |     eflat=math.exp(-2*t)*identity+(-math.expm1(-2*t))*p
+000074 |     persistence_add=(two.getH()@eadd@two)[0,0]
+000075 |     persistence_flat=(two.getH()@eflat@two)[0,0]
+000076 |     need(abs(persistence_add-np.exp(-2*delta*t))<1e-12,'two-excitation additive persistence')
+000077 |     need(abs(persistence_flat-np.exp(-2*t))<1e-12,'two-excitation flat persistence')
+000078 |     # Euclidean conjugation, NOT real-time unitary Heisenberg evolution.
+000079 |     invadd=u@sp.diags(np.exp(delta*t*numbers),format='csr')@ud
+000080 |     invflat=math.exp(2*t)*identity+(1-math.exp(2*t))*p
+000081 |     oldadd=invadd@ref.ann[0]@eadd
+000082 |     oldflat=invflat@ref.ann[0]@eflat
+000083 |     entries=[]
+000084 |     for row,col in ((0,1),(2,3),(d-2,d-1)):
+000085 |         entries.append({'row':row,'col':col,'additive':cj(oldadd[row,col]),'flat':cj(oldflat[row,col])})
+000086 |     # Real Lorentzian/unitary time on every original bare and dressed field.
+000087 |     vadd=(u@sp.diags(np.exp(-1j*delta*t*numbers),format='csr')@ud).tocsr()
+000088 |     vflat=(np.exp(-2j*t)*identity+(1-np.exp(-2j*t))*p).tocsr()
+000089 |     need(maxabs(vadd.getH()@vadd-identity)<1e-12,'additive real-time unitarity')
+000090 |     need(maxabs(vflat.getH()@vflat-identity)<1e-12,'flat real-time unitarity')
+000091 |     bare_flat_error=0.0; dressed_flat_error=0.0; dressed_add_error=0.0
+000092 |     for c,a in zip(ref.ann,dressed,strict=True):
+000093 |         bare_flat=(vflat.getH()@c@vflat).tocsr()
+000094 |         predicted=c+(np.exp(-2j*t)-1)*(p@c)+(np.exp(2j*t)-1)*(c@p)
+000095 |         bare_flat_error=max(bare_flat_error,maxabs(bare_flat-predicted))
+000096 |         aflat=vflat.getH()@a@vflat
+000097 |         dressed_flat_error=max(dressed_flat_error,maxabs(aflat-a-(np.exp(-2j*t)-1)*(p@a)))
+000098 |         dressed_add_error=max(dressed_add_error,maxabs(vadd.getH()@a@vadd-np.exp(-1j*delta*t)*a))
+000099 |     need(max(bare_flat_error,dressed_flat_error,dressed_add_error)<1e-12,
+000100 |          'all16 actual real-time bare/dressed field laws')
+000101 |     real_two_add=(two.getH()@vadd@two)[0,0]
+000102 |     real_two_flat=(two.getH()@vflat@two)[0,0]
+000103 |     need(abs(real_two_add-np.exp(-2j*delta*t))<1e-12,'real-time additive four-word')
+000104 |     need(abs(real_two_flat-np.exp(-2j*t))<1e-12,'real-time flat four-word')
+000105 |     # Both exact trace formulas retain all zero-source constants.
+000106 |     zadd=(1+math.exp(-delta*beta))**16; zflat=1+(d-1)*math.exp(-2*beta)
+000107 |     need(abs(np.exp(-delta*beta*numbers).sum()-zadd)<1e-9,'native additive zero-source trace')
+000108 |     need(abs(1+(d-1)*math.exp(-2*beta)-zflat)<1e-12,'flat zero-source trace')
+000109 |     files=[Path(ref.native.__file__),Path(ref.__file__),Path(__file__),
+000110 |            Path(ref.native.__file__).parent/'v1027_signed_det_car_wall.py']
+000111 |     report={'status':'pass','native_modes':16,'phase':ref.phi,
+000112 |             'reference_rule':'verification/v1027_signed_det_car_wall.py:82-139; phase extension uses native v1002 PHI, not selected by v1027',
+000113 |             'construct':'original v1002 annihilators -> a_i=U c_i U† -> N_a=sum a_i† a_i; H_add=Delta N_a; H_flat=2(I-P)',
+000114 |             'diagnostic_Delta':delta,'diagnostic_time':t,'diagnostic_beta':beta,
+000115 |             'comparison':'same time and same carrier; no independent time rescaling or physical beta identification',
+000116 |             'norm_delta1_add_minus_flat_Q':unit_norm,
+000117 |             'norm_add_minus_flat':opnorm,'hadd_full_empty':cj(hadd[d-1,0]),'hflat_full_empty':cj(hflat[d-1,0]),
+000118 |             'all_dressed_additive_commutator_max_error':all_res,
+000119 |             'flat_residual_norm_on_one_particle':flat_one,'flat_residual_norm_on_two_particle':flat_two,
+000120 |             'two_particle_additive_persistence':cj(persistence_add),'two_particle_flat_persistence':cj(persistence_flat),
+000121 |             'old_c_euclidean_conjugation_entries':entries,
+000122 |             'all16_real_time_bare_flat_max_error':bare_flat_error,
+000123 |             'all16_real_time_dressed_flat_max_error':dressed_flat_error,
+000124 |             'all16_real_time_dressed_additive_max_error':dressed_add_error,
+000125 |             'real_time_two_particle_additive_word':cj(real_two_add),
+000126 |             'real_time_two_particle_flat_word':cj(real_two_flat),
+000127 |             'real_time_laws':'For every native bare c: alpha_flat(c)=c+(exp(-2it)-1)P c+(exp(2it)-1)c P. For a=U c Udagger: alpha_flat(a)=a+(exp(-2it)-1)P a; alpha_add(a)=exp(-i Delta t)a. These are real-time unitary laws, distinct from inverse heat conjugation above.',
+000128 |             'Z_additive':zadd,'Z_flat':zflat,
+000129 |             'analytical_for_all_Delta':'H_add[F,0]=-8 Delta exp(i phi); H_flat[F,0]=-exp(i phi); additive two-excitation persistence exp(-2 Delta t); flat exp(-2t); Z_add=(1+exp(-Delta beta))^16; Z_flat=1+65535 exp(-2 beta).',
+000130 |             'scope':'finite original 16-mode cluster; no derivation of full TFPT S/Z, no claim v1027 selected native phi, no source-only time fit, no interacting v1013 cell.',
+000131 |             'primitive_H_adm_evaluation':{
+000132 |                 'status':'not_computed_unidentified_original_field_transfer_map',
+000133 |                 'matrix_element_full_empty':None,
+000134 |                 'reason':'Reviewed original seed/OS passages define the full primitive dynamics/reconstruction but supply no identified action on these native v1002 mirror modes. Neither evaluated parent is relabeled as that primitive H_adm.'},
+000135 |             'sha256':{str(f.resolve()):hashlib.sha256(f.read_bytes()).hexdigest() for f in files},
+000136 |             'python':sys.version,'numpy':np.__version__,'scipy':scipy.__version__}
+000137 |     Path(__file__).with_name('original-time16-results.json').write_text(json.dumps(report,indent=2)+'\n')
+000138 |     print(json.dumps(report,indent=2))
+000139 | 
+000140 | if __name__=='__main__': main()

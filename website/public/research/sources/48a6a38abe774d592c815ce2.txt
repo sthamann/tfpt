@@ -1,0 +1,140 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/seam-positive-kernel-search-20261015/adaptive_discriminator.py
+Original file SHA-256: 3fe77c3a771d51b43ac9b129f0e88dae938c706275680b2134389cc10022028a
+Inclusive original lines: 1-132
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Rank exact, already certified response questions by candidate separation.
+000002 | 
+000003 | This is a finite-candidate diagnostic, not a physical source selector.  The
+000004 | segment entry point verifies the stored original certificates first.  Model
+000005 | proposals and source metadata are never silently turned into constraints.
+000006 | """
+000007 | from __future__ import annotations
+000008 | 
+000009 | import argparse
+000010 | from fractions import Fraction
+000011 | import json
+000012 | from pathlib import Path
+000013 | 
+000014 | import sympy as sp
+000015 | 
+000016 | from certify_response_segment import certify
+000017 | 
+000018 | 
+000019 | def import_hypotheses(proposals):
+000020 |     """Validate structure only. No claim, source or premise is verified here."""
+000021 |     if not isinstance(proposals, list):
+000022 |         raise ValueError('AI hypothesis input must be a list')
+000023 |     required = {'hypothesis', 'source_ids', 'premises', 'additional_assumptions', 'tests'}
+000024 |     for proposal in proposals:
+000025 |         if not isinstance(proposal, dict) or set(proposal) != required:
+000026 |             raise ValueError('Hypothesis requires exactly the declared descriptive fields')
+000027 |         if not isinstance(proposal['hypothesis'], str) or not proposal['hypothesis'].strip():
+000028 |             raise ValueError('Hypothesis text is required')
+000029 |         for field in ('source_ids', 'premises', 'additional_assumptions', 'tests'):
+000030 |             if not isinstance(proposal[field], list) or any(not isinstance(x, str) or not x.strip() for x in proposal[field]):
+000031 |                 raise ValueError('Hypothesis lists must contain nonempty strings')
+000032 |         if not proposal['source_ids'] or not proposal['premises'] or not proposal['tests']:
+000033 |             raise ValueError('Source IDs, premises and tests must be supplied')
+000034 |     return {'items': proposals, 'source_ids_verified': False,
+000035 |             'premises_verified': False, 'added_as_constraints': False,
+000036 |             'scope': 'Unverified external proposals; review against current atlas and original sources'}
+000037 | 
+000038 | 
+000039 | def rank_responses(responses, candidate_count):
+000040 |     """Rank exact real vectors; affine duplicates share one representative.
+000041 | 
+000042 |     Pair separation is counted only among the supplied candidates.  Affine
+000043 |     rank is likewise restricted to these vectors, not all possible processes.
+000044 |     Costs are explicit positive rationals, not inferred probabilities.
+000045 |     """
+000046 |     if candidate_count < 2:
+000047 |         raise ValueError('At least two certified candidates are required')
+000048 |     groups = {}
+000049 |     for response in responses:
+000050 |         word = response['word']
+000051 |         values = tuple(Fraction(x) for x in response['values'])
+000052 |         cost = Fraction(response.get('cost', len(word)))
+000053 |         if len(values) != candidate_count or cost <= 0:
+000054 |             raise ValueError('Wrong candidate count or nonpositive question cost')
+000055 |         delta = tuple(v-values[0] for v in values[1:])
+000056 |         pivot = next((v for v in delta if v), None)
+000057 |         if pivot is None:
+000058 |             continue
+000059 |         key = tuple(v/pivot for v in delta)
+000060 |         groups.setdefault(key, []).append({'word': word, 'values': values, 'cost': cost})
+000061 | 
+000062 |     remaining = {(i, j) for i in range(candidate_count) for j in range(i+1, candidate_count)}
+000063 |     output = []
+000064 |     for key, members in groups.items():
+000065 |         members.sort(key=lambda x: (x['cost'], len(x['word']), x['word']))
+000066 |     while groups:
+000067 |         choices = []
+000068 |         for key, members in groups.items():
+000069 |             best = members[0]
+000070 |             separated = {p for p in remaining if best['values'][p[0]] != best['values'][p[1]]}
+000071 |             choices.append((Fraction(len(separated), 1)/best['cost'], len(separated),
+000072 |                             best['cost'], best['word'], key, separated))
+000073 |         # Exact rational score; deterministic cheapest/lexical tie breaking.
+000074 |         choices.sort(key=lambda x: (-x[0], -x[1], x[2], x[3]))
+000075 |         score, gain, cost, word, key, separated = choices[0]
+000076 |         members = groups.pop(key)
+000077 |         best = members[0]
+000078 |         output.append({'word': word, 'candidate_values': [str(x) for x in best['values']],
+000079 |                        'cost': str(cost), 'new_candidate_pairs_separated': gain,
+000080 |                        'pair_separation_per_cost': str(score),
+000081 |                        'affine_equivalent_words': [m['word'] for m in members]})
+000082 |         remaining.difference_update(separated)
+000083 |     differences = [[Fraction(v)-Fraction(r['candidate_values'][0])
+000084 |                     for v in r['candidate_values'][1:]] for r in output]
+000085 |     matrix = sp.Matrix([[sp.Rational(v.numerator, v.denominator) for v in row]
+000086 |                         for row in differences]) if output else sp.zeros(0, candidate_count-1)
+000087 |     return {'ranked_questions': output, 'affine_signal_rank': int(matrix.rank()),
+000088 |             'affine_equivalence_groups': len(output), 'candidate_pairs_unseparated': len(remaining),
+000089 |             'score_scope': 'exact pair separation divided by declared cost on supplied candidates; not Shannon information or a global bound'}
+000090 | 
+000091 | 
+000092 | def analyze_segment(run):
+000093 |     # certify replays both full stored candidates and all supplied word moments.
+000094 |     result = certify(run)
+000095 |     s = sp.Symbol('s', real=True)
+000096 |     entries = []
+000097 |     for row in result['responses']:
+000098 |         expression = sp.sympify(row['polynomial'], locals={'s': s})
+000099 |         ends = [expression.subs(s, k) for k in (0, 1)]
+000100 |         if any(not value.is_Rational for value in ends):
+000101 |             raise ValueError('Response must have exact real rational values')
+000102 |         entries.append({'word': row['word'], 'values': [str(x) for x in ends]})
+000103 |     ranking = rank_responses(entries, 2)
+000104 |     return {'schema': 'tfpt.adaptive-discriminator.v1',
+000105 |             'certificate_status': result['status'], 'candidate_count': 2,
+000106 |             'segment_parameter': result['parameter'],
+000107 |             'segment_replay_moments': result['all_replayed_moment_polynomials_constant'],
+000108 |             'candidate_carrier': 'same declared 32-dimensional finite CAR representation, state and internal quarter',
+000109 |             'physical_comparison': 'original P1 carrier and field map are not identified',
+000110 |             'ranking': ranking, 'source_sha256': result['source_sha256'],
+000111 |             'physical_source_identified': False, 'fundamental_solution': False}
+000112 | 
+000113 | 
+000114 | def main():
+000115 |     parser = argparse.ArgumentParser(description=__doc__)
+000116 |     parser.add_argument('run', type=Path)
+000117 |     parser.add_argument('--out', required=True, type=Path)
+000118 |     parser.add_argument('--hypotheses', type=Path,
+000119 |                         help='Optional descriptive JSON list; never inserted as constraints')
+000120 |     args = parser.parse_args()
+000121 |     result = analyze_segment(args.run)
+000122 |     if args.hypotheses:
+000123 |         result['unverified_ai_proposals'] = import_hypotheses(json.loads(args.hypotheses.read_text()))
+000124 |     args.out.parent.mkdir(parents=True, exist_ok=True)
+000125 |     with args.out.open('x') as stream:
+000126 |         json.dump(result, stream, indent=2)
+000127 |         stream.write('\n')
+000128 |     print(json.dumps(result, indent=2))
+000129 | 
+000130 | 
+000131 | if __name__ == '__main__':
+000132 |     main()

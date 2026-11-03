@@ -87,7 +87,7 @@ Eine gewöhnliche kritische SU(4)-Kette hat links- und rechtslaufende Sektoren, 
 
 [experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/07_seam.tex:98-103](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/07_seam.tex#L98) · `section:8640f78cf233ec4c920a` · section
 
-Die innere Glue- [formula in source] wirkt auf den 248 Strömen mit Phasen [formula in source] auf Sektoren der Größen [formula in source] . Ihre Spur ist null. Die geometrische Vierteldrehung [formula in source] hat auf Stufe eins dagegen Spur [formula in source] . Die Operatoren sind somit nicht identisch. Eine Clock kann eine geometrische Drehung mit innerem Twist kombinieren; die beiden Faktoren bleiben getrennt. 
+Die innere Glue- [formula in source] wirkt auf den 248 Strömen mit Phasen [formula in source] auf Sektoren der Größen [formula in source] . Ihre Spur ist null. Die geometrische Vierteldrehung [formula in source] hat auf Stufe eins dagegen Spur [formula in source] . Die Operatoren sind somit nicht identisch. Eine Clock kann eine geometrische Drehung mit innerem Twist kombinieren; die beiden Faktoren bleiben getrennt.
 
 ## Mehrzeitdaten statt einer einzigen Dichtematrix
 
@@ -201,7 +201,7 @@ Eine gewöhnliche kritische SU(4)-Kette hat links- und rechtslaufende Sektoren, 
 
 [experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/07_seam.tex:98-103](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/07_seam.tex#L98) · `section:41acf7fde27002fd60f1` · section
 
-Die innere Glue- [formula in source] wirkt auf den 248 Strömen mit Phasen [formula in source] auf Sektoren der Größen [formula in source] . Ihre Spur ist null. Die geometrische Vierteldrehung [formula in source] hat auf Stufe eins dagegen Spur [formula in source] . Die Operatoren sind somit nicht identisch. Eine Clock kann eine geometrische Drehung mit innerem Twist kombinieren; die beiden Faktoren bleiben getrennt. 
+Die innere Glue- [formula in source] wirkt auf den 248 Strömen mit Phasen [formula in source] auf Sektoren der Größen [formula in source] . Ihre Spur ist null. Die geometrische Vierteldrehung [formula in source] hat auf Stufe eins dagegen Spur [formula in source] . Die Operatoren sind somit nicht identisch. Eine Clock kann eine geometrische Drehung mit innerem Twist kombinieren; die beiden Faktoren bleiben getrennt.
 
 ## Mehrzeitdaten statt einer einzigen Dichtematrix
 
@@ -612,7 +612,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [experiments/theory-contracts/universalraum-spin-lift-basics-20260915/sources/input_4_origin_theory.tex:1166-1454](../../../../experiments/theory-contracts/universalraum-spin-lift-basics-20260915/sources/input_4_origin_theory.tex#L1166) · `section:3bfc0afca092b381dee1` · section
 
-The precise reformulation ( ). The seam is not identical to an event horizon. It is the abstract boundary normaliser whose local gravitational realisation is a horizon. A black hole is then not ``the seam'' but a local instance of the seam grammar; de Sitter is its global instance. This is stronger and cleaner than a direct identification — it avoids importing Schwarzschild analogies wholesale, and it makes [formula 
+The precise reformulation ( ). The seam is not identical to an event horizon. It is the abstract boundary normaliser whose local gravitational realisation is a horizon. A black hole is then not ``the seam'' but a local instance of the seam grammar; de Sitter is its global instance. This is stronger and cleaner than a direct identification — it avoids importing Schwarzschild analogies wholesale, and it makes [formula
 
 Explicit source references:
 
@@ -888,7 +888,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [experiments/theory-contracts/universalraum-spin-lift-basics-20260915/sources/input_5_tfpt_3_e8_audit_bootstrap.tex:12215-12225](../../../../experiments/theory-contracts/universalraum-spin-lift-basics-20260915/sources/input_5_tfpt_3_e8_audit_bootstrap.tex#L12215) · `section:f81e7d9852f1b4758b79` · part
 
-The question, and the honest answer. The theory rests on two inputs, [formula in source] and [formula in source] . The old theory had a Möbius seam and the seed was the start of the [formula in source] cascade. Run it backwards: can the cascade/ [formula in source] return [formula in source] and [formula in source] , closing a self-consistent loop? Answer: the discrete content is a closed, overdetermined fixed point 
+The question, and the honest answer. The theory rests on two inputs, [formula in source] and [formula in source] . The old theory had a Möbius seam and the seed was the start of the [formula in source] cascade. Run it backwards: can the cascade/ [formula in source] return [formula in source] and [formula in source] , closing a self-consistent loop? Answer: the discrete content is a closed, overdetermined fixed point
 
 ## The loop for [formula in source] — the `` [formula in source] '' is the [formula in source] rank
 
@@ -1064,7 +1064,7 @@ Ja, ebenfalls innerhalb eines bewiesenen kleinen Bereichs. Entfernt man ein ursp
 
 [experiments/theory-contracts/universalraum-spin-lift-basics-20260915/tmp/pdfs/TFPT_Universalraum_Spinlift_Einfach_2026-09-15_v1.6.10.tex:220-241](../../../../experiments/theory-contracts/universalraum-spin-lift-basics-20260915/tmp/pdfs/TFPT_Universalraum_Spinlift_Einfach_2026-09-15_v1.6.10.tex#L220) · `section:0b4b7b5936fda58fa110` · subsection
 
-Die Fortsetzung hat hier noch eine einfache Regel gefunden. Wenn linke und rechte Nachbarstation verschieden stark beitragen dürfen, funktioniert auch ein unverdrehtes Gegenmodell. Der Clock allein bestimmt das also nicht. Fordert man aber, dass dieselbe Links-rechts-Spiegelung auch den Paarübergang unverändert lässt, müssen beide Seiten gleich stark beitragen. In dieser kleinen Quellenfamilie bleibt dann ohne freie 
+Die Fortsetzung hat hier noch eine einfache Regel gefunden. Wenn linke und rechte Nachbarstation verschieden stark beitragen dürfen, funktioniert auch ein unverdrehtes Gegenmodell. Der Clock allein bestimmt das also nicht. Fordert man aber, dass dieselbe Links-rechts-Spiegelung auch den Paarübergang unverändert lässt, müssen beide Seiten gleich stark beitragen. In dieser kleinen Quellenfamilie bleibt dann ohne freie
 
 ## Die neue Verbindung
 
@@ -1116,7 +1116,7 @@ For the TFPT master-Hamiltonian class finite-dimensional local factors and coeff
 
 [experiments/theory-contracts/universalraum-two-bank-transfer-20260915/external/exchange/source/articles__2026-08-30__tfpt_thermodynamic_dynamics_en.tex:563-618](../../../../experiments/theory-contracts/universalraum-two-bank-transfer-20260915/external/exchange/source/articles__2026-08-30__tfpt_thermodynamic_dynamics_en.tex#L563) · `section:c0e96880a60b78a3dc4e` · section
 
-The amended contract makes the continuum limit optional but the thermodynamic limit mandatory. The latter is now proved at the Hamiltonian-class level for the concrete finite-group, finite-local-space TFPT assembly. The proof is insensitive to finite-volume boundary shape and does not infer thermodynamics from a finite scan. Its explicit velocity is conservative, while the numerical witness checks the expected cone, 
+The amended contract makes the continuum limit optional but the thermodynamic limit mandatory. The latter is now proved at the Hamiltonian-class level for the concrete finite-group, finite-local-space TFPT assembly. The proof is insensitive to finite-volume boundary shape and does not infer thermodynamics from a finite scan. Its explicit velocity is conservative, while the numerical witness checks the expected cone,
 
 ## Vom Wiedererkennen zur gemeinsamen Ursache
 
@@ -1170,7 +1170,7 @@ Eine gewöhnliche kritische SU(4)-Kette hat links- und rechtslaufende Sektoren, 
 
 [experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/07_seam.tex:100-105](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/07_seam.tex#L100) · `section:c2b97e76fe5215d296b7` · section
 
-Die innere Glue- [formula in source] wirkt auf den 248 Strömen mit Phasen [formula in source] auf Sektoren der Größen [formula in source] . Ihre Spur ist null. Die geometrische Vierteldrehung [formula in source] hat auf Stufe eins dagegen Spur [formula in source] . Die Operatoren sind somit nicht identisch. Eine Clock kann eine geometrische Drehung mit innerem Twist kombinieren; die beiden Faktoren bleiben getrennt. 
+Die innere Glue- [formula in source] wirkt auf den 248 Strömen mit Phasen [formula in source] auf Sektoren der Größen [formula in source] . Ihre Spur ist null. Die geometrische Vierteldrehung [formula in source] hat auf Stufe eins dagegen Spur [formula in source] . Die Operatoren sind somit nicht identisch. Eine Clock kann eine geometrische Drehung mit innerem Twist kombinieren; die beiden Faktoren bleiben getrennt.
 
 ## Mehrzeitdaten statt einer einzigen Dichtematrix
 

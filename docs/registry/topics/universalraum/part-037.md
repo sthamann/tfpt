@@ -4,11 +4,25 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Optimalität und eine präzise Ressourcengrenze
+
+[experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/26_v16_labor.tex:55-74](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/26_v16_labor.tex#L55) · `section:7f6891f1dfbb454c4398` · section
+
+Innerhalb der reinen oder gemischten Acht-Bit-Stabilizerzustände gilt Der dokumentierte Beweis reduziert auf einen Vier-Bit-Stabilizercode mit sechs vorzeichenbehafteten Trägern. Unter allen 307 affinen Unterräumen von [formula in source] sind die maximalen Schnittgrößen für Dimension [formula in source] gleich [formula in source] . Die Schranke [formula in source] gilt in jeder Dimension und wird durch [formula in s
+
+Explicit source references:
+
+- [verification/v16_solar_dual_anchor.py](../../../../verification/v16_solar_dual_anchor.py#L1) · explicit_script_identifier
+
+Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
+
+- [(* ---- (v16/v21) solar angle from the A3 glue-norm q(A3) = 3/4 ---- *) qA3 = 3/4; qD5 = 5/4; checkExact["E8 glue norm q(D5) + q(A3) = 2", qA3 + qD5 == 2]; checkExact["eps leading q(A3)/(6pi) = 1/(8pi) = c3", Simplify[qA3/(6 Pi) - c3] == 0]; s12 = 1/3 - (2/3) qA3 phi0; checkExact["sin^2 theta12 = 1/3 - phi0/2 (exact)", Simplify[s12 - (1/3 - phi0/2)] == 0]; (* ---- (v23) anchor generator a=(1,1,2) ---- *)](../../../../verification/wolfram/tfpt_readouts.wl#L88)
+
 ## Spektren: ein vollständiges Teilproblem, nicht alle Focksektoren
 
 [experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/26_v16_labor.tex:75-90](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/26_v16_labor.tex#L75) · `section:3b547df8a8d669d5b805` · section
 
-Der dokumentierte C16-Nachweis betrifft den gesamten 24024-dimensionalen Singulettsektor des kantenlokalen, abgeschnittenen Operators Unterhalb [formula in source] liegen exakt fünf Eigenwerte: ein nichtentarteter Grundzustand und das folgende Viererband. Die zertifizierten Intervalle lauten mit Lücke größer als [formula in source] . Alle 18 Symmetrietypen wurden im dokumentierten Zertifikat erfasst; die elf übrigen 
+Der dokumentierte C16-Nachweis betrifft den gesamten 24024-dimensionalen Singulettsektor des kantenlokalen, abgeschnittenen Operators Unterhalb [formula in source] liegen exakt fünf Eigenwerte: ein nichtentarteter Grundzustand und das folgende Viererband. Die zertifizierten Intervalle lauten mit Lücke größer als [formula in source] . Alle 18 Symmetrietypen wurden im dokumentierten Zertifikat erfasst; die elf übrigen
 
 ## Was bereits wirklich transportiert wurde
 
@@ -20,7 +34,7 @@ In einer ausdrücklich gesetzten Dreiplatz-Wedge-Anordnung mit 112 Zuständen er
 
 [experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/26_v16_labor.tex:98-111](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/26_v16_labor.tex#L98) · `section:4145e7564d61ad844781` · section
 
-Die dokumentierte Robustheitsrechnung normiert erst nach Aufsummieren der vollständigen Zweige. Bei [formula in source] und [formula in source] ergibt sie unter den übrigen Idealannahmen Präparationsinfidelität höchstens [formula in source] . Für [formula in source] und [formula in source] bleibt die Vier-Record-Rohtrennung mindestens [formula in source] . Der alte F9-Filter mit dem neuen Eingang [formula in source] 
+Die dokumentierte Robustheitsrechnung normiert erst nach Aufsummieren der vollständigen Zweige. Bei [formula in source] und [formula in source] ergibt sie unter den übrigen Idealannahmen Präparationsinfidelität höchstens [formula in source] . Für [formula in source] und [formula in source] bleibt die Vier-Record-Rohtrennung mindestens [formula in source] . Der alte F9-Filter mit dem neuen Eingang [formula in source]
 
 ## v1.6: Der kleine Matrixkern und das markierte E [formula in source] 8
 
@@ -103,7 +117,7 @@ Die zweite neue Eingabe unterscheidet selbst einen möglichen Ort [formula in so
 
 [experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/28_v16_operations.tex:12-31](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/28_v16_operations.tex#L12) · `section:96571450b6a0f191059a` · section
 
-Verwende die hermiteschen Compiler-Matrizen [formula in source] aus Kapitel Alle acht Matrizen sind von Rang eins; [formula in source] . Der kleinste positive ganzzahlige Faktor, der sie in die maximale Ordnung [formula in source] bringt, ist in allen acht Fällen vier. Dies wurde mit exakt ausmultiplizierten gaußschen Komponenten geprüft. Eine anfängliche symbolische Nichtvereinfachung eines Eintrags ist durch einen 
+Verwende die hermiteschen Compiler-Matrizen [formula in source] aus Kapitel Alle acht Matrizen sind von Rang eins; [formula in source] . Der kleinste positive ganzzahlige Faktor, der sie in die maximale Ordnung [formula in source] bringt, ist in allen acht Fällen vier. Dies wurde mit exakt ausmultiplizierten gaußschen Komponenten geprüft. Eine anfängliche symbolische Nichtvereinfachung eines Eintrags ist durch einen
 
 Explicit source references:
 
@@ -149,7 +163,7 @@ Die bisherige native Bank verwendet 64 Fermionmoden in [formula in source] und 6
 
 [experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/28_v16_operations.tex:106-107](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/28_v16_operations.tex#L106) · `section:743eb4a2dcdc89bc9730` · section
 
-Im selben [formula in source] -Wurzelmodell sind [formula in source] und [formula in source] wechselseitige Zentralisatoren; für eine ausgewählte [formula in source] -Unteralgebra ist der Zentralisator [formula in source] . Die Zerlegung [formula in source] ist richtig, aber sie setzt eine andere Auswahl als eine automatisch erhaltene dreifache [formula in source] -Familie voraus. Die frische Kompatibilitätsrechnung 
+Im selben [formula in source] -Wurzelmodell sind [formula in source] und [formula in source] wechselseitige Zentralisatoren; für eine ausgewählte [formula in source] -Unteralgebra ist der Zentralisator [formula in source] . Die Zerlegung [formula in source] ist richtig, aber sie setzt eine andere Auswahl als eine automatisch erhaltene dreifache [formula in source] -Familie voraus. Die frische Kompatibilitätsrechnung
 
 ## v1.6: Zustand, Energie und die Grenze der einfachsten Dynamik
 
@@ -378,7 +392,7 @@ G. M. D'Ariano, M. Erba, P. Perinotti: Isotropic quantum walks on lattices and t
 
 [experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/front_v16.tex:1-19](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/front_v16.tex#L1) · `section:41583e86e96a646c4f18` · section
 
-tocsectionNeu in v1.6: Ergebnisse, Reichweite und Lesepfad Diese Fassung vom 15. September 2026 führt das vollständige Hauptdokument v1.5 fort. Die 25 bisherigen Kapiteldateien einschließlich aller darin enthaltenen Hauptkapitel und Anhänge sowie sämtliche Abbildungen bleiben erhalten. Dreizehn inhaltliche Einfügungen verbinden die neuen Ergebnisse direkt mit den bisherigen Argumenten. Fünf neue Hauptkapitel und ein 
+tocsectionNeu in v1.6: Ergebnisse, Reichweite und Lesepfad Diese Fassung vom 15. September 2026 führt das vollständige Hauptdokument v1.5 fort. Die 25 bisherigen Kapiteldateien einschließlich aller darin enthaltenen Hauptkapitel und Anhänge sowie sämtliche Abbildungen bleiben erhalten. Dreizehn inhaltliche Einfügungen verbinden die neuen Ergebnisse direkt mit den bisherigen Argumenten. Fünf neue Hauptkapitel und ein
 
 Explicit source references:
 
@@ -504,7 +518,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/revisions/06_records.tex:1-3](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/revisions/06_records.tex#L1) · `section:4ee9bba7e566816e6a5f` · frontmatter
 
-Integriertes Update v1.6: Rohdaten statt nur Rückkehrquotient Das neue Ein-Record-Präparationsprotokoll und seine rückwärts ausgeführte Schlussprüfung liefern für die vollständige Vier-Record-Folge die Rohwahrscheinlichkeiten [formula in source] bei kohärent behaltenem Register und [formula in source] bei frischen Registern. Ihr Verhältnis ist weiterhin [formula in source] . Das erste Ergebnis enthält beide Faktoren 
+Integriertes Update v1.6: Rohdaten statt nur Rückkehrquotient Das neue Ein-Record-Präparationsprotokoll und seine rückwärts ausgeführte Schlussprüfung liefern für die vollständige Vier-Record-Folge die Rohwahrscheinlichkeiten [formula in source] bei kohärent behaltenem Register und [formula in source] bei frischen Registern. Ihr Verhältnis ist weiterhin [formula in source] . Das erste Ergebnis enthält beide Faktoren
 
 Explicit source references:
 
@@ -518,7 +532,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/revisions/07_fields.tex:1-3](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/revisions/07_fields.tex#L1) · `section:ac13a5944997d9870a43` · frontmatter
 
-Integrierte Präzisierung v1.6: dieselbe Algebra ist noch nicht dasselbe Feld Der signierte native Kopplungstensor passt nach einer festen Phasenkonvention zu den entsprechenden [formula in source] -Wurzelprodukten. Die bekannte Gitter-Vertexalgebra liefert dafür ebenfalls ein Operatorprodukt. Das verknüpft die Strukturkonstanten; es identifiziert nicht automatisch die physische Reaktion [formula in source] mit einem 
+Integrierte Präzisierung v1.6: dieselbe Algebra ist noch nicht dasselbe Feld Der signierte native Kopplungstensor passt nach einer festen Phasenkonvention zu den entsprechenden [formula in source] -Wurzelprodukten. Die bekannte Gitter-Vertexalgebra liefert dafür ebenfalls ein Operatorprodukt. Das verknüpft die Strukturkonstanten; es identifiziert nicht automatisch die physische Reaktion [formula in source] mit einem
 
 Explicit source references:
 
@@ -714,7 +728,7 @@ Der gewichtete Bandbeweis, der Feedbackattraktor und die mikroskopische Sternlö
 
 [experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/update_body_v14.tex:19-39](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/update_body_v14.tex#L19) · `section:a6f4c650ebbafa4dcbeb` · section
 
-Für kantenlokale Vermittler lässt sich die vierte Ordnung schreiben als Die Ganzzahligkeit des lokalen Spektrums wurde durch eine exakte 720-dimensionale reguläre [formula in source] -Rechnung kontrolliert. Zusätzlich gilt auf dem ganzen Materieraum Das verkleinert eine komplizierte Korrektur zu lokalen positiven Bausteinen. Positivität des Operators bedeutet dabei nicht automatisch eine positive Gapänderung; Grund- 
+Für kantenlokale Vermittler lässt sich die vierte Ordnung schreiben als Die Ganzzahligkeit des lokalen Spektrums wurde durch eine exakte 720-dimensionale reguläre [formula in source] -Rechnung kontrolliert. Zusätzlich gilt auf dem ganzen Materieraum Das verkleinert eine komplizierte Korrektur zu lokalen positiven Bausteinen. Positivität des Operators bedeutet dabei nicht automatisch eine positive Gapänderung; Grund-
 
 ## 3. Ein gemeinsamer mikroskopischer Ablauf mit Rohwahrscheinlichkeiten
 
@@ -780,7 +794,7 @@ Ein Pointer-Hadamard verwandelt R exakt in einen kontrollierten Ququart-Swap. Au
 
 [experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/update_body_v15.tex:67-75](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/update_body_v15.tex#L67) · `section:0acfbc1b53f4596f384b` · section
 
-Für die dokumentierte Regel [formula in source] und das vollständige Starobinsky-Potential gilt in erster Potential-Slow-Roll-Ordnung, ohne große-N-Abschneidung, [formula in source] Die ACT-Tabellenspalte P-ACT-LB2 mit [formula in source] und [formula in source] erreicht zentral nur 0.49299564 der Untergrenze. Das volle Potential repariert den zuvor gefundenen Widerspruch in dieser Ordnung nicht. Amplitudenanpassung 
+Für die dokumentierte Regel [formula in source] und das vollständige Starobinsky-Potential gilt in erster Potential-Slow-Roll-Ordnung, ohne große-N-Abschneidung, [formula in source] Die ACT-Tabellenspalte P-ACT-LB2 mit [formula in source] und [formula in source] erreicht zentral nur 0.49299564 der Untergrenze. Das volle Potential repariert den zuvor gefundenen Widerspruch in dieser Ordnung nicht. Amplitudenanpassung
 
 ## 6. Die nächsten entscheidenden Ziele
 
@@ -816,7 +830,7 @@ Mit [formula in source] und [formula in source] hat die maximale Ordnung unter [
 
 [experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/update_body_v16.tex:45-61](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/update_body_v16.tex#L45) · `section:75d5bed5cd6e2597de2b` · chapter
 
-Die drei hermiteschen Matrizen [formula in source] erfüllen die Pauli-Relationen. Für [formula in source] setze [formula in source] Jede Matrix hat Rang eins und Normquadrat [formula in source] ; vier ist jeweils der kleinste ganzzahlige Faktor, der sie in [formula in source] bringt. Das Produkt [formula in source] ist für alle [formula in source] unitär und hat den linearen Grenzterm [formula in source] . Sämtliche 
+Die drei hermiteschen Matrizen [formula in source] erfüllen die Pauli-Relationen. Für [formula in source] setze [formula in source] Jede Matrix hat Rang eins und Normquadrat [formula in source] ; vier ist jeweils der kleinste ganzzahlige Faktor, der sie in [formula in source] bringt. Das Produkt [formula in source] ist für alle [formula in source] unitär und hat den linearen Grenzterm [formula in source] . Sämtliche
 
 ## 3. Neue unabhängige Rechnung: die Zustandswahl bleibt echt
 
@@ -841,9 +855,3 @@ Ein expliziter Acht-Bit-Stabilizereingang [formula in source] erfüllt [formula 
 [experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/update_body_v16.tex:91-95](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/update_body_v16.tex#L91) · `section:9fc4ebc0cc9c3c7f289c` · section
 
 Im vollständigen 24024-dimensionalen Singulettsektor des benannten abgeschnittenen kantenlokalen Operators sind genau fünf Zustände unter [formula in source] zertifiziert, mit Grundzustandslücke größer als [formula in source] . Das ist kein Zertifikat sämtlicher Nicht-Singuletts oder des vollen mikroskopischen Operators.
-
-## Die gemeinsam zu prüfende kosmologische Ausgabe
-
-[experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/update_body_v16.tex:96-98](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/update_body_v16.tex#L96) · `section:1bf6936fbfe21011766b` · section
-
-Die dokumentierte vollständige Modenrechnung der Starobinsky-Branche [formula in source] trifft die verwendeten Zentralwerte für Amplitude und Neigung nicht gleichzeitig. Anpassung an [formula in source] ergibt [formula in source] , [formula in source] ; Anpassung an [formula in source] ergibt [formula in source] und eine etwa 2,05-fach größere Amplitude. Ein Retuning von [formula in source] wirkt gleichzeitig auf di

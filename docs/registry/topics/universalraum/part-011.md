@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## 2. Was am Spin-1/2-Projektor stimmt
+
+[documents/experiments--theory-contracts--universalraum-source-composition-20260915--tmp--pdfs--TFPT_Universalraum_Quellkomposition_Konsolidierung_2026-09-15_v1.6.9/sections/014-section-nachgereichter-text-b-korrekturen-und-ein-neuer-.tex:110-156](../../../../documents/experiments--theory-contracts--universalraum-source-composition-20260915--tmp--pdfs--TFPT_Universalraum_Quellkomposition_Konsolidierung_2026-09-15_v1.6.9/sections/014-section-nachgereichter-text-b-korrekturen-und-ein-neuer-.tex#L110) · `section:a87f5847efc0340c07e3` · subsection
+
+Die Feldquelle verwendet die sechs unnormierten Koordinaten
+
 ## 3. Die neue präzise Händigkeitsschranke
 
 [documents/experiments--theory-contracts--universalraum-source-composition-20260915--tmp--pdfs--TFPT_Universalraum_Quellkomposition_Konsolidierung_2026-09-15_v1.6.9/sections/014-section-nachgereichter-text-b-korrekturen-und-ein-neuer-.tex:157-219](../../../../documents/experiments--theory-contracts--universalraum-source-composition-20260915--tmp--pdfs--TFPT_Universalraum_Quellkomposition_Konsolidierung_2026-09-15_v1.6.9/sections/014-section-nachgereichter-text-b-korrekturen-und-ein-neuer-.tex#L157) · `section:cc4b77877f0ae3b4c963` · subsection
@@ -649,9 +655,3 @@ Es gibt zwei verschiedene Ergebnisse, die ausdrücklich nicht verwechselt werden
 [documents/experiments--theory-contracts--universalraum-source-composition-20260915--tmp--pdfs--TFPT_Universalraum_Quellkomposition_Konsolidierung_2026-09-15_v1.6.9/sections/023-subsection-reproduktion-und-status-label-reproduktion-un.tex:72-110](../../../../documents/experiments--theory-contracts--universalraum-source-composition-20260915--tmp--pdfs--TFPT_Universalraum_Quellkomposition_Konsolidierung_2026-09-15_v1.6.9/sections/023-subsection-reproduktion-und-status-label-reproduktion-un.tex#L72) · `section:6b690ec8e752e7ce51d0` · subsection
 
 Seien zwei operational unabhängig definierte Banken mit lokalen Paritäten
-
-## 2. Exakter CAR-Baustein aus einem geteilten Boson und Fermion
-
-[documents/experiments--theory-contracts--universalraum-source-composition-20260915--tmp--pdfs--TFPT_Universalraum_Quellkomposition_Konsolidierung_2026-09-15_v1.6.9/sections/023-subsection-reproduktion-und-status-label-reproduktion-un.tex:111-173](../../../../documents/experiments--theory-contracts--universalraum-source-composition-20260915--tmp--pdfs--TFPT_Universalraum_Quellkomposition_Konsolidierung_2026-09-15_v1.6.9/sections/023-subsection-reproduktion-und-status-label-reproduktion-un.tex#L111) · `section:02ba22bfb1e82e46b50c` · subsection
-
-Betrachtet werden drei CAR-Moden [formula in source] , ein CCR-Boson b und

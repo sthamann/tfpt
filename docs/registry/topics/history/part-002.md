@@ -386,7 +386,7 @@ ink FORSCHUNGSDOKUMENTATION 17mm 3237 TFPT und Universalraum 7mm Vom geometrisch
 
 [documents/TFPT_Universalraum_Sitzungsdokumentation_2026-09-20/sections/001-chapter-leserbrief.tex:27-42](../../../../documents/TFPT_Universalraum_Sitzungsdokumentation_2026-09-20/sections/001-chapter-leserbrief.tex#L27) · `section:e220d28239ac26270ec0` · chapter
 
-tocchapterLeserbrief Das Ziel dieser Sitzung war von Anfang an groß: eine gemeinsame, möglichst einfache Ursprungstheorie finden, die den TFPT-Compiler, Quantenprozesse, Materie, Raumzeit und Gravitation aus derselben Struktur verständlich macht. Die Untersuchungen dürfen deshalb nicht nur daran gemessen werden, ob irgendwo eine schöne Matrix entsteht. Entscheidend ist, ob die verschiedenen Matrizen dieselbe Quelle, 
+tocchapterLeserbrief Das Ziel dieser Sitzung war von Anfang an groß: eine gemeinsame, möglichst einfache Ursprungstheorie finden, die den TFPT-Compiler, Quantenprozesse, Materie, Raumzeit und Gravitation aus derselben Struktur verständlich macht. Die Untersuchungen dürfen deshalb nicht nur daran gemessen werden, ob irgendwo eine schöne Matrix entsteht. Entscheidend ist, ob die verschiedenen Matrizen dieselbe Quelle,
 
 ## Ziel, Maßstab und Gesamtzusammenhang
 
@@ -434,7 +434,7 @@ Der Ausgangsimpuls war, in den Readouts und im Forschungsgraphen eine bislang ü
 
 [documents/TFPT_Universalraum_Sitzungsdokumentation_2026-09-20/sections/001-chapter-leserbrief.tex:111-125](../../../../documents/TFPT_Universalraum_Sitzungsdokumentation_2026-09-20/sections/001-chapter-leserbrief.tex#L111) · `section:d031d3eb45237edc80be` · section
 
-Ein wichtiger früher Test betraf die Rekonstruktion des Generators aus einer Zustands- oder Randbeschreibung. Der Projektor [formula in source] kennt die positiven und negativen Energierichtungen, verliert aber die Beträge [formula in source] . Schon [formula in source] hat [formula in source] ; jede Dichtematrix kommutiert mit [formula in source] , aber nicht jede mit [formula in source] . Die Rückrichtung [formula 
+Ein wichtiger früher Test betraf die Rekonstruktion des Generators aus einer Zustands- oder Randbeschreibung. Der Projektor [formula in source] kennt die positiven und negativen Energierichtungen, verliert aber die Beträge [formula in source] . Schon [formula in source] hat [formula in source] ; jede Dichtematrix kommutiert mit [formula in source] , aber nicht jede mit [formula in source] . Die Rückrichtung [formula
 
 ## Gleicher Populationstransfer, verschiedene Quantenfortsetzungen
 
@@ -488,7 +488,7 @@ Ein konkreter Charaktertest verhindert die falsche Übertragung auf den nativen 
 
 [documents/TFPT_Universalraum_Sitzungsdokumentation_2026-09-20/sections/001-chapter-leserbrief.tex:251-265](../../../../documents/TFPT_Universalraum_Sitzungsdokumentation_2026-09-20/sections/001-chapter-leserbrief.tex#L251) · `section:b72f06bf3db4088908dc` · section
 
-Die vorgegebene dreidimensionale Nahtdarstellung [formula in source] besitzt unter der verlangten [formula in source] -Ergänzung die eindeutige Form [formula in source] Die vierte Linie ist somit kein neutral hinzugefügtes Familienetikett. Ein expliziter [formula in source] -Projektor isoliert sie. Auf denselben E8-Operatoren gilt der markierte Schnitt [formula in source] Der kleinste E6-abgeschlossene Raum über den 
+Die vorgegebene dreidimensionale Nahtdarstellung [formula in source] besitzt unter der verlangten [formula in source] -Ergänzung die eindeutige Form [formula in source] Die vierte Linie ist somit kein neutral hinzugefügtes Familienetikett. Ein expliziter [formula in source] -Projektor isoliert sie. Auf denselben E8-Operatoren gilt der markierte Schnitt [formula in source] Der kleinste E6-abgeschlossene Raum über den
 
 ## Was eine affine Vakuumantwort schon liefert
 
@@ -542,7 +542,7 @@ Die 40 Hintergrundereignisse erzeugen phasengetreu eine Gruppe der Ordnung 3840.
 
 [documents/TFPT_Universalraum_Sitzungsdokumentation_2026-09-20/sections/002-section-die-rahmenidentifikation-und-eine-wichtige-verwe.tex:10-21](../../../../documents/TFPT_Universalraum_Sitzungsdokumentation_2026-09-20/sections/002-section-die-rahmenidentifikation-und-eine-wichtige-verwe.tex#L10) · `section:2abdbe9121fd74945f96` · section
 
-Mit [formula in source] , [formula in source] und [formula in source] erreichen [formula in source] bei Zeit [formula in source] denselben Operator [formula in source] . Dazwischen wirken sie unterschiedlich. Unendlich viele positive Logarithmen [formula in source] besitzen denselben Endpunkt. Nur unter der zusätzlichen Minimalregel für positiven, zeitunabhängigen Generator, festen Lift und feste Dauer entsteht eine 
+Mit [formula in source] , [formula in source] und [formula in source] erreichen [formula in source] bei Zeit [formula in source] denselben Operator [formula in source] . Dazwischen wirken sie unterschiedlich. Unendlich viele positive Logarithmen [formula in source] besitzen denselben Endpunkt. Nur unter der zusätzlichen Minimalregel für positiven, zeitunabhängigen Generator, festen Lift und feste Dauer entsteht eine
 
 ## Ein bedingter affiner Anschluss der ganzen Ereignispfade
 

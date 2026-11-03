@@ -1,0 +1,40 @@
+TFPT scientific source excerpt
+Original repository path: verification/v173_pfaffian_cp_car.py
+Original file SHA-256: 4564783e2df7707fbe132bf0c5559fb6678b38a32b5828638e6ae6f7117a136d
+Inclusive original lines: 46-77
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000046 | def run():
+000047 |     reset()
+000048 |     print("v173 Strong CP as Pfaffian reality (theta_eff = 0 in the CAR model)")
+000049 | 
+000050 |     n = 8
+000051 |     dim = 2 * n                                  # 16 Majorana modes
+000052 | 
+000053 |     # 1. anticommuting involution => spectral pairing
+000054 |     gamma5 = np.diag([1.0] * n + [-1.0] * n)     # sheet involution Sigma^2 = 1
+000055 |     # build D with {D, gamma5} = 0 (off-diagonal blocks only)
+000056 |     Boff = RNG.standard_normal((n, n)) + 1j * RNG.standard_normal((n, n))
+000057 |     D_anti = np.block([[np.zeros((n, n)), Boff],
+000058 |                        [Boff.conj().T, np.zeros((n, n))]])   # Hermitian, anticommutes with gamma5
+000059 |     anticomm = np.linalg.norm(D_anti @ gamma5 + gamma5 @ D_anti)
+000060 |     ev = np.sort(np.linalg.eigvalsh(D_anti))
+000061 |     paired = np.max(np.abs(ev + ev[::-1]))       # spectrum symmetric about 0
+000062 |     check("ANTICOMMUTING INVOLUTION => SPECTRAL PAIRING: {D, Sigma} = 0 "
+000063 |           "(residual %.1e) forces eigenvalues into +-lambda pairs (max |lam_i + "
+000064 |           "lam_{N-i}| = %.1e)" % (anticomm, paired),
+000065 |           anticomm < 1e-10 and paired < 1e-10)
+000066 | 
+000067 |     # 2. gamma5-Hermiticity => real determinant (Pfaffian reality)
+000068 |     Bh = RNG.standard_normal((dim, dim)) + 1j * RNG.standard_normal((dim, dim))
+000069 |     Bh = (Bh + Bh.conj().T) / 2                  # Hermitian B
+000070 |     g5 = np.diag([1.0] * n + [-1.0] * n)
+000071 |     D_g5 = g5 @ Bh                               # gamma5-Hermitian: D^dag = g5 D g5
+000072 |     g5herm = np.linalg.norm(D_g5.conj().T - g5 @ D_g5 @ g5)
+000073 |     detD = np.linalg.det(D_g5)
+000074 |     check("gamma5-HERMITICITY => REAL DETERMINANT: D^dag = gamma5 D gamma5 "
+000075 |           "(residual %.1e) => conj(det D) = det D, so Im(det D) = %.1e ~ 0 "
+000076 |           "(the Pfaffian of the Majorana measure is real)"
+000077 |           % (g5herm, abs(detD.imag)),

@@ -32,7 +32,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/changelog/sections/019-source.tex:280-299](../../../../documents/changelog/sections/019-source.tex#L280) · `section:640aa248092cb39263eb` · subsection
 
-The four marks emerge from Gauss–Bonnet — count derived, not assumed ( v216_marks_gauss_bonnet, tfpt_research_contracts, ; ledger QGEO.MARKS.03). The K1 lever of the v215 kill-test (``exactly four marks'') is executed: if the marks are [formula in source] branch points (deficit [formula in source] ) on the flat seam sphere ( [formula in source] , the same [formula in source] as the [formula in source] in [formula in 
+The four marks emerge from Gauss–Bonnet — count derived, not assumed ( v216_marks_gauss_bonnet, tfpt_research_contracts, ; ledger QGEO.MARKS.03). The K1 lever of the v215 kill-test (``exactly four marks'') is executed: if the marks are [formula in source] branch points (deficit [formula in source] ) on the flat seam sphere ( [formula in source] , the same [formula in source] as the [formula in source] in [formula in
 
 Explicit source references:
 
@@ -195,7 +195,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/changelog/sections/020-source.tex:68-98](../../../../documents/changelog/sections/020-source.tex#L68) · `section:c42d97fdd386889e5412` · subsection
 
-Muon [formula in source] as a seam vertex ( v204_muon_seam_g2, tfpt_4_frontier, ). The carrier's second-order topological defect [formula in source] projected through the seam-loop phase gives [formula in source] ( [formula in source] vs the dispersive [formula in source] ; [formula in source] vs lattice/CMD-3). The value is exact ; the vertex identification is the \ bridge. Ledger FR.MUONG2.01; Wolfram-mirrored. An 
+Muon [formula in source] as a seam vertex ( v204_muon_seam_g2, tfpt_4_frontier, ). The carrier's second-order topological defect [formula in source] projected through the seam-loop phase gives [formula in source] ( [formula in source] vs the dispersive [formula in source] ; [formula in source] vs lattice/CMD-3). The value is exact ; the vertex identification is the \ bridge. Ledger FR.MUONG2.01; Wolfram-mirrored. An
 
 Explicit source references:
 
@@ -222,7 +222,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/changelog/sections/020-source.tex:99-110](../../../../documents/changelog/sections/020-source.tex#L99) · `section:954c40e55830e15dd43b` · subsection
 
-The M\"obius seam is the boundary Lorentz structure ( tfpt_3, ). Added a paragraph to the ``M\"obius origin of [formula in source] '' section: [formula in source] (Penrose \& Rindler, Spinors and Space-time, Vol. 1, 1.2–1.4), the celestial sphere of null directions via stereographic projection. This gives the self-consistency loop a spacetime meaning — the carrier clock [formula in source] is an elliptic [formula in 
+The M\"obius seam is the boundary Lorentz structure ( tfpt_3, ). Added a paragraph to the ``M\"obius origin of [formula in source] '' section: [formula in source] (Penrose \& Rindler, Spinors and Space-time, Vol. 1, 1.2–1.4), the celestial sphere of null directions via stereographic projection. This gives the self-consistency loop a spacetime meaning — the carrier clock [formula in source] is an elliptic [formula in
 
 Explicit source references:
 
@@ -736,7 +736,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/changelog/sections/022-source.tex:204-220](../../../../documents/changelog/sections/022-source.tex#L204) · `section:dd21f4d89cdafe68cd70` · subsection
 
-The free-bulk premise becomes a fixed-point property ( v157, simplicity-first). Instead of postulating Gaussianity, three facts click: (i) the DtN/Calder\'on symbol is universally [formula in source] (Lee–Uhlmann — order- [formula in source] [formula in source] DO, principal symbol [formula in source] ; interactions live in the irrelevant lower-order symbol), so the free dispersion is bulk-detail-independent; (ii) a 
+The free-bulk premise becomes a fixed-point property ( v157, simplicity-first). Instead of postulating Gaussianity, three facts click: (i) the DtN/Calder\'on symbol is universally [formula in source] (Lee–Uhlmann — order- [formula in source] [formula in source] DO, principal symbol [formula in source] ; interactions live in the irrelevant lower-order symbol), so the free dispersion is bulk-detail-independent; (ii) a
 
 Explicit source references:
 
@@ -886,7 +886,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/changelog/sections/023-source.tex:119-154](../../../../documents/changelog/sections/023-source.tex#L119) · `section:e09bf94c77ca8cb235a1` · subsection
 
-R5 closed at the discrete level ( v141, deck selection theorem). The v140 [formula in source] choice is derived: the established integer deck [formula in source] ( v97/ v98) pairs the [formula in source] cusp line with the self-conjugate character [formula in source] , so only the sheet-twisted assignment [formula in source] survives; the cusp exponential [formula in source] is excluded (same spectrum, wrong grading 
+R5 closed at the discrete level ( v141, deck selection theorem). The v140 [formula in source] choice is derived: the established integer deck [formula in source] ( v97/ v98) pairs the [formula in source] cusp line with the self-conjugate character [formula in source] , so only the sheet-twisted assignment [formula in source] survives; the cusp exponential [formula in source] is excluded (same spectrum, wrong grading
 
 Explicit source references:
 
@@ -1316,7 +1316,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/experiments--theory-contracts--universalraum-fable-kernfragen-20260910--fable-runde3--paper--tfpt_anschluss_zellen_seam_2026-09-14/sections/001-section-evidenzkonvention-und-abgrenzung.tex:20-26](../../../../documents/experiments--theory-contracts--universalraum-fable-kernfragen-20260910--fable-runde3--paper--tfpt_anschluss_zellen_seam_2026-09-14/sections/001-section-evidenzkonvention-und-abgrenzung.tex#L20) · `section:5926380330792d2bbe2b` · section
 
-Das Manuskript (Version 1.1) konstruiert auf den 60 Quellstrahlen des Compilers eine endliche Kette mit klassischem und quantenmechanischem Schatten, eine Vor-Messung mit Registern und ein ausdrücklich zusätzlich gesetztes Vierträger-Austauschmodell [formula in source] mit eindeutigem antisymmetrischem Grundzustand [formula in source] , Gap [formula in source] , dem Spektrum [formula in source] , [formula in source] 
+Das Manuskript (Version 1.1) konstruiert auf den 60 Quellstrahlen des Compilers eine endliche Kette mit klassischem und quantenmechanischem Schatten, eine Vor-Messung mit Registern und ein ausdrücklich zusätzlich gesetztes Vierträger-Austauschmodell [formula in source] mit eindeutigem antisymmetrischem Grundzustand [formula in source] , Gap [formula in source] , dem Spektrum [formula in source] , [formula in source]
 
 ## Der Compiler wählt die Zelle
 
@@ -1356,7 +1356,7 @@ Auf [formula in source] gilt [formula in source] für jede [formula in source] -
 
 [documents/experiments--theory-contracts--universalraum-fable-kernfragen-20260910--fable-runde3--paper--tfpt_anschluss_zellen_seam_2026-09-14/sections/001-section-evidenzkonvention-und-abgrenzung.tex:56-74](../../../../documents/experiments--theory-contracts--universalraum-fable-kernfragen-20260910--fable-runde3--paper--tfpt_anschluss_zellen_seam_2026-09-14/sections/001-section-evidenzkonvention-und-abgrenzung.tex#L56) · `section:eb5830602d5801bd979a` · subsection
 
-Die Uhr des Compilers ist [formula in source] , der Familien-3-Zykel auf [formula in source] mit festem Anker [formula in source] ( v774), mit Lift [formula in source] , [formula in source] , [formula in source] . In [formula in source] fixiert [formula in source] genau drei der 15 Klassen [formula in source] ; nach der Punkt/Geraden-Dualität von [formula in source] ( v783: Klassen [formula in source] Kontexte) sind 
+Die Uhr des Compilers ist [formula in source] , der Familien-3-Zykel auf [formula in source] mit festem Anker [formula in source] ( v774), mit Lift [formula in source] , [formula in source] , [formula in source] . In [formula in source] fixiert [formula in source] genau drei der 15 Klassen [formula in source] ; nach der Punkt/Geraden-Dualität von [formula in source] ( v783: Klassen [formula in source] Kontexte) sind
 
 Explicit source references:
 
@@ -1385,7 +1385,7 @@ No opening prose excerpt; see the source.
 
 [documents/experiments--theory-contracts--universalraum-fable-kernfragen-20260910--fable-runde3--paper--tfpt_anschluss_zellen_seam_2026-09-14/sections/001-section-evidenzkonvention-und-abgrenzung.tex:93-104](../../../../documents/experiments--theory-contracts--universalraum-fable-kernfragen-20260910--fable-runde3--paper--tfpt_anschluss_zellen_seam_2026-09-14/sections/001-section-evidenzkonvention-und-abgrenzung.tex#L93) · `section:d47832ca5a693daf34f7` · subsection
 
-Offene Ketten aus [formula in source] Viererketten-Segmenten (nächste-Nachbar-Bindungen, Zwischenkopplung [formula in source] ), erste Anregung stets in der Adjungierten-Familie [formula in source] : @lccc@ Gap & [formula in source] ( [formula in source] ) & [formula in source] ( [formula in source] ) & [formula in source] ( [formula in source] )\\ [formula in source] & 0,2664 & 0,2552 & 0,2497\\ [formula in source] 
+Offene Ketten aus [formula in source] Viererketten-Segmenten (nächste-Nachbar-Bindungen, Zwischenkopplung [formula in source] ), erste Anregung stets in der Adjungierten-Familie [formula in source] : @lccc@ Gap & [formula in source] ( [formula in source] ) & [formula in source] ( [formula in source] ) & [formula in source] ( [formula in source] )\\ [formula in source] & 0,2664 & 0,2552 & 0,2497\\ [formula in source]
 
 ## Der uniforme Ring ist [formula in source]
 

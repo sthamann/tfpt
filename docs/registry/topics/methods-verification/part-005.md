@@ -48,7 +48,7 @@ This appendix provides the complete verification data for the E [formula in sour
 
 [documents/archive--paper-latex--tfpt-theory-fullv28/sections/012-subsection-theoryv3-evidence-layer-compressed-auto-gener.tex:279-293](../../../../documents/archive--paper-latex--tfpt-theory-fullv28/sections/012-subsection-theoryv3-evidence-layer-compressed-auto-gener.tex#L279) · `section:7e8b73da2852b8d70b50` · subsection
 
-The uniqueness is verified by: Constructing the complete Hasse diagram of [formula in source] from standard tables. Computing all cover relations with [formula in source] . Running dynamic programming to find all paths from [formula in source] to [formula in source] . Applying the cost function [formula in source] (second-difference smoothness). Verifying that the minimum-cost path is unique (cost gap to second-best 
+The uniqueness is verified by: Constructing the complete Hasse diagram of [formula in source] from standard tables. Computing all cover relations with [formula in source] . Running dynamic programming to find all paths from [formula in source] to [formula in source] . Applying the cost function [formula in source] (second-difference smoothness). Verifying that the minimum-cost path is unique (cost gap to second-best
 
 ## Status note
 

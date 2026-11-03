@@ -4,6 +4,16 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## S04
+
+[experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/sources_manifest.tex:17-21](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/sources_manifest.tex#L17) · `section:267ce9394cc9750f9fdc` · subsection
+
+TFPT_UNIVERSALRAUM_GESAMTSYNTHESE_2026-09-14.md Frühe Gesamtsynthese mit Fixpunkthypothese, Zahlenübersicht und Einordnung zu RH und Komplexität; mehrere Aussagen später korrigiert. SHA-256: f62f91af70b43ce349a9e4c17f9e4887 7099ae9b6c992f0c1482f4eb77ee6694 32mm
+
+Explicit source references:
+
+- [universal_room/TFPT_UNIVERSALRAUM_GESAMTSYNTHESE_2026-09-14.md](../../../../universal_room/TFPT_UNIVERSALRAUM_GESAMTSYNTHESE_2026-09-14.md#L1) · explicit_file_citation
+
 ## Front matter / support
 
 [tex-artefacts/predictions.tex:1-59](../../../../tex-artefacts/predictions.tex#L1) · `section:ba5d01c883e42fcce6e6` · frontmatter
@@ -109,7 +119,7 @@ Fix the original complex, number-conserving QWZ strip at width eight, mass one a
 
 [tex-artefacts/toe_round27_full_reference.tex:36-65](../../../../tex-artefacts/toe_round27_full_reference.tex#L36) · `section:e74826b2aac9e22d1901` · paragraph
 
-Fix [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] , a time step [formula in source] , [formula in source] and [formula in source] . Every site's charge remains in [formula in source] . The original signed hopping and potential are [formula in source] The [formula in source] directed elementary shifts include their original phases. Thus [formula in source] 
+Fix [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] , a time step [formula in source] , [formula in source] and [formula in source] . Every site's charge remains in [formula in source] . The original signed hopping and potential are [formula in source] The [formula in source] directed elementary shifts include their original phases. Thus [formula in source]
 
 ## The original sign obstruction and physical frontier remain.
 
@@ -121,7 +131,7 @@ For overlapping original hops [formula in source] and [formula in source] , the 
 
 [tex-artefacts/toe_round4_proofs.tex:9-22](../../../../tex-artefacts/toe_round4_proofs.tex#L9) · `section:9e0ba325fdce5ca83fef` · paragraph
 
-SEAM.MMST.TELB.NORM.01. For the frozen [formula in source] , [formula in source] collar, the original remainder obeys [formula in source] The interval inputs are v1022 (TV and potential), v1025 (C1/C2a), and v1026_ telb_ round4_ closure.py (CF, DG, signed CROSS, validated Fourier core and all-volume aliases). This is not a proof of the historical sharper [formula in source] or Bound-B target [formula in source] . In 
+SEAM.MMST.TELB.NORM.01. For the frozen [formula in source] , [formula in source] collar, the original remainder obeys [formula in source] The interval inputs are v1022 (TV and potential), v1025 (C1/C2a), and v1026_ telb_ round4_ closure.py (CF, DG, signed CROSS, validated Fourier core and all-volume aliases). This is not a proof of the historical sharper [formula in source] or Bound-B target [formula in source] . In
 
 Explicit source references:
 
@@ -135,6 +145,100 @@ Explicit source references:
 [tex-artefacts/toe_round4_proofs.tex:114-142](../../../../tex-artefacts/toe_round4_proofs.tex#L114) · `section:d077bac81f6981c4a521` · paragraph
 
 The csc-squared finite product identity and trigamma recurrence for the original remainder give, for [formula in source] , [formula in source] where [formula in source] and [formula in source] . Since [formula in source] for [formula in source] , [formula in source] . The [formula in source] -point Peano kernel and [formula in source] imply [formula in source] On each diagonal cell the imaginary mean vanishes, [formu
+
+## Shared source and transfer update: 3 November 2026
+
+[tex-artefacts/toe_source_completion_20261103.tex:4-26](../../../../tex-artefacts/toe_source_completion_20261103.tex#L4) · `section:5bb11b878db66b765225` · section
+
+The original structured boundary source, its common action and the [formula in source] chain are retained. Several complete source calls, field maps and transfer kernels have now been evaluated in their stated classes. These results include conditional charge and metric selection, physical Gauss-sector sources, vacuum and ground-source reconstruction, and a complete fixed-background Clifford kernel. The primitive spa
+
+## The common source and the corrected starting point (C, F, G)
+
+[tex-artefacts/toe_source_completion_20261103.tex:27-75](../../../../tex-artefacts/toe_source_completion_20261103.tex#L27) · `section:066fe20f4d09268f3d38` · subsection
+
+P1 is a structured reflection-positive boundary kernel, not merely the number [formula in source] . The operational seed already supplies its local algebra, state, time, reflection and collar operator. The original source route is [formula in source] Each arrow retains its actual hypotheses and operator domains. A particular eightfold CAR/native-clock reconstruction is an available conditional route, not a global ext
+
+## Variable fields, ordered sources and retained reference factors (D, E)
+
+[tex-artefacts/toe_source_completion_20261103.tex:128-152](../../../../tex-artefacts/toe_source_completion_20261103.tex#L128) · `section:1f0121fb70d3450e5fe9` · subsection
+
+The original local source reader no longer needs constant Higgs backgrounds in its stated circle class. The smooth bounded variable one-form has the required Hilbert–Schmidt control, entire ordered [formula in source] source, trace correction and all local response orders. The actual Galerkin calls converge to that same source operator. This is an analytic application to the existing coefficient family; it is not a p
+
+Explicit source references:
+
+- [verification/v259_modular_cutoff_kappa.py](../../../../verification/v259_modular_cutoff_kappa.py#L1) · explicit_script_identifier
+
+Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
+
+- [(* ==== v237: closing step as physics -- no topological degeneracy <=> det K=1 <=> SRE ==== *) Module[{cartanA, cartanD, e8edges, E8, D8, A3, D5, carrier, gsd}, cartanA[n_] := SparseArray[{{i_, i_} -> 2, {i_, j_} /; Abs[i - j] == 1 -> -1}, {n, n}] // Normal; cartanD[n_] := Module[{K}, K = 2 IdentityMatrix[n]; Do[K[[i, i + 1]] = K[[i + 1, i]] = -1, {i, n - 2}]; K[[n - 2, n]] = K[[n, n - 2]] = -1; K]; e8edges = {{1, 2}, {2, 3}, {3, 4}, {4, 5}, {5, 6}, {6, 7}, {5, 8}}; E8 = 2 IdentityMatrix[8] - Table[If[i != j && MemberQ[e8edges, Sort[{i, j}]], 1, 0], {i, 8}, {j, 8}]; A3 = cartanA[3]; D5 = cartanD[5]; D8 = cartanD[8]; carrier = ArrayFlatten[{{D5, 0}, {0, A3}}]; gsd[K_, g_] := Abs[Det[K]]^g; checkExact["v237 GATE.HOLO.03: the closing step as a physical condition -- the abelian K-matrix " <> "ground-state degeneracy on a genus-g surface is |det K|^g (torus: carrier D5(+)A3 -> 16, D8 -> 4, " <> "E8 -> 1), so 'no topological ground-state degeneracy on any closed surface' <=> det K = 1 <=> the " <> "seam bulk is short-range-entangled (the unique bosonic SRE c=8 phase = the Kitaev E8 state, edge " <> "holomorphic). A unique vacuum on the plane (genus 0, always 1) is necessary but not sufficient; the " <> "torus sees |det K|. NEG: an LRE bulk (D8, det 4) has 4-fold torus degeneracy + non-holomorphic edge.", gsd[carrier, 1] == 16 && gsd[D8, 1] == 4 && gsd[E8, 1] == 1 && gsd[carrier, 2] == 256 && gsd[E8, 2] == 1 && gsd[carrier, 0] == 1 && gsd[E8, 0] == 1 && Det[E8] == 1 && (5 + 3 == 8)]; ]; (* ==== v259: the modular/KMS spectral-action cutoff fixes f_2/f_0 = 1 (PS.SPECACT.02) ==== v258 (Dirac as covariance induction) is numerical matrix-log linear algebra -> Python-only. *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L1991)
+
+## Physical source existence, ground words and common geometry (H, I, J)
+
+[tex-artefacts/toe_source_completion_20261103.tex:153-220](../../../../tex-artefacts/toe_source_completion_20261103.tex#L153) · `section:206a9bd3daad77367425` · subsection
+
+The given finite-range uniformly local Hamiltonian class has its thermodynamic real-time norm dynamics and ground/KMS states. Restrictions of one limiting state are compatible. Independently restarted small bare Gibbs weights need not be projective. Exact elimination carries the effective fiber weights, exterior determinants, higher vertices and memory, rather than imposing the original bare ansatz again at each cut.
+
+## The complete transfer comparison and its field requirements (K, R104–R108)
+
+[tex-artefacts/toe_source_completion_20261103.tex:221-309](../../../../tex-artefacts/toe_source_completion_20261103.tex#L221) · `section:2bbc10475616c74f0d3b` · subsection
+
+The complete original word source gives its actual pairing and time kernel, [formula in source] Its first derivative defines the generator form on the actual quotient. Equal full pairings and closed forms, with actual autonomous sewing, determine the whole transfer. A discrete source can instead be compared at its whole fixed step. In general [formula in source] is not [formula in source] ; a nonreducing compression
+
+Explicit source references:
+
+- [verification/v1002_spin10_mirror_projector.py](../../../../verification/v1002_spin10_mirror_projector.py#L1) · explicit_script_identifier
+- [verification/v474_entropic_hodge_carrier.py](../../../../verification/v474_entropic_hodge_carrier.py#L1) · explicit_script_identifier
+
+Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
+
+- [(* v474 (i): Q-target enumeration + mode-count ratio *) sols = Select[Table[{d, Sqrt[32/d]}, {d, 1, 32}], IntegerQ[#[[2]]] &]; q32 = (1/(8 Pi))^2; checkExact["v474 GRAV.ENTROPIC.HODGE.01 (i): the Q-target enumeration -- Tr Q^2 = d k^2 c3^4 = 32 c3^4 with INTEGER k has exactly the supports (d,k) = (2,4), (8,2), (32,1) = {|Z2|, g_car+N_fam = rank E8, 2^g_car = dim Lambda^* C^5}; the two-form block d = 10 needs Sqrt[16/5] and the fiber d = 16 needs Sqrt[2] (both irrational, the naive pair-block reading KILLED); minimal uniform q = c3^2 = 1/(64 pi^2); mode-ratio identity 32 c3^4 / delta_top = 32/48 = 2/3", sols == {{2, 4}, {8, 2}, {32, 1}} && ! Element[Sqrt[32/10], Rationals] && ! Element[Sqrt[32/16], Rationals] && Simplify[q32 - 1/(64 Pi^2)] == 0 && 32/48 == 2/3]; (* v474 (ii): the fold is the 5 -> 5bar conjugation (traceless u(5) weights) *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L3000)
+- [(* v473 (iii): the R^2 kill-test gap *) gap = Simplify[(1/(12 c3v^7))/((c3v/6)^2)]; checkExact["v473 GRAV.ENTROPIC.ACTION.01 (iii): the R^2 kill-test gap -- raw log-expansion coefficient (c3/6)^2 vs the TFPT Starobinsky 1/(12 c3^7) (M_scal^2 = c3^7 Mbar^2) mismatch EXACTLY 3 c3^-9 = 3 (8 pi)^9 ~ 1.2e13 (13 orders): direct identification FALSE without a mechanism -- the pre-registered kill test", gap == 3 (8 Pi)^9 && Abs[N[gap] - 1.2002728758784*^13]/1.2*^13 < 10^-3]; ]; (* ==== v474 round: the operator level of the entropic-action bridge -- the exact arithmetic content: the Q-target enumeration d k^2 = 32 with integer k has exactly the supports (2,4), (8,2), (32,1) = {|Z2|, rank E8, 2^g_car} with the 10/16 blocks excluded (irrational multipliers) and the mode-ratio identity Tr Q^2/delta_top = 32/48 = 2/3; and the fold-is-conjugation weight identity: the traceless u(5) weights of Lambda^4 are the negatives of those of Lambda^1 (5 -> 5bar), with the Pascal blocks {1,5,10} vs {1,10,5}; mirrors v474 (the 32x32 Fock/Clifford matrix checks are Python-only). ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2985)
+
+## Larger charged sources and the remaining actual insertion (R109, R110)
+
+[tex-artefacts/toe_source_completion_20261103.tex:400-429](../../../../tex-artefacts/toe_source_completion_20261103.tex#L400) · `section:2168da76f91bd76c19e5` · subsection
+
+The larger integral odd spinor vertices have their explicit original spatial vectors, cocycle and all sixteen [formula in source] time weights. Their separately supplied collective [formula in source] is not substituted for [formula in source] . A concrete original vertex-mode anticommutator is nonzero between two distinct components, so those components are not directly independent elementary CAR. This does not excl
+
+## Dated continuation: the actual residual time form (R111)
+
+[tex-artefacts/toe_source_completion_20261103.tex:430-488](../../../../tex-artefacts/toe_source_completion_20261103.tex#L430) · `section:0f8ee3912de706f173b8` · subsection
+
+The literal original positive-parent clause leaves its residual [formula in source] unspecified. Once the parent and the actual reducing physical/source map have been supplied, the original annihilating admissibility penalties vanish on their admitted range. The remaining binding equation is the whole source-time form minus the represented parent form. If one realization of the printed parent clause exists, its state
+
+## Source and reproducibility route
+
+[tex-artefacts/toe_source_completion_20261103.tex:489-532](../../../../tex-artefacts/toe_source_completion_20261103.tex#L489) · `section:5a9ea639ada21fb1a3c4` · subsection
+
+The dated report labels resolve through docs/research/fundamental-plan/RESULTS.md and the synthesis docs/research/fundamental-plan/CONSOLIDATION-R110-20261103.md. The main proof owners are: A and B: experiments/theory-contracts/puncture-metric-joint-completion-20261102/PROOF.txt and experiments/theory-contracts/joint-source-clock-field-closure-20261102/PROOF.txt. C: experiments/theory-contracts/original-paper-source-
+
+Explicit source references:
+
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/VARIABLE-BACKGROUND-PROOF.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/VARIABLE-BACKGROUND-PROOF.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/GROUND-SOURCE.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/GROUND-SOURCE.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/joint-source-clock-field-closure-20261102/PROOF.txt](../../../../experiments/theory-contracts/joint-source-clock-field-closure-20261102/PROOF.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/LARGER-CHARGED-SOURCE-EVALUATION.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/LARGER-CHARGED-SOURCE-EVALUATION.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/ZERO-FREE-JOINT.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/ZERO-FREE-JOINT.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/SEED-FIELD.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/SEED-FIELD.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/SHARED-METRIC-SOURCE.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/SHARED-METRIC-SOURCE.txt#L1) · explicit_file_citation
+- [docs/research/fundamental-plan/RESULTS.md](../../../../docs/research/fundamental-plan/RESULTS.md#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-paper-source-reconciliation-20261102/AUDIT.txt](../../../../experiments/theory-contracts/original-paper-source-reconciliation-20261102/AUDIT.txt#L1) · explicit_file_citation
+- [docs/research/fundamental-plan/CONSOLIDATION-R110-20261103.md](../../../../docs/research/fundamental-plan/CONSOLIDATION-R110-20261103.md#L1) · explicit_file_citation
+- [experiments/theory-contracts/puncture-metric-joint-completion-20261102/PROOF.txt](../../../../experiments/theory-contracts/puncture-metric-joint-completion-20261102/PROOF.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/FULL-SOURCE-CORRECTION.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/FULL-SOURCE-CORRECTION.txt#L1) · explicit_file_citation
+- [verification/v1027_signed_det_car_wall.py](../../../../verification/v1027_signed_det_car_wall.py#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/PHYSICAL-THERMAL-SOURCE.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/PHYSICAL-THERMAL-SOURCE.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/TRANSFER-EXTRACTION.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/TRANSFER-EXTRACTION.txt#L1) · explicit_file_citation
+- [verification/v1002_spin10_mirror_projector.py](../../../../verification/v1002_spin10_mirror_projector.py#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/ZERO-FREE-ORIGIN.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/ZERO-FREE-ORIGIN.txt#L1) · explicit_file_citation
+- [verification/v252_full_finite_triple.py](../../../../verification/v252_full_finite_triple.py#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/PAIRED-DYSON-PROOF.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/PAIRED-DYSON-PROOF.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/REFERENCE-SOURCE-COMPLETION.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/REFERENCE-SOURCE-COMPLETION.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/SOURCE-GENERATOR-RESIDUAL-20261103.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/SOURCE-GENERATOR-RESIDUAL-20261103.txt#L1) · explicit_file_citation
+
+Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
+
+- [(* v1027: exact signed-wall determinant and unsquared low branch. *) {a, delta, lambda, g} = Unique /@ {"a", "delta", "lambda", "g"}; mass = delta + lambda; beta = lambda g^2; eta = lambda g; c = beta - eta^2/mass; h = {{a + beta a^2, eta a}, {eta a, mass}}; check["v1027 signed determinant M a (1+c a)", Together[Det[h] - mass a (1 + c a)] === 0]; check["v1027 physical kernel remains one-dimensional at a=0", NullSpace[h /. a -> 0] === {{1, 0}}]; (* v1028: exact characteristic-five reduction of the full 192-mode one-site character. P^12 == P^2 P(z^5)^2 mod 5 is evaluated by coefficient dictionaries, never by floating group quadrature. *)](../../../../verification/wolfram/tfpt_round4.wl#L28)
 
 ## Results reported by the four parallel tasks
 
@@ -164,13 +268,13 @@ Obtain and pin the original 17- and 66-family certificates before using their st
 
 [tex-artefacts/toe_universalraum_synthesis_20260912.tex:353-360](../../../../tex-artefacts/toe_universalraum_synthesis_20260912.tex#L353) · `section:b7cd6722b6a2986cc80f` · paragraph
 
-For one original finite sector, map each primitive rule to its operator, phase, support, adjoint and composition. Distinguish physical operations from gauge identifications and elementary generators from composite words. A source-derived filtration or equivalent primitive rule must explain why composition does not automatically introduce independently weighted energy terms. Reject a cutoff chosen only to enforce the 
+For one original finite sector, map each primitive rule to its operator, phase, support, adjoint and composition. Distinguish physical operations from gauge identifications and elementary generators from composite words. A source-derived filtration or equivalent primitive rule must explain why composition does not automatically introduce independently weighted energy terms. Reject a cutoff chosen only to enforce the
 
 ## F4: Operational response and costs.
 
 [tex-artefacts/toe_universalraum_synthesis_20260912.tex:379-387](../../../../tex-artefacts/toe_universalraum_synthesis_20260912.tex#L379) · `section:6727615a78ca0e90e90d` · paragraph
 
-For a source-derived intervention, compare admissible preparations with the same initial accessible marginal at the original boundary. Bound the remainder in the conditional [formula in source] signal on an explicit finite time interval, and include preparation energy, precision and sampling costs. Preserve the no-intervention control. Exact cyclic rank alone is not successful physical control, and arbitrarily small 
+For a source-derived intervention, compare admissible preparations with the same initial accessible marginal at the original boundary. Bound the remainder in the conditional [formula in source] signal on an explicit finite time interval, and include preparation energy, precision and sampling costs. Preserve the no-intervention control. Exact cyclic rank alone is not successful physical control, and arbitrarily small
 
 ## -1.2cm TFPT — Origin Theory\\[2mm] The seam as a horizon, the cyclic compiler hull,\\ and the self-reproducing parameter-free fixed point\\[2mm] An \ structural core ( [formula in source] – [formula in source] ) with one honestly-typed \ interpretation
 
@@ -579,7 +683,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_4_origin_theory.tex:1166-1454](../../../../universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_4_origin_theory.tex#L1166) · `section:4e5537e69e05316e0599` · section
 
-The precise reformulation ( ). The seam is not identical to an event horizon. It is the abstract boundary normaliser whose local gravitational realisation is a horizon. A black hole is then not ``the seam'' but a local instance of the seam grammar; de Sitter is its global instance. This is stronger and cleaner than a direct identification — it avoids importing Schwarzschild analogies wholesale, and it makes [formula 
+The precise reformulation ( ). The seam is not identical to an event horizon. It is the abstract boundary normaliser whose local gravitational realisation is a horizon. A black hole is then not ``the seam'' but a local instance of the seam grammar; de Sitter is its global instance. This is stronger and cleaner than a direct identification — it avoids importing Schwarzschild analogies wholesale, and it makes [formula
 
 Explicit source references:
 
@@ -926,7 +1030,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_5_tfpt_3_e8_audit_bootstrap.tex:161-170](../../../../universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_5_tfpt_3_e8_audit_bootstrap.tex#L161) · `section:efe9ff39cbd3e1d03d9e` · part
 
-Purpose and discipline. This note does not introduce new physics. It builds an audit raster: the claim that every load-bearing TFPT number should appear in at least one [formula in source] branching projection. A number that appears in none is suspect; a number appearing in several independent projections becomes structurally strong. All arithmetic identities below are exact ; the physical readings are audit-level \ 
+Purpose and discipline. This note does not introduce new physics. It builds an audit raster: the claim that every load-bearing TFPT number should appear in at least one [formula in source] branching projection. A number that appears in none is suspect; a number appearing in several independent projections becomes structurally strong. All arithmetic identities below are exact ; the physical readings are audit-level \
 
 ## The compiler core (where this note sits)
 
@@ -1341,7 +1445,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_5_tfpt_3_e8_audit_bootstrap.tex:11948-11956](../../../../universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_5_tfpt_3_e8_audit_bootstrap.tex#L11948) · `section:eb6d340846c695ccd44a` · part
 
-The connection in one sentence. The old E [formula in source] cascade (Paper V1.06: the nilpotent-orbit chain [formula in source] , [formula in source] ) and the new compiler/atlas are the same even-integer [formula in source] spine, read three ways: the cascade orders the numbers [formula in source] as a scale ladder, the atlas reads them as [formula in source] subalgebra branchings, and the compiler generates them 
+The connection in one sentence. The old E [formula in source] cascade (Paper V1.06: the nilpotent-orbit chain [formula in source] , [formula in source] ) and the new compiler/atlas are the same even-integer [formula in source] spine, read three ways: the cascade orders the numbers [formula in source] as a scale ladder, the atlas reads them as [formula in source] subalgebra branchings, and the compiler generates them
 
 ## The old cascade, recalled
 
@@ -1368,7 +1472,7 @@ Reading [formula in source] against today's compiler atoms, the secondary-branch
 
 [universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_5_tfpt_3_e8_audit_bootstrap.tex:12070-12117](../../../../universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_5_tfpt_3_e8_audit_bootstrap.tex#L12070) · `section:f9fc5d05530250150dda` · section
 
-at (0.35,58) [formula in source] — E-series / atlas branchings (UV); at (0.35,40) [formula in source] ; at (0.35,30) [formula in source] \,(Coxeter rung, [formula in source] ); at (0.35,24) [formula in source] — [formula in source] , [formula in source] , [formula in source] ; at (0.35,15) [formula in source] (IR atoms); at (0.35,8) [formula in source] \,(flavor selector, end); at (0,60.5) [formula in source] start; 
+at (0.35,58) [formula in source] — E-series / atlas branchings (UV); at (0.35,40) [formula in source] ; at (0.35,30) [formula in source] \,(Coxeter rung, [formula in source] ); at (0.35,24) [formula in source] — [formula in source] , [formula in source] , [formula in source] ; at (0.35,15) [formula in source] (IR atoms); at (0.35,8) [formula in source] \,(flavor selector, end); at (0,60.5) [formula in source] start;
 
 Explicit source references:
 
@@ -1413,7 +1517,7 @@ The flavor selector [formula in source] is the terminal orbit of the [formula in
 
 [universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_5_tfpt_3_e8_audit_bootstrap.tex:12215-12225](../../../../universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_5_tfpt_3_e8_audit_bootstrap.tex#L12215) · `section:6cbdf01f901e64cc2b62` · part
 
-The question, and the honest answer. The theory rests on two inputs, [formula in source] and [formula in source] . The old theory had a Möbius seam and the seed was the start of the [formula in source] cascade. Run it backwards: can the cascade/ [formula in source] return [formula in source] and [formula in source] , closing a self-consistent loop? Answer: the discrete content is a closed, overdetermined fixed point 
+The question, and the honest answer. The theory rests on two inputs, [formula in source] and [formula in source] . The old theory had a Möbius seam and the seed was the start of the [formula in source] cascade. Run it backwards: can the cascade/ [formula in source] return [formula in source] and [formula in source] , closing a self-consistent loop? Answer: the discrete content is a closed, overdetermined fixed point
 
 ## The loop for [formula in source] — an overdetermined fixed point
 

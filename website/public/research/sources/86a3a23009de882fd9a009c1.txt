@@ -1,0 +1,84 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/original-local-source-variable-background-20261102/check_native_sixteen.py
+Original file SHA-256: 56f71cdbbac671dc99939e4b92ad1a3834256edc12aac2f7874d0694ac67f181
+Inclusive original lines: 1-76
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | #!/usr/bin/env python3
+000002 | """Actual existing W tensor and exact finite-path 16th order evaluation.
+000003 | 
+000004 | Retains all other native modes. At the minimum sixteen pair-creation steps,
+000005 | the specified initial boson population permits only channels0 and30. This
+000006 | is coefficient extraction in the full H, not a new truncated Hamiltonian.
+000007 | """
+000008 | from pathlib import Path
+000009 | from hashlib import sha256
+000010 | from math import factorial
+000011 | from collections import Counter
+000012 | import json
+000013 | import runpy
+000014 | import sympy as S
+000015 | 
+000016 | [OMITTED: non-scientific conversation or execution metadata]
+000017 | OUT=Path(__file__).resolve().parent
+000018 | SRC=ROOT/'experiments/theory-contracts/universalraum-keyD-native-instruments-20260915/native_source.py'
+000019 | ns=runpy.run_path(str(SRC))
+000020 | W,PAIRS,BETA=ns['W'],ns['PAIRS'],ns['BETA']
+000021 | pair_action=ns['pair_action']
+000022 | lookup={pair:j for j,pair in enumerate(PAIRS)}
+000023 | def Q(A,i,j):
+000024 |     return int(W[A,lookup[(i,j)]]) if i<j else (-int(W[A,lookup[(j,i)]]) if j<i else 0)
+000025 | x,y=S.symbols('x y')
+000026 | M=S.Matrix(16,16,lambda s,t:x*Q(0,4*s,4*t+1)+y*Q(30,4*s,4*t+1))
+000027 | if M != x*S.Matrix(BETA[0])+y*S.Matrix(BETA[5]): raise RuntimeError('Original W/beta mismatch')
+000028 | det=S.factor(M.det())
+000029 | if det!=x**8*y**8: raise RuntimeError('Original minor determinant')
+000030 | nnz=[(A,i,j,int(W[A,k])) for A in range(60) for k,(i,j) in enumerate(PAIRS) if W[A,k]]
+000031 | if any(i%4==j%4 for A,i,j,w in nnz): raise RuntimeError('Same family pair present')
+000032 | 
+000033 | # Exact coefficient of H^16 on the specified normalized states. Track actual
+000034 | # native interleaved64-mode bit ordering and integer boson b|n>=n|n-1>.
+000035 | terms=[(A,pair,int(W[A,k])) for A in (0,30) for k,pair in enumerate(PAIRS) if W[A,k]]
+000036 | state={(0,8,8):1}
+000037 | layer_sizes=[]
+000038 | for step in range(16):
+000039 |     nxt={}
+000040 |     for (mask,n0,n30),amp in state.items():
+000041 |         for A,pair,w in terms:
+000042 |             nb=n0 if A==0 else n30
+000043 |             if not nb: continue
+000044 |             hit=pair_action(mask,pair,dagger=True)
+000045 |             if hit is None: continue
+000046 |             key=(hit[0],n0-int(A==0),n30-int(A==30))
+000047 |             nxt[key]=nxt.get(key,0)+amp*w*hit[1]*nb
+000048 |     state={k:v for k,v in nxt.items() if v}
+000049 |     layer_sizes.append(len(state))
+000050 | target=sum((1<<(4*s))+(1<<(4*s+1)) for s in range(16))
+000051 | integer_coefficient=state.get((target,0,0),0)
+000052 | normalized=integer_coefficient//factorial(8)
+000053 | if integer_coefficient != factorial(16)*factorial(8)**2:
+000054 |     raise RuntimeError('Full native pair path sign/coefficient failed')
+000055 | 
+000056 | sources=[SRC,ROOT/'experiments/theory-contracts/source-native-retarded-selection-20260922/PROOF.md',
+000057 | ROOT/'experiments/theory-contracts/source-static-register-20260920/SOURCE_INTERACTION_INVENTORY.txt']
+000058 | result={'result_id':'R109','verdict':'declared_larger_native_source_executed_not_primitive_H_adm',
+000059 |  'W_nonzero':len(nnz),'same_family_nonzero':0,
+000060 |  'cross_edges_per_family':[sum((i%4==c)!=(j%4==c) for A,i,j,w in nnz) for c in range(4)],
+000061 |  'endpoint_degrees':dict(Counter(sum(i==k or j==k for A,i,j,w in nnz) for k in range(64))),
+000062 |  'selected_family':0,'rest_fermion_modes':48,'boson_modes':60,
+000063 |  'boson_channels':[0,30],'beta_ranks':[S.Matrix(BETA[k]).rank() for k in (0,5)],
+000064 |  'actual_W_minor_determinant':str(det),'native_path_layer_sizes':layer_sizes,
+000065 |  'sixteenth_power_normalized_matrix_element_coefficient':normalized,
+000066 |  'expected_16factorial_8factorial':factorial(16)*factorial(8),
+000067 |  'coupling_monomial':'gbar^16', 'conserved_Q_initial':32,'conserved_Q_final':32,
+000068 |  'H_F0_as_rest_operator':0,'Hn_F0_zero_orders':list(range(16)),
+000069 |  'first_nonzero_open_Hpower':16,
+000070 |  'dyson_leading_coefficient':'8!*gbar^16*((1-exp(-Delta*tau))/Delta)^16',
+000071 |  'next_coupling_order':18,
+000072 |  'scope':'Actual declared W-bank only. No scalar bath replacement, no spatial lattice/site source invented. First Dyson coefficient, not full propagator.',
+000073 |  'primitive_H_adm_F0':None,'primitive_status':'not_computed',
+000074 |  'source_hashes':{str(p.relative_to(ROOT)):sha256(p.read_bytes()).hexdigest() for p in sources}}
+000075 | (OUT/'native-sixteen-results.json').write_text(json.dumps(result,indent=2)+'\n')
+000076 | print(json.dumps({k:result[k] for k in ('actual_W_minor_determinant','native_path_layer_sizes','sixteenth_power_normalized_matrix_element_coefficient','expected_16factorial_8factorial','dyson_leading_coefficient','primitive_status')},indent=2))

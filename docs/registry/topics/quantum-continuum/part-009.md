@@ -80,7 +80,7 @@ Die komplexe Vierdimensionalität ist für den bestehenden Pauli-/Spinorbaukaste
 
 [experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/13_schatten_quanten.tex:76-81](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/13_schatten_quanten.tex#L76) · `section:52c829555ca26fb6d001` · section
 
-Die bisherigen Registerbeispiele erklären, wie ein global kohärenter Ablauf nach eingeschränktem Zugriff wie ein irreversibler Prozess aussehen kann. Sie liefern noch keine eindeutige Lösung des Messproblems: Insbesondere folgt aus einer diagonalen reduzierten Dichtematrix allein keine Auswahl eines einzelnen Ereignisses. Eine zusätzliche Kollapsdynamik müsste messbare Abweichungen angeben; eine unitäre Beschreibung 
+Die bisherigen Registerbeispiele erklären, wie ein global kohärenter Ablauf nach eingeschränktem Zugriff wie ein irreversibler Prozess aussehen kann. Sie liefern noch keine eindeutige Lösung des Messproblems: Insbesondere folgt aus einer diagonalen reduzierten Dichtematrix allein keine Auswahl eines einzelnen Ereignisses. Eine zusätzliche Kollapsdynamik müsste messbare Abweichungen angeben; eine unitäre Beschreibung
 
 ## Schwarze Löcher: Information kann die Aufteilung selbst betreffen
 
@@ -236,7 +236,7 @@ Die komplexe Vierdimensionalität ist für den bestehenden Pauli-/Spinorbaukaste
 
 [experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/13_schatten_quanten.tex:76-81](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/13_schatten_quanten.tex#L76) · `section:e55a82da55726a9b9b45` · section
 
-Die bisherigen Registerbeispiele erklären, wie ein global kohärenter Ablauf nach eingeschränktem Zugriff wie ein irreversibler Prozess aussehen kann. Sie liefern noch keine eindeutige Lösung des Messproblems: Insbesondere folgt aus einer diagonalen reduzierten Dichtematrix allein keine Auswahl eines einzelnen Ereignisses. Eine zusätzliche Kollapsdynamik müsste messbare Abweichungen angeben; eine unitäre Beschreibung 
+Die bisherigen Registerbeispiele erklären, wie ein global kohärenter Ablauf nach eingeschränktem Zugriff wie ein irreversibler Prozess aussehen kann. Sie liefern noch keine eindeutige Lösung des Messproblems: Insbesondere folgt aus einer diagonalen reduzierten Dichtematrix allein keine Auswahl eines einzelnen Ereignisses. Eine zusätzliche Kollapsdynamik müsste messbare Abweichungen angeben; eine unitäre Beschreibung
 
 ## Schwarze Löcher: Information kann die Aufteilung selbst betreffen
 
@@ -473,7 +473,7 @@ The infinite-volume system [formula in source] , and its invariant subalgebra [f
 
 [experiments/theory-contracts/universalraum-two-bank-transfer-20260915/external/exchange/source/articles__2026-08-30__tfpt_thermodynamic_dynamics_en.tex:468-512](../../../../experiments/theory-contracts/universalraum-two-bank-transfer-20260915/external/exchange/source/articles__2026-08-30__tfpt_thermodynamic_dynamics_en.tex#L468) · `section:cd90c6924a0df8bd3f36` · section
 
-The companion [formula in source] uses the exact nearest-neighbour physical-edge sector of the assembled model while comparing it against the complete class constant earlier IR-universality witness. It reports: [formula in source] For the one-site projector, [formula in source] , and nested open volumes, the specialization of [formula in source] The zeros are numerical precision statements, not analytic finite-speed 
+The companion [formula in source] uses the exact nearest-neighbour physical-edge sector of the assembled model while comparing it against the complete class constant earlier IR-universality witness. It reports: [formula in source] For the one-site projector, [formula in source] , and nested open volumes, the specialization of [formula in source] The zeros are numerical precision statements, not analytic finite-speed
 
 Explicit source references:
 
@@ -489,7 +489,7 @@ For the TFPT master-Hamiltonian class finite-dimensional local factors and coeff
 
 [experiments/theory-contracts/universalraum-two-bank-transfer-20260915/external/exchange/source/articles__2026-08-30__tfpt_thermodynamic_dynamics_en.tex:563-618](../../../../experiments/theory-contracts/universalraum-two-bank-transfer-20260915/external/exchange/source/articles__2026-08-30__tfpt_thermodynamic_dynamics_en.tex#L563) · `section:c0e96880a60b78a3dc4e` · section
 
-The amended contract makes the continuum limit optional but the thermodynamic limit mandatory. The latter is now proved at the Hamiltonian-class level for the concrete finite-group, finite-local-space TFPT assembly. The proof is insensitive to finite-volume boundary shape and does not infer thermodynamics from a finite scan. Its explicit velocity is conservative, while the numerical witness checks the expected cone, 
+The amended contract makes the continuum limit optional but the thermodynamic limit mandatory. The latter is now proved at the Hamiltonian-class level for the concrete finite-group, finite-local-space TFPT assembly. The proof is insensitive to finite-volume boundary shape and does not infer thermodynamics from a finite scan. Its explicit velocity is conservative, while the numerical witness checks the expected cone,
 
 ## Warum Spektren und Einzelbilder nicht genügten
 
@@ -603,7 +603,7 @@ Die komplexe Vierdimensionalität ist für den bestehenden Pauli-/Spinorbaukaste
 
 [experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/13_schatten_quanten.tex:78-83](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/13_schatten_quanten.tex#L78) · `section:384396b610cd2426d25f` · section
 
-Die bisherigen Registerbeispiele erklären, wie ein global kohärenter Ablauf nach eingeschränktem Zugriff wie ein irreversibler Prozess aussehen kann. Sie liefern noch keine eindeutige Lösung des Messproblems: Insbesondere folgt aus einer diagonalen reduzierten Dichtematrix allein keine Auswahl eines einzelnen Ereignisses. Eine zusätzliche Kollapsdynamik müsste messbare Abweichungen angeben; eine unitäre Beschreibung 
+Die bisherigen Registerbeispiele erklären, wie ein global kohärenter Ablauf nach eingeschränktem Zugriff wie ein irreversibler Prozess aussehen kann. Sie liefern noch keine eindeutige Lösung des Messproblems: Insbesondere folgt aus einer diagonalen reduzierten Dichtematrix allein keine Auswahl eines einzelnen Ereignisses. Eine zusätzliche Kollapsdynamik müsste messbare Abweichungen angeben; eine unitäre Beschreibung
 
 ## Schwarze Löcher: Information kann die Aufteilung selbst betreffen
 
@@ -707,7 +707,7 @@ G. M. D'Ariano, M. Erba, P. Perinotti: Isotropic quantum walks on lattices and t
 
 [experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/update_body_v14.tex:19-39](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/update_body_v14.tex#L19) · `section:a6f4c650ebbafa4dcbeb` · section
 
-Für kantenlokale Vermittler lässt sich die vierte Ordnung schreiben als Die Ganzzahligkeit des lokalen Spektrums wurde durch eine exakte 720-dimensionale reguläre [formula in source] -Rechnung kontrolliert. Zusätzlich gilt auf dem ganzen Materieraum Das verkleinert eine komplizierte Korrektur zu lokalen positiven Bausteinen. Positivität des Operators bedeutet dabei nicht automatisch eine positive Gapänderung; Grund- 
+Für kantenlokale Vermittler lässt sich die vierte Ordnung schreiben als Die Ganzzahligkeit des lokalen Spektrums wurde durch eine exakte 720-dimensionale reguläre [formula in source] -Rechnung kontrolliert. Zusätzlich gilt auf dem ganzen Materieraum Das verkleinert eine komplizierte Korrektur zu lokalen positiven Bausteinen. Positivität des Operators bedeutet dabei nicht automatisch eine positive Gapänderung; Grund-
 
 ## 3. Masselose Dynamik braucht nicht masselose Vermittler
 
@@ -731,7 +731,7 @@ M. Takesaki, Tomita's Theory of Modular Hilbert Algebras and its Applications, L
 
 [tex-artefacts/tfpt_references.tex:43-71](../../../../tex-artefacts/tfpt_references.tex#L43) · `section:419291db9b3bf697f68f` · paragraph
 
-I. B. Frenkel, V. G. Kac, Basic representations of affine Lie algebras and dual resonance models, Invent.\ Math.\ 62 (1980) 23–66; G. Segal, Unitary representations of some infinite-dimensional groups, Comm.\ Math.\ Phys.\ 80 (1981) 301–342. T. J. Osborne, A. Stottmeister, Conformal field theory from lattice fermions, Comm.\ Math.\ Phys.\ 398 (2023) 219–289, arXiv:2107.13834, doi:10.1007/s00220-022-04521-8. (This is 
+I. B. Frenkel, V. G. Kac, Basic representations of affine Lie algebras and dual resonance models, Invent.\ Math.\ 62 (1980) 23–66; G. Segal, Unitary representations of some infinite-dimensional groups, Comm.\ Math.\ Phys.\ 80 (1981) 301–342. T. J. Osborne, A. Stottmeister, Conformal field theory from lattice fermions, Comm.\ Math.\ Phys.\ 398 (2023) 219–289, arXiv:2107.13834, doi:10.1007/s00220-022-04521-8. (This is
 
 ## Spectral geometry, gravity and thermal time.
 
@@ -754,4 +754,4 @@ Explicit source references:
 
 [tex-artefacts/toe_research_20260909.tex:97-114](../../../../tex-artefacts/toe_research_20260909.tex#L97) · `section:7c988c39ac7db581aaf5` · subsection
 
-For the same strip and filled projector, the alternating four-word [formula in source] cancels the outer history ramps. Normal ordering is the actual finite-sea trace subtraction. Positive heat regularization, Jensen and Cauchy–Schwarz give uniform [formula in source] bounds for [formula in source] on the full four-endpoint torus, including collisions. They promote the separated-point limit to an [formula in source] 
+For the same strip and filled projector, the alternating four-word [formula in source] cancels the outer history ramps. Normal ordering is the actual finite-sea trace subtraction. Positive heat regularization, Jensen and Cauchy–Schwarz give uniform [formula in source] bounds for [formula in source] on the full four-endpoint torus, including collisions. They promote the separated-point limit to an [formula in source]

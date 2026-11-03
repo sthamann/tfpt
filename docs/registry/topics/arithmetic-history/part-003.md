@@ -20,7 +20,7 @@ An den harmonischen Marken [formula in source] ergibt der vollständige [formula
 
 [documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/010-subsection-der-st-rkste-neue-selektor-verbindet-orientie.tex:300-313](../../../../documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/010-subsection-der-st-rkste-neue-selektor-verbindet-orientie.tex#L300) · `section:086862a0caf12d0df49b` · subsection
 
-Eine frühe Phase der Sitzung betrachtete die endliche Familie [formula in source] , [formula in source] . Ihr Populationsschatten bleibt gleich, während eine Kohärenz den Eigenwert besitzt. Damit ist die reine Populationsauslese in dieser Klasse unzureichend, um den Kanal zu bestimmen. Die Familie ist kein Gegenmodell zu sämtlichen TFPT-Prinzipien, weil nicht alle ursprünglichen Markierungen und höheren Antworten in 
+Eine frühe Phase der Sitzung betrachtete die endliche Familie [formula in source] , [formula in source] . Ihr Populationsschatten bleibt gleich, während eine Kohärenz den Eigenwert besitzt. Damit ist die reine Populationsauslese in dieser Klasse unzureichend, um den Kanal zu bestimmen. Die Familie ist kein Gegenmodell zu sämtlichen TFPT-Prinzipien, weil nicht alle ursprünglichen Markierungen und höheren Antworten in
 
 ## Hecke, Double Cover und geladener Carry: Was bei einer Vergröberung mitwandern muss
 
@@ -106,7 +106,7 @@ Die folgenden Texte liegen jeweils als Eingef\"ugter Text.txt unter /Users/stefa
 
 [documents/tfpt_horizon_readouts/sections/002-section-turnaround-radius-gravitational-waves-light.tex:342-353](../../../../documents/tfpt_horizon_readouts/sections/002-section-turnaround-radius-gravitational-waves-light.tex#L342) · `section:f14cd99bec2b5b92a146` · section
 
-The seam-unit identities of this note (the thermal grammar [formula in source] , the power denominator [formula in source] , the de Sitter entropy form, the Page fraction, the scrambling [formula in source] , and [formula in source] ) are re-derived and machine-checked in verification/v8_horizon.py. Run python verification/v8_horizon.py (needs mpmath); it imports the same [formula in source] primitive as the rest of 
+The seam-unit identities of this note (the thermal grammar [formula in source] , the power denominator [formula in source] , the de Sitter entropy form, the Page fraction, the scrambling [formula in source] , and [formula in source] ) are re-derived and machine-checked in verification/v8_horizon.py. Run python verification/v8_horizon.py (needs mpmath); it imports the same [formula in source] primitive as the rest of
 
 Explicit source references:
 
@@ -639,7 +639,7 @@ Die häufig verkürzte Aussage Primzahlen tauchen als Quantenenergien auf umfass
 
 [experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/12_schatten_arithmetik.tex:82-96](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/12_schatten_arithmetik.tex#L82) · `section:cbeb85103b892f3b7d1b` · subsection
 
-Die ersten sechs Werte sind [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] und [formula in source] . Daraus folgt für [formula in source] Hier ist der Primzahlbezug wirklich vorhanden. Die Selbstdualität des Gitters schließt die Poisson-Transformation auf dasselbe Gitter. Poisson-Summation gilt auch für nichtselbstduale Gitter und verbindet dann Gitter und 
+Die ersten sechs Werte sind [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] und [formula in source] . Daraus folgt für [formula in source] Hier ist der Primzahlbezug wirklich vorhanden. Die Selbstdualität des Gitters schließt die Poisson-Transformation auf dasselbe Gitter. Poisson-Summation gilt auch für nichtselbstduale Gitter und verbindet dann Gitter und
 
 ## Die neue Quantenphasen-Arbeit von 2026
 
@@ -719,7 +719,7 @@ Die häufig verkürzte Aussage Primzahlen tauchen als Quantenenergien auf umfass
 
 [experiments/theory-contracts/universalraum-five-source-frontier-20260914/main-v1.4/chapters/12_schatten_arithmetik.tex:82-96](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/main-v1.4/chapters/12_schatten_arithmetik.tex#L82) · `section:a425abe30d729823057f` · subsection
 
-Die ersten sechs Werte sind [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] und [formula in source] . Daraus folgt für [formula in source] Hier ist der Primzahlbezug wirklich vorhanden. Die Selbstdualität des Gitters schließt die Poisson-Transformation auf dasselbe Gitter. Poisson-Summation gilt auch für nichtselbstduale Gitter und verbindet dann Gitter und 
+Die ersten sechs Werte sind [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] und [formula in source] . Daraus folgt für [formula in source] Hier ist der Primzahlbezug wirklich vorhanden. Die Selbstdualität des Gitters schließt die Poisson-Transformation auf dasselbe Gitter. Poisson-Summation gilt auch für nichtselbstduale Gitter und verbindet dann Gitter und
 
 ## Die neue Quantenphasen-Arbeit von 2026
 
@@ -805,7 +805,7 @@ Die häufig verkürzte Aussage Primzahlen tauchen als Quantenenergien auf umfass
 
 [experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/12_schatten_arithmetik.tex:82-96](../../../../experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/12_schatten_arithmetik.tex#L82) · `section:171e1728c5ae88592388` · subsection
 
-Die ersten sechs Werte sind [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] und [formula in source] . Daraus folgt für [formula in source] Hier ist der Primzahlbezug wirklich vorhanden. Die Selbstdualität des Gitters schließt die Poisson-Transformation auf dasselbe Gitter. Poisson-Summation gilt auch für nichtselbstduale Gitter und verbindet dann Gitter und 
+Die ersten sechs Werte sind [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] und [formula in source] . Daraus folgt für [formula in source] Hier ist der Primzahlbezug wirklich vorhanden. Die Selbstdualität des Gitters schließt die Poisson-Transformation auf dasselbe Gitter. Poisson-Summation gilt auch für nichtselbstduale Gitter und verbindet dann Gitter und
 
 ## Die neue Quantenphasen-Arbeit von 2026
 
@@ -927,7 +927,7 @@ Die häufig verkürzte Aussage Primzahlen tauchen als Quantenenergien auf umfass
 
 [experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/12_schatten_arithmetik.tex:82-96](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/12_schatten_arithmetik.tex#L82) · `section:db4ce8259c120ac5a95a` · subsection
 
-Die ersten sechs Werte sind [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] und [formula in source] . Daraus folgt für [formula in source] Hier ist der Primzahlbezug wirklich vorhanden. Die Selbstdualität des Gitters schließt die Poisson-Transformation auf dasselbe Gitter. Poisson-Summation gilt auch für nichtselbstduale Gitter und verbindet dann Gitter und 
+Die ersten sechs Werte sind [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] und [formula in source] . Daraus folgt für [formula in source] Hier ist der Primzahlbezug wirklich vorhanden. Die Selbstdualität des Gitters schließt die Poisson-Transformation auf dasselbe Gitter. Poisson-Summation gilt auch für nichtselbstduale Gitter und verbindet dann Gitter und
 
 ## Die neue Quantenphasen-Arbeit von 2026
 

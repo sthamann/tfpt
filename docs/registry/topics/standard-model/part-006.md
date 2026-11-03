@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## 3.1 Warum vier und nicht eins?
+
+[documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/018-subsection-50-gegen-die-lteren-gepinnten-zertifikate.tex:294-360](../../../../documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/018-subsection-50-gegen-die-lteren-gepinnten-zertifikate.tex#L294) · `section:5a54e89abf080c1fd62c` · subsubsection
+
+Im Ladungssektor N=64 schreiben wir Zustände relativ zur gefüllten Fermionreferenz [formula in source] . Bei k Bosonen gibt es 2k Löcher. Der Singulettbereich auf dieser Stufe liegt in
+
 ## B5.2 Warum das noch kein holografischer Fehlerkorrekturcode ist
 
 [documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/021-subsubsection-b4-1-zwei-zus-tzliche-terme-am-unver-ndert.tex:172-205](../../../../documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/021-subsubsection-b4-1-zwei-zus-tzliche-terme-am-unver-ndert.tex#L172) · `section:7042d1a31ab37cc31ed3` · subsubsection
@@ -86,7 +92,7 @@ Der konstruktive Anschluss ist klein: Paarumwandlung → geteilte Zwischenressou
 
 [documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/027-subsection-5-was-dies-f-r-die-fundamentale-suche.tex:229-248](../../../../documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/027-subsection-5-was-dies-f-r-die-fundamentale-suche.tex#L229) · `section:4b2eb4ab3c6e089818a9` · subsubsection
 
-Für den hier exakt spezifizierten Zeugen fehlt mindestens eine Operation, die nicht mit dem betrachteten Farb-Cartan des ursprünglichen Systems kommutiert, oder eine aus einer erweiterten globalen Quelle abgeleitete Kopplung mit einer expliziten Ausgleichsressource für diese Cartanladung. Ein zusätzlicher aktiver SU(4)-Generator wäre ein neuer Operationsvertrag; außerdem bewegt sein simultaner Fermion-/Boson-Lift im 
+Für den hier exakt spezifizierten Zeugen fehlt mindestens eine Operation, die nicht mit dem betrachteten Farb-Cartan des ursprünglichen Systems kommutiert, oder eine aus einer erweiterten globalen Quelle abgeleitete Kopplung mit einer expliziten Ausgleichsressource für diese Cartanladung. Ein zusätzlicher aktiver SU(4)-Generator wäre ein neuer Operationsvertrag; außerdem bewegt sein simultaner Fermion-/Boson-Lift im
 
 ## 1. Was die endliche Bank tatsächlich ausschließt
 
@@ -238,7 +244,7 @@ positioning,arrows.meta,fit,backgrounds,calc,shapes.geometric,shapes.misc
 
 [documents/introduction/sections/001-section-what-this-is-about-the-jump-in-construction-prin.tex:1-86](../../../../documents/introduction/sections/001-section-what-this-is-about-the-jump-in-construction-prin.tex#L1) · `section:ac978079d55f2c41f62b` · frontmatter
 
-Topological Fixed-Point Theory (TFPT) constructs, from exactly two inputs — a boundary constant [formula in source] (P1) and a five-slot carrier [formula in source] (P2) — a discrete compiler for the Standard-Model skeleton: the gauge group, three families, hypercharges and the flavor matrix, with [formula in source] ( [formula in source] ) as the consistency checksum. The algebraic core is machine-checkable and the 
+Topological Fixed-Point Theory (TFPT) constructs, from exactly two inputs — a boundary constant [formula in source] (P1) and a five-slot carrier [formula in source] (P2) — a discrete compiler for the Standard-Model skeleton: the gauge group, three families, hypercharges and the flavor matrix, with [formula in source] ( [formula in source] ) as the consistency checksum. The algebraic core is machine-checkable and the
 
 Explicit source references:
 
@@ -405,7 +411,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 ## Conclusion
 
-[documents/introduction/sections/004-section-tfpt-in-the-light-of-algorithmic-physics-zuse-sc.tex:159-170](../../../../documents/introduction/sections/004-section-tfpt-in-the-light-of-algorithmic-physics-zuse-sc.tex#L159) · `section:8fc4dd2cee34206067e0` · section
+[documents/introduction/sections/004-section-tfpt-in-the-light-of-algorithmic-physics-zuse-sc.tex:159-172](../../../../documents/introduction/sections/004-section-tfpt-in-the-light-of-algorithmic-physics-zuse-sc.tex#L159) · `section:8fc4dd2cee34206067e0` · section
 
 tocsectionConclusion TFPT's sectors form an impressive collection of closures sharing common numbers. The compiler closure explains why they are the same numbers: a small discrete generator [formula in source] builds, from two inputs [formula in source] via [formula in source] , the [formula in source] container and outputs the Standard Model, the constants and the scale grammar from there. The theory thereby becomes
 
@@ -475,7 +481,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/tfpt_1_architecture_e8/sections/008-source.tex:154-170](../../../../documents/tfpt_1_architecture_e8/sections/008-source.tex#L154) · `section:a2e74c2eb95b3408b3d8` · subsection
 
-Coxeter/gauge typing of the lcm–gcd pair. Writing [formula in source] and [formula in source] , the relations become [formula in source] and [formula in source] : the local SM algebra is the gcd of the Coxeter double-period and the [formula in source] rank-occupancy, and the [formula in source] root count is their lcm. Likewise the EW exponent reads [formula in source] (Coxeter principal part plus a rank singlet). \ 
+Coxeter/gauge typing of the lcm–gcd pair. Writing [formula in source] and [formula in source] , the relations become [formula in source] and [formula in source] : the local SM algebra is the gcd of the Coxeter double-period and the [formula in source] rank-occupancy, and the [formula in source] root count is their lcm. Likewise the EW exponent reads [formula in source] (Coxeter principal part plus a rank singlet). \
 
 ## Lepton flavor decuple: the charged-lepton determinant carries [formula in source]
 
@@ -533,7 +539,7 @@ arrows.meta,positioning,calc,fit,backgrounds,shapes.geometric,shapes.misc,decora
 
 [documents/tfpt_2_standard_model/sections/001-part-the-standard-model-in-one-master-formula.tex:1-24](../../../../documents/tfpt_2_standard_model/sections/001-part-the-standard-model-in-one-master-formula.tex#L1) · `section:3b5318f0d65e3c120bab` · frontmatter
 
-The Standard Model as one [formula in source] -ladder mass formula (all masses, CKM, PMNS, neutrinos), the flavor matrix from parabolic transport on [formula in source] , the five worked closures ( [formula in source] , quark [formula in source] , the explicit mass gap, Starobinsky [formula in source] , the H2 splitting), and gravity/quantum gravity as the seam response (the Seam Response Grammar [formula in source] 
+The Standard Model as one [formula in source] -ladder mass formula (all masses, CKM, PMNS, neutrinos), the flavor matrix from parabolic transport on [formula in source] , the five worked closures ( [formula in source] , quark [formula in source] , the explicit mass gap, Starobinsky [formula in source] , the H2 splitting), and gravity/quantum gravity as the seam response (the Seam Response Grammar [formula in source]
 
 ## The Standard Model in one master formula
 
@@ -883,7 +889,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/tfpt_2_standard_model/sections/005-subsection-closing-the-audit-gates-is-m-41-k-q-derived-o.tex:1-160](../../../../documents/tfpt_2_standard_model/sections/005-subsection-closing-the-audit-gates-is-m-41-k-q-derived-o.tex#L1) · `section:26a7469d80cd6b47c2b6` · frontmatter
 
-The ``which sheet does parity select'' question above had a blocker: no independently motivated sector [formula in source] sheet map. The cover supplies one itself. At each branch point the anchor block is rank one, with canonical integer kernels: [formula in source] — at the carrier point the block annihilates the democratic vector itself. Collapse lemma : rank one forces [formula in source] , hence proportional to 
+The ``which sheet does parity select'' question above had a blocker: no independently motivated sector [formula in source] sheet map. The cover supplies one itself. At each branch point the anchor block is rank one, with canonical integer kernels: [formula in source] — at the carrier point the block annihilates the democratic vector itself. Collapse lemma : rank one forces [formula in source] , hence proportional to
 
 Explicit source references:
 
@@ -961,7 +967,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/tfpt_2_standard_model/sections/005-subsection-closing-the-audit-gates-is-m-41-k-q-derived-o.tex:325-356](../../../../documents/tfpt_2_standard_model/sections/005-subsection-closing-the-audit-gates-is-m-41-k-q-derived-o.tex#L325) · `section:9cb3b04ab25cb016cf69` · subsection
 
-The closed CKM point is not an end state — it feeds the theoretically cleanest flavor-changing neutral-current probe, the rare decays [formula in source] and [formula in source] . These are not a new compiler power: the only TFPT-specific content is the CKM point above; the short-distance loop functions ( [formula in source] , [formula in source] , [formula in source] , [formula in source] , Brod–Gorbahn–Stamou) are 
+The closed CKM point is not an end state — it feeds the theoretically cleanest flavor-changing neutral-current probe, the rare decays [formula in source] and [formula in source] . These are not a new compiler power: the only TFPT-specific content is the CKM point above; the short-distance loop functions ( [formula in source] , [formula in source] , [formula in source] , [formula in source] , Brod–Gorbahn–Stamou) are
 
 Explicit source references:
 
@@ -978,7 +984,7 @@ A generic ``spine-ratio'' scan ( [formula in source] , [formula in source] , the
 
 [documents/tfpt_2_standard_model/sections/006-section-neutrinos.tex:1-262](../../../../documents/tfpt_2_standard_model/sections/006-section-neutrinos.tex#L1) · `section:697c671889813baf24f5` · section
 
-The neutrino sector is the Majorana branch of the same construction: [formula in source] . @p3.6cmp5.2cmc@ Quantity & Origin & Value \\ [formula in source] & [formula in source] (UV), closure [formula in source] & [formula in source] \\ [formula in source] & primary (freeze): [formula in source] (seed, [formula in source] ); two derived variants in the named box & [formula in source] (NuFIT 6.0 [formula in source] ) 
+The neutrino sector is the Majorana branch of the same construction: [formula in source] . @p3.6cmp5.2cmc@ Quantity & Origin & Value \\ [formula in source] & [formula in source] (UV), closure [formula in source] & [formula in source] \\ [formula in source] & primary (freeze): [formula in source] (seed, [formula in source] ); two derived variants in the named box & [formula in source] (NuFIT 6.0 [formula in source] )
 
 Explicit source references:
 
@@ -1278,7 +1284,7 @@ Constructing the rigid [formula in source] -symmetric local system explicitly (f
 
 [documents/tfpt_2_standard_model/sections/008-section-the-setup-parabolic-data-on-the-family-curve.tex:115-172](../../../../documents/tfpt_2_standard_model/sections/008-section-the-setup-parabolic-data-on-the-family-curve.tex#L115) · `section:95ef9c8e927ef9e25379` · section
 
-Status (no drift). The splitting type is now closed: the unique partition [formula in source] fixes the anchor and [formula in source] fixes the residue branch (verified, below and v4_flavor_matrix.py), and the solar texture is built ( v9_neutrino_texture.py). The roadmap below is kept as the derivation record of how [formula in source] is obtained; it is no longer an open project. The only residual is the parabolic 
+Status (no drift). The splitting type is now closed: the unique partition [formula in source] fixes the anchor and [formula in source] fixes the residue branch (verified, below and v4_flavor_matrix.py), and the solar texture is built ( v9_neutrino_texture.py). The roadmap below is kept as the derivation record of how [formula in source] is obtained; it is no longer an open project. The only residual is the parabolic
 
 Explicit source references:
 
@@ -1455,18 +1461,3 @@ Explicit source references:
 [documents/tfpt_2_standard_model/sections/010-section-the-explicit-mass-gap-closes-dynamics-and-cluste.tex:161-183](../../../../documents/tfpt_2_standard_model/sections/010-section-the-explicit-mass-gap-closes-dynamics-and-cluste.tex#L161) · `section:0a3610a9e32985012149` · section
 
 Compactify the oriented two-dimensional normal slice [formula in source] to [formula in source] . The geometric BRST/Hodge differential, restricted to the seam-even sector with Atiyah–Patodi–Singer boundary conditions on [formula in source] , is an elliptic operator on a compact manifold; hence it is Fredholm, with finite-dimensional kernel and cokernel and an integer index. The compact bosonic Higgs index selects [f
-
-## The [formula in source] truncation is [formula in source] -bounded
-
-[documents/tfpt_2_standard_model/sections/010-section-the-explicit-mass-gap-closes-dynamics-and-cluste.tex:184-272](../../../../documents/tfpt_2_standard_model/sections/010-section-the-explicit-mass-gap-closes-dynamics-and-cluste.tex#L184) · `section:ee5c68ec39d878e448bd` · section
-
-On the [formula in source] attractor the curvature during observable inflation is [formula in source] . Higher curvature terms [formula in source] , [formula in source] , enter with [formula in source] , so their contribution to the observables is [formula in source] . With [formula in source] this is [formula in source] ( [formula in source] ), and the leading predictions are [formula in source] matching Planck. The
-
-Explicit source references:
-
-- [verification/v86_nstar_reheating.py](../../../../verification/v86_nstar_reheating.py#L1) · explicit_file_citation
-- [verification/v494_cosmo_running_mu_record.py](../../../../verification/v494_cosmo_running_mu_record.py#L1) · explicit_file_citation
-
-Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
-
-- [(* ---- (v86) reheating arithmetic (scale chain; pivot solve stays Python) ---- *) Mbar = 2.435323203`20 10^18; Mscal = c3^(7/2) Mbar; GammaScal = 4 Mscal^3/(48 Pi Mbar^2); check["v86 Gamma = 4 M^3/(48 pi Mbar^2) = 128.1 GeV", GammaScal, 128.146562596`12, 10^-6]; check["v86 T_reh = 9.55e9 GeV (g*=106.75)", (30 (3 GammaScal^2 Mbar^2)/(Pi^2 106.75))^(1/4), 9.55048669665`12 10^9, 10^-6]; AsOf[n_] := n^2 c3^7/(24 Pi^2); check["v86 A_s(51.4406) = 1.764e-9 (the A_s-disfavoured slow point)", AsOf[51.4406], 1.7637`5 10^-9, 10^-3]; check["v86 A_s-preferred N_star = 56.198", Sqrt[2.105`10 10^-9 24 Pi^2/c3^7], 56.198`6, 10^-4]; check["v86 dichotomy: matching A_s at 51.44 needs M x 1.0925", Sqrt[2.105`10 10^-9/AsOf[51.4406]], 1.09248`6, 10^-4]; (* ---- (v87) SO(16)_1 modular data and its six invariants ---- *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L83)

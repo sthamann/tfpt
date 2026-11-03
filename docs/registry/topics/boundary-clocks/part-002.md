@@ -189,7 +189,7 @@ On a conformally flat boundary geometry, the unique projectively invariant quant
 
 [documents/archive--paper-latex--tffpt-theory-fullv2/sections/006-section-verification-suite-summary.tex:72-86](../../../../documents/archive--paper-latex--tffpt-theory-fullv2/sections/006-section-verification-suite-summary.tex#L72) · `section:35ffe854593515c057a8` · subsection
 
-The uniqueness is verified by: Constructing the complete Hasse diagram of [formula in source] from standard tables. Computing all cover relations with [formula in source] . Running dynamic programming to find all paths from [formula in source] to [formula in source] . Applying the cost function [formula in source] (second-difference smoothness). Verifying that the minimum-cost path is unique (cost gap to second-best 
+The uniqueness is verified by: Constructing the complete Hasse diagram of [formula in source] from standard tables. Computing all cover relations with [formula in source] . Running dynamic programming to find all paths from [formula in source] to [formula in source] . Applying the cost function [formula in source] (second-difference smoothness). Verifying that the minimum-cost path is unique (cost gap to second-best
 
 ## Boundary Trace Derivation
 
@@ -471,7 +471,7 @@ E [formula in source] is not part of the primitive carrier ontology and should n
 
 [documents/archive--paper-latex--tfpt-32/sections/013-subsection-rg-map-for-compiler-outputs.tex:319-344](../../../../documents/archive--paper-latex--tfpt-32/sections/013-subsection-rg-map-for-compiler-outputs.tex#L319) · `section:41d0b47c0db1a821a95c` · subsection
 
-] Under the restricted trace grammar, stages [formula in source] and [formula in source] have no unambiguous physical target. If [formula in source] is allowed to scan over all simple rationals, these stages can mimic almost any scale between [formula in source] and [formula in source] GeV. They mark the exact boundary where E [formula in source] without a derived block-trace theorem becomes too permissive. The open 
+] Under the restricted trace grammar, stages [formula in source] and [formula in source] have no unambiguous physical target. If [formula in source] is allowed to scan over all simple rationals, these stages can mimic almost any scale between [formula in source] and [formula in source] GeV. They mark the exact boundary where E [formula in source] without a derived block-trace theorem becomes too permissive. The open
 
 ## Conclusion
 

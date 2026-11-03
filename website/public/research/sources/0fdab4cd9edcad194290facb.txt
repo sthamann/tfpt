@@ -1,0 +1,145 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/original-local-source-variable-background-20261102/det16-source-results.json
+Original file SHA-256: 20fe3aa2b459dedaa3f6124d8f14680a08b78631ee59a130fa2e32c882ebd1f8
+Inclusive original lines: 1-137
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | {
+000002 |   "status": "pass",
+000003 |   "dimension": 65536,
+000004 |   "phi": 0.4487989505128276,
+000005 |   "native_projector_nnz": 4,
+000006 |   "hamiltonian": "2*(I-P), isolated finite mirror cluster; not full interacting cell",
+000007 |   "identities_all_beta": "P\u00b2=P => exp(-beta H)=a I+b P, a=exp(-2 beta), b=1-a, Z=65536 a+b. Native finite Fock trace and rank-one P yield Cij=deltaij/2, <ci cj>=0, <ni nj>=1/4+b/(4Z) for i!=j, <Omega>=b exp(i phi)/(2Z).",
+000008 |   "ordered_word_formula": "Tr[product_k ((a_k I+b_k P) O_k) (a_last I+b_last P)]/Z; expansion into 2^(number of intervals) sparse terms applies to any finite ordered CAR word, not just sampled four words.",
+000009 |   "twining_scope": "Original Spin(10) center on this 16-mode Fock factor: U_q=q^N, q=1,i,-1,-i. P is invariant and Tr U_q exp(-beta H)=a(1+q)^16+b, including its zero-source offset. These are conditional Gauss weights; no full v1013 Gauss embedding is asserted.",
+000010 |   "renewal_scope": "Matrix-free cyclic rank-one renewal on ambient CAR words with original Jordan-Wigner bit signs. It does not implement Gauss twining. Values below are unnormalized sparse direct traces at diagnostic beta=2*pi.",
+000011 |   "renewal_comparisons": [
+000012 |     {
+000013 |       "name": "density4",
+000014 |       "length": 4,
+000015 |       "direct": [
+000016 |         0.05891799270510213,
+000017 |         -7.548217193685425e-21
+000018 |       ],
+000019 |       "renewal": [
+000020 |         0.05891799270510211,
+000021 |         -3.621655925796072e-20
+000022 |       ],
+000023 |       "absolute_error": 2.0816701452462748e-17
+000024 |     },
+000025 |     {
+000026 |       "name": "crossed4",
+000027 |       "length": 4,
+000028 |       "direct": [
+000029 |         0.0572964069772704,
+000030 |         0.0
+000031 |       ],
+000032 |       "renewal": [
+000033 |         0.05729640697727038,
+000034 |         0.0
+000035 |       ],
+000036 |       "absolute_error": 2.0816681711721685e-17
+000037 |     },
+000038 |     {
+000039 |       "name": "odd4",
+000040 |       "length": 4,
+000041 |       "direct": [
+000042 |         0.0,
+000043 |         0.0
+000044 |       ],
+000045 |       "renewal": [
+000046 |         0.0,
+000047 |         0.0
+000048 |       ],
+000049 |       "absolute_error": 0.0
+000050 |     },
+000051 |     {
+000052 |       "name": "density8",
+000053 |       "length": 8,
+000054 |       "direct": [
+000055 |         0.014788657804234148,
+000056 |         -3.632939847314758e-21
+000057 |       ],
+000058 |       "renewal": [
+000059 |         0.01478865780423415,
+000060 |         -1.47880883630747e-20
+000061 |       ],
+000062 |       "absolute_error": 1.734759342226888e-18
+000063 |     },
+000064 |     {
+000065 |       "name": "density16",
+000066 |       "length": 16,
+000067 |       "direct": [
+000068 |         0.0011056026370180824,
+000069 |         -7.11108238131056e-23
+000070 |       ],
+000071 |       "renewal": [
+000072 |         0.0011056026370180824,
+000073 |         -7.280877364639859e-21
+000074 |       ],
+000075 |       "absolute_error": 7.209766540826754e-21
+000076 |     },
+000077 |     {
+000078 |       "name": "omega16",
+000079 |       "length": 16,
+000080 |       "direct": [
+000081 |         2.95928108757438e-06,
+000082 |         1.42511466169296e-06
+000083 |       ],
+000084 |       "renewal": [
+000085 |         2.9592810875743725e-06,
+000086 |         1.4251146616929575e-06
+000087 |       ],
+000088 |       "absolute_error": 8.035660099586566e-21
+000089 |     },
+000090 |     {
+000091 |       "name": "omega_dagger16",
+000092 |       "length": 16,
+000093 |       "direct": [
+000094 |         2.9592810875743797e-06,
+000095 |         -1.42511466169296e-06
+000096 |       ],
+000097 |       "renewal": [
+000098 |         2.9592810875743725e-06,
+000099 |         -1.4251146616929575e-06
+000100 |       ],
+000101 |       "absolute_error": 7.635051808331911e-21
+000102 |     }
+000103 |   ],
+000104 |   "word_validation": "4 four-operator words x 3 diagnostic beta values compared with sparse multiplication and independently expanded identity/projector terms; no dense 65536-by-65536 matrix or expm",
+000105 |   "scope": "Diagnostic beta only; no physical beta calibration, full interacting v1013 cell, 4D decoupling, source derivation, Gaussian twining or full TFPT solution asserted.",
+000106 |   "sources": {
+000107 |     "verification/v1002_spin10_mirror_projector.py": "84f7cd7987887ee071d7e05872285ab274ae329f6bcfa693be69bb52add19a4c",
+000108 |     "experiments/theory-contracts/original-local-source-variable-background-20261102/check_det16_source.py": "0511dddb7d2c1f634014e2ba7e7227aa9ed20c8aafeccb05b6bec15d9727a0a0"
+000109 |   },
+000110 |   "numpy": "2.5.4",
+000111 |   "scipy": "1.18.1",
+000112 |   "results": [
+000113 |     {
+000114 |       "beta": 1.0,
+000115 |       "a": 0.1353352832366127,
+000116 |       "b": 0.8646647167633873,
+000117 |       "Z": 8870.197786911413,
+000118 |       "ground_probability": 0.00011273705773230546,
+000119 |       "twinedWeights": [
+000120 |         {
+000121 |           "center": "1",
+000122 |           "zero_source_weight": [
+000123 |             8870.197786911413,
+000124 |             0.0
+000125 |           ],
+000126 |           "normalized_weight": [
+000127 |             1.0,
+000128 |             0.0
+000129 |           ]
+000130 |         },
+000131 |         {
+000132 |           "center": "i",
+000133 |           "zero_source_weight": [
+000134 |             35.51049722533624,
+000135 |             0.0
+000136 |           ],
+000137 |           "normalized_weight": [

@@ -1,0 +1,50 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/universalraum-keyD-native-instruments-20260915/native_source.py
+Original file SHA-256: 380577f85d2afa8b50f91a0991769eaf8267ee5c09f327d87f17e1b4c0af1672
+Inclusive original lines: 45-86
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000045 |     return out
+000046 | 
+000047 | ANN5 = _jw(5)
+000048 | EVEN16 = [m for m in range(32) if m.bit_count() % 2 == 0]
+000049 | _CONJ = np.eye(32, dtype=np.int64)
+000050 | for _a in ANN5:
+000051 |     _CONJ = _CONJ @ (_a + _a.T)
+000052 | BETA = [( _CONJ @ _a)[np.ix_(EVEN16, EVEN16)] for _a in ANN5 + [_a.T for _a in ANN5]]
+000053 | need(len(BETA) == 10 and all(b.shape == (16, 16) for b in BETA), 'ten 16x16 spinor beta matrices')
+000054 | 
+000055 | # --- Native pair tensor W (verified against the pinned npz in earlier rounds)
+000056 | PAIRS = list(combinations(range(64), 2))
+000057 | PAIR_INDEX = {p: j for j, p in enumerate(PAIRS)}
+000058 | COLORS = list(combinations(range(4), 2))
+000059 | W = np.zeros((60, 2016), dtype=np.int64)
+000060 | for k, beta in enumerate(BETA):
+000061 |     for c, (l, r) in enumerate(COLORS):
+000062 |         for j, (v, w) in enumerate(PAIRS):
+000063 |             vs, vc = divmod(v, 4)
+000064 |             ws, wc = divmod(w, 4)
+000065 |             W[6*k + c, j] = beta[vs, ws] * (int(vc == l and wc == r) - int(vc == r and wc == l))
+000066 | need(np.array_equal(W @ W.T, 8*np.eye(60, dtype=int)), 'native row Gram W W^T = 8 I_60')
+000067 | need(set(map(int, np.count_nonzero(W, axis=1))) == {8}, 'eight pairs per mediator row')
+000068 | 
+000069 | # --- Cartan weight labels ---------------------------------------------------
+000070 | CW = np.array([[1-2*((m >> j) & 1) for j in range(3)]
+000071 |                for m in range(8) if m.bit_count() % 2 == 0], dtype=np.int64)
+000072 | FW = np.array([[1-2*((m >> j) & 1) for j in range(5)] + list(c)
+000073 |                for m in EVEN16 for c in CW], dtype=np.int64)
+000074 | BW = []
+000075 | for k in range(10):
+000076 |     v = [0]*5
+000077 |     v[k % 5] = -2 if k < 5 else 2
+000078 |     for a, b in COLORS:
+000079 |         BW.append(v + list(CW[a] + CW[b]))
+000080 | BW = np.array(BW, dtype=np.int64)
+000081 | need(FW.shape == (64, 8) and BW.shape == (60, 8), 'weight label shapes')
+000082 | _lookup = {PAIRS[c]: (int(r), int(W[r, c])) for r, c in zip(*np.nonzero(W))}
+000083 | need(len(_lookup) == 480, 'one mediator channel per supported pair')
+000084 | need(all(np.array_equal(FW[i] + FW[j], BW[A])
+000085 |          for (i, j), (A, _v) in _lookup.items()), 'Cartan charge conservation at all 480 vertices')
+000086 | 

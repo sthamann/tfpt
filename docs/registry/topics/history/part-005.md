@@ -482,7 +482,7 @@ The model-independent Grossman–Nir (GN) bound provides a constraint between th
 
 [documents/archive--paper-latex--rare_kaeon_scaffold/sections/002-section-matching-to-short-distance-amplitudes.tex:297-369](../../../../documents/archive--paper-latex--rare_kaeon_scaffold/sections/002-section-matching-to-short-distance-amplitudes.tex#L297) · `section:34daaa424312caa6a903` · section
 
-@> p0.17 > Y> p0.16 > p0.17 > p0.11 @ Observable & TFPT value & Imported input & Sector input & Status \\ [formula in source] & [formula in source] & [formula in source] & [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] & prediction \\[6pt] [formula in source] & [formula in source] & [formula in source] & [formula in source] , [formula in source] , [formula 
+@> p0.17 > Y> p0.16 > p0.17 > p0.11 @ Observable & TFPT value & Imported input & Sector input & Status \\ [formula in source] & [formula in source] & [formula in source] & [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] & prediction \\[6pt] [formula in source] & [formula in source] & [formula in source] & [formula in source] , [formula in source] , [formula
 
 ## Sensitivity anatomy
 

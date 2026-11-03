@@ -1,0 +1,15 @@
+TFPT scientific source excerpt
+Original repository path: verification/v1008_master_assembly_scaffold.py
+Original file SHA-256: 3c45ac92fabdcb4d572a4f5c1b51d6b33639e6538f30b0168adca12a5d3fcb37
+Inclusive original lines: 399-405
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000399 | def full_assembly_hamiltonian(dispersion: float) -> np.ndarray:
+000400 |     physical_clock = physical_clock_hamiltonian(dispersion)
+000401 |     mirror = edge_cluster_hamiltonian(-dispersion, True)
+000402 |     return (
+000403 |         np.kron(physical_clock, IDENTITY_EDGE)
+000404 |         + np.kron(np.eye(physical_clock.shape[0]), mirror)
+000405 |     )

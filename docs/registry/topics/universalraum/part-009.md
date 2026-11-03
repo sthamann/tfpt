@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## 5.1 Herleitung des dritten Moments
+
+[documents/experiments--theory-contracts--universalraum-singlet-observable-20260915--tmp--pdfs--TFPT_Universalraum_Richtige_Kette_Konsolidierung_2026-09-15_v1.6.7/sections/015-subsection-1-ergebnis-in-einem-satz-label-ergebnis-in-ei.tex:249-277](../../../../documents/experiments--theory-contracts--universalraum-singlet-observable-20260915--tmp--pdfs--TFPT_Universalraum_Richtige_Kette_Konsolidierung_2026-09-15_v1.6.7/sections/015-subsection-1-ergebnis-in-einem-satz-label-ergebnis-in-ei.tex#L249) · `section:d249a82d3fb9d46b7ae8` · subsubsection
+
+Setze [formula in source] . Stationarität macht diesen Operator symmetrisch in der positiven, nach Nullvektoren quotientierten Metrik [formula in source] . Direkte Normalordnung ergibt
+
 ## 5.2 Neue engere Dichte- und Gewichtsgrenzen
 
 [documents/experiments--theory-contracts--universalraum-singlet-observable-20260915--tmp--pdfs--TFPT_Universalraum_Richtige_Kette_Konsolidierung_2026-09-15_v1.6.7/sections/015-subsection-1-ergebnis-in-einem-satz-label-ergebnis-in-ei.tex:278-335](../../../../documents/experiments--theory-contracts--universalraum-singlet-observable-20260915--tmp--pdfs--TFPT_Universalraum_Richtige_Kette_Konsolidierung_2026-09-15_v1.6.7/sections/015-subsection-1-ergebnis-in-einem-satz-label-ergebnis-in-ei.tex#L278) · `section:caa4b807b78e0e81b4bc` · subsubsection
@@ -32,7 +38,7 @@ Angenommen, es gäbe nur je eine Entnahme- und Additionslinie mit Energien [form
 
 [documents/experiments--theory-contracts--universalraum-singlet-observable-20260915--tmp--pdfs--TFPT_Universalraum_Richtige_Kette_Konsolidierung_2026-09-15_v1.6.7/sections/016-subsection-7-einfache-organisation-aber-keine-falsche.tex:59-115](../../../../documents/experiments--theory-contracts--universalraum-singlet-observable-20260915--tmp--pdfs--TFPT_Universalraum_Richtige_Kette_Konsolidierung_2026-09-15_v1.6.7/sections/016-subsection-7-einfache-organisation-aber-keine-falsche.tex#L59) · `section:241a7c31dcc45c566a81` · subsection
 
-@ > p( - 4 ) * 0.3333 > p( - 4 ) * 0.3333 > p( - 4 ) * 0.3333@ Vertrag & Mathematisch abgesichert & Nicht dadurch verfügbar \\ Markierter endlicher Matrixcompiler & Matrizen, Ordnungen, konkrete endliche Syntheseidentitäten & Vollständiges Fockinstrument, Präparation, physischer Zeitgenerator \\ H allein & Modellzeitentwicklung & Unabhängiges Schalten von X und [formula in source] \\ X und [formula in source] , wenn 
+@ > p( - 4 ) * 0.3333 > p( - 4 ) * 0.3333 > p( - 4 ) * 0.3333@ Vertrag & Mathematisch abgesichert & Nicht dadurch verfügbar \\ Markierter endlicher Matrixcompiler & Matrizen, Ordnungen, konkrete endliche Syntheseidentitäten & Vollständiges Fockinstrument, Präparation, physischer Zeitgenerator \\ H allein & Modellzeitentwicklung & Unabhängiges Schalten von X und [formula in source] \\ X und [formula in source] , wenn
 
 ## 8.1 Konkrete Präparationsgrenze
 
@@ -136,7 +142,7 @@ Explicit source references:
 
 [documents/experiments--theory-contracts--universalraum-singlet-observable-20260915--tmp--pdfs--TFPT_Universalraum_Richtige_Kette_Konsolidierung_2026-09-15_v1.6.7/sections/018-subsubsection-die-isotypie-zerlegung-von-n-3-beide-spure.tex:1-30](../../../../documents/experiments--theory-contracts--universalraum-singlet-observable-20260915--tmp--pdfs--TFPT_Universalraum_Richtige_Kette_Konsolidierung_2026-09-15_v1.6.7/sections/018-subsubsection-die-isotypie-zerlegung-von-n-3-beide-spure.tex#L1) · `section:b5e2e60700246f44d1d7` · subsubsection
 
-@lrrrll@ Block & Dim & Mult & S-Eigenwert & (C_S, C_U) & Rolle \\ (144, 20) & 2880 & 2 & 7 & (85, 39) & hell, X-gekoppelt \\ (144, 4̄) & 576 & 2 & 10 & (85, 15) & hell, X-gekoppelt \\ (16′, 20) & 320 & 2 & 12 & (45, 39) & hell, X-gekoppelt \\ (16′, 4̄) & 64 & 1 & 0 (ker S) & (45, 15) & χ-Kompositblock \\ (672, 4̄) & 2688 & 1 & - & (165, 15) & dunkel \\ (1200, 20) & 24 000 & 1 & - & (141, 39) & dunkel \\ (560, 20′) & 
+@lrrrll@ Block & Dim & Mult & S-Eigenwert & (C_S, C_U) & Rolle \\ (144, 20) & 2880 & 2 & 7 & (85, 39) & hell, X-gekoppelt \\ (144, 4̄) & 576 & 2 & 10 & (85, 15) & hell, X-gekoppelt \\ (16′, 20) & 320 & 2 & 12 & (45, 39) & hell, X-gekoppelt \\ (16′, 4̄) & 64 & 1 & 0 (ker S) & (45, 15) & χ-Kompositblock \\ (672, 4̄) & 2688 & 1 & - & (165, 15) & dunkel \\ (1200, 20) & 24 000 & 1 & - & (141, 39) & dunkel \\ (560, 20′) &
 
 ## Das Verfügbarkeits-Theorem (Parallelsession, symmetry_availability.py)Das Verfügbarkeits-Theorem (Parallelsession, )
 
@@ -226,7 +232,7 @@ Gemessen wird die Dimension des Kommutanten der von einer Operationsstufe erzeug
 
 [documents/experiments--theory-contracts--universalraum-singlet-observable-20260915--tmp--pdfs--TFPT_Universalraum_Richtige_Kette_Konsolidierung_2026-09-15_v1.6.7/sections/022-section-tfpt-universalraum-operationssatz-nativer-grundz.tex:67-108](../../../../documents/experiments--theory-contracts--universalraum-singlet-observable-20260915--tmp--pdfs--TFPT_Universalraum_Richtige_Kette_Konsolidierung_2026-09-15_v1.6.7/sections/022-section-tfpt-universalraum-operationssatz-nativer-grundz.tex#L67) · `section:6a3db80772733882ff3c` · subsubsection
 
-@ > p( - 8 ) * 0.1875 > p( - 8 ) * 0.1875 > p( - 8 ) * 0.2500 > p( - 8 ) * 0.1875 > p( - 8 ) * 0.1875@ Sektor & Block & Dim & Zerlegung unter so(10)⊕ su(4) & (𝒞_S, 𝒞_C) \\ N=2 & helle Paare ↔ Bosonen & 60 & (10, 6) & (36, 20) \\ N=2 & dunkle Paare & 1956 & (120, 10) ⊕ (126, 6) & (84,36), (100,20) \\ N=3 & dunkle Tripel = ker C₃ & 37888 & (560, 20″) ⊕ (1200, 20) ⊕ (672, 4̄) & (117,63), (141,39), (165,15) \\ N=3 & ker 
+@ > p( - 8 ) * 0.1875 > p( - 8 ) * 0.1875 > p( - 8 ) * 0.2500 > p( - 8 ) * 0.1875 > p( - 8 ) * 0.1875@ Sektor & Block & Dim & Zerlegung unter so(10)⊕ su(4) & (𝒞_S, 𝒞_C) \\ N=2 & helle Paare ↔ Bosonen & 60 & (10, 6) & (36, 20) \\ N=2 & dunkle Paare & 1956 & (120, 10) ⊕ (126, 6) & (84,36), (100,20) \\ N=3 & dunkle Tripel = ker C₃ & 37888 & (560, 20″) ⊕ (1200, 20) ⊕ (672, 4̄) & (117,63), (141,39), (165,15) \\ N=3 & ker
 
 ## 3.2 Kommutanten-Leiter
 
@@ -626,9 +632,3 @@ Für Δ 0 und 0 g²≤5Δ²/128 gilt 2/3≤d 1. Aus [formula in source] und [for
 [documents/experiments--theory-contracts--universalraum-source-composition-20260915--tmp--pdfs--TFPT_Universalraum_Quellkomposition_Konsolidierung_2026-09-15_v1.6.9/sections/005-subsection-3-schaltbarkeit-und-arbeit-werden.tex:1-37](../../../../documents/experiments--theory-contracts--universalraum-source-composition-20260915--tmp--pdfs--TFPT_Universalraum_Quellkomposition_Konsolidierung_2026-09-15_v1.6.9/sections/005-subsection-3-schaltbarkeit-und-arbeit-werden.tex#L1) · `section:8ec895eef914bdd0e377` · subsection
 
 Jedes Wort ausschließlich aus dem fixen H bzw. seinen freien Entwicklungen kommutiert dagegen mit H. Deshalb kann Zb nicht als zustandsunabhängiges Wartewort des unverändert laufenden H ausgegeben werden.
-
-## 4. Ein echtes, die Paarkohärenz erhaltendes Aufzeichnungsinstrument
-
-[documents/experiments--theory-contracts--universalraum-source-composition-20260915--tmp--pdfs--TFPT_Universalraum_Quellkomposition_Konsolidierung_2026-09-15_v1.6.9/sections/005-subsection-3-schaltbarkeit-und-arbeit-werden.tex:38-119](../../../../documents/experiments--theory-contracts--universalraum-source-composition-20260915--tmp--pdfs--TFPT_Universalraum_Quellkomposition_Konsolidierung_2026-09-15_v1.6.9/sections/005-subsection-3-schaltbarkeit-und-arbeit-werden.tex#L38) · `section:bfdc285c6d8d2fae312c` · subsection
-
-Man gewähre einen zweistufigen, ladungs- und G-trivialen Zeiger im Zustand 0⟩R sowie einen schaltbaren gemeinsamen Koppler. Die Isometrie

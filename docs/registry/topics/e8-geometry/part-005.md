@@ -52,7 +52,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/tfpt_1_architecture_e8/sections/008-source.tex:154-170](../../../../documents/tfpt_1_architecture_e8/sections/008-source.tex#L154) · `section:a2e74c2eb95b3408b3d8` · subsection
 
-Coxeter/gauge typing of the lcm–gcd pair. Writing [formula in source] and [formula in source] , the relations become [formula in source] and [formula in source] : the local SM algebra is the gcd of the Coxeter double-period and the [formula in source] rank-occupancy, and the [formula in source] root count is their lcm. Likewise the EW exponent reads [formula in source] (Coxeter principal part plus a rank singlet). \ 
+Coxeter/gauge typing of the lcm–gcd pair. Writing [formula in source] and [formula in source] , the relations become [formula in source] and [formula in source] : the local SM algebra is the gcd of the Coxeter double-period and the [formula in source] rank-occupancy, and the [formula in source] root count is their lcm. Likewise the EW exponent reads [formula in source] (Coxeter principal part plus a rank singlet). \
 
 ## Level 2 — new exact counting identities ( )
 
@@ -64,7 +64,7 @@ with [formula in source] the number of non-empty occupation words of the [formul
 
 [documents/tfpt_1_architecture_e8/sections/008-source.tex:180-240](../../../../documents/tfpt_1_architecture_e8/sections/008-source.tex#L180) · `section:5b3637090ad83e509233` · subsection
 
-Identify [formula in source] with the even-weight binary code on five bits. A transition [formula in source] has flip [formula in source] , even and nonempty, so [formula in source] ; per state there are [formula in source] flips, giving and the [formula in source] undirected flips match the [formula in source] [formula in source] root pairs ( , counting). This makes the atlas conjecture testable: a genuine root map 
+Identify [formula in source] with the even-weight binary code on five bits. A transition [formula in source] has flip [formula in source] , even and nonempty, so [formula in source] ; per state there are [formula in source] flips, giving and the [formula in source] undirected flips match the [formula in source] [formula in source] root pairs ( , counting). This makes the atlas conjecture testable: a genuine root map
 
 Explicit source references:
 
@@ -84,7 +84,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/tfpt_1_architecture_e8/sections/008-source.tex:241-261](../../../../documents/tfpt_1_architecture_e8/sections/008-source.tex#L241) · `section:98d7438dbd43ec4fd921` · subsection
 
-Use the universal root-system identity [formula in source] (Coxeter number [formula in source] ). With the carrier values [formula in source] and [formula in source] , The Coxeter number of [formula in source] is exactly three families times the cosmological pair action: each family contributes one [formula in source] -decuple ( [formula in source] ) to the Coxeter period. Equivalently the action ladder is a Coxeter 
+Use the universal root-system identity [formula in source] (Coxeter number [formula in source] ). With the carrier values [formula in source] and [formula in source] , The Coxeter number of [formula in source] is exactly three families times the cosmological pair action: each family contributes one [formula in source] -decuple ( [formula in source] ) to the Coxeter period. Equivalently the action ladder is a Coxeter
 
 ## Level 2.8 — positive-root moment: [formula in source]
 
@@ -291,7 +291,7 @@ tocsectionTheorem 4 From the three atoms [formula in source] , with [formula in 
 
 [documents/tfpt_1_architecture_e8/sections/010-source.tex:126-151](../../../../documents/tfpt_1_architecture_e8/sections/010-source.tex#L126) · `section:9429252f6109289f9248` · section
 
-tocsectionTheorem 5 The directed even-flips of [formula in source] are the complete graph [formula in source] : ( [formula in source] .) So the positive [formula in source] roots are the unordered transitions of one family; the second hypercharge moment, the positive-root count and the sum of the [formula in source] exponents coincide at [formula in source] . The CP pairing [formula in source] of the exponents gives 
+tocsectionTheorem 5 The directed even-flips of [formula in source] are the complete graph [formula in source] : ( [formula in source] .) So the positive [formula in source] roots are the unordered transitions of one family; the second hypercharge moment, the positive-root count and the sum of the [formula in source] exponents coincide at [formula in source] . The CP pairing [formula in source] of the exponents gives
 
 ## Theorem 6 — downstream readouts from [formula in source]
 
@@ -393,7 +393,7 @@ The lift is reproducible by a short script (all entries below verified exactly).
 
 ## Appendix: ablation of the EM fixed point
 
-[documents/tfpt_1_architecture_e8/sections/012-source.tex:48-119](../../../../documents/tfpt_1_architecture_e8/sections/012-source.tex#L48) · `section:425aba2c23ff1800a427` · part
+[documents/tfpt_1_architecture_e8/sections/012-source.tex:48-121](../../../../documents/tfpt_1_architecture_e8/sections/012-source.tex#L48) · `section:425aba2c23ff1800a427` · part
 
 The single sharpest reviewer test is: was the closure [formula in source] engineered so that [formula in source] comes out? The honest answer is an ablation — vary each input and see which actually move the root. Three one-parameter scans (all others held at their compiler values) separate the load-bearing integers from the fine last-digit selector.
 
@@ -403,7 +403,7 @@ Explicit source references:
 
 ## Appendix: computational verification
 
-[documents/tfpt_1_architecture_e8/sections/012-source.tex:120-139](../../../../documents/tfpt_1_architecture_e8/sections/012-source.tex#L120) · `section:82538abb2ab515399dca` · section
+[documents/tfpt_1_architecture_e8/sections/012-source.tex:122-141](../../../../documents/tfpt_1_architecture_e8/sections/012-source.tex#L122) · `section:82538abb2ab515399dca` · section
 
 The load-bearing identities of this document (marked , , ) are re-derived from [formula in source] alone and machine-checked by the suite in the repository folder verification/; the inline tags [verification/ [formula in source] ] point to the exact script. Relevant here: v1_e8_glue.py — the [formula in source] glue ( [formula in source] , [formula in source] , [formula in source] ). v2_carrier_pascal.py — [formula i
 
@@ -497,7 +497,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/tfpt_3_e8_audit_bootstrap/sections/001-part-the-e-8-secondary-branching-atlas.tex:54-63](../../../../documents/tfpt_3_e8_audit_bootstrap/sections/001-part-the-e-8-secondary-branching-atlas.tex#L54) · `section:04030e2b23cc7b5934a7` · part
 
-Purpose and discipline. This note does not introduce new physics. It builds an audit raster: the claim that every load-bearing TFPT number should appear in at least one [formula in source] branching projection. A number that appears in none is suspect; a number appearing in several independent projections becomes structurally strong. All arithmetic identities below are exact ; the physical readings are audit-level \ 
+Purpose and discipline. This note does not introduce new physics. It builds an audit raster: the claim that every load-bearing TFPT number should appear in at least one [formula in source] branching projection. A number that appears in none is suspect; a number appearing in several independent projections becomes structurally strong. All arithmetic identities below are exact ; the physical readings are audit-level \
 
 ## The compiler core (where this note sits)
 
@@ -942,7 +942,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/tfpt_3_e8_audit_bootstrap/sections/008-source.tex:1-374](../../../../documents/tfpt_3_e8_audit_bootstrap/sections/008-source.tex#L1) · `section:bc80e633fbb98ca8173d` · frontmatter
 
-The P1 index-KMS identity ( P1.INDEX.KMS.01). One probe ( [formula in source] incl.\ the [formula in source] must-fire controls; verdict p1-identity-closed). The closed normalization identity [formula in source] is exact in formal arithmetic, with each factor independently sourced: the Jones index [formula in source] is a [formula in source] -free theorem (zero occurrences of [formula in source] in all four sources, 
+The P1 index-KMS identity ( P1.INDEX.KMS.01). One probe ( [formula in source] incl.\ the [formula in source] must-fire controls; verdict p1-identity-closed). The closed normalization identity [formula in source] is exact in formal arithmetic, with each factor independently sourced: the Jones index [formula in source] is a [formula in source] -free theorem (zero occurrences of [formula in source] in all four sources,
 
 Explicit source references:
 
@@ -1011,7 +1011,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/tfpt_3_e8_audit_bootstrap/sections/009-section-further-audit-lemmas-machine-verified-this-round.tex:1-189](../../../../documents/tfpt_3_e8_audit_bootstrap/sections/009-section-further-audit-lemmas-machine-verified-this-round.tex#L1) · `section:e7e7f78a69bea2986c9f` · frontmatter
 
-The Wick functor arc ( SEAM.CFIN. WICKFUNCTOR.01 [O]). Three probes ( [formula in source] ; wickfunctor-partial, wickmix-measured (wickmix-obstructed), wickblock-measured (blockfunctor-constructed / seam-diagonal); embedded byte-exact; exact integer/rational/symbolic in every decision typed proved or symbolic). The six compiler roles exist in the deployed seam ( [formula in source] slot pairs [formula in source] the 
+The Wick functor arc ( SEAM.CFIN. WICKFUNCTOR.01 [O]). Three probes ( [formula in source] ; wickfunctor-partial, wickmix-measured (wickmix-obstructed), wickblock-measured (blockfunctor-constructed / seam-diagonal); embedded byte-exact; exact integer/rational/symbolic in every decision typed proved or symbolic). The six compiler roles exist in the deployed seam ( [formula in source] slot pairs [formula in source] the
 
 Explicit source references:
 
@@ -1065,7 +1065,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/tfpt_3_e8_audit_bootstrap/sections/009-section-further-audit-lemmas-machine-verified-this-round.tex:268-276](../../../../documents/tfpt_3_e8_audit_bootstrap/sections/009-section-further-audit-lemmas-machine-verified-this-round.tex#L268) · `section:c485aa261a8965a575f3` · part
 
-The connection in one sentence. The old E [formula in source] cascade (Paper V1.06: the nilpotent-orbit chain [formula in source] , [formula in source] ) and the new compiler/atlas are the same even-integer [formula in source] spine, read three ways: the cascade orders the numbers [formula in source] as a scale ladder, the atlas reads them as [formula in source] subalgebra branchings, and the compiler generates them 
+The connection in one sentence. The old E [formula in source] cascade (Paper V1.06: the nilpotent-orbit chain [formula in source] , [formula in source] ) and the new compiler/atlas are the same even-integer [formula in source] spine, read three ways: the cascade orders the numbers [formula in source] as a scale ladder, the atlas reads them as [formula in source] subalgebra branchings, and the compiler generates them
 
 ## The old cascade, recalled
 
@@ -1092,7 +1092,7 @@ Reading [formula in source] against today's compiler atoms, the secondary-branch
 
 [documents/tfpt_3_e8_audit_bootstrap/sections/010-section-three-views-of-one-spine.tex:1-48](../../../../documents/tfpt_3_e8_audit_bootstrap/sections/010-section-three-views-of-one-spine.tex#L1) · `section:b19a7595d83b1a10d11a` · section
 
-at (0.35,58) [formula in source] — E-series / atlas branchings (UV); at (0.35,40) [formula in source] ; at (0.35,30) [formula in source] \,(Coxeter rung, [formula in source] ); at (0.35,24) [formula in source] — [formula in source] , [formula in source] , [formula in source] ; at (0.35,15) [formula in source] (IR atoms); at (0.35,8) [formula in source] \,(flavor selector, end); at (0,60.5) [formula in source] start; 
+at (0.35,58) [formula in source] — E-series / atlas branchings (UV); at (0.35,40) [formula in source] ; at (0.35,30) [formula in source] \,(Coxeter rung, [formula in source] ); at (0.35,24) [formula in source] — [formula in source] , [formula in source] , [formula in source] ; at (0.35,15) [formula in source] (IR atoms); at (0.35,8) [formula in source] \,(flavor selector, end); at (0,60.5) [formula in source] start;
 
 Explicit source references:
 
@@ -1137,7 +1137,7 @@ The flavor selector [formula in source] is the terminal orbit of the [formula in
 
 [documents/tfpt_3_e8_audit_bootstrap/sections/010-section-three-views-of-one-spine.tex:146-156](../../../../documents/tfpt_3_e8_audit_bootstrap/sections/010-section-three-views-of-one-spine.tex#L146) · `section:94633ceeb8bde750f4e4` · part
 
-The question, and the honest answer. The theory rests on two inputs, [formula in source] and [formula in source] . The old theory had a Möbius seam and the seed was the start of the [formula in source] cascade. Run it backwards: can the cascade/ [formula in source] return [formula in source] and [formula in source] , closing a self-consistent loop? Answer: the discrete content is a closed, overdetermined fixed point 
+The question, and the honest answer. The theory rests on two inputs, [formula in source] and [formula in source] . The old theory had a Möbius seam and the seed was the start of the [formula in source] cascade. Run it backwards: can the cascade/ [formula in source] return [formula in source] and [formula in source] , closing a self-consistent loop? Answer: the discrete content is a closed, overdetermined fixed point
 
 ## The loop for [formula in source] — an overdetermined fixed point
 
@@ -1479,7 +1479,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/tfpt_4_frontier/sections/001-source.tex:262-300](../../../../documents/tfpt_4_frontier/sections/001-source.tex#L262) · `section:cc7b2d0df421c394451c` · section
 
-The seam UV is the free chiral [formula in source] fixed point ( v158_fixed_point_stable.py): Gaussian, with no relevant and no marginal interactions. The Higgs self-coupling [formula in source] is the one marginal scalar coupling, so a free seam forces it to the Gaussian point there: [formula in source] the Shaposhnikov–Wetterich double-criticality condition — here derived from the free seam rather than postulated. 
+The seam UV is the free chiral [formula in source] fixed point ( v158_fixed_point_stable.py): Gaussian, with no relevant and no marginal interactions. The Higgs self-coupling [formula in source] is the one marginal scalar coupling, so a free seam forces it to the Gaussian point there: [formula in source] the Shaposhnikov–Wetterich double-criticality condition — here derived from the free seam rather than postulated.
 
 Explicit source references:
 
@@ -1620,7 +1620,7 @@ Explicit source references:
 
 [documents/tfpt_5_redteam/sections/002-section-outcome.tex:1-355](../../../../documents/tfpt_5_redteam/sections/002-section-outcome.tex#L1) · `section:7a7de20f53ed3e69fb6f` · section
 
-What the red team changed. No target broke on the load-bearing surface. The hardest gate (A) is now closed modulo cited theorems on its MMST route SEAM.EQUIV.MMST.01 (the lattice/ [formula in source] round pins it at every computable level, Lean-formalised, only an external published existence theorem left, v367/ v368/ v376– v379); four targets (B, D, E, F) survive once a silent assumption is named; one (C) survives 
+What the red team changed. No target broke on the load-bearing surface. The hardest gate (A) is now closed modulo cited theorems on its MMST route SEAM.EQUIV.MMST.01 (the lattice/ [formula in source] round pins it at every computable level, Lean-formalised, only an external published existence theorem left, v367/ v368/ v376– v379); four targets (B, D, E, F) survive once a silent assumption is named; one (C) survives
 
 Explicit source references:
 
@@ -1889,7 +1889,7 @@ Die alte Architektur benutzt die [formula in source] -Spinorstruktur und den [fo
 
 [documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/003-subsection-wo-die-ergebnisse-der-sitzung-in-dieses-bild-.tex:318-340](../../../../documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/003-subsection-wo-die-ergebnisse-der-sitzung-in-dieses-bild-.tex#L318) · `section:823c6857922270cc3ac8` · subsection
 
-Eine bisher verfolgte Prüfroute untersucht die ursprüngliche gemeinsame Operatorfamilie [formula in source] mit [formula in source] . Die Masterformel in 02_carrier_source.tex:3021-3145 muss ihre verschiedenen Reduktionen aus dieser einen Familie erzeugen. Der heute bewiesene Trägeranschluss liefert die richtigen Räume und Spurgewichte; die bereits berechneten neutralen, geladenen und gemischten E8-Antworten liefern 
+Eine bisher verfolgte Prüfroute untersucht die ursprüngliche gemeinsame Operatorfamilie [formula in source] mit [formula in source] . Die Masterformel in 02_carrier_source.tex:3021-3145 muss ihre verschiedenen Reduktionen aus dieser einen Familie erzeugen. Der heute bewiesene Trägeranschluss liefert die richtigen Räume und Spurgewichte; die bereits berechneten neutralen, geladenen und gemischten E8-Antworten liefern
 
 Explicit source references:
 

@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Was von der anschaulichen Ursprungserzählung bleibt
+
+[experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/01_idee.tex:87-94](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/01_idee.tex#L87) · `section:52198fefe05251ca8062` · section
+
+Der eingefügte Gesprächstext spricht von einem Regelwerk mit Logbuch und von Raum und Materie als Mustern seiner Spuren. Das trifft die Forschungsintuition. Die Formulierung „TFPT ist die Grammatik, der Universalraum die Ausführung“ ist als Einstieg hilfreich.
+
 ## Die Ausgangsannahmen enthalten mehr als zwei Zahlen
 
 [experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/02_algebra.tex:3-12](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/02_algebra.tex#L3) · `section:3bbb9db694838bd28e8d` · section
@@ -80,7 +86,7 @@ Man könnte einen arithmetischen Raum, ein Quantensystem und ein geometrisches M
 
 [experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/17_schatten_quellen.tex:3-29](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/17_schatten_quellen.tex#L3) · `section:7a1e6bf8f15ddab08d5f` · section
 
-Die Erweiterung wurde am 14. September 2026 gegen verfügbare Originalabschnitte im lokalen Repository tfpt-theoryv4 abgeglichen. Der gelesene Git-Stand war 66b91e40e245569f06ab440ead80f446c9be0ee5. Dies identifiziert den Checkout; es behauptet keinen frischen vollständigen Beweis- oder Testlauf. Die tatsächlich verwendeten Dateiinhalte sind zusätzlich mit SHA-256 im Paket erfasst, auch soweit der Arbeitsbaum von Git 
+Die Erweiterung wurde am 14. September 2026 gegen verfügbare Originalabschnitte im lokalen Repository tfpt-theoryv4 abgeglichen. Der gelesene Git-Stand war 66b91e40e245569f06ab440ead80f446c9be0ee5. Dies identifiziert den Checkout; es behauptet keinen frischen vollständigen Beweis- oder Testlauf. Die tatsächlich verwendeten Dateiinhalte sind zusätzlich mit SHA-256 im Paket erfasst, auch soweit der Arbeitsbaum von Git
 
 Explicit source references:
 
@@ -212,7 +218,7 @@ Man könnte einen arithmetischen Raum, ein Quantensystem und ein geometrisches M
 
 [experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/17_schatten_quellen.tex:3-29](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/17_schatten_quellen.tex#L3) · `section:5627f4ea3d4943cc065d` · section
 
-Die Erweiterung wurde am 14. September 2026 gegen verfügbare Originalabschnitte im lokalen Repository tfpt-theoryv4 abgeglichen. Der gelesene Git-Stand war 66b91e40e245569f06ab440ead80f446c9be0ee5. Dies identifiziert den Checkout; es behauptet keinen frischen vollständigen Beweis- oder Testlauf. Die tatsächlich verwendeten Dateiinhalte sind zusätzlich mit SHA-256 im Paket erfasst, auch soweit der Arbeitsbaum von Git 
+Die Erweiterung wurde am 14. September 2026 gegen verfügbare Originalabschnitte im lokalen Repository tfpt-theoryv4 abgeglichen. Der gelesene Git-Stand war 66b91e40e245569f06ab440ead80f446c9be0ee5. Dies identifiziert den Checkout; es behauptet keinen frischen vollständigen Beweis- oder Testlauf. Die tatsächlich verwendeten Dateiinhalte sind zusätzlich mit SHA-256 im Paket erfasst, auch soweit der Arbeitsbaum von Git
 
 Explicit source references:
 
@@ -651,7 +657,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [experiments/theory-contracts/universalraum-spin-lift-basics-20260915/sources/input_4_origin_theory.tex:1166-1454](../../../../experiments/theory-contracts/universalraum-spin-lift-basics-20260915/sources/input_4_origin_theory.tex#L1166) · `section:3bfc0afca092b381dee1` · section
 
-The precise reformulation ( ). The seam is not identical to an event horizon. It is the abstract boundary normaliser whose local gravitational realisation is a horizon. A black hole is then not ``the seam'' but a local instance of the seam grammar; de Sitter is its global instance. This is stronger and cleaner than a direct identification — it avoids importing Schwarzschild analogies wholesale, and it makes [formula 
+The precise reformulation ( ). The seam is not identical to an event horizon. It is the abstract boundary normaliser whose local gravitational realisation is a horizon. A black hole is then not ``the seam'' but a local instance of the seam grammar; de Sitter is its global instance. This is stronger and cleaner than a direct identification — it avoids importing Schwarzschild analogies wholesale, and it makes [formula
 
 Explicit source references:
 
@@ -998,7 +1004,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [experiments/theory-contracts/universalraum-spin-lift-basics-20260915/sources/input_5_tfpt_3_e8_audit_bootstrap.tex:161-170](../../../../experiments/theory-contracts/universalraum-spin-lift-basics-20260915/sources/input_5_tfpt_3_e8_audit_bootstrap.tex#L161) · `section:6b3fedaf2ffd56e67e82` · part
 
-Purpose and discipline. This note does not introduce new physics. It builds an audit raster: the claim that every load-bearing TFPT number should appear in at least one [formula in source] branching projection. A number that appears in none is suspect; a number appearing in several independent projections becomes structurally strong. All arithmetic identities below are exact ; the physical readings are audit-level \ 
+Purpose and discipline. This note does not introduce new physics. It builds an audit raster: the claim that every load-bearing TFPT number should appear in at least one [formula in source] branching projection. A number that appears in none is suspect; a number appearing in several independent projections becomes structurally strong. All arithmetic identities below are exact ; the physical readings are audit-level \
 
 ## The compiler core (where this note sits)
 
@@ -1413,7 +1419,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [experiments/theory-contracts/universalraum-spin-lift-basics-20260915/sources/input_5_tfpt_3_e8_audit_bootstrap.tex:11948-11956](../../../../experiments/theory-contracts/universalraum-spin-lift-basics-20260915/sources/input_5_tfpt_3_e8_audit_bootstrap.tex#L11948) · `section:46e5fb87d8b363676201` · part
 
-The connection in one sentence. The old E [formula in source] cascade (Paper V1.06: the nilpotent-orbit chain [formula in source] , [formula in source] ) and the new compiler/atlas are the same even-integer [formula in source] spine, read three ways: the cascade orders the numbers [formula in source] as a scale ladder, the atlas reads them as [formula in source] subalgebra branchings, and the compiler generates them 
+The connection in one sentence. The old E [formula in source] cascade (Paper V1.06: the nilpotent-orbit chain [formula in source] , [formula in source] ) and the new compiler/atlas are the same even-integer [formula in source] spine, read three ways: the cascade orders the numbers [formula in source] as a scale ladder, the atlas reads them as [formula in source] subalgebra branchings, and the compiler generates them
 
 ## The old cascade, recalled
 
@@ -1440,7 +1446,7 @@ Reading [formula in source] against today's compiler atoms, the secondary-branch
 
 [experiments/theory-contracts/universalraum-spin-lift-basics-20260915/sources/input_5_tfpt_3_e8_audit_bootstrap.tex:12070-12117](../../../../experiments/theory-contracts/universalraum-spin-lift-basics-20260915/sources/input_5_tfpt_3_e8_audit_bootstrap.tex#L12070) · `section:4197dff00d3e35e63045` · section
 
-at (0.35,58) [formula in source] — E-series / atlas branchings (UV); at (0.35,40) [formula in source] ; at (0.35,30) [formula in source] \,(Coxeter rung, [formula in source] ); at (0.35,24) [formula in source] — [formula in source] , [formula in source] , [formula in source] ; at (0.35,15) [formula in source] (IR atoms); at (0.35,8) [formula in source] \,(flavor selector, end); at (0,60.5) [formula in source] start; 
+at (0.35,58) [formula in source] — E-series / atlas branchings (UV); at (0.35,40) [formula in source] ; at (0.35,30) [formula in source] \,(Coxeter rung, [formula in source] ); at (0.35,24) [formula in source] — [formula in source] , [formula in source] , [formula in source] ; at (0.35,15) [formula in source] (IR atoms); at (0.35,8) [formula in source] \,(flavor selector, end); at (0,60.5) [formula in source] start;
 
 Explicit source references:
 
@@ -1485,7 +1491,7 @@ The flavor selector [formula in source] is the terminal orbit of the [formula in
 
 [experiments/theory-contracts/universalraum-spin-lift-basics-20260915/sources/input_5_tfpt_3_e8_audit_bootstrap.tex:12215-12225](../../../../experiments/theory-contracts/universalraum-spin-lift-basics-20260915/sources/input_5_tfpt_3_e8_audit_bootstrap.tex#L12215) · `section:f81e7d9852f1b4758b79` · part
 
-The question, and the honest answer. The theory rests on two inputs, [formula in source] and [formula in source] . The old theory had a Möbius seam and the seed was the start of the [formula in source] cascade. Run it backwards: can the cascade/ [formula in source] return [formula in source] and [formula in source] , closing a self-consistent loop? Answer: the discrete content is a closed, overdetermined fixed point 
+The question, and the honest answer. The theory rests on two inputs, [formula in source] and [formula in source] . The old theory had a Möbius seam and the seed was the start of the [formula in source] cascade. Run it backwards: can the cascade/ [formula in source] return [formula in source] and [formula in source] , closing a self-consistent loop? Answer: the discrete content is a closed, overdetermined fixed point
 
 ## The loop for [formula in source] — an overdetermined fixed point
 
@@ -1859,7 +1865,7 @@ Man könnte einen arithmetischen Raum, ein Quantensystem und ein geometrisches M
 
 [experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/17_schatten_quellen.tex:3-29](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/17_schatten_quellen.tex#L3) · `section:df883b4e7a2ccf794d52` · section
 
-Die Erweiterung wurde am 14. September 2026 gegen verfügbare Originalabschnitte im lokalen Repository tfpt-theoryv4 abgeglichen. Der gelesene Git-Stand war 66b91e40e245569f06ab440ead80f446c9be0ee5. Dies identifiziert den Checkout; es behauptet keinen frischen vollständigen Beweis- oder Testlauf. Die tatsächlich verwendeten Dateiinhalte sind zusätzlich mit SHA-256 im Paket erfasst, auch soweit der Arbeitsbaum von Git 
+Die Erweiterung wurde am 14. September 2026 gegen verfügbare Originalabschnitte im lokalen Repository tfpt-theoryv4 abgeglichen. Der gelesene Git-Stand war 66b91e40e245569f06ab440ead80f446c9be0ee5. Dies identifiziert den Checkout; es behauptet keinen frischen vollständigen Beweis- oder Testlauf. Die tatsächlich verwendeten Dateiinhalte sind zusätzlich mit SHA-256 im Paket erfasst, auch soweit der Arbeitsbaum von Git
 
 Explicit source references:
 
@@ -1910,13 +1916,3 @@ TFPT_TOE_GEMEINSAMER_URSPRUNG_2026-09-14.md Gemeinsamer Ursprung: Zweizellenener
 Explicit source references:
 
 - [universal_room/TFPT_TOE_GEMEINSAMER_URSPRUNG_2026-09-14.md](../../../../universal_room/TFPT_TOE_GEMEINSAMER_URSPRUNG_2026-09-14.md#L1) · explicit_file_citation
-
-## S04
-
-[experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/sources_manifest.tex:17-21](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/sources_manifest.tex#L17) · `section:267ce9394cc9750f9fdc` · subsection
-
-TFPT_UNIVERSALRAUM_GESAMTSYNTHESE_2026-09-14.md Frühe Gesamtsynthese mit Fixpunkthypothese, Zahlenübersicht und Einordnung zu RH und Komplexität; mehrere Aussagen später korrigiert. SHA-256: f62f91af70b43ce349a9e4c17f9e4887 7099ae9b6c992f0c1482f4eb77ee6694 32mm
-
-Explicit source references:
-
-- [universal_room/TFPT_UNIVERSALRAUM_GESAMTSYNTHESE_2026-09-14.md](../../../../universal_room/TFPT_UNIVERSALRAUM_GESAMTSYNTHESE_2026-09-14.md#L1) · explicit_file_citation

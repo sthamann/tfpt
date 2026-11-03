@@ -20,7 +20,7 @@ The complete chain from [formula in source] to [formula in source] :
 
 [documents/archive--paper-latex--tfpt-theory-fullv26/sections/009-subsection-the-unique-chain-excerpt.tex:26-40](../../../../documents/archive--paper-latex--tfpt-theory-fullv26/sections/009-subsection-the-unique-chain-excerpt.tex#L26) · `section:c91cccb625cc0fa37890` · subsection
 
-The uniqueness is verified by: Constructing the complete Hasse diagram of [formula in source] from standard tables. Computing all cover relations with [formula in source] . Running dynamic programming to find all paths from [formula in source] to [formula in source] . Applying the cost function [formula in source] (second-difference smoothness). Verifying that the minimum-cost path is unique (cost gap to second-best 
+The uniqueness is verified by: Constructing the complete Hasse diagram of [formula in source] from standard tables. Computing all cover relations with [formula in source] . Running dynamic programming to find all paths from [formula in source] to [formula in source] . Applying the cost function [formula in source] (second-difference smoothness). Verifying that the minimum-cost path is unique (cost gap to second-best
 
 ## Boundary Trace Derivation
 

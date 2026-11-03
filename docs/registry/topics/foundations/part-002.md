@@ -8,7 +8,7 @@ Exact ledger statuses remain at the linked original rows and in registry.json. C
 
 [documents/archive--paper-latex--tfpt-31/sections/017-section-yukawa-kernels-and-positivity-lemmas.tex:206-221](../../../../documents/archive--paper-latex--tfpt-31/sections/017-section-yukawa-kernels-and-positivity-lemmas.tex#L206) · `section:d032fad29d6c21961faa` · subsection
 
-An observer is modeled as a stable pointer subalgebra [formula in source] With orthogonal projectors [formula in source] one writes the measurement channel [formula in source] In finite-dimensional sectors, positivity, additivity on orthogonal decompositions, and phase invariance lead to the standard Born-type assignment [formula in source] The claim is therefore only a constrained evaluation principle on admissible 
+An observer is modeled as a stable pointer subalgebra [formula in source] With orthogonal projectors [formula in source] one writes the measurement channel [formula in source] In finite-dimensional sectors, positivity, additivity on orthogonal decompositions, and phase invariance lead to the standard Born-type assignment [formula in source] The claim is therefore only a constrained evaluation principle on admissible
 
 ## Table A: Standard Model content and origin map
 
@@ -116,7 +116,7 @@ The upgrade path is now organized as proof compression and axiom reduction rathe
 
 [documents/archive--paper-latex--tfpt-32/sections/014-section-primary-benchmark-map-and-prediction-ledger.tex:300-332](../../../../documents/archive--paper-latex--tfpt-32/sections/014-section-primary-benchmark-map-and-prediction-ledger.tex#L300) · `section:1601d0f18313bfa38afc` · subsection
 
-The cleanest route from the present carrier-first compiler to a genuinely generative architecture is not to blur status labels, but to isolate six explicit theorem paths: Master closure theorem: derive APS, Bernstein positivity, reflection positivity, [formula in source] holonomy, and Hamiltonian coercivity from canonical doubling, positive spectral measure, and total Hodge admissibility instead of keeping them as a 
+The cleanest route from the present carrier-first compiler to a genuinely generative architecture is not to blur status labels, but to isolate six explicit theorem paths: Master closure theorem: derive APS, Bernstein positivity, reflection positivity, [formula in source] holonomy, and Hamiltonian coercivity from canonical doubling, positive spectral measure, and total Hodge admissibility instead of keeping them as a
 
 ## Layered datum and admissibility
 
@@ -152,7 +152,7 @@ At finite volume or with a declared cutoff, an admissible vacuum candidate is wr
 
 [documents/archive--paper-latex--tfpt-32/sections/017-section-yukawa-kernels-and-positivity-lemmas.tex:190-205](../../../../documents/archive--paper-latex--tfpt-32/sections/017-section-yukawa-kernels-and-positivity-lemmas.tex#L190) · `section:9826edb1581b125d8287` · subsection
 
-An observer is modeled as a stable pointer subalgebra [formula in source] With orthogonal projectors [formula in source] one writes the measurement channel [formula in source] In finite-dimensional sectors, positivity, additivity on orthogonal decompositions, and phase invariance lead to the standard Born-type assignment [formula in source] The claim is therefore only a constrained evaluation principle on admissible 
+An observer is modeled as a stable pointer subalgebra [formula in source] With orthogonal projectors [formula in source] one writes the measurement channel [formula in source] In finite-dimensional sectors, positivity, additivity on orthogonal decompositions, and phase invariance lead to the standard Born-type assignment [formula in source] The claim is therefore only a constrained evaluation principle on admissible
 
 ## tfptblue TFPT: Boundary Polarization, Carrier Rigidity, and Closed-Form Theorems\ the Admissibility Datum\\[0.6em] tfptgray A boundary-polarized spectral theory\ one-sided admissible data
 
@@ -224,7 +224,7 @@ Let [formula in source] This makes the phase grammar concrete rather than rhetor
 
 [documents/archive--paper-latex--tfpt-42/sections/017-subsection-regularized-yukawa-kernels-and-path-length-ma.tex:1-395](../../../../documents/archive--paper-latex--tfpt-42/sections/017-subsection-regularized-yukawa-kernels-and-path-length-ma.tex#L1) · `section:35e6f8e393c2de55dcf6` · subsection
 
-For each fermion sector define the structural positive transport kernel by [formula in source] whenever the inverse exists on [formula in source] . The final admissible kernel is the restriction of this operator to the gap-stable branch selected below. The transport pole [formula in source] is fixed by the structural stationarity of the exact determinant functional [formula in source] with [formula in source] On the 
+For each fermion sector define the structural positive transport kernel by [formula in source] whenever the inverse exists on [formula in source] . The final admissible kernel is the restriction of this operator to the gap-stable branch selected below. The transport pole [formula in source] is fixed by the structural stationarity of the exact determinant functional [formula in source] with [formula in source] On the
 
 ## Front matter / support
 

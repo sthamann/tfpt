@@ -599,7 +599,7 @@ The next package is stronger but also more conditional. It assumes that the carr
 
 [documents/articles--2026-08-28--psi_lambda_convergence_theorem_en/sections/001-section-scope-frozen-input-and-the-necessary-correction.tex:35-85](../../../../documents/articles--2026-08-28--psi_lambda_convergence_theorem_en/sections/001-section-scope-frozen-input-and-the-necessary-correction.tex#L35) · `section:b1ed2cc2005cadecb029` · subsection
 
-The one-particle lattice Hamiltonian used in the quantitative probes is the Qi–Wu–Zhang collar [formula in source] on a cylinder of circumference [formula in source] , open width [formula in source] , and boundary twist [formula in source] , [formula in source] . The topological and trivial controls are [formula in source] and [formula in source] , respectively. If [formula in source] denotes the finite one-particle 
+The one-particle lattice Hamiltonian used in the quantitative probes is the Qi–Wu–Zhang collar [formula in source] on a cylinder of circumference [formula in source] , open width [formula in source] , and boundary twist [formula in source] , [formula in source] . The topological and trivial controls are [formula in source] and [formula in source] , respectively. If [formula in source] denotes the finite one-particle
 
 ## Finite observations are not asymptotic theorems.
 

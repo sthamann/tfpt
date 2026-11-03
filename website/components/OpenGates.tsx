@@ -74,14 +74,14 @@ function ResidualTreemap() {
   return (
     <figure
       className="mt-8 rounded-2xl border border-slate-300/40 bg-slate-50/30 p-4 sm:p-5"
-      aria-label="The complete open residual: compiler Rest = v_geo ⊕ G_net ⊕ F_transfer, beside Rest_TOE"
+      aria-label="Historical interface accounting: compiler Rest = v_geo ⊕ G_net ⊕ F_transfer, beside Rest_TOE"
     >
       <figcaption className="mb-3 text-center font-mono text-sm text-slate-700">
         Rest = <span className="text-amber-800">v_geo</span> ⊕{" "}
         <span className="text-amber-800">G_net</span> ⊕{" "}
         <span className="text-slate-800">F_transfer</span>
         <span className="block mt-1 text-[11px] font-sans text-slate-600">
-          compiler rest · beside it Rest_TOE (ten named [O] contracts / eight TFPT.TOE.COMPLETE.01 gates; nothing claimed closed)
+          historical compiler interfaces · full T1–T8 gates remain [O]; later scoped source results are summarized above
         </span>
       </figcaption>
       <div className="grid gap-3 sm:grid-cols-3">
@@ -242,8 +242,15 @@ export function OpenGates() {
         <SectionHeader
           eyebrow="Honest boundaries"
           title="What is still open?"
-          description="After the compiler closure the live compiler residual is Rest = v_geo ⊕ G_net ⊕ F_transfer. Beside it sits the strict-physical-TOE accounting Rest_TOE: every T1–T8 gate and TFPT.TOE.COMPLETE.01 remains [O], and the shared 3+1D parent is absent. The one-condition/E₈ reduction applies only to the historical finite seam/compiler and boundary-net/MMST lane. Round 4 (v1026–v1030) closes the fixed-M=1, Ny=8 relaxed TEL-B norm below 2.995906 and adds narrow T3/T4/T6–T8 results; FE-GEN/ALG-EXH and all full gates stay open. Round 7 (v1031–v1035) quantizes the zero-mean target and constructs a free covariant helicity-±2 curvature field, auxiliary charged corners, a factorized mirror bound and prescribed-source Ward propagation. This is not a microscopic TFPT embedding or universal nonlinear coupling."
+          description="The compiler, E₈, clock, flavour and alpha results retain their stated scopes. Complete source transports, the canonical vacuum and the full classical Clifford transfer are already constructed. The remaining physical task is to identify the full original interacting source on the same fields, with its admissible projection and all couplings, then establish the required chiral, infrared and gravitational consequences. The historical T1–T8 contracts remain [O]; the results below do not promote them to a complete physical theory."
         />
+
+        <div className="mt-8 space-y-4 text-slate-700">
+          <h3 className="text-2xl font-serif text-slate-950">The latest source boundary</h3>
+          <p>The whole classical Clifford kernel is calculated with its original source time. An analytic spectral obstruction excludes a literal independent flat factor of dimension greater than two inside that unprojected quasifree heat source, including nonlinear unitary field identifications. Physical Gauss projection and the full interacting source are outside this theorem.</p>
+          <p>The declared interacting environment of R109 has a nonzero ordered charged response with compensating charge in the rest of the system. Its primitive source origin remains to be identified. DET16 is an optional candidate comparison; a valid TFPT completion need not factor into that parent.</p>
+          <Link className="guide-link" href="/explain#source">Read the whole source equation and the consolidated results</Link>
+        </div>
 
         <ClosingCondition />
 

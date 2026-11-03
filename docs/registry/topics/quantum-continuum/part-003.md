@@ -446,7 +446,7 @@ The relative Einstein target rests on the standard four-dimensional heat-kernel 
 
 [documents/archive--paper-latex--tfpt-v30/sections/003-subsection-occupancy-and-boundary-to-bulk-transgression.tex:32-43](../../../../documents/archive--paper-latex--tfpt-v30/sections/003-subsection-occupancy-and-boundary-to-bulk-transgression.tex#L32) · `section:abddd8b0a1c1d0ac1ab5` · subsection
 
-The geometric completion is formulated on a graded bundle [formula in source] with a declared reference pair [formula in source] and APS-type boundary conditions on the seam [formula in source] ; see Appendix [formula in source] This is a construction, not yet a theorem. Its value is to keep grading, reference subtraction, seam data, and the [formula in source] channel in one object from the start rather than mixing 
+The geometric completion is formulated on a graded bundle [formula in source] with a declared reference pair [formula in source] and APS-type boundary conditions on the seam [formula in source] ; see Appendix [formula in source] This is a construction, not yet a theorem. Its value is to keep grading, reference subtraction, seam data, and the [formula in source] channel in one object from the start rather than mixing
 
 ## Heat-kernel coefficient map and [formula in source] chi bifurcation
 
@@ -510,7 +510,7 @@ Explicit source references:
 
 [documents/archive--tfpt-45--02_carrier_rigidity_standard_model_packet/sections/002-section-seam-winding-as-source-of-the-integer-conditions.tex:266-310](../../../../documents/archive--tfpt-45--02_carrier_rigidity_standard_model_packet/sections/002-section-seam-winding-as-source-of-the-integer-conditions.tex#L266) · `section:1d17cb67633074f90691` · section
 
-Use : Sections 3.3, 3.4, and 3.5 for carrier normal form, internal stabilizer, one-family packet, character identities, trace identities, and abelian index. Sections 5.1–5.3 only for carrier-relevant compression identities. Sections 6.1–6.6 for families, occupancy, and compact Higgs index. Sections 8.11–8.15 for the Yukawa-based discharge of carrier premises. Section 8.19 and Section 9.11 only for the joint discrete 
+Use : Sections 3.3, 3.4, and 3.5 for carrier normal form, internal stabilizer, one-family packet, character identities, trace identities, and abelian index. Sections 5.1–5.3 only for carrier-relevant compression identities. Sections 6.1–6.6 for families, occupancy, and compact Higgs index. Sections 8.11–8.15 for the Yukawa-based discharge of carrier premises. Section 8.19 and Section 9.11 only for the joint discrete
 
 ## Source Extraction Map
 
@@ -588,7 +588,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/archive--tfpt-45--04_admissibility_strong_cp_qft_closure/sections/001-section-selector-versus-dynamics.tex:191-209](../../../../documents/archive--tfpt-45--04_admissibility_strong_cp_qft_closure/sections/001-section-selector-versus-dynamics.tex#L191) · `section:dc2548243d0e4165fe45` · section
 
-Use : Sections 7.4 and 7.5 for hadronic admissibility and strong-CP ingredients. Section 8 as the main technical body, with carrier repetition removed. Sections 8.20–8.22 for topological positivity and strong-CP closure. Sections 8.23–8.41 for reflection positivity, OS closure, local net, and scattering. Section 13.2 for exact admissible RG flow, 1PI expansion, and observable hierarchy. Appendices E, F, and H as the 
+Use : Sections 7.4 and 7.5 for hadronic admissibility and strong-CP ingredients. Section 8 as the main technical body, with carrier repetition removed. Sections 8.20–8.22 for topological positivity and strong-CP closure. Sections 8.23–8.41 for reflection positivity, OS closure, local net, and scattering. Section 13.2 for exact admissible RG flow, 1PI expansion, and observable hierarchy. Appendices E, F, and H as the
 
 ## Not Used Here
 

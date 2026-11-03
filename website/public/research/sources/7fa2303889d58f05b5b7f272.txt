@@ -1,0 +1,84 @@
+TFPT scientific source excerpt
+Original repository path: verification/v1008_master_assembly_scaffold.py
+Original file SHA-256: 3c45ac92fabdcb4d572a4f5c1b51d6b33639e6538f30b0168adca12a5d3fcb37
+Inclusive original lines: 229-304
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000229 | def qwz_strip(momentum: float, hopping: float = 1.0) -> np.ndarray:
+000230 |     onsite = (
+000231 |         hopping * math.sin(momentum) * SX
+000232 |         + (MASS - hopping * math.cos(momentum)) * SZ
+000233 |     )
+000234 |     transverse = hopping * TY
+000235 |     matrix = np.zeros((2 * LY, 2 * LY), dtype=complex)
+000236 |     for y in range(LY):
+000237 |         site = slice(2 * y, 2 * y + 2)
+000238 |         matrix[site, site] = onsite
+000239 |     for y in range(LY - 1):
+000240 |         lower = slice(2 * y, 2 * y + 2)
+000241 |         upper = slice(2 * (y + 1), 2 * (y + 1) + 2)
+000242 |         matrix[upper, lower] = transverse
+000243 |         matrix[lower, upper] = transverse.conj().T
+000244 |     return matrix
+000245 | 
+000246 | 
+000247 | def localized_zero_profiles():
+000248 |     eigenvalues, eigenvectors = np.linalg.eigh(qwz_strip(0.0))
+000249 |     zero_indices = np.where(np.abs(eigenvalues) < 1.0e-10)[0]
+000250 |     if len(zero_indices) != 2:
+000251 |         raise RuntimeError("QWZ strip did not have exactly two zero modes")
+000252 |     zero_frame = eigenvectors[:, zero_indices]
+000253 |     y_operator = np.diag(np.repeat(np.arange(LY, dtype=float), 2))
+000254 |     positions, rotation = np.linalg.eigh(zero_frame.conj().T @ y_operator @ zero_frame)
+000255 |     localized = zero_frame @ rotation
+000256 |     return localized[:, 0], localized[:, 1], float(abs(np.vdot(localized[:, 0], localized[:, 1])))
+000257 | 
+000258 | 
+000259 | def edge_branch(momentum: float, edge: str):
+000260 |     eigenvalues, eigenvectors = np.linalg.eigh(qwz_strip(momentum))
+000261 |     candidates = np.where(np.abs(eigenvalues) < 0.9)[0]
+000262 |     boundary = slice(0, 2) if edge == "physical" else slice(-2, None)
+000263 |     weights = [
+000264 |         float(np.sum(np.abs(eigenvectors[boundary, index]) ** 2))
+000265 |         for index in candidates
+000266 |     ]
+000267 |     selected = int(candidates[int(np.argmax(weights))])
+000268 |     return float(eigenvalues[selected]), max(weights)
+000269 | 
+000270 | 
+000271 | def jw_annihilator(mode: int) -> np.ndarray:
+000272 |     dimension = 1 << FLAVORS
+000273 |     matrix = np.zeros((dimension, dimension), dtype=complex)
+000274 |     for state in range(dimension):
+000275 |         if state & (1 << mode):
+000276 |             target = state ^ (1 << mode)
+000277 |             sign = -1 if (state & ((1 << mode) - 1)).bit_count() % 2 else 1
+000278 |             matrix[target, state] = sign
+000279 |     return matrix
+000280 | 
+000281 | 
+000282 | ANNIHILATORS = tuple(jw_annihilator(mode) for mode in range(FLAVORS))
+000283 | NUMBER = sum(operator.conj().T @ operator for operator in ANNIHILATORS)
+000284 | PARITY = np.diag(
+000285 |     [(-1.0) ** state.bit_count() for state in range(1 << FLAVORS)]
+000286 | ).astype(complex)
+000287 | 
+000288 | 
+000289 | def determinant_projector() -> np.ndarray:
+000290 |     omega = np.zeros(1 << FLAVORS, dtype=complex)
+000291 |     omega[0] = 1.0 / math.sqrt(2.0)
+000292 |     omega[-1] = np.exp(1j * DET_PHASE) / math.sqrt(2.0)
+000293 |     return np.outer(omega, omega.conj())
+000294 | 
+000295 | 
+000296 | P_PHI = determinant_projector()
+000297 | H_DET = np.eye(1 << FLAVORS, dtype=complex) - P_PHI
+000298 | 
+000299 | 
+000300 | def edge_cluster_hamiltonian(dispersion: float, det_enabled: bool) -> np.ndarray:
+000301 |     matrix = dispersion * (NUMBER - 0.5 * FLAVORS * np.eye(1 << FLAVORS))
+000302 |     if det_enabled:
+000303 |         matrix = matrix + DET_STRENGTH * H_DET
+000304 |     return matrix

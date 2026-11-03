@@ -4,6 +4,90 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## A covariant event channel with an actual boundary response
+
+[tex-artefacts/toe_universalraum_synthesis_20260912.tex:216-252](../../../../tex-artefacts/toe_universalraum_synthesis_20260912.tex#L216) · `section:2b3701d613b9b04d510e` · subsection
+
+Let [formula in source] be the Hermitian one-particle lift of the existing edge [formula in source] . It obeys [formula in source] . Define [formula in source] This is a covariant, trace-preserving completely positive map. Averaging the Hamiltonians first instead preserves the [formula in source] split. The two operations must not be confused. For the invariant hidden one-particle state [formula in source] , writing
+
+## New continuation: transfer succeeds but state selection fails
+
+[tex-artefacts/toe_universalraum_synthesis_20260912.tex:253-286](../../../../tex-artefacts/toe_universalraum_synthesis_20260912.tex#L253) · `section:54b8eeee7af8d44f1fd3` · subsection
+
+A possible, explicitly added continuous event model is [formula in source] The event-only semigroup is the Poisson mixture of [formula in source] ; the rate [formula in source] is unselected. With the Hilbert–Schmidt inner product, [formula in source] The Hamiltonian part has zero real quadratic form. Consequently the fixed space of [formula in source] is the common commutant of all [formula in source] and [formula i
+
+## Arithmetic bridges, acceptance gates and provenance
+
+[tex-artefacts/toe_universalraum_synthesis_20260912.tex:287-335](../../../../tex-artefacts/toe_universalraum_synthesis_20260912.tex#L287) · `section:13353500113bc4f195bc` · subsection
+
+The archived 10 September rotor synthesis reports an exact change to residue/carry coordinates retaining the declared parent dynamics, arithmetic covering operations, conditional logarithmic weights, and finite-energy approximations with explicit error costs. Discarding the carry loses electric dynamics. Norm time, electric time and modular time are not interchangeable. A finite factoring example and static E8 counts
+
+Explicit source references:
+
+- [docs/TFPT_UNIVERSALRAUM_SYNTHESIS_2026-09-12.md](../../../../docs/TFPT_UNIVERSALRAUM_SYNTHESIS_2026-09-12.md#L1) · explicit_file_citation
+- [docs/TFPT_UNIVERSALRAUM_EINFACH_2026-09-12.md](../../../../docs/TFPT_UNIVERSALRAUM_EINFACH_2026-09-12.md#L1) · explicit_file_citation
+- [experiments/theory-contracts/primitive-transfer-selection-20260912/source_edge_access.py](../../../../experiments/theory-contracts/primitive-transfer-selection-20260912/source_edge_access.py#L1) · explicit_file_citation
+- [experiments/theory-contracts/primitive-transfer-selection-20260912/covariant_edge_channel.py](../../../../experiments/theory-contracts/primitive-transfer-selection-20260912/covariant_edge_channel.py#L1) · explicit_file_citation
+- [experiments/theory-contracts/primitive-transfer-selection-20260912/edge_channel_stationary.py](../../../../experiments/theory-contracts/primitive-transfer-selection-20260912/edge_channel_stationary.py#L1) · explicit_file_citation
+
+## Proposed follow-ups and discriminating research directions
+
+[tex-artefacts/toe_universalraum_synthesis_20260912.tex:336-344](../../../../tex-artefacts/toe_universalraum_synthesis_20260912.tex#L336) · `section:7446e557bd8a5894bf08` · subsection
+
+These are proposed investigations, not newly completed results or launched worker tasks. Their common acceptance rule is a forward derivation without importing the desired Hamiltonian, its eigenstates or target couplings. A genuinely independently derived primitive action may itself be the Hamiltonian; it need not be artificially required to be a different object.
+
+## F0: Independent reproduction.
+
+[tex-artefacts/toe_universalraum_synthesis_20260912.tex:345-352](../../../../tex-artefacts/toe_universalraum_synthesis_20260912.tex#L345) · `section:9555ea49608875a0d622` · paragraph
+
+Obtain and pin the original 17- and 66-family certificates before using their strongest claims as local premises; then audit the non-Slater and cyclotomic irreducibility certificates. Keep the 133-dimensional product extension separate. Success means the same exact ranks, coefficient fields and class definitions, with numerical conditioning reported separately. Unavailable originals mean ``not reproduced'', not ``fal
+
+## F1: Freeze the elementary grammar.
+
+[tex-artefacts/toe_universalraum_synthesis_20260912.tex:353-360](../../../../tex-artefacts/toe_universalraum_synthesis_20260912.tex#L353) · `section:b7cd6722b6a2986cc80f` · paragraph
+
+For one original finite sector, map each primitive rule to its operator, phase, support, adjoint and composition. Distinguish physical operations from gauge identifications and elementary generators from composite words. A source-derived filtration or equivalent primitive rule must explain why composition does not automatically introduce independently weighted energy terms. Reject a cutoff chosen only to enforce the
+
+## F2: Derive process type and measure.
+
+[tex-artefacts/toe_universalraum_synthesis_20260912.tex:361-369](../../../../tex-artefacts/toe_universalraum_synthesis_20260912.tex#L361) · `section:fb728a422a27b707299d` · paragraph
+
+Construct one source step or collar without the target generator as input. Declare whether the output is a Hamiltonian, a positive Hilbert-space transfer or a reduced quantum channel. Derive weights, step duration and any traced environment from the stated inputs. Test alternative weights with identical symmetry and fixed vector. A freely chosen metric in [formula in source] , pulse angle or event rate remains an add
+
+## F3: State selection and correlation content.
+
+[tex-artefacts/toe_universalraum_synthesis_20260912.tex:370-378](../../../../tex-artefacts/toe_universalraum_synthesis_20260912.tex#L370) · `section:0fb52de974ef66f9a8dd` · paragraph
+
+Compute the exact fixed algebra or ground space of the F2 candidate. Use eigenstate covariance, thermal stationarity or full two-particle data only under their respective contracts. Test identical one-body data with different four-point responses, and identical ground rays with different energy ratios. Repetition of the current channel and free flow cannot remove their common fixed algebra. Any operation removing tha
+
+## F4: Operational response and costs.
+
+[tex-artefacts/toe_universalraum_synthesis_20260912.tex:379-387](../../../../tex-artefacts/toe_universalraum_synthesis_20260912.tex#L379) · `section:6727615a78ca0e90e90d` · paragraph
+
+For a source-derived intervention, compare admissible preparations with the same initial accessible marginal at the original boundary. Bound the remainder in the conditional [formula in source] signal on an explicit finite time interval, and include preparation energy, precision and sampling costs. Preserve the no-intervention control. Exact cyclic rank alone is not successful physical control, and arbitrarily small
+
+## F5: Source-to-model maps.
+
+[tex-artefacts/toe_universalraum_synthesis_20260912.tex:388-395](../../../../tex-artefacts/toe_universalraum_synthesis_20260912.tex#L388) · `section:cd1723da0d4006f7214f` · paragraph
+
+An explicit map between the successful candidate and H70, the rotor parent or the charged seam must preserve the relevant adjunction, charge/Clock action, states, dynamics and readouts on named domains. Matching spectra, dimensions or group names alone is insufficient. An open chain must not be identified with a winding rotor, nor a free source with an interacting state without the additional operation being derived.
+
+## Four exploratory hypotheses, not established mechanisms.
+
+[tex-artefacts/toe_universalraum_synthesis_20260912.tex:396-412](../../../../tex-artefacts/toe_universalraum_synthesis_20260912.tex#L396) · `section:8b8d6e0ab5f094a9e541` · paragraph
+
+Positive frustrated selection: derive the unavoidable positive minimum and relative defect weights from the source. The failed equal-weight H70 selector is not revived by adjusting its weights to the target. A genuine collar transfer: derive a positive transfer directly from the actual boundary construction and its composition. Reflection positivity must not be inferred merely from a positive Gram matrix. An internal
+
+## F6: Separate downstream acceptance.
+
+[tex-artefacts/toe_universalraum_synthesis_20260912.tex:413-427](../../../../tex-artefacts/toe_universalraum_synthesis_20260912.tex#L413) · `section:5baa612f347f165009b7` · paragraph
+
+The half-charge, common [formula in source] D parent, chiral, continuum, coupling and gravity obligations remain separate after any finite success. No new RH or factoring mechanism is proposed in this roadmap; future arithmetic work must first consult the existing source-bound proof and counterexample registers. A later Hyl an application could test order-independent consolidation on frozen inputs while preserving di
+
+Explicit source references:
+
+- [docs/TFPT_UNIVERSALRAUM_FOLLOWUPS_2026-09-12.md](../../../../docs/TFPT_UNIVERSALRAUM_FOLLOWUPS_2026-09-12.md#L1) · explicit_file_citation
+
 ## Paper V1.06 - 01.09.2025
 
 [universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_2_paper_v1_06_01_09_2025.tex:1-3071](../../../../universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_2_paper_v1_06_01_09_2025.tex#L1) · `section:4970bf02c28349c7181a` · frontmatter
@@ -426,7 +510,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_4_origin_theory.tex:1166-1454](../../../../universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_4_origin_theory.tex#L1166) · `section:4e5537e69e05316e0599` · section
 
-The precise reformulation ( ). The seam is not identical to an event horizon. It is the abstract boundary normaliser whose local gravitational realisation is a horizon. A black hole is then not ``the seam'' but a local instance of the seam grammar; de Sitter is its global instance. This is stronger and cleaner than a direct identification — it avoids importing Schwarzschild analogies wholesale, and it makes [formula 
+The precise reformulation ( ). The seam is not identical to an event horizon. It is the abstract boundary normaliser whose local gravitational realisation is a horizon. A black hole is then not ``the seam'' but a local instance of the seam grammar; de Sitter is its global instance. This is stronger and cleaner than a direct identification — it avoids importing Schwarzschild analogies wholesale, and it makes [formula
 
 Explicit source references:
 
@@ -773,7 +857,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_5_tfpt_3_e8_audit_bootstrap.tex:161-170](../../../../universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_5_tfpt_3_e8_audit_bootstrap.tex#L161) · `section:efe9ff39cbd3e1d03d9e` · part
 
-Purpose and discipline. This note does not introduce new physics. It builds an audit raster: the claim that every load-bearing TFPT number should appear in at least one [formula in source] branching projection. A number that appears in none is suspect; a number appearing in several independent projections becomes structurally strong. All arithmetic identities below are exact ; the physical readings are audit-level \ 
+Purpose and discipline. This note does not introduce new physics. It builds an audit raster: the claim that every load-bearing TFPT number should appear in at least one [formula in source] branching projection. A number that appears in none is suspect; a number appearing in several independent projections becomes structurally strong. All arithmetic identities below are exact ; the physical readings are audit-level \
 
 ## The compiler core (where this note sits)
 
@@ -1188,7 +1272,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_5_tfpt_3_e8_audit_bootstrap.tex:11948-11956](../../../../universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_5_tfpt_3_e8_audit_bootstrap.tex#L11948) · `section:eb6d340846c695ccd44a` · part
 
-The connection in one sentence. The old E [formula in source] cascade (Paper V1.06: the nilpotent-orbit chain [formula in source] , [formula in source] ) and the new compiler/atlas are the same even-integer [formula in source] spine, read three ways: the cascade orders the numbers [formula in source] as a scale ladder, the atlas reads them as [formula in source] subalgebra branchings, and the compiler generates them 
+The connection in one sentence. The old E [formula in source] cascade (Paper V1.06: the nilpotent-orbit chain [formula in source] , [formula in source] ) and the new compiler/atlas are the same even-integer [formula in source] spine, read three ways: the cascade orders the numbers [formula in source] as a scale ladder, the atlas reads them as [formula in source] subalgebra branchings, and the compiler generates them
 
 ## The old cascade, recalled
 
@@ -1215,7 +1299,7 @@ Reading [formula in source] against today's compiler atoms, the secondary-branch
 
 [universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_5_tfpt_3_e8_audit_bootstrap.tex:12070-12117](../../../../universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_5_tfpt_3_e8_audit_bootstrap.tex#L12070) · `section:f9fc5d05530250150dda` · section
 
-at (0.35,58) [formula in source] — E-series / atlas branchings (UV); at (0.35,40) [formula in source] ; at (0.35,30) [formula in source] \,(Coxeter rung, [formula in source] ); at (0.35,24) [formula in source] — [formula in source] , [formula in source] , [formula in source] ; at (0.35,15) [formula in source] (IR atoms); at (0.35,8) [formula in source] \,(flavor selector, end); at (0,60.5) [formula in source] start; 
+at (0.35,58) [formula in source] — E-series / atlas branchings (UV); at (0.35,40) [formula in source] ; at (0.35,30) [formula in source] \,(Coxeter rung, [formula in source] ); at (0.35,24) [formula in source] — [formula in source] , [formula in source] , [formula in source] ; at (0.35,15) [formula in source] (IR atoms); at (0.35,8) [formula in source] \,(flavor selector, end); at (0,60.5) [formula in source] start;
 
 Explicit source references:
 
@@ -1260,7 +1344,7 @@ The flavor selector [formula in source] is the terminal orbit of the [formula in
 
 [universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_5_tfpt_3_e8_audit_bootstrap.tex:12215-12225](../../../../universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_5_tfpt_3_e8_audit_bootstrap.tex#L12215) · `section:6cbdf01f901e64cc2b62` · part
 
-The question, and the honest answer. The theory rests on two inputs, [formula in source] and [formula in source] . The old theory had a Möbius seam and the seed was the start of the [formula in source] cascade. Run it backwards: can the cascade/ [formula in source] return [formula in source] and [formula in source] , closing a self-consistent loop? Answer: the discrete content is a closed, overdetermined fixed point 
+The question, and the honest answer. The theory rests on two inputs, [formula in source] and [formula in source] . The old theory had a Möbius seam and the seed was the start of the [formula in source] cascade. Run it backwards: can the cascade/ [formula in source] return [formula in source] and [formula in source] , closing a self-consistent loop? Answer: the discrete content is a closed, overdetermined fixed point
 
 ## The loop for [formula in source] — an overdetermined fixed point
 

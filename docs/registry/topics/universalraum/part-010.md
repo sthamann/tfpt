@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## 4. Ein echtes, die Paarkohärenz erhaltendes Aufzeichnungsinstrument
+
+[documents/experiments--theory-contracts--universalraum-source-composition-20260915--tmp--pdfs--TFPT_Universalraum_Quellkomposition_Konsolidierung_2026-09-15_v1.6.9/sections/005-subsection-3-schaltbarkeit-und-arbeit-werden.tex:38-119](../../../../documents/experiments--theory-contracts--universalraum-source-composition-20260915--tmp--pdfs--TFPT_Universalraum_Quellkomposition_Konsolidierung_2026-09-15_v1.6.9/sections/005-subsection-3-schaltbarkeit-und-arbeit-werden.tex#L38) · `section:bfdc285c6d8d2fae312c` · subsection
+
+Man gewähre einen zweistufigen, ladungs- und G-trivialen Zeiger im Zustand 0⟩R sowie einen schaltbaren gemeinsamen Koppler. Die Isometrie
+
 ## 5. Warum reine innere Symmetrieimpulse diese Rolle nicht übernehmen
 
 [documents/experiments--theory-contracts--universalraum-source-composition-20260915--tmp--pdfs--TFPT_Universalraum_Quellkomposition_Konsolidierung_2026-09-15_v1.6.9/sections/005-subsection-3-schaltbarkeit-und-arbeit-werden.tex:120-149](../../../../documents/experiments--theory-contracts--universalraum-source-composition-20260915--tmp--pdfs--TFPT_Universalraum_Quellkomposition_Konsolidierung_2026-09-15_v1.6.9/sections/005-subsection-3-schaltbarkeit-und-arbeit-werden.tex#L120) · `section:f24cebd71dcd00dde329` · subsection
@@ -679,9 +685,3 @@ Explicit source references:
 [documents/experiments--theory-contracts--universalraum-source-composition-20260915--tmp--pdfs--TFPT_Universalraum_Quellkomposition_Konsolidierung_2026-09-15_v1.6.9/sections/014-section-nachgereichter-text-b-korrekturen-und-ein-neuer-.tex:93-109](../../../../documents/experiments--theory-contracts--universalraum-source-composition-20260915--tmp--pdfs--TFPT_Universalraum_Quellkomposition_Konsolidierung_2026-09-15_v1.6.9/sections/014-section-nachgereichter-text-b-korrekturen-und-ein-neuer-.tex#L93) · `section:3eed02b154827d2cbfc3` · subsection
 
 Die gewöhnlichen drei Spin-1-Matrizen J_x,J_y,J_z auf C³ erfüllen [J_x,J_y]=iJ_z und zyklisch. Bereits J_x und J_z haben ausschließlich skalare gemeinsame Kommutanten. Der dynamische Lie-Raum ist trotzdem nur su(2) mit Dimension drei, nicht su(3) mit Dimension acht. Das wird im neuen Prüfer durch exakte Ränge und alle drei Kommutatoren kontrolliert.
-
-## 2. Was am Spin-1/2-Projektor stimmt
-
-[documents/experiments--theory-contracts--universalraum-source-composition-20260915--tmp--pdfs--TFPT_Universalraum_Quellkomposition_Konsolidierung_2026-09-15_v1.6.9/sections/014-section-nachgereichter-text-b-korrekturen-und-ein-neuer-.tex:110-156](../../../../documents/experiments--theory-contracts--universalraum-source-composition-20260915--tmp--pdfs--TFPT_Universalraum_Quellkomposition_Konsolidierung_2026-09-15_v1.6.9/sections/014-section-nachgereichter-text-b-korrekturen-und-ein-neuer-.tex#L110) · `section:a87f5847efc0340c07e3` · subsection
-
-Die Feldquelle verwendet die sechs unnormierten Koordinaten

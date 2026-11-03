@@ -220,7 +220,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/tfpt_research_contracts/sections/014-source.tex:183-244](../../../../documents/tfpt_research_contracts/sections/014-source.tex#L183) · `section:580c8e5b415ac9b79cec` · section
 
-Typing. A standing discipline rule, in force immediately (ledger row DIMENSION.UPLIFT.FIREWALL.01); the uplift theorems it names are separate \ contracts. It formalizes the core diagnosis of the 2026-08-27 external deep review: a chiral [formula in source] D seam net does not imply a local, interacting [formula in source] D quantum world. The corpus's strongest finite results are boundary/kinematic building blocks — 
+Typing. A standing discipline rule, in force immediately (ledger row DIMENSION.UPLIFT.FIREWALL.01); the uplift theorems it names are separate \ contracts. It formalizes the core diagnosis of the 2026-08-27 external deep review: a chiral [formula in source] D seam net does not imply a local, interacting [formula in source] D quantum world. The corpus's strongest finite results are boundary/kinematic building blocks —
 
 Explicit source references:
 
@@ -492,7 +492,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/tfpt_research_contracts/sections/020-source.tex:1-162](../../../../documents/tfpt_research_contracts/sections/020-source.tex#L1) · `section:f97072f658fe6bcec8d8` · section
 
-Typing. This section is a hand-off document: it packages the one remaining seam obligation as a self-contained problem statement for an outside specialist in conformal nets / vertex operator algebras / algebraic QFT. It documents, it does not close: the ledger row SEAM.EQUIV.01 stays \ (its conditional route SEAM.EQUIV.MMST.01 is closed modulo cited theorems; the unconditional parent is the target below). Nothing in 
+Typing. This section is a hand-off document: it packages the one remaining seam obligation as a self-contained problem statement for an outside specialist in conformal nets / vertex operator algebras / algebraic QFT. It documents, it does not close: the ledger row SEAM.EQUIV.01 stays \ (its conditional route SEAM.EQUIV.MMST.01 is closed modulo cited theorems; the unconditional parent is the target below). Nothing in
 
 Explicit source references:
 
@@ -613,7 +613,7 @@ Der neueste Nachtrag zeigt außerdem, dass die Erhaltung von [formula in source]
 
 [documents/universal_room--new-2--TFPT_Universalraum_Forschungspaper_2026-09-15--TFPT_Universalraum_Forschungspaper_2026-09-15/sections/003-subsection-6-2-lanczos-z-hlt-hamiltonschritte-nicht.tex:41-55](../../../../documents/universal_room--new-2--TFPT_Universalraum_Forschungspaper_2026-09-15--TFPT_Universalraum_Forschungspaper_2026-09-15/sections/003-subsection-6-2-lanczos-z-hlt-hamiltonschritte-nicht.tex#L41) · `section:d0ecabd24dcc432365a8` · subsection
 
-Das ergibt [formula in source] bei [formula in source] , aber [formula in source] bei [formula in source] . Beide Modelle besitzen dasselbe [formula in source] , dieselben inneren Symmetrien und denselben kommutierenden Clock. Die dimensionslose Differenz ist keine Einheitenfrage. Damit ist belegt, dass diese Grunddaten allein die physikalische Dynamik nicht eindeutig auswählen. Die Referenz [formula in source] muss 
+Das ergibt [formula in source] bei [formula in source] , aber [formula in source] bei [formula in source] . Beide Modelle besitzen dasselbe [formula in source] , dieselben inneren Symmetrien und denselben kommutierenden Clock. Die dimensionslose Differenz ist keine Einheitenfrage. Damit ist belegt, dass diese Grunddaten allein die physikalische Dynamik nicht eindeutig auswählen. Die Referenz [formula in source] muss
 
 ## 8.3 Zustandswahl und Dynamik lassen sich nicht durch Rekonstruktion erschleichen
 
@@ -679,7 +679,7 @@ Der neueste Nachtrag zeigt außerdem, dass die Erhaltung von [formula in source]
 
 [documents/universal_room--new-3--TFPT_Universalraum_Forschungspaper_2026-09-15--TFPT_Universalraum_Forschungspaper_2026-09-15/sections/003-subsection-6-2-lanczos-z-hlt-hamiltonschritte-nicht.tex:41-55](../../../../documents/universal_room--new-3--TFPT_Universalraum_Forschungspaper_2026-09-15--TFPT_Universalraum_Forschungspaper_2026-09-15/sections/003-subsection-6-2-lanczos-z-hlt-hamiltonschritte-nicht.tex#L41) · `section:2a6f282e67401793a13f` · subsection
 
-Das ergibt [formula in source] bei [formula in source] , aber [formula in source] bei [formula in source] . Beide Modelle besitzen dasselbe [formula in source] , dieselben inneren Symmetrien und denselben kommutierenden Clock. Die dimensionslose Differenz ist keine Einheitenfrage. Damit ist belegt, dass diese Grunddaten allein die physikalische Dynamik nicht eindeutig auswählen. Die Referenz [formula in source] muss 
+Das ergibt [formula in source] bei [formula in source] , aber [formula in source] bei [formula in source] . Beide Modelle besitzen dasselbe [formula in source] , dieselben inneren Symmetrien und denselben kommutierenden Clock. Die dimensionslose Differenz ist keine Einheitenfrage. Damit ist belegt, dass diese Grunddaten allein die physikalische Dynamik nicht eindeutig auswählen. Die Referenz [formula in source] muss
 
 ## 8.3 Zustandswahl und Dynamik lassen sich nicht durch Rekonstruktion erschleichen
 
@@ -1657,7 +1657,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tfpt_research_contracts.tex:12571-12632](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tfpt_research_contracts.tex#L12571) · `section:fd8a259cd96f2b7b4df5` · section
 
-Typing. A standing discipline rule, in force immediately (ledger row DIMENSION.UPLIFT.FIREWALL.01); the uplift theorems it names are separate \ contracts. It formalizes the core diagnosis of the 2026-08-27 external deep review: a chiral [formula in source] D seam net does not imply a local, interacting [formula in source] D quantum world. The corpus's strongest finite results are boundary/kinematic building blocks — 
+Typing. A standing discipline rule, in force immediately (ledger row DIMENSION.UPLIFT.FIREWALL.01); the uplift theorems it names are separate \ contracts. It formalizes the core diagnosis of the 2026-08-27 external deep review: a chiral [formula in source] D seam net does not imply a local, interacting [formula in source] D quantum world. The corpus's strongest finite results are boundary/kinematic building blocks —
 
 Explicit source references:
 
@@ -1929,7 +1929,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tfpt_research_contracts.tex:14397-14558](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tfpt_research_contracts.tex#L14397) · `section:03b9058ca08ba4829ac7` · section
 
-Typing. This section is a hand-off document: it packages the one remaining seam obligation as a self-contained problem statement for an outside specialist in conformal nets / vertex operator algebras / algebraic QFT. It documents, it does not close: the ledger row SEAM.EQUIV.01 stays \ (its conditional route SEAM.EQUIV.MMST.01 is closed modulo cited theorems; the unconditional parent is the target below). Nothing in 
+Typing. This section is a hand-off document: it packages the one remaining seam obligation as a self-contained problem statement for an outside specialist in conformal nets / vertex operator algebras / algebraic QFT. It documents, it does not close: the ledger row SEAM.EQUIV.01 stays \ (its conditional route SEAM.EQUIV.MMST.01 is closed modulo cited theorems; the unconditional parent is the target below). Nothing in
 
 Explicit source references:
 
@@ -2019,7 +2019,7 @@ Explicit source references:
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tex-artefacts/toe_research_20260909.tex:97-114](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tex-artefacts/toe_research_20260909.tex#L97) · `section:65daa31841ba9073fdfb` · subsection
 
-For the same strip and filled projector, the alternating four-word [formula in source] cancels the outer history ramps. Normal ordering is the actual finite-sea trace subtraction. Positive heat regularization, Jensen and Cauchy–Schwarz give uniform [formula in source] bounds for [formula in source] on the full four-endpoint torus, including collisions. They promote the separated-point limit to an [formula in source] 
+For the same strip and filled projector, the alternating four-word [formula in source] cancels the outer history ramps. Normal ordering is the actual finite-sea trace subtraction. Positive heat regularization, Jensen and Cauchy–Schwarz give uniform [formula in source] bounds for [formula in source] on the full four-endpoint torus, including collisions. They promote the separated-point limit to an [formula in source]
 
 ## 3. Full lattice dynamics and a physical neutral ground representation
 
@@ -2095,7 +2095,7 @@ All scales sit on the integer lattice spanned by two generators — the gauge un
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex:4405-4425](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex#L4405) · `section:911b129fc3e3dd46c69d` · subsection
 
-Use the universal root-system identity [formula in source] (Coxeter number [formula in source] ). With the carrier values [formula in source] and [formula in source] , The Coxeter number of [formula in source] is exactly three families times the cosmological pair action: each family contributes one [formula in source] -decuple ( [formula in source] ) to the Coxeter period. Equivalently the action ladder is a Coxeter 
+Use the universal root-system identity [formula in source] (Coxeter number [formula in source] ). With the carrier values [formula in source] and [formula in source] , The Coxeter number of [formula in source] is exactly three families times the cosmological pair action: each family contributes one [formula in source] -decuple ( [formula in source] ) to the Coxeter period. Equivalently the action ladder is a Coxeter
 
 ## Closures that the architecture rests on
 
@@ -3243,7 +3243,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_research_contracts.tex:12571-12632](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_research_contracts.tex#L12571) · `section:ea28e660b1549c41a88a` · section
 
-Typing. A standing discipline rule, in force immediately (ledger row DIMENSION.UPLIFT.FIREWALL.01); the uplift theorems it names are separate \ contracts. It formalizes the core diagnosis of the 2026-08-27 external deep review: a chiral [formula in source] D seam net does not imply a local, interacting [formula in source] D quantum world. The corpus's strongest finite results are boundary/kinematic building blocks — 
+Typing. A standing discipline rule, in force immediately (ledger row DIMENSION.UPLIFT.FIREWALL.01); the uplift theorems it names are separate \ contracts. It formalizes the core diagnosis of the 2026-08-27 external deep review: a chiral [formula in source] D seam net does not imply a local, interacting [formula in source] D quantum world. The corpus's strongest finite results are boundary/kinematic building blocks —
 
 Explicit source references:
 
@@ -3515,7 +3515,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_research_contracts.tex:14397-14558](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_research_contracts.tex#L14397) · `section:fd15b9954fc0175fba1b` · section
 
-Typing. This section is a hand-off document: it packages the one remaining seam obligation as a self-contained problem statement for an outside specialist in conformal nets / vertex operator algebras / algebraic QFT. It documents, it does not close: the ledger row SEAM.EQUIV.01 stays \ (its conditional route SEAM.EQUIV.MMST.01 is closed modulo cited theorems; the unconditional parent is the target below). Nothing in 
+Typing. This section is a hand-off document: it packages the one remaining seam obligation as a self-contained problem statement for an outside specialist in conformal nets / vertex operator algebras / algebraic QFT. It documents, it does not close: the ledger row SEAM.EQUIV.01 stays \ (its conditional route SEAM.EQUIV.MMST.01 is closed modulo cited theorems; the unconditional parent is the target below). Nothing in
 
 Explicit source references:
 

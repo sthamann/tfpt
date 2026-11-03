@@ -4,6 +4,32 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## 2026-06-23 (Direction 2, the disciplined result: the gap-induced GR correction is the known [formula in source] scalaron — already falsifiable via [formula in source] ; a new forced near-term deviation does NOT survive the discriminator and is declined: v360)
+
+[documents/changelog/sections/014-source.tex:331-347](../../../../documents/changelog/sections/014-source.tex#L331) · `section:b9e3cb43b2bc303303e6` · subsection
+
+v360 ( GRAV.GAPCORR.01) — Direction 2, run honestly. Does the seam transfer gap [formula in source] yield a NEW, calculable, FORCED deviation from GR (a near-term kill test) beyond the known [formula in source] scalaron? With the v354/ v355 discriminator the answer is no, and this is recorded rather than manufacturing a coefficient. \ the leading higher-curvature term IS the [formula in source] scalaron (spectral-act
+
+Explicit source references:
+
+- [verification/v354_e8_reverse_audit.py](../../../../verification/v354_e8_reverse_audit.py#L1) · explicit_script_identifier
+- [verification/v355_e8_unmapped_bandwidth.py](../../../../verification/v355_e8_unmapped_bandwidth.py#L1) · explicit_script_identifier
+- [verification/v36_spectral_action_g2.py](../../../../verification/v36_spectral_action_g2.py#L1) · explicit_script_identifier
+- [verification/v360_grav_gap_corrections.py](../../../../verification/v360_grav_gap_corrections.py#L1) · explicit_script_identifier
+- [verification/v359_grav_nonlinear_einstein.py](../../../../verification/v359_grav_nonlinear_einstein.py#L1) · explicit_script_identifier
+- [GRAV.GAPCORR.01](../../../../verification/status_ledger.csv#L74) · explicit_claim_identifier · original status at linked ledger row
+- [verification/v28_gravity_fR.py](../../../../verification/v28_gravity_fR.py#L1) · explicit_script_identifier
+
+Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
+
+- [(* v431 (5): clean {0,2} split special to E8 among exceptionals *) cleanSplit[name_] := Module[{ex, hh, dm}, ex = Switch[name, "A4", {1, 2, 3, 4}, "D5", {1, 3, 5, 7, 4}, "E6", {1, 4, 5, 7, 8, 11}, "E7", {1, 5, 7, 9, 11, 13, 17}, "E8", exps, "F4", {1, 5, 7, 11}, "G2", {1, 5}]; hh = Switch[name, "A4", 5, "D5", 8, "E6", 12, "E7", 18, "E8", 30, "F4", 12, "G2", 6]; dm = DeleteDuplicates[Mod[ex + 1, 6]]; Sort[ex] == Select[Range[1, hh - 1], CoprimeQ[#, hh] &] && SubsetQ[{0, 2}, dm] && Mod[hh, 6] == 0]; e8Clean = cleanSplit["E8"]; e67Fail = ! (cleanSplit["E6"] && cleanSplit["E7"] && cleanSplit["D5"]); checkExact["v431 E8.DEGREE.LADDER.01 (v): clean {0,2}-mod-6 split (6|h AND exponents=totatives) holds for E8 but FAILS for E6,E7,D5; F4/G2 share split but not spine+flavor-det content", e8Clean && e67Fail && cleanSplit["F4"] && cleanSplit["G2"]]; (* v431 (6): all five 'unmapped' degrees homed; v355 functorial line upheld [P] *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2693)
+- [(* ==== v354 E8.REVERSE.AUDIT.01: 3 of 8 E8 Casimir degrees are load-bearing, 5 unmapped ==== *) Module[{exps, degs, mapped, unmapped}, exps = {1, 7, 11, 13, 17, 19, 23, 29}; (* E8 exponents *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2352)
+- [(* v475 (iii): the Lorentzian timelike positivity witness *) gL = DiagonalMatrix[{-1, 1, 1, 1}]; mM = Outer[Times, {vv, 0, 0, 0}, {vv, 0, 0, 0}]; evT = Sort[Eigenvalues[(gL + aal mM) . Inverse[gL]]]; evS = Sort[Eigenvalues[(gL + aal Outer[Times, {0, vv, 0, 0}, {0, vv, 0, 0}]) . Inverse[gL]]]; checkExact["v475 GRAV.ENTROPIC.SCALARON.01 (iii): the Lorentzian-positivity witness -- on Minkowski a TIMELIKE gradient gives G g^-1 eigenvalues {1 - alpha v^2, 1, 1, 1} (nonpositive for v^2 >= 1/alpha, ln undefined) while a SPACELIKE gradient gives {1 + alpha v^2, 1, 1, 1} (positive for all v) -- the v473 caveat exhibited, the OS route sturdier", Sort[evT] == Sort[{1 - aal vv^2, 1, 1, 1}] && Sort[evS] == Sort[{1 + aal vv^2, 1, 1, 1}]]; ]; (* ==== v477 round: the scale-flow representation of the entropic action -- the exact content: the Frullani identity Integrate[(e^{-a t}-e^{-t})/t] = -Log[a], the moment dictionary (flat weight = unit moments = the v475 raw coefficients 3 b R + (17/24) b^2 R^2), the ONE moment condition mu2/mu1^2 = (72/17)(8 pi)^9 with the exact closure (4608 pi^2/17)/((72/17)(8 pi)^9) = c3^7, and the v36 consistency f0 = 6 (4 pi)^2/c3^7 <=> M^2 = c3^7 Mbar^2; mirrors v477 (the chi-form quadrature is numerical, Python-only). ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L3052)
+- [(* ==== v359 GRAV.NONLINEAR.01: full covariant Einstein eq, both coefficients parameter-free ==== *) Module[{c3, eta, d, Rs, traceG, dtop, prefactor}, c3 = 1/(8 Pi); eta = 1/4; traceG = (1 - d/2); (* g^{ab}G_ab = (1-d/2) R; coefficient of R *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2382)
+- [(* v477 (i): Frullani + the moment dictionary at flat weight *) frul = Integrate[(Exp[-aa tt] - Exp[-tt])/tt, {tt, 0, Infinity}, Assumptions -> aa > 0]; eig = Join[{1}, Table[1/4, 4], Table[1/6, 6]]; tr = Total[Exp[-tt (1 - bb # RR)] & /@ eig] - 11 Exp[-tt]; serR = Normal[Series[tr, {RR, 0, 2}]]; mu1f = Integrate[Coefficient[serR, RR, 1]/tt, {tt, 0, Infinity}]; mu2f = Integrate[Coefficient[serR, RR, 2]/tt, {tt, 0, Infinity}]; checkExact["v477 GRAV.ENTROPIC.SCALEFLOW.01 (i): the Frullani/scale-flow identity -Log[a] = Integrate[(e^{-a t}-e^{-t})/t] (symbolic) and the moment dictionary -- at the FLAT weight the maximally-symmetric relative trace integrates to exactly the v475 raw coefficients 3 b R + (17/24) b^2 R^2 (unit moments mu1 = mu2 = 1): the raw entropic action is the unit-moment point of a scale-measure family", frul == -Log[aa] && Simplify[mu1f - 3 bb] == 0 && Simplify[mu2f - (17/24) bb^2] == 0]; (* v477 (ii): the one moment condition + closure + v36 consistency *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L3071)
+- [(* ==== v355 E8.UNMAPPED.BANDWIDTH.01: the unmapped region's forced content is COLLECTIVE ==== *) Module[{exps, degs, totatives}, exps = {1, 7, 11, 13, 17, 19, 23, 29}; degs = exps + 1; (* {2,8,12,14,18,20,24,30} *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2362)
+- [(* ---- (v24) quark ratio closure ---- *) checkExact["c_u/c_d = g_car*11/(N_fam^2 Delta_Q) = 55/117", (gcar*11)/(Nfam^2*13) == 55/117]; checkExact["c_c/c_s = p_5(a)/(Omega_adm-1) = 34/47", pn[5]/(48 - 1) == 34/47]; checkExact["c_t/c_b = N_fam/(2 Delta_Q) = 3/26", Nfam/(2*13) == 3/26]; check["m_c/m_s = (34/47)/phi0 = 13.605", (34/47)/phi0, 13.605, 10^-3]; check["m_t/m_b = (3/26)/phi0^2 = 40.81", (3/26)/phi0^2, 40.81, 10^-2]; (* ---- (v36) G2: spectral-action Seeley-DeWitt coefficients -> R + R^2 ---- *)](../../../../verification/wolfram/tfpt_readouts.wl#L105)
+
 ## 2026-06-23 (the two frontier walls attacked directly: Direction A assembles the continuum chain of SEAM.EQUIV.01 theorem-by-theorem and ties its residual to the seam one-sidedness; Direction B was found ALREADY closed by v40 (harmonic metric [formula in source] finite linear algebra, not a PDE): v356)
 
 [documents/changelog/sections/015-source.tex:17-40](../../../../documents/changelog/sections/015-source.tex#L17) · `section:5f8b87dd447560390c4e` · subsection
@@ -123,7 +149,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/changelog/sections/015-source.tex:342-373](../../../../documents/changelog/sections/015-source.tex#L342) · `section:2cf3ee9ae0a89a313d79` · subsection
 
-v335 ( SEAM.EQUIV.UNIFY.01) — the keystone unification. A bird's-eye consolidation of the v308/v323/v325/v329/v333 arc that collapses the ``two open structural items'' narrative. \ QGEO.SYM.01 is a COROLLARY of SEAM.EQUIV.01 (no extra premise): a chiral conformal net has, by axiom, a M\"obius-covariant vacuum (the unique invariant positive-energy vector); rotations [formula in source] are the compact subgroup of the 
+v335 ( SEAM.EQUIV.UNIFY.01) — the keystone unification. A bird's-eye consolidation of the v308/v323/v325/v329/v333 arc that collapses the ``two open structural items'' narrative. \ QGEO.SYM.01 is a COROLLARY of SEAM.EQUIV.01 (no extra premise): a chiral conformal net has, by axiom, a M\"obius-covariant vacuum (the unique invariant positive-energy vector); rotations [formula in source] are the compact subgroup of the
 
 Explicit source references:
 
@@ -810,7 +836,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/changelog/sections/019-source.tex:280-299](../../../../documents/changelog/sections/019-source.tex#L280) · `section:640aa248092cb39263eb` · subsection
 
-The four marks emerge from Gauss–Bonnet — count derived, not assumed ( v216_marks_gauss_bonnet, tfpt_research_contracts, ; ledger QGEO.MARKS.03). The K1 lever of the v215 kill-test (``exactly four marks'') is executed: if the marks are [formula in source] branch points (deficit [formula in source] ) on the flat seam sphere ( [formula in source] , the same [formula in source] as the [formula in source] in [formula in 
+The four marks emerge from Gauss–Bonnet — count derived, not assumed ( v216_marks_gauss_bonnet, tfpt_research_contracts, ; ledger QGEO.MARKS.03). The K1 lever of the v215 kill-test (``exactly four marks'') is executed: if the marks are [formula in source] branch points (deficit [formula in source] ) on the flat seam sphere ( [formula in source] , the same [formula in source] as the [formula in source] in [formula in
 
 Explicit source references:
 
@@ -954,7 +980,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/changelog/sections/020-source.tex:68-98](../../../../documents/changelog/sections/020-source.tex#L68) · `section:c42d97fdd386889e5412` · subsection
 
-Muon [formula in source] as a seam vertex ( v204_muon_seam_g2, tfpt_4_frontier, ). The carrier's second-order topological defect [formula in source] projected through the seam-loop phase gives [formula in source] ( [formula in source] vs the dispersive [formula in source] ; [formula in source] vs lattice/CMD-3). The value is exact ; the vertex identification is the \ bridge. Ledger FR.MUONG2.01; Wolfram-mirrored. An 
+Muon [formula in source] as a seam vertex ( v204_muon_seam_g2, tfpt_4_frontier, ). The carrier's second-order topological defect [formula in source] projected through the seam-loop phase gives [formula in source] ( [formula in source] vs the dispersive [formula in source] ; [formula in source] vs lattice/CMD-3). The value is exact ; the vertex identification is the \ bridge. Ledger FR.MUONG2.01; Wolfram-mirrored. An
 
 Explicit source references:
 
@@ -1381,7 +1407,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/changelog/sections/024-source.tex:127-136](../../../../documents/changelog/sections/024-source.tex#L127) · `section:b7a05826756c1fc3ef1e` · subsection
 
-Compiler-closure consolidation. The TFPT development is consolidated into the current document set with the verification suite (modules v1–v82: [formula in source] glue, carrier Pascal, EM fixed point, flavor matrix, cascade, bootstrap, gravity/cosmology, transport, masses, registry and gate audits) as the single proof layer; manifests ( manifest.sha256, lean_manifest.sha256) as content identity; website mirrors the 
+Compiler-closure consolidation. The TFPT development is consolidated into the current document set with the verification suite (modules v1–v82: [formula in source] glue, carrier Pascal, EM fixed point, flavor matrix, cascade, bootstrap, gravity/cosmology, transport, masses, registry and gate audits) as the single proof layer; manifests ( manifest.sha256, lean_manifest.sha256) as content identity; website mirrors the
 
 Explicit source references:
 
@@ -1862,31 +1888,3 @@ Explicit source references:
 [documents/experiments--lean4-carrier-rigidity--note_carrier_rigidity_lean4/sections/004-section-interface-table-tfpt-paper-2-texorpdfstring-left.tex:320-323](../../../../documents/experiments--lean4-carrier-rigidity--note_carrier_rigidity_lean4/sections/004-section-interface-table-tfpt-paper-2-texorpdfstring-left.tex#L320) · `section:3f2aaf619c0723316625` · section
 
 No opening prose excerpt; see the source.
-
-## v11 — review-pass closure and typed targets for the remaining upstream theorems (the present revision)
-
-[documents/experiments--lean4-carrier-rigidity--note_carrier_rigidity_lean4/sections/005-subsection-v11-review-pass-closure-and-typed-targets-for.tex:1-94](../../../../documents/experiments--lean4-carrier-rigidity--note_carrier_rigidity_lean4/sections/005-subsection-v11-review-pass-closure-and-typed-targets-for.tex#L1) · `section:307d97065ae218f24093` · subsection
-
-Relative to v10, this version is a closure-and-naming pass. It addresses the v10 reviewer's three actionable findings:
-
-Explicit source references:
-
-- [TFPT.Carrier.BoundaryYukawaKernelInterface.BoundaryYukawaKernel.finrank_E_eq_three](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/BoundaryYukawaKernelInterface.lean#L99) · explicit_lean_symbol
-- [BoundaryPolarization.ofCarrierInvolution](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/BoundaryPolarization.lean#L184) · explicit_lean_symbol
-- [experiments/lean4-carrier-rigidity/TfptCarrier/SeamWindingInterface.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/SeamWindingInterface.lean#L1) · explicit_file_citation
-- [verification/v11_unique_KQ.py](../../../../verification/v11_unique_KQ.py#L1) · explicit_script_identifier
-- [verification/v9_neutrino_texture.py](../../../../verification/v9_neutrino_texture.py#L1) · explicit_script_identifier
-- [verification/v10_projection_involution.py](../../../../verification/v10_projection_involution.py#L1) · explicit_script_identifier
-- [experiments/lean4-carrier-rigidity/TfptCarrier/BoundaryYukawaKernelInterface.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/BoundaryYukawaKernelInterface.lean#L1) · explicit_file_citation
-
-Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
-
-- [experiments/lean4-carrier-rigidity/TfptCarrier/AuditContract.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/AuditContract.lean#L1)
-- [experiments/lean4-carrier-rigidity/TfptCarrier/AxiomCheck.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/AxiomCheck.lean#L1)
-- [experiments/lean4-carrier-rigidity/TfptCarrier/YukawaStageDExistence.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/YukawaStageDExistence.lean#L1)
-- [experiments/lean4-carrier-rigidity/TfptCarrier/SeamWindingInterface.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/SeamWindingInterface.lean#L1)
-- [(* ---- (v10) K/Q/Sigma determinant ladder ---- *) R = {{1, 3, 0}, {1, 5, 2}, {2, 5, 3}}; W = {{1, 0, 0}, {1, 0, 0}, {1, 0, 0}}; L = R + 6 W; K = {{4, 2, 0}, {4, 3, 2}, {5, 3, 2}}; Q = {{3, 1, 0}, {3, 2, 0}, {3, 2, 1}}; Sig = DiagonalMatrix[{1, -1, -1}]; checkExact["K = R + Q.Sigma", K == R + Q.Sig]; checkExact["L = R + Q.(I + Sigma)", L == R + Q.(IdentityMatrix[3] + Sig)]; checkExact["det ladder (Q,K,R,L) = (3,4,8,20)", {Det[Q], Det[K], Det[R], Det[L]} == {3, 4, 8, 20}]; checkExact["det product = 1920 = |W(D5)|", Det[Q] Det[K] Det[R] Det[L] == 1920]; aVec = {1, 1, 2}; checkExact["a^T K a = 41 (the EM budget anchor)", aVec.K.aVec == 41]; (* ---- (v20/v21) lepton c's: delta=1/2 resolvent + product rule ---- *)](../../../../verification/wolfram/tfpt_readouts.wl#L61)
-- [experiments/lean4-carrier-rigidity/TfptCarrier/AuditCheck.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/AuditCheck.lean#L1)
-- [experiments/lean4-carrier-rigidity/TfptCarrier/BoundaryPolarization.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/BoundaryPolarization.lean#L1)
-- [experiments/lean4-carrier-rigidity/TfptCarrier/HiggsSchemeCohomologyShadow.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/HiggsSchemeCohomologyShadow.lean#L1)
-- [experiments/lean4-carrier-rigidity/TfptCarrier/BoundaryYukawaKernelInterface.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/BoundaryYukawaKernelInterface.lean#L1)

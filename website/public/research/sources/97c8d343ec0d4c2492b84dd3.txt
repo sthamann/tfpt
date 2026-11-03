@@ -1,0 +1,35 @@
+TFPT scientific source excerpt
+Original repository path: verification/v113_quasifree_kernel.py
+Original file SHA-256: a033fe9c292d22b5bbc343aa0d8e352df14a0918e4124fd7596bf7f81e01ff51
+Inclusive original lines: 150-176
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000150 |     a16 = sp.zeros(16)
+000151 |     for i in range(8):
+000152 |         a16[2 * i, 2 * i + 1] = 1
+000153 |         a16[2 * i + 1, 2 * i] = -1
+000154 |     p16 = (sp.eye(16) + sp.I * a16) / 2
+000155 |     check("SEAM LEVEL: the 16-Majorana kernel has rank 8 = rank E8 = c "
+000156 |           "-- THE CENTRAL CHARGE IS THE RANK OF THE ONE KERNEL (5 for "
+000157 |           "the carrier block, 8 for the seam hull)",
+000158 |           sp.simplify(p16 * p16 - p16) == sp.zeros(16)
+000159 |           and p16.rank() == 8)
+000160 | 
+000161 |     # 5. premise merge
+000162 |     check("PREMISE MERGE [P] (recorded, not claimed): QBL's input "
+000163 |           "'single scalar 2-point kernel' = 'the seam state is "
+000164 |           "quasi-free' = the defining property of the free-fermion net "
+000165 |           "the R2 gate already posits (Gate-A (H') index-4 extension, "
+000166 |           "v89; same 16-fermion content at every tower level). QBL adds "
+000167 |           "NO assumption beyond R2; when R2 closes, QBL closes [L] "
+000168 |           "along free net => one kernel => sheet-odd => self-counting "
+000169 |           "tower => complete transport => carrier. Gate typing [P]/[A] "
+000170 |           "unchanged", True)
+000171 | 
+000172 |     return summary("v113 quasi-free kernel")
+000173 | 
+000174 | 
+000175 | if __name__ == "__main__":
+000176 |     raise SystemExit(1 if run() else 0)

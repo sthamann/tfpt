@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## 4. Einfachster Mechanismus: zwei Zustände und eine genaue Operationsgrenze
+
+[documents/experiments--theory-contracts--universalraum-common-process-20260915--tmp--pdfs--TFPT_Universalraum_Gemeinsamer_Prozess_Konsolidierung_2026-09-15_v1.6.8/sections/001-section-tfpt-universalraum-gemeinsame-schatten-und-ein.tex:296-376](../../../../documents/experiments--theory-contracts--universalraum-common-process-20260915--tmp--pdfs--TFPT_Universalraum_Gemeinsamer_Prozess_Konsolidierung_2026-09-15_v1.6.8/sections/001-section-tfpt-universalraum-gemeinsame-schatten-und-ein.tex#L296) · `section:fd3a5f9639910524cdbd` · subsection
+
+Mit der aus W hergeleiteten invarianten Paarung [formula in source] definiere
+
 ## 5. Gemeinsame Schattenkarte: welche Bilder reichen?
 
 [documents/experiments--theory-contracts--universalraum-common-process-20260915--tmp--pdfs--TFPT_Universalraum_Gemeinsamer_Prozess_Konsolidierung_2026-09-15_v1.6.8/sections/002-subsection-5-gemeinsame-schattenkarte-welche-bilder.tex:1-52](../../../../documents/experiments--theory-contracts--universalraum-common-process-20260915--tmp--pdfs--TFPT_Universalraum_Gemeinsamer_Prozess_Konsolidierung_2026-09-15_v1.6.8/sections/002-subsection-5-gemeinsame-schattenkarte-welche-bilder.tex#L1) · `section:d30e1cd43987a7996ad3` · subsection
@@ -717,9 +723,3 @@ Die Fünfer-Kompression bestimmt [formula in source] für n von 0 bis 9 exakt. E
 [documents/experiments--theory-contracts--universalraum-common-process-20260915--tmp--pdfs--TFPT_Universalraum_Gemeinsamer_Prozess_Konsolidierung_2026-09-15_v1.6.8/sections/011-subsubsection-4-3-zehn-vollst-ndige-energiemomente-der-g.tex:47-75](../../../../documents/experiments--theory-contracts--universalraum-common-process-20260915--tmp--pdfs--TFPT_Universalraum_Gemeinsamer_Prozess_Konsolidierung_2026-09-15_v1.6.8/sections/011-subsubsection-4-3-zehn-vollst-ndige-energiemomente-der-g.tex#L47) · `section:af78984579a78a083df4` · subsubsection
 
 Am Prüfpunkt g geteilt durch Delta gleich 1/20 hat die niedrigste Eigenenergie der Fünfer-Kompression die durch rationale Sturm-Zählung zertifizierte Lage
-
-## 5. Vollständig gelöst: die innere bilineare Zerlegung
-
-[documents/experiments--theory-contracts--universalraum-common-process-20260915--tmp--pdfs--TFPT_Universalraum_Gemeinsamer_Prozess_Konsolidierung_2026-09-15_v1.6.8/sections/011-subsubsection-4-3-zehn-vollst-ndige-energiemomente-der-g.tex:76-114](../../../../documents/experiments--theory-contracts--universalraum-common-process-20260915--tmp--pdfs--TFPT_Universalraum_Gemeinsamer_Prozess_Konsolidierung_2026-09-15_v1.6.8/sections/011-subsubsection-4-3-zehn-vollst-ndige-energiemomente-der-g.tex#L76) · `section:4d6a7360e14985993664` · subsection
-
-Die sechs Dimensionen sind 1, 45, 210, 15, 675 und 3150. Der offene Rest ist also nicht mehr unbestimmt:

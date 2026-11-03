@@ -104,7 +104,7 @@ TFPT demonstrates that the fine-structure constant [formula in source] can be de
 
 [documents/archive--paper-latex--tffpt-theory-fullv2/sections/005-subsection-mode-separation-background-vs-oscillating.tex:185-217](../../../../documents/archive--paper-latex--tffpt-theory-fullv2/sections/005-subsection-mode-separation-background-vs-oscillating.tex#L185) · `section:bc6f54202b572002ea11` · section
 
-@ll@ Quantity & Value\\ [formula in source] & 0.0397887357729738339\\ [formula in source] & 0.0530516476972984453\\ [formula in source] & 0.000120304479547082053\\ [formula in source] & 0.0531719521768455273\\ [formula in source] (self-consistent) & 0.0531701963683282963\\ [formula in source] & 0.00423128951139541511\\ [formula in source] & [formula in source] \\ [formula in source] (E [formula in source] closure) & 
+@ll@ Quantity & Value\\ [formula in source] & 0.0397887357729738339\\ [formula in source] & 0.0530516476972984453\\ [formula in source] & 0.000120304479547082053\\ [formula in source] & 0.0531719521768455273\\ [formula in source] (self-consistent) & 0.0531701963683282963\\ [formula in source] & 0.00423128951139541511\\ [formula in source] & [formula in source] \\ [formula in source] (E [formula in source] closure) &
 
 ## Derivation of the CFE from the Effective Potential
 
@@ -149,7 +149,7 @@ The complete chain from [formula in source] to [formula in source] :
 
 [documents/archive--paper-latex--tffpt-theory-fullv2/sections/006-section-verification-suite-summary.tex:72-86](../../../../documents/archive--paper-latex--tffpt-theory-fullv2/sections/006-section-verification-suite-summary.tex#L72) · `section:35ffe854593515c057a8` · subsection
 
-The uniqueness is verified by: Constructing the complete Hasse diagram of [formula in source] from standard tables. Computing all cover relations with [formula in source] . Running dynamic programming to find all paths from [formula in source] to [formula in source] . Applying the cost function [formula in source] (second-difference smoothness). Verifying that the minimum-cost path is unique (cost gap to second-best 
+The uniqueness is verified by: Constructing the complete Hasse diagram of [formula in source] from standard tables. Computing all cover relations with [formula in source] . Running dynamic programming to find all paths from [formula in source] to [formula in source] . Applying the cost function [formula in source] (second-difference smoothness). Verifying that the minimum-cost path is unique (cost gap to second-best
 
 ## Boundary Trace Derivation
 
@@ -338,7 +338,7 @@ From the admissible reduced datum [formula in source] the carrier-first architec
 
 [documents/archive--paper-latex--tfpt-31/sections/001-section-reading-guide-and-claim-map.tex:60-165](../../../../documents/archive--paper-latex--tfpt-31/sections/001-section-reading-guide-and-claim-map.tex#L60) · `section:5ad6c8ac0fb46f8da1fd` · section
 
-The paper is organized in three reading layers: Big picture: one section explains what TFPT claims in plain language before the detailed datum and conventions begin. Detail: the main body then runs from primitive core and hard carrier kernel through kernel numerics, the two closure-architecture sections, the closure theorem stack, the particle/mass compiler, and the benchmark interface. Proof sketches: the main text 
+The paper is organized in three reading layers: Big picture: one section explains what TFPT claims in plain language before the detailed datum and conventions begin. Detail: the main body then runs from primitive core and hard carrier kernel through kernel numerics, the two closure-architecture sections, the closure theorem stack, the particle/mass compiler, and the benchmark interface. Proof sketches: the main text
 
 ## Big picture: what TFPT actually claims
 
@@ -356,7 +356,7 @@ No opening prose excerpt; see the source.
 
 [documents/archive--paper-latex--tfpt-31/sections/001-section-reading-guide-and-claim-map.tex:311-346](../../../../documents/archive--paper-latex--tfpt-31/sections/001-section-reading-guide-and-claim-map.tex#L311) · `section:e9071b9a3e70c8d16b5d` · subsection
 
-We use natural units [formula in source] . Relative operators are formulated in Euclidean signature and compared through a declared Wick-rotation bridge when Lorentzian language is needed. Higgs fields are denoted by [formula in source] , Hamiltonians by [formula in source] , and the cosmological Hubble rate by [formula in source] ; this avoids overloading the letter [formula in source] . Newton's constant is always 
+We use natural units [formula in source] . Relative operators are formulated in Euclidean signature and compared through a declared Wick-rotation bridge when Lorentzian language is needed. Higgs fields are denoted by [formula in source] , Hamiltonians by [formula in source] , and the cosmological Hubble rate by [formula in source] ; this avoids overloading the letter [formula in source] . Newton's constant is always
 
 ## Primitive relative spectral dynamics
 
@@ -440,7 +440,7 @@ The strongest argument that the carrier packet selects the physical world is not
 
 [documents/archive--paper-latex--tfpt-31/sections/006-subsection-the-texorpdfstring-41-41-integrity-index.tex:234-237](../../../../documents/archive--paper-latex--tfpt-31/sections/006-subsection-the-texorpdfstring-41-41-integrity-index.tex#L234) · `section:07a29e6c08c8bd5ee1cd` · section
 
-This first closure-architecture block is the shortest route from the hard carrier packet to a broader Standard Model plus gravity compiler. It has three moves: the local patch-deficit count gives the carrier-side family count, the topological family closure globalizes it into the family space [formula in source] , the bosonic relative index selects the unique light Higgs doublet, and the local spectral-scale channel 
+This first closure-architecture block is the shortest route from the hard carrier packet to a broader Standard Model plus gravity compiler. It has three moves: the local patch-deficit count gives the carrier-side family count, the topological family closure globalizes it into the family space [formula in source] , the bosonic relative index selects the unique light Higgs doublet, and the local spectral-scale channel
 
 ## Family monodromy and occupancy
 
@@ -542,7 +542,7 @@ Define [formula in source] On the admissible branch, [formula in source] Moreove
 
 [documents/archive--paper-latex--tfpt-31/sections/012-section-particle-and-mass-compiler.tex:137-392](../../../../documents/archive--paper-latex--tfpt-31/sections/012-section-particle-and-mass-compiler.tex#L137) · `section:3559395957442aff0f78` · section
 
-This section is the phenomenological heart of the manuscript. It is not meant to flatten all rows into one uniform notion of prediction. Instead it makes the relation between derived theorem outputs and intrinsic observation rows explicit: a declared numerical preconditioner, a kernel-output map, and a mass ledger that separates internal theorem outputs from their observation-surface images. Accordingly this section 
+This section is the phenomenological heart of the manuscript. It is not meant to flatten all rows into one uniform notion of prediction. Instead it makes the relation between derived theorem outputs and intrinsic observation rows explicit: a declared numerical preconditioner, a kernel-output map, and a mass ledger that separates internal theorem outputs from their observation-surface images. Accordingly this section
 
 ## Front matter / support
 

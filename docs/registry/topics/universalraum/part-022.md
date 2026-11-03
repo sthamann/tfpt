@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Der Hüllensatz und seine genaue Voraussetzung
+
+[experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/04_zellen.tex:25-38](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/04_zellen.tex#L25) · `section:832b78a30b5ba8bd9db5` · section
+
+Sei [formula in source] der Projektor auf den symmetrischen Paarraum. Wenn für alle Paare [formula in source] gilt, dann hat jeder Swap Eigenwert minus eins. Da Transpositionen alle Permutationen erzeugen, folgt Für [formula in source] ist dieser Raum eindimensional, für [formula in source] null. Auch gemischte Zustände mit entsprechender Trägerbedingung erfüllen die Aussage. Für [formula in source] existieren aber e
+
 ## Eine weiche Energiebedingung erlaubt Bewegung
 
 [experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/04_zellen.tex:39-54](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/04_zellen.tex#L39) · `section:bc9c74dbb2c87642015e` · section
@@ -164,7 +170,7 @@ Der benötigte Zustand [formula in source] ist in der Acht-Qubit-Kodierung kein 
 
 [experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/06_zeit_echo.tex:105-126](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/06_zeit_echo.tex#L105) · `section:27bd82a253284fef95cb` · section
 
-Der einfache Eingang lautet Er ist mit dem in S02 angenommenen Clifford-Baukasten präparierbar und besitzt [formula in source] -Anteil [formula in source] . Der Antisymmetrisierer ist Die konkrete Schaltung erzeugt 32 Kontrollzweige, von denen 24 die Permutationen tragen. Acht ungültige Zweige werden markiert. Nach Interferenz und Erfolgsselektion ist der implementierte Operator Somit gilt Der erfolgreiche Zweig ist 
+Der einfache Eingang lautet Er ist mit dem in S02 angenommenen Clifford-Baukasten präparierbar und besitzt [formula in source] -Anteil [formula in source] . Der Antisymmetrisierer ist Die konkrete Schaltung erzeugt 32 Kontrollzweige, von denen 24 die Permutationen tragen. Acht ungültige Zweige werden markiert. Nach Interferenz und Erfolgsselektion ist der implementierte Operator Somit gilt Der erfolgreiche Zweig ist
 
 ## Das ursprüngliche Echo: eins gegen siebzehn Zweiunddreißigstel
 
@@ -230,7 +236,7 @@ Eine gewöhnliche kritische SU(4)-Kette hat links- und rechtslaufende Sektoren, 
 
 [experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/07_seam.tex:98-103](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/07_seam.tex#L98) · `section:c4ffd1636c079cfb84f5` · section
 
-Die innere Glue- [formula in source] wirkt auf den 248 Strömen mit Phasen [formula in source] auf Sektoren der Größen [formula in source] . Ihre Spur ist null. Die geometrische Vierteldrehung [formula in source] hat auf Stufe eins dagegen Spur [formula in source] . Die Operatoren sind somit nicht identisch. Eine Clock kann eine geometrische Drehung mit innerem Twist kombinieren; die beiden Faktoren bleiben getrennt. 
+Die innere Glue- [formula in source] wirkt auf den 248 Strömen mit Phasen [formula in source] auf Sektoren der Größen [formula in source] . Ihre Spur ist null. Die geometrische Vierteldrehung [formula in source] hat auf Stufe eins dagegen Spur [formula in source] . Die Operatoren sind somit nicht identisch. Eine Clock kann eine geometrische Drehung mit innerem Twist kombinieren; die beiden Faktoren bleiben getrennt.
 
 ## Wie eine vollständige Rekonstruktion aussehen könnte
 
@@ -404,7 +410,7 @@ Aktueller Stand v1.3 Der endliche Kern ist jetzt konkreter: Ein gemeinsamer korr
 
 [experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/10_ausblick.tex:42-52](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/10_ausblick.tex#L42) · `section:bae27306a2aef3454404` · section
 
-L31mmL62mmL57mm Fuge& Erreichter Stand& Verbleibende Herkunft\\ Kopplungsstärke&Exakter antisymmetrischer Vermittler; [formula in source] unter benannten Bedingungen; S11 liefert [formula in source] in seiner Normierung.&Energien, Amplituden, konkurrierende Kanäle und ihre gemeinsame Auswahl.\\ Kopplungsgraph&Clebsch-Graph exakt unter „Ort = Spinorgewicht“; Tetramer, Kette und Clebsch getrennt.&Ortslesart, Belegung, 
+L31mmL62mmL57mm Fuge& Erreichter Stand& Verbleibende Herkunft\\ Kopplungsstärke&Exakter antisymmetrischer Vermittler; [formula in source] unter benannten Bedingungen; S11 liefert [formula in source] in seiner Normierung.&Energien, Amplituden, konkurrierende Kanäle und ihre gemeinsame Auswahl.\\ Kopplungsgraph&Clebsch-Graph exakt unter „Ort = Spinorgewicht“; Tetramer, Kette und Clebsch getrennt.&Ortslesart, Belegung,
 
 ## T1 bis T8: der vollständige Vertrag
 
@@ -422,7 +428,7 @@ L9mmL62mmL79mm Tor& Was gemeinsam nachzuweisen ist& Was bisher dazu vorliegt\\ T
 
 [experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/10_ausblick.tex:80-86](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/10_ausblick.tex#L80) · `section:63e8456f56f8b1ac13ba` · section
 
-Der Kandidat, auf den die Dokumente gemeinsam zulaufen Es gibt eine phasentreue Kompositionsregel mit positivem Zustandsfunktional, deren endliche Auslesungen die markierte TFPT-Struktur tragen. Aus ihren gekoppelten Anregungen und Aufzeichnungen entsteht ein kontrollierter gemeinsamer Grenzprozess. Erst dieser Grenzprozess liefert Raumzeit, chirale Materie, Wechselwirkungen und gegebenenfalls Gravitation. Die erste 
+Der Kandidat, auf den die Dokumente gemeinsam zulaufen Es gibt eine phasentreue Kompositionsregel mit positivem Zustandsfunktional, deren endliche Auslesungen die markierte TFPT-Struktur tragen. Aus ihren gekoppelten Anregungen und Aufzeichnungen entsteht ein kontrollierter gemeinsamer Grenzprozess. Erst dieser Grenzprozess liefert Raumzeit, chirale Materie, Wechselwirkungen und gegebenenfalls Gravitation. Die erste
 
 ## Korrekturregister und ergänzende Details
 
@@ -518,7 +524,7 @@ Die Unterlagen und der zusätzlich eingesehene Forschungsbestand ergeben keine a
 
 [experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/12_schatten_arithmetik.tex:82-96](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/12_schatten_arithmetik.tex#L82) · `section:cbeb85103b892f3b7d1b` · subsection
 
-Die ersten sechs Werte sind [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] und [formula in source] . Daraus folgt für [formula in source] Hier ist der Primzahlbezug wirklich vorhanden. Die Selbstdualität des Gitters schließt die Poisson-Transformation auf dasselbe Gitter. Poisson-Summation gilt auch für nichtselbstduale Gitter und verbindet dann Gitter und 
+Die ersten sechs Werte sind [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] und [formula in source] . Daraus folgt für [formula in source] Hier ist der Primzahlbezug wirklich vorhanden. Die Selbstdualität des Gitters schließt die Poisson-Transformation auf dasselbe Gitter. Poisson-Summation gilt auch für nichtselbstduale Gitter und verbindet dann Gitter und
 
 ## Warum die fehlende Positivität so hartnäckig ist
 
@@ -590,16 +596,10 @@ Die komplexe Vierdimensionalität ist für den bestehenden Pauli-/Spinorbaukaste
 
 [experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/13_schatten_quanten.tex:76-81](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/13_schatten_quanten.tex#L76) · `section:54eadd1112a5751773d2` · section
 
-Die bisherigen Registerbeispiele erklären, wie ein global kohärenter Ablauf nach eingeschränktem Zugriff wie ein irreversibler Prozess aussehen kann. Sie liefern noch keine eindeutige Lösung des Messproblems: Insbesondere folgt aus einer diagonalen reduzierten Dichtematrix allein keine Auswahl eines einzelnen Ereignisses. Eine zusätzliche Kollapsdynamik müsste messbare Abweichungen angeben; eine unitäre Beschreibung 
+Die bisherigen Registerbeispiele erklären, wie ein global kohärenter Ablauf nach eingeschränktem Zugriff wie ein irreversibler Prozess aussehen kann. Sie liefern noch keine eindeutige Lösung des Messproblems: Insbesondere folgt aus einer diagonalen reduzierten Dichtematrix allein keine Auswahl eines einzelnen Ereignisses. Eine zusätzliche Kollapsdynamik müsste messbare Abweichungen angeben; eine unitäre Beschreibung
 
 ## Drei Raumrichtungen und eine Zeit: Welche Bedingungen bleiben?
 
 [experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/14_schatten_dimension.tex:1-8](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/14_schatten_dimension.tex#L1) · `section:d9fc8650a1acd3183405` · chapter
 
 Dimension ist die Antwort auf eine Frage Eine Ameise auf einer dünnen Schnur kann entlang einer Richtung laufen. Auf einem Blatt kann sie außerdem ausweichen. In einem Zimmer kann sie auch über ein Hindernis hinweg. Eine Dimension zählt solche unabhängigen Möglichkeiten. Die Zahl der inneren Zustandskomponenten oder der Knöpfe eines Geräts ist etwas anderes.
-
-## Drei unterschiedliche Hinweise führen zur Zahl drei
-
-[experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/14_schatten_dimension.tex:9-23](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/14_schatten_dimension.tex#L9) · `section:f2428b29d35438721755` · section
-
-Ein traceloses hermitesches [formula in source] -Objekt hat genau drei reelle Komponenten: [formula in source] Ergänzt man [formula in source] , ergibt die Determinante [formula in source] Der positive Kegel erfüllt [formula in source] . Das ist die präzise Lorentz-Brücke aus dem Ursprungsteil. Sie zeigt eine passende lokale algebraische Form. Noch fehlen ihre Interpretation als Ereignisse, die Verklebung zu einer Ra

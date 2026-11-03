@@ -1,0 +1,24 @@
+TFPT scientific source excerpt
+Original repository path: verification/v1002_spin10_mirror_projector.py
+Original file SHA-256: 84f7cd7987887ee071d7e05872285ab274ae329f6bcfa693be69bb52add19a4c
+Inclusive original lines: 624-639
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000624 | def spin10_chiral_weights_doubled():
+000625 |     return [
+000626 |         signs
+000627 |         for signs in itertools.product((-1, 1), repeat=SPIN10_RANK)
+000628 |         if sum(value < 0 for value in signs) % 2 == 0
+000629 |     ]
+000630 | 
+000631 | 
+000632 | def spin10_vector_weights_doubled():
+000633 |     weights = []
+000634 |     for coordinate in range(SPIN10_RANK):
+000635 |         for sign in (-2, 2):
+000636 |             weight = [0] * SPIN10_RANK
+000637 |             weight[coordinate] = sign
+000638 |             weights.append(tuple(weight))
+000639 |     return weights

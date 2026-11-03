@@ -8,7 +8,7 @@ Exact ledger statuses remain at the linked original rows and in registry.json. C
 
 [documents/changelog/sections/008-source.tex:1-30](../../../../documents/changelog/sections/008-source.tex#L1) · `section:967792ae6a0e25788ac8` · subsection
 
-experiments/e8-ladder-bed/ executed (preregistered hypotheses/e8_ladder_bed_v1.yaml). The blind ladder detector (assignment DP [formula in source] scale fit [formula in source] 5000-ladder Monte-Carlo null; the same detector class TFPT uses on search surfaces, e.g.\ hfqpo-ladder) on the only public known-answer mass-ladder dataset: BaCo [formula in source] V [formula in source] O [formula in source] (Zou [formula in 
+experiments/e8-ladder-bed/ executed (preregistered hypotheses/e8_ladder_bed_v1.yaml). The blind ladder detector (assignment DP [formula in source] scale fit [formula in source] 5000-ladder Monte-Carlo null; the same detector class TFPT uses on search surfaces, e.g.\ hfqpo-ladder) on the only public known-answer mass-ladder dataset: BaCo [formula in source] V [formula in source] O [formula in source] (Zou [formula in
 
 Explicit source references:
 
@@ -118,7 +118,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/changelog/sections/008-source.tex:208-228](../../../../documents/changelog/sections/008-source.tex#L208) · `section:67f92d5b57079948ad55` · subsection
 
-v490_seam_parity_census.py ( SEAM.MU.01). The [formula in source] ground-state fermion parity of the v367 [formula in source] collar, resolved per spin structure [formula in source] and determined TWICE — Read–Green TRIM product AND real-space Majorana Pfaffian (Schur), relative to the trivial [formula in source] phase, with the twisted real-space spectra matching the Bloch bands to [formula in source] . \ per layer 
+v490_seam_parity_census.py ( SEAM.MU.01). The [formula in source] ground-state fermion parity of the v367 [formula in source] collar, resolved per spin structure [formula in source] and determined TWICE — Read–Green TRIM product AND real-space Majorana Pfaffian (Schur), relative to the trivial [formula in source] phase, with the twisted real-space spectra matching the Bloch bands to [formula in source] . \ per layer
 
 Explicit source references:
 
@@ -242,7 +242,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/changelog/sections/009-source.tex:1-26](../../../../documents/changelog/sections/009-source.tex#L1) · `section:25a3a7ca87e0691a61b8` · subsection
 
-v484_seam_contact_unit.py ( SEAM.CONTACT.UNIT.01). The v483 round left the two analytic targets sharing one rule (``weight [formula in source] per boundary contact insertion'': the [formula in source] ladder [formula in source] , the [formula in source] puncture [formula in source] ). This module shows the shared rule is NOT a new unknown: \ the unit chain [formula in source] — one bare boundary insertion divided by 
+v484_seam_contact_unit.py ( SEAM.CONTACT.UNIT.01). The v483 round left the two analytic targets sharing one rule (``weight [formula in source] per boundary contact insertion'': the [formula in source] ladder [formula in source] , the [formula in source] puncture [formula in source] ). This module shows the shared rule is NOT a new unknown: \ the unit chain [formula in source] — one bare boundary insertion divided by
 
 Explicit source references:
 
@@ -271,7 +271,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/changelog/sections/009-source.tex:131-192](../../../../documents/changelog/sections/009-source.tex#L131) · `section:e99d6098550f62e277de` · subsection
 
-v479_kronheimer_quiver_bridge.py ( SEAM.KRONHEIMER.01). The R3 residual of the [formula in source] keystone ( v344: ``the rewrite attractor graph IS the du Val singularity'') is an ESTABLISHED THEOREM — Kronheimer's ALE hyper-K\"ahler quotient construction [formula in source] Torelli classification (J. Diff. Geom. 29 (1989) 665 and 685) — with all finite input data already compiler outputs, machine-checked : the Kac 
+v479_kronheimer_quiver_bridge.py ( SEAM.KRONHEIMER.01). The R3 residual of the [formula in source] keystone ( v344: ``the rewrite attractor graph IS the du Val singularity'') is an ESTABLISHED THEOREM — Kronheimer's ALE hyper-K\"ahler quotient construction [formula in source] Torelli classification (J. Diff. Geom. 29 (1989) 665 and 685) — with all finite input data already compiler outputs, machine-checked : the Kac
 
 Explicit source references:
 
@@ -388,7 +388,7 @@ Explicit source references:
 
 [documents/changelog/sections/010-source.tex:1-55](../../../../documents/changelog/sections/010-source.tex#L1) · `section:2327b1b5b72d8d0ad7fe` · subsection
 
-v472_quillen_detline_moduli.py ( ALPHA.QUILLEN.DETLINE.01). ALPHA.QUILLEN.EXACT.01 names the [formula in source] level as the curvature of the determinant line over the [formula in source] seam moduli (Quillen 1985 / Bismut–Freed CMP 106 (1986) curvature; Dai–Freed JMP 35 (1994) section); v470 computed the bulk Chern invariant only over the Bloch Brillouin zone (the translation-invariant shortcut). v472 computes the 
+v472_quillen_detline_moduli.py ( ALPHA.QUILLEN.DETLINE.01). ALPHA.QUILLEN.EXACT.01 names the [formula in source] level as the curvature of the determinant line over the [formula in source] seam moduli (Quillen 1985 / Bismut–Freed CMP 106 (1986) curvature; Dai–Freed JMP 35 (1994) section); v470 computed the bulk Chern invariant only over the Bloch Brillouin zone (the translation-invariant shortcut). v472 computes the
 
 Explicit source references:
 
@@ -861,7 +861,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/changelog/sections/011-source.tex:226-270](../../../../documents/changelog/sections/011-source.tex#L226) · `section:c6b6da016e7f30bbb7c1` · subsection
 
-Context. The keystone SEAM.EQUIV.01 is ``closed modulo a cited theorem'': its one open input is the continuum existence of the seam's chiral massless scaling limit. Six new modules attack that residual from independent directions; each is honest about not closing it. All six are vN-registered, run in run_all.py (suite ends ALL CHECKS PASSED), and are veri-cited in the body of tfpt_research_contracts (the [formula in 
+Context. The keystone SEAM.EQUIV.01 is ``closed modulo a cited theorem'': its one open input is the continuum existence of the seam's chiral massless scaling limit. Six new modules attack that residual from independent directions; each is honest about not closing it. All six are vN-registered, run in run_all.py (suite ends ALL CHECKS PASSED), and are veri-cited in the body of tfpt_research_contracts (the [formula in
 
 Explicit source references:
 
@@ -1110,7 +1110,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/changelog/sections/012-source.tex:305-328](../../../../documents/changelog/sections/012-source.tex#L305) · `section:debae20192b75c7a987d` · subsection
 
-New module v424 ( SEAM.EQUIV.LTORP.01). An honest MMST-style reduction of the one open keystone — SEAM.EQUIV.01's intrinsic Bisognano–Wichmann lemma (the v308/ v309 residual) — to the recent commuting-projector theorem of Naaijkens–Penneys–Wallick ( arXiv:2605.10693, [NPW26]), with the central mapping corrected. \ the [formula in source] clock is a modular symmetry ( [formula in source] , v309/ v199), not the flow — 
+New module v424 ( SEAM.EQUIV.LTORP.01). An honest MMST-style reduction of the one open keystone — SEAM.EQUIV.01's intrinsic Bisognano–Wichmann lemma (the v308/ v309 residual) — to the recent commuting-projector theorem of Naaijkens–Penneys–Wallick ( arXiv:2605.10693, [NPW26]), with the central mapping corrected. \ the [formula in source] clock is a modular symmetry ( [formula in source] , v309/ v199), not the flow —
 
 Explicit source references:
 
@@ -1233,7 +1233,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/changelog/sections/013-source.tex:45-67](../../../../documents/changelog/sections/013-source.tex#L45) · `section:4061f274c55499fb2ed1` · subsection
 
-New module v418 ( ARITH.NORMTRIPLE.01). The carrier split [formula in source] read in the three atom-rings gives [formula in source] (scalaron, [formula in source] , quark numerator), and the carrier- [formula in source] clock missing from v417 is found as the [formula in source] [formula in source] -companion [formula in source] . \ [formula in source] , [formula in source] , [formula in source] (the four primitive 
+New module v418 ( ARITH.NORMTRIPLE.01). The carrier split [formula in source] read in the three atom-rings gives [formula in source] (scalaron, [formula in source] , quark numerator), and the carrier- [formula in source] clock missing from v417 is found as the [formula in source] [formula in source] -companion [formula in source] . \ [formula in source] , [formula in source] , [formula in source] (the four primitive
 
 Explicit source references:
 
@@ -1557,7 +1557,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/changelog/sections/013-source.tex:295-307](../../../../documents/changelog/sections/013-source.tex#L295) · `section:6b87e1b142e887eedca7` · subsection
 
-Website — the UniversalGapLab animation on /verification. A new client component (Framer Motion, no new dependency) with three linked, module-grounded views: (A) every sector as the gap contraction [formula in source] racing to its attractor at [formula in source] (seam-gapped, v303/ v387/ v388) or the golden [formula in source] ( v312), with a gapless [formula in source] track that never forgets its start (the Lean 
+Website — the UniversalGapLab animation on /verification. A new client component (Framer Motion, no new dependency) with three linked, module-grounded views: (A) every sector as the gap contraction [formula in source] racing to its attractor at [formula in source] (seam-gapped, v303/ v387/ v388) or the golden [formula in source] ( v312), with a gapless [formula in source] track that never forgets its start (the Lean
 
 Explicit source references:
 
@@ -1638,7 +1638,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/changelog/sections/014-source.tex:126-139](../../../../documents/changelog/sections/014-source.tex#L126) · `section:43e53494baf54171d70d` · subsection
 
-Deep-sync of the post-S3 status. The canonical surfaces ( tfpt_status, introduction) were already current; this pass propagated the same honest wording into origin_theory, tfpt_1– tfpt_5, tfpt_research_contracts, the root README.md, the Zenodo description and website/lib/papers.ts: SEAM.EQUIV.01 is closed modulo a cited theorem (lattice v367/ v368 [formula in source] the [formula in source] stack v376– v379 [formula 
+Deep-sync of the post-S3 status. The canonical surfaces ( tfpt_status, introduction) were already current; this pass propagated the same honest wording into origin_theory, tfpt_1– tfpt_5, tfpt_research_contracts, the root README.md, the Zenodo description and website/lib/papers.ts: SEAM.EQUIV.01 is closed modulo a cited theorem (lattice v367/ v368 [formula in source] the [formula in source] stack v376– v379 [formula
 
 Explicit source references:
 
@@ -1740,7 +1740,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/changelog/sections/014-source.tex:224-242](../../../../documents/changelog/sections/014-source.tex#L224) · `section:1a6d16256ec9d6226d97` · subsection
 
-v367 ( SEAM.S3.LATTICE.01) — Track 1. The abstract S3 residual of v356/ v366 (``the collar realised as a genuine lattice chiral free-fermion invertible phase'') is turned into a RUNNABLE model. \ the [formula in source] Bloch model is gapped at [formula in source] with a numerically computed Fukui–Hatsugai–Suzuki Chern number [formula in source] ( [formula in source] trivially at [formula in source] ); \ [formula in 
+v367 ( SEAM.S3.LATTICE.01) — Track 1. The abstract S3 residual of v356/ v366 (``the collar realised as a genuine lattice chiral free-fermion invertible phase'') is turned into a RUNNABLE model. \ the [formula in source] Bloch model is gapped at [formula in source] with a numerically computed Fukui–Hatsugai–Suzuki Chern number [formula in source] ( [formula in source] trivially at [formula in source] ); \ [formula in
 
 Explicit source references:
 
@@ -1904,7 +1904,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/changelog/sections/015-source.tex:120-134](../../../../documents/changelog/sections/015-source.tex#L120) · `section:2ef143ddeb6e7890a438` · subsection
 
-v350 ( SEAM.EQUIV.BOOTSTRAP.01) — correcting v349. An honest correction prompted by the right objection that the inputs are not axioms but are back-determined by the theory. \ the inputs ARE bootstrap-forced ( v6): [formula in source] is over-determined three ways – rank-fill ( [formula in source] ), Coxeter-match ( [formula in source] max prime of [formula in source] ), Pascal ( [formula in source] ). \ so [formula 
+v350 ( SEAM.EQUIV.BOOTSTRAP.01) — correcting v349. An honest correction prompted by the right objection that the inputs are not axioms but are back-determined by the theory. \ the inputs ARE bootstrap-forced ( v6): [formula in source] is over-determined three ways – rank-fill ( [formula in source] ), Coxeter-match ( [formula in source] max prime of [formula in source] ), Pascal ( [formula in source] ). \ so [formula
 
 Explicit source references:
 
@@ -1950,7 +1950,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/changelog/sections/015-source.tex:152-167](../../../../documents/changelog/sections/015-source.tex#L152) · `section:414a84d23afa6566ca5e` · subsection
 
-v348 ( SEAM.EQUIV.RIGID.01). Executes the rigidity route (mode B of v347) and lands on a strikingly simple statement. \ rigidity closes the crystallographic part: the order-4 clock has the unique normal form [formula in source] (Nielsen/Kerckhoff, v180), Troyanov gives the unique flat pillowcase metric ( v284). \ the downstream is a LATTICE identity, not just a graph: by Conway–Sloane the ring of icosians ( [formula 
+v348 ( SEAM.EQUIV.RIGID.01). Executes the rigidity route (mode B of v347) and lands on a strikingly simple statement. \ rigidity closes the crystallographic part: the order-4 clock has the unique normal form [formula in source] (Nielsen/Kerckhoff, v180), Troyanov gives the unique flat pillowcase metric ( v284). \ the downstream is a LATTICE identity, not just a graph: by Conway–Sloane the ring of icosians ( [formula
 
 Explicit source references:
 
@@ -1975,7 +1975,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/changelog/sections/015-source.tex:168-182](../../../../documents/changelog/sections/015-source.tex#L168) · `section:9800e2e20cb3dc2e280a` · subsection
 
-v347 ( SEAM.EQUIV.CLOSURE.01). A direct, honest answer to ``is there any other way to fully solve the one open arrow L2?''. \ the precise locus: the seam gives the flat pillowcase base [formula in source] ( [formula in source] , v216) while the [formula in source] structure is the Seifert base over the spherical [formula in source] ( [formula in source] ), so L2 bridges two geometric types – why it needs the carrier 
+v347 ( SEAM.EQUIV.CLOSURE.01). A direct, honest answer to ``is there any other way to fully solve the one open arrow L2?''. \ the precise locus: the seam gives the flat pillowcase base [formula in source] ( [formula in source] , v216) while the [formula in source] structure is the Seifert base over the spherical [formula in source] ( [formula in source] ), so L2 bridges two geometric types – why it needs the carrier
 
 Explicit source references:
 
@@ -1996,7 +1996,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/changelog/sections/015-source.tex:183-197](../../../../documents/changelog/sections/015-source.tex#L183) · `section:00c96659d1c56ecb746e` · subsection
 
-v346 ( SEAM.EQUIV.GEOM.01). The honest capstone of the SEAM.EQUIV.01 investigation: it lays out the full path raw-seam [formula in source] as six links and shows exactly one is open. / \ L1 raw seam [formula in source] [formula in source] four marks (Gauss–Bonnet, v216); \ L2 [formula in source] [formula in source] the [formula in source] atoms [formula in source] the [formula in source] orbifold [formula in source] 
+v346 ( SEAM.EQUIV.GEOM.01). The honest capstone of the SEAM.EQUIV.01 investigation: it lays out the full path raw-seam [formula in source] as six links and shows exactly one is open. / \ L1 raw seam [formula in source] [formula in source] four marks (Gauss–Bonnet, v216); \ L2 [formula in source] [formula in source] the [formula in source] atoms [formula in source] the [formula in source] orbifold [formula in source]
 
 Explicit source references:
 
@@ -2092,7 +2092,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/changelog/sections/015-source.tex:246-259](../../../../documents/changelog/sections/015-source.tex#L246) · `section:ed458665aa45a0bcd44b` · subsection
 
-v342 ( EM.WARD.02) — the heat-kernel sharpening of EM.WARD.01. Derives the ORIGIN and STRUCTURE of the [formula in source] determinant-line terms from textbook Seeley–DeWitt / Gilkey coefficients, advancing the EM-Ward origin from \ (conjectured) to \ for the term structure; no new gate. \ [formula in source] is the boundary Gauss–Bonnet coefficient ( [formula in source] , [formula in source] , v216). \ the [formula 
+v342 ( EM.WARD.02) — the heat-kernel sharpening of EM.WARD.01. Derives the ORIGIN and STRUCTURE of the [formula in source] determinant-line terms from textbook Seeley–DeWitt / Gilkey coefficients, advancing the EM-Ward origin from \ (conjectured) to \ for the term structure; no new gate. \ [formula in source] is the boundary Gauss–Bonnet coefficient ( [formula in source] , [formula in source] , v216). \ the [formula
 
 Explicit source references:
 
@@ -2187,7 +2187,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/changelog/sections/015-source.tex:342-373](../../../../documents/changelog/sections/015-source.tex#L342) · `section:2cf3ee9ae0a89a313d79` · subsection
 
-v335 ( SEAM.EQUIV.UNIFY.01) — the keystone unification. A bird's-eye consolidation of the v308/v323/v325/v329/v333 arc that collapses the ``two open structural items'' narrative. \ QGEO.SYM.01 is a COROLLARY of SEAM.EQUIV.01 (no extra premise): a chiral conformal net has, by axiom, a M\"obius-covariant vacuum (the unique invariant positive-energy vector); rotations [formula in source] are the compact subgroup of the 
+v335 ( SEAM.EQUIV.UNIFY.01) — the keystone unification. A bird's-eye consolidation of the v308/v323/v325/v329/v333 arc that collapses the ``two open structural items'' narrative. \ QGEO.SYM.01 is a COROLLARY of SEAM.EQUIV.01 (no extra premise): a chiral conformal net has, by axiom, a M\"obius-covariant vacuum (the unique invariant positive-energy vector); rotations [formula in source] are the compact subgroup of the
 
 Explicit source references:
 
@@ -2459,7 +2459,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/changelog/sections/017-source.tex:116-132](../../../../documents/changelog/sections/017-source.tex#L116) · `section:0968f1b6845750a87eeb` · subsection
 
-v303_ftransfer_dynamics.py asks whether the main-branch mechanism — a gapped, positivity-preserving relaxation to a unique attractor (the local-averaging update [formula in source] the [formula in source] marks, gap [formula in source] ) — is also the shape of the four F_transfer instances, or an unrelated bolt-on. It is the same shape: \ F_pole (Koide) is the seam dynamics (M\"obius multiplier [formula in source] , 
+v303_ftransfer_dynamics.py asks whether the main-branch mechanism — a gapped, positivity-preserving relaxation to a unique attractor (the local-averaging update [formula in source] the [formula in source] marks, gap [formula in source] ) — is also the shape of the four F_transfer instances, or an unrelated bolt-on. It is the same shape: \ F_pole (Koide) is the seam dynamics (M\"obius multiplier [formula in source] ,
 
 Explicit source references:
 

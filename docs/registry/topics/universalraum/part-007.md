@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## 7. T1-T8
+
+[documents/experiments--theory-contracts--universalraum-common-process-20260915--tmp--pdfs--TFPT_Universalraum_Gemeinsamer_Prozess_Konsolidierung_2026-09-15_v1.6.8/sections/032-subsection-6-spurnetzwerk-normen-label-spurnetzwerk-norm.tex:22-62](../../../../documents/experiments--theory-contracts--universalraum-common-process-20260915--tmp--pdfs--TFPT_Universalraum_Gemeinsamer_Prozess_Konsolidierung_2026-09-15_v1.6.8/sections/032-subsection-6-spurnetzwerk-normen-label-spurnetzwerk-norm.tex#L22) · `section:db3cd3f398aea37bc140` · subsection
+
+@ > p( - 4 ) * 0.3333 > p( - 4 ) * 0.3333 > p( - 4 ) * 0.3333@ Tor & Beitrag dieser Runde & Weiter offen \\ T1 & Exakte Kommutanten-Leiter A→B→Cc→Cs→C; Clock als äußeres Symmetrieelement & Welche Symmetrieoperationen der Compiler tatsächlich bereitstellt \\ T2 & Lochbild bewiesen; Z_h + Z_add = 1; ε_h, ε_add & Konvergierter Zustand, Renormierung, Grenzraum \\ T3 & - (ausgeklammert) & Räumlicher Träger \\ T4 & Kern-Sy
+
 ## 8. Die jetzt entscheidenden Prüfungen
 
 [documents/experiments--theory-contracts--universalraum-common-process-20260915--tmp--pdfs--TFPT_Universalraum_Gemeinsamer_Prozess_Konsolidierung_2026-09-15_v1.6.8/sections/032-subsection-6-spurnetzwerk-normen-label-spurnetzwerk-norm.tex:63-89](../../../../documents/experiments--theory-contracts--universalraum-common-process-20260915--tmp--pdfs--TFPT_Universalraum_Gemeinsamer_Prozess_Konsolidierung_2026-09-15_v1.6.8/sections/032-subsection-6-spurnetzwerk-normen-label-spurnetzwerk-norm.tex#L63) · `section:b2985e5f28d80172d59a` · subsection
@@ -52,7 +58,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/experiments--theory-contracts--universalraum-fable-kernfragen-20260910--fable-runde3--paper--tfpt_anschluss_zellen_seam_2026-09-14/sections/001-section-evidenzkonvention-und-abgrenzung.tex:20-26](../../../../documents/experiments--theory-contracts--universalraum-fable-kernfragen-20260910--fable-runde3--paper--tfpt_anschluss_zellen_seam_2026-09-14/sections/001-section-evidenzkonvention-und-abgrenzung.tex#L20) · `section:5926380330792d2bbe2b` · section
 
-Das Manuskript (Version 1.1) konstruiert auf den 60 Quellstrahlen des Compilers eine endliche Kette mit klassischem und quantenmechanischem Schatten, eine Vor-Messung mit Registern und ein ausdrücklich zusätzlich gesetztes Vierträger-Austauschmodell [formula in source] mit eindeutigem antisymmetrischem Grundzustand [formula in source] , Gap [formula in source] , dem Spektrum [formula in source] , [formula in source] 
+Das Manuskript (Version 1.1) konstruiert auf den 60 Quellstrahlen des Compilers eine endliche Kette mit klassischem und quantenmechanischem Schatten, eine Vor-Messung mit Registern und ein ausdrücklich zusätzlich gesetztes Vierträger-Austauschmodell [formula in source] mit eindeutigem antisymmetrischem Grundzustand [formula in source] , Gap [formula in source] , dem Spektrum [formula in source] , [formula in source]
 
 ## Der Compiler wählt die Zelle
 
@@ -92,7 +98,7 @@ Auf [formula in source] gilt [formula in source] für jede [formula in source] -
 
 [documents/experiments--theory-contracts--universalraum-fable-kernfragen-20260910--fable-runde3--paper--tfpt_anschluss_zellen_seam_2026-09-14/sections/001-section-evidenzkonvention-und-abgrenzung.tex:56-74](../../../../documents/experiments--theory-contracts--universalraum-fable-kernfragen-20260910--fable-runde3--paper--tfpt_anschluss_zellen_seam_2026-09-14/sections/001-section-evidenzkonvention-und-abgrenzung.tex#L56) · `section:eb5830602d5801bd979a` · subsection
 
-Die Uhr des Compilers ist [formula in source] , der Familien-3-Zykel auf [formula in source] mit festem Anker [formula in source] ( v774), mit Lift [formula in source] , [formula in source] , [formula in source] . In [formula in source] fixiert [formula in source] genau drei der 15 Klassen [formula in source] ; nach der Punkt/Geraden-Dualität von [formula in source] ( v783: Klassen [formula in source] Kontexte) sind 
+Die Uhr des Compilers ist [formula in source] , der Familien-3-Zykel auf [formula in source] mit festem Anker [formula in source] ( v774), mit Lift [formula in source] , [formula in source] , [formula in source] . In [formula in source] fixiert [formula in source] genau drei der 15 Klassen [formula in source] ; nach der Punkt/Geraden-Dualität von [formula in source] ( v783: Klassen [formula in source] Kontexte) sind
 
 Explicit source references:
 
@@ -121,7 +127,7 @@ No opening prose excerpt; see the source.
 
 [documents/experiments--theory-contracts--universalraum-fable-kernfragen-20260910--fable-runde3--paper--tfpt_anschluss_zellen_seam_2026-09-14/sections/001-section-evidenzkonvention-und-abgrenzung.tex:93-104](../../../../documents/experiments--theory-contracts--universalraum-fable-kernfragen-20260910--fable-runde3--paper--tfpt_anschluss_zellen_seam_2026-09-14/sections/001-section-evidenzkonvention-und-abgrenzung.tex#L93) · `section:d47832ca5a693daf34f7` · subsection
 
-Offene Ketten aus [formula in source] Viererketten-Segmenten (nächste-Nachbar-Bindungen, Zwischenkopplung [formula in source] ), erste Anregung stets in der Adjungierten-Familie [formula in source] : @lccc@ Gap & [formula in source] ( [formula in source] ) & [formula in source] ( [formula in source] ) & [formula in source] ( [formula in source] )\\ [formula in source] & 0,2664 & 0,2552 & 0,2497\\ [formula in source] 
+Offene Ketten aus [formula in source] Viererketten-Segmenten (nächste-Nachbar-Bindungen, Zwischenkopplung [formula in source] ), erste Anregung stets in der Adjungierten-Familie [formula in source] : @lccc@ Gap & [formula in source] ( [formula in source] ) & [formula in source] ( [formula in source] ) & [formula in source] ( [formula in source] )\\ [formula in source] & 0,2664 & 0,2552 & 0,2497\\ [formula in source]
 
 ## Der uniforme Ring ist [formula in source]
 
@@ -669,13 +675,3 @@ No opening prose excerpt; see the source.
 [documents/experiments--theory-contracts--universalraum-singlet-observable-20260915--tmp--pdfs--TFPT_Universalraum_Richtige_Kette_Konsolidierung_2026-09-15_v1.6.7/sections/007-section-anhang-a-quellenpr-fung-symmetrie-und.tex:4-11](../../../../documents/experiments--theory-contracts--universalraum-singlet-observable-20260915--tmp--pdfs--TFPT_Universalraum_Richtige_Kette_Konsolidierung_2026-09-15_v1.6.7/sections/007-section-anhang-a-quellenpr-fung-symmetrie-und.tex#L4) · `section:894639b2cfe62cfe99b4` · section
 
 Stand: 15. September 2026. Eigenständiger Teil-Audit der ersten neuen Anlage und dreier Programme. Keine Änderung der gelieferten Programme, Ergebnisdateien oder Dokumente. Keine Aussage, dass T1-T8 geschlossen seien.
-
-## 1. Reproduktion
-
-[documents/experiments--theory-contracts--universalraum-singlet-observable-20260915--tmp--pdfs--TFPT_Universalraum_Richtige_Kette_Konsolidierung_2026-09-15_v1.6.7/sections/007-section-anhang-a-quellenpr-fung-symmetrie-und.tex:12-73](../../../../documents/experiments--theory-contracts--universalraum-singlet-observable-20260915--tmp--pdfs--TFPT_Universalraum_Richtige_Kette_Konsolidierung_2026-09-15_v1.6.7/sections/007-section-anhang-a-quellenpr-fung-symmetrie-und.tex#L12) · `section:0d757e0e39d27b470e10` · subsection
-
-Alle drei Programme wurden vollständig gelesen und anschließend in isolierten Kopien ausgeführt. Die relevanten Tensoren wurden an ihre von den unveränderten Programmen erwarteten relativen Orte kopiert. Normaler und optimierter Lauf reproduzieren jeweils die gelieferten Ergebnisdateien byteidentisch, ohne Standardfehlerausgabe:
-
-Explicit source references:
-
-- [experiments/theory-contracts/universalraum-clock-origin-20260915/agents/symmetry_audit/check_scope.py](../../../../experiments/theory-contracts/universalraum-clock-origin-20260915/agents/symmetry_audit/check_scope.py#L1) · explicit_file_citation

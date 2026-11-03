@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Historischer Beweisanhang: vollständiger nativer Herleitungsstand v1.6.4
+
+[documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/032-subsubsection-5-1-anomalien-label-anomalien.tex:139-149](../../../../documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/032-subsubsection-5-1-anomalien-label-anomalien.tex#L139) · `section:eb47e1c679e877d523c3` · section
+
+Dieser Anhang bewahrt die frühere Herleitung vollständig. Seine damaligen Statussätze werden durch die aktuelle Konsolidierung und den Nachtrag oben ergänzt; er ist kein ungeprüft übernommener neuer Gesamtstatus. Die externe laufende Symmetrieergänzung wurde separat geprüft und ist nicht unbemerkt in diesen eingefrorenen Anhang eingegangen.
+
 ## 3.1 Grundzustand: frische Berechnung statt bloßer Statusübernahme
 
 [documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/032-subsubsection-5-1-anomalien-label-anomalien.tex:248-304](../../../../documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/032-subsubsection-5-1-anomalien-label-anomalien.tex#L248) · `section:828142df79ecf7e27b7f` · subsubsection
@@ -461,9 +467,9 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 ## Appendix: computational verification (reproducibility)
 
-[documents/introduction/sections/004-section-tfpt-in-the-light-of-algorithmic-physics-zuse-sc.tex:171-214](../../../../documents/introduction/sections/004-section-tfpt-in-the-light-of-algorithmic-physics-zuse-sc.tex#L171) · `section:e77e5218c82783443690` · section
+[documents/introduction/sections/004-section-tfpt-in-the-light-of-algorithmic-physics-zuse-sc.tex:173-216](../../../../documents/introduction/sections/004-section-tfpt-in-the-light-of-algorithmic-physics-zuse-sc.tex#L173) · `section:e77e5218c82783443690` · section
 
-Every claim in this document marked \ (exact identity), \ (Lie/lattice theorem) or \ (numerical fixed point) is re-derived from the two axioms [formula in source] alone by a small, self-contained Python suite in the repository folder verification/. The inline references [verification/ [formula in source] ] throughout the documents point to the exact script; the table below is the master map (its source is the shared 
+Every claim in this document marked \ (exact identity), \ (Lie/lattice theorem) or \ (numerical fixed point) is re-derived from the two axioms [formula in source] alone by a small, self-contained Python suite in the repository folder verification/. The inline references [verification/ [formula in source] ] throughout the documents point to the exact script; the table below is the master map (its source is the shared
 
 Explicit source references:
 
@@ -549,7 +555,7 @@ Explicit source references:
 
 [documents/note_e8_gaussian_code/sections/002-section-explicit-character-basis-of-the-eight-coxeter-ch.tex:1-93](../../../../documents/note_e8_gaussian_code/sections/002-section-explicit-character-basis-of-the-eight-coxeter-ch.tex#L1) · `section:4924c7863d81853eba3d` · section
 
-The exponents of [formula in source] are the totatives [formula in source] of the Coxeter number [formula in source] . As a multiplicative group this set has element orders [formula in source] in that listing — explicitly the pairs (unit, order) [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] 
+The exponents of [formula in source] are the totatives [formula in source] of the Coxeter number [formula in source] . As a multiplicative group this set has element orders [formula in source] in that listing — explicitly the pairs (unit, order) [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source]
 
 Explicit source references:
 
@@ -632,7 +638,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/origin_theory/sections/004-section-interpretation-mc-the-self-reproducing-cosmic-cy.tex:141-392](../../../../documents/origin_theory/sections/004-section-interpretation-mc-the-self-reproducing-cosmic-cy.tex#L141) · `section:56ca118419000d5423f4` · section
 
-The precise reformulation ( ). The seam is not identical to an event horizon. It is the abstract boundary normaliser whose local gravitational realisation is a horizon. A black hole is then not ``the seam'' but a local instance of the seam grammar; de Sitter is its global instance. This is stronger and cleaner than a direct identification — it avoids importing Schwarzschild analogies wholesale, and it makes [formula 
+The precise reformulation ( ). The seam is not identical to an event horizon. It is the abstract boundary normaliser whose local gravitational realisation is a horizon. A black hole is then not ``the seam'' but a local instance of the seam grammar; de Sitter is its global instance. This is stronger and cleaner than a direct identification — it avoids importing Schwarzschild analogies wholesale, and it makes [formula
 
 Explicit source references:
 
@@ -700,7 +706,7 @@ Explicit source references:
 
 ## Honest status
 
-[documents/origin_theory/sections/006-section-honest-status-label-sec-status.tex:1-316](../../../../documents/origin_theory/sections/006-section-honest-status-label-sec-status.tex#L1) · `section:888628823bf71f709698` · section
+[documents/origin_theory/sections/006-section-honest-status-label-sec-status.tex:1-318](../../../../documents/origin_theory/sections/006-section-honest-status-label-sec-status.tex#L1) · `section:888628823bf71f709698` · section
 
 @p5.4cmp2.0cmY@ claim & status & basis \\ [formula in source] generates the integer skeleton; Pythagorean [formula in source] split & & v53_compiler_core.py \\ the [formula in source] in [formula in source] is triply forced (geo [formula in source] lattice [formula in source] gravity) & & v54_seam_horizon_keystones.py \\ one boundary transport for flavor and horizon ( [formula in source] ) & & v54_seam_horizon_keysto
 
@@ -880,7 +886,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 ## Appendix: computational verification
 
-[documents/origin_theory/sections/006-section-honest-status-label-sec-status.tex:317-338](../../../../documents/origin_theory/sections/006-section-honest-status-label-sec-status.tex#L317) · `section:5ef9533c2bf93b6ac923` · section
+[documents/origin_theory/sections/006-section-honest-status-label-sec-status.tex:319-340](../../../../documents/origin_theory/sections/006-section-honest-status-label-sec-status.tex#L319) · `section:5ef9533c2bf93b6ac923` · section
 
 Every \ statement here is machine-checked in the TFPT suite and re-derived independently in Wolfram: @p4.7cmY@ script & content \\ v53_compiler_core.py & [formula in source] skeleton, Pythagorean [formula in source] split, anchor char-poly uniqueness \\ v54_seam_horizon_keystones.py & triply-forced [formula in source] ; shared transport [formula in source] ; de Sitter constants \\ v55_coxeter_cycle.py & computed [for
 
@@ -946,7 +952,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/tfpt_1_architecture_e8/sections/004-source.tex:302-350](../../../../documents/tfpt_1_architecture_e8/sections/004-source.tex#L302) · `section:33a1154dc0cb4b2f67f8` · subsection
 
-A family is exactly the complete Pascal truncation to degree two: the unique positive-integer solution of [formula in source] . Proof of uniqueness. Direct evaluation gives [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] ; so [formula in source] is the only root in [formula in source] . For [formula in source] the forward difference is 
+A family is exactly the complete Pascal truncation to degree two: the unique positive-integer solution of [formula in source] . Proof of uniqueness. Direct evaluation gives [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] ; so [formula in source] is the only root in [formula in source] . For [formula in source] the forward difference is
 
 Explicit source references:
 
@@ -1031,7 +1037,7 @@ The decuple bridge is one rung of a tower. Writing [formula in source] for the s
 
 [documents/tfpt_1_architecture_e8/sections/008-source.tex:180-240](../../../../documents/tfpt_1_architecture_e8/sections/008-source.tex#L180) · `section:5b3637090ad83e509233` · subsection
 
-Identify [formula in source] with the even-weight binary code on five bits. A transition [formula in source] has flip [formula in source] , even and nonempty, so [formula in source] ; per state there are [formula in source] flips, giving and the [formula in source] undirected flips match the [formula in source] [formula in source] root pairs ( , counting). This makes the atlas conjecture testable: a genuine root map 
+Identify [formula in source] with the even-weight binary code on five bits. A transition [formula in source] has flip [formula in source] , even and nonempty, so [formula in source] ; per state there are [formula in source] flips, giving and the [formula in source] undirected flips match the [formula in source] [formula in source] root pairs ( , counting). This makes the atlas conjecture testable: a genuine root map
 
 Explicit source references:
 
@@ -1150,7 +1156,7 @@ The lift is reproducible by a short script (all entries below verified exactly).
 
 ## Appendix: computational verification
 
-[documents/tfpt_1_architecture_e8/sections/012-source.tex:120-139](../../../../documents/tfpt_1_architecture_e8/sections/012-source.tex#L120) · `section:82538abb2ab515399dca` · section
+[documents/tfpt_1_architecture_e8/sections/012-source.tex:122-141](../../../../documents/tfpt_1_architecture_e8/sections/012-source.tex#L122) · `section:82538abb2ab515399dca` · section
 
 The load-bearing identities of this document (marked , , ) are re-derived from [formula in source] alone and machine-checked by the suite in the repository folder verification/; the inline tags [verification/ [formula in source] ] point to the exact script. Relevant here: v1_e8_glue.py — the [formula in source] glue ( [formula in source] , [formula in source] , [formula in source] ). v2_carrier_pascal.py — [formula i
 
@@ -1176,7 +1182,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/tfpt_2_standard_model/sections/005-subsection-closing-the-audit-gates-is-m-41-k-q-derived-o.tex:1-160](../../../../documents/tfpt_2_standard_model/sections/005-subsection-closing-the-audit-gates-is-m-41-k-q-derived-o.tex#L1) · `section:26a7469d80cd6b47c2b6` · frontmatter
 
-The ``which sheet does parity select'' question above had a blocker: no independently motivated sector [formula in source] sheet map. The cover supplies one itself. At each branch point the anchor block is rank one, with canonical integer kernels: [formula in source] — at the carrier point the block annihilates the democratic vector itself. Collapse lemma : rank one forces [formula in source] , hence proportional to 
+The ``which sheet does parity select'' question above had a blocker: no independently motivated sector [formula in source] sheet map. The cover supplies one itself. At each branch point the anchor block is rank one, with canonical integer kernels: [formula in source] — at the carrier point the block annihilates the democratic vector itself. Collapse lemma : rank one forces [formula in source] , hence proportional to
 
 Explicit source references:
 
@@ -1254,7 +1260,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/tfpt_2_standard_model/sections/005-subsection-closing-the-audit-gates-is-m-41-k-q-derived-o.tex:325-356](../../../../documents/tfpt_2_standard_model/sections/005-subsection-closing-the-audit-gates-is-m-41-k-q-derived-o.tex#L325) · `section:9cb3b04ab25cb016cf69` · subsection
 
-The closed CKM point is not an end state — it feeds the theoretically cleanest flavor-changing neutral-current probe, the rare decays [formula in source] and [formula in source] . These are not a new compiler power: the only TFPT-specific content is the CKM point above; the short-distance loop functions ( [formula in source] , [formula in source] , [formula in source] , [formula in source] , Brod–Gorbahn–Stamou) are 
+The closed CKM point is not an end state — it feeds the theoretically cleanest flavor-changing neutral-current probe, the rare decays [formula in source] and [formula in source] . These are not a new compiler power: the only TFPT-specific content is the CKM point above; the short-distance loop functions ( [formula in source] , [formula in source] , [formula in source] , [formula in source] , Brod–Gorbahn–Stamou) are
 
 Explicit source references:
 
@@ -1315,7 +1321,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/tfpt_2_standard_model/sections/008-section-the-setup-parabolic-data-on-the-family-curve.tex:115-172](../../../../documents/tfpt_2_standard_model/sections/008-section-the-setup-parabolic-data-on-the-family-curve.tex#L115) · `section:95ef9c8e927ef9e25379` · section
 
-Status (no drift). The splitting type is now closed: the unique partition [formula in source] fixes the anchor and [formula in source] fixes the residue branch (verified, below and v4_flavor_matrix.py), and the solar texture is built ( v9_neutrino_texture.py). The roadmap below is kept as the derivation record of how [formula in source] is obtained; it is no longer an open project. The only residual is the parabolic 
+Status (no drift). The splitting type is now closed: the unique partition [formula in source] fixes the anchor and [formula in source] fixes the residue branch (verified, below and v4_flavor_matrix.py), and the solar texture is built ( v9_neutrino_texture.py). The roadmap below is kept as the derivation record of how [formula in source] is obtained; it is no longer an open project. The only residual is the parabolic
 
 Explicit source references:
 
@@ -1377,7 +1383,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 ## Status: what is now written out, and what is honestly left
 
-[documents/tfpt_2_standard_model/sections/011-subsection-seam-response-grammar-gravity-is-the-inverse-.tex:307-358](../../../../documents/tfpt_2_standard_model/sections/011-subsection-seam-response-grammar-gravity-is-the-inverse-.tex#L307) · `section:00b05ea692eac25e3d3e` · section
+[documents/tfpt_2_standard_model/sections/011-subsection-seam-response-grammar-gravity-is-the-inverse-.tex:307-360](../../../../documents/tfpt_2_standard_model/sections/011-subsection-seam-response-grammar-gravity-is-the-inverse-.tex#L307) · `section:00b05ea692eac25e3d3e` · section
 
 tocsectionStatus @p5.6cmcY@ Item & Status & Result \\ Dynamics / clustering (Lemma Gravity Fredholm (Lemma [formula in source] truncation (Lemma Starobinsky [formula in source] / [formula in source] & / & [formula in source] GeV exact ; [formula in source] a \ band over [formula in source] \\ [formula in source] typing (Prop. [formula in source] (Prop. quark [formula in source] -rationals & / & hierarchy + source rat
 
@@ -1395,7 +1401,7 @@ Explicit source references:
 
 ## Appendix: computational verification
 
-[documents/tfpt_2_standard_model/sections/011-subsection-seam-response-grammar-gravity-is-the-inverse-.tex:359-376](../../../../documents/tfpt_2_standard_model/sections/011-subsection-seam-response-grammar-gravity-is-the-inverse-.tex#L359) · `section:59464fe2623d8f56dc12` · section
+[documents/tfpt_2_standard_model/sections/011-subsection-seam-response-grammar-gravity-is-the-inverse-.tex:361-378](../../../../documents/tfpt_2_standard_model/sections/011-subsection-seam-response-grammar-gravity-is-the-inverse-.tex#L361) · `section:59464fe2623d8f56dc12` · section
 
 The Standard-Model identities used here (marked , , ) are re-derived from [formula in source] and machine-checked by the suite in the repository folder verification/; the inline tags [verification/ [formula in source] ] point to the exact script. Relevant here: v2_carrier_pascal.py — the carrier/Pascal packet ( [formula in source] , [formula in source] ). v3_em_alpha.py — the EM fixed point [formula in source] . v4_f
 
@@ -1459,7 +1465,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/tfpt_3_e8_audit_bootstrap/sections/001-part-the-e-8-secondary-branching-atlas.tex:54-63](../../../../documents/tfpt_3_e8_audit_bootstrap/sections/001-part-the-e-8-secondary-branching-atlas.tex#L54) · `section:04030e2b23cc7b5934a7` · part
 
-Purpose and discipline. This note does not introduce new physics. It builds an audit raster: the claim that every load-bearing TFPT number should appear in at least one [formula in source] branching projection. A number that appears in none is suspect; a number appearing in several independent projections becomes structurally strong. All arithmetic identities below are exact ; the physical readings are audit-level \ 
+Purpose and discipline. This note does not introduce new physics. It builds an audit raster: the claim that every load-bearing TFPT number should appear in at least one [formula in source] branching projection. A number that appears in none is suspect; a number appearing in several independent projections becomes structurally strong. All arithmetic identities below are exact ; the physical readings are audit-level \
 
 ## The compiler core (where this note sits)
 
@@ -1904,7 +1910,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/tfpt_3_e8_audit_bootstrap/sections/008-source.tex:1-374](../../../../documents/tfpt_3_e8_audit_bootstrap/sections/008-source.tex#L1) · `section:bc80e633fbb98ca8173d` · frontmatter
 
-The P1 index-KMS identity ( P1.INDEX.KMS.01). One probe ( [formula in source] incl.\ the [formula in source] must-fire controls; verdict p1-identity-closed). The closed normalization identity [formula in source] is exact in formal arithmetic, with each factor independently sourced: the Jones index [formula in source] is a [formula in source] -free theorem (zero occurrences of [formula in source] in all four sources, 
+The P1 index-KMS identity ( P1.INDEX.KMS.01). One probe ( [formula in source] incl.\ the [formula in source] must-fire controls; verdict p1-identity-closed). The closed normalization identity [formula in source] is exact in formal arithmetic, with each factor independently sourced: the Jones index [formula in source] is a [formula in source] -free theorem (zero occurrences of [formula in source] in all four sources,
 
 Explicit source references:
 
@@ -1973,7 +1979,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/tfpt_3_e8_audit_bootstrap/sections/009-section-further-audit-lemmas-machine-verified-this-round.tex:1-189](../../../../documents/tfpt_3_e8_audit_bootstrap/sections/009-section-further-audit-lemmas-machine-verified-this-round.tex#L1) · `section:e7e7f78a69bea2986c9f` · frontmatter
 
-The Wick functor arc ( SEAM.CFIN. WICKFUNCTOR.01 [O]). Three probes ( [formula in source] ; wickfunctor-partial, wickmix-measured (wickmix-obstructed), wickblock-measured (blockfunctor-constructed / seam-diagonal); embedded byte-exact; exact integer/rational/symbolic in every decision typed proved or symbolic). The six compiler roles exist in the deployed seam ( [formula in source] slot pairs [formula in source] the 
+The Wick functor arc ( SEAM.CFIN. WICKFUNCTOR.01 [O]). Three probes ( [formula in source] ; wickfunctor-partial, wickmix-measured (wickmix-obstructed), wickblock-measured (blockfunctor-constructed / seam-diagonal); embedded byte-exact; exact integer/rational/symbolic in every decision typed proved or symbolic). The six compiler roles exist in the deployed seam ( [formula in source] slot pairs [formula in source] the
 
 Explicit source references:
 
@@ -2027,7 +2033,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/tfpt_3_e8_audit_bootstrap/sections/009-section-further-audit-lemmas-machine-verified-this-round.tex:268-276](../../../../documents/tfpt_3_e8_audit_bootstrap/sections/009-section-further-audit-lemmas-machine-verified-this-round.tex#L268) · `section:c485aa261a8965a575f3` · part
 
-The connection in one sentence. The old E [formula in source] cascade (Paper V1.06: the nilpotent-orbit chain [formula in source] , [formula in source] ) and the new compiler/atlas are the same even-integer [formula in source] spine, read three ways: the cascade orders the numbers [formula in source] as a scale ladder, the atlas reads them as [formula in source] subalgebra branchings, and the compiler generates them 
+The connection in one sentence. The old E [formula in source] cascade (Paper V1.06: the nilpotent-orbit chain [formula in source] , [formula in source] ) and the new compiler/atlas are the same even-integer [formula in source] spine, read three ways: the cascade orders the numbers [formula in source] as a scale ladder, the atlas reads them as [formula in source] subalgebra branchings, and the compiler generates them
 
 ## The old cascade, recalled
 
@@ -2054,7 +2060,7 @@ Reading [formula in source] against today's compiler atoms, the secondary-branch
 
 [documents/tfpt_3_e8_audit_bootstrap/sections/010-section-three-views-of-one-spine.tex:1-48](../../../../documents/tfpt_3_e8_audit_bootstrap/sections/010-section-three-views-of-one-spine.tex#L1) · `section:b19a7595d83b1a10d11a` · section
 
-at (0.35,58) [formula in source] — E-series / atlas branchings (UV); at (0.35,40) [formula in source] ; at (0.35,30) [formula in source] \,(Coxeter rung, [formula in source] ); at (0.35,24) [formula in source] — [formula in source] , [formula in source] , [formula in source] ; at (0.35,15) [formula in source] (IR atoms); at (0.35,8) [formula in source] \,(flavor selector, end); at (0,60.5) [formula in source] start; 
+at (0.35,58) [formula in source] — E-series / atlas branchings (UV); at (0.35,40) [formula in source] ; at (0.35,30) [formula in source] \,(Coxeter rung, [formula in source] ); at (0.35,24) [formula in source] — [formula in source] , [formula in source] , [formula in source] ; at (0.35,15) [formula in source] (IR atoms); at (0.35,8) [formula in source] \,(flavor selector, end); at (0,60.5) [formula in source] start;
 
 Explicit source references:
 
@@ -2099,7 +2105,7 @@ The flavor selector [formula in source] is the terminal orbit of the [formula in
 
 [documents/tfpt_3_e8_audit_bootstrap/sections/010-section-three-views-of-one-spine.tex:146-156](../../../../documents/tfpt_3_e8_audit_bootstrap/sections/010-section-three-views-of-one-spine.tex#L146) · `section:94633ceeb8bde750f4e4` · part
 
-The question, and the honest answer. The theory rests on two inputs, [formula in source] and [formula in source] . The old theory had a Möbius seam and the seed was the start of the [formula in source] cascade. Run it backwards: can the cascade/ [formula in source] return [formula in source] and [formula in source] , closing a self-consistent loop? Answer: the discrete content is a closed, overdetermined fixed point 
+The question, and the honest answer. The theory rests on two inputs, [formula in source] and [formula in source] . The old theory had a Möbius seam and the seed was the start of the [formula in source] cascade. Run it backwards: can the cascade/ [formula in source] return [formula in source] and [formula in source] , closing a self-consistent loop? Answer: the discrete content is a closed, overdetermined fixed point
 
 ## The loop for [formula in source] — an overdetermined fixed point
 
@@ -2634,7 +2640,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 ## Summary
 
-[documents/tfpt_4_frontier/sections/004-source.tex:141-197](../../../../documents/tfpt_4_frontier/sections/004-source.tex#L141) · `section:a5afdfe2d50d9975d56b` · section
+[documents/tfpt_4_frontier/sections/004-source.tex:141-199](../../../../documents/tfpt_4_frontier/sections/004-source.tex#L141) · `section:a5afdfe2d50d9975d56b` · section
 
 tocsectionSummary @p2.9cmcY@ Item & Status & Honest handle / what is missing \\ [formula in source] & & downstream readout [formula in source] from closed [formula in source] ; leptogenesis interface, cleanest scenario [formula in source] , [formula in source] (shared decuple, no seesaw scale) \\ [formula in source] & & cross-sector (QCD scale / closed [formula in source] ); typed runnable solver with [formula in sou
 
@@ -2669,7 +2675,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 ## Appendix: computational verification
 
-[documents/tfpt_4_frontier/sections/004-source.tex:198-213](../../../../documents/tfpt_4_frontier/sections/004-source.tex#L198) · `section:0c7b2f5d7f77f90fe85c` · section
+[documents/tfpt_4_frontier/sections/004-source.tex:200-215](../../../../documents/tfpt_4_frontier/sections/004-source.tex#L200) · `section:0c7b2f5d7f77f90fe85c` · section
 
 These are the frontier items: most carry \ (open) or \ (conditional) and are therefore not part of the pass/fail suite. The one quantitative handle that is reproduced is [formula in source] (whence the [formula in source] order) in verification/v7_gravity_cosmo.py. The [formula in source] structure and the gap-decoupling of the physical QG sector are machine-checked ( v28_gravity_fR.py, v36_spectral_action_g2.py); th
 
@@ -2694,17 +2700,3 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 [documents/tfpt_5_redteam/preamble.tex:1-37](../../../../documents/tfpt_5_redteam/preamble.tex#L1) · `section:57628e792bbc3f4e2f1c` · frontmatter
 
 -1.2cm TFPT — Red Team / Stress Test layer\\[2mm] Adversarial targets A–E, the QFT round (F) and the seam round (G): try to break the reductions, not confirm them
-
-## Method
-
-[documents/tfpt_5_redteam/sections/001-section-method.tex:47-63](../../../../documents/tfpt_5_redteam/sections/001-section-method.tex#L47) · `section:f4722dc7a61b6484389b` · section
-
-The red team treats each reduction as a hostile witness. A confirmatory script that always passes is worthless here: the layer is built so that it may downgrade a claim. Four outcomes are allowed — survives (stands as worded), survives (narrowed) (stands only after a silent assumption is made explicit), reduced, not closed (the conservative wording is the correct one), and — reached by Target A after the lattice/ [fo
-
-Explicit source references:
-
-- [verification/v534_seam_straddle_cone.py](../../../../verification/v534_seam_straddle_cone.py#L1) · explicit_script_identifier
-
-Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
-
-- [(* ==== v534 round: SEAM.STRADDLE.CONE.01 -- the RP cone on the interacting FK quartets (the first dynamical selection of the alignment bit). Exact mirrors: the stabilizer census of the mark family, the pi/2 partition + straddle incidence, the reflection-closure signs of the straddling quartets, and the equivariant Fix rays (uniform on m=2..6, NS-wrap-twisted on m=1,7). The 256-dim Fock spectra, the PT Gram corrections and the finite-g survival scan are Python-only (numpy), flagged per GATE.WOLFRAM.02. ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L8401)

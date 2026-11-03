@@ -4,6 +4,22 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## 2026-06-18 (PMNS: the complete complex matrix + the leptonic Jarlskog CP strength, v270)
+
+[documents/changelog/sections/018-source.tex:107-119](../../../../documents/changelog/sections/018-source.tex#L107) · `section:3116e55fdb4f7529082e` · subsection
+
+v270_pmns_jarlskog_assembly.py ( FLAV.PMNS.03) assembles the four TFPT channels ( [formula in source] , [formula in source] , [formula in source] , [formula in source] ) into one exactly-unitary complex PMNS matrix and derives the leptonic CP strength. \ [formula in source] is unitary; \ the Jarlskog [formula in source] ( [formula in source] ) is a derived number, the leptonic analogue of the CKM [formula in source]
+
+Explicit source references:
+
+- [FLAV.PMNS.03](../../../../verification/status_ledger.csv#L363) · explicit_claim_identifier · original status at linked ledger row
+- [verification/v270_pmns_jarlskog_assembly.py](../../../../verification/v270_pmns_jarlskog_assembly.py#L1) · explicit_script_identifier
+- [verification/v88_cp_phase_audit.py](../../../../verification/v88_cp_phase_audit.py#L1) · explicit_script_identifier
+
+Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
+
+- [(* ==== v268: reactor-angle exponent = carrier hypercharge trace (FLAV.TH13.01) ==== *) Module[{Yvec, trY2, roots}, roots = Sort[Y /. Solve[6 Y^2 - Y - 1 == 0, Y]]; Yvec = {-1/3, -1/3, -1/3, 1/2, 1/2}; trY2 = Total[Yvec^2]; checkExact["v268 FLAV.TH13.01: the theta_13 exponent is the carrier hypercharge trace -- " <> "tr_E Y^2 = 3(1/3)^2 + 2(1/2)^2 = 5/6 over the 5-slot carrier hypercharge " <> "Y=diag(-1/3,-1/3,-1/3,1/2,1/2) (the anomaly-free roots {-1/3,1/2} of 6Y^2-Y-1=0), so " <> "sin^2 theta_13 = phi0 e^{-5/6} = phi0 e^{-tr_E Y^2}; complement 1 - 5/6 = 1/6 = the neutrino ratio. " <> "theta_13 is its own carrier-trace channel (the mu-tau breaking gives only ~1e-3, not 0.023).", roots === Sort[{-1/3, 1/2}] && trY2 === 5/6 && (1 - trY2) === 1/6]; ]; (* ==== v271: concrete Epstein-Glaser one-loop quartic renormalization (QFT4D.SPERT.02) ==== v269 (S_pert skeleton) + v270 (PMNS Jarlskog, numerical) are Python-only; v271's exact EG core (scaling degree, counterterm count, loop factor) is mirrored here. *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2069)
+
 ## 2026-06-18 (4D QFT: the perturbative S-matrix as an Epstein–Glaser / pAQFT skeleton, v269)
 
 [documents/changelog/sections/018-source.tex:120-134](../../../../documents/changelog/sections/018-source.tex#L120) · `section:783bd9d3f50606edb09c` · subsection
@@ -305,7 +321,7 @@ Explicit source references:
 
 [documents/changelog/sections/019-source.tex:21-33](../../../../documents/changelog/sections/019-source.tex#L21) · `section:87dd9044f8c1cc589655` · subsection
 
-v251_first_order_sigma.py ( PS.DIRAC.01) advances the Dirac contract v250 from a contract to an exhibited mechanism. On a faithful lepton-block model ( [formula in source] , [formula in source] ), the real even structure is checked ( [formula in source] , [formula in source] , [formula in source] , KO-dim-6 signs), order-zero holds, the first-order condition HOLDS for the Yukawa block, and is VIOLATED exactly by the 
+v251_first_order_sigma.py ( PS.DIRAC.01) advances the Dirac contract v250 from a contract to an exhibited mechanism. On a faithful lepton-block model ( [formula in source] , [formula in source] ), the real even structure is checked ( [formula in source] , [formula in source] , [formula in source] , KO-dim-6 signs), order-zero holds, the first-order condition HOLDS for the Yukawa block, and is VIOLATED exactly by the
 
 Explicit source references:
 
@@ -501,7 +517,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/changelog/sections/019-source.tex:280-299](../../../../documents/changelog/sections/019-source.tex#L280) · `section:640aa248092cb39263eb` · subsection
 
-The four marks emerge from Gauss–Bonnet — count derived, not assumed ( v216_marks_gauss_bonnet, tfpt_research_contracts, ; ledger QGEO.MARKS.03). The K1 lever of the v215 kill-test (``exactly four marks'') is executed: if the marks are [formula in source] branch points (deficit [formula in source] ) on the flat seam sphere ( [formula in source] , the same [formula in source] as the [formula in source] in [formula in 
+The four marks emerge from Gauss–Bonnet — count derived, not assumed ( v216_marks_gauss_bonnet, tfpt_research_contracts, ; ledger QGEO.MARKS.03). The K1 lever of the v215 kill-test (``exactly four marks'') is executed: if the marks are [formula in source] branch points (deficit [formula in source] ) on the flat seam sphere ( [formula in source] , the same [formula in source] as the [formula in source] in [formula in
 
 Explicit source references:
 
@@ -700,7 +716,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/changelog/sections/020-source.tex:68-98](../../../../documents/changelog/sections/020-source.tex#L68) · `section:c42d97fdd386889e5412` · subsection
 
-Muon [formula in source] as a seam vertex ( v204_muon_seam_g2, tfpt_4_frontier, ). The carrier's second-order topological defect [formula in source] projected through the seam-loop phase gives [formula in source] ( [formula in source] vs the dispersive [formula in source] ; [formula in source] vs lattice/CMD-3). The value is exact ; the vertex identification is the \ bridge. Ledger FR.MUONG2.01; Wolfram-mirrored. An 
+Muon [formula in source] as a seam vertex ( v204_muon_seam_g2, tfpt_4_frontier, ). The carrier's second-order topological defect [formula in source] projected through the seam-loop phase gives [formula in source] ( [formula in source] vs the dispersive [formula in source] ; [formula in source] vs lattice/CMD-3). The value is exact ; the vertex identification is the \ bridge. Ledger FR.MUONG2.01; Wolfram-mirrored. An
 
 Explicit source references:
 
@@ -727,7 +743,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/changelog/sections/020-source.tex:99-110](../../../../documents/changelog/sections/020-source.tex#L99) · `section:954c40e55830e15dd43b` · subsection
 
-The M\"obius seam is the boundary Lorentz structure ( tfpt_3, ). Added a paragraph to the ``M\"obius origin of [formula in source] '' section: [formula in source] (Penrose \& Rindler, Spinors and Space-time, Vol. 1, 1.2–1.4), the celestial sphere of null directions via stereographic projection. This gives the self-consistency loop a spacetime meaning — the carrier clock [formula in source] is an elliptic [formula in 
+The M\"obius seam is the boundary Lorentz structure ( tfpt_3, ). Added a paragraph to the ``M\"obius origin of [formula in source] '' section: [formula in source] (Penrose \& Rindler, Spinors and Space-time, Vol. 1, 1.2–1.4), the celestial sphere of null directions via stereographic projection. This gives the self-consistency loop a spacetime meaning — the carrier clock [formula in source] is an elliptic [formula in
 
 Explicit source references:
 
@@ -1577,7 +1593,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/changelog/sections/022-source.tex:204-220](../../../../documents/changelog/sections/022-source.tex#L204) · `section:dd21f4d89cdafe68cd70` · subsection
 
-The free-bulk premise becomes a fixed-point property ( v157, simplicity-first). Instead of postulating Gaussianity, three facts click: (i) the DtN/Calder\'on symbol is universally [formula in source] (Lee–Uhlmann — order- [formula in source] [formula in source] DO, principal symbol [formula in source] ; interactions live in the irrelevant lower-order symbol), so the free dispersion is bulk-detail-independent; (ii) a 
+The free-bulk premise becomes a fixed-point property ( v157, simplicity-first). Instead of postulating Gaussianity, three facts click: (i) the DtN/Calder\'on symbol is universally [formula in source] (Lee–Uhlmann — order- [formula in source] [formula in source] DO, principal symbol [formula in source] ; interactions live in the irrelevant lower-order symbol), so the free dispersion is bulk-detail-independent; (ii) a
 
 Explicit source references:
 
@@ -1872,7 +1888,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/changelog/sections/023-source.tex:119-154](../../../../documents/changelog/sections/023-source.tex#L119) · `section:e09bf94c77ca8cb235a1` · subsection
 
-R5 closed at the discrete level ( v141, deck selection theorem). The v140 [formula in source] choice is derived: the established integer deck [formula in source] ( v97/ v98) pairs the [formula in source] cusp line with the self-conjugate character [formula in source] , so only the sheet-twisted assignment [formula in source] survives; the cusp exponential [formula in source] is excluded (same spectrum, wrong grading 
+R5 closed at the discrete level ( v141, deck selection theorem). The v140 [formula in source] choice is derived: the established integer deck [formula in source] ( v97/ v98) pairs the [formula in source] cusp line with the self-conjugate character [formula in source] , so only the sheet-twisted assignment [formula in source] survives; the cusp exponential [formula in source] is excluded (same spectrum, wrong grading
 
 Explicit source references:
 
@@ -2040,9 +2056,3 @@ Claim hygiene (review section A). The introduction's one-sentence claim is softe
 Explicit source references:
 
 - [FLAV.QRATIO.01](../../../../verification/status_ledger.csv#L25) · explicit_claim_identifier · original status at linked ledger row
-
-## 2026-06-12 (later)
-
-[documents/changelog/sections/024-source.tex:1-11](../../../../documents/changelog/sections/024-source.tex#L1) · `section:e2e448f834c8b18c1b82` · subsection
-
-Shared style and central status artifact. Two new single-source fragments: tfpt_style.tex (the canonical palette, status markers, marker key, veri reference, the four tcolorbox families with back-compat aliases, and one running header/footer) is now input by all eight documents — the per-paper duplicated preambles are gone; and tfpt_status.tex (``TFPT status at a glance'') gives one canonical overall-status card impo

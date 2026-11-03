@@ -1,0 +1,84 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/original-local-source-variable-background-20261102/check_dyson_echo.py
+Original file SHA-256: 4b470eb67462a8289ee21adabab84afe1673f630cc5267621bca4629517d7d47
+Inclusive original lines: 1-76
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Actual original radial pulse: nonlinear ordered source and full echo phase."""
+000002 | from pathlib import Path
+000003 | import sys,json
+000004 | import numpy as np
+000005 | from scipy.linalg import expm
+000006 | from scipy.special import expit
+000007 | [OMITTED: non-scientific conversation or execution metadata]
+000008 | sys.path.insert(0,str(REPO/'verification'))
+000009 | import v252_full_finite_triple as old
+000010 | checks={}
+000011 | def need(k,v):
+000012 |  checks[k]=bool(v)
+000013 |  if not v:raise RuntimeError(k)
+000014 | rng=np.random.default_rng(252)
+000015 | ys=[rng.normal(size=(3,3))+1j*rng.normal(size=(3,3)) for _ in range(4)]
+000016 | mr=rng.normal(size=(3,3));D=old.full_D(*ys,mr+mr.T);ga=old.grading();K=old.Kswap()
+000017 | bp=old.rep(1,np.zeros((2,2)),np.zeros((3,3)));a=old.rep(0,np.eye(2),np.zeros((3,3)))
+000018 | om=a@(D@bp-bp@D);sa=om+om.conj().T;Phi=sa+K@sa.conj()@K
+000019 | ix=[i for i,v in enumerate(old.P) if v[0] in ('u','d')]
+000020 | g=ga[np.ix_(ix,ix)];T=-1j*g@Phi[np.ix_(ix,ix)]
+000021 | sv=np.concatenate([np.linalg.svd(y,compute_uv=False) for y in ys[:2]])
+000022 | sig2=3*sum(sv**2)
+000023 | need('same_original_radial_T_and_quark36',len(ix)==36 and np.linalg.norm(T+1j*g@D[np.ix_(ix,ix)])<1e-10)
+000024 | need('original_quadratic_invariant_has_exact_color_factor',abs(np.trace(T@T).real/2-sig2)<1e-9)
+000025 | duration=.7;eps=.18;ell=1.
+000026 | z=np.array([[1,0],[0,-1]],complex);x=np.array([[0,1],[1,0]],complex)
+000027 | def pair(p,s):
+000028 |  E=np.sqrt(p*p+s*s);Ee=np.sqrt(p*p+(1-eps)**2*s*s)
+000029 |  h=p[...,None,None]*z+s*x;he=p[...,None,None]*z+(1-eps)*s*x
+000030 |  I=np.eye(2)
+000031 |  U=(np.cos(duration*E)[...,None,None]*I+1j*np.sin(duration*E)[...,None,None]*h/E[...,None,None])@(np.cos(duration*Ee)[...,None,None]*I-1j*np.sin(duration*Ee)[...,None,None]*he/Ee[...,None,None])
+000032 |  C=(I+np.tanh(ell*E)[...,None,None]*h/E[...,None,None])/2
+000033 |  factor=np.linalg.det(I-C+C@U)
+000034 |  mean=duration*np.tanh(ell*E)*s*s/E
+000035 |  dE=(((1-eps)**2-1)*s*s)/(Ee+E)
+000036 |  return factor*np.exp(-1j*eps*mean),factor*np.exp(1j*duration*dE),U,C
+000037 | rows=[]
+000038 | for alpha in [.25,.75]:
+000039 |  for p in [alpha,alpha-1,20+alpha]:
+000040 |   h=p*g+T;he=p*g+(1-eps)*T
+000041 |   e,u=np.linalg.eigh(h);C=(u*expit(2*ell*e))@u.conj().T
+000042 |   U=expm(1j*duration*h)@expm(-1j*duration*he)
+000043 |   direct=np.linalg.det(np.eye(36)-C+C@U)*np.exp(-1j*eps*duration*np.trace(C@T))
+000044 |   expected=np.prod([pair(np.array(p),s)[0]**3 for s in sv])
+000045 |   need(f'original36_nonlinear_pulse_matches_all_singular_channels_{p}',abs(direct-expected)<1e-9)
+000046 |  for N in [8,32,128,512,2048]:
+000047 |   ps=np.arange(-N,N)+alpha;raw=0j;echo=0j
+000048 |   for s in sv:
+000049 |    a,b,_,_=pair(ps,s)
+000050 |    raw+=3*np.sum(np.log(a));echo+=3*np.sum(np.log(b))
+000051 |   rows.append({'alpha':alpha,'N':N,'raw_log':[float(raw.real),float(raw.imag)],'ground_zero_echo_log':[float(echo.real),float(echo.imag)],'ground_zero_echo':[float(np.exp(echo).real),float(np.exp(echo).imag)]})
+000052 |  sub=[r for r in rows if r['alpha']==alpha]
+000053 |  measured=(sub[-1]['raw_log'][1]-sub[-2]['raw_log'][1])/np.log(4)
+000054 |  expected=-eps*eps*duration*sig2
+000055 |  need(f'actual_logarithmic_Dyson_phase_coefficient_{alpha}',abs(measured-expected)<.01*abs(expected))
+000056 |  need(f'exact_ground_zero_relative_source_converges_{alpha}',np.linalg.norm(np.array(sub[-1]['ground_zero_echo_log'])-sub[-2]['ground_zero_echo_log'])<.002)
+000057 |  need(f'absolute_amplitude_not_replaced_by_unit_{alpha}',0<abs(complex(*sub[-1]['ground_zero_echo']))<.99)
+000058 | 
+000059 | # Independent four-state Fock check of the positive-filled/hole chart.
+000060 | p=.25;s=float(sv[0]);h=p*z+s*x;he=p*z+(1-eps)*s*x
+000061 | E=np.sqrt(p*p+s*s);Ee=np.sqrt(p*p+(1-eps)**2*s*s)
+000062 | ann=[]
+000063 | for k in range(2):
+000064 |  A=np.zeros((4,4))
+000065 |  for st in range(4):
+000066 |   if st>>k&1:A[st^(1<<k),st]=(-1)**((st&((1<<k)-1)).bit_count())
+000067 |  ann.append(A)
+000068 | def dg(m):return sum((m[i,j]*ann[i].T@ann[j] for i in range(2) for j in range(2)),np.zeros((4,4),complex))
+000069 | H0=E*np.eye(4)-dg(h);He=Ee*np.eye(4)-dg(he)
+000070 | rho=expm(-2*ell*H0);rho/=np.trace(rho)
+000071 | fock=np.trace(rho@expm(-1j*duration*H0)@expm(1j*duration*He))
+000072 | need('independent_Fock_echo_in_positive_filled_chart',abs(fock-pair(np.array(p),s)[1])<1e-12)
+000073 | need('both_given_excitation_generators_positive_ground_zero',min(np.linalg.eigvalsh(H0))>-1e-10 and abs(min(np.linalg.eigvalsh(H0)))<1e-10 and min(np.linalg.eigvalsh(He))>-1e-10)
+000074 | out={'result_id':'L20261102E','all_passed':all(checks.values()),'checks':checks,'sigma2_original':float(sig2),'predicted_raw_log_phase_slope':float(-eps*eps*duration*sig2),'duration':duration,'pulse_epsilon':eps,'rows':rows,'scope':'Actual original radial quark pulse, both given quarter branches, Cplus positive-filled/hole chart and its existing ground-zero excitation normalization. Rectangular pulse is a probe, not a field law. Finite diagnostics corroborate analytic limit. Absolute TFPT vacuum functional is not replaced by ground-zero excitation energy.'}
+000075 | Path(__file__).with_name('dyson-echo-results.json').write_text(json.dumps(out,indent=2)+'\n')
+000076 | print(json.dumps({'all_passed':out['all_passed'],'checks':len(checks),'phase_slope':out['predicted_raw_log_phase_slope'],'last_rows':[r for r in rows if r['N']==2048]},indent=2))

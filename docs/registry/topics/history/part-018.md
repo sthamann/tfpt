@@ -49,7 +49,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/archive--tfpt-45--02_carrier_rigidity_standard_model_packet/sections/002-section-seam-winding-as-source-of-the-integer-conditions.tex:266-310](../../../../documents/archive--tfpt-45--02_carrier_rigidity_standard_model_packet/sections/002-section-seam-winding-as-source-of-the-integer-conditions.tex#L266) · `section:1d17cb67633074f90691` · section
 
-Use : Sections 3.3, 3.4, and 3.5 for carrier normal form, internal stabilizer, one-family packet, character identities, trace identities, and abelian index. Sections 5.1–5.3 only for carrier-relevant compression identities. Sections 6.1–6.6 for families, occupancy, and compact Higgs index. Sections 8.11–8.15 for the Yukawa-based discharge of carrier premises. Section 8.19 and Section 9.11 only for the joint discrete 
+Use : Sections 3.3, 3.4, and 3.5 for carrier normal form, internal stabilizer, one-family packet, character identities, trace identities, and abelian index. Sections 5.1–5.3 only for carrier-relevant compression identities. Sections 6.1–6.6 for families, occupancy, and compact Higgs index. Sections 8.11–8.15 for the Yukawa-based discharge of carrier premises. Section 8.19 and Section 9.11 only for the joint discrete
 
 ## Not Used Here
 
@@ -91,7 +91,7 @@ The retained seed [formula in source] projects to the bridge observables [formul
 
 [documents/archive--tfpt-45--03_electromagnetic_closure_flavor_transport/sections/001-section-electromagnetic-closure.tex:126-177](../../../../documents/archive--tfpt-45--03_electromagnetic_closure_flavor_transport/sections/001-section-electromagnetic-closure.tex#L126) · `section:06db7a3e9e3e1c287faf` · subsection
 
-Before the determinant-line response is invoked in its full form, the same retained seed admits a short bridge derivation that connects the boundary-normalised axion–photon coupling to the cosmological birefringence amplitude. Starting from the unified-field-equation reduction of the seam transfer, the dimensionless axion–photon anomaly coefficient is [formula in source] and the modified Maxwell sector responds to a 
+Before the determinant-line response is invoked in its full form, the same retained seed admits a short bridge derivation that connects the boundary-normalised axion–photon coupling to the cosmological birefringence amplitude. Starting from the unified-field-equation reduction of the seam transfer, the dimensionless axion–photon anomaly coefficient is [formula in source] and the modified Maxwell sector responds to a
 
 ## Flavor Transport
 
@@ -199,7 +199,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/archive--tfpt-45--04_admissibility_strong_cp_qft_closure/sections/001-section-selector-versus-dynamics.tex:191-209](../../../../documents/archive--tfpt-45--04_admissibility_strong_cp_qft_closure/sections/001-section-selector-versus-dynamics.tex#L191) · `section:dc2548243d0e4165fe45` · section
 
-Use : Sections 7.4 and 7.5 for hadronic admissibility and strong-CP ingredients. Section 8 as the main technical body, with carrier repetition removed. Sections 8.20–8.22 for topological positivity and strong-CP closure. Sections 8.23–8.41 for reflection positivity, OS closure, local net, and scattering. Section 13.2 for exact admissible RG flow, 1PI expansion, and observable hierarchy. Appendices E, F, and H as the 
+Use : Sections 7.4 and 7.5 for hadronic admissibility and strong-CP ingredients. Section 8 as the main technical body, with carrier repetition removed. Sections 8.20–8.22 for topological positivity and strong-CP closure. Sections 8.23–8.41 for reflection positivity, OS closure, local net, and scattering. Section 13.2 for exact admissible RG flow, 1PI expansion, and observable hierarchy. Appendices E, F, and H as the
 
 ## Not Used Here
 
@@ -413,7 +413,7 @@ Proof skeleton. [formula in source] is the antisymmetric two-form occupancy on [
 
 [documents/archive--tfpt-45--07_cmb_operational_closure_planck_pipeline/sections/002-section-the-five-lemmas-native-closure-conjecture-v4-6.tex:112-137](../../../../documents/archive--tfpt-45--07_cmb_operational_closure_planck_pipeline/sections/002-section-the-five-lemmas-native-closure-conjecture-v4-6.tex#L112) · `section:6322f7e4c6b01cc9fa93` · paragraph
 
-where [formula in source] is the admissible primordial-curvature Hessian, [formula in source] is the primitive seam branch state with winding class [formula in source] , [formula in source] is the Calderon sheet involution (which enforces the reality constraint [formula in source] ), [formula in source] is the observer embedding (worldline + tetrad + orientation + last-scattering light cone), and [formula in source] 
+where [formula in source] is the admissible primordial-curvature Hessian, [formula in source] is the primitive seam branch state with winding class [formula in source] , [formula in source] is the Calderon sheet involution (which enforces the reality constraint [formula in source] ), [formula in source] is the observer embedding (worldline + tetrad + orientation + last-scattering light cone), and [formula in source]
 
 ## Lemma E decomposition (E1–E5).
 

@@ -1,0 +1,52 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/original-local-source-variable-background-20261102/check_transition_words.py
+Original file SHA-256: 09453e79fe79f63371adf9efe3b56933e884cc7db49b9599648711af316fc4fc
+Inclusive original lines: 1-44
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Independent exterior-algebra mixed CAR words on an actual singular component."""
+000002 | from pathlib import Path
+000003 | from itertools import combinations,product
+000004 | import json
+000005 | import numpy as np
+000006 | from scipy.linalg import expm
+000007 | from scipy.special import expit
+000008 | rng=np.random.default_rng(252)
+000009 | Yu=rng.normal(size=(3,3))+1j*rng.normal(size=(3,3))
+000010 | s=float(np.linalg.svd(Yu,compute_uv=False)[0]);p=.25
+000011 | z=np.diag([1,-1]);x=np.array([[0,1],[1,0]])
+000012 | h=p*z+s*x;F=.13*s*x
+000013 | e,R=np.linalg.eigh(h);U=R.conj().T@(expm(.4j*h)@expm(-.4j*(h+F)))@R
+000014 | c=expit(-2*e);E=np.vstack([np.diag(np.sqrt(1-c)),np.diag(np.sqrt(c))])
+000015 | U4=np.block([[U,np.zeros_like(U)],[np.zeros_like(U),U]])
+000016 | ann=[]
+000017 | for i in range(4):
+000018 |  a=np.zeros((16,16))
+000019 |  for st in range(16):
+000020 |   if st>>i&1:a[st^(1<<i),st]=(-1)**((st&((1<<i)-1)).bit_count())
+000021 |  ann.append(a)
+000022 | omega=np.zeros(16,dtype=complex)
+000023 | for ix in combinations(range(4),2):omega[sum(1<<i for i in ix)]=np.linalg.det(E[list(ix),:])
+000024 | G=np.zeros((16,16),complex)
+000025 | for st in range(16):
+000026 |  rows=[i for i in range(4) if st>>i&1]
+000027 |  for col in range(16):
+000028 |   cols=[j for j in range(4) if col>>j&1]
+000029 |   if len(rows)==len(cols):G[st,col]=np.linalg.det(U4[np.ix_(rows,cols)]) if rows else 1
+000030 | amplitude=omega.conj()@G@omega
+000031 | Q=U4@E@np.linalg.inv(E.conj().T@U4@E)@E.conj().T
+000032 | errors=[]
+000033 | for i,j in product(range(4),repeat=2):
+000034 |  direct=omega.conj()@ann[j].T@ann[i]@G@omega/amplitude
+000035 |  errors.append(abs(direct-Q[i,j]))
+000036 | four=[]
+000037 | for i,j,k,l in product(range(4),repeat=4):
+000038 |  direct=omega.conj()@ann[i].T@ann[j].T@ann[l]@ann[k]@G@omega/amplitude
+000039 |  expected=Q[k,i]*Q[l,j]-Q[l,i]*Q[k,j]
+000040 |  four.append(abs(direct-expected))
+000041 | out={'all_passed':bool(max(errors+four)<1e-11),'two_field_words':len(errors),'four_field_words':len(four),'max_error':float(max(errors+four)),'scope':'Actual original seed252 Yukawa singular component and its coherent two-face Slater state. Independent sixteen-state exterior-algebra evaluation, not full physical source matching.'}
+000042 | if not out['all_passed']:raise RuntimeError(out)
+000043 | Path(__file__).with_name('transition-word-results.json').write_text(json.dumps(out,indent=2)+'\n')
+000044 | print(json.dumps(out))

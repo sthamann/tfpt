@@ -102,7 +102,7 @@ Die neue Rechnung muss keinen odden Messoperator als frei verfügbaren Aktuator 
 
 [documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/002-subsection-7-derselbe-grundzustand-besitzt-eine-kontroll.tex:266-312](../../../../documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/002-subsection-7-derselbe-grundzustand-besitzt-eine-kontroll.tex#L266) · `section:71f08ad0e58f0de9456a` · subsection
 
-@ > p( - 4 ) * 0.3333 > p( - 4 ) * 0.3333 > p( - 4 ) * 0.3333@ Gate & Was diese Runde tatsächlich beiträgt & Was weiter fehlt \\ T1 Auswahl & Zwei Spin-Lifts, ein Clock-Intertwiner, ein bedingter Reflexionsselektor und Zustandsselektion in einer kleinen Klasse & Ursprüngliche gemeinsame Vertex-/Kantenreflexion, Kopienregel und Kopplungsvertrag \\ T2 markierte Seam & Die verlorene fermionische Hebungsinformation wird 
+@ > p( - 4 ) * 0.3333 > p( - 4 ) * 0.3333 > p( - 4 ) * 0.3333@ Gate & Was diese Runde tatsächlich beiträgt & Was weiter fehlt \\ T1 Auswahl & Zwei Spin-Lifts, ein Clock-Intertwiner, ein bedingter Reflexionsselektor und Zustandsselektion in einer kleinen Klasse & Ursprüngliche gemeinsame Vertex-/Kantenreflexion, Kopienregel und Kopplungsvertrag \\ T2 markierte Seam & Die verlorene fermionische Hebungsinformation wird
 
 ## Automatisch aus dem abgeschlossenen Replay
 
@@ -294,7 +294,7 @@ Explicit source references:
 
 [documents/note_e8_gaussian_code/sections/002-section-explicit-character-basis-of-the-eight-coxeter-ch.tex:1-93](../../../../documents/note_e8_gaussian_code/sections/002-section-explicit-character-basis-of-the-eight-coxeter-ch.tex#L1) · `section:4924c7863d81853eba3d` · section
 
-The exponents of [formula in source] are the totatives [formula in source] of the Coxeter number [formula in source] . As a multiplicative group this set has element orders [formula in source] in that listing — explicitly the pairs (unit, order) [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] 
+The exponents of [formula in source] are the totatives [formula in source] of the Coxeter number [formula in source] . As a multiplicative group this set has element orders [formula in source] in that listing — explicitly the pairs (unit, order) [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source]
 
 Explicit source references:
 
@@ -485,7 +485,7 @@ with [formula in source] the number of non-empty occupation words of the [formul
 
 [documents/tfpt_1_architecture_e8/sections/008-source.tex:180-240](../../../../documents/tfpt_1_architecture_e8/sections/008-source.tex#L180) · `section:5b3637090ad83e509233` · subsection
 
-Identify [formula in source] with the even-weight binary code on five bits. A transition [formula in source] has flip [formula in source] , even and nonempty, so [formula in source] ; per state there are [formula in source] flips, giving and the [formula in source] undirected flips match the [formula in source] [formula in source] root pairs ( , counting). This makes the atlas conjecture testable: a genuine root map 
+Identify [formula in source] with the even-weight binary code on five bits. A transition [formula in source] has flip [formula in source] , even and nonempty, so [formula in source] ; per state there are [formula in source] flips, giving and the [formula in source] undirected flips match the [formula in source] [formula in source] root pairs ( , counting). This makes the atlas conjecture testable: a genuine root map
 
 Explicit source references:
 
@@ -606,7 +606,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/tfpt_4_frontier/sections/001-source.tex:95-109](../../../../documents/tfpt_4_frontier/sections/001-source.tex#L95) · `section:84d26a09031108cede24` · paragraph
 
-The seed already fixes the baryon fraction (the [formula in source] decoder): [formula in source] matching the observed [formula in source] . The baryon-to-photon ratio is then the standard cosmological readout [formula in source] . With the TFPT Hubble value ( [formula in source] , from [formula in source] ), [formula in source] So [formula in source] is a downstream cosmological readout from the closed [formula in 
+The seed already fixes the baryon fraction (the [formula in source] decoder): [formula in source] matching the observed [formula in source] . The baryon-to-photon ratio is then the standard cosmological readout [formula in source] . With the TFPT Hubble value ( [formula in source] , from [formula in source] ), [formula in source] So [formula in source] is a downstream cosmological readout from the closed [formula in
 
 ## Front matter / support
 
@@ -680,7 +680,7 @@ Explicit source references:
 
 [documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/009-subsection-zustand-und-wirkung-aus-derselben-r-ckwirkung.tex:1-9](../../../../documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/009-subsection-zustand-und-wirkung-aus-derselben-r-ckwirkung.tex#L1) · `section:fb5a79ad28f8f85f979b` · subsection
 
-Die gemeinsame Information ist jetzt genauer bestimmt. Eine korrekte Vergröberung muss sowohl die dynamische Antwort als auch den reduzierten Zustand aus demselben vollständigen Kern gewinnen. Am ursprünglichen Neutrinooperator ist diese Verbindung nun berechnet. Der aus einer Momentaufnahme rekonstruierte Operator ist im Allgemeinen nicht die ruhende Massenantwort. Unter passender Trennung der schweren und leichten 
+Die gemeinsame Information ist jetzt genauer bestimmt. Eine korrekte Vergröberung muss sowohl die dynamische Antwort als auch den reduzierten Zustand aus demselben vollständigen Kern gewinnen. Am ursprünglichen Neutrinooperator ist diese Verbindung nun berechnet. Der aus einer Momentaufnahme rekonstruierte Operator ist im Allgemeinen nicht die ruhende Massenantwort. Unter passender Trennung der schweren und leichten
 
 ## Geprüfter Anhang: Orientierung und mehrteilige Antworten erhalten
 
@@ -780,7 +780,7 @@ Der im Anwendungsteil verwendete Vergleich ist am datierten Original nachgelesen
 
 [documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/018-subsection-ausf-hrbare-ergebnisse-der-sitzung.tex:92-236](../../../../documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/018-subsection-ausf-hrbare-ergebnisse-der-sitzung.tex#L92) · `section:37e45eedbaaf285f97f5` · section
 
-L0.22 L0.70 Begriff & Gemeinte Bedeutung\\ Quelle & Algebra von Operationen samt Zustand, aus denen gemeinsame Antworten berechnet werden\\ Ladung & Kennzeichnung, wie ein Feld unter einer bestimmten Symmetrie transformiert\\ Kokzyklus & Konsistente Phasenregel, die beim Zusammensetzen geladener Operationen benötigt wird\\ Carry & Mitgeführte Information, die bei späteren Operationen wieder beobachtbar werden kann\\ 
+L0.22 L0.70 Begriff & Gemeinte Bedeutung\\ Quelle & Algebra von Operationen samt Zustand, aus denen gemeinsame Antworten berechnet werden\\ Ladung & Kennzeichnung, wie ein Feld unter einer bestimmten Symmetrie transformiert\\ Kokzyklus & Konsistente Phasenregel, die beim Zusammensetzen geladener Operationen benötigt wird\\ Carry & Mitgeführte Information, die bei späteren Operationen wieder beobachtbar werden kann\\
 
 Explicit source references:
 
@@ -960,7 +960,7 @@ with [formula in source] the number of non-empty occupation words of the [formul
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex:4344-4404](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex#L4344) · `section:5e1509353325b787484d` · subsection
 
-Identify [formula in source] with the even-weight binary code on five bits. A transition [formula in source] has flip [formula in source] , even and nonempty, so [formula in source] ; per state there are [formula in source] flips, giving and the [formula in source] undirected flips match the [formula in source] [formula in source] root pairs ( , counting). This makes the atlas conjecture testable: a genuine root map 
+Identify [formula in source] with the even-weight binary code on five bits. A transition [formula in source] has flip [formula in source] , even and nonempty, so [formula in source] ; per state there are [formula in source] flips, giving and the [formula in source] undirected flips match the [formula in source] [formula in source] root pairs ( , counting). This makes the atlas conjecture testable: a genuine root map
 
 Explicit source references:
 

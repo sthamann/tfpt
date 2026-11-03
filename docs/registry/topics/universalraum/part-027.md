@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Die Zahlenprogramme: Nähe, Spannungen und offene Übertragung
+
+[experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/09_physik.tex:84-85](../../../../experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/09_physik.tex#L84) · `section:ce734dcb21f8f15a121a` · chapter
+
+No opening prose excerpt; see the source.
+
 ## Die Standardmodell-Ladungen
 
 [experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/09_physik.tex:86-100](../../../../experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/09_physik.tex#L86) · `section:1621d31636ed7eda18f5` · section
@@ -80,7 +86,7 @@ Aktueller Stand v1.3 Der endliche Kern ist jetzt konkreter: Ein gemeinsamer korr
 
 [experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/10_ausblick.tex:45-55](../../../../experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/10_ausblick.tex#L45) · `section:988746a07d77860e06cd` · section
 
-L31mmL62mmL57mm Fuge& Erreichter Stand& Verbleibende Herkunft\\ Kopplungsstärke&Exakter antisymmetrischer Vermittler; [formula in source] unter benannten Bedingungen; S11 liefert [formula in source] in seiner Normierung.&Energien, Amplituden, konkurrierende Kanäle und ihre gemeinsame Auswahl.\\ Kopplungsgraph&Clebsch-Graph exakt unter „Ort = Spinorgewicht“; Tetramer, Kette und Clebsch getrennt.&Ortslesart, Belegung, 
+L31mmL62mmL57mm Fuge& Erreichter Stand& Verbleibende Herkunft\\ Kopplungsstärke&Exakter antisymmetrischer Vermittler; [formula in source] unter benannten Bedingungen; S11 liefert [formula in source] in seiner Normierung.&Energien, Amplituden, konkurrierende Kanäle und ihre gemeinsame Auswahl.\\ Kopplungsgraph&Clebsch-Graph exakt unter „Ort = Spinorgewicht“; Tetramer, Kette und Clebsch getrennt.&Ortslesart, Belegung,
 
 ## T1 bis T8: der vollständige Vertrag
 
@@ -98,7 +104,7 @@ L9mmL62mmL79mm Tor& Was gemeinsam nachzuweisen ist& Was bisher dazu vorliegt\\ T
 
 [experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/10_ausblick.tex:83-89](../../../../experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/10_ausblick.tex#L83) · `section:f01e5e78bccaed50fbd6` · section
 
-Der Kandidat, auf den die Dokumente gemeinsam zulaufen Es gibt eine phasentreue Kompositionsregel mit positivem Zustandsfunktional, deren endliche Auslesungen die markierte TFPT-Struktur tragen. Aus ihren gekoppelten Anregungen und Aufzeichnungen entsteht ein kontrollierter gemeinsamer Grenzprozess. Erst dieser Grenzprozess liefert Raumzeit, chirale Materie, Wechselwirkungen und gegebenenfalls Gravitation. Die erste 
+Der Kandidat, auf den die Dokumente gemeinsam zulaufen Es gibt eine phasentreue Kompositionsregel mit positivem Zustandsfunktional, deren endliche Auslesungen die markierte TFPT-Struktur tragen. Aus ihren gekoppelten Anregungen und Aufzeichnungen entsteht ein kontrollierter gemeinsamer Grenzprozess. Erst dieser Grenzprozess liefert Raumzeit, chirale Materie, Wechselwirkungen und gegebenenfalls Gravitation. Die erste
 
 ## Korrekturregister und ergänzende Details
 
@@ -194,7 +200,7 @@ Die Unterlagen und der zusätzlich eingesehene Forschungsbestand ergeben keine a
 
 [experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/12_schatten_arithmetik.tex:82-96](../../../../experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/12_schatten_arithmetik.tex#L82) · `section:171e1728c5ae88592388` · subsection
 
-Die ersten sechs Werte sind [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] und [formula in source] . Daraus folgt für [formula in source] Hier ist der Primzahlbezug wirklich vorhanden. Die Selbstdualität des Gitters schließt die Poisson-Transformation auf dasselbe Gitter. Poisson-Summation gilt auch für nichtselbstduale Gitter und verbindet dann Gitter und 
+Die ersten sechs Werte sind [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] und [formula in source] . Daraus folgt für [formula in source] Hier ist der Primzahlbezug wirklich vorhanden. Die Selbstdualität des Gitters schließt die Poisson-Transformation auf dasselbe Gitter. Poisson-Summation gilt auch für nichtselbstduale Gitter und verbindet dann Gitter und
 
 ## Warum die fehlende Positivität so hartnäckig ist
 
@@ -266,7 +272,7 @@ Die komplexe Vierdimensionalität ist für den bestehenden Pauli-/Spinorbaukaste
 
 [experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/13_schatten_quanten.tex:76-81](../../../../experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/13_schatten_quanten.tex#L76) · `section:472b8e12ec7e00a99875` · section
 
-Die bisherigen Registerbeispiele erklären, wie ein global kohärenter Ablauf nach eingeschränktem Zugriff wie ein irreversibler Prozess aussehen kann. Sie liefern noch keine eindeutige Lösung des Messproblems: Insbesondere folgt aus einer diagonalen reduzierten Dichtematrix allein keine Auswahl eines einzelnen Ereignisses. Eine zusätzliche Kollapsdynamik müsste messbare Abweichungen angeben; eine unitäre Beschreibung 
+Die bisherigen Registerbeispiele erklären, wie ein global kohärenter Ablauf nach eingeschränktem Zugriff wie ein irreversibler Prozess aussehen kann. Sie liefern noch keine eindeutige Lösung des Messproblems: Insbesondere folgt aus einer diagonalen reduzierten Dichtematrix allein keine Auswahl eines einzelnen Ereignisses. Eine zusätzliche Kollapsdynamik müsste messbare Abweichungen angeben; eine unitäre Beschreibung
 
 ## Drei Raumrichtungen und eine Zeit: Welche Bedingungen bleiben?
 
@@ -386,7 +392,7 @@ No opening prose excerpt; see the source.
 
 [experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/17_schatten_quellen.tex:3-29](../../../../experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/17_schatten_quellen.tex#L3) · `section:a2485b8d2638af1f1a23` · section
 
-Die Erweiterung wurde am 14. September 2026 gegen verfügbare Originalabschnitte im lokalen Repository tfpt-theoryv4 abgeglichen. Der gelesene Git-Stand war 66b91e40e245569f06ab440ead80f446c9be0ee5. Dies identifiziert den Checkout; es behauptet keinen frischen vollständigen Beweis- oder Testlauf. Die tatsächlich verwendeten Dateiinhalte sind zusätzlich mit SHA-256 im Paket erfasst, auch soweit der Arbeitsbaum von Git 
+Die Erweiterung wurde am 14. September 2026 gegen verfügbare Originalabschnitte im lokalen Repository tfpt-theoryv4 abgeglichen. Der gelesene Git-Stand war 66b91e40e245569f06ab440ead80f446c9be0ee5. Dies identifiziert den Checkout; es behauptet keinen frischen vollständigen Beweis- oder Testlauf. Die tatsächlich verwendeten Dateiinhalte sind zusätzlich mit SHA-256 im Paket erfasst, auch soweit der Arbeitsbaum von Git
 
 Explicit source references:
 
@@ -452,7 +458,7 @@ Für genau zwei vollständige [formula in source] -Zellen und eine positive Brü
 
 [experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/18_audit_v13.tex:60-77](../../../../experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/18_audit_v13.tex#L60) · `section:fd239c991ed7e6c04dc9` · section
 
-Im ausgewiesenen harmonischen Modell eines geteilten Vermittlers lautet der symmetrische aktive Block Sein niedriger Zweig beginnt mit [formula in source] ; der antisymmetrische mit [formula in source] . Deshalb ist auf dem aktiven [formula in source] -Raum Nach Abzug beider Einzelbondkorrekturen [formula in source] bleibt Beide Schreibweisen sind kompatibel. Eine Konstante auf dem aktiven Sektor ist außerhalb davon 
+Im ausgewiesenen harmonischen Modell eines geteilten Vermittlers lautet der symmetrische aktive Block Sein niedriger Zweig beginnt mit [formula in source] ; der antisymmetrische mit [formula in source] . Deshalb ist auf dem aktiven [formula in source] -Raum Nach Abzug beider Einzelbondkorrekturen [formula in source] bleibt Beide Schreibweisen sind kompatibel. Eine Konstante auf dem aktiven Sektor ist außerhalb davon
 
 ## Ein exakter Stern-Spektralfilter unter zusätzlichen Ressourcen
 
@@ -512,13 +518,13 @@ Akzeptiere in jeder Sternrunde die Recordfolge 111: Alle acht ersten Recordfolge
 
 [experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/19_execution_v13.tex:88-109](../../../../experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/19_execution_v13.tex#L88) · `section:2f40225e7069ab9d24b9` · section
 
-Nach erfolgreicher Präparation folgen lokaler Quelltick [formula in source] , zweimal [formula in source] , Rücknahme [formula in source] und dasselbe [formula in source] -Runden-Filter. Ein ideales kostenloses [formula in source] -Messgerät wird nicht eingesetzt. Protokoll R behält denselben kohärenten Pointer; Protokoll F verwendet beim zweiten Schritt einen frischen. Mit [formula in source] lauten die gemeinsamen 
+Nach erfolgreicher Präparation folgen lokaler Quelltick [formula in source] , zweimal [formula in source] , Rücknahme [formula in source] und dasselbe [formula in source] -Runden-Filter. Ein ideales kostenloses [formula in source] -Messgerät wird nicht eingesetzt. Protokoll R behält denselben kohärenten Pointer; Protokoll F verwendet beim zweiten Schritt einen frischen. Mit [formula in source] lauten die gemeinsamen
 
 ## Was für eine native Implementierung noch fehlt
 
 [experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/19_execution_v13.tex:110-118](../../../../experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/19_execution_v13.tex#L110) · `section:baaed08bb68077f9f164` · section
 
-Das neue Register ist nicht Clifford: Ein vierqubitiger Pauli hat Spur null oder [formula in source] . Noch konkreter erzeugt der Quellinput [formula in source] genau 13 nichtverschwindende Rechenbasisamplituden. Das ist kein reiner Stabilizerzustand, dessen Trägergröße eine Zweierpotenz ist. Nur Cliffordoperationen, Stabilizer-Hilfszustände und Pauli-Messungen reichen auch mit Feedback nicht aus. Andere Kodierungen 
+Das neue Register ist nicht Clifford: Ein vierqubitiger Pauli hat Spur null oder [formula in source] . Noch konkreter erzeugt der Quellinput [formula in source] genau 13 nichtverschwindende Rechenbasisamplituden. Das ist kein reiner Stabilizerzustand, dessen Trägergröße eine Zweierpotenz ist. Nur Cliffordoperationen, Stabilizer-Hilfszustände und Pauli-Messungen reichen auch mit Feedback nicht aus. Andere Kodierungen
 
 ## Ungelesener Austausch ist keine Kühlung
 
@@ -530,7 +536,7 @@ Alle [formula in source] kommutieren mit [formula in source] ; der ungelesene Ka
 
 [experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/19_execution_v13.tex:126-129](../../../../experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/19_execution_v13.tex#L126) · `section:35b9994e51f9a1df159e` · section
 
-Ein nativer Adapter muss [formula in source] , [formula in source] , Kern und Belegung gemeinsam liefern, beim Half-Charge-Feld zusätzlich mit Domänen- und Energiekontrolle. Er muss den 13-Amplituden-Eingang, beide Recordzweige und die Acht-Runden-Echos reproduzieren, einschließlich Hilfszuständen und Fehlerausgängen. Erst anschließend ist eine skalierende Zellfamilie sinnvoll auf Geometrie, Chiralität und Spin 2 zu 
+Ein nativer Adapter muss [formula in source] , [formula in source] , Kern und Belegung gemeinsam liefern, beim Half-Charge-Feld zusätzlich mit Domänen- und Energiekontrolle. Er muss den 13-Amplituden-Eingang, beide Recordzweige und die Acht-Runden-Echos reproduzieren, einschließlich Hilfszuständen und Fehlerausgängen. Erst anschließend ist eine skalierende Zellfamilie sinnvoll auf Geometrie, Chiralität und Spin 2 zu
 
 ## Versionspaar v1.3: Quellen, Abdeckung und Reproduktion
 
@@ -609,9 +615,3 @@ N8 definiert 16 harte Ortsfaktoren [formula in source] und sechs Bosonmoden pro 
 [experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/21_new_inputs_v13.tex:95-111](../../../../experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/21_new_inputs_v13.tex#L95) · `section:9b4cf5f77a1728338407` · section
 
 Für [formula in source] gilt [formula in source] . Definiere [formula in source] mit [formula in source] . Dann In der Basis [formula in source] ist [formula in source] , [formula in source] , [formula in source] . Die unerwünschte Amplitude ist Sie verschwindet für die angegebene Wurzel exakt. Die ideale Phase ist [formula in source] . Es ist eine konkrete Anwendung bekannter https://arxiv.org/abs/quant-ph/0005055Am
-
-## Relaxation: konstruktiv möglich, aber nicht durch Bosonenverlust allein
-
-[experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/21_new_inputs_v13.tex:112-132](../../../../experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/21_new_inputs_v13.tex#L112) · `section:f77d7a4e0a9f7c8c0f55` · section
-
-Gewöhnliche Vermittlerverluste [formula in source] lassen vollständig symmetrische Farbzustände mit Vermittlervakuum dunkel. Auf 16 Trägern hat [formula in source] Dimension [formula in source] . Dieser Raum verhindert einen eindeutigen globalen Attraktor dieser Verlustdynamik.

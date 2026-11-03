@@ -557,7 +557,7 @@ If the [formula in source] channel and the induced Einstein channel are successf
 
 [documents/archive--paper-latex--tfpt-v30/sections/001-section-reading-guide-and-claim-map.tex:132-152](../../../../documents/archive--paper-latex--tfpt-v30/sections/001-section-reading-guide-and-claim-map.tex#L132) · `section:f2e3c62d4e138468e600` · subsection
 
-We use natural units [formula in source] . Relative operators are formulated in Euclidean signature and compared through a declared Wick-rotation bridge when Lorentzian language is needed. Higgs fields are denoted by [formula in source] , Hamiltonians by [formula in source] , and the cosmological Hubble rate by [formula in source] ; this avoids overloading the letter [formula in source] . Newton's constant is always 
+We use natural units [formula in source] . Relative operators are formulated in Euclidean signature and compared through a declared Wick-rotation bridge when Lorentzian language is needed. Higgs fields are denoted by [formula in source] , Hamiltonians by [formula in source] , and the cosmological Hubble rate by [formula in source] ; this avoids overloading the letter [formula in source] . Newton's constant is always
 
 ## Completion program A: families, Higgs, and [formula in source] chi
 

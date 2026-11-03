@@ -1,0 +1,97 @@
+ACTUAL NATIVE CLOCK AND SOURCE D8: INDEPENDENT CONDITIONAL CLOSURE REVIEW
+2 November 2026. No canonical or Atlas mutation.
+
+Verified result
+For the supplied literal native permutation sigma and the actual source
+isometry M, the integral span
+  L=span_Z(D8 union R(D8)), R=M^T sigma M,
+is even and unimodular. Explicitly L=D8+Z p=D8 union (D8+s), where
+  s=(1,1,1,1,1,1,1,1)/2,
+  p=R(e0+e2)=(1,1,-1,1,-1,1,1,1)/2.
+The index [L:D8]=2 and R(L)=L. No E8 basis, root set or target lattice
+was loaded in the independent HNF calculation. Thus the usual D8+s
+completion is an OUTPUT of this conditional charge-closure test.
+
+Inputs and exact provenance
+M: experiments/theory-contracts/v16-operator-pullback-20261014/
+   fold-results.json, key explicit_Weyl_matrix.
+sigma: verification/v634_st31_structure.py, literal SIGMA_IDX assignment
+   [4,5,0,1,2,3,6,7]. The actual convention is (sigma x)_j=x_idx[j].
+The script extracts only that assignment with AST. It does not import
+v634, execute its E8 root constructor, or assume that sigma preserves E8.
+All arithmetic is exact rational/integer arithmetic.
+
+Analytic proof without E8 classification
+Write D8={q in Z8:sum q even}. Its standard simple-root basis is
+  e0-e1,...,e6-e7,e6+e7,
+with covolume2 and Gram determinant4.
+
+The computed R is orthogonal of order3. Its columns fall into two sets
+A={0,1,4,5}, B={2,3,6,7}. A columns have support in rows0,1,2,3;
+B columns in rows4,5,6,7. Each supported four-vector has entries +/-1/2
+and an ODD number of minus signs. The four entries of every column sum
+to +1 or -1. These are identities of the explicit R, not root-count data.
+
+Every D8 root is +/-e_i +/-e_j. For i,j in the same column set the
+image is integral, has even coordinate sum and norm2, hence belongs to
+D8. There are 2*binom(4,2)*4=48 such roots. For i,j in different column
+sets the image has eight entries +/-1/2. Each four-entry block still
+has odd sign parity, since multiplying a block by -1 flips four signs.
+The total sign parity is therefore even. All these 4*4*4=64 images
+lie in the SAME coset D8+s. In particular p is one such image, and
+p-s=(0,0,-1,0,-1,0,0,0) belongs to D8.
+
+D8 roots generate D8. Consequently R(D8) is contained in D8+Zs.
+Conversely p belongs to R(D8), so D8+Zp=D8+Zs is contained in L.
+This proves equality L=D8+Zs, without using W(D8) orbit saturation.
+
+For q in D8, q*s=sum(q)/2 is integral, s*s=2 and 2s belongs to D8.
+The lattice D8+Zs is therefore integral and even. The new coset has
+order2, so its Gram determinant is det(D8)/2^2=4/4=1. Its norm2
+half vectors are exactly the 128 choices of signs with even parity.
+These facts identify the conventional D8+s even-unimodular lattice,
+without needing the classification of rank8 unimodular lattices.
+
+The independent HNF also verifies R(L) subset L. Orthogonality and
+detR=1 then give equality. Thus no third application of the order3
+clock enlarges the output lattice.
+
+Independent 8x8 HNF
+The executable uses the source basis B above and computes the column HNF
+  H=HNF([2B,2RB]), L_basis=H/2.
+Its diagonal entries are (4,2,2,2,2,2,2,1), detH=256, so
+  covolume(L)=256/2^8=1.
+It directly checks that (H/2)^T(H/2) is integral with even diagonal and
+determinant1. It independently checks HNF([2B,2p])=H, and only AFTER
+obtaining H compares HNF([2B,2s]) with it. It checks all112 old roots,
+all128 resulting half weights, and R stability on the full HNF basis.
+
+Files in the shared work/seam_origin directory:
+  clock_closure_hnf.py
+  clock_closure_hnf_result.json
+Executed with python3 -B, result
+  PASS_CONDITIONAL_SOURCE_CLOCK_LATTICE_CLOSURE.
+The initial Sympy domain-type error was repaired by constructing the
+doubled integer matrix explicitly over ZZ before HNF. The final checks pass.
+
+Crucial active/passive distinction
+The physical inference requires an ACTIVE allowed source operation whose
+charged images and the old source fields belong to ONE common local field
+fibre, with their cocycles, admissible restrictions, state, reflection and
+actual source time transported compatibly. Under that premise, admission
+of Rq for every old q forces the common charge lattice to contain L.
+
+A PASSIVE coordinate/background change A -> R(A) supplies an equivalent
+description on another chart or source fibre. It does not require the
+physical algebra to contain BOTH A and R(A), so by itself it does not
+force this generated union. Merely permuting native coordinates is not
+the missing active source-field operation. No diagonal sigma_d operation
+has been identified with this coordinate permutation in the present test.
+
+The first additional origin premise is therefore actual active clock
+admission in that common physical field fibre, NOT even unimodularity or
+an E8 target. Historically v634 constructs its sigma in an already
+E8-marked native model. The HNF does not use that E8 target, but the source
+dictionary from original P1 to this active sigma is still to be derived.
+This result is conditional lattice selection and does not establish P1
+locality, a physical time symmetry, an observable menu or fundamental origin.

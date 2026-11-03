@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Nachtrag A: Was am neuen v1.6.3-Erklärtext wirklich neu ist
+
+[documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/016-subsection-beweisumfang-label-beweisumfang.tex:24-26](../../../../documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/016-subsection-beweisumfang-label-beweisumfang.tex#L24) · `section:f9e99cd2d3f268cbf207` · section
+
+No opening prose excerpt; see the source.
+
 ## Urteil
 
 [documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/016-subsection-beweisumfang-label-beweisumfang.tex:27-45](../../../../documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/016-subsection-beweisumfang-label-beweisumfang.tex#L27) · `section:971e96d0b0e4252c6f98` · subsection
@@ -691,9 +697,3 @@ No opening prose excerpt; see the source.
 [documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/025-subsection-6-feldtyp-was-tats-chlich-erzwungen.tex:71-81](../../../../documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/025-subsection-6-feldtyp-was-tats-chlich-erzwungen.tex#L71) · `section:814c46fad019c0a9b346` · section
 
 Arbeitsstand 2026-09-15. Geprüft wird die Anlage 7380c383-f364-4ef8-8066-24aa4d180d85 gegen den Vertrag universalraum-native-operations-ground-response-20260915. Fremde Quellen und Ausgaben wurden nicht verändert. Die hier angegebenen Matrix- und Graphbefunde beziehen sich auf denselben gepinnten Tensor W mit SHA-256 3f00a0892157a691e4ef26920c3702772c7bf76a250fad98ff04a079bb64b763.
-
-## 1. Der neue Nichtschluss ist exakt bestätigt
-
-[documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/025-subsection-6-feldtyp-was-tats-chlich-erzwungen.tex:82-121](../../../../documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/025-subsection-6-feldtyp-was-tats-chlich-erzwungen.tex#L82) · `section:ba4b2f7292a59b400c07` · subsection
-
-Für v_n=(T†) n F habe ich u=T T† v_2=T v_3 unmittelbar aus den 480 nativen Paaren neu kontrahiert. Das materialisiert nicht die 15.252.960 Komponenten von v₃. Es arbeitet mit 108.240 Komponenten von v₂ und 293.280 nichtverschwindenden Komponenten des Ergebnisses u. Es wurden 45.771.360 zulässige Erzeugungsübergänge und 139.289.760 anschließende Entnahmebeiträge exakt mit ganzzahliger Fermion-Parität und Boson-Multipl

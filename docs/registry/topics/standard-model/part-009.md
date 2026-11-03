@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## A two-dimensional action lattice
+
+[experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex:4165-4192](../../../../experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex#L4165) · `section:90d3f73fd608744f36cd` · subsection
+
+All scales sit on the integer lattice spanned by two generators — the gauge unit [formula in source] and the flavor unit [formula in source] — as [formula in source] : @llll@ scale & [formula in source] & [formula in source] & axis \\ [formula in source] & [formula in source] & [formula in source] & gauge \\ [formula in source] & [formula in source] & [formula in source] & gauge \\ [formula in source] & [formula in s
+
 ## The Einstein normaliser as a corrected tree value
 
 [experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex:4193-4210](../../../../experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex#L4193) · `section:d5cab64b4e18b1c0c3e3` · section
@@ -23,7 +29,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex:4318-4334](../../../../experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex#L4318) · `section:6b9dec719137c69d70de` · subsection
 
-Coxeter/gauge typing of the lcm–gcd pair. Writing [formula in source] and [formula in source] , the relations become [formula in source] and [formula in source] : the local SM algebra is the gcd of the Coxeter double-period and the [formula in source] rank-occupancy, and the [formula in source] root count is their lcm. Likewise the EW exponent reads [formula in source] (Coxeter principal part plus a rank singlet). \ 
+Coxeter/gauge typing of the lcm–gcd pair. Writing [formula in source] and [formula in source] , the relations become [formula in source] and [formula in source] : the local SM algebra is the gcd of the Coxeter double-period and the [formula in source] rank-occupancy, and the [formula in source] root count is their lcm. Likewise the EW exponent reads [formula in source] (Coxeter principal part plus a rank singlet). \
 
 ## Lepton flavor decuple: the charged-lepton determinant carries [formula in source]
 
@@ -99,7 +105,7 @@ S08 untersucht einen zweistufigen Lauf mit quellenseitig ausgewähltem Skalarinh
 
 [experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/10_ausblick.tex:80-86](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/10_ausblick.tex#L80) · `section:ff4ade2147e0e5138113` · section
 
-Der Kandidat, auf den die Dokumente gemeinsam zulaufen Es gibt eine phasentreue Kompositionsregel mit positivem Zustandsfunktional, deren endliche Auslesungen die markierte TFPT-Struktur tragen. Aus ihren gekoppelten Anregungen und Aufzeichnungen entsteht ein kontrollierter gemeinsamer Grenzprozess. Erst dieser Grenzprozess liefert Raumzeit, chirale Materie, Wechselwirkungen und gegebenenfalls Gravitation. Die erste 
+Der Kandidat, auf den die Dokumente gemeinsam zulaufen Es gibt eine phasentreue Kompositionsregel mit positivem Zustandsfunktional, deren endliche Auslesungen die markierte TFPT-Struktur tragen. Aus ihren gekoppelten Anregungen und Aufzeichnungen entsteht ein kontrollierter gemeinsamer Grenzprozess. Erst dieser Grenzprozess liefert Raumzeit, chirale Materie, Wechselwirkungen und gegebenenfalls Gravitation. Die erste
 
 ## Die Naht braucht mehr als ein paar zusätzliche Takte
 
@@ -111,7 +117,7 @@ Die vorhandene freie fermionische Naht hat bei fester Größe eine endliche Zust
 
 [experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/19_execution_v13.tex:123-126](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/19_execution_v13.tex#L123) · `section:ceb7420c310edbdbbc6d` · section
 
-Ein nativer Adapter muss [formula in source] , [formula in source] , Kern und Belegung gemeinsam liefern, beim Half-Charge-Feld zusätzlich mit Domänen- und Energiekontrolle. Er muss den 13-Amplituden-Eingang, beide Recordzweige und die Acht-Runden-Echos reproduzieren, einschließlich Hilfszuständen und Fehlerausgängen. Erst anschließend ist eine skalierende Zellfamilie sinnvoll auf Geometrie, Chiralität und Spin 2 zu 
+Ein nativer Adapter muss [formula in source] , [formula in source] , Kern und Belegung gemeinsam liefern, beim Half-Charge-Feld zusätzlich mit Domänen- und Energiekontrolle. Er muss den 13-Amplituden-Eingang, beide Recordzweige und die Acht-Runden-Echos reproduzieren, einschließlich Hilfszuständen und Fehlerausgängen. Erst anschließend ist eine skalierende Zellfamilie sinnvoll auf Geometrie, Chiralität und Spin 2 zu
 
 ## S01
 
@@ -157,7 +163,7 @@ S08 untersucht einen zweistufigen Lauf mit quellenseitig ausgewähltem Skalarinh
 
 [experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/10_ausblick.tex:77-83](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/10_ausblick.tex#L77) · `section:b143c5f15479323b8a4b` · section
 
-Der Kandidat, auf den die Dokumente gemeinsam zulaufen Es gibt eine phasentreue Kompositionsregel mit positivem Zustandsfunktional, deren endliche Auslesungen die markierte TFPT-Struktur tragen. Aus ihren gekoppelten Anregungen und Aufzeichnungen entsteht ein kontrollierter gemeinsamer Grenzprozess. Erst dieser Grenzprozess liefert Raumzeit, chirale Materie, Wechselwirkungen und gegebenenfalls Gravitation. Die erste 
+Der Kandidat, auf den die Dokumente gemeinsam zulaufen Es gibt eine phasentreue Kompositionsregel mit positivem Zustandsfunktional, deren endliche Auslesungen die markierte TFPT-Struktur tragen. Aus ihren gekoppelten Anregungen und Aufzeichnungen entsteht ein kontrollierter gemeinsamer Grenzprozess. Erst dieser Grenzprozess liefert Raumzeit, chirale Materie, Wechselwirkungen und gegebenenfalls Gravitation. Die erste
 
 ## Die Naht braucht mehr als ein paar zusätzliche Takte
 
@@ -447,7 +453,7 @@ S08 untersucht einen zweistufigen Lauf mit quellenseitig ausgewähltem Skalarinh
 
 [experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/10_ausblick.tex:85-91](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/10_ausblick.tex#L85) · `section:4a39d97adb15420253f1` · section
 
-Der Kandidat, auf den die Dokumente gemeinsam zulaufen Es gibt eine phasentreue Kompositionsregel mit positivem Zustandsfunktional, deren endliche Auslesungen die markierte TFPT-Struktur tragen. Aus ihren gekoppelten Anregungen und Aufzeichnungen entsteht ein kontrollierter gemeinsamer Grenzprozess. Erst dieser Grenzprozess liefert Raumzeit, chirale Materie, Wechselwirkungen und gegebenenfalls Gravitation. Die erste 
+Der Kandidat, auf den die Dokumente gemeinsam zulaufen Es gibt eine phasentreue Kompositionsregel mit positivem Zustandsfunktional, deren endliche Auslesungen die markierte TFPT-Struktur tragen. Aus ihren gekoppelten Anregungen und Aufzeichnungen entsteht ein kontrollierter gemeinsamer Grenzprozess. Erst dieser Grenzprozess liefert Raumzeit, chirale Materie, Wechselwirkungen und gegebenenfalls Gravitation. Die erste
 
 ## Die Naht braucht mehr als ein paar zusätzliche Takte
 
@@ -459,7 +465,7 @@ Die vorhandene freie fermionische Naht hat bei fester Größe eine endliche Zust
 
 [experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/19_execution_v13.tex:126-129](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/19_execution_v13.tex#L126) · `section:2a102158cb03538e0db1` · section
 
-Ein nativer Adapter muss [formula in source] , [formula in source] , Kern und Belegung gemeinsam liefern, beim Half-Charge-Feld zusätzlich mit Domänen- und Energiekontrolle. Er muss den 13-Amplituden-Eingang, beide Recordzweige und die Acht-Runden-Echos reproduzieren, einschließlich Hilfszuständen und Fehlerausgängen. Erst anschließend ist eine skalierende Zellfamilie sinnvoll auf Geometrie, Chiralität und Spin 2 zu 
+Ein nativer Adapter muss [formula in source] , [formula in source] , Kern und Belegung gemeinsam liefern, beim Half-Charge-Feld zusätzlich mit Domänen- und Energiekontrolle. Er muss den 13-Amplituden-Eingang, beide Recordzweige und die Acht-Runden-Echos reproduzieren, einschließlich Hilfszuständen und Fehlerausgängen. Erst anschließend ist eine skalierende Zellfamilie sinnvoll auf Geometrie, Chiralität und Spin 2 zu
 
 ## Vorzeichen aus E8 und die noch fehlende Quellbasis
 
@@ -583,7 +589,7 @@ Für das native Modell mit 64 Fermion- und 60 Vermittlermoden gilt [formula in s
 
 [experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/update_body_v16.tex:99-108](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/update_body_v16.tex#L99) · `section:90a4c5a46752ef5ee1be` · chapter
 
-[formula in source] allein erzwingt keine zweidimensionale komplexe Darstellung und keine dreidimensionale physische Raumstruktur. Ein einfacher zweikomponentiger Weyl-Walk besitzt in der vollständig geprüften Zone vier Knoten. Bei Quasienergie null und [formula in source] bleibt je ein Paar entgegengesetzter Chiralität. Falten entfernt keine Spiegelzustände. Die [formula in source] -Verzweigung ist kein automatisch 
+[formula in source] allein erzwingt keine zweidimensionale komplexe Darstellung und keine dreidimensionale physische Raumstruktur. Ein einfacher zweikomponentiger Weyl-Walk besitzt in der vollständig geprüften Zone vier Knoten. Bei Quasienergie null und [formula in source] bleibt je ein Paar entgegengesetzter Chiralität. Falten entfernt keine Spiegelzustände. Die [formula in source] -Verzweigung ist kein automatisch
 
 ## Front matter / support
 
@@ -599,7 +605,7 @@ Explicit source references:
 
 [tex-artefacts/tfpt_references.tex:43-71](../../../../tex-artefacts/tfpt_references.tex#L43) · `section:419291db9b3bf697f68f` · paragraph
 
-I. B. Frenkel, V. G. Kac, Basic representations of affine Lie algebras and dual resonance models, Invent.\ Math.\ 62 (1980) 23–66; G. Segal, Unitary representations of some infinite-dimensional groups, Comm.\ Math.\ Phys.\ 80 (1981) 301–342. T. J. Osborne, A. Stottmeister, Conformal field theory from lattice fermions, Comm.\ Math.\ Phys.\ 398 (2023) 219–289, arXiv:2107.13834, doi:10.1007/s00220-022-04521-8. (This is 
+I. B. Frenkel, V. G. Kac, Basic representations of affine Lie algebras and dual resonance models, Invent.\ Math.\ 62 (1980) 23–66; G. Segal, Unitary representations of some infinite-dimensional groups, Comm.\ Math.\ Phys.\ 80 (1981) 301–342. T. J. Osborne, A. Stottmeister, Conformal field theory from lattice fermions, Comm.\ Math.\ Phys.\ 398 (2023) 219–289, arXiv:2107.13834, doi:10.1007/s00220-022-04521-8. (This is
 
 ## Front matter / support
 
@@ -669,7 +675,7 @@ The geometry branch realizes the proposed elliptic boundary data but exposes its
 
 [tex-artefacts/toe_round4_proofs.tex:243-303](../../../../tex-artefacts/toe_round4_proofs.tex#L243) · `section:7f5d6cd7af591d8d1ecc` · paragraph
 
-CHIRAL4D.MIRROR.SIGNED.CAR.01. v1027_ signed_ det_ car_ wall.py checks the following algebra and its finite countermodels. The old Hubbard operators [formula in source] satisfy [formula in source] , not CAR, and [formula in source] . For even [formula in source] (in particular [formula in source] ), write [formula in source] and define [formula in source] This is a two-dimensional rotation and identity elsewhere. It 
+CHIRAL4D.MIRROR.SIGNED.CAR.01. v1027_ signed_ det_ car_ wall.py checks the following algebra and its finite countermodels. The old Hubbard operators [formula in source] satisfy [formula in source] , not CAR, and [formula in source] . For even [formula in source] (in particular [formula in source] ), write [formula in source] and define [formula in source] This is a two-dimensional rotation and identity elsewhere. It
 
 Explicit source references:
 
@@ -742,11 +748,25 @@ Let [formula in source] be any finite set of momentum cells, with arbitrary disp
 
 The bare theorem above makes no Gauss-sector claim. For the [formula in source] analogue and [formula in source] , now adjoin an oriented link basis [formula in source] and define This operator is implementable on matter Fock space tensored with the finite link space; it is fermion-even because each summand is a matter bilinear. Take the endpoint Gauss constraints to be [formula in source] and [formula in source] . T
 
+## Variable fields, ordered sources and retained reference factors (D, E)
+
+[tex-artefacts/toe_source_completion_20261103.tex:128-152](../../../../tex-artefacts/toe_source_completion_20261103.tex#L128) · `section:1f0121fb70d3450e5fe9` · subsection
+
+The original local source reader no longer needs constant Higgs backgrounds in its stated circle class. The smooth bounded variable one-form has the required Hilbert–Schmidt control, entire ordered [formula in source] source, trace correction and all local response orders. The actual Galerkin calls converge to that same source operator. This is an analytic application to the existing coefficient family; it is not a p
+
+Explicit source references:
+
+- [verification/v259_modular_cutoff_kappa.py](../../../../verification/v259_modular_cutoff_kappa.py#L1) · explicit_script_identifier
+
+Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
+
+- [(* ==== v237: closing step as physics -- no topological degeneracy <=> det K=1 <=> SRE ==== *) Module[{cartanA, cartanD, e8edges, E8, D8, A3, D5, carrier, gsd}, cartanA[n_] := SparseArray[{{i_, i_} -> 2, {i_, j_} /; Abs[i - j] == 1 -> -1}, {n, n}] // Normal; cartanD[n_] := Module[{K}, K = 2 IdentityMatrix[n]; Do[K[[i, i + 1]] = K[[i + 1, i]] = -1, {i, n - 2}]; K[[n - 2, n]] = K[[n, n - 2]] = -1; K]; e8edges = {{1, 2}, {2, 3}, {3, 4}, {4, 5}, {5, 6}, {6, 7}, {5, 8}}; E8 = 2 IdentityMatrix[8] - Table[If[i != j && MemberQ[e8edges, Sort[{i, j}]], 1, 0], {i, 8}, {j, 8}]; A3 = cartanA[3]; D5 = cartanD[5]; D8 = cartanD[8]; carrier = ArrayFlatten[{{D5, 0}, {0, A3}}]; gsd[K_, g_] := Abs[Det[K]]^g; checkExact["v237 GATE.HOLO.03: the closing step as a physical condition -- the abelian K-matrix " <> "ground-state degeneracy on a genus-g surface is |det K|^g (torus: carrier D5(+)A3 -> 16, D8 -> 4, " <> "E8 -> 1), so 'no topological ground-state degeneracy on any closed surface' <=> det K = 1 <=> the " <> "seam bulk is short-range-entangled (the unique bosonic SRE c=8 phase = the Kitaev E8 state, edge " <> "holomorphic). A unique vacuum on the plane (genus 0, always 1) is necessary but not sufficient; the " <> "torus sees |det K|. NEG: an LRE bulk (D8, det 4) has 4-fold torus degeneracy + non-holomorphic edge.", gsd[carrier, 1] == 16 && gsd[D8, 1] == 4 && gsd[E8, 1] == 1 && gsd[carrier, 2] == 256 && gsd[E8, 2] == 1 && gsd[carrier, 0] == 1 && gsd[E8, 0] == 1 && Det[E8] == 1 && (5 + 3 == 8)]; ]; (* ==== v259: the modular/KMS spectral-action cutoff fixes f_2/f_0 = 1 (PS.SPECACT.02) ==== v258 (Dirac as covariance induction) is numerical matrix-log linear algebra -> Python-only. *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L1991)
+
 ## F1: Freeze the elementary grammar.
 
 [tex-artefacts/toe_universalraum_synthesis_20260912.tex:353-360](../../../../tex-artefacts/toe_universalraum_synthesis_20260912.tex#L353) · `section:b7cd6722b6a2986cc80f` · paragraph
 
-For one original finite sector, map each primitive rule to its operator, phase, support, adjoint and composition. Distinguish physical operations from gauge identifications and elementary generators from composite words. A source-derived filtration or equivalent primitive rule must explain why composition does not automatically introduce independently weighted energy terms. Reject a cutoff chosen only to enforce the 
+For one original finite sector, map each primitive rule to its operator, phase, support, adjoint and composition. Distinguish physical operations from gauge identifications and elementary generators from composite words. A source-derived filtration or equivalent primitive rule must explain why composition does not automatically introduce independently weighted energy terms. Reject a cutoff chosen only to enforce the
 
 ## F6: Separate downstream acceptance.
 

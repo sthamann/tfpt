@@ -4,6 +4,42 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## 2026-06-30 ( v454– v459 + Lean + Wolfram — the post-F ``G-block'': the lattice Sugawara current algebra, a uniform-in- [formula in source] Tomita–Takesaki tower, chirality forced by [formula in source] , an [formula in source] character kill test, the exact MMST citation audit and the complementary lattice-VOA route)
+
+[documents/changelog/sections/011-source.tex:1-52](../../../../documents/changelog/sections/011-source.tex#L1) · `section:7ca01292e7152e165e80` · subsection
+
+v454_seam_edge_virasoro.py ( SEAM.EQUIV.EDGE.VIRASORO.01). Tests the cited MMST ``Koo–Saleur lattice generators [formula in source] continuum Virasoro with the correct [formula in source] '' fact on our own free-fermion edge (G2). \ the Affleck–Cardy Casimir energy fits [formula in source] ( [formula in source] per Majorana, [formula in source] ); \ the lattice [formula in source] current closes its affine level exac
+
+Explicit source references:
+
+- [verification/v458_seam_mmst_citation_audit.py](../../../../verification/v458_seam_mmst_citation_audit.py#L1) · explicit_script_identifier
+- [verification/v454_seam_edge_virasoro.py](../../../../verification/v454_seam_edge_virasoro.py#L1) · explicit_file_citation
+- [SEAM.EQUIV.LATTICEVOA.01](../../../../verification/status_ledger.csv#L521) · explicit_claim_identifier · original status at linked ledger row
+- [verification/v459_seam_lattice_voa_route.py](../../../../verification/v459_seam_lattice_voa_route.py#L1) · explicit_file_citation
+- [verification/v424_seam_lto_rp_reduction.py](../../../../verification/v424_seam_lto_rp_reduction.py#L1) · explicit_script_identifier
+- [experiments/lean4-carrier-rigidity/TfptCarrier/SeamResidualAxiom.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/SeamResidualAxiom.lean#L1) · explicit_file_citation
+- [verification/v456_seam_chirality_from_c3.py](../../../../verification/v456_seam_chirality_from_c3.py#L1) · explicit_file_citation
+- [verification/v426_seam_lto_rp_kms.py](../../../../verification/v426_seam_lto_rp_kms.py#L1) · explicit_script_identifier
+- [SEAM.EQUIV.KILLTEST.01](../../../../verification/status_ledger.csv#L519) · explicit_claim_identifier · original status at linked ledger row
+- [verification/v457_seam_character_killtest.py](../../../../verification/v457_seam_character_killtest.py#L1) · explicit_file_citation
+- [SEAM.EQUIV.01](../../../../verification/status_ledger.csv#L381) · explicit_claim_identifier · original status at linked ledger row
+- [verification/wolfram/tfpt_readouts_extension.wl](../../../../verification/wolfram/tfpt_readouts_extension.wl#L1) · explicit_file_citation
+- [SEAM.EQUIV.MMST.AUDIT.01](../../../../verification/status_ledger.csv#L520) · explicit_claim_identifier · original status at linked ledger row
+- [FORM.SEAM.RESIDUAL.01](../../../../verification/status_ledger.csv#L523) · explicit_claim_identifier · original status at linked ledger row
+- [SEAM.EQUIV.EDGE.VIRASORO.01](../../../../verification/status_ledger.csv#L516) · explicit_claim_identifier · original status at linked ledger row
+- [verification/v455_seam_bw_uniform.py](../../../../verification/v455_seam_bw_uniform.py#L1) · explicit_file_citation
+- [SEAM.EQUIV.BW.UNIFORM.01](../../../../verification/status_ledger.csv#L517) · explicit_claim_identifier · original status at linked ledger row
+
+Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
+
+- [(* ==== v454/v456/v457/v459 round (G-block): the edge current-algebra/Sugawara c=8, the S3-from-P1 one-sided arithmetic, the (E8)_1 character/sector kill-test, and the lattice-VOA second route; mirrors v454/v456/v457/v459. The Casimir + Kac-Moody fits (v454), the Chern flip (v456) and the Tomita-Takesaki tower (v455) are numerical, Python-only; the exact algebra is mirrored here. ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2827)
+- [experiments/lean4-carrier-rigidity/TfptCarrier/AuditContract.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/AuditContract.lean#L1)
+- [experiments/lean4-carrier-rigidity/TfptCarrier/SeamApplicabilityLedger.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/SeamApplicabilityLedger.lean#L1)
+- [(* v457: the (E8)_1 character tower {1,248,4124,34752} and the kill-test discriminators *) cartanE8 = {{2, -1, 0, 0, 0, 0, 0, 0}, {-1, 2, -1, 0, 0, 0, 0, 0}, {0, -1, 2, -1, 0, 0, 0, 0}, {0, 0, -1, 2, -1, 0, 0, 0}, {0, 0, 0, -1, 2, -1, 0, -1}, {0, 0, 0, 0, -1, 2, -1, 0}, {0, 0, 0, 0, 0, -1, 2, 0}, {0, 0, 0, 0, -1, 0, 0, 2}}; cartanD8 = {{2, -1, 0, 0, 0, 0, 0, 0}, {-1, 2, -1, 0, 0, 0, 0, 0}, {0, -1, 2, -1, 0, 0, 0, 0}, {0, 0, -1, 2, -1, 0, 0, 0}, {0, 0, 0, -1, 2, -1, 0, 0}, {0, 0, 0, 0, -1, 2, -1, -1}, {0, 0, 0, 0, 0, -1, 2, 0}, {0, 0, 0, 0, 0, -1, 0, 2}}; E4q = 1 + 240 Sum[DivisorSigma[3, n] q^n, {n, 1, 6}]; inv8 = Series[Product[(1 - q^n)^-8, {n, 1, 6}], {q, 0, 4}]; chiSeries = Series[E4q inv8, {q, 0, 4}]; coeffs = CoefficientList[Normal[chiSeries], q]; checkExact["v457 SEAM.EQUIV.KILLTEST.01 (i): the (E8)_1 character tower chi=E4/eta^8=q^{-1/3}(1+248q+4124q^2+34752q^3+...); E4/Product(1-q^n)^8 q-series coeffs {1,248,4124,34752} -- the exact (E8)_1 conformal-tower degeneracies", Take[coeffs, 4] == {1, 248, 4124, 34752}]; checkExact["v457 SEAM.EQUIV.KILLTEST.01 (ii): the kill-test discriminators -- weight-1 count 248=dim E8=120(SO16)+128(spinor); |det Cartan(E8)|=1 (invertible, one sector) vs |det Cartan(D8=SO16)|=4 (four sectors); a measured 120 or 4 would FALSIFY (E8)_1, the data give 248/1", 120 + 128 == 248 && Det[cartanE8] == 1 && Abs[Det[cartanD8]] == 4]; (* v459: E8 even unimodular + the 240 roots split 112+128; 248=8+240=120+128 *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2847)
+- [(* v454: level-1 Sugawara c = dim G/(1+h^v) = 8 for both SO(16)_1 and (E8)_1 *) cSO16 = 120/(1 + 14); cE8 = 248/(1 + 30); checkExact["v454 SEAM.EQUIV.EDGE.VIRASORO.01: level-1 Sugawara c=dim G/(1+h^v)=8 for BOTH SO(16)_1 (120/15) and (E8)_1 (248/31); 16 Majoranas => c_-=8=g_car+N_fam (the Casimir c and Kac-Moody central term <J_n J_-n>=n are numerical, Python-only)", cSO16 == 8 && cE8 == 8 && cSO16 == cE8 && 8 == gcar + Nfam]; (* v456: c3's '8' is the one-sided count; reflection C->-C so two-sided forces C=0 *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2835)
+- [experiments/lean4-carrier-rigidity/TfptCarrier/AxiomCheck.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/AxiomCheck.lean#L1)
+- [experiments/lean4-carrier-rigidity/TfptCarrier/SeamResidualAxiom.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/SeamResidualAxiom.lean#L1)
+
 ## 2026-06-30 (the chiral-edge scaling motor v444 — the edge half of the one SEAM.EQUIV.01 continuum residual: the lattice edge already carries the conformal data of a chiral [formula in source] Majorana CFT and converges under refinement, grounding the EDGE the way v439 grounded the BULK; the keystone stays )
 
 [documents/changelog/sections/011-source.tex:203-225](../../../../documents/changelog/sections/011-source.tex#L203) · `section:cccf91ab17849ec5feae` · subsection
@@ -34,7 +70,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/changelog/sections/011-source.tex:226-270](../../../../documents/changelog/sections/011-source.tex#L226) · `section:c6b6da016e7f30bbb7c1` · subsection
 
-Context. The keystone SEAM.EQUIV.01 is ``closed modulo a cited theorem'': its one open input is the continuum existence of the seam's chiral massless scaling limit. Six new modules attack that residual from independent directions; each is honest about not closing it. All six are vN-registered, run in run_all.py (suite ends ALL CHECKS PASSED), and are veri-cited in the body of tfpt_research_contracts (the [formula in 
+Context. The keystone SEAM.EQUIV.01 is ``closed modulo a cited theorem'': its one open input is the continuum existence of the seam's chiral massless scaling limit. Six new modules attack that residual from independent directions; each is honest about not closing it. All six are vN-registered, run in run_all.py (suite ends ALL CHECKS PASSED), and are veri-cited in the body of tfpt_research_contracts (the [formula in
 
 Explicit source references:
 
@@ -114,7 +150,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/changelog/sections/014-source.tex:224-242](../../../../documents/changelog/sections/014-source.tex#L224) · `section:1a6d16256ec9d6226d97` · subsection
 
-v367 ( SEAM.S3.LATTICE.01) — Track 1. The abstract S3 residual of v356/ v366 (``the collar realised as a genuine lattice chiral free-fermion invertible phase'') is turned into a RUNNABLE model. \ the [formula in source] Bloch model is gapped at [formula in source] with a numerically computed Fukui–Hatsugai–Suzuki Chern number [formula in source] ( [formula in source] trivially at [formula in source] ); \ [formula in 
+v367 ( SEAM.S3.LATTICE.01) — Track 1. The abstract S3 residual of v356/ v366 (``the collar realised as a genuine lattice chiral free-fermion invertible phase'') is turned into a RUNNABLE model. \ the [formula in source] Bloch model is gapped at [formula in source] with a numerically computed Fukui–Hatsugai–Suzuki Chern number [formula in source] ( [formula in source] trivially at [formula in source] ); \ [formula in
 
 Explicit source references:
 
@@ -245,7 +281,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/changelog/sections/015-source.tex:246-259](../../../../documents/changelog/sections/015-source.tex#L246) · `section:ed458665aa45a0bcd44b` · subsection
 
-v342 ( EM.WARD.02) — the heat-kernel sharpening of EM.WARD.01. Derives the ORIGIN and STRUCTURE of the [formula in source] determinant-line terms from textbook Seeley–DeWitt / Gilkey coefficients, advancing the EM-Ward origin from \ (conjectured) to \ for the term structure; no new gate. \ [formula in source] is the boundary Gauss–Bonnet coefficient ( [formula in source] , [formula in source] , v216). \ the [formula 
+v342 ( EM.WARD.02) — the heat-kernel sharpening of EM.WARD.01. Derives the ORIGIN and STRUCTURE of the [formula in source] determinant-line terms from textbook Seeley–DeWitt / Gilkey coefficients, advancing the EM-Ward origin from \ (conjectured) to \ for the term structure; no new gate. \ [formula in source] is the boundary Gauss–Bonnet coefficient ( [formula in source] , [formula in source] , v216). \ the [formula
 
 Explicit source references:
 
@@ -300,7 +336,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/changelog/sections/015-source.tex:342-373](../../../../documents/changelog/sections/015-source.tex#L342) · `section:2cf3ee9ae0a89a313d79` · subsection
 
-v335 ( SEAM.EQUIV.UNIFY.01) — the keystone unification. A bird's-eye consolidation of the v308/v323/v325/v329/v333 arc that collapses the ``two open structural items'' narrative. \ QGEO.SYM.01 is a COROLLARY of SEAM.EQUIV.01 (no extra premise): a chiral conformal net has, by axiom, a M\"obius-covariant vacuum (the unique invariant positive-energy vector); rotations [formula in source] are the compact subgroup of the 
+v335 ( SEAM.EQUIV.UNIFY.01) — the keystone unification. A bird's-eye consolidation of the v308/v323/v325/v329/v333 arc that collapses the ``two open structural items'' narrative. \ QGEO.SYM.01 is a COROLLARY of SEAM.EQUIV.01 (no extra premise): a chiral conformal net has, by axiom, a M\"obius-covariant vacuum (the unique invariant positive-energy vector); rotations [formula in source] are the compact subgroup of the
 
 Explicit source references:
 
@@ -401,7 +437,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/changelog/sections/018-source.tex:55-67](../../../../documents/changelog/sections/018-source.tex#L55) · `section:63427eabab107d1a2a94` · subsection
 
-Published to Zenodo. Version 5.2 (rev 191) of the ten-PDF document set was published as a new version of the TFPT deposit — record 20743347, DOI 10.5281/zenodo.20743347. This release carries the perturbative 4D-QFT layer (the Epstein–Glaser [formula in source] skeleton v269, the concrete one-loop quartic v271 and gauge [formula in source] -coefficients v273), the complete complex PMNS matrix and leptonic CP strength 
+Published to Zenodo. Version 5.2 (rev 191) of the ten-PDF document set was published as a new version of the TFPT deposit — record 20743347, DOI 10.5281/zenodo.20743347. This release carries the perturbative 4D-QFT layer (the Epstein–Glaser [formula in source] skeleton v269, the concrete one-loop quartic v271 and gauge [formula in source] -coefficients v273), the complete complex PMNS matrix and leptonic CP strength
 
 Explicit source references:
 
@@ -975,7 +1011,7 @@ Der konstruktive Anschluss ist klein: Paarumwandlung → geteilte Zwischenressou
 
 [documents/experiments--theory-contracts--universalraum-common-process-20260915--tmp--pdfs--TFPT_Universalraum_Gemeinsamer_Prozess_Konsolidierung_2026-09-15_v1.6.8/sections/019-subsubsection-6-4-kleinste-noch-zu-suchende.tex:1-20](../../../../documents/experiments--theory-contracts--universalraum-common-process-20260915--tmp--pdfs--TFPT_Universalraum_Gemeinsamer_Prozess_Konsolidierung_2026-09-15_v1.6.8/sections/019-subsubsection-6-4-kleinste-noch-zu-suchende.tex#L1) · `section:314ef532c9ea6273f24e` · subsubsection
 
-Für den hier exakt spezifizierten Zeugen fehlt mindestens eine Operation, die nicht mit dem betrachteten Farb-Cartan des ursprünglichen Systems kommutiert, oder eine aus einer erweiterten globalen Quelle abgeleitete Kopplung mit einer expliziten Ausgleichsressource für diese Cartanladung. Ein zusätzlicher aktiver SU(4)-Generator wäre ein neuer Operationsvertrag; außerdem bewegt sein simultaner Fermion-/Boson-Lift im 
+Für den hier exakt spezifizierten Zeugen fehlt mindestens eine Operation, die nicht mit dem betrachteten Farb-Cartan des ursprünglichen Systems kommutiert, oder eine aus einer erweiterten globalen Quelle abgeleitete Kopplung mit einer expliziten Ausgleichsressource für diese Cartanladung. Ein zusätzlicher aktiver SU(4)-Generator wäre ein neuer Operationsvertrag; außerdem bewegt sein simultaner Fermion-/Boson-Lift im
 
 ## 1. Was die endliche Bank tatsächlich ausschließt
 
@@ -1153,7 +1189,7 @@ Der konstruktive Anschluss ist klein: Paarumwandlung → geteilte Zwischenressou
 
 [documents/experiments--theory-contracts--universalraum-singlet-observable-20260915--tmp--pdfs--TFPT_Universalraum_Richtige_Kette_Konsolidierung_2026-09-15_v1.6.7/sections/010-subsubsection-6-3-clock-mittelung-ist-m-glich-aber-der-f.tex:67-86](../../../../documents/experiments--theory-contracts--universalraum-singlet-observable-20260915--tmp--pdfs--TFPT_Universalraum_Richtige_Kette_Konsolidierung_2026-09-15_v1.6.7/sections/010-subsubsection-6-3-clock-mittelung-ist-m-glich-aber-der-f.tex#L67) · `section:6481640a7c15c08472e1` · subsubsection
 
-Für den hier exakt spezifizierten Zeugen fehlt mindestens eine Operation, die nicht mit dem betrachteten Farb-Cartan des ursprünglichen Systems kommutiert, oder eine aus einer erweiterten globalen Quelle abgeleitete Kopplung mit einer expliziten Ausgleichsressource für diese Cartanladung. Ein zusätzlicher aktiver SU(4)-Generator wäre ein neuer Operationsvertrag; außerdem bewegt sein simultaner Fermion-/Boson-Lift im 
+Für den hier exakt spezifizierten Zeugen fehlt mindestens eine Operation, die nicht mit dem betrachteten Farb-Cartan des ursprünglichen Systems kommutiert, oder eine aus einer erweiterten globalen Quelle abgeleitete Kopplung mit einer expliziten Ausgleichsressource für diese Cartanladung. Ein zusätzlicher aktiver SU(4)-Generator wäre ein neuer Operationsvertrag; außerdem bewegt sein simultaner Fermion-/Boson-Lift im
 
 ## 1. Was die endliche Bank tatsächlich ausschließt
 
@@ -1208,13 +1244,3 @@ Auf [formula in source] kann man [formula in source] definieren. Die additive Pr
 [documents/experiments--theory-contracts--universalraum-singlet-observable-20260915--tmp--pdfs--TFPT_Universalraum_Richtige_Kette_Konsolidierung_2026-09-15_v1.6.7/sections/013-subsubsection-4-5-dieselbe-urspr-ngliche-fermionantwort-.tex:137-160](../../../../documents/experiments--theory-contracts--universalraum-singlet-observable-20260915--tmp--pdfs--TFPT_Universalraum_Richtige_Kette_Konsolidierung_2026-09-15_v1.6.7/sections/013-subsubsection-4-5-dieselbe-urspr-ngliche-fermionantwort-.tex#L137) · `section:856ac53b2edc89047b41` · subsubsection
 
 für einen strikt positiven selbstadjungierten Operator [formula in source] mit kompakter Inverser und [formula in source] von Spurklasse wäre tatsächlich hinreichend: Die gesamte rechte Funktion hat ihre Nullstellen nur bei reellen [formula in source] , einschließlich Multiplizitäten. Aber dieser Operator und die gesamte Funktionsidentität sind nicht konstruiert. Ein Operator mit lediglich den Imaginärteilen der Null
-
-## 7. Die lokale Polnäherung wird präziser, das relativistische Feld bleibt offen
-
-[documents/experiments--theory-contracts--universalraum-singlet-observable-20260915--tmp--pdfs--TFPT_Universalraum_Richtige_Kette_Konsolidierung_2026-09-15_v1.6.7/sections/013-subsubsection-4-5-dieselbe-urspr-ngliche-fermionantwort-.tex:161-204](../../../../documents/experiments--theory-contracts--universalraum-singlet-observable-20260915--tmp--pdfs--TFPT_Universalraum_Richtige_Kette_Konsolidierung_2026-09-15_v1.6.7/sections/013-subsubsection-4-5-dieselbe-urspr-ngliche-fermionantwort-.tex#L161) · `section:f2a2540bf039e794a727` · subsection
-
-Die externe Resolventenabschätzung ist korrekt: Im Kreis mit Radius [formula in source] um den tatsächlichen, unbekannten negativen Pol [formula in source] gilt
-
-Explicit source references:
-
-- [experiments/theory-contracts/universalraum-two-bank-transfer-20260915/LATE_AUDIT.md](../../../../experiments/theory-contracts/universalraum-two-bank-transfer-20260915/LATE_AUDIT.md#L1) · explicit_file_citation

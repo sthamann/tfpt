@@ -211,7 +211,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/tfpt_horizon_readouts/sections/001-section-the-seam-constant-is-the-universal-horizon-tempe.tex:1-63](../../../../documents/tfpt_horizon_readouts/sections/001-section-the-seam-constant-is-the-universal-horizon-tempe.tex#L1) · `section:0d5c0120adefeb817d59` · frontmatter
 
-A change of bookkeeping, not new gravitational physics: if gravity is the geometry-channel readout of the seam, then all horizons read the same boundary constant [formula in source] . This note collects the readouts — Hawking, de Sitter and Unruh temperature, black-hole thermodynamics, the Page time, scrambling, the Nariai bound, [formula in source] and cosmic birefringence — in seam units, with two genuine compiler 
+A change of bookkeeping, not new gravitational physics: if gravity is the geometry-channel readout of the seam, then all horizons read the same boundary constant [formula in source] . This note collects the readouts — Hawking, de Sitter and Unruh temperature, black-hole thermodynamics, the Page time, scrambling, the Nariai bound, [formula in source] and cosmic birefringence — in seam units, with two genuine compiler
 
 Explicit source references:
 
@@ -398,7 +398,7 @@ Black-hole echoes / horizonless compactness: any near-horizon echo amplitude rat
 
 [documents/tfpt_horizon_readouts/sections/002-section-turnaround-radius-gravitational-waves-light.tex:342-353](../../../../documents/tfpt_horizon_readouts/sections/002-section-turnaround-radius-gravitational-waves-light.tex#L342) · `section:f14cd99bec2b5b92a146` · section
 
-The seam-unit identities of this note (the thermal grammar [formula in source] , the power denominator [formula in source] , the de Sitter entropy form, the Page fraction, the scrambling [formula in source] , and [formula in source] ) are re-derived and machine-checked in verification/v8_horizon.py. Run python verification/v8_horizon.py (needs mpmath); it imports the same [formula in source] primitive as the rest of 
+The seam-unit identities of this note (the thermal grammar [formula in source] , the power denominator [formula in source] , the de Sitter entropy form, the Page fraction, the scrambling [formula in source] , and [formula in source] ) are re-derived and machine-checked in verification/v8_horizon.py. Run python verification/v8_horizon.py (needs mpmath); it imports the same [formula in source] primitive as the rest of
 
 Explicit source references:
 
@@ -1504,7 +1504,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/tfpt_research_contracts/sections/014-source.tex:183-244](../../../../documents/tfpt_research_contracts/sections/014-source.tex#L183) · `section:580c8e5b415ac9b79cec` · section
 
-Typing. A standing discipline rule, in force immediately (ledger row DIMENSION.UPLIFT.FIREWALL.01); the uplift theorems it names are separate \ contracts. It formalizes the core diagnosis of the 2026-08-27 external deep review: a chiral [formula in source] D seam net does not imply a local, interacting [formula in source] D quantum world. The corpus's strongest finite results are boundary/kinematic building blocks — 
+Typing. A standing discipline rule, in force immediately (ledger row DIMENSION.UPLIFT.FIREWALL.01); the uplift theorems it names are separate \ contracts. It formalizes the core diagnosis of the 2026-08-27 external deep review: a chiral [formula in source] D seam net does not imply a local, interacting [formula in source] D quantum world. The corpus's strongest finite results are boundary/kinematic building blocks —
 
 Explicit source references:
 
@@ -1756,7 +1756,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [documents/tfpt_research_contracts/sections/020-source.tex:1-162](../../../../documents/tfpt_research_contracts/sections/020-source.tex#L1) · `section:f97072f658fe6bcec8d8` · section
 
-Typing. This section is a hand-off document: it packages the one remaining seam obligation as a self-contained problem statement for an outside specialist in conformal nets / vertex operator algebras / algebraic QFT. It documents, it does not close: the ledger row SEAM.EQUIV.01 stays \ (its conditional route SEAM.EQUIV.MMST.01 is closed modulo cited theorems; the unconditional parent is the target below). Nothing in 
+Typing. This section is a hand-off document: it packages the one remaining seam obligation as a self-contained problem statement for an outside specialist in conformal nets / vertex operator algebras / algebraic QFT. It documents, it does not close: the ledger row SEAM.EQUIV.01 stays \ (its conditional route SEAM.EQUIV.MMST.01 is closed modulo cited theorems; the unconditional parent is the target below). Nothing in
 
 Explicit source references:
 
@@ -1946,7 +1946,7 @@ Die neuere native Clock-Konstruktion verwendet eine Permutation auf fünf Hilfsa
 
 [documents/universal_room--new-2--TFPT_Universalraum_Forschungspaper_2026-09-15--TFPT_Universalraum_Forschungspaper_2026-09-15/sections/003-subsection-6-2-lanczos-z-hlt-hamiltonschritte-nicht.tex:41-55](../../../../documents/universal_room--new-2--TFPT_Universalraum_Forschungspaper_2026-09-15--TFPT_Universalraum_Forschungspaper_2026-09-15/sections/003-subsection-6-2-lanczos-z-hlt-hamiltonschritte-nicht.tex#L41) · `section:d0ecabd24dcc432365a8` · subsection
 
-Das ergibt [formula in source] bei [formula in source] , aber [formula in source] bei [formula in source] . Beide Modelle besitzen dasselbe [formula in source] , dieselben inneren Symmetrien und denselben kommutierenden Clock. Die dimensionslose Differenz ist keine Einheitenfrage. Damit ist belegt, dass diese Grunddaten allein die physikalische Dynamik nicht eindeutig auswählen. Die Referenz [formula in source] muss 
+Das ergibt [formula in source] bei [formula in source] , aber [formula in source] bei [formula in source] . Beide Modelle besitzen dasselbe [formula in source] , dieselben inneren Symmetrien und denselben kommutierenden Clock. Die dimensionslose Differenz ist keine Einheitenfrage. Damit ist belegt, dass diese Grunddaten allein die physikalische Dynamik nicht eindeutig auswählen. Die Referenz [formula in source] muss
 
 ## 16. T1–T8: aktueller Gesamtstatus
 
@@ -1964,7 +1964,7 @@ Die neuere native Clock-Konstruktion verwendet eine Permutation auf fünf Hilfsa
 
 [documents/universal_room--new-3--TFPT_Universalraum_Forschungspaper_2026-09-15--TFPT_Universalraum_Forschungspaper_2026-09-15/sections/003-subsection-6-2-lanczos-z-hlt-hamiltonschritte-nicht.tex:41-55](../../../../documents/universal_room--new-3--TFPT_Universalraum_Forschungspaper_2026-09-15--TFPT_Universalraum_Forschungspaper_2026-09-15/sections/003-subsection-6-2-lanczos-z-hlt-hamiltonschritte-nicht.tex#L41) · `section:2a6f282e67401793a13f` · subsection
 
-Das ergibt [formula in source] bei [formula in source] , aber [formula in source] bei [formula in source] . Beide Modelle besitzen dasselbe [formula in source] , dieselben inneren Symmetrien und denselben kommutierenden Clock. Die dimensionslose Differenz ist keine Einheitenfrage. Damit ist belegt, dass diese Grunddaten allein die physikalische Dynamik nicht eindeutig auswählen. Die Referenz [formula in source] muss 
+Das ergibt [formula in source] bei [formula in source] , aber [formula in source] bei [formula in source] . Beide Modelle besitzen dasselbe [formula in source] , dieselben inneren Symmetrien und denselben kommutierenden Clock. Die dimensionslose Differenz ist keine Einheitenfrage. Damit ist belegt, dass diese Grunddaten allein die physikalische Dynamik nicht eindeutig auswählen. Die Referenz [formula in source] muss
 
 ## 16. T1–T8: aktueller Gesamtstatus
 
@@ -2001,7 +2001,7 @@ Explicit source references:
 
 [experiments/ftransfer-clocks/ftransfer_clocks_contract.tex:61-92](../../../../experiments/ftransfer-clocks/ftransfer_clocks_contract.tex#L61) · `section:1d19ef4ba26a6869c8f3` · section
 
-@llll@ Solver & Clock & Operational definition & Chart / gauge (frozen) \\ [formula in source] (Koide) & proper time [formula in source] & @l@rest-frame proper time of the lepton\ -particle state [formula in source] the phase clock of\ propagator pole, [formula in source] (on-shell\ ; PDG pole masses) & @l@ [formula in source] ;\ v99 seam tick [formula in source] \ proper-phase e-fold \\[8.5mm] [formula in source] ( 
+@llll@ Solver & Clock & Operational definition & Chart / gauge (frozen) \\ [formula in source] (Koide) & proper time [formula in source] & @l@rest-frame proper time of the lepton\ -particle state [formula in source] the phase clock of\ propagator pole, [formula in source] (on-shell\ ; PDG pole masses) & @l@ [formula in source] ;\ v99 seam tick [formula in source] \ proper-phase e-fold \\[8.5mm] [formula in source] (
 
 Explicit source references:
 
@@ -2015,7 +2015,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [experiments/ftransfer-clocks/ftransfer_clocks_contract.tex:93-124](../../../../experiments/ftransfer-clocks/ftransfer_clocks_contract.tex#L93) · `section:e828f1dd74126d18e139` · section
 
-The common projective connection lives on the log-scale line [formula in source] . The four dictionaries are affine in their log charts with slopes [formula in source] frozen; every dimensionful anchor ( [formula in source] , [formula in source] , [formula in source] , [formula in source] , the thermal matching constant [formula in source] ) enters as an affine offset only and drops out of every Schwarzian and every 
+The common projective connection lives on the log-scale line [formula in source] . The four dictionaries are affine in their log charts with slopes [formula in source] frozen; every dimensionful anchor ( [formula in source] , [formula in source] , [formula in source] , [formula in source] , the thermal matching constant [formula in source] ) enters as an affine offset only and drops out of every Schwarzian and every
 
 Explicit source references:
 
@@ -2417,7 +2417,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/origin_theory.tex:1166-1454](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/origin_theory.tex#L1166) · `section:0c131301948f5acf50d5` · section
 
-The precise reformulation ( ). The seam is not identical to an event horizon. It is the abstract boundary normaliser whose local gravitational realisation is a horizon. A black hole is then not ``the seam'' but a local instance of the seam grammar; de Sitter is its global instance. This is stronger and cleaner than a direct identification — it avoids importing Schwarzschild analogies wholesale, and it makes [formula 
+The precise reformulation ( ). The seam is not identical to an event horizon. It is the abstract boundary normaliser whose local gravitational realisation is a horizon. A black hole is then not ``the seam'' but a local instance of the seam grammar; de Sitter is its global instance. This is stronger and cleaner than a direct identification — it avoids importing Schwarzschild analogies wholesale, and it makes [formula
 
 Explicit source references:
 
@@ -2693,7 +2693,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tex-artefacts/toe_round4_proofs.tex:9-22](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tex-artefacts/toe_round4_proofs.tex#L9) · `section:83c8266dcbf844e64c6b` · paragraph
 
-SEAM.MMST.TELB.NORM.01. For the frozen [formula in source] , [formula in source] collar, the original remainder obeys [formula in source] The interval inputs are v1022 (TV and potential), v1025 (C1/C2a), and v1026_ telb_ round4_ closure.py (CF, DG, signed CROSS, validated Fourier core and all-volume aliases). This is not a proof of the historical sharper [formula in source] or Bound-B target [formula in source] . In 
+SEAM.MMST.TELB.NORM.01. For the frozen [formula in source] , [formula in source] collar, the original remainder obeys [formula in source] The interval inputs are v1022 (TV and potential), v1025 (C1/C2a), and v1026_ telb_ round4_ closure.py (CF, DG, signed CROSS, validated Fourier core and all-volume aliases). This is not a proof of the historical sharper [formula in source] or Bound-B target [formula in source] . In
 
 Explicit source references:
 
@@ -2953,7 +2953,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tfpt_research_contracts.tex:12571-12632](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tfpt_research_contracts.tex#L12571) · `section:fd8a259cd96f2b7b4df5` · section
 
-Typing. A standing discipline rule, in force immediately (ledger row DIMENSION.UPLIFT.FIREWALL.01); the uplift theorems it names are separate \ contracts. It formalizes the core diagnosis of the 2026-08-27 external deep review: a chiral [formula in source] D seam net does not imply a local, interacting [formula in source] D quantum world. The corpus's strongest finite results are boundary/kinematic building blocks — 
+Typing. A standing discipline rule, in force immediately (ledger row DIMENSION.UPLIFT.FIREWALL.01); the uplift theorems it names are separate \ contracts. It formalizes the core diagnosis of the 2026-08-27 external deep review: a chiral [formula in source] D seam net does not imply a local, interacting [formula in source] D quantum world. The corpus's strongest finite results are boundary/kinematic building blocks —
 
 Explicit source references:
 

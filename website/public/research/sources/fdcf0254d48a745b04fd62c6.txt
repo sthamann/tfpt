@@ -1,0 +1,128 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/seam-positive-kernel-search-20261015/genesis_checks.py
+Original file SHA-256: fc1160300289b57659af1d10d21269b0c4ca3e2d9dcef9ba68872fe10df38d06
+Inclusive original lines: 1-120
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Executable inference controls on existing TFPT source functions.
+000002 | 
+000003 | These check explicitly named consequences, not whole origin hypotheses.
+000004 | Analytic identities are recorded separately from finite precision replays.
+000005 | """
+000006 | import argparse
+000007 | import json
+000008 | import mpmath as mp
+000009 | 
+000010 | 
+000011 | def evaluate(check_id):
+000012 |     mp.mp.dps = 65
+000013 |     theta = lambda v, t: mp.jtheta(3, mp.pi*v, mp.exp(-mp.pi*t))
+000014 |     theta0 = lambda t: theta(0, t)
+000015 |     close = lambda a, b: abs(a-b) < mp.mpf('1e-55')
+000016 |     if check_id == 'quillen-relative-normalization':
+000017 |         # Same geometry and reference on numerator/denominator: N(0,t)=1.
+000018 |         norm = lambda v, t: (theta(v, t)/theta0(t))**2
+000019 |         dv2 = mp.diff(lambda v: mp.log(norm(v, 1)), 0, 2)
+000020 |         dt = mp.diff(lambda t: mp.log(norm(0, t)), 1)
+000021 |         if not close(dt, 0) or not close(dv2, -2*mp.pi):
+000022 |             raise ArithmeticError('Original relative response replay failed')
+000023 |         facts = {'shape_derivative_log_N_at_zero_source': str(dt),
+000024 |                  'holonomy_second_derivative_log_N': str(dv2),
+000025 |                  'analytic_reason': 'N(0,t)=1 identically for the co-moving zero-source reference'}
+000026 |         claims = {'normalized_zero_source_has_shape_response': False,
+000027 |                   'normalized_charge_response_alone_fixes_absolute_replica_entropy': False}
+000028 |         scope = 'The given flat elliptic relative function; t variation is not an identified physical replica operation.'
+000029 |     elif check_id == 'theta-heat-shape-response':
+000030 |         dt = mp.diff(lambda t: mp.log(theta0(t)), 1)
+000031 |         ratio = mp.diff(lambda v: theta(v, 1), 0, 2)/theta0(1)
+000032 |         if not close(dt, -mp.mpf(1)/4) or not close(ratio/(4*mp.pi), dt):
+000033 |             raise ArithmeticError('Theta heat identity failed')
+000034 |         facts = {'theta_shape_log_derivative': str(dt),
+000035 |                  'theta_holonomy_second_derivative_ratio': str(ratio),
+000036 |                  'analytic_reason': 'Poisson Z(t)=t^-1/2 Z(1/t) and theta heat equation'}
+000037 |         claims = {'charge_curvature_fixes_theta_shape_derivative': True,
+000038 |                   'theta_shape_derivative_is_already_full_master_area_entropy': False}
+000039 |         scope = 'Unnormalized theta factor only; eta, metric, reference and sewing terms remain part of the actual determinant.'
+000040 |     elif check_id == 'doubled-source-counting':
+000041 |         beta = 4*mp.pi
+000042 |         def variance(a):
+000043 |             weights = [(q, mp.exp(-beta*(mp.mpf(q*q)/2+(a-mp.mpf(1)/2)*q))) for q in range(-16, 17)]
+000044 |             z = sum(w for q, w in weights)
+000045 |             mean = sum(q*w for q, w in weights)/z
+000046 |             return sum((q-mean)**2*w for q, w in weights)/z
+000047 |         variances = [variance(mp.mpf(1)/4), variance(mp.mpf(3)/4)]
+000048 |         etas = [mp.mpf(1)-2*a for a in (mp.mpf(1)/4, mp.mpf(3)/4)]
+000049 |         if not all(close(v, 1/(8*mp.pi)) for v in variances) or sum(etas) != 0:
+000050 |             raise ArithmeticError('Quarter source identities failed')
+000051 |         facts = {'quarter_variances': [str(v) for v in variances],
+000052 |                  'pair_variance': str(sum(variances)),
+000053 |                  'beta_times_each_variance': [str(beta*v) for v in variances],
+000054 |                  'eta_quarter_pair': [str(x) for x in etas], 'eta_sum': str(sum(etas)),
+000055 |                  'analytic_reason': 'Original quarter pair reduces to exp(-pi p^2); eta_a(0)=1-2a for n+a.'}
+000056 |         claims = {'two_quarter_blocks_are_two_faces': False,
+000057 |                   'nonzero_total_eta_is_needed_for_original_half_susceptibility': False,
+000058 |                   'quarter_pair_variance_equals_one_quarter_variance': False}
+000059 |         scope = 'Original independent quarter blocks on one marginal, not the two faces; eta statement is for the unweighted direct sum, not the whole physical master.'
+000060 |     elif check_id == 'variable-mark-completion':
+000061 |         # Candidate class, not a deduction of these Gram forms from P1.
+000062 |         from fractions import Fraction
+000063 |         import sympy as sp
+000064 |         from sympy.matrices.normalforms import hermite_normal_form
+000065 |         finite_replays = []
+000066 |         for r in (1, 2, 3):
+000067 |             n, g = 4*r*r, 4*r*r+1
+000068 |             d = sp.zeros(g)
+000069 |             for j in range(g-1):
+000070 |                 d[j, j], d[j+1, j] = 1, -1
+000071 |             d[g-2, g-1], d[g-1, g-1] = 1, 1
+000072 |             a = sp.zeros(n, n-1)
+000073 |             for j in range(n-1):
+000074 |                 a[j, j], a[j+1, j] = 1, -1
+000075 |             base = sp.diag(d, a)
+000076 |             v = sp.Matrix([sp.Rational(1, 2)]*g +
+000077 |                           [sp.Rational(r*(n-1), n)]+[sp.Rational(-r, n)]*(n-1))
+000078 |             coordinates = base.gauss_jordan_solve(v)[0]
+000079 |             den = 4*r
+000080 |             integer_generators = (den*sp.eye(2*n)).row_join(den*coordinates)
+000081 |             if any(x.q != 1 for x in integer_generators):
+000082 |                 raise ArithmeticError('Nonintegral presentation')
+000083 |             integer_generators = sp.Matrix(integer_generators.rows, integer_generators.cols,
+000084 |                 [sp.Integer(x) for x in integer_generators])
+000085 |             h = hermite_normal_form(integer_generators)
+000086 |             gram = h.T*(base.T*base)*h/den**2
+000087 |             if (gram.det() != 1 or any(x.q != 1 for x in gram)
+000088 |                     or any(gram[j, j] % 2 for j in range(2*n))):
+000089 |                 raise ArithmeticError('Lattice completion replay failed')
+000090 |             finite_replays.append({'marks': n, 'rank': 2*n, 'base': f'D{g}+A{n-1}',
+000091 |                 'glue_order': 4*r, 'generator_squared_norm': str((v.T*v)[0]),
+000092 |                 'gram_determinant': str(gram.det()), 'integral_even': True})
+000093 |         facts = {'conditional_class': 'standard positive D_(n+1)+A_(n-1), complete even unimodular extension',
+000094 |                  'all_admissible_mark_counts': 'n=4*r^2, integer r>=1',
+000095 |                  'analytic_necessity': 'det(base)=4n must be a square; even unimodular rank 2n is divisible by8',
+000096 |                  'analytic_sufficiency': 'glue generator (spinor_D,r*lambda1_A) has order4r and norm2r^2, yielding index4r and determinant1 for every r',
+000097 |                  'finite_independent_hnf_replays': finite_replays,
+000098 |                  'minimal_marks': 4, 'minimal_rank': 8,
+000099 |                  'source_pairing_or_minimality_derived_from_P1': False,
+000100 |                  'primitive_family_projection_condition': 'A local glue element with primitive A_(n-1) discriminant projection has order divisible by n; n divides |H|=4r, while n=4r^2, so r=1.',
+000101 |                  'primitive_projection_selected_marks': 4,
+000102 |                  'primitive_local_charge_derived_from_P1': False}
+000103 |         claims = {'higher_rank_completion_forces_residual_discriminant_sectors': False,
+000104 |                   'local_complete_gluing_alone_selects_four_marks': False,
+000105 |                   'minimal_member_of_this_declared_class_has_four_marks': True,
+000106 |                   'primitive_family_projection_allows_higher_marks': False}
+000107 |         scope = 'An explicit candidate family with assumed standard pairing and even selfdual completion. Minimality is additional. No derivation of physical P1, spacetime, or all TFPT outputs.'
+000108 |     else:
+000109 |         raise ValueError('Unknown curated check ID')
+000110 |     return {'id': check_id, 'status': 'pass', 'facts': facts,
+000111 |             'inference_claims': [{'id': k, 'holds': v} for k, v in claims.items()],
+000112 |             'scope': scope, 'precision_digits': 65,
+000113 |             'new_physical_proof': False, 'fundamental_solution': False}
+000114 | 
+000115 | 
+000116 | if __name__ == '__main__':
+000117 |     parser = argparse.ArgumentParser(description=__doc__)
+000118 |     parser.add_argument('--check', required=True)
+000119 |     args = parser.parse_args()
+000120 |     print(json.dumps(evaluate(args.check), ensure_ascii=False, indent=2))

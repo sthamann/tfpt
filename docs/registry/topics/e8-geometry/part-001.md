@@ -92,7 +92,7 @@ P1 setzt eine orientierte Naht, einen primitiven reflexionspositiven Randkern, E
 
 [documents/TFPT_Universalraum_Sitzungsdokumentation_2026-09-20/sections/001-chapter-leserbrief.tex:251-265](../../../../documents/TFPT_Universalraum_Sitzungsdokumentation_2026-09-20/sections/001-chapter-leserbrief.tex#L251) · `section:b72f06bf3db4088908dc` · section
 
-Die vorgegebene dreidimensionale Nahtdarstellung [formula in source] besitzt unter der verlangten [formula in source] -Ergänzung die eindeutige Form [formula in source] Die vierte Linie ist somit kein neutral hinzugefügtes Familienetikett. Ein expliziter [formula in source] -Projektor isoliert sie. Auf denselben E8-Operatoren gilt der markierte Schnitt [formula in source] Der kleinste E6-abgeschlossene Raum über den 
+Die vorgegebene dreidimensionale Nahtdarstellung [formula in source] besitzt unter der verlangten [formula in source] -Ergänzung die eindeutige Form [formula in source] Die vierte Linie ist somit kein neutral hinzugefügtes Familienetikett. Ein expliziter [formula in source] -Projektor isoliert sie. Auf denselben E8-Operatoren gilt der markierte Schnitt [formula in source] Der kleinste E6-abgeschlossene Raum über den
 
 ## Geometrischer Phasentransport und seine Reichweite
 
@@ -122,7 +122,7 @@ Im festen CAR-Wörterbuch schickt [formula in source] die 112 D8-Wurzeln in 56 D
 
 [documents/TFPT_Universalraum_Sitzungsdokumentation_2026-09-20/sections/003-section-das-alte-bell10-erscheint-aus-echten-stromproduk.tex:20-41](../../../../documents/TFPT_Universalraum_Sitzungsdokumentation_2026-09-20/sections/003-section-das-alte-bell10-erscheint-aus-echten-stromproduk.tex#L20) · `section:ec1c5f07f098fbedcd43` · section
 
-Die 60 alten Strahlen sind viergliedrige [formula in source] -Orbits vollständiger Wurzeln. Die tatsächliche Coxeterwirkung respektiert diese Quotienten bei festem [formula in source] nicht: Ein Orbit kann auf zwei Zielorbits aufgeteilt werden. Der korrekte kovariante Ausdruck ist [formula in source] Der letzte Vertrag macht diesen Befund quantitativ. Die Abbildung [formula in source] erfüllt [formula in source] und 
+Die 60 alten Strahlen sind viergliedrige [formula in source] -Orbits vollständiger Wurzeln. Die tatsächliche Coxeterwirkung respektiert diese Quotienten bei festem [formula in source] nicht: Ein Orbit kann auf zwei Zielorbits aufgeteilt werden. Der korrekte kovariante Ausdruck ist [formula in source] Der letzte Vertrag macht diesen Befund quantitativ. Die Abbildung [formula in source] erfüllt [formula in source] und
 
 ## Was die Clock an der Zeitregel bereits erzwingt
 
@@ -254,7 +254,7 @@ P1 setzt eine orientierte Naht, einen primitiven reflexionspositiven Randkern, E
 
 [documents/TFPT_Universalraum_Sitzungsdokumentation_2026-09-20_v2/sections/001-chapter-leserbrief.tex:253-267](../../../../documents/TFPT_Universalraum_Sitzungsdokumentation_2026-09-20_v2/sections/001-chapter-leserbrief.tex#L253) · `section:0c79be2b686cdcec8f5c` · section
 
-Die vorgegebene dreidimensionale Nahtdarstellung [formula in source] besitzt unter der verlangten [formula in source] -Ergänzung die eindeutige Form [formula in source] Die vierte Linie ist somit kein neutral hinzugefügtes Familienetikett. Ein expliziter [formula in source] -Projektor isoliert sie. Auf denselben E8-Operatoren gilt der markierte Schnitt [formula in source] Der kleinste E6-abgeschlossene Raum über den 
+Die vorgegebene dreidimensionale Nahtdarstellung [formula in source] besitzt unter der verlangten [formula in source] -Ergänzung die eindeutige Form [formula in source] Die vierte Linie ist somit kein neutral hinzugefügtes Familienetikett. Ein expliziter [formula in source] -Projektor isoliert sie. Auf denselben E8-Operatoren gilt der markierte Schnitt [formula in source] Der kleinste E6-abgeschlossene Raum über den
 
 ## Geometrischer Phasentransport und seine Reichweite
 
@@ -284,7 +284,7 @@ Im festen CAR-Wörterbuch schickt [formula in source] die 112 D8-Wurzeln in 56 D
 
 [documents/TFPT_Universalraum_Sitzungsdokumentation_2026-09-20_v2/sections/003-section-was-aus-den-quellenantworten-im-affinen-netz-ent.tex:39-60](../../../../documents/TFPT_Universalraum_Sitzungsdokumentation_2026-09-20_v2/sections/003-section-was-aus-den-quellenantworten-im-affinen-netz-ent.tex#L39) · `section:b48e984dffc6f2f78fbf` · section
 
-Die 60 alten Strahlen sind viergliedrige [formula in source] -Orbits vollständiger Wurzeln. Die tatsächliche Coxeterwirkung respektiert diese Quotienten bei festem [formula in source] nicht: Ein Orbit kann auf zwei Zielorbits aufgeteilt werden. Der korrekte kovariante Ausdruck ist [formula in source] Der letzte Vertrag macht diesen Befund quantitativ. Die Abbildung [formula in source] erfüllt [formula in source] und 
+Die 60 alten Strahlen sind viergliedrige [formula in source] -Orbits vollständiger Wurzeln. Die tatsächliche Coxeterwirkung respektiert diese Quotienten bei festem [formula in source] nicht: Ein Orbit kann auf zwei Zielorbits aufgeteilt werden. Der korrekte kovariante Ausdruck ist [formula in source] Der letzte Vertrag macht diesen Befund quantitativ. Die Abbildung [formula in source] erfüllt [formula in source] und
 
 ## Was die Clock an der Zeitregel bereits erzwingt
 
@@ -326,7 +326,7 @@ Die späteren Arbeiten zur Rand-, Gitter- und Eichstruktur bilden eine logisch z
 
 [documents/TFPT_Universalraum_Sitzungsdokumentation_2026-09-20_v2/sections/004-chapter-randgitter-dynamik-und-lokale-rekonstruktion.tex:46-109](../../../../documents/TFPT_Universalraum_Sitzungsdokumentation_2026-09-20_v2/sections/004-chapter-randgitter-dynamik-und-lokale-rekonstruktion.tex#L46) · `section:792e4664e03a4f0a3f4f` · section
 
-37 beginnt mit allen primitiven charakteristischen Nullvektoren minimaler euklidischer Länge im Gitter [formula in source] . Die Charakteristik erzwingt ungerade Komponenten; Minimalität gibt [formula in source] . Die globale Quellenladung, der Glue und die orientierte Farb-/Schwach-/Familienzerlegung reduzieren die Kandidaten stufenweise. 38 ersetzt dabei eine zunächst separat angenommene Blockpermutationssymmetrie 
+37 beginnt mit allen primitiven charakteristischen Nullvektoren minimaler euklidischer Länge im Gitter [formula in source] . Die Charakteristik erzwingt ungerade Komponenten; Minimalität gibt [formula in source] . Die globale Quellenladung, der Glue und die orientierte Farb-/Schwach-/Familienzerlegung reduzieren die Kandidaten stufenweise. 38 ersetzt dabei eine zunächst separat angenommene Blockpermutationssymmetrie
 
 ## Das vollständige Gitter trägt die Statistik
 
@@ -398,7 +398,7 @@ Frage. Wie tragen dieselben lokalen Zustände E8-Ströme, ungerade geladene Feld
 
 [documents/TFPT_Universalraum_Sitzungsdokumentation_2026-09-20_v2/sections/006-chapter-was-die-gesamte-sitzung-ergeben-hat.tex:110-122](../../../../documents/TFPT_Universalraum_Sitzungsdokumentation_2026-09-20_v2/sections/006-chapter-was-die-gesamte-sitzung-ergeben-hat.tex#L110) · `section:be05be507da9594df963` · section
 
-Diese zweite Fassung erfasst die gesamte in der Sitzung dokumentierte Ergebnisfolge vom 18. bis 20. September 2026 bis einschließlich der geladenen Registerrekonstruktion. Grundlage sind 55 vorherige Abschlussantworten, die vom Nutzer eingebrachten Anschlussberichte und die zugehörigen lokalen Forschungsartefakte. Die bereits vorhandene erste Fassung deckte die ersten 43 Abschlussantworten ab. Sie bleibt unverändert 
+Diese zweite Fassung erfasst die gesamte in der Sitzung dokumentierte Ergebnisfolge vom 18. bis 20. September 2026 bis einschließlich der geladenen Registerrekonstruktion. Grundlage sind 55 vorherige Abschlussantworten, die vom Nutzer eingebrachten Anschlussberichte und die zugehörigen lokalen Forschungsartefakte. Die bereits vorhandene erste Fassung deckte die ersten 43 Abschlussantworten ab. Sie bleibt unverändert
 
 ## S01 — Integrale Trialität
 

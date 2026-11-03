@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## 3. WP-C: Relativistisches Feldwörterbuch (fertig, 2161 exakte Guards, -OO-stabil)
+
+[documents/experiments--theory-contracts--universalraum-source-composition-20260915--tmp--pdfs--TFPT_Universalraum_Quellkomposition_Konsolidierung_2026-09-15_v1.6.9/sections/032-subsection-0-gesamtlage-zwei-spuren-label-gesamtlage-zwe.tex:154-205](../../../../documents/experiments--theory-contracts--universalraum-source-composition-20260915--tmp--pdfs--TFPT_Universalraum_Quellkomposition_Konsolidierung_2026-09-15_v1.6.9/sections/032-subsection-0-gesamtlage-zwei-spuren-label-gesamtlage-zwe.tex#L154) · `section:40ca3a041da6aca37d9d` · subsection
+
+@ > p( - 4 ) * 0.3000 > p( - 4 ) * 0.4000 > p( - 4 ) * 0.3000@ Kanal & Norm² pro Zeile & Status \\ Skalar, gleichhändig ε_\αβ\ψψ & 0 (alle 60 Zeilen, exakt) & verboten \\ Skalar, gepunktet (0,0) & 0 & verboten \\ (1,0) symmetrisch \I, σˣ, σᶻ\ & je 64, Summe 192 & erlaubt - der Vertex ist rein (1,0)+h.c. \\ (0,1) konjugiert & je 64 & erlaubt \\
+
 ## 4. WP-B: Nativer Grundzustand (Parallelsession v1.6.4 + meine laufende Sonde)
 
 [documents/experiments--theory-contracts--universalraum-source-composition-20260915--tmp--pdfs--TFPT_Universalraum_Quellkomposition_Konsolidierung_2026-09-15_v1.6.9/sections/032-subsection-0-gesamtlage-zwei-spuren-label-gesamtlage-zwe.tex:206-254](../../../../documents/experiments--theory-contracts--universalraum-source-composition-20260915--tmp--pdfs--TFPT_Universalraum_Quellkomposition_Konsolidierung_2026-09-15_v1.6.9/sections/032-subsection-0-gesamtlage-zwei-spuren-label-gesamtlage-zwe.tex#L206) · `section:16878d30a44896fbed7d` · subsection
@@ -80,7 +86,7 @@ Gemessen wird die Dimension des Kommutanten der von einer Operationsstufe erzeug
 
 [documents/experiments--theory-contracts--universalraum-source-composition-20260915--tmp--pdfs--TFPT_Universalraum_Quellkomposition_Konsolidierung_2026-09-15_v1.6.9/sections/036-section-tfpt-universalraum-operationssatz-nativer-grundz.tex:67-108](../../../../documents/experiments--theory-contracts--universalraum-source-composition-20260915--tmp--pdfs--TFPT_Universalraum_Quellkomposition_Konsolidierung_2026-09-15_v1.6.9/sections/036-section-tfpt-universalraum-operationssatz-nativer-grundz.tex#L67) · `section:e2ad718fc647c1c93e2f` · subsubsection
 
-@ > p( - 8 ) * 0.1875 > p( - 8 ) * 0.1875 > p( - 8 ) * 0.2500 > p( - 8 ) * 0.1875 > p( - 8 ) * 0.1875@ Sektor & Block & Dim & Zerlegung unter so(10)⊕ su(4) & (𝒞_S, 𝒞_C) \\ N=2 & helle Paare ↔ Bosonen & 60 & (10, 6) & (36, 20) \\ N=2 & dunkle Paare & 1956 & (120, 10) ⊕ (126, 6) & (84,36), (100,20) \\ N=3 & dunkle Tripel = ker C₃ & 37888 & (560, 20″) ⊕ (1200, 20) ⊕ (672, 4̄) & (117,63), (141,39), (165,15) \\ N=3 & ker 
+@ > p( - 8 ) * 0.1875 > p( - 8 ) * 0.1875 > p( - 8 ) * 0.2500 > p( - 8 ) * 0.1875 > p( - 8 ) * 0.1875@ Sektor & Block & Dim & Zerlegung unter so(10)⊕ su(4) & (𝒞_S, 𝒞_C) \\ N=2 & helle Paare ↔ Bosonen & 60 & (10, 6) & (36, 20) \\ N=2 & dunkle Paare & 1956 & (120, 10) ⊕ (126, 6) & (84,36), (100,20) \\ N=3 & dunkle Tripel = ker C₃ & 37888 & (560, 20″) ⊕ (1200, 20) ⊕ (672, 4̄) & (117,63), (141,39), (165,15) \\ N=3 & ker
 
 ## 3.2 Kommutanten-Leiter
 
@@ -343,7 +349,7 @@ Noether: Die erhaltene Ladung [formula in source] ist hier kein dekoratives Etik
 
 [documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/002-subsection-7-derselbe-grundzustand-besitzt-eine-kontroll.tex:266-312](../../../../documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/002-subsection-7-derselbe-grundzustand-besitzt-eine-kontroll.tex#L266) · `section:71f08ad0e58f0de9456a` · subsection
 
-@ > p( - 4 ) * 0.3333 > p( - 4 ) * 0.3333 > p( - 4 ) * 0.3333@ Gate & Was diese Runde tatsächlich beiträgt & Was weiter fehlt \\ T1 Auswahl & Zwei Spin-Lifts, ein Clock-Intertwiner, ein bedingter Reflexionsselektor und Zustandsselektion in einer kleinen Klasse & Ursprüngliche gemeinsame Vertex-/Kantenreflexion, Kopienregel und Kopplungsvertrag \\ T2 markierte Seam & Die verlorene fermionische Hebungsinformation wird 
+@ > p( - 4 ) * 0.3333 > p( - 4 ) * 0.3333 > p( - 4 ) * 0.3333@ Gate & Was diese Runde tatsächlich beiträgt & Was weiter fehlt \\ T1 Auswahl & Zwei Spin-Lifts, ein Clock-Intertwiner, ein bedingter Reflexionsselektor und Zustandsselektion in einer kleinen Klasse & Ursprüngliche gemeinsame Vertex-/Kantenreflexion, Kopienregel und Kopplungsvertrag \\ T2 markierte Seam & Die verlorene fermionische Hebungsinformation wird
 
 ## 12. Die nächsten entscheidenden Prüfungen
 
@@ -657,9 +663,3 @@ Der ursprüngliche Clock wird aus experiments/tfpt-discovery/seam_state_derivati
 Explicit source references:
 
 - [experiments/tfpt-discovery/seam_state_derivation_probe.py](../../../../experiments/tfpt-discovery/seam_state_derivation_probe.py#L1) · explicit_file_citation
-
-## 2. Kleinstes skalares Überlappungs-Gegenmodell
-
-[documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/006-subsection-5-allgemeine-car-identit-t-auf.tex:318-372](../../../../documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/006-subsection-5-allgemeine-car-identit-t-auf.tex#L318) · `section:541b5ec93557f35953ec` · subsection
-
-Seien a_i,d_i, i=0, ,63, zwei kanonische Familien auf einer gemeinsamen CAR-Fockbasis. Setze für 0 c 1 und s=√(1−c²):

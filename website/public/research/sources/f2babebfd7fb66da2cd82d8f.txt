@@ -1,0 +1,24 @@
+TFPT scientific source excerpt
+Original repository path: verification/v1008_master_assembly_scaffold.py
+Original file SHA-256: 3c45ac92fabdcb4d572a4f5c1b51d6b33639e6538f30b0168adca12a5d3fcb37
+Inclusive original lines: 565-580
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000565 |     print("\nSTAGE 3  QWZ WALL + DET4 MIRROR")
+000566 |     physical_profile, mirror_profile, profile_overlap = localized_zero_profiles()
+000567 |     physical_weight = float(np.sum(np.abs(physical_profile[:2]) ** 2))
+000568 |     mirror_weight = float(np.sum(np.abs(mirror_profile[-2:]) ** 2))
+000569 |     delta = 0.08
+000570 |     physical_minus, _ = edge_branch(-delta, "physical")
+000571 |     physical_plus, _ = edge_branch(delta, "physical")
+000572 |     physical_slope = (physical_plus - physical_minus) / (2.0 * delta)
+000573 |     report(
+000574 |         "QWZ physical slope ~ -0.9989 [N]",
+000575 |         abs(physical_slope + 0.9989) < 0.01
+000576 |         and physical_weight > LOCALIZATION_MIN
+000577 |         and mirror_weight > LOCALIZATION_MIN
+000578 |         and profile_overlap < MIRROR_OVERLAP_MAX,
+000579 |         "slope=%+.6f; y0 weight=%.6f; overlap=%.1e"
+000580 |         % (physical_slope, physical_weight, profile_overlap),

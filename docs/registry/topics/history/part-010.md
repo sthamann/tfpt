@@ -155,7 +155,7 @@ The complete chain from [formula in source] to [formula in source] :
 
 [documents/archive--paper-latex--tfpt-theory-fullv21/sections/006-section-numerical-constants-high-precision.tex:263-277](../../../../documents/archive--paper-latex--tfpt-theory-fullv21/sections/006-section-numerical-constants-high-precision.tex#L263) · `section:6158cbfedc1dac1b49e9` · subsection
 
-The uniqueness is verified by: Constructing the complete Hasse diagram of [formula in source] from standard tables. Computing all cover relations with [formula in source] . Running dynamic programming to find all paths from [formula in source] to [formula in source] . Applying the cost function [formula in source] (second-difference smoothness). Verifying that the minimum-cost path is unique (cost gap to second-best 
+The uniqueness is verified by: Constructing the complete Hasse diagram of [formula in source] from standard tables. Computing all cover relations with [formula in source] . Running dynamic programming to find all paths from [formula in source] to [formula in source] . Applying the cost function [formula in source] (second-difference smoothness). Verifying that the minimum-cost path is unique (cost gap to second-best
 
 ## Boundary Trace Derivation
 

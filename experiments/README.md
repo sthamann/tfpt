@@ -1,5 +1,14 @@
 # TFPT experiments
 
+Current source/transfer research is recorded in
+[the shared fundamental plan](../docs/research/fundamental-plan/PLAN.md) and
+[the dated consolidation](../docs/research/fundamental-plan/CONSOLIDATION-SESSION-20261103.md).
+The puncture-metric, joint-source-clock, original-paper-reconciliation and
+original-local-source-variable-background contracts retain their full
+premises, analytical proofs, executed controls and scoped negative results.
+A constructed source is distinguished from its primitive physical origin.
+
+
 Physical TFPT experiments and their own finite mathematical support live here.
 RH, prime-number, factorisation and Weil-window campaigns have moved to
 [Prime Front](https://github.com/sthamann/prime-front/tree/main/experiments).

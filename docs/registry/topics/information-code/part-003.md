@@ -62,7 +62,7 @@ Der separate Prüfer verify_shadows.py importiert keinen ursprünglichen TFPT- o
 
 [experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/19_execution_v13.tex:85-106](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/19_execution_v13.tex#L85) · `section:ca00fae1038eba17c369` · section
 
-Nach erfolgreicher Präparation folgen lokaler Quelltick [formula in source] , zweimal [formula in source] , Rücknahme [formula in source] und dasselbe [formula in source] -Runden-Filter. Ein ideales kostenloses [formula in source] -Messgerät wird nicht eingesetzt. Protokoll R behält denselben kohärenten Pointer; Protokoll F verwendet beim zweiten Schritt einen frischen. Mit [formula in source] lauten die gemeinsamen 
+Nach erfolgreicher Präparation folgen lokaler Quelltick [formula in source] , zweimal [formula in source] , Rücknahme [formula in source] und dasselbe [formula in source] -Runden-Filter. Ein ideales kostenloses [formula in source] -Messgerät wird nicht eingesetzt. Protokoll R behält denselben kohärenten Pointer; Protokoll F verwendet beim zweiten Schritt einen frischen. Mit [formula in source] lauten die gemeinsamen
 
 ## Die dokumentierte Entwicklung
 
@@ -122,7 +122,7 @@ Der separate Prüfer verify_shadows.py importiert keinen ursprünglichen TFPT- o
 
 [experiments/theory-contracts/universalraum-five-source-frontier-20260914/main-v1.4/chapters/19_execution_v13.tex:85-106](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/main-v1.4/chapters/19_execution_v13.tex#L85) · `section:bb3650b1e2ab66eebb29` · section
 
-Nach erfolgreicher Präparation folgen lokaler Quelltick [formula in source] , zweimal [formula in source] , Rücknahme [formula in source] und dasselbe [formula in source] -Runden-Filter. Ein ideales kostenloses [formula in source] -Messgerät wird nicht eingesetzt. Protokoll R behält denselben kohärenten Pointer; Protokoll F verwendet beim zweiten Schritt einen frischen. Mit [formula in source] lauten die gemeinsamen 
+Nach erfolgreicher Präparation folgen lokaler Quelltick [formula in source] , zweimal [formula in source] , Rücknahme [formula in source] und dasselbe [formula in source] -Runden-Filter. Ein ideales kostenloses [formula in source] -Messgerät wird nicht eingesetzt. Protokoll R behält denselben kohärenten Pointer; Protokoll F verwendet beim zweiten Schritt einen frischen. Mit [formula in source] lauten die gemeinsamen
 
 ## Ein vollständiger neuer Präparations- und Echovertrag
 
@@ -188,7 +188,7 @@ Der separate Prüfer verify_shadows.py importiert keinen ursprünglichen TFPT- o
 
 [experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/19_execution_v13.tex:88-109](../../../../experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/19_execution_v13.tex#L88) · `section:2f40225e7069ab9d24b9` · section
 
-Nach erfolgreicher Präparation folgen lokaler Quelltick [formula in source] , zweimal [formula in source] , Rücknahme [formula in source] und dasselbe [formula in source] -Runden-Filter. Ein ideales kostenloses [formula in source] -Messgerät wird nicht eingesetzt. Protokoll R behält denselben kohärenten Pointer; Protokoll F verwendet beim zweiten Schritt einen frischen. Mit [formula in source] lauten die gemeinsamen 
+Nach erfolgreicher Präparation folgen lokaler Quelltick [formula in source] , zweimal [formula in source] , Rücknahme [formula in source] und dasselbe [formula in source] -Runden-Filter. Ein ideales kostenloses [formula in source] -Messgerät wird nicht eingesetzt. Protokoll R behält denselben kohärenten Pointer; Protokoll F verwendet beim zweiten Schritt einen frischen. Mit [formula in source] lauten die gemeinsamen
 
 ## Ein vollständiger neuer Präparations- und Echovertrag
 
@@ -302,7 +302,7 @@ with [formula in source] the number of non-empty occupation words of the [formul
 
 [experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex:4344-4404](../../../../experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex#L4344) · `section:4e9f1abfa575088fe498` · subsection
 
-Identify [formula in source] with the even-weight binary code on five bits. A transition [formula in source] has flip [formula in source] , even and nonempty, so [formula in source] ; per state there are [formula in source] flips, giving and the [formula in source] undirected flips match the [formula in source] [formula in source] root pairs ( , counting). This makes the atlas conjecture testable: a genuine root map 
+Identify [formula in source] with the even-weight binary code on five bits. A transition [formula in source] has flip [formula in source] , even and nonempty, so [formula in source] ; per state there are [formula in source] flips, giving and the [formula in source] undirected flips match the [formula in source] [formula in source] root pairs ( , counting). This makes the atlas conjecture testable: a genuine root map
 
 Explicit source references:
 
@@ -429,7 +429,7 @@ Der separate Prüfer verify_shadows.py importiert keinen ursprünglichen TFPT- o
 
 [experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/19_execution_v13.tex:85-106](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/19_execution_v13.tex#L85) · `section:9c19a58c70d547bdec15` · section
 
-Nach erfolgreicher Präparation folgen lokaler Quelltick [formula in source] , zweimal [formula in source] , Rücknahme [formula in source] und dasselbe [formula in source] -Runden-Filter. Ein ideales kostenloses [formula in source] -Messgerät wird nicht eingesetzt. Protokoll R behält denselben kohärenten Pointer; Protokoll F verwendet beim zweiten Schritt einen frischen. Mit [formula in source] lauten die gemeinsamen 
+Nach erfolgreicher Präparation folgen lokaler Quelltick [formula in source] , zweimal [formula in source] , Rücknahme [formula in source] und dasselbe [formula in source] -Runden-Filter. Ein ideales kostenloses [formula in source] -Messgerät wird nicht eingesetzt. Protokoll R behält denselben kohärenten Pointer; Protokoll F verwendet beim zweiten Schritt einen frischen. Mit [formula in source] lauten die gemeinsamen
 
 ## Die dokumentierte Entwicklung
 
@@ -606,7 +606,7 @@ Der separate Prüfer verify_shadows.py importiert keinen ursprünglichen TFPT- o
 
 [experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/19_execution_v13.tex:88-109](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/19_execution_v13.tex#L88) · `section:6b86dbce48e071a54eed` · section
 
-Nach erfolgreicher Präparation folgen lokaler Quelltick [formula in source] , zweimal [formula in source] , Rücknahme [formula in source] und dasselbe [formula in source] -Runden-Filter. Ein ideales kostenloses [formula in source] -Messgerät wird nicht eingesetzt. Protokoll R behält denselben kohärenten Pointer; Protokoll F verwendet beim zweiten Schritt einen frischen. Mit [formula in source] lauten die gemeinsamen 
+Nach erfolgreicher Präparation folgen lokaler Quelltick [formula in source] , zweimal [formula in source] , Rücknahme [formula in source] und dasselbe [formula in source] -Runden-Filter. Ein ideales kostenloses [formula in source] -Messgerät wird nicht eingesetzt. Protokoll R behält denselben kohärenten Pointer; Protokoll F verwendet beim zweiten Schritt einen frischen. Mit [formula in source] lauten die gemeinsamen
 
 ## Ein vollständiger neuer Präparations- und Echovertrag
 
@@ -650,7 +650,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/revisions/06_records.tex:1-3](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/revisions/06_records.tex#L1) · `section:4ee9bba7e566816e6a5f` · frontmatter
 
-Integriertes Update v1.6: Rohdaten statt nur Rückkehrquotient Das neue Ein-Record-Präparationsprotokoll und seine rückwärts ausgeführte Schlussprüfung liefern für die vollständige Vier-Record-Folge die Rohwahrscheinlichkeiten [formula in source] bei kohärent behaltenem Register und [formula in source] bei frischen Registern. Ihr Verhältnis ist weiterhin [formula in source] . Das erste Ergebnis enthält beide Faktoren 
+Integriertes Update v1.6: Rohdaten statt nur Rückkehrquotient Das neue Ein-Record-Präparationsprotokoll und seine rückwärts ausgeführte Schlussprüfung liefern für die vollständige Vier-Record-Folge die Rohwahrscheinlichkeiten [formula in source] bei kohärent behaltenem Register und [formula in source] bei frischen Registern. Ihr Verhältnis ist weiterhin [formula in source] . Das erste Ergebnis enthält beide Faktoren
 
 Explicit source references:
 
@@ -702,6 +702,12 @@ Explicit source references:
 Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
 
 - [(* v1031: exact rational-fibre curvature projector and positivity. *) p = {1, 2, 2}; {r2, b, trace, scalar, kp, kq, c} = tensorData[p]; ptt = Simplify[explicitPTT[p, r2]]; check["v1031 C=r^4 PTT with a symmetric rank-two projector", zeroQ[c - r2^2 ptt] && zeroQ[ptt - Transpose[ptt]] && zeroQ[ptt.ptt - ptt] && MatrixRank[ptt] === 2]; cFactor = r2 ptt; check["v1031 exact PSD factorization has spectrum {0^4,r^4,r^4}", zeroQ[c - cFactor.Transpose[cFactor]] && MatrixRank[c] === 2 && Sort[Simplify[Eigenvalues[c]]] === {0, 0, 0, 0, r2^2, r2^2}]; (* v1032: a separate Lorentz-covariant curvature calculation at one exact nonzero null momentum. Pi is the de Donder trace-reversed numerator; positivity is inferred only after the curvature sandwich. *)](../../../../verification/wolfram/tfpt_round7.wl#L79)
+
+## Physical source existence, ground words and common geometry (H, I, J)
+
+[tex-artefacts/toe_source_completion_20261103.tex:153-220](../../../../tex-artefacts/toe_source_completion_20261103.tex#L153) · `section:206a9bd3daad77367425` · subsection
+
+The given finite-range uniformly local Hamiltonian class has its thermodynamic real-time norm dynamics and ground/KMS states. Restrictions of one limiting state are compatible. Independently restarted small bare Gibbs weights need not be projective. Exact elimination carries the effective fiber weights, exterior determinants, higher vertices and memory, rather than imposing the original bare ansatz again at each cut.
 
 ## Exact access results in the local quadratic candidate
 

@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## 9.2 Bereits bekannter nichtverschwindender Typ
+
+[documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/033-subsection-5-dieselbe-antwort-auf-demselben.tex:339-347](../../../../documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/033-subsection-5-dieselbe-antwort-auf-demselben.tex#L339) · `section:e2289fde0561e9823dbc` · subsubsection
+
+Ein symmetrischer Lorentzspinortensor koppelt an das antisymmetrische M. Der Vermittler hat dann einen passenden dualen (1,0)-Typ samt adjungiertem Typ. Diese Variante besteht den algebraischen Nichtnulltest, aber noch keinen vollständigen Kinetik-, Positivitäts-, Constraints- oder Herkunftstest.
+
 ## 9.3 Neue minimale skalare Alternative - ausdrücklich zusätzlich
 
 [documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/033-subsection-5-dieselbe-antwort-auf-demselben.tex:348-381](../../../../documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/033-subsection-5-dieselbe-antwort-auf-demselben.tex#L348) · `section:32b8a9b90dbab0d5e1b6` · subsubsection
@@ -76,7 +82,7 @@ Explicit source references:
 
 [documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/035-subsection-0-gesamtlage-zwei-spuren-label-gesamtlage-zwe.tex:102-131](../../../../documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/035-subsection-0-gesamtlage-zwei-spuren-label-gesamtlage-zwe.tex#L102) · `section:abe08ea071bba6f43c37` · subsubsection
 
-@lrrrll@ Block & Dim & Mult & S-Eigenwert & (C_S, C_U) & Rolle \\ (144, 20) & 2880 & 2 & 7 & (85, 39) & hell, X-gekoppelt \\ (144, 4̄) & 576 & 2 & 10 & (85, 15) & hell, X-gekoppelt \\ (16′, 20) & 320 & 2 & 12 & (45, 39) & hell, X-gekoppelt \\ (16′, 4̄) & 64 & 1 & 0 (ker S) & (45, 15) & χ-Kompositblock \\ (672, 4̄) & 2688 & 1 & - & (165, 15) & dunkel \\ (1200, 20) & 24 000 & 1 & - & (141, 39) & dunkel \\ (560, 20′) & 
+@lrrrll@ Block & Dim & Mult & S-Eigenwert & (C_S, C_U) & Rolle \\ (144, 20) & 2880 & 2 & 7 & (85, 39) & hell, X-gekoppelt \\ (144, 4̄) & 576 & 2 & 10 & (85, 15) & hell, X-gekoppelt \\ (16′, 20) & 320 & 2 & 12 & (45, 39) & hell, X-gekoppelt \\ (16′, 4̄) & 64 & 1 & 0 (ker S) & (45, 15) & χ-Kompositblock \\ (672, 4̄) & 2688 & 1 & - & (165, 15) & dunkel \\ (1200, 20) & 24 000 & 1 & - & (141, 39) & dunkel \\ (560, 20′) &
 
 ## Das Verfügbarkeits-Theorem (Parallelsession, symmetry_availability.py)Das Verfügbarkeits-Theorem (Parallelsession, )
 
@@ -166,7 +172,7 @@ Gemessen wird die Dimension des Kommutanten der von einer Operationsstufe erzeug
 
 [documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/039-section-tfpt-universalraum-operationssatz-nativer-grundz.tex:67-108](../../../../documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/039-section-tfpt-universalraum-operationssatz-nativer-grundz.tex#L67) · `section:519e3ef56e84c89a6ce1` · subsubsection
 
-@ > p( - 8 ) * 0.1875 > p( - 8 ) * 0.1875 > p( - 8 ) * 0.2500 > p( - 8 ) * 0.1875 > p( - 8 ) * 0.1875@ Sektor & Block & Dim & Zerlegung unter so(10)⊕ su(4) & (𝒞_S, 𝒞_C) \\ N=2 & helle Paare ↔ Bosonen & 60 & (10, 6) & (36, 20) \\ N=2 & dunkle Paare & 1956 & (120, 10) ⊕ (126, 6) & (84,36), (100,20) \\ N=3 & dunkle Tripel = ker C₃ & 37888 & (560, 20″) ⊕ (1200, 20) ⊕ (672, 4̄) & (117,63), (141,39), (165,15) \\ N=3 & ker 
+@ > p( - 8 ) * 0.1875 > p( - 8 ) * 0.1875 > p( - 8 ) * 0.2500 > p( - 8 ) * 0.1875 > p( - 8 ) * 0.1875@ Sektor & Block & Dim & Zerlegung unter so(10)⊕ su(4) & (𝒞_S, 𝒞_C) \\ N=2 & helle Paare ↔ Bosonen & 60 & (10, 6) & (36, 20) \\ N=2 & dunkle Paare & 1956 & (120, 10) ⊕ (126, 6) & (84,36), (100,20) \\ N=3 & dunkle Tripel = ker C₃ & 37888 & (560, 20″) ⊕ (1200, 20) ⊕ (672, 4̄) & (117,63), (141,39), (165,15) \\ N=3 & ker
 
 ## 3.2 Kommutanten-Leiter
 
@@ -685,7 +691,7 @@ Eine allgemeinere und operativ verständliche Forderung als vorab vorgeschrieben
 
 [documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/002-subsection-der-entscheidende-selektor-vollst-ndigkeit-de.tex:301-326](../../../../documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/002-subsection-der-entscheidende-selektor-vollst-ndigkeit-de.tex#L301) · `section:60cb81058c5a8e7865c4` · subsection
 
-Der Universalraum fordert eine vollständige, zusammensetzbare Darstellung der erlaubten Antworten. Für zwei Geschichten [formula in source] ist die sichere Gleichsetzung [formula in source] Die Testkontexte müssen auch spätere Operationen und zusammengesetzte Umgebungen erfassen. Besitzt die Prozesstheorie eine Parallelkomposition, müssen alle ihre zulässigen parallelen Registerkontexte ebenfalls enthalten sein. Bei 
+Der Universalraum fordert eine vollständige, zusammensetzbare Darstellung der erlaubten Antworten. Für zwei Geschichten [formula in source] ist die sichere Gleichsetzung [formula in source] Die Testkontexte müssen auch spätere Operationen und zusammengesetzte Umgebungen erfassen. Besitzt die Prozesstheorie eine Parallelkomposition, müssen alle ihre zulässigen parallelen Registerkontexte ebenfalls enthalten sein. Bei
 
 ## Was damit für die Auswahlregel gewonnen ist.
 
@@ -1046,10 +1052,4 @@ Die einfache Kette entsteht aus [formula in source] durch Orthogonalisierung:
 
 [documents/universal_room--new-2--TFPT_Universalraum_Forschungspaper_2026-09-15--TFPT_Universalraum_Forschungspaper_2026-09-15/sections/003-subsection-6-2-lanczos-z-hlt-hamiltonschritte-nicht.tex:41-55](../../../../documents/universal_room--new-2--TFPT_Universalraum_Forschungspaper_2026-09-15--TFPT_Universalraum_Forschungspaper_2026-09-15/sections/003-subsection-6-2-lanczos-z-hlt-hamiltonschritte-nicht.tex#L41) · `section:d0ecabd24dcc432365a8` · subsection
 
-Das ergibt [formula in source] bei [formula in source] , aber [formula in source] bei [formula in source] . Beide Modelle besitzen dasselbe [formula in source] , dieselben inneren Symmetrien und denselben kommutierenden Clock. Die dimensionslose Differenz ist keine Einheitenfrage. Damit ist belegt, dass diese Grunddaten allein die physikalische Dynamik nicht eindeutig auswählen. Die Referenz [formula in source] muss 
-
-## 6.4 Nachgereichter Text: die interessante Fortsetzung liegt in Matrixmomenten
-
-[documents/universal_room--new-2--TFPT_Universalraum_Forschungspaper_2026-09-15--TFPT_Universalraum_Forschungspaper_2026-09-15/sections/003-subsection-6-2-lanczos-z-hlt-hamiltonschritte-nicht.tex:56-122](../../../../documents/universal_room--new-2--TFPT_Universalraum_Forschungspaper_2026-09-15--TFPT_Universalraum_Forschungspaper_2026-09-15/sections/003-subsection-6-2-lanczos-z-hlt-hamiltonschritte-nicht.tex#L56) · `section:de3911512aacedb26eb6` · subsection
-
-Der während dieser Arbeit nachgereichte Text Operationssatz, nativer Grundzustand und Feldwörterbuch, beschriftet als v1.6.3, ist byteidentisch mit dem bereits gelesenen aktuellen Repositorybericht derselben Linie. Sein Tensor, Lochbild, Kommutantenstufen und Nichtschlussbefund sind deshalb bereits berücksichtigt. Seine Priorität „den Zwei-Boson-Singulettraum ausschreiben`` ist in v1.6.7 inzwischen durch die vier exp
+Das ergibt [formula in source] bei [formula in source] , aber [formula in source] bei [formula in source] . Beide Modelle besitzen dasselbe [formula in source] , dieselben inneren Symmetrien und denselben kommutierenden Clock. Die dimensionslose Differenz ist keine Einheitenfrage. Damit ist belegt, dass diese Grunddaten allein die physikalische Dynamik nicht eindeutig auswählen. Die Referenz [formula in source] muss

@@ -1,0 +1,98 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/original-local-source-variable-background-20261102/check_functor.py
+Original file SHA-256: 865e801e07f02b7977494b6af2559953cfae8baab1a65f90e887564eb9582ec7
+Inclusive original lines: 1-90
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Exact signs in the existing full96 chart; FUNCTOR.txt proves operator scope."""
+000002 | from pathlib import Path
+000003 | import hashlib
+000004 | import json
+000005 | import sympy as s
+000006 | import numpy as np
+000007 | 
+000008 | [OMITTED: non-scientific conversation or execution metadata]
+000009 | source = repo / 'experiments/theory-contracts/tfpt-unified-source-derivation-20261029/graded_boundary_functor/check_finite_typing.py'
+000010 | native = {'__file__': str(source)}
+000011 | # Reuse the existing constructor prelude, without its canonical result writer.
+000012 | exec(compile(source.read_text().split('checks={')[0], str(source), 'exec'), native)
+000013 | v, exact, g, E, N, Z, S, n = [native[k] for k in
+000014 |                              ['v', 'exact', 'g', 'E', 'N', 'Z', 'S', 'n']]
+000015 | I = s.eye(n)
+000016 | I2 = s.eye(2*n)
+000017 | zero = s.zeros(n)
+000018 | NN = s.kronecker_product(N, I)
+000019 | SS = s.kronecker_product(S, I)
+000020 | GG = s.kronecker_product(Z, g)
+000021 | U = E.row_join(NN * E)
+000022 | K = exact(v.Kswap())
+000023 | Jold = SS * s.diag(K, K)
+000024 | c = -s.I * K
+000025 | q, dr, p, m, ell, mu = s.symbols('q dr p m ell mu', real=True)
+000026 | ys = [np.diag(x).astype(complex) for x in
+000027 |       ([1, 2, 3], [2, 3, 4], [3, 4, 5], [4, 5, 6])]
+000028 | mr = np.array([[2, 1, 0], [1, 3, 1], [0, 1, 4]], complex)
+000029 | DY = exact(v.full_D(*ys, np.zeros((3, 3), complex)))
+000030 | DM = exact(v.full_D(*[np.zeros((3, 3), complex)] * 4, mr))
+000031 | Phi = (p+m)*DY+DM
+000032 | Phitau = (p-m)*DY+DM
+000033 | 
+000034 | 
+000035 | def eq(a, b):
+000036 |     # Matrix structural equality does not expand products over p+m.
+000037 |     return a.shape == b.shape and all(s.expand(z) == 0 for z in a-b)
+000038 | 
+000039 | 
+000040 | def Dop(ph, drsign=1):
+000041 |     return (drsign*s.kronecker_product(N, dr*I)
+000042 |             + s.kronecker_product(S, q*I)+s.kronecker_product(Z, ph))
+000043 | 
+000044 | 
+000045 | def hd(ph):
+000046 |     return q*g-s.I*g*ph
+000047 | 
+000048 | 
+000049 | def Db(ph):
+000050 |     h = hd(ph)
+000051 |     return zero.row_join(-dr*I+h).col_join((dr*I+h).row_join(zero))
+000052 | 
+000053 | 
+000054 | checks = {
+000055 |     'actual_full96': n == 96,
+000056 |     'full_U_unitary': eq(U.H*U, I2) and eq(U*U.H, I2),
+000057 |     'transported_grading': eq(U.H*GG*U, s.diag(I, -I)),
+000058 |     'normal_matrix_transport': eq(U.H*NN*U, zero.row_join(-I).col_join(I.row_join(zero))),
+000059 |     'tauS_transport': eq(U.H*SS*U, zero.row_join(g).col_join(g.row_join(zero))),
+000060 |     'tauT_transport': eq(U.H*SS*s.diag(g, g)*U, zero.row_join(I).col_join(I.row_join(zero))),
+000061 |     'native_Jloc_transport': eq(U.H*Jold*s.conjugate(U), s.diag(c, -c)),
+000062 |     'native_JF_anti_grading': eq(K*s.conjugate(g), -g*K),
+000063 |     'native_JF_Phi': eq(K*s.conjugate(Phi), Phi*K),
+000064 |     'whole_D_transport': eq(U.H*Dop(Phi)*U, Db(Phi)),
+000065 | }
+000066 | for label, phref in {'S': m*DY, 'T': p*DY+DM}.items():
+000067 |     tau = SS if label == 'S' else SS*s.diag(g, g)
+000068 |     ave = (Dop(Phi)+tau*Dop(Phitau, -1)*tau)/2
+000069 |     ug = (I-s.I*g)/s.sqrt(2)
+000070 |     R = -2*ell*mu*s.I*g*phref
+000071 |     checks[f'actual_tau_{label}_reference'] = eq(ave, Dop(phref))
+000072 |     checks[f'reference_{label}_whole_transport'] = eq(U.H*ave*U, Db(phref))
+000073 |     checks[f'reference_{label}_complete_reader'] = eq(
+000074 |         2*ell*mu*(hd(phref)-g*hd(phref)*g)/2, R)
+000075 |     checks[f'reference_{label}_reader_comparison'] = eq(R, 2*ell*mu*ug*phref*ug.H)
+000076 |     # Clear only the declared nonzero scalar denominator.
+000077 |     checks[f'reference_{label}_inverse'] = eq(ug.H*R*ug, 2*ell*mu*phref)
+000078 | 
+000079 | result = {
+000080 |     'all_passed': all(checks.values()), 'checks': checks,
+000081 |     'n_checks': len(checks), 'source': str(source),
+000082 |     'source_sha256': hashlib.sha256(source.read_bytes()).hexdigest(),
+000083 |     'constructor_sha256': hashlib.sha256(
+000084 |         (repo/'verification/v252_full_finite_triple.py').read_bytes()).hexdigest(),
+000085 |     'scope': 'Exact symbolic coefficients of actual full96 constructor, both R032 lifts and actual JF. Operator-domain, normal propagation and functional calculus are proved analytically in FUNCTOR.txt.',
+000086 | }
+000087 | Path(__file__).with_name('FUNCTOR-check.json').write_text(json.dumps(result, indent=2)+'\n')
+000088 | print(json.dumps(result))
+000089 | if not result['all_passed']:
+000090 |     raise SystemExit(1)

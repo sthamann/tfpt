@@ -4,6 +4,16 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Zusätzlicher Einblick in den RH-Forschungsbestand
+
+[experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/17_schatten_quellen.tex:3-29](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/17_schatten_quellen.tex#L3) · `section:df883b4e7a2ccf794d52` · section
+
+Die Erweiterung wurde am 14. September 2026 gegen verfügbare Originalabschnitte im lokalen Repository tfpt-theoryv4 abgeglichen. Der gelesene Git-Stand war 66b91e40e245569f06ab440ead80f446c9be0ee5. Dies identifiziert den Checkout; es behauptet keinen frischen vollständigen Beweis- oder Testlauf. Die tatsächlich verwendeten Dateiinhalte sind zusätzlich mit SHA-256 im Paket erfasst, auch soweit der Arbeitsbaum von Git
+
+Explicit source references:
+
+- [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/experiments/tfpt-discovery/gabor_first_contact_selberg_result.json](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/experiments/tfpt-discovery/gabor_first_contact_selberg_result.json#L1) · explicit_file_citation
+
 ## Die 128 zusätzlichen Bedingungen
 
 [experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/17_schatten_quellen.tex:30-38](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/17_schatten_quellen.tex#L30) · `section:659df24a89a62a734a06` · section
@@ -64,7 +74,7 @@ Für genau zwei vollständige [formula in source] -Zellen und eine positive Brü
 
 [experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/18_audit_v13.tex:60-77](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/18_audit_v13.tex#L60) · `section:2aa1af74ff59a1ac5ace` · section
 
-Im ausgewiesenen harmonischen Modell eines geteilten Vermittlers lautet der symmetrische aktive Block Sein niedriger Zweig beginnt mit [formula in source] ; der antisymmetrische mit [formula in source] . Deshalb ist auf dem aktiven [formula in source] -Raum Nach Abzug beider Einzelbondkorrekturen [formula in source] bleibt Beide Schreibweisen sind kompatibel. Eine Konstante auf dem aktiven Sektor ist außerhalb davon 
+Im ausgewiesenen harmonischen Modell eines geteilten Vermittlers lautet der symmetrische aktive Block Sein niedriger Zweig beginnt mit [formula in source] ; der antisymmetrische mit [formula in source] . Deshalb ist auf dem aktiven [formula in source] -Raum Nach Abzug beider Einzelbondkorrekturen [formula in source] bleibt Beide Schreibweisen sind kompatibel. Eine Konstante auf dem aktiven Sektor ist außerhalb davon
 
 ## Ein exakter Stern-Spektralfilter unter zusätzlichen Ressourcen
 
@@ -124,13 +134,13 @@ Akzeptiere in jeder Sternrunde die Recordfolge 111: Alle acht ersten Recordfolge
 
 [experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/19_execution_v13.tex:88-109](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/19_execution_v13.tex#L88) · `section:6b86dbce48e071a54eed` · section
 
-Nach erfolgreicher Präparation folgen lokaler Quelltick [formula in source] , zweimal [formula in source] , Rücknahme [formula in source] und dasselbe [formula in source] -Runden-Filter. Ein ideales kostenloses [formula in source] -Messgerät wird nicht eingesetzt. Protokoll R behält denselben kohärenten Pointer; Protokoll F verwendet beim zweiten Schritt einen frischen. Mit [formula in source] lauten die gemeinsamen 
+Nach erfolgreicher Präparation folgen lokaler Quelltick [formula in source] , zweimal [formula in source] , Rücknahme [formula in source] und dasselbe [formula in source] -Runden-Filter. Ein ideales kostenloses [formula in source] -Messgerät wird nicht eingesetzt. Protokoll R behält denselben kohärenten Pointer; Protokoll F verwendet beim zweiten Schritt einen frischen. Mit [formula in source] lauten die gemeinsamen
 
 ## Was für eine native Implementierung noch fehlt
 
 [experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/19_execution_v13.tex:110-118](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/19_execution_v13.tex#L110) · `section:a086e06951fb6f5936f9` · section
 
-Das neue Register ist nicht Clifford: Ein vierqubitiger Pauli hat Spur null oder [formula in source] . Noch konkreter erzeugt der Quellinput [formula in source] genau 13 nichtverschwindende Rechenbasisamplituden. Das ist kein reiner Stabilizerzustand, dessen Trägergröße eine Zweierpotenz ist. Nur Cliffordoperationen, Stabilizer-Hilfszustände und Pauli-Messungen reichen auch mit Feedback nicht aus. Andere Kodierungen 
+Das neue Register ist nicht Clifford: Ein vierqubitiger Pauli hat Spur null oder [formula in source] . Noch konkreter erzeugt der Quellinput [formula in source] genau 13 nichtverschwindende Rechenbasisamplituden. Das ist kein reiner Stabilizerzustand, dessen Trägergröße eine Zweierpotenz ist. Nur Cliffordoperationen, Stabilizer-Hilfszustände und Pauli-Messungen reichen auch mit Feedback nicht aus. Andere Kodierungen
 
 ## Ungelesener Austausch ist keine Kühlung
 
@@ -142,7 +152,7 @@ Alle [formula in source] kommutieren mit [formula in source] ; der ungelesene Ka
 
 [experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/19_execution_v13.tex:126-129](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/19_execution_v13.tex#L126) · `section:2a102158cb03538e0db1` · section
 
-Ein nativer Adapter muss [formula in source] , [formula in source] , Kern und Belegung gemeinsam liefern, beim Half-Charge-Feld zusätzlich mit Domänen- und Energiekontrolle. Er muss den 13-Amplituden-Eingang, beide Recordzweige und die Acht-Runden-Echos reproduzieren, einschließlich Hilfszuständen und Fehlerausgängen. Erst anschließend ist eine skalierende Zellfamilie sinnvoll auf Geometrie, Chiralität und Spin 2 zu 
+Ein nativer Adapter muss [formula in source] , [formula in source] , Kern und Belegung gemeinsam liefern, beim Half-Charge-Feld zusätzlich mit Domänen- und Energiekontrolle. Er muss den 13-Amplituden-Eingang, beide Recordzweige und die Acht-Runden-Echos reproduzieren, einschließlich Hilfszuständen und Fehlerausgängen. Erst anschließend ist eine skalierende Zellfamilie sinnvoll auf Geometrie, Chiralität und Spin 2 zu
 
 ## Versionspaar v1.3: Quellen, Abdeckung und Reproduktion
 
@@ -328,7 +338,7 @@ Für ausschließlich kantenlokale Vermittler ohne Hopping sind die lokalen Ladun
 
 [experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/23_micro_v14.tex:30-41](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/23_micro_v14.tex#L30) · `section:b245612108968ab3d71c` · section
 
-Die Kopplung [formula in source] zwischen 256 Materie- und 288 Vermittlerzuständen wurde neu aufgebaut. Sie erfüllt [formula in source] . Der volle Hamiltonoperator ist Seine 14 verschiedenen Energien sind sieben niedrige Werte sechs obere [formula in source] für [formula in source] und [formula in source] mit Multiplizität 67. Die niedrigen Multiplizitäten sind [formula in source] ; die sechs oberen wiederholen die 
+Die Kopplung [formula in source] zwischen 256 Materie- und 288 Vermittlerzuständen wurde neu aufgebaut. Sie erfüllt [formula in source] . Der volle Hamiltonoperator ist Seine 14 verschiedenen Energien sind sieben niedrige Werte sechs obere [formula in source] für [formula in source] und [formula in source] mit Multiplizität 67. Die niedrigen Multiplizitäten sind [formula in source] ; die sechs oberen wiederholen die
 
 ## Ein exakter endlicher Filter aus wirklichen Entwicklungszeiten
 
@@ -511,7 +521,7 @@ Für den antisymmetrischen Paarannihilator gilt im harten Materieraum einschlie�
 
 [experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/25_revision_v15.tex:175-185](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/25_revision_v15.tex#L175) · `section:718039774fdc30d71795` · section
 
-Sei [formula in source] eine endliche Zelle mit eindeutigem Grundzustand [formula in source] , Energie [formula in source] und Gap [formula in source] . Auf einem beliebigen endlichen verbundenen Graphen definiere [formula in source] Jeder Swapterm ist positiv. Mit [formula in source] folgt [formula in source] . Der Produktgrundzustand ist eindeutig. Die gleichförmige Einanregung wird von jedem Swap festgehalten und 
+Sei [formula in source] eine endliche Zelle mit eindeutigem Grundzustand [formula in source] , Energie [formula in source] und Gap [formula in source] . Auf einem beliebigen endlichen verbundenen Graphen definiere [formula in source] Jeder Swapterm ist positiv. Mit [formula in source] folgt [formula in source] . Der Produktgrundzustand ist eindeutig. Die gleichförmige Einanregung wird von jedem Swap festgehalten und
 
 ## Der entscheidende Unterschied: innere Kritikalität bei massiven Vermittlern
 
@@ -630,17 +640,3 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 [experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/26_v16_labor.tex:33-54](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/26_v16_labor.tex#L33) · `section:ed64c88e81dded625999` · section
 
 Die adjungierte Vorbereitung liefert eine aus Operationen zusammengesetzte Schlussprüfung. Man fordert einen neuen Record-Ausgang 1, führt die inverse [formula in source] -Schaltung aus und liest acht Nullbits aus. Der erfolgreiche Krausoperator und sein Effekt sind Der Effekt ist nicht als primitive perfekte Messung eingesetzt. Er wird aus der Schaltung berechnet. Die Messung ist destruktiv und akzeptiert selbst [fo
-
-## Optimalität und eine präzise Ressourcengrenze
-
-[experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/26_v16_labor.tex:55-74](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/26_v16_labor.tex#L55) · `section:7f6891f1dfbb454c4398` · section
-
-Innerhalb der reinen oder gemischten Acht-Bit-Stabilizerzustände gilt Der dokumentierte Beweis reduziert auf einen Vier-Bit-Stabilizercode mit sechs vorzeichenbehafteten Trägern. Unter allen 307 affinen Unterräumen von [formula in source] sind die maximalen Schnittgrößen für Dimension [formula in source] gleich [formula in source] . Die Schranke [formula in source] gilt in jeder Dimension und wird durch [formula in s
-
-Explicit source references:
-
-- [verification/v16_solar_dual_anchor.py](../../../../verification/v16_solar_dual_anchor.py#L1) · explicit_script_identifier
-
-Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
-
-- [(* ---- (v16/v21) solar angle from the A3 glue-norm q(A3) = 3/4 ---- *) qA3 = 3/4; qD5 = 5/4; checkExact["E8 glue norm q(D5) + q(A3) = 2", qA3 + qD5 == 2]; checkExact["eps leading q(A3)/(6pi) = 1/(8pi) = c3", Simplify[qA3/(6 Pi) - c3] == 0]; s12 = 1/3 - (2/3) qA3 phi0; checkExact["sin^2 theta12 = 1/3 - phi0/2 (exact)", Simplify[s12 - (1/3 - phi0/2)] == 0]; (* ---- (v23) anchor generator a=(1,1,2) ---- *)](../../../../verification/wolfram/tfpt_readouts.wl#L88)

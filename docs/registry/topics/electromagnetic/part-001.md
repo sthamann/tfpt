@@ -482,7 +482,7 @@ In background-field gauge, the one-loop effective potential for the electromagne
 
 [documents/archive--paper-latex--tfpt-theory-fullv25/sections/007-section-what-tfpt-does-emph-not-assume.tex:253-282](../../../../documents/archive--paper-latex--tfpt-theory-fullv25/sections/007-section-what-tfpt-does-emph-not-assume.tex#L253) · `section:b63b138d6fb15db8d399` · subsection
 
-@llrrrrrr@ Module & Mode & Checks & PASS & WARN & FAIL & Plots(exp) & Plots(ok)\\ alpha_on_shell_bridge & engineering & 7 & 6 & 1 & 0 & 0 & 0\\ matching_finite_pieces & engineering & 5 & 4 & 1 & 0 & 0 & 0\\ torsion_condensate & engineering & 8 & 5 & 3 & 0 & 0 & 0\\ alpha_on_shell_bridge & physics & 7 & 6 & 1 & 0 & 0 & 0\\ matching_finite_pieces & physics & 5 & 4 & 1 & 0 & 0 & 0\\ torsion_condensate & physics & 8 & 5 
+@llrrrrrr@ Module & Mode & Checks & PASS & WARN & FAIL & Plots(exp) & Plots(ok)\\ alpha_on_shell_bridge & engineering & 7 & 6 & 1 & 0 & 0 & 0\\ matching_finite_pieces & engineering & 5 & 4 & 1 & 0 & 0 & 0\\ torsion_condensate & engineering & 8 & 5 & 3 & 0 & 0 & 0\\ alpha_on_shell_bridge & physics & 7 & 6 & 1 & 0 & 0 & 0\\ matching_finite_pieces & physics & 5 & 4 & 1 & 0 & 0 & 0\\ torsion_condensate & physics & 8 & 5
 
 ## Topological Fixed Point Theory (TFPT)\\[0.5em] A Parameter-Free Derivation of the Fine-Structure Constant\\ from Topology, Geometry, and Quantum Consistency
 
@@ -524,7 +524,7 @@ In background-field gauge, the one-loop effective potential for the electromagne
 
 [documents/archive--paper-latex--tfpt-theory-fullv26/sections/008-section-derivation-of-the-cfe-from-the-effective-potenti.tex:172-201](../../../../documents/archive--paper-latex--tfpt-theory-fullv26/sections/008-section-derivation-of-the-cfe-from-the-effective-potenti.tex#L172) · `section:a004e8d3ba1417bea9a7` · subsection
 
-@llrrrrrr@ Module & Mode & Checks & PASS & WARN & FAIL & Plots(exp) & Plots(ok)\\ alpha_on_shell_bridge & engineering & 7 & 6 & 1 & 0 & 0 & 0\\ matching_finite_pieces & engineering & 5 & 4 & 1 & 0 & 0 & 0\\ torsion_condensate & engineering & 8 & 5 & 3 & 0 & 0 & 0\\ alpha_on_shell_bridge & physics & 7 & 6 & 1 & 0 & 0 & 0\\ matching_finite_pieces & physics & 5 & 4 & 1 & 0 & 0 & 0\\ torsion_condensate & physics & 8 & 5 
+@llrrrrrr@ Module & Mode & Checks & PASS & WARN & FAIL & Plots(exp) & Plots(ok)\\ alpha_on_shell_bridge & engineering & 7 & 6 & 1 & 0 & 0 & 0\\ matching_finite_pieces & engineering & 5 & 4 & 1 & 0 & 0 & 0\\ torsion_condensate & engineering & 8 & 5 & 3 & 0 & 0 & 0\\ alpha_on_shell_bridge & physics & 7 & 6 & 1 & 0 & 0 & 0\\ matching_finite_pieces & physics & 5 & 4 & 1 & 0 & 0 & 0\\ torsion_condensate & physics & 8 & 5
 
 ## Topological Fixed Point Theory (TFPT)\\[0.5em] A Parameter-Free Derivation of the Fine-Structure Constant\\ from Topology, Geometry, and Quantum Consistency
 

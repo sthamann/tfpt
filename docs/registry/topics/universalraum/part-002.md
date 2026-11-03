@@ -86,7 +86,7 @@ ink FORSCHUNGSDOKUMENTATION 17mm 3237 TFPT und Universalraum 7mm Vom geometrisch
 
 [documents/TFPT_Universalraum_Sitzungsdokumentation_2026-09-20_v2/sections/001-chapter-leserbrief.tex:29-44](../../../../documents/TFPT_Universalraum_Sitzungsdokumentation_2026-09-20_v2/sections/001-chapter-leserbrief.tex#L29) · `section:59c30eba3c935582bb49` · chapter
 
-tocchapterLeserbrief Das Ziel dieser Sitzung war von Anfang an groß: eine gemeinsame, möglichst einfache Ursprungstheorie finden, die den TFPT-Compiler, Quantenprozesse, Materie, Raumzeit und Gravitation aus derselben Struktur verständlich macht. Die Untersuchungen dürfen deshalb nicht nur daran gemessen werden, ob irgendwo eine schöne Matrix entsteht. Entscheidend ist, ob die verschiedenen Matrizen dieselbe Quelle, 
+tocchapterLeserbrief Das Ziel dieser Sitzung war von Anfang an groß: eine gemeinsame, möglichst einfache Ursprungstheorie finden, die den TFPT-Compiler, Quantenprozesse, Materie, Raumzeit und Gravitation aus derselben Struktur verständlich macht. Die Untersuchungen dürfen deshalb nicht nur daran gemessen werden, ob irgendwo eine schöne Matrix entsteht. Entscheidend ist, ob die verschiedenen Matrizen dieselbe Quelle,
 
 ## Ziel, Maßstab und Gesamtzusammenhang
 
@@ -134,7 +134,7 @@ Der Ausgangsimpuls war, in den Readouts und im Forschungsgraphen eine bislang ü
 
 [documents/TFPT_Universalraum_Sitzungsdokumentation_2026-09-20_v2/sections/001-chapter-leserbrief.tex:113-127](../../../../documents/TFPT_Universalraum_Sitzungsdokumentation_2026-09-20_v2/sections/001-chapter-leserbrief.tex#L113) · `section:5e24fd90f3f1e990d21a` · section
 
-Ein wichtiger früher Test betraf die Rekonstruktion des Generators aus einer Zustands- oder Randbeschreibung. Der Projektor [formula in source] kennt die positiven und negativen Energierichtungen, verliert aber die Beträge [formula in source] . Schon [formula in source] hat [formula in source] ; jede Dichtematrix kommutiert mit [formula in source] , aber nicht jede mit [formula in source] . Die Rückrichtung [formula 
+Ein wichtiger früher Test betraf die Rekonstruktion des Generators aus einer Zustands- oder Randbeschreibung. Der Projektor [formula in source] kennt die positiven und negativen Energierichtungen, verliert aber die Beträge [formula in source] . Schon [formula in source] hat [formula in source] ; jede Dichtematrix kommutiert mit [formula in source] , aber nicht jede mit [formula in source] . Die Rückrichtung [formula
 
 ## Gleicher Populationstransfer, verschiedene Quantenfortsetzungen
 
@@ -188,7 +188,7 @@ Ein konkreter Charaktertest verhindert die falsche Übertragung auf den nativen 
 
 [documents/TFPT_Universalraum_Sitzungsdokumentation_2026-09-20_v2/sections/001-chapter-leserbrief.tex:253-267](../../../../documents/TFPT_Universalraum_Sitzungsdokumentation_2026-09-20_v2/sections/001-chapter-leserbrief.tex#L253) · `section:0c79be2b686cdcec8f5c` · section
 
-Die vorgegebene dreidimensionale Nahtdarstellung [formula in source] besitzt unter der verlangten [formula in source] -Ergänzung die eindeutige Form [formula in source] Die vierte Linie ist somit kein neutral hinzugefügtes Familienetikett. Ein expliziter [formula in source] -Projektor isoliert sie. Auf denselben E8-Operatoren gilt der markierte Schnitt [formula in source] Der kleinste E6-abgeschlossene Raum über den 
+Die vorgegebene dreidimensionale Nahtdarstellung [formula in source] besitzt unter der verlangten [formula in source] -Ergänzung die eindeutige Form [formula in source] Die vierte Linie ist somit kein neutral hinzugefügtes Familienetikett. Ein expliziter [formula in source] -Projektor isoliert sie. Auf denselben E8-Operatoren gilt der markierte Schnitt [formula in source] Der kleinste E6-abgeschlossene Raum über den
 
 ## Was eine affine Vakuumantwort schon liefert
 
@@ -242,7 +242,7 @@ Die 40 Hintergrundereignisse erzeugen phasengetreu eine Gruppe der Ordnung 3840.
 
 [documents/TFPT_Universalraum_Sitzungsdokumentation_2026-09-20_v2/sections/002-section-die-rahmenidentifikation-und-eine-wichtige-verwe.tex:10-21](../../../../documents/TFPT_Universalraum_Sitzungsdokumentation_2026-09-20_v2/sections/002-section-die-rahmenidentifikation-und-eine-wichtige-verwe.tex#L10) · `section:37cfe1c6d0b7f1080b3c` · section
 
-Mit [formula in source] , [formula in source] und [formula in source] erreichen [formula in source] bei Zeit [formula in source] denselben Operator [formula in source] . Dazwischen wirken sie unterschiedlich. Unendlich viele positive Logarithmen [formula in source] besitzen denselben Endpunkt. Nur unter der zusätzlichen Minimalregel für positiven, zeitunabhängigen Generator, festen Lift und feste Dauer entsteht eine 
+Mit [formula in source] , [formula in source] und [formula in source] erreichen [formula in source] bei Zeit [formula in source] denselben Operator [formula in source] . Dazwischen wirken sie unterschiedlich. Unendlich viele positive Logarithmen [formula in source] besitzen denselben Endpunkt. Nur unter der zusätzlichen Minimalregel für positiven, zeitunabhängigen Generator, festen Lift und feste Dauer entsteht eine
 
 ## Ein bedingter affiner Anschluss der ganzen Ereignispfade
 
@@ -386,7 +386,7 @@ Im festen CAR-Wörterbuch schickt [formula in source] die 112 D8-Wurzeln in 56 D
 
 [documents/TFPT_Universalraum_Sitzungsdokumentation_2026-09-20_v2/sections/003-section-was-aus-den-quellenantworten-im-affinen-netz-ent.tex:39-60](../../../../documents/TFPT_Universalraum_Sitzungsdokumentation_2026-09-20_v2/sections/003-section-was-aus-den-quellenantworten-im-affinen-netz-ent.tex#L39) · `section:b48e984dffc6f2f78fbf` · section
 
-Die 60 alten Strahlen sind viergliedrige [formula in source] -Orbits vollständiger Wurzeln. Die tatsächliche Coxeterwirkung respektiert diese Quotienten bei festem [formula in source] nicht: Ein Orbit kann auf zwei Zielorbits aufgeteilt werden. Der korrekte kovariante Ausdruck ist [formula in source] Der letzte Vertrag macht diesen Befund quantitativ. Die Abbildung [formula in source] erfüllt [formula in source] und 
+Die 60 alten Strahlen sind viergliedrige [formula in source] -Orbits vollständiger Wurzeln. Die tatsächliche Coxeterwirkung respektiert diese Quotienten bei festem [formula in source] nicht: Ein Orbit kann auf zwei Zielorbits aufgeteilt werden. Der korrekte kovariante Ausdruck ist [formula in source] Der letzte Vertrag macht diesen Befund quantitativ. Die Abbildung [formula in source] erfüllt [formula in source] und
 
 ## Warum neutrale Paketfluktuationen keine acht Cartanströme tragen
 
@@ -404,7 +404,7 @@ Unter der ausdrücklichen Prämisse einer phasendiagonalen affinen Stromwirkung 
 
 [documents/TFPT_Universalraum_Sitzungsdokumentation_2026-09-20_v2/sections/003-section-was-aus-den-quellenantworten-im-affinen-netz-ent.tex:87-108](../../../../documents/TFPT_Universalraum_Sitzungsdokumentation_2026-09-20_v2/sections/003-section-was-aus-den-quellenantworten-im-affinen-netz-ent.tex#L87) · `section:1c17a0507a642eaaf392` · section
 
-Der letzte Herkunftstest arbeitet wieder mit der tatsächlichen CAR-Quelle. Die dortige Einteilchendispersion ist [formula in source] . Auf einem festen, nicht umlaufenden Patch um eine Fermistelle liefert die Skalierung [formula in source] die Abschätzung [formula in source] Für passend verschachtelte Träger auf dem festen zusammenhängenden Halbzahl-Patch gilt für die positiven Moden [formula in source] zugleich der 
+Der letzte Herkunftstest arbeitet wieder mit der tatsächlichen CAR-Quelle. Die dortige Einteilchendispersion ist [formula in source] . Auf einem festen, nicht umlaufenden Patch um eine Fermistelle liefert die Skalierung [formula in source] die Abschätzung [formula in source] Für passend verschachtelte Träger auf dem festen zusammenhängenden Halbzahl-Patch gilt für die positiven Moden [formula in source] zugleich der
 
 Explicit source references:
 
@@ -476,7 +476,7 @@ Die späteren Arbeiten zur Rand-, Gitter- und Eichstruktur bilden eine logisch z
 
 [documents/TFPT_Universalraum_Sitzungsdokumentation_2026-09-20_v2/sections/004-chapter-randgitter-dynamik-und-lokale-rekonstruktion.tex:46-109](../../../../documents/TFPT_Universalraum_Sitzungsdokumentation_2026-09-20_v2/sections/004-chapter-randgitter-dynamik-und-lokale-rekonstruktion.tex#L46) · `section:792e4664e03a4f0a3f4f` · section
 
-37 beginnt mit allen primitiven charakteristischen Nullvektoren minimaler euklidischer Länge im Gitter [formula in source] . Die Charakteristik erzwingt ungerade Komponenten; Minimalität gibt [formula in source] . Die globale Quellenladung, der Glue und die orientierte Farb-/Schwach-/Familienzerlegung reduzieren die Kandidaten stufenweise. 38 ersetzt dabei eine zunächst separat angenommene Blockpermutationssymmetrie 
+37 beginnt mit allen primitiven charakteristischen Nullvektoren minimaler euklidischer Länge im Gitter [formula in source] . Die Charakteristik erzwingt ungerade Komponenten; Minimalität gibt [formula in source] . Die globale Quellenladung, der Glue und die orientierte Farb-/Schwach-/Familienzerlegung reduzieren die Kandidaten stufenweise. 38 ersetzt dabei eine zunächst separat angenommene Blockpermutationssymmetrie
 
 ## Das vollständige Gitter trägt die Statistik
 

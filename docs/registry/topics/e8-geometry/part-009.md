@@ -104,7 +104,7 @@ Die beiden positiven Wurzelgitter [formula in source] und [formula in source] be
 
 [experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/07_seam.tex:100-105](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/07_seam.tex#L100) · `section:c2b97e76fe5215d296b7` · section
 
-Die innere Glue- [formula in source] wirkt auf den 248 Strömen mit Phasen [formula in source] auf Sektoren der Größen [formula in source] . Ihre Spur ist null. Die geometrische Vierteldrehung [formula in source] hat auf Stufe eins dagegen Spur [formula in source] . Die Operatoren sind somit nicht identisch. Eine Clock kann eine geometrische Drehung mit innerem Twist kombinieren; die beiden Faktoren bleiben getrennt. 
+Die innere Glue- [formula in source] wirkt auf den 248 Strömen mit Phasen [formula in source] auf Sektoren der Größen [formula in source] . Ihre Spur ist null. Die geometrische Vierteldrehung [formula in source] hat auf Stufe eins dagegen Spur [formula in source] . Die Operatoren sind somit nicht identisch. Eine Clock kann eine geometrische Drehung mit innerem Twist kombinieren; die beiden Faktoren bleiben getrennt.
 
 ## T1 bis T8: der vollständige Vertrag
 
@@ -116,7 +116,7 @@ L9mmL62mmL79mm Tor& Was gemeinsam nachzuweisen ist& Was bisher dazu vorliegt\\ T
 
 [experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/12_schatten_arithmetik.tex:82-96](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/12_schatten_arithmetik.tex#L82) · `section:d37d314e419001ac9c86` · subsection
 
-Die ersten sechs Werte sind [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] und [formula in source] . Daraus folgt für [formula in source] Hier ist der Primzahlbezug wirklich vorhanden. Die Selbstdualität des Gitters schließt die Poisson-Transformation auf dasselbe Gitter. Poisson-Summation gilt auch für nichtselbstduale Gitter und verbindet dann Gitter und 
+Die ersten sechs Werte sind [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] und [formula in source] . Daraus folgt für [formula in source] Hier ist der Primzahlbezug wirklich vorhanden. Die Selbstdualität des Gitters schließt die Poisson-Transformation auf dasselbe Gitter. Poisson-Summation gilt auch für nichtselbstduale Gitter und verbindet dann Gitter und
 
 ## Was die negativen Routen konkret lehren
 
@@ -242,7 +242,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/revisions/07_fields.tex:1-3](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/revisions/07_fields.tex#L1) · `section:ac13a5944997d9870a43` · frontmatter
 
-Integrierte Präzisierung v1.6: dieselbe Algebra ist noch nicht dasselbe Feld Der signierte native Kopplungstensor passt nach einer festen Phasenkonvention zu den entsprechenden [formula in source] -Wurzelprodukten. Die bekannte Gitter-Vertexalgebra liefert dafür ebenfalls ein Operatorprodukt. Das verknüpft die Strukturkonstanten; es identifiziert nicht automatisch die physische Reaktion [formula in source] mit einem 
+Integrierte Präzisierung v1.6: dieselbe Algebra ist noch nicht dasselbe Feld Der signierte native Kopplungstensor passt nach einer festen Phasenkonvention zu den entsprechenden [formula in source] -Wurzelprodukten. Die bekannte Gitter-Vertexalgebra liefert dafür ebenfalls ein Operatorprodukt. Das verknüpft die Strukturkonstanten; es identifiziert nicht automatisch die physische Reaktion [formula in source] mit einem
 
 Explicit source references:
 
@@ -374,7 +374,7 @@ The TFPT discrete core (the two axioms, the [formula in source] glue, the intege
 
 [tex-artefacts/tfpt_references.tex:43-71](../../../../tex-artefacts/tfpt_references.tex#L43) · `section:419291db9b3bf697f68f` · paragraph
 
-I. B. Frenkel, V. G. Kac, Basic representations of affine Lie algebras and dual resonance models, Invent.\ Math.\ 62 (1980) 23–66; G. Segal, Unitary representations of some infinite-dimensional groups, Comm.\ Math.\ Phys.\ 80 (1981) 301–342. T. J. Osborne, A. Stottmeister, Conformal field theory from lattice fermions, Comm.\ Math.\ Phys.\ 398 (2023) 219–289, arXiv:2107.13834, doi:10.1007/s00220-022-04521-8. (This is 
+I. B. Frenkel, V. G. Kac, Basic representations of affine Lie algebras and dual resonance models, Invent.\ Math.\ 62 (1980) 23–66; G. Segal, Unitary representations of some infinite-dimensional groups, Comm.\ Math.\ Phys.\ 80 (1981) 301–342. T. J. Osborne, A. Stottmeister, Conformal field theory from lattice fermions, Comm.\ Math.\ Phys.\ 398 (2023) 219–289, arXiv:2107.13834, doi:10.1007/s00220-022-04521-8. (This is
 
 ## Lattices and quadratic forms.
 
@@ -430,6 +430,12 @@ Let [formula in source] be the real finite-volume smearing space of curvature pa
 
 Take the thermodynamic limit first. For [formula in source] in [formula in source] , let [formula in source] The band-limited interpolation of a lattice kernel is the tempered distribution obtained by integrating its multiplier over [formula in source] . Equivalently, lattice fields with [formula in source] are scaled as [formula in source] distributions, so their smearings are [formula in source] . For Schwartz test
 
+## Charge geometry and the actual clock completion (A, B)
+
+[tex-artefacts/toe_source_completion_20261103.tex:76-127](../../../../tex-artefacts/toe_source_completion_20261103.tex#L76) · `section:5d7a3f5da35a8ba21a7a` · subsection
+
+For the four-punctured family surface, [formula in source] With the declared root normalization, the meridians form the [formula in source] side, their differences the [formula in source] root side. All four meridians have the same discriminant class. A cyclic permutation of the marked points therefore acts trivially on that discriminant; it is not translation through the four glue classes. The earlier literal fourfo
+
 ## Arithmetic bridges, acceptance gates and provenance
 
 [tex-artefacts/toe_universalraum_synthesis_20260912.tex:287-335](../../../../tex-artefacts/toe_universalraum_synthesis_20260912.tex#L287) · `section:13353500113bc4f195bc` · subsection
@@ -448,7 +454,7 @@ Explicit source references:
 
 [tex-artefacts/verification.tex:1-738](../../../../tex-artefacts/verification.tex#L1) · `section:ab9e7e520130ecc7da7c` · frontmatter
 
-@p3.5cmY@ Script & What it machine-checks \\ Script & What it machine-checks (continued) \\ 2r@ continued on next page\\ v1_ e8_ glue.py & glue theorem [formula in source] : [formula in source] , [formula in source] , [formula in source] , [formula in source] \\ v2_ carrier_ pascal.py & [formula in source] unique Pascal solution; [formula in source] , [formula in source] , [formula in source] , [formula in source] , 
+@p3.5cmY@ Script & What it machine-checks \\ Script & What it machine-checks (continued) \\ 2r@ continued on next page\\ v1_ e8_ glue.py & glue theorem [formula in source] : [formula in source] , [formula in source] , [formula in source] , [formula in source] \\ v2_ carrier_ pascal.py & [formula in source] unique Pascal solution; [formula in source] , [formula in source] , [formula in source] , [formula in source] ,
 
 Explicit source references:
 
@@ -2040,7 +2046,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_5_tfpt_3_e8_audit_bootstrap.tex:161-170](../../../../universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_5_tfpt_3_e8_audit_bootstrap.tex#L161) · `section:efe9ff39cbd3e1d03d9e` · part
 
-Purpose and discipline. This note does not introduce new physics. It builds an audit raster: the claim that every load-bearing TFPT number should appear in at least one [formula in source] branching projection. A number that appears in none is suspect; a number appearing in several independent projections becomes structurally strong. All arithmetic identities below are exact ; the physical readings are audit-level \ 
+Purpose and discipline. This note does not introduce new physics. It builds an audit raster: the claim that every load-bearing TFPT number should appear in at least one [formula in source] branching projection. A number that appears in none is suspect; a number appearing in several independent projections becomes structurally strong. All arithmetic identities below are exact ; the physical readings are audit-level \
 
 ## The compiler core (where this note sits)
 
@@ -2455,7 +2461,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 [universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_5_tfpt_3_e8_audit_bootstrap.tex:11948-11956](../../../../universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_5_tfpt_3_e8_audit_bootstrap.tex#L11948) · `section:eb6d340846c695ccd44a` · part
 
-The connection in one sentence. The old E [formula in source] cascade (Paper V1.06: the nilpotent-orbit chain [formula in source] , [formula in source] ) and the new compiler/atlas are the same even-integer [formula in source] spine, read three ways: the cascade orders the numbers [formula in source] as a scale ladder, the atlas reads them as [formula in source] subalgebra branchings, and the compiler generates them 
+The connection in one sentence. The old E [formula in source] cascade (Paper V1.06: the nilpotent-orbit chain [formula in source] , [formula in source] ) and the new compiler/atlas are the same even-integer [formula in source] spine, read three ways: the cascade orders the numbers [formula in source] as a scale ladder, the atlas reads them as [formula in source] subalgebra branchings, and the compiler generates them
 
 ## The old cascade, recalled
 
@@ -2482,7 +2488,7 @@ Reading [formula in source] against today's compiler atoms, the secondary-branch
 
 [universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_5_tfpt_3_e8_audit_bootstrap.tex:12070-12117](../../../../universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_5_tfpt_3_e8_audit_bootstrap.tex#L12070) · `section:f9fc5d05530250150dda` · section
 
-at (0.35,58) [formula in source] — E-series / atlas branchings (UV); at (0.35,40) [formula in source] ; at (0.35,30) [formula in source] \,(Coxeter rung, [formula in source] ); at (0.35,24) [formula in source] — [formula in source] , [formula in source] , [formula in source] ; at (0.35,15) [formula in source] (IR atoms); at (0.35,8) [formula in source] \,(flavor selector, end); at (0,60.5) [formula in source] start; 
+at (0.35,58) [formula in source] — E-series / atlas branchings (UV); at (0.35,40) [formula in source] ; at (0.35,30) [formula in source] \,(Coxeter rung, [formula in source] ); at (0.35,24) [formula in source] — [formula in source] , [formula in source] , [formula in source] ; at (0.35,15) [formula in source] (IR atoms); at (0.35,8) [formula in source] \,(flavor selector, end); at (0,60.5) [formula in source] start;
 
 Explicit source references:
 
@@ -2527,7 +2533,7 @@ The flavor selector [formula in source] is the terminal orbit of the [formula in
 
 [universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_5_tfpt_3_e8_audit_bootstrap.tex:12215-12225](../../../../universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_5_tfpt_3_e8_audit_bootstrap.tex#L12215) · `section:6cbdf01f901e64cc2b62` · part
 
-The question, and the honest answer. The theory rests on two inputs, [formula in source] and [formula in source] . The old theory had a Möbius seam and the seed was the start of the [formula in source] cascade. Run it backwards: can the cascade/ [formula in source] return [formula in source] and [formula in source] , closing a self-consistent loop? Answer: the discrete content is a closed, overdetermined fixed point 
+The question, and the honest answer. The theory rests on two inputs, [formula in source] and [formula in source] . The old theory had a Möbius seam and the seed was the start of the [formula in source] cascade. Run it backwards: can the cascade/ [formula in source] return [formula in source] and [formula in source] , closing a self-consistent loop? Answer: the discrete content is a closed, overdetermined fixed point
 
 ## The loop for [formula in source] — an overdetermined fixed point
 

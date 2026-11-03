@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## 2. Kleinstes skalares Überlappungs-Gegenmodell
+
+[documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/006-subsection-5-allgemeine-car-identit-t-auf.tex:318-372](../../../../documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/006-subsection-5-allgemeine-car-identit-t-auf.tex#L318) · `section:541b5ec93557f35953ec` · subsection
+
+Seien a_i,d_i, i=0, ,63, zwei kanonische Familien auf einer gemeinsamen CAR-Fockbasis. Setze für 0 c 1 und s=√(1−c²):
+
 ## 3. Exakt geschlossener Ablauf und messbarer Unterschied
 
 [documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/007-subsection-3-exakt-geschlossener-ablauf-und-messbarer.tex:1-82](../../../../documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/007-subsection-3-exakt-geschlossener-ablauf-und-messbarer.tex#L1) · `section:5d5b208e173bfdbc42eb` · subsection
@@ -631,11 +637,5 @@ Explicit source references:
 ## Nachtragsprüfung A: neue fünfte Norm und richtige Antwortzustände
 
 [documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/016-subsection-beweisumfang-label-beweisumfang.tex:21-23](../../../../documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/016-subsection-beweisumfang-label-beweisumfang.tex#L21) · `section:80f75c30f062ea23a512` · section
-
-No opening prose excerpt; see the source.
-
-## Nachtrag A: Was am neuen v1.6.3-Erklärtext wirklich neu ist
-
-[documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/016-subsection-beweisumfang-label-beweisumfang.tex:24-26](../../../../documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/016-subsection-beweisumfang-label-beweisumfang.tex#L24) · `section:f9e99cd2d3f268cbf207` · section
 
 No opening prose excerpt; see the source.

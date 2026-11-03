@@ -236,7 +236,7 @@ def opening_excerpt(text):
         prose = plain_tex(block)
         words = re.findall(r"[A-Za-zÀ-ž]{3,}", prose)
         if len(words) >= 7 and not re.match(r"^(?:tikz|pgf|font|fontenc|T1\b|utf8\b)", prose):
-            return prose[:420], "opening prose excerpt; TeX formatting stripped and formulas explicitly omitted; no semantic paraphrase"
+            return prose[:420].rstrip(), "opening prose excerpt; TeX formatting stripped and formulas explicitly omitted; no semantic paraphrase"
     return "", "no sufficiently long opening prose found; support/formula-only content is not paraphrased"
 
 
