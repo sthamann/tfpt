@@ -28,11 +28,11 @@
       plain: "THE SOURCE", sub: "the edge of reality — 4 marks",
       title: "The boundary seam", tech: "\u2119\u00b9 \\ \u03bc\u2084 = {1, i, \u22121, \u2212i}",
       atoms: ["four marks (\u03bc\u2084)", "the order-4 clock z \u21a6 i z", "one-sided Gauss\u2013Bonnet \u21d2 8\u03c0"],
-      detail: "Everything starts from ONE object: a boundary with exactly four marks. The one-sided Gauss\u2013Bonnet of its normal S\u00b2 slice gives 8\u03c0 \u2014 i.e. the tempo c\u2083 = 1/(8\u03c0). The two 'axioms' are two readings of this one edge." },
+      detail: "The structured P1 boundary kernel carries the source data. In the stated flat spherical Z2 branch class, four marks follow by Gauss-Bonnet. The same marked geometry connects c3 normalization and the carrier reductions; physical source identification retains its premises." },
 
     { id: "c3", kind: "input", x: 0.155, y: 0.10, accent: "#3fd0e0", icon: "\u23f1", belt: "syntax",
       plain: "TEMPO  c\u2083", sub: "Gauss\u2013Bonnet: 8\u03c0 = |\u2124\u2082|\u00b72\u03c0\u03c7(S\u00b2)",
-      title: "Axiom P1 — seam constant", tech: "c\u2083 = 1/(8\u03c0) \u2248 0.0398",
+      title: "P1 kernel normalization", tech: "c\u2083 = 1/(8\u03c0) \u2248 0.0398",
       atoms: ["the boundary clock-rate", "8 = one-sided Gauss\u2013Bonnet = rank E\u2088 = \u03c6(30)", "read off the seam geometry"],
       detail: "The tempo c\u2083 = 1/(8\u03c0). The 8 is the one-sided Gauss\u2013Bonnet of the seam's normal S\u00b2 slice (|\u2124\u2082|\u00b72\u03c0\u03c7 = 8\u03c0) \u2014 and equals rank E\u2088, which the auditor forces. The only number with no cheaper origin is \u03c0." },
     { id: "gcar", kind: "input", x: 0.155, y: 0.30, accent: "#f0b429", icon: "\u25a4", belt: "syntax",
@@ -67,7 +67,7 @@
       plain: "THE AUDITOR", sub: "the rulebook — fits only ONE way",
       title: "E\u2088 audit core / type-check", tech: "D\u2085 \u2295 A\u2083 + \u03bc\u2084 \u21d2 E\u2088, det = 1",
       atoms: ["the unique \u03bc\u2084 closure", "248 = 240 + 8", "validates 7 routes, pins g_car=5 and the 8 in c\u2083"],
-      detail: "E\u2088 is the auditor (not a gauge group, not the world): the one rulebook in which the pieces lock together as an even-unimodular object (det = 1) \u2014 and only for ONE tempo and width. So E\u2088 doesn't just accept the inputs, it PINS them. That is the recursion: the 'axioms' are outputs of the audit." },
+      detail: "E8 is the lattice auditor for the stated D5/A3 glue construction. Bootstrap relations constrain its numerical data within that class. They preserve the structured P1 source and declared physical P2 readout premises." },
 
     { id: "skeleton", kind: "rom", x: 0.725, y: 0.10, accent: "#5b8cff", icon: "\u25a5", belt: "syntax",
       plain: "ANCHOR ROM", sub: "hard-wired genome a = (1,1,2)",
@@ -141,10 +141,10 @@
 
   const steps = [
     { t: "The Source", d: "It all starts from ONE thing: a boundary \u2014 the edge of reality \u2014 with exactly four marks (\u03bc\u2084)." },
-    { t: "Two readouts (not free!)", d: "The edge is read two ways: a tempo c\u2083=1/(8\u03c0) (Gauss\u2013Bonnet) and a width g_car=5. They look like inputs \u2014 step 4 shows they aren't." },
+    { t: "Two numerical readouts", d: "The shared source gives the c3 normalization and conditional carrier reductions. The displayed pair is a numerical compiler contract, not the whole primitive kernel." },
     { t: "Build the pieces", d: "Loops \u2192 3 families (A\u2083); functions \u2192 the 16-piece carrier (D\u2085) = one full particle set." },
     { t: "Hypercharge + glue gate", d: "The factory makes b\u2081 = 41/10; the glue gate checks q(D\u2085)+q(A\u2083) = 5/4+3/4 = 2 \u2014 only then can the lattice latch (CLACK)." },
-    { t: "The E\u2088 Audit Core (recursion!)", d: "E\u2088 closes as an even-unimodular object for only ONE (tempo, width) \u2014 so it PINS the 'axioms'. They're forced, not chosen." },
+    { t: "E8 audit and bootstrap", d: "The stated D5/A3 lattice closure constrains the numerical data. Its source normalization, marked branch and physical readout premises remain explicit." },
     { t: "Anchor ROM", d: "The anchor a=(1,1,2) reads off the whole integer grid: 240, 248, 30, 41." },
     { t: "Flavor engine", d: "The residue matrices R/L/K/Q (det R = 8) forge the flavor structure and the \u03c6\u2080-ladder basis." },
     { t: "Transport (dynamics)", d: "The gapped transport T = {1,(2/3)\u2076,(1/3)\u2076} has a unique attractor \u2014 the constants are selected, not tuned." },

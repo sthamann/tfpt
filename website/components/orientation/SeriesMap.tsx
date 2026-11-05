@@ -19,7 +19,7 @@ export function SeriesMap() {
         <SectionHeader
           eyebrow="Document map"
           title="Five core papers plus four companions"
-          description="The reviewer path is the architecture, the two axioms, the E₈ glue and the α fixed point (Doc 1), the Standard Model (Doc 2), the E₈ audit and bootstrap (Doc 3), the honest frontier (Doc 4), and the adversarial Red Team audit (Doc 5). Appendix H (horizon), the Origin Theory synthesis, the research contracts, and the safeguards discipline sit alongside."
+          description="The reviewer path is the architecture, the structured source and its reductions, the E₈ glue and the α fixed point (Doc 1), the Standard Model (Doc 2), the E₈ audit and bootstrap (Doc 3), the honest frontier (Doc 4), and the adversarial Red Team audit (Doc 5). Appendix H (horizon), the Origin Theory synthesis, the research contracts, and the safeguards discipline sit alongside."
         />
 
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

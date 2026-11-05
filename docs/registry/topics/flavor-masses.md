@@ -2,7 +2,7 @@
 
 [Registry index](../INDEX.md) · Topic ID: `flavor-masses`
 
-742 physical section matches. Topic assignment is a lexical navigation suggestion, not semantic review. The excerpts and citations below come from source; no proof or status promotion is asserted.
+741 physical section matches. Topic assignment is a lexical navigation suggestion, not semantic review. The excerpts and citations below come from source; no proof or status promotion is asserted.
 
 
 ## Bounded reading parts
@@ -16,7 +16,7 @@ Each part contains at most 100 physical section records and their actual explici
 - [Part 5: section matches 401–500](flavor-masses/part-005.md)
 - [Part 6: section matches 501–600](flavor-masses/part-006.md)
 - [Part 7: section matches 601–700](flavor-masses/part-007.md)
-- [Part 8: section matches 701–742](flavor-masses/part-008.md)
+- [Part 8: section matches 701–741](flavor-masses/part-008.md)
 
 ## First 20 source locations
 

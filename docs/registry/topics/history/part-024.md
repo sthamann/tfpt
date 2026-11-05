@@ -4,6 +4,22 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## 2026-06-18 (PMNS: the complete complex matrix + the leptonic Jarlskog CP strength, v270)
+
+[documents/changelog/sections/018-source.tex:107-119](../../../../documents/changelog/sections/018-source.tex#L107) · `section:3116e55fdb4f7529082e` · subsection
+
+v270_pmns_jarlskog_assembly.py ( FLAV.PMNS.03) assembles the four TFPT channels ( [formula in source] , [formula in source] , [formula in source] , [formula in source] ) into one exactly-unitary complex PMNS matrix and derives the leptonic CP strength. \ [formula in source] is unitary; \ the Jarlskog [formula in source] ( [formula in source] ) is a derived number, the leptonic analogue of the CKM [formula in source] 
+
+Explicit source references:
+
+- [FLAV.PMNS.03](../../../../verification/status_ledger.csv#L363) · explicit_claim_identifier · original status at linked ledger row
+- [verification/v270_pmns_jarlskog_assembly.py](../../../../verification/v270_pmns_jarlskog_assembly.py#L1) · explicit_script_identifier
+- [verification/v88_cp_phase_audit.py](../../../../verification/v88_cp_phase_audit.py#L1) · explicit_script_identifier
+
+Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
+
+- [(* ==== v268: reactor-angle exponent = carrier hypercharge trace (FLAV.TH13.01) ==== *) Module[{Yvec, trY2, roots}, roots = Sort[Y /. Solve[6 Y^2 - Y - 1 == 0, Y]]; Yvec = {-1/3, -1/3, -1/3, 1/2, 1/2}; trY2 = Total[Yvec^2]; checkExact["v268 FLAV.TH13.01: the theta_13 exponent is the carrier hypercharge trace -- " <> "tr_E Y^2 = 3(1/3)^2 + 2(1/2)^2 = 5/6 over the 5-slot carrier hypercharge " <> "Y=diag(-1/3,-1/3,-1/3,1/2,1/2) (the anomaly-free roots {-1/3,1/2} of 6Y^2-Y-1=0), so " <> "sin^2 theta_13 = phi0 e^{-5/6} = phi0 e^{-tr_E Y^2}; complement 1 - 5/6 = 1/6 = the neutrino ratio. " <> "theta_13 is its own carrier-trace channel (the mu-tau breaking gives only ~1e-3, not 0.023).", roots === Sort[{-1/3, 1/2}] && trY2 === 5/6 && (1 - trY2) === 1/6]; ]; (* ==== v271: concrete Epstein-Glaser one-loop quartic renormalization (QFT4D.SPERT.02) ==== v269 (S_pert skeleton) + v270 (PMNS Jarlskog, numerical) are Python-only; v271's exact EG core (scaling degree, counterterm count, loop factor) is mirrored here. *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2069)
+
 ## 2026-06-18 (4D QFT: the perturbative S-matrix as an Epstein–Glaser / pAQFT skeleton, v269)
 
 [documents/changelog/sections/018-source.tex:120-134](../../../../documents/changelog/sections/018-source.tex#L120) · `section:783bd9d3f50606edb09c` · subsection
@@ -2040,9 +2056,3 @@ Claim hygiene (review section A). The introduction's one-sentence claim is softe
 Explicit source references:
 
 - [FLAV.QRATIO.01](../../../../verification/status_ledger.csv#L25) · explicit_claim_identifier · original status at linked ledger row
-
-## 2026-06-12 (later)
-
-[documents/changelog/sections/024-source.tex:1-11](../../../../documents/changelog/sections/024-source.tex#L1) · `section:e2e448f834c8b18c1b82` · subsection
-
-Shared style and central status artifact. Two new single-source fragments: tfpt_style.tex (the canonical palette, status markers, marker key, veri reference, the four tcolorbox families with back-compat aliases, and one running header/footer) is now input by all eight documents — the per-paper duplicated preambles are gone; and tfpt_status.tex (``TFPT status at a glance'') gives one canonical overall-status card impo

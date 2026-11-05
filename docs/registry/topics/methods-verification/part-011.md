@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Historischer Beweisanhang: vollständiger nativer Herleitungsstand v1.6.4
+
+[documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/032-subsubsection-5-1-anomalien-label-anomalien.tex:139-149](../../../../documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/032-subsubsection-5-1-anomalien-label-anomalien.tex#L139) · `section:eb47e1c679e877d523c3` · section
+
+Dieser Anhang bewahrt die frühere Herleitung vollständig. Seine damaligen Statussätze werden durch die aktuelle Konsolidierung und den Nachtrag oben ergänzt; er ist kein ungeprüft übernommener neuer Gesamtstatus. Die externe laufende Symmetrieergänzung wurde separat geprüft und ist nicht unbemerkt in diesen eingefrorenen Anhang eingegangen.
+
 ## 3.1 Grundzustand: frische Berechnung statt bloßer Statusübernahme
 
 [documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/032-subsubsection-5-1-anomalien-label-anomalien.tex:248-304](../../../../documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/032-subsubsection-5-1-anomalien-label-anomalien.tex#L248) · `section:828142df79ecf7e27b7f` · subsubsection
@@ -700,9 +706,9 @@ Explicit source references:
 
 ## Honest status
 
-[documents/origin_theory/sections/006-section-honest-status-label-sec-status.tex:1-316](../../../../documents/origin_theory/sections/006-section-honest-status-label-sec-status.tex#L1) · `section:888628823bf71f709698` · section
+[documents/origin_theory/sections/006-section-honest-status-label-sec-status.tex:1-330](../../../../documents/origin_theory/sections/006-section-honest-status-label-sec-status.tex#L1) · `section:888628823bf71f709698` · section
 
-@p5.4cmp2.0cmY@ claim & status & basis \\ [formula in source] generates the integer skeleton; Pythagorean [formula in source] split & & v53_compiler_core.py \\ the [formula in source] in [formula in source] is triply forced (geo [formula in source] lattice [formula in source] gravity) & & v54_seam_horizon_keystones.py \\ one boundary transport for flavor and horizon ( [formula in source] ) & & v54_seam_horizon_keysto
+Source reconciliation, 5 November 2026. P1 is the structured RP seam kernel; [formula in source] is its scalar normalization. The shared four-mark/anchor reductions, analytic finite monodromy and the two finite W-bridge premise closures are consolidated in the Architecture chapter ``Shared origin'' ( REC20261105C3). The later charged MMST result retains the named microscopic local-algebra exhaustion condition for the
 
 Explicit source references:
 
@@ -880,7 +886,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 ## Appendix: computational verification
 
-[documents/origin_theory/sections/006-section-honest-status-label-sec-status.tex:317-338](../../../../documents/origin_theory/sections/006-section-honest-status-label-sec-status.tex#L317) · `section:5ef9533c2bf93b6ac923` · section
+[documents/origin_theory/sections/006-section-honest-status-label-sec-status.tex:331-352](../../../../documents/origin_theory/sections/006-section-honest-status-label-sec-status.tex#L331) · `section:5ef9533c2bf93b6ac923` · section
 
 Every \ statement here is machine-checked in the TFPT suite and re-derived independently in Wolfram: @p4.7cmY@ script & content \\ v53_compiler_core.py & [formula in source] skeleton, Pythagorean [formula in source] split, anchor char-poly uniqueness \\ v54_seam_horizon_keystones.py & triply-forced [formula in source] ; shared transport [formula in source] ; de Sitter constants \\ v55_coxeter_cycle.py & computed [for
 
@@ -944,7 +950,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 ## [formula in source] as the Pascal closure
 
-[documents/tfpt_1_architecture_e8/sections/004-source.tex:302-350](../../../../documents/tfpt_1_architecture_e8/sections/004-source.tex#L302) · `section:33a1154dc0cb4b2f67f8` · subsection
+[documents/tfpt_1_architecture_e8/sections/004-source.tex:305-353](../../../../documents/tfpt_1_architecture_e8/sections/004-source.tex#L305) · `section:33a1154dc0cb4b2f67f8` · subsection
 
 A family is exactly the complete Pascal truncation to degree two: the unique positive-integer solution of [formula in source] . Proof of uniqueness. Direct evaluation gives [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] ; so [formula in source] is the only root in [formula in source] . For [formula in source] the forward difference is 
 
@@ -1086,7 +1092,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 ## Theorem 7 — the [formula in source] lift of the [formula in source] atlas
 
-[documents/tfpt_1_architecture_e8/sections/011-source.tex:1-248](../../../../documents/tfpt_1_architecture_e8/sections/011-source.tex#L1) · `section:6b49d8830dc9fa3948be` · section
+[documents/tfpt_1_architecture_e8/sections/011-source.tex:1-259](../../../../documents/tfpt_1_architecture_e8/sections/011-source.tex#L1) · `section:6b49d8830dc9fa3948be` · section
 
 tocsectionTheorem 7 Since [formula in source] , one has the standard chain [formula in source] , with the exact branching (verified dimensions and root/weight counts): The adjoint [formula in source] of [formula in source] is [formula in source] and its spinor [formula in source] is [formula in source] . The TFPT dictionary makes each summand a known object: @llY@ piece & value & TFPT reading \\ [formula in source] &
 
@@ -1114,6 +1120,8 @@ Explicit source references:
 - [verification/v47_selection_theorem.py](../../../../verification/v47_selection_theorem.py#L1) · explicit_file_citation
 - [SEAM.BIT.ORIGIN.01](../../../../verification/status_ledger.csv#L571) · explicit_claim_identifier · original status at linked ledger row
 - [QGEO.EMERGE.LIGHT.01](../../../../verification/status_ledger.csv#L567) · explicit_claim_identifier · original status at linked ledger row
+- [verification/v1015_axiom_core_closure.py](../../../../verification/v1015_axiom_core_closure.py#L1) · explicit_script_identifier
+- [verification/v1014_bridge_refinements.py](../../../../verification/v1014_bridge_refinements.py#L1) · explicit_script_identifier
 - [verification/v503_qgeo_emergence_light.py](../../../../verification/v503_qgeo_emergence_light.py#L1) · explicit_script_identifier
 
 Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
@@ -1138,7 +1146,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 ## Master statement and status
 
-[documents/tfpt_1_architecture_e8/sections/011-source.tex:306-355](../../../../documents/tfpt_1_architecture_e8/sections/011-source.tex#L306) · `section:2e4cf2c588758ec271e5` · section
+[documents/tfpt_1_architecture_e8/sections/011-source.tex:317-366](../../../../documents/tfpt_1_architecture_e8/sections/011-source.tex#L317) · `section:2e4cf2c588758ec271e5` · section
 
 tocsectionMaster statement Five carrier slots give [formula in source] ,\ four family corners give [formula in source] ,\ and [formula in source] gives the [formula in source] atlas. Equivalently: [formula in source] , [formula in source] , [formula in source] ; [formula in source] , [formula in source] , the [formula in source] Coxeter structure and the action ladder read the same five-slot pair-decuple. The Standar
 
@@ -2694,17 +2702,3 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 [documents/tfpt_5_redteam/preamble.tex:1-37](../../../../documents/tfpt_5_redteam/preamble.tex#L1) · `section:57628e792bbc3f4e2f1c` · frontmatter
 
 -1.2cm TFPT — Red Team / Stress Test layer\\[2mm] Adversarial targets A–E, the QFT round (F) and the seam round (G): try to break the reductions, not confirm them
-
-## Method
-
-[documents/tfpt_5_redteam/sections/001-section-method.tex:47-63](../../../../documents/tfpt_5_redteam/sections/001-section-method.tex#L47) · `section:f4722dc7a61b6484389b` · section
-
-The red team treats each reduction as a hostile witness. A confirmatory script that always passes is worthless here: the layer is built so that it may downgrade a claim. Four outcomes are allowed — survives (stands as worded), survives (narrowed) (stands only after a silent assumption is made explicit), reduced, not closed (the conservative wording is the correct one), and — reached by Target A after the lattice/ [fo
-
-Explicit source references:
-
-- [verification/v534_seam_straddle_cone.py](../../../../verification/v534_seam_straddle_cone.py#L1) · explicit_script_identifier
-
-Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
-
-- [(* ==== v534 round: SEAM.STRADDLE.CONE.01 -- the RP cone on the interacting FK quartets (the first dynamical selection of the alignment bit). Exact mirrors: the stabilizer census of the mark family, the pi/2 partition + straddle incidence, the reflection-closure signs of the straddling quartets, and the equivariant Fix rays (uniform on m=2..6, NS-wrap-twisted on m=1,7). The 256-dim Fock spectra, the PT Gram corrections and the finite-g survival scan are Python-only (numpy), flagged per GATE.WOLFRAM.02. ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L8401)

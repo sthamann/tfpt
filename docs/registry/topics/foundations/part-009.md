@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Was von der anschaulichen Ursprungserzählung bleibt
+
+[experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/01_idee.tex:87-94](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/01_idee.tex#L87) · `section:52198fefe05251ca8062` · section
+
+Der eingefügte Gesprächstext spricht von einem Regelwerk mit Logbuch und von Raum und Materie als Mustern seiner Spuren. Das trifft die Forschungsintuition. Die Formulierung „TFPT ist die Grammatik, der Universalraum die Ausführung“ ist als Einstieg hilfreich.
+
 ## Die Ausgangsannahmen enthalten mehr als zwei Zahlen
 
 [experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/02_algebra.tex:3-12](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/02_algebra.tex#L3) · `section:3bbb9db694838bd28e8d` · section
@@ -1910,13 +1916,3 @@ TFPT_TOE_GEMEINSAMER_URSPRUNG_2026-09-14.md Gemeinsamer Ursprung: Zweizellenener
 Explicit source references:
 
 - [universal_room/TFPT_TOE_GEMEINSAMER_URSPRUNG_2026-09-14.md](../../../../universal_room/TFPT_TOE_GEMEINSAMER_URSPRUNG_2026-09-14.md#L1) · explicit_file_citation
-
-## S04
-
-[experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/sources_manifest.tex:17-21](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/sources_manifest.tex#L17) · `section:267ce9394cc9750f9fdc` · subsection
-
-TFPT_UNIVERSALRAUM_GESAMTSYNTHESE_2026-09-14.md Frühe Gesamtsynthese mit Fixpunkthypothese, Zahlenübersicht und Einordnung zu RH und Komplexität; mehrere Aussagen später korrigiert. SHA-256: f62f91af70b43ce349a9e4c17f9e4887 7099ae9b6c992f0c1482f4eb77ee6694 32mm
-
-Explicit source references:
-
-- [universal_room/TFPT_UNIVERSALRAUM_GESAMTSYNTHESE_2026-09-14.md](../../../../universal_room/TFPT_UNIVERSALRAUM_GESAMTSYNTHESE_2026-09-14.md#L1) · explicit_file_citation

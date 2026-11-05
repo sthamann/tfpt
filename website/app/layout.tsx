@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     "fundamental constants from topology",
     "Compiler closure",
     "E8 audit hull",
-    "Two axioms",
+    "Structured boundary source",
     "Standard Model structure",
     "Fine-structure constant",
     "Strong CP problem",
@@ -89,7 +89,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: SITE_NAME,
     description:
-      "Two axioms build E₈; E₈ reads off the Standard Model, the constants, and the scale grammar — no fitted constants, only π irreducible.",
+      "The structured P1 source and P2 readout have shared conditional reductions leading to the E₈ compiler, Standard-Model structure and constant relations.",
     creator: "@tfpttheory",
   },
   robots: {

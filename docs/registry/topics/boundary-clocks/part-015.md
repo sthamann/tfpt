@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Three explicit error budgets.
+
+[tex-artefacts/toe_round27_full_reference.tex:114-154](../../../../tex-artefacts/toe_round27_full_reference.tex#L114) · `section:017bee6560ef23a86a7e` · paragraph
+
+The exact Gram inverse satisfies [formula in source] , so [formula in source] , [formula in source] . On the neutral sector define [formula in source] Let [formula in source] bound all charge coordinates at sampled slice boundaries and [formula in source] bound total elementary hopping order. If [formula in source] , [formula in source] For the first estimate, insert the boundary projection [formula in source] in the
+
 ## T2: uniform relaxed TEL-B theorem.
 
 [tex-artefacts/toe_round4_proofs.tex:9-22](../../../../tex-artefacts/toe_round4_proofs.tex#L9) · `section:9e0ba325fdce5ca83fef` · paragraph

@@ -14,13 +14,13 @@ import { SITE_URL } from "@/lib/utils";
 export const metadata: Metadata = {
   title: "TFPT in One Map — The Compiler Closure (Introduction)",
   description:
-    `The TFPT ${SITE_VERSION} reading guide. What Topological Fixed-Point Theory claims and does not claim, the compiler closure from two axioms {c₃ = 1/(8π), g_car = 5} to E₈, the two engines, the bootstrap loop, the status matrix, and the document map. By Stefan Hamann & Alessandro Rizzo.`,
+    `The TFPT ${SITE_VERSION} reading guide. What Topological Fixed-Point Theory claims and does not claim, the structured P1 boundary kernel, its c₃ normalization, the P2 readout and their shared conditional derivations to E₈, the two engines, the bootstrap loop, the status matrix, and the document map. By Stefan Hamann & Alessandro Rizzo.`,
   keywords: [
     "TFPT introduction",
     "TFPT in one map",
     "Compiler closure",
     "E8 audit hull",
-    "Two axioms",
+    "Structured boundary source",
     "Bootstrap loop",
     "Status ledger",
     "Stefan Hamann",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     type: "article",
     title: "TFPT in One Map — The Compiler Closure (Introduction)",
     description:
-      `The entry document for the TFPT ${SITE_VERSION} set: the compiler closure from two axioms to E₈, the two engines, the bootstrap loop, the status matrix, and the document map.`,
+      `The entry document for the TFPT ${SITE_VERSION} set: the structured boundary source, its shared carrier reductions and E₈ compiler closure, the two engines, the bootstrap loop, the status matrix, and the document map.`,
     url: `${SITE_URL}/orientation`,
     siteName: "TFPT — Topological Fixed-Point Theory",
     locale: "en_US",
@@ -74,7 +74,7 @@ const articleJsonLd = {
     { "@type": "Person", name: "Alessandro Rizzo" },
   ],
   abstract:
-    `The entry document for the TFPT ${SITE_VERSION} set. It states what TFPT claims and does not claim, the compiler closure from two axioms to E₈, the two engines, the bootstrap loop, and where each load-bearing argument is isolated in the document set.`,
+    `The entry document for the TFPT ${SITE_VERSION} set. It states what TFPT claims and does not claim, the structured boundary source, its shared carrier reductions and E₈ compiler closure, the two engines, the bootstrap loop, and where each load-bearing argument is isolated in the document set.`,
   about: [
     "Compiler closure",
     "Topological Fixed-Point Theory",

@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Grenzen und offene Punkte
+
+[documents/experiments--theory-contracts--universalraum-fable-kernfragen-20260910--fable-runde3--paper--tfpt_anschluss_zellen_seam_2026-09-14/sections/001-section-evidenzkonvention-und-abgrenzung.tex:148-156](../../../../documents/experiments--theory-contracts--universalraum-fable-kernfragen-20260910--fable-runde3--paper--tfpt_anschluss_zellen_seam_2026-09-14/sections/001-section-evidenzkonvention-und-abgrenzung.tex#L148) · `section:eb1aa8a2e4d55b3cc2c4` · section
+
+Der Hüllensatz fixiert Zellstruktur und Vorzeichen, nicht [formula in source] , nicht den Graphen, nicht die Cross-Register-Kopplung der Vor-Messung. Die Superaustausch-Ableitung von [formula in source] aus den [formula in source] -Strukturkonstanten ist formuliert, nicht ausgeführt. Die Uhr ist ein Protokoll auf einem gesetzten Modell; eine Zeit in Sekunden folgt nicht. Die Phasenreferenz für die Periode 12 ist eine
+
 ## Nächste Schritte in Rangfolge
 
 [documents/experiments--theory-contracts--universalraum-fable-kernfragen-20260910--fable-runde3--paper--tfpt_anschluss_zellen_seam_2026-09-14/sections/001-section-evidenzkonvention-und-abgrenzung.tex:157-165](../../../../documents/experiments--theory-contracts--universalraum-fable-kernfragen-20260910--fable-runde3--paper--tfpt_anschluss_zellen_seam_2026-09-14/sections/001-section-evidenzkonvention-und-abgrenzung.tex#L157) · `section:e153c335b069ee599fe9` · section
@@ -659,9 +665,3 @@ Ohne die zusätzlich gewährten Gruppenkontrollen erhalten X, Nb, der Clock und 
 [documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/020-subsection-8-die-fundamentale-frage-was-fehlt.tex:4-32](../../../../documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/020-subsection-8-die-fundamentale-frage-was-fehlt.tex#L4) · `section:7f06ec0c70ab2a24d278` · subsubsection
 
 Betrachte bei festem W dieselbe Familie [formula in source] . Alle diese Hamiltonoperatoren besitzen die gleiche innere Quellsymmetrie, dieselbe Ladungserhaltung und denselben kommutierenden endlichen Clock. Dennoch unterscheiden sie sich dynamisch. Schon für dieselbe gefüllte Referenz F ist die dimensionslose Momentenkombination
-
-## TFPT / Universalraum: Clock, gemeinsame Quelle und tatsächlicher Transport
-
-[documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/022-subsection-b7-abgleich-des-zuletzt-eingesandten-berichts.tex:95-98](../../../../documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/022-subsection-b7-abgleich-des-zuletzt-eingesandten-berichts.tex#L95) · `section:64fffe38c59f934adfa5` · section
-
-No opening prose excerpt; see the source.

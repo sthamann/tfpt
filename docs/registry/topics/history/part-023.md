@@ -4,6 +4,42 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## 2026-06-25 (The Eisenstein/CP operator [formula in source] the order-30 clock: v417)
+
+[documents/changelog/sections/013-source.tex:68-90](../../../../documents/changelog/sections/013-source.tex#L68) · `section:b3159de77fcabb12cc0c` · subsection
+
+New module v417 ( DIAMOND.EISEN.01). The hexagonal dual of v415: the [formula in source] flavor side put on operators and unified with the seam into one order- [formula in source] Coxeter clock. \ the family rotation [formula in source] is the order- [formula in source] Eisenstein deck ( [formula in source] , so [formula in source] on the plane [formula in source] ), the order- [formula in source] dual of [formula in
+
+Explicit source references:
+
+- [verification/run_all.py](../../../../verification/run_all.py#L1) · explicit_file_citation
+- [verification/v417_eisenstein_cp_operator.py](../../../../verification/v417_eisenstein_cp_operator.py#L1) · explicit_script_identifier
+- [verification/v320_galois_cp_relation.py](../../../../verification/v320_galois_cp_relation.py#L1) · explicit_script_identifier
+- [verification/v313_golden_atoms_spectral.py](../../../../verification/v313_golden_atoms_spectral.py#L1) · explicit_script_identifier
+- [verification/v316_galois_readout.py](../../../../verification/v316_galois_readout.py#L1) · explicit_script_identifier
+- [verification/status_ledger.csv](../../../../verification/status_ledger.csv#L1) · explicit_file_citation
+- [verification/v415_gaussian_operator.py](../../../../verification/v415_gaussian_operator.py#L1) · explicit_script_identifier
+- [DIAMOND.EISEN.01](../../../../verification/status_ledger.csv#L485) · explicit_claim_identifier · original status at linked ledger row
+- [verification/v349_raw_seam_golden_test.py](../../../../verification/v349_raw_seam_golden_test.py#L1) · explicit_script_identifier
+- [verification/script_registry.csv](../../../../verification/script_registry.csv#L1) · explicit_file_citation
+- [verification/v233_cp_triality_phase.py](../../../../verification/v233_cp_triality_phase.py#L1) · explicit_script_identifier
+
+Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
+
+- [(* ==== v417 round: the Eisenstein/CP operator + the order-30 clock ==== *) Module[{P, W, I3, ones3, omega, zeta6, z30}, P = {{0, 0, 1}, {1, 0, 0}, {0, 1, 0}}; (* family rotation (1 2 3) *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2501)
+- [(* ==== v350 SEAM.EQUIV.BOOTSTRAP.01: g_car=5 IS the icosahedral 5 of h(E8)=30 (the v349 correction) ==== *) Module[{primes30, maxPrime, piecesGolden, glueGolden}, primes30 = Sort[FactorInteger[30][[All, 1]]]; (* {2,3,5} = the icosahedral axes *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2323)
+- [(* v417 (1): the family rotation = Eisenstein deck + the hex norm 7 *) checkExact["v417 DIAMOND.EISEN.01 (i): P=(1 2 3) Eisenstein deck (P^3=I, P^2+P+I=ONES); (3I+2P)(3I+2P^2)=7I+6 ONES with Spec {7,7,25} (7=N_omega(3+2omega)=scalaron, 25=g_car^2) -- the dual of v415's {13,13,9}; NEG (5I+4P)(5I+4P^2)->{21,21,81}, N_omega(5,4)=21!=41", MatrixPower[P, 3] == I3 && MatrixPower[P, 2] + P + I3 == ones3 && (3 I3 + 2 P) . (3 I3 + 2 MatrixPower[P, 2]) == 7 I3 + 6 ones3 && Sort[Eigenvalues[(3 I3 + 2 P) . (3 I3 + 2 MatrixPower[P, 2])]] == Sort[{7, 7, 25}] && (3^2 - 3*2 + 2^2) == 7 && Sort[Eigenvalues[(5 I3 + 4 P) . (5 I3 + 4 MatrixPower[P, 2])]] == Sort[{21, 21, 81}] && (5^2 - 5*4 + 4^2) == 21]; (* v417 (2): the CP clock W = -P^2 and both CP phases *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2508)
+- [(* ==== v349 SEAM.EQUIV.GOLDEN.01: the raw carrier is NOT golden (D5 h=8 -> sqrt2); 5|h only on the output side ==== *) Module[{eigD5, eigA3, goldenHs}, (* Coxeter eigenvalue 2cos(2pi/h): D5 (h=8) -> sqrt2, A3 (h=4) -> 0; golden needs 5|h *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2314)
+- [(* v316 GALOIS.READOUT.01 -- CP phases are the family-factor cyclotomic data *) z6 = Exp[I Pi/3]; z30 = Exp[2 Pi I/30]; checkExact["v316 GALOIS.READOUT.01: the CP unit rho=zeta6=zeta30^5 (the order-6 family factor c^5); rho^4=-rho (sheet flip); Gal(Q(zeta6)/Q)=Z2 with zeta6->zeta6^5=conj(zeta6) = CP conjugation", Simplify[z6 - z30^5] == 0 && Simplify[z6^4 + z6] == 0 && Simplify[Conjugate[z6] - z6^5] == 0]; (* v317 GALOIS.FAMILY.01 -- the three generations are the mu3 orbit, Galois-refined 1+2 *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2206)
+- [(* v418 (1): the carrier-5 clock C5 + the golden ratio *) checkExact["v418 ARITH.NORMTRIPLE.01 (i): the carrier-5 clock C5 (Phi5-companion, 4x4) has C5^5=I, tr=-1, det=1 (the four primitive 5th roots); the golden ratio is its real-part data 2cos(72)=1/phi, 2cos(144)=-phi (output-side, v313/v349; dim 4, not 3 -- refines v417's gap)", MatrixPower[C5, 5] == I4 && Tr[C5] == -1 && Det[C5] == 1 && Simplify[2 Cos[2 Pi/5] - 1/phi] == 0 && Simplify[2 Cos[4 Pi/5] + phi] == 0]; (* v418 (2): the carrier norm = the quark numerator *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2539)
+- [(* v318 ARITH.CAPSTONE.01 -- the magnitude seed reduces to a pure pi-function *) checkExact["v318 ARITH.CAPSTONE.01: phi0 = (|mu4|/Nfam) c3 + Omega_adm c3^4 = (4/3)c3 + 48 c3^4 = 1/(6 Pi) + 3/(256 Pi^4) (a pure function of Pi => 0 dimensionless free parameters)", Simplify[(4/3) c3 + 48 c3^4 - (1/(6 Pi) + 3/(256 Pi^4))] == 0 && Simplify[(4/3) c3 + 48 c3^4 - phi0] == 0]; (* v320 GALOIS.CP.PREDICT.01 -- the falsifiable CP lock *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2213)
+- [(* v415 (2): the Gaussian integers 3+2i, 5+4i are eigenvalues *) checkExact["v415 DIAMOND.GAUSS.01 (ii): 3I+2J has spectrum {3+2i,3-2i,3} and 5I+4J has {5+4i,5-4i,5}; |3+2i|^2=13=Delta_Q, |5+4i|^2=41=10 b1 -- the Gaussian integers are literal operator eigenvalues", Sort[Eigenvalues[3 I3 + 2 J]] == Sort[{3 + 2 I, 3 - 2 I, 3}] && Sort[Eigenvalues[5 I3 + 4 J]] == Sort[{5 + 4 I, 5 - 4 I, 5}] && 3^2 + 2^2 == 13 && 5^2 + 4^2 == 41]; (* v415 (3): the square-norm dictionary as operator identities *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2463)
+- [(* ==== v313-v320: the cyclotomic / Galois arithmetic arc (exact) ==== *) Module[{edges, cAff, x, units, maxord, z6, z30, gauss}, (* v313 GOLD.ATOMS.01 -- the golden ratio is the g_car=5 spectral signature *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2182)
+- [(* v415 (4): the intrinsic order-4 mu4 deck D = -I + J - J^2 *) Pi2 = I3 + J . J; D = J - Pi2; checkExact["v415 DIAMOND.GAUSS.01 (iv): the intrinsic deck D=-I+J-J^2={{-1,1,0},{-2,1,0},{-4,3,-1}} is order 4 (D^4=I), Spec(D)={i,-1,-i} (the seam-deck spectrum, v146); chi2 line = ker[U,V] = NullSpace = {(0,0,1)} = a-1", D == {{-1, 1, 0}, {-2, 1, 0}, {-4, 3, -1}} && MatrixPower[D, 4] == I3 && Sort[Eigenvalues[D]] == Sort[{I, -I, -1}] && NullSpace[J] == {{0, 0, 1}} && a - one == {0, 0, 1}]; (* v416 (1): the Z[i] (square/seam) trichotomy *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2476)
+- [(* v417 (3): one order-30 Coxeter clock; seam mu4 is the Galois side *) checkExact["v417 DIAMOND.EISEN.01 (iii): all flavor clocks are powers of zeta30 (h(E8)=30): z30^15=-1 (mu2), z30^10=omega (mu3), z30^6=zeta5 (mu5), z30^5=zeta6 (mu6); the seam mu4 (i) is NOT a power (4 nmid 30), it is the Galois side (Z/30)^x of order phi(30)=8=rank E8", Simplify[z30^15 + 1] == 0 && Simplify[z30^10 - omega] == 0 && Simplify[z30^6 - Exp[2 Pi I/5]] == 0 && Simplify[z30^5 - zeta6] == 0 && Mod[30, 4] != 0 && EulerPhi[30] == 8 && Length[Select[Range[29], GCD[#, 30] == 1 &]] == 8]; ]; (* ==== v418 round: the cyclotomic norm triple (7,13,55) over the atom-rings ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2524)
+- [(* ==== v415-v416 round: Gaussian operator + atom trichotomy ==== *) Module[{R, Q, U, V, J, I3, one, a, Pi2, D, x, neis}, R = {{1, 3, 0}, {1, 5, 2}, {2, 5, 3}}; Q = {{3, 1, 0}, {3, 2, 0}, {3, 2, 1}}; U = Q . DiagonalMatrix[{1, 0, 0}]; V = Q . DiagonalMatrix[{0, 1, 1}]; J = (U . V - V . U)/3; I3 = IdentityMatrix[3]; one = {1, 1, 1}; a = {1, 1, 2}; (* v415 (1): J = [U,V]/3 is an integer mu4 quarter-turn complex structure *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2447)
+- [(* ==== v233: CP = the universal family/triality phase, sheet-split (mu6 = mu3 x mu2) ==== *) Module[{rho, omega}, rho = Exp[I Pi/3]; omega = Exp[2 I Pi/3]; checkExact["v233 CP.TRIALITY.01: the CP phase is the universal family/triality phase, sheet-split. " <> "mu6 = mu3(triality) x mu2(sheet): omega=e^{2pi i/3} the Z3 triality centre (2/3 cusp weight), " <> "rho = omega^2*(-1). Since rho^4 = rho^1*rho^3 with rho^3 in mu2, the quark (rho^1) and lepton " <> "(rho^4) CP phases share the SAME family class and differ only by the sheet: rho^1*(-1)=omega^2 " <> "(quark family part), rho^4=omega^2 (lepton). So CP = the universal triality phase + the sheet, " <> "not a free power choice; omega is the mu3 factor of the order-30 (2,3,5) monodromy (v232).", Simplify[omega^3] == 1 && Simplify[rho^3 + 1] == 0 && Simplify[rho - omega^2 (-1)] == 0 && Simplify[rho^4 - rho^1 rho^3] == 0 && Simplify[rho^1 (-1) - omega^2] == 0 && Simplify[rho^4 - omega^2] == 0]; ]; (* ==== v234: Seam-Holomorphy selection -- one condition, three faces, E8 ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L1915)
+
 ## 2026-06-25 (The Gaussian operator [formula in source] the atom trichotomy: v415, v416)
 
 [documents/changelog/sections/013-source.tex:91-121](../../../../documents/changelog/sections/013-source.tex#L91) · `section:bb2a02a767e560376342` · subsection
@@ -2615,22 +2651,6 @@ Explicit source references:
 - [QFT4D.SPERT.02](../../../../verification/status_ledger.csv#L364) · explicit_claim_identifier · original status at linked ledger row
 - [verification/v269_spert_paqft_skeleton.py](../../../../verification/v269_spert_paqft_skeleton.py#L1) · explicit_script_identifier
 - [QG.AMB.01](../../../../verification/status_ledger.csv#L47) · explicit_claim_identifier · original status at linked ledger row
-
-Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
-
-- [(* ==== v268: reactor-angle exponent = carrier hypercharge trace (FLAV.TH13.01) ==== *) Module[{Yvec, trY2, roots}, roots = Sort[Y /. Solve[6 Y^2 - Y - 1 == 0, Y]]; Yvec = {-1/3, -1/3, -1/3, 1/2, 1/2}; trY2 = Total[Yvec^2]; checkExact["v268 FLAV.TH13.01: the theta_13 exponent is the carrier hypercharge trace -- " <> "tr_E Y^2 = 3(1/3)^2 + 2(1/2)^2 = 5/6 over the 5-slot carrier hypercharge " <> "Y=diag(-1/3,-1/3,-1/3,1/2,1/2) (the anomaly-free roots {-1/3,1/2} of 6Y^2-Y-1=0), so " <> "sin^2 theta_13 = phi0 e^{-5/6} = phi0 e^{-tr_E Y^2}; complement 1 - 5/6 = 1/6 = the neutrino ratio. " <> "theta_13 is its own carrier-trace channel (the mu-tau breaking gives only ~1e-3, not 0.023).", roots === Sort[{-1/3, 1/2}] && trY2 === 5/6 && (1 - trY2) === 1/6]; ]; (* ==== v271: concrete Epstein-Glaser one-loop quartic renormalization (QFT4D.SPERT.02) ==== v269 (S_pert skeleton) + v270 (PMNS Jarlskog, numerical) are Python-only; v271's exact EG core (scaling degree, counterterm count, loop factor) is mirrored here. *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2069)
-
-## 2026-06-18 (PMNS: the complete complex matrix + the leptonic Jarlskog CP strength, v270)
-
-[documents/changelog/sections/018-source.tex:107-119](../../../../documents/changelog/sections/018-source.tex#L107) · `section:3116e55fdb4f7529082e` · subsection
-
-v270_pmns_jarlskog_assembly.py ( FLAV.PMNS.03) assembles the four TFPT channels ( [formula in source] , [formula in source] , [formula in source] , [formula in source] ) into one exactly-unitary complex PMNS matrix and derives the leptonic CP strength. \ [formula in source] is unitary; \ the Jarlskog [formula in source] ( [formula in source] ) is a derived number, the leptonic analogue of the CKM [formula in source] 
-
-Explicit source references:
-
-- [FLAV.PMNS.03](../../../../verification/status_ledger.csv#L363) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v270_pmns_jarlskog_assembly.py](../../../../verification/v270_pmns_jarlskog_assembly.py#L1) · explicit_script_identifier
-- [verification/v88_cp_phase_audit.py](../../../../verification/v88_cp_phase_audit.py#L1) · explicit_script_identifier
 
 Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
 

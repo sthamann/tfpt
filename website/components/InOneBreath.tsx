@@ -2,12 +2,12 @@ import { SectionHeader } from "./SectionHeader";
 
 const LINES: { plain: string; technical?: string }[] = [
   {
-    plain: "Two small inputs set the rules of a discrete compiler.",
-    technical: "axioms",
+    plain: "One marked geometry connects the boundary normalization, carrier and families of a discrete compiler.",
+    technical: "structured source and readout",
   },
   {
     plain:
-      "The compiler assembles a rigid mathematical shell that only closes one way.",
+      "The stated source conditions lead to a rigid mathematical closure, with existing derivations for its shared numerical data.",
     technical: "E₈ audit hull",
   },
   {

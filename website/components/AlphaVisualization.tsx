@@ -153,7 +153,7 @@ function AlphaInputAudit() {
   }> = [
     {
       element: <Math>{"c_3 = 1/(8\\pi)"}</Math>,
-      from: "Axiom P1 — the seam constant",
+      from: "P1 kernel: its c₃ normalization",
       forbid: "CODATA fitting",
     },
     {

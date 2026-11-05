@@ -108,7 +108,7 @@
         const pe = cubic(p0, c0, c1, p1, 0.97), pe2 = cubic(p0, c0, c1, p1, 1); arrowHead(p1.x, p1.y, Math.atan2(pe2.y - pe.y, pe2.x - pe.x), hexA("#f0b429", 0.9));
       });
       ctx.textAlign = "center"; ctx.textBaseline = "top"; ctx.fillStyle = "#ffd97a"; ctx.font = "700 12.5px Inter, sans-serif";
-      ctx.fillText("\u21ba RECURSION: E\u2088 closes for only one (tempo, width) \u2014 so the \u2018axioms\u2019 are forced, not chosen", W / 2, 4);
+      ctx.fillText("BOOTSTRAP: numerical consistency within the stated source and glue class", W / 2, 4);
       ctx.textAlign = "left"; ctx.textBaseline = "alphabetic";
     }
     const cosmo = byId.cosmo;
@@ -384,11 +384,11 @@
         <p class="deep-p">On that edge sit exactly <b>four marks</b> \u2014 like four notches on a ring: <b>\u03bc\u2084 = {1, i, \u22121, \u2212i}</b>. Everything else in the theory is just <b>two ways of reading the same marked edge</b>.</p></div>
       <div class="deep-cables">
         <div class="cable" style="--accent:#5b8cff"><div class="cb-i">\u21bb</div><div><div class="cb-t">Reading 1 \u2014 count the loops</div><div class="cb-d">how many independent loops circle the 4 marks</div></div><div class="cb-v">3<small>\u2192 three families</small></div></div>
-        <div class="cable" style="--accent:#34d39a"><div class="cb-i">\u0192</div><div><div class="cb-t">Reading 2 \u2014 count the functions</div><div class="cb-d">the smallest set of functions living on the marks</div></div><div class="cb-v">16<small>\u2192 one particle generation</small></div></div>
+        <div class="cable" style="--accent:#34d39a"><div class="cb-i">\u0192</div><div><div class="cb-t">Reading 2 \u2014 count the functions</div><div class="cb-d">meromorphic modes from the same divisor</div></div><div class="cb-v">5<small>\u2192 Clifford carrier of dimension 16</small></div></div>
       </div>
       <div class="deep-sec"><h4>Why exactly four marks? (it\u2019s forced)</h4>
-        <p class="deep-p">Not chosen by hand. The one-sided Gauss\u2013Bonnet of the seam\u2019s normal slice gives <b>n = 2\u03c7 = 4</b> marks \u2014 and the same <b>8</b> (|\u2124\u2082|\u00b72\u03c0\u03c7 = 8\u03c0) is the tempo <b>c\u2083 = 1/(8\u03c0)</b>. So the two \u201caxioms\u201d are two fingerprints of this one edge.</p></div>
-      <div class="deep-formula">\u2119\u00b9 \u2216 \u03bc\u2084  =  the four-punctured line,   deck map  z \u21a6 i\u00b7z  (the order-4 seam clock)<small>The only ingredient with no cheaper origin is \u03c0 itself.</small></div>
+        <p class="deep-p">In the flat spherical Z2 branch class, each cone deficit is pi, so Gauss-Bonnet gives four marks. The one-sided normal-sphere normalization gives c3 = 1/(8pi). These are established geometric results under their source premises; P1 is the whole structured kernel.</p></div>
+      <div class="deep-formula">\u2119\u00b9 \u2216 \u03bc\u2084  =  the four-punctured line,   deck map  z \u21a6 i\u00b7z  (the order-4 seam clock)<small>The marked geometric branch and physical source identification retain their stated premises.</small></div>
       <p class="deep-hint">Everything to the right is downstream of this single object \u2014 follow the arrows.</p>`;
   }
   function deepE8() {
@@ -410,7 +410,7 @@
         <div class="deep-routes">${D.e8slices.map((r) => `<div class="route-row"><span class="rr-n">${eh(r.name)}</span><span class="rr-role">${eh(r.role)}</span><span class="rr-w">${eh(r.what)}</span></div>`).join("")}</div></div>
       <div class="deep-recursion"><h4>\u21ba The recursion \u2014 how it confirms its own inputs</h4>
         <p class="deep-p">Here is the twist. The lattice <b>only closes</b> for width <b>g_car = 5</b> and the seam\u2019s <b>8</b>. Change either and the pieces no longer fit \u2014 E\u2088 never forms (try the ablation dials, or \u201cFailed universes\u201d).</p>
-        <p class="deep-p">So c\u2083 and g_car are <b>not free inputs</b> \u2014 they are the <b>only</b> values the audit accepts. The gold arrows looping from E\u2088 back to the two inputs are exactly this: <b>the theory pins its own axioms.</b></p></div>`;
+        <p class="deep-p">The bootstrap constrains the displayed numerical pair in the stated lattice class. Existing shared-origin reductions connect c3 and the carrier, while the primitive P1 kernel and physical P2 interface retain their source premises.</p></div>`;
   }
   function deepSeed() {
     const lc = Math.sqrt(C.phi0 * (1 - C.phi0)), s13 = C.phi0 * Math.exp(-5 / 6);
@@ -472,7 +472,7 @@
     return `
       <div class="deep-kicker">The readout \u00b7 the whole tally</div>
       <h3>\u25ce Two numbers in \u2014 and only ONE unit</h3>
-      <p class="deep-lede">Everything on the two boards below \u2014 the Standard Model and 23 predictions \u2014 comes out of the seam. The honest input count is the punchline: <b>zero dimensionless dials</b>, <b>one</b> unit, and \u03c0.</p>
+      <p class="deep-lede">The boards display the numerical compiler outputs under their declared source and transfer premises. The shared-origin reductions explain the numerical data; they preserve P1 as a structured kernel and P2 as a physical readout interface.</p>
       <div class="deep-grid">
         <div class="deep-fact ok"><div class="df-v">0</div><div class="df-k">dimensionless dials (the SM has ~26)</div></div>
         <div class="deep-fact ok"><div class="df-v">1</div><div class="df-k">dimensionful unit: v_geo (the ruler)</div></div>

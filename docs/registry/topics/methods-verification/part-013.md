@@ -4,6 +4,16 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Validated Fourier core and the missing finite-grid aliases.
+
+[experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tex-artefacts/toe_round4_proofs.tex:175-242](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tex-artefacts/toe_round4_proofs.tex#L175) · `section:bce0cf0522b937838636` · paragraph
+
+Use the sigma- [formula in source] basis [formula in source] , [formula in source] , [formula in source] . The jump is [formula in source] (zero-based indices), and [formula in source] for [formula in source] . At the 512 midpoint nodes, 256-bit Acb validated eigensystems strictly separate eight occupied and eight unoccupied eigenvalues. The outward matrix DFT [formula in source] obeys the exact midpoint alias formul
+
+Explicit source references:
+
+- [verification/v1022_telb_round3_certificates.py](../../../../verification/v1022_telb_round3_certificates.py#L1) · explicit_script_identifier
+
 ## T3/T4: canonical DET excitations and the signed wall.
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tex-artefacts/toe_round4_proofs.tex:243-303](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tex-artefacts/toe_round4_proofs.tex#L243) · `section:e34efc6d3388a546fda0` · paragraph
@@ -2109,9 +2119,3 @@ Die sechs zusätzlichen Unterlagen heißen im neuen Quellenregister N1 bis N6; d
 [experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/18_audit_v13.tex:6-28](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/18_audit_v13.tex#L6) · `section:a736ece557b95fcb2fb0` · section
 
 Setze [formula in source] und [formula in source] . Der Wedge-Kanal besitzt Für [formula in source] verschwindet [formula in source] . Beide geordneten Wege enden im gleichen virtuellen Zustand und interferieren. Orthogonale Records für [formula in source] und [formula in source] ersetzen dies durch [formula in source] : Der antisymmetrische Rang-6-Kanal wird zum Rang-12-Kanal. Bei gleichem Energienenner entsteht ein
-
-## Der erste Schatten wählt die Fortsetzung noch nicht
-
-[experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/18_audit_v13.tex:29-35](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/18_audit_v13.tex#L29) · `section:d1d7ed4cb3c96e4c4450` · section
-
-Mit [formula in source] und [formula in source] ist auf [formula in source] unitär und kollektiv [formula in source] -kovariant. Alle [formula in source] liefern für Materieeingänge denselben ersten blockdephasierten Schatten. Dennoch wirkt [formula in source] dort als [formula in source] , während [formula in source] als [formula in source] wirkt: [formula in source] kehrt als [formula in source] oder als [formula i

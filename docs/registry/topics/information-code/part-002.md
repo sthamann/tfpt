@@ -538,7 +538,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 ## Theorem 8 — the [formula in source] anchor microcode and the [formula in source] -ladder
 
-[documents/tfpt_1_architecture_e8/sections/011-source.tex:249-305](../../../../documents/tfpt_1_architecture_e8/sections/011-source.tex#L249) · `section:5d8f619883df80c56b36` · section
+[documents/tfpt_1_architecture_e8/sections/011-source.tex:260-316](../../../../documents/tfpt_1_architecture_e8/sections/011-source.tex#L260) · `section:5d8f619883df80c56b36` · section
 
 tocsectionTheorem 8 — anchor microcode The parabolic flavor bundle [formula in source] on [formula in source] has splitting type [formula in source] , whose power sums [formula in source] generate the whole compiler budget:
 

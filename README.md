@@ -13,6 +13,20 @@ are authoritative; the number of checks is not a proof of a complete theory.
 [Machine-readable registry](docs/registry/registry.json) ·
 [Agent instructions](AGENTS.md)
 
+## Shared origin of c3, P1 and P2
+
+P1 is the primitive oriented reflection-positive seam kernel with unit winding;
+c3 is its normalization. The shared four-mark geometry and parabolic anchor
+(1,1,2) explain the c3 and five-carrier numerical data under their named source
+hypotheses. The actual A0* connection already has analytic finite monodromy and
+an invariant positive Hermitian form. Both W-bridge premises close at finite
+level in v1014/v1015, modulo the external continuum identification. P2's
+interface and the physical source identifications retain their ledger scope.
+
+The [source reconciliation](docs/research/REC20261105C3.md)
+and the Architecture chapter “Shared origin” give the common explanation and
+the exact remaining determinant-response and source-identification premises.
+
 ## Find a topic or a source
 
 Start with the **[central content registry](docs/registry/INDEX.md)** or its

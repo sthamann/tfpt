@@ -4,12 +4,6 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
-## The Coxeter–cyclotomic compiler and the explicit [formula in source] construction
-
-[experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex:4876-4913](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex#L4876) · `section:ea7f8794d6601ffdeccd` · part
-
-This short companion compresses the TFPT bridge layer to a single discrete object. The claim is that the Standard-Model family, the cosmological action ladder, the [formula in source] counting data, the flavor budget, inflation and the cosmological constant are not independent coincidences but projections of one structure: the even-weight code [formula in source] on [formula in source] slots, together with its [formu
-
 ## (2) Gravity — the classical covariant field equation carries no free dimensionless Newton coupling under the named QFT/entanglement premises ; the [formula in source] inflation layer up to one truncation /
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_2_standard_model.tex:2206-2255](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_2_standard_model.tex#L2206) · `section:2e4923f3fd42adc44e3d` · subsection

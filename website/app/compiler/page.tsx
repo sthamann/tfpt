@@ -3,9 +3,9 @@ import { ExternalLink } from "lucide-react";
 import { SITE_URL } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Compiler in Action — Watch Two Numbers Build the Standard Model",
+  title: "Compiler in Action: Shared Geometry and Standard-Model Structure",
   description:
-    "An interactive walkthrough of the TFPT compiler: from one boundary edge — the seam constant c₃ = 1/(8π) and the carrier rank g_car = 5 — E₈ validates the closure and the machine reads off the Standard Model, the constants (α⁻¹ = 137.0359992), the flavor sector and a 23-readout prediction board. Turn the dials and watch every universe but ours fail to close.",
+    "An interactive walkthrough of the TFPT numerical compiler. The displayed c₃ normalization and carrier rank belong to a structured boundary source and declared physical readout with existing conditional reductions. Explore E₈ closure, constant relations, flavor and the 23-readout board, and test the stated numerical contract with ablations.",
   keywords: [
     "TFPT compiler",
     "interactive Standard Model",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     type: "website",
     title: "The Compiler in Action — TFPT",
     description:
-      "Interactive: two numbers (c₃ = 1/(8π), g_car = 5) compile the Standard Model, the constants and a 23-readout prediction board. E₈ validates the closure; turn the dials and only the audited universe survives.",
+      "Explore the numerical TFPT compiler: c₃ normalization, carrier, E₈ closure and a 23-readout board. The structured physical source retains its stated premises.",
     url: `${SITE_URL}/compiler`,
     siteName: "TFPT — Topological Fixed-Point Theory",
     locale: "en_US",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "The Compiler in Action — TFPT",
     description:
-      "Watch two numbers build the Standard Model. Interactive E₈ compiler with a live ablation console.",
+      "Explore shared numerical data and E₈ compiler closure, with an interactive ablation console and stated source scope.",
   },
 };
 
@@ -47,9 +47,9 @@ export default function CompilerPage() {
             The Compiler in Action
           </h1>
           <p className="truncate text-xs text-slate-600">
-            Two numbers — <span className="font-mono text-slate-700">c₃ = 1/(8π)</span> and{" "}
-            <span className="font-mono text-slate-700">g_car = 5</span> — compile the Standard
-            Model, the constants and a 23-readout prediction board.{" "}
+            Displayed numerical readouts: <span className="font-mono text-slate-700">c₃ = 1/(8π)</span> and{" "}
+            <span className="font-mono text-slate-700">g_car = 5</span>. Explore the numerical compiler
+            and its 23-readout board under the stated source premises.{" "}
             <span className="hidden sm:inline">Click any part of the machine to inspect it.</span>
           </p>
         </div>

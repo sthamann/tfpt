@@ -7,11 +7,11 @@ import { REPO_URL, SITE_URL } from "@/lib/utils";
 export const metadata: Metadata = {
   title: "Guided tour — What TFPT claims, in ten steps",
   description:
-    `A distill-style guided tour of TFPT ${SITE_VERSION}: two axioms (c₃ = 1/(8π), g_car = 5), the discrete compiler D5 ⊕ A3 + μ4 ⇒ E8, α⁻¹ = 137.0359992, 27 frozen predictions, ${VERIFICATION.pythonModules} machine-checked modules, honesty markers [E]/[C]/[O], open gates, and how to reproduce or falsify — without a “proven TOE” claim.`,
+    `A distill-style guided tour of TFPT ${SITE_VERSION}: the structured P1 kernel, its c₃ normalization and the P2 readout, the discrete compiler D5 ⊕ A3 + μ4 ⇒ E8, α⁻¹ = 137.0359992, 27 frozen predictions, ${VERIFICATION.pythonModules} machine-checked modules, honesty markers [E]/[C]/[O], open gates, and how to reproduce or falsify — without a “proven TOE” claim.`,
   keywords: [
     "TFPT guided tour",
     "Topological Fixed-Point Theory introduction",
-    "two axioms",
+    "structured boundary source",
     "discrete compiler",
     "E8",
     "frozen predictions",
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "TFPT guided tour — ten steps",
     description:
-      "Two axioms → discrete compiler → checkable outputs. Honest about open gates and kill tests.",
+      "Shared source and conditional reductions → discrete compiler → checkable outputs with stated premises.",
   },
 };
 
@@ -86,14 +86,14 @@ const howToJsonLd = {
   "@type": "HowTo",
   name: "Understand TFPT in ten steps",
   description:
-    "A progressive-disclosure walkthrough from the two axioms to reproduction and falsification.",
+    "A guided walkthrough of the structured source, shared conditional reductions, reproduction and falsification.",
   step: [
     {
       "@type": "HowToStep",
       position: 1,
-      name: "Two numbers",
+      name: "Source and shared numerical data",
       url: `${SITE_URL}/tour#step-two-numbers`,
-      text: "Start from c₃ = 1/(8π) and g_car = 5.",
+      text: "P1 is the primitive boundary kernel; c₃ normalizes it. P2 supplies the physical readout; their numerical reductions retain their source premises.",
     },
     {
       "@type": "HowToStep",
@@ -142,7 +142,7 @@ const howToJsonLd = {
       position: 8,
       name: "What's still open",
       url: `${SITE_URL}/tour#step-still-open`,
-      text: "SEAM.EQUIV [O], the twist-class input bit, interacting seam.",
+      text: "Unconditional SEAM.EQUIV [O]; existing MMST and conditional origin results retained, v534 square selection at toy level, physical source identification separate.",
     },
     {
       "@type": "HowToStep",

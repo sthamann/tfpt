@@ -4,6 +4,20 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Method
+
+[documents/tfpt_5_redteam/sections/001-section-method.tex:47-63](../../../../documents/tfpt_5_redteam/sections/001-section-method.tex#L47) · `section:f4722dc7a61b6484389b` · section
+
+The red team treats each reduction as a hostile witness. A confirmatory script that always passes is worthless here: the layer is built so that it may downgrade a claim. Four outcomes are allowed — survives (stands as worded), survives (narrowed) (stands only after a silent assumption is made explicit), reduced, not closed (the conservative wording is the correct one), and — reached by Target A after the lattice/ [fo
+
+Explicit source references:
+
+- [verification/v534_seam_straddle_cone.py](../../../../verification/v534_seam_straddle_cone.py#L1) · explicit_script_identifier
+
+Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
+
+- [(* ==== v534 round: SEAM.STRADDLE.CONE.01 -- the RP cone on the interacting FK quartets (the first dynamical selection of the alignment bit). Exact mirrors: the stabilizer census of the mark family, the pi/2 partition + straddle incidence, the reflection-closure signs of the straddling quartets, and the equivariant Fix rays (uniform on m=2..6, NS-wrap-twisted on m=1,7). The 256-dim Fock spectra, the PT Gram corrections and the finite-g survival scan are Python-only (numpy), flagged per GATE.WOLFRAM.02. ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L8401)
+
 ## Target B — carrier rank / the Pascal condition
 
 [documents/tfpt_5_redteam/sections/001-section-method.tex:90-109](../../../../documents/tfpt_5_redteam/sections/001-section-method.tex#L90) · `section:90278972f31acc1102a2` · section
@@ -2237,13 +2251,3 @@ The csc-squared finite product identity and trigamma recurrence for the original
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tex-artefacts/toe_round4_proofs.tex:143-174](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tex-artefacts/toe_round4_proofs.tex#L143) · `section:e65838beabd687268ea8` · paragraph
 
 Let [formula in source] be the unitary fractional shift with entries [formula in source] , let [formula in source] restrict to [formula in source] , [formula in source] , [formula in source] , [formula in source] and [formula in source] . Crucially [formula in source] . For the finite unitary overlap [formula in source] and [formula in source] , the source identity is [formula in source] Hence [formula in source] . P
-
-## Validated Fourier core and the missing finite-grid aliases.
-
-[experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tex-artefacts/toe_round4_proofs.tex:175-242](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tex-artefacts/toe_round4_proofs.tex#L175) · `section:bce0cf0522b937838636` · paragraph
-
-Use the sigma- [formula in source] basis [formula in source] , [formula in source] , [formula in source] . The jump is [formula in source] (zero-based indices), and [formula in source] for [formula in source] . At the 512 midpoint nodes, 256-bit Acb validated eigensystems strictly separate eight occupied and eight unoccupied eigenvalues. The outward matrix DFT [formula in source] obeys the exact midpoint alias formul
-
-Explicit source references:
-
-- [verification/v1022_telb_round3_certificates.py](../../../../verification/v1022_telb_round3_certificates.py#L1) · explicit_script_identifier

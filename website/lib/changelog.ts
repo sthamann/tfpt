@@ -42,6 +42,32 @@ export const CHANGELOG_MACROS: Record<string, string> =
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    "date": "2026-11-05",
+    "dateLabel": "2026-11-05",
+    "heading": [
+      {
+        "k": "t",
+        "v": ": shared c3/P1/P2 source reconciliation"
+      }
+    ],
+    "items": [
+      [
+        {
+          "k": "t",
+          "v": "Reconciled the structured P1 kernel, its scalar normalization and P2 interface with the shared four-mark/anchor derivations, recovered analytic monodromy and finite W-bridge closures. Added an Architecture source synthesis and corrected historical residual wording, the common status card, website explanations and the authored Atlas map. Compact Atlas answers now retain explicit qualifications. No verification or axiom marker was promoted. Source audit: "
+        },
+        {
+          "k": "c",
+          "v": "REC20261105C3"
+        },
+        {
+          "k": "t",
+          "v": "."
+        }
+      ]
+    ]
+  },
+  {
     "date": "2026-10-18",
     "dateLabel": "2026-10-18",
     "heading": [

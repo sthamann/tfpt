@@ -4,6 +4,18 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Verwandte Ideen und mögliche Folgen
+
+[experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/10_ausblick.tex:1-4](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/10_ausblick.tex#L1) · `section:e8f690eae2dbba6f5a74` · chapter
+
+Historischer Forschungsauftrag v1.4 Der folgende Ausblick bleibt als Grundrahmen erhalten. Die sechs inzwischen weiterbearbeiteten Fragen und die neuesten Ergebnisse stehen gesammelt in Kapitel
+
+## Zuse und Wolfram: eine Verwandtschaft ohne Rangordnung
+
+[experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/10_ausblick.tex:5-18](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/10_ausblick.tex#L5) · `section:10bdb8ed130d9a5dbe47` · section
+
+Der eingefügte Gesprächstext vergleicht den Universalraum mit Konrad Zuse und Stephen Wolfram. Zuses Werk heißt Rechnender Raum, nicht „denkender Raum“. In seinem Buch von 1969 untersucht er digitale Beschreibungen physikalischer Felder und Teilchen und die Rolle von Automaten. Das ist ein historischer Bezugspunkt für die Vorstellung von Physik als regelgeleitetem Prozess. https://link.springer.com/book/10.1007/978-3
+
 ## Was noch offen ist und wie es weitergehen sollte
 
 [experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/10_ausblick.tex:40-44](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/10_ausblick.tex#L40) · `section:c5f4b4e6c8bd108a0511` · chapter

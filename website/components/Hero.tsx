@@ -40,10 +40,10 @@ export function Hero() {
           </div>
 
           <h1
-            aria-label="Two axioms. One compiler. A testable Standard-Model skeleton."
+            aria-label="A shared geometric source. One compiler. A testable Standard-Model skeleton."
             className="mt-4 max-w-5xl font-serif text-[2.2rem] font-semibold leading-[1.08] text-slate-950 sm:mt-5 sm:text-5xl md:text-6xl"
           >
-            <span className="block">Two axioms. One compiler.</span>{" "}
+            <span className="block">Shared geometry. One compiler.</span>{" "}
             <span className="block">
               A testable{" "}
               <span className="text-blue-700">Standard-Model skeleton</span>.
@@ -51,9 +51,9 @@ export function Hero() {
           </h1>
 
           <p className="mt-4 max-w-2xl text-sm leading-relaxed text-slate-700 sm:text-base">
-            A discrete programme that builds the Standard-Model skeleton from
-            two fixed inputs — and ships every load-bearing step as
-            machine-checked code you can run yourself.
+            A structured boundary source connects the seam normalization,
+            carrier and families. Their established conditional reductions build
+            the Standard-Model skeleton, with checks you can run yourself.
           </p>
 
           <ProofStrip className="mt-5 sm:mt-6" />
