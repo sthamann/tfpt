@@ -50,6 +50,12 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 Use exactly the original R104 sixteen-mode CAR factor, [formula in source] Thus [formula in source] . The original cyclic rank-one expansion evaluates an ordered word by its full Fock trace and its rank-one intermediate matrix elements. For an actual canonical boundary action [formula in source] , those matrix elements use the exterior identity [formula in source] Each CAR monomial is a partial signed map on the orig
 
+## Evaluated spectral gluing and the next joint calculation.
+
+[tex-artefacts/toe_field_integration_20261105.tex:222-244](../../../../tex-artefacts/toe_field_integration_20261105.tex#L222) · `section:27809cf3c0ed0681274b` · paragraph
+
+The whole spectral parameter dependent Dirichlet to Neumann family now reconstructs the original conditional quarter circle heat source with all 96 internal directions, including its pointwise cross arc matrix kernel. All 12 Schur and 18 quarter circle controls passed. The original profile action also has an explicitly evaluated nonlocal cross kernel with its required contact term. These are operator space heat and a
+
 ## Research consolidation: source fields, dynamics and the remaining bridge (2026-09-09)
 
 [tex-artefacts/toe_research_20260909.tex:2-15](../../../../tex-artefacts/toe_research_20260909.tex#L2) · `section:c45244b17d018accceaf` · section

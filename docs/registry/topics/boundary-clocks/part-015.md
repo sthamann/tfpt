@@ -58,9 +58,9 @@ Use exactly the original R104 sixteen-mode CAR factor, [formula in source] Thus 
 
 ## Durable result route.
 
-[tex-artefacts/toe_field_integration_20261105.tex:222-230](../../../../tex-artefacts/toe_field_integration_20261105.tex#L222) · `section:311cda8e2201599f83be` · paragraph
+[tex-artefacts/toe_field_integration_20261105.tex:245-256](../../../../tex-artefacts/toe_field_integration_20261105.tex#L245) · `section:311cda8e2201599f83be` · paragraph
 
-The research records WEIGHTS20261105B, SEWING20261105C, FIELDINT20261105D, HYP20261105E and HYP20261105F distinguish recovered original results, executed calculations, analytic class statements and the unevaluated primitive integral. The full original source remains the common calculation target. These records neither choose a new state or measure nor change the existing c3/P1/P2, compiler, flavor, clock or physical
+The earlier research records WEIGHTS20261105B, SEWING20261105C, FIELDINT20261105D, HYP20261105E and HYP20261105F retain their stated scope. The followups SHORTTIME20261105G and SHORTTIME20261105H add the calculated source coefficients. Together these records distinguish recovered original results, executed calculations, analytic class statements and the unevaluated primitive integral. The full original source remains
 
 ## 4. What the compiler, Clock and lattice audits actually decide
 

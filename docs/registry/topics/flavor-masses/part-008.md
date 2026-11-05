@@ -494,12 +494,6 @@ The original common affine Higgs/Yukawa sewing already gives [formula in source]
 
 The follow-up uses the original joint R113 contact branch, rather than another fixed-background evaluation. In that branch let [formula in source] , [formula in source] , and [formula in source] , with all original Yukawa matrices, including the Dirac-neutrino term. The existing full internal Gram identity and CAR give [formula in source] For the Hamiltonian insertion [formula in source] , the whole mixed word is a s
 
-## Durable result route.
-
-[tex-artefacts/toe_field_integration_20261105.tex:222-230](../../../../tex-artefacts/toe_field_integration_20261105.tex#L222) · `section:311cda8e2201599f83be` · paragraph
-
-The research records WEIGHTS20261105B, SEWING20261105C, FIELDINT20261105D, HYP20261105E and HYP20261105F distinguish recovered original results, executed calculations, analytic class statements and the unevaluated primitive integral. The full original source remains the common calculation target. These records neither choose a new state or measure nor change the existing c3/P1/P2, compiler, flavor, clock or physical
-
 ## 1. A charged field from the original filled microscopic sea
 
 [tex-artefacts/toe_research_20260909.tex:16-96](../../../../tex-artefacts/toe_research_20260909.tex#L16) · `section:75239cddbc07384c33f4` · subsection

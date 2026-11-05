@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Dated continuation: the actual residual time form (R111)
+
+[tex-artefacts/toe_source_completion_20261103.tex:431-489](../../../../tex-artefacts/toe_source_completion_20261103.tex#L431) · `section:0f8ee3912de706f173b8` · subsection
+
+The literal original positive-parent clause leaves its residual [formula in source] unspecified. Once the parent and the actual reducing physical/source map have been supplied, the original annihilating admissibility penalties vanish on their admitted range. The remaining binding equation is the whole source-time form minus the represented parent form. If one realization of the printed parent clause exists, its state
+
 ## Covariant action and its variational scope (R112)
 
 [tex-artefacts/toe_source_completion_20261103.tex:490-527](../../../../tex-artefacts/toe_source_completion_20261103.tex#L490) · `section:36cb2b808681993cd807` · subsection
