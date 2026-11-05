@@ -56,11 +56,17 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 Use exactly the original R104 sixteen-mode CAR factor, [formula in source] Thus [formula in source] . The original cyclic rank-one expansion evaluates an ordered word by its full Fock trace and its rank-one intermediate matrix elements. For an actual canonical boundary action [formula in source] , those matrix elements use the exterior identity [formula in source] Each CAR monomial is a partial signed map on the orig
 
+## Recovered proofs and a finite integration route.
+
+[tex-artefacts/toe_field_integration_20261105.tex:258-287](../../../../tex-artefacts/toe_field_integration_20261105.tex#L258) · `section:cefbd644e0307afc11ec` · paragraph
+
+Recovered verification calculations retain their original scope. Current Lean kernel checks distinguish proved consequences from explicit physical hypotheses; they do not turn those hypotheses into calculated joint field values. On the same finite fixed background R048 radial caller, a convergent integration method now retains the original cubic and quartic vertices without expanding their exponential. Its global pol
+
 ## Durable result route.
 
-[tex-artefacts/toe_field_integration_20261105.tex:258-271](../../../../tex-artefacts/toe_field_integration_20261105.tex#L258) · `section:311cda8e2201599f83be` · paragraph
+[tex-artefacts/toe_field_integration_20261105.tex:288-303](../../../../tex-artefacts/toe_field_integration_20261105.tex#L288) · `section:311cda8e2201599f83be` · paragraph
 
-The earlier research records WEIGHTS20261105B, SEWING20261105C, FIELDINT20261105D, HYP20261105E and HYP20261105F retain their stated scope. The followups SHORTTIME20261105G and SHORTTIME20261105H add the calculated source coefficients. The continuation SHORTTIME20261105I records the neutral source integration and its full source boundary. Together these records distinguish recovered original results, executed calcula
+The earlier research records WEIGHTS20261105B, SEWING20261105C, FIELDINT20261105D, HYP20261105E and HYP20261105F retain their stated scope. The followups SHORTTIME20261105G and SHORTTIME20261105H add the calculated source coefficients. The continuation SHORTTIME20261105I records the neutral source integration and its full source boundary. The continuation SHORTTIME20261105J records the recovered proof scopes and conv
 
 ## 4. What the compiler, Clock and lattice audits actually decide
 

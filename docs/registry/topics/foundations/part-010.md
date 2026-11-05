@@ -195,11 +195,17 @@ The whole spectral parameter dependent Dirichlet to Neumann family now reconstru
 
 The whole neutral Higgs norm source is now integrated exactly within the existing fixed background R048 quadratic radial caller. Its source determinant ratio [formula in source] , regulated [formula in source] contact and original absolute baseline are retained. The original cubic and quartic vertices give a nonzero first Schwinger Dyson remainder when this Gaussian is substituted for the whole radial source on its p
 
+## Recovered proofs and a finite integration route.
+
+[tex-artefacts/toe_field_integration_20261105.tex:258-287](../../../../tex-artefacts/toe_field_integration_20261105.tex#L258) · `section:cefbd644e0307afc11ec` · paragraph
+
+Recovered verification calculations retain their original scope. Current Lean kernel checks distinguish proved consequences from explicit physical hypotheses; they do not turn those hypotheses into calculated joint field values. On the same finite fixed background R048 radial caller, a convergent integration method now retains the original cubic and quartic vertices without expanding their exponential. Its global pol
+
 ## Durable result route.
 
-[tex-artefacts/toe_field_integration_20261105.tex:258-271](../../../../tex-artefacts/toe_field_integration_20261105.tex#L258) · `section:311cda8e2201599f83be` · paragraph
+[tex-artefacts/toe_field_integration_20261105.tex:288-303](../../../../tex-artefacts/toe_field_integration_20261105.tex#L288) · `section:311cda8e2201599f83be` · paragraph
 
-The earlier research records WEIGHTS20261105B, SEWING20261105C, FIELDINT20261105D, HYP20261105E and HYP20261105F retain their stated scope. The followups SHORTTIME20261105G and SHORTTIME20261105H add the calculated source coefficients. The continuation SHORTTIME20261105I records the neutral source integration and its full source boundary. Together these records distinguish recovered original results, executed calcula
+The earlier research records WEIGHTS20261105B, SEWING20261105C, FIELDINT20261105D, HYP20261105E and HYP20261105F retain their stated scope. The followups SHORTTIME20261105G and SHORTTIME20261105H add the calculated source coefficients. The continuation SHORTTIME20261105I records the neutral source integration and its full source boundary. The continuation SHORTTIME20261105J records the recovered proof scopes and conv
 
 ## 1. A charged field from the original filled microscopic sea
 

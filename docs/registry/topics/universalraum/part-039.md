@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## The complete given Clifford field and kernel (L)
+
+[tex-artefacts/toe_source_completion_20261103.tex:311-400](../../../../tex-artefacts/toe_source_completion_20261103.tex#L311) · `section:fb5d115ad5ff0d511c2d` · subsection
+
+Retain the normal-independent product collar and its actual smooth classical odd coefficient: [formula in source] For [formula in source] , where [formula in source] , [formula in source] on the transported [formula in source] domain and [formula in source] on [formula in source] . No commutation of [formula in source] and [formula in source] is imposed.
+
 ## Larger charged sources and the remaining actual insertion (R109, R110)
 
 [tex-artefacts/toe_source_completion_20261103.tex:401-430](../../../../tex-artefacts/toe_source_completion_20261103.tex#L401) · `section:2168da76f91bd76c19e5` · subsection
