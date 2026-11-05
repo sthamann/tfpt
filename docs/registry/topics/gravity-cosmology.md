@@ -2,7 +2,7 @@
 
 [Registry index](../INDEX.md) · Topic ID: `gravity-cosmology`
 
-596 physical section matches. Topic assignment is a lexical navigation suggestion, not semantic review. The excerpts and citations below come from source; no proof or status promotion is asserted.
+595 physical section matches. Topic assignment is a lexical navigation suggestion, not semantic review. The excerpts and citations below come from source; no proof or status promotion is asserted.
 
 
 ## Bounded reading parts
@@ -14,7 +14,7 @@ Each part contains at most 100 physical section records and their actual explici
 - [Part 3: section matches 201–300](gravity-cosmology/part-003.md)
 - [Part 4: section matches 301–400](gravity-cosmology/part-004.md)
 - [Part 5: section matches 401–500](gravity-cosmology/part-005.md)
-- [Part 6: section matches 501–596](gravity-cosmology/part-006.md)
+- [Part 6: section matches 501–595](gravity-cosmology/part-006.md)
 
 ## First 20 source locations
 

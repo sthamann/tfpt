@@ -4,6 +4,18 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Die übrigen Zweige bleiben Teil des Bildes
+
+[experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/09_physik.tex:173-188](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/09_physik.tex#L173) · `section:8eab23ee8b92a00b03ff` · section
+
+L41mmL46mmL63mm Zweig& Historischer Quellwert& Offener Anteil\\ Starke CP-Phase& [formula in source] im Pfaffian-Zweig&Positives physisches Maß und nichtperturbativer Transfer.\\ Elektrische Dipolmomente&Führend null oder stark unterdrückt&Keine pauschale Null sämtlicher SM-Beiträge.\\ Axion& [formula in source] GeV; [formula in source] eV&Externe Planckskala und QCD-Massenrelation.\\ Neutrinomassen&Summe um [formula
+
+## Verwandte Ideen und mögliche Folgen
+
+[experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/10_ausblick.tex:1-4](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/10_ausblick.tex#L1) · `section:e8f690eae2dbba6f5a74` · chapter
+
+Historischer Forschungsauftrag v1.4 Der folgende Ausblick bleibt als Grundrahmen erhalten. Die sechs inzwischen weiterbearbeiteten Fragen und die neuesten Ergebnisse stehen gesammelt in Kapitel
+
 ## Zuse und Wolfram: eine Verwandtschaft ohne Rangordnung
 
 [experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/10_ausblick.tex:5-18](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/10_ausblick.tex#L5) · `section:10bdb8ed130d9a5dbe47` · section

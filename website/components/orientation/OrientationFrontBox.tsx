@@ -13,7 +13,7 @@ const ITEMS: {
   {
     icon: Compass,
     title: "Inputs",
-    body: "The two axioms {c₃ = 1/(8π), g_car = 5}. Everything else — the gauge group, the constants, the scale grammar — is a consequence.",
+    body: "P1 supplies the structured primitive RP boundary kernel; c₃ is its normalization. P2 declares the physical 3+2 readout. Their common four-mark geometry, anchor and finite W-bridge already provide conditional reductions (REC20261105C3).",
     tone: "from-blue-500/15 to-cyan-500/10 ring-blue-400/25",
   },
   {

@@ -4,6 +4,18 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## 2026-07-21 (II) (PG.06b FULL: the complete NICER Vela archive reduced — the first X-ray [formula in source] leg of the recovery-comb search, verdict data_limited; the old PG.06b ``pipeline proven'' fold corrected on record; experiments level only — no verification module, no gate closes, no marker moves)
+
+[documents/changelog/sections/007-source.tex:310-342](../../../../documents/changelog/sections/007-source.tex#L310) · `section:e2d9ada460279647968e` · subsection
+
+experiments/pulsar-glitch-recovery PG.06b FULL executed ( tfpt-pulsar vela-full). The full NICER Vela-pulsar (PSR B0833-45) L2 archive is reduced, with the manifest frozen before the bulk download ( manifest_full_reduction.json: all 665 ObsIDs, preregistered 2019/2021/2024 glitch windows, 20-GB abort gate): 665/665 obs downloaded (2.6\,GB, raw gitignored) [formula in source] 491 usable [formula in source] 240 per-obs
+
+Explicit source references:
+
+- [experiments/README.md](../../../../experiments/README.md#L1) · explicit_file_citation
+- [experiments/next.txt](../../../../experiments/next.txt#L1) · explicit_file_citation
+- [experiments/pulsar-glitch-recovery/data/nicer_vela/manifest_full_reduction.json](../../../../experiments/pulsar-glitch-recovery/data/nicer_vela/manifest_full_reduction.json#L1) · explicit_file_citation
+
 ## 2026-07-20 (VIII) (E8 mass-ladder blind-recovery bed EXECUTED: verdict validated at the detector level — the Cartan–PF ladder pipeline blindly recovers the published Zamolodchikov-E8 spectra of BaCo [formula in source] V [formula in source] O [formula in source] (8/8) and CoNb [formula in source] O [formula in source] (6/8 in-window) and rejects every control class; experiments level only — confirms Zamolodchikov E8, not TFPT; no verification module, no gate closes, no marker moves)
 
 [documents/changelog/sections/008-source.tex:1-30](../../../../documents/changelog/sections/008-source.tex#L1) · `section:967792ae6a0e25788ac8` · subsection
@@ -2894,29 +2906,3 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 - [(* ==== v237: closing step as physics -- no topological degeneracy <=> det K=1 <=> SRE ==== *) Module[{cartanA, cartanD, e8edges, E8, D8, A3, D5, carrier, gsd}, cartanA[n_] := SparseArray[{{i_, i_} -> 2, {i_, j_} /; Abs[i - j] == 1 -> -1}, {n, n}] // Normal; cartanD[n_] := Module[{K}, K = 2 IdentityMatrix[n]; Do[K[[i, i + 1]] = K[[i + 1, i]] = -1, {i, n - 2}]; K[[n - 2, n]] = K[[n, n - 2]] = -1; K]; e8edges = {{1, 2}, {2, 3}, {3, 4}, {4, 5}, {5, 6}, {6, 7}, {5, 8}}; E8 = 2 IdentityMatrix[8] - Table[If[i != j && MemberQ[e8edges, Sort[{i, j}]], 1, 0], {i, 8}, {j, 8}]; A3 = cartanA[3]; D5 = cartanD[5]; D8 = cartanD[8]; carrier = ArrayFlatten[{{D5, 0}, {0, A3}}]; gsd[K_, g_] := Abs[Det[K]]^g; checkExact["v237 GATE.HOLO.03: the closing step as a physical condition -- the abelian K-matrix " <> "ground-state degeneracy on a genus-g surface is |det K|^g (torus: carrier D5(+)A3 -> 16, D8 -> 4, " <> "E8 -> 1), so 'no topological ground-state degeneracy on any closed surface' <=> det K = 1 <=> the " <> "seam bulk is short-range-entangled (the unique bosonic SRE c=8 phase = the Kitaev E8 state, edge " <> "holomorphic). A unique vacuum on the plane (genus 0, always 1) is necessary but not sufficient; the " <> "torus sees |det K|. NEG: an LRE bulk (D8, det 4) has 4-fold torus degeneracy + non-holomorphic edge.", gsd[carrier, 1] == 16 && gsd[D8, 1] == 4 && gsd[E8, 1] == 1 && gsd[carrier, 2] == 256 && gsd[E8, 2] == 1 && gsd[carrier, 0] == 1 && gsd[E8, 0] == 1 && Det[E8] == 1 && (5 + 3 == 8)]; ]; (* ==== v259: the modular/KMS spectral-action cutoff fixes f_2/f_0 = 1 (PS.SPECACT.02) ==== v258 (Dirac as covariance induction) is numerical matrix-log linear algebra -> Python-only. *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L1991)
 - [(* ==== v235: the closing step in abelian Chern-Simons -- holomorphic <=> det K = 1 ==== *) Module[{cartanA, cartanD, e8edges, A3, D5, D8, E8, carrier}, cartanA[n_] := SparseArray[{{i_, i_} -> 2, {i_, j_} /; Abs[i - j] == 1 -> -1}, {n, n}] // Normal; cartanD[n_] := Module[{K}, K = 2 IdentityMatrix[n]; Do[K[[i, i + 1]] = K[[i + 1, i]] = -1, {i, n - 2}]; K[[n - 2, n]] = K[[n, n - 2]] = -1; K]; e8edges = {{1, 2}, {2, 3}, {3, 4}, {4, 5}, {5, 6}, {6, 7}, {5, 8}}; E8 = 2 IdentityMatrix[8] - Table[If[i != j && MemberQ[e8edges, Sort[{i, j}]], 1, 0], {i, 8}, {j, 8}]; A3 = cartanA[3]; D5 = cartanD[5]; D8 = cartanD[8]; carrier = ArrayFlatten[{{D5, 0}, {0, A3}}]; checkExact["v235 GATE.HOLO.02: the closing step in abelian Chern-Simons -- a free gapped bosonic 2+1d " <> "bulk = an even integer K-matrix with #anyons=|det K|, edge c=signature(K), holomorphic <=> det=1. " <> "The TFPT tower (v92) read by det: carrier D5(+)A3 (even, det 16, 16 anyons) -> SO(16)_1=D8 (det 4) " <> "-> (E8)_1 (det 1, holomorphic), all rank 8, c=signature=8=g_car+N_fam. Holomorphic <=> det 1 <=> E8 " <> "= the Kitaev E8 quantum-Hall state. Condensation: a Lagrangian glue of order sqrt(16)=|mu4|=4 takes " <> "det 16->1; an order-2 isotropic only ->4=D8. NEG: D8 free+bosonic but 4 anyons (not holomorphic). " <> "Residual: condense the |mu4| Lagrangian glue = the sheet/QGEO selection.", Det[E8] == 1 && Det[D8] == 4 && Det[carrier] == 16 && Det[A3] == 4 && Det[D5] == 4 && And @@ (EvenQ[#] & /@ Join[Diagonal[E8], Diagonal[D8], Diagonal[carrier]]) && Min[Eigenvalues[N[E8]]] > 0 && Min[Eigenvalues[N[D8]]] > 0 && Min[Eigenvalues[N[carrier]]] > 0 && Length[E8] == Length[D8] == Length[carrier] == 8 && 16/4^2 == 1 && 16/2^2 == 4 && (5 + 3 == 8)]; ]; (* ==== v236: the (2,3,5) Brieskorn singularity generates the skeleton ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L1950)
 - [(* ---- (v214) QGEO.PILLOW.01: pillowcase reduction -- cross-ratio 2 => j=1728 => order-4 CM ---- *) Module[{chiorb, jl, x, y, curve, auto, xx, yy}, chiorb = 2 - 4 (1 - 1/2); (* orbifold Euler char of S^2(2,2,2,2) *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L1726)
-
-## 2026-06-17 (The static [formula in source] dynamic flip: modular flow [formula in source] a recovery Lindblad generator, v238)
-
-[documents/changelog/sections/019-source.tex:86-105](../../../../documents/changelog/sections/019-source.tex#L86) · `section:9f084ccace7baa00bf8d` · subsection
-
-New v238_modular_lindblad_dynamics.py ( DYN.SEMIGROUP.01, cluster registry). A companion to the modular round ( v196/ v198) and the recovery code ( v221/ v64) that reads the same seam objects dynamically rather than statically. \ the modular flow [formula in source] is a unitary one-parameter group (Tomita–Takesaki) whose conservation of the [formula in source] clock, [formula in source] , IS the v198 state-invarianc
-
-Explicit source references:
-
-- [verification/run_all.py](../../../../verification/run_all.py#L1) · explicit_file_citation
-- [DYN.SEMIGROUP.01](../../../../verification/status_ledger.csv#L324) · explicit_claim_identifier · original status at linked ledger row
-- [QGEO.SYM.01](../../../../verification/status_ledger.csv#L261) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v196_seam_energy_functional.py](../../../../verification/v196_seam_energy_functional.py#L1) · explicit_script_identifier
-- [verification/v64_causal_boundary_nogo.py](../../../../verification/v64_causal_boundary_nogo.py#L1) · explicit_script_identifier
-- [verification/v238_modular_lindblad_dynamics.py](../../../../verification/v238_modular_lindblad_dynamics.py#L1) · explicit_file_citation
-- [verification/v198_modular_commutator_reduction.py](../../../../verification/v198_modular_commutator_reduction.py#L1) · explicit_script_identifier
-- [verification/v221_seam_qecc.py](../../../../verification/v221_seam_qecc.py#L1) · explicit_script_identifier
-- [verification/status_ledger.csv](../../../../verification/status_ledger.csv#L1) · explicit_file_citation
-- [verification/script_registry.csv](../../../../verification/script_registry.csv#L1) · explicit_file_citation
-
-Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
-
-- [(* ---- (v198) QGEO.MODULAR.01: principal symbol |k| commutes with the clock rho EXACTLY ---- *) Module[{nn, rho1, absK, comm}, nn = Range[-8, 8]; rho1 = DiagonalMatrix[I^nn]; (* z->iz: e^{in t} -> i^n e^{in t} *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L1638)
-- [experiments/lean4-carrier-rigidity/TfptCarrier/SeamDeckClosure.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/SeamDeckClosure.lean#L1)
-- [(* v100_numerology_null_mc.py is Python-only by design: it is a STATISTICAL module (exact integer census of a declared formula grammar + deterministic Monte-Carlo pseudo-theories + RNG-seeded negative controls + 94500 float root-solves), not an exact algebraic identity -- same convention as the Python-only v62/v64/v65. No Wolfram mirror is required; flagged in README.md and ledger GATE.WOLFRAM.02. *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L326)
-- [(* ---- (v196) QGEO.VARI.01: E_fail = 0 on the mu4 block (exact finite vanishing) ---- *) Module[{rho, Lam, comm, order4, twist}, rho = DiagonalMatrix[{I, -1, -I}]; Lam = DiagonalMatrix[{1, 2, 3}]; (* any real diagonal (mu4-equivariant) DtN *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L1619)

@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## TFPT / Universalraum: Clock, gemeinsame Quelle und tatsächlicher Transport
+
+[documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/022-subsection-b7-abgleich-des-zuletzt-eingesandten-berichts.tex:95-98](../../../../documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/022-subsection-b7-abgleich-des-zuletzt-eingesandten-berichts.tex#L95) · `section:64fffe38c59f934adfa5` · section
+
+No opening prose excerpt; see the source.
+
 ## Konsolidierung und eigene Forschungsfortsetzung v1.6.6 - 15. September 2026
 
 [documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/022-subsection-b7-abgleich-des-zuletzt-eingesandten-berichts.tex:99-124](../../../../documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/022-subsection-b7-abgleich-des-zuletzt-eingesandten-berichts.tex#L99) · `section:6573a97655859181058d` · subsection
@@ -175,9 +181,9 @@ positioning,arrows.meta,fit,backgrounds,calc,shapes.geometric,shapes.misc
 
 ## Front matter / support
 
-[documents/introduction/sections/001-section-what-this-is-about-the-jump-in-construction-prin.tex:1-86](../../../../documents/introduction/sections/001-section-what-this-is-about-the-jump-in-construction-prin.tex#L1) · `section:ac978079d55f2c41f62b` · frontmatter
+[documents/introduction/sections/001-section-what-this-is-about-the-jump-in-construction-prin.tex:1-87](../../../../documents/introduction/sections/001-section-what-this-is-about-the-jump-in-construction-prin.tex#L1) · `section:ac978079d55f2c41f62b` · frontmatter
 
-Topological Fixed-Point Theory (TFPT) constructs, from exactly two inputs — a boundary constant [formula in source] (P1) and a five-slot carrier [formula in source] (P2) — a discrete compiler for the Standard-Model skeleton: the gauge group, three families, hypercharges and the flavor matrix, with [formula in source] ( [formula in source] ) as the consistency checksum. The algebraic core is machine-checkable and the
+Topological Fixed-Point Theory (TFPT) constructs, from exactly two inputs — a boundary kernel normalization [formula in source] (P1 supplies the structured RP seam kernel) and a five-slot carrier [formula in source] (P2, with existing conditional source reductions) — a discrete compiler for the Standard-Model skeleton: the gauge group, three families, hypercharges and the flavor matrix, with [formula in source] ( [fo
 
 Explicit source references:
 
@@ -197,7 +203,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 ## In plain words
 
-[documents/introduction/sections/001-section-what-this-is-about-the-jump-in-construction-prin.tex:90-127](../../../../documents/introduction/sections/001-section-what-this-is-about-the-jump-in-construction-prin.tex#L90) · `section:fcaeea1db58206830da9` · subsection
+[documents/introduction/sections/001-section-what-this-is-about-the-jump-in-construction-prin.tex:91-128](../../../../documents/introduction/sections/001-section-what-this-is-about-the-jump-in-construction-prin.tex#L91) · `section:fcaeea1db58206830da9` · subsection
 
 What we found. TFPT reproduces dozens of real numbers of physics (particle masses, the fine-structure constant, dark-energy and inflation values) from a small set of inputs — and the compiler closure says why the same handful of small integers ( [formula in source] ) reappears in every sector: those numbers are not separate lucky hits. A single tiny ``machine'' — fed by just two inputs (a boundary number [formula in
 
@@ -720,9 +726,9 @@ Explicit source references:
 
 ## Honest status
 
-[documents/origin_theory/sections/006-section-honest-status-label-sec-status.tex:1-318](../../../../documents/origin_theory/sections/006-section-honest-status-label-sec-status.tex#L1) · `section:888628823bf71f709698` · section
+[documents/origin_theory/sections/006-section-honest-status-label-sec-status.tex:1-332](../../../../documents/origin_theory/sections/006-section-honest-status-label-sec-status.tex#L1) · `section:888628823bf71f709698` · section
 
-@p5.4cmp2.0cmY@ claim & status & basis \\ [formula in source] generates the integer skeleton; Pythagorean [formula in source] split & & v53_compiler_core.py \\ the [formula in source] in [formula in source] is triply forced (geo [formula in source] lattice [formula in source] gravity) & & v54_seam_horizon_keystones.py \\ one boundary transport for flavor and horizon ( [formula in source] ) & & v54_seam_horizon_keysto
+Source reconciliation, 5 November 2026. P1 is the structured RP seam kernel; [formula in source] is its scalar normalization. The shared four-mark/anchor reductions, analytic finite monodromy and the two finite W-bridge premise closures are consolidated in the Architecture chapter ``Shared origin'' ( REC20261105C3). The later charged MMST result retains the named microscopic local-algebra exhaustion condition for the
 
 Explicit source references:
 
@@ -900,7 +906,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 ## Appendix: computational verification
 
-[documents/origin_theory/sections/006-section-honest-status-label-sec-status.tex:319-340](../../../../documents/origin_theory/sections/006-section-honest-status-label-sec-status.tex#L319) · `section:5ef9533c2bf93b6ac923` · section
+[documents/origin_theory/sections/006-section-honest-status-label-sec-status.tex:333-354](../../../../documents/origin_theory/sections/006-section-honest-status-label-sec-status.tex#L333) · `section:5ef9533c2bf93b6ac923` · section
 
 Every \ statement here is machine-checked in the TFPT suite and re-derived independently in Wolfram: @p4.7cmY@ script & content \\ v53_compiler_core.py & [formula in source] skeleton, Pythagorean [formula in source] split, anchor char-poly uniqueness \\ v54_seam_horizon_keystones.py & triply-forced [formula in source] ; shared transport [formula in source] ; de Sitter constants \\ v55_coxeter_cycle.py & computed [for
 
@@ -924,7 +930,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 ## How to read this document
 
-[documents/tfpt_1_architecture_e8/sections/001-source.tex:51-391](../../../../documents/tfpt_1_architecture_e8/sections/001-source.tex#L51) · `section:1234c1fa7fdc0d6d5b35` · section
+[documents/tfpt_1_architecture_e8/sections/001-source.tex:51-394](../../../../documents/tfpt_1_architecture_e8/sections/001-source.tex#L51) · `section:1234c1fa7fdc0d6d5b35` · section
 
 Notation convention. We write [formula in source] for the root-lattice direct sum (used in the glue/lattice statements: discriminant forms, [formula in source] glue, [formula in source] as an even unimodular lattice), and [formula in source] for the group/representation branching (used for subalgebra embeddings and [formula in source] -rep decompositions). The objects are the same atoms; the symbol marks whether the
 
@@ -1047,7 +1053,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 ## Front matter / support
 
-[documents/tfpt_1_architecture_e8/sections/004-source.tex:1-243](../../../../documents/tfpt_1_architecture_e8/sections/004-source.tex#L1) · `section:f22c82858ff073c133d4` · frontmatter
+[documents/tfpt_1_architecture_e8/sections/004-source.tex:1-246](../../../../documents/tfpt_1_architecture_e8/sections/004-source.tex#L1) · `section:f22c82858ff073c133d4` · frontmatter
 
 equilibrium kernel witnesses carry the full [formula in source] mixing at zero entropy production — no non-equilibrium state is needed, and whether the deployed pure-i wiring is compiler-forced became the registered successor contract ( v908_seam_equilibrium_wiring.py, SEAM.STATE.WIRING.SELECTOR.01); the \ premise stays unmoved. Dated addendum (2026-08-12, rounds 69–71): the successor contract is closed, and the answ
 
@@ -1111,7 +1117,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 ## One master moment generates [formula in source] , [formula in source] , [formula in source] , [formula in source]
 
-[documents/tfpt_1_architecture_e8/sections/004-source.tex:351-366](../../../../documents/tfpt_1_architecture_e8/sections/004-source.tex#L351) · `section:e2ac56d63dc5b474ddb4` · subsection
+[documents/tfpt_1_architecture_e8/sections/004-source.tex:354-369](../../../../documents/tfpt_1_architecture_e8/sections/004-source.tex#L354) · `section:e2ac56d63dc5b474ddb4` · subsection
 
 With [formula in source] , the quadratic hypercharge trace on one family is [formula in source] , and it generates the whole integer chain: The flavor budget, the [formula in source] budget, the [formula in source] count and the second seam defect all hang on the second hypercharge moment [formula in source] . \ Round-22 sharpening: the moment itself is one symbolic identity, [formula in source] — the Coxeter number
 
@@ -2467,9 +2473,3 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 - [experiments/lean4-carrier-rigidity/TfptCarrier/AxiomCheck.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/AxiomCheck.lean#L1)
 - [experiments/lean4-carrier-rigidity/TfptCarrier/AuditContract.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/AuditContract.lean#L1)
 - [(* v457: the (E8)_1 character tower {1,248,4124,34752} and the kill-test discriminators *) cartanE8 = {{2, -1, 0, 0, 0, 0, 0, 0}, {-1, 2, -1, 0, 0, 0, 0, 0}, {0, -1, 2, -1, 0, 0, 0, 0}, {0, 0, -1, 2, -1, 0, 0, 0}, {0, 0, 0, -1, 2, -1, 0, -1}, {0, 0, 0, 0, -1, 2, -1, 0}, {0, 0, 0, 0, 0, -1, 2, 0}, {0, 0, 0, 0, -1, 0, 0, 2}}; cartanD8 = {{2, -1, 0, 0, 0, 0, 0, 0}, {-1, 2, -1, 0, 0, 0, 0, 0}, {0, -1, 2, -1, 0, 0, 0, 0}, {0, 0, -1, 2, -1, 0, 0, 0}, {0, 0, 0, -1, 2, -1, 0, 0}, {0, 0, 0, 0, -1, 2, -1, -1}, {0, 0, 0, 0, 0, -1, 2, 0}, {0, 0, 0, 0, 0, -1, 0, 2}}; E4q = 1 + 240 Sum[DivisorSigma[3, n] q^n, {n, 1, 6}]; inv8 = Series[Product[(1 - q^n)^-8, {n, 1, 6}], {q, 0, 4}]; chiSeries = Series[E4q inv8, {q, 0, 4}]; coeffs = CoefficientList[Normal[chiSeries], q]; checkExact["v457 SEAM.EQUIV.KILLTEST.01 (i): the (E8)_1 character tower chi=E4/eta^8=q^{-1/3}(1+248q+4124q^2+34752q^3+...); E4/Product(1-q^n)^8 q-series coeffs {1,248,4124,34752} -- the exact (E8)_1 conformal-tower degeneracies", Take[coeffs, 4] == {1, 248, 4124, 34752}]; checkExact["v457 SEAM.EQUIV.KILLTEST.01 (ii): the kill-test discriminators -- weight-1 count 248=dim E8=120(SO16)+128(spinor); |det Cartan(E8)|=1 (invertible, one sector) vs |det Cartan(D8=SO16)|=4 (four sectors); a measured 120 or 4 would FALSIFY (E8)_1, the data give 248/1", 120 + 128 == 248 && Det[cartanE8] == 1 && Abs[Det[cartanD8]] == 4]; (* v459: E8 even unimodular + the 240 roots split 112+128; 248=8+240=120+128 *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2847)
-
-## Die Quellen- und Clockprüfungen: Welche Alternativen wirklich ausgeschlossen sind
-
-[documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/010-subsection-der-st-rkste-neue-selektor-verbindet-orientie.tex:298-299](../../../../documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/010-subsection-der-st-rkste-neue-selektor-verbindet-orientie.tex#L298) · `section:afec65d6f247eac024e1` · section
-
-No opening prose excerpt; see the source.

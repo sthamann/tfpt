@@ -1054,9 +1054,9 @@ _The quantum-gravity measure contract, the audit ledger, the data scorecard, and
 - **v1013_thermodynamic_dynamics** [-] `(no ledger claim)` — Thermodynamische Dynamik (Spaetabend 2026-08-30): Pflicht-Dynamik-Bein auf Hamiltonian-Klasse GESCHLOSSEN (Theorem-Memo). Uniforme LR-Schranke J=12/5, R=2, z=4, kappa=16043/450, v_
   - cited: introduction, 4 frontier, research contracts
 - **v1014_bridge_refinements** [-] `(no ledger claim)` — Bruecken-Verfeinerungen (Spaetabend 2026-08-30): Detline-Einschraenkungsisomorphismus endlich VERIFIZIERT (c_phase 3.7e-16, Orientierung 2->1, Restanker U(1)/A0). W-Bruecke: P-anch
-  - cited: introduction, 4 frontier, research contracts
+  - cited: introduction, 1 architecture e8, 4 frontier, research contracts
 - **v1015_axiom_core_closure** [-] `(no ledger claim)` — Axiomkern-Abschluss (Montagmorgen 2026-08-31): charakterblinde P-dem-Antwort ABGELEITET (r=(1,1,1) exakt bei Kragen 12 und 16, Demokratie-Residuum 0; Mutanten (1,0,0) und (5/4,1,5/
-  - cited: introduction, 4 frontier, research contracts
+  - cited: introduction, 1 architecture e8, 4 frontier, research contracts
 - **v1016_state_gap_batteries** [-] `(no ledger claim)` — Zustands-/Luecken-Batterien (Montagmorgen 2026-08-31): R4 Naht-Modular-Kappe einzigartiger endlicher nicht-entropischer Selektor (D_tr 0.1434, SK-RMS 3.038e-3, Sattel erhalten; Fin
   - cited: introduction, 4 frontier, research contracts
 - **v1020_spectator_sector_obstruction** [O] `BULK.PRIME_COMPLETION.01` — Spectator-Sektor-Hindernis (r644-Audit-Ernte 2026-09-04): endlicher freier-Fermion-Zeuge, neu abgeleitet (keine Proben-Importe). Aufschichten eines entkoppelten trivialen Gap-Sekto
@@ -1302,7 +1302,7 @@ _The frozen prediction registry and the follow-up rounds: Target A merged to one
 - **v188_frontier_wording_guard** [E] `AUDIT.WORDING.01` — 'leptogenesis interface (mE)' (v184 retyped Route B to [C]), 'closed branch also fixes the leptogenesis inputs' (M_R is the seesaw scale, not a compiler power), 'relic scale f_a,m_
   - deps: v184_etaB_anchored_boltzmann, v185_axion_relic_solver, v183_koide_f_corner_transfer, v187_ftransfer_laws · cited: introduction, 4 frontier, safeguards
 - **v189_riemann_roch_carrier** [E/C] `ARCH.RRCAR.01` — a fourth, geometric reading. h⁰ and rank H₁ are both fixed by deg=4 (one object, two invariants).
-  - deps: v53_compiler_core, v1005_relative_pencil_bridges.py; v1010_simplicity_bridge_census.py; v1014_bridge_refinements.py; v1015_axiom_core_closure, QGEO.COHOM.01, v1_e8_glue, v177_seam_marking_kernel, v1_e8_glue · cited: introduction, origin theory
+  - deps: v53_compiler_core, v1005_relative_pencil_bridges.py; v1010_simplicity_bridge_census.py; v1014_bridge_refinements.py; v1015_axiom_core_closure, QGEO.COHOM.01, v1_e8_glue, v177_seam_marking_kernel, v1_e8_glue · cited: introduction, origin theory, 1 architecture e8
 - **v190_nariai_entropy_bound** [E] `HOR.NARIAI.02` — a variation-free proof of the entropy floor (global minimum on x>0 is 2/3=|Z₂|/N_fam).
   - deps: v101_horizon_anchor, v101_horizon_anchor, v8_horizon · cited: introduction, horizon readouts
 - **v191_universal_branch_line** [C] `HOR.BRANCHLINE.01` — an exact affine RELABELING, not a theorem. The map q=7/2+(N_fam²/2)m carries the SdS branch points m=±1/N_fam onto the flavor branch points {2,5}={|Z₂|,g_car} (m=0→7/2). [E] arithm
@@ -1318,7 +1318,7 @@ _The frozen prediction registry and the follow-up rounds: Target A merged to one
 - **v196_seam_energy_functional** [E/O] `QGEO.VARI.01` — the E_fail variational functional (review path 1), a numerically-testable sharpening of the v194/ENERGY.02 target: E_fail = ‖[ρ,Λ_Σ]‖²_HS + ‖ρ⁴−1‖² + ‖ΘρΘ−ρ⁻¹‖², with E_fail=0 ⇔ th
   - deps: v193_qgeo_energy_commutator, v194_raw_seam_dtn_rp, v181_clock_is_conformal_symmetry, v193_qgeo_energy_commutator, v194_raw_seam_dtn_rp · cited: introduction, research contracts
 - **v197_rr_carrier_clifford_d5** [E/C] `ARCH.RRCAR.02` — hardening the Riemann–Roch carrier from g_car to D5 itself (review point 7): the 5-dim carrier mode space C_car:=H⁰(P¹,O(µ4)) generates the so(10)=D5 half-spinor by its even Cliffo
-  - deps: v189_riemann_roch_carrier, v1005_relative_pencil_bridges.py; v1010_simplicity_bridge_census.py; v1014_bridge_refinements.py; v1015_axiom_core_closure, v1_e8_glue, v189_riemann_roch_carrier, v1_e8_glue · cited: introduction, origin theory
+  - deps: v189_riemann_roch_carrier, v1005_relative_pencil_bridges.py; v1010_simplicity_bridge_census.py; v1014_bridge_refinements.py; v1015_axiom_core_closure, v1_e8_glue, v189_riemann_roch_carrier, v1_e8_glue · cited: introduction, origin theory, 1 architecture e8
 - **v198_modular_commutator_reduction** [O] `QGEO.MODULAR.01` — cracking the bedrock to a state-invariance. The v194 residual ([ρ,Λ_Σ]=0 on full L², framed as Bisognano–Wichmann with a circularity worry) is (a) made EXACT at the principal-symbo
   - deps: v194_raw_seam_dtn_rp, v193_qgeo_energy_commutator, v181_clock_is_conformal_symmetry, v196_seam_energy_functional, v194_raw_seam_dtn_rp, v177_seam_marking_kernel · cited: introduction, horizon readouts, research contracts
 - **v199_seam_state_invariance** [E/O] `QGEO.STATE.01` — attacking ω∘ρ=ω directly on the raw seam: a further localising reduction, not a closure. [E] setup non-circular (ρ = Coxeter of W(A3)=S4, ρ⁴=1, an automorphism of the raw CAR algeb

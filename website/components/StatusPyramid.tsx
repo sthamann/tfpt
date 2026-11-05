@@ -19,7 +19,7 @@ const LAYERS: Layer[] = [
     level: 1,
     label: "[O] Axioms — declared inputs",
     short: "Axiom",
-    examples: "c₃ = 1/(8π) (P1) · five-slot carrier g_car = 5 (P2 — since v108–v113 reduced to the boundary-net premise: gate closes ⇒ carrier becomes [E])",
+    examples: "P1: primitive oriented RP seam kernel with unit winding, normalized by c₃ = 1/(8π). P2: five-slot 3+2 interface. Shared geometry and anchor explain the numerical data conditionally; v1014/v1015 close both finite W-bridge premises modulo the continuum identification.",
     tone: "from-slate-400 to-slate-500",
     ring: "ring-slate-600/40",
     text: "text-slate-900",

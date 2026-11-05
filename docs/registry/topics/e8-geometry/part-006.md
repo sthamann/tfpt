@@ -4,12 +4,6 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
-## Die Majoranapaare bleiben als lokale CAR-Komposite erhalten
-
-[documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/006-subsection-die-48-und-die-41-sind-zwei-antworten-derselb.tex:345-393](../../../../documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/006-subsection-die-48-und-die-41-sind-zwei-antworten-derselb.tex#L345) · `section:faadce3641621281c19b` · subsection
-
-Die Sektorunterscheidung lässt einen konstruktiven gemeinsamen Anschluss zu. Die geraden Paaroperatoren liegen im gemeinsamen [formula in source] -Vakuummodul [formula in source] . Für die hier auftretenden ganzzahligen Impulse [formula in source] setze [formula in source] in wachsender Koordinatenfolge. Die ursprünglichen E8- und CAR-Kokzyklen auf [formula in source] sind durch die im Programm angegebene quadratisch
-
 ## Schwere und leichte Neutrinos bleiben verschiedene physische Felder.
 
 [documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/007-subsection-die-vollst-ndige-neutrinomatrix-besitzt-ein-n.tex:48-81](../../../../documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/007-subsection-die-vollst-ndige-neutrinomatrix-besitzt-ein-n.tex#L48) · `section:6bc5f7df6561e72eadcc` · paragraph
@@ -1710,3 +1704,19 @@ The source masses on the [formula in source] branch are [formula in source] . Th
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex:4598-4621](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex#L4598) · `section:41361cd6ccc8858992fc` · subsection
 
 The transport length [formula in source] is a Froggatt–Nielsen-type charge with expansion parameter [formula in source] : The top sits at [formula in source] (the unwound carrier direction), so [formula in source] ( [formula in source] ); every other charged fermion is suppressed by integer powers of [formula in source] . Numerically (with [formula in source] sector prefactors [formula in source] ): @lcccccccc@ [form
+
+## Inflation interface
+
+[experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex:4622-4664](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex#L4622) · `section:5fbc43aa96ffd3bc0ea8` · section
+
+Machine checks for this section: v7_ gravity_ cosmo.py v86_ nstar_ reheating.py v494_ cosmo_ running_ mu_ record.py
+
+Explicit source references:
+
+- [verification/v7_gravity_cosmo.py](../../../../verification/v7_gravity_cosmo.py#L1) · explicit_file_citation
+- [verification/v86_nstar_reheating.py](../../../../verification/v86_nstar_reheating.py#L1) · explicit_file_citation
+- [verification/v494_cosmo_running_mu_record.py](../../../../verification/v494_cosmo_running_mu_record.py#L1) · explicit_file_citation
+
+Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
+
+- [(* ---- (v86) reheating arithmetic (scale chain; pivot solve stays Python) ---- *) Mbar = 2.435323203`20 10^18; Mscal = c3^(7/2) Mbar; GammaScal = 4 Mscal^3/(48 Pi Mbar^2); check["v86 Gamma = 4 M^3/(48 pi Mbar^2) = 128.1 GeV", GammaScal, 128.146562596`12, 10^-6]; check["v86 T_reh = 9.55e9 GeV (g*=106.75)", (30 (3 GammaScal^2 Mbar^2)/(Pi^2 106.75))^(1/4), 9.55048669665`12 10^9, 10^-6]; AsOf[n_] := n^2 c3^7/(24 Pi^2); check["v86 A_s(51.4406) = 1.764e-9 (the A_s-disfavoured slow point)", AsOf[51.4406], 1.7637`5 10^-9, 10^-3]; check["v86 A_s-preferred N_star = 56.198", Sqrt[2.105`10 10^-9 24 Pi^2/c3^7], 56.198`6, 10^-4]; check["v86 dichotomy: matching A_s at 51.44 needs M x 1.0925", Sqrt[2.105`10 10^-9/AsOf[51.4406]], 1.09248`6, 10^-4]; (* ---- (v87) SO(16)_1 modular data and its six invariants ---- *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L83)

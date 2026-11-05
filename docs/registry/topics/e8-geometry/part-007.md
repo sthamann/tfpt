@@ -4,22 +4,6 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
-## Inflation interface
-
-[experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex:4622-4664](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex#L4622) · `section:5fbc43aa96ffd3bc0ea8` · section
-
-Machine checks for this section: v7_ gravity_ cosmo.py v86_ nstar_ reheating.py v494_ cosmo_ running_ mu_ record.py
-
-Explicit source references:
-
-- [verification/v7_gravity_cosmo.py](../../../../verification/v7_gravity_cosmo.py#L1) · explicit_file_citation
-- [verification/v86_nstar_reheating.py](../../../../verification/v86_nstar_reheating.py#L1) · explicit_file_citation
-- [verification/v494_cosmo_running_mu_record.py](../../../../verification/v494_cosmo_running_mu_record.py#L1) · explicit_file_citation
-
-Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
-
-- [(* ---- (v86) reheating arithmetic (scale chain; pivot solve stays Python) ---- *) Mbar = 2.435323203`20 10^18; Mscal = c3^(7/2) Mbar; GammaScal = 4 Mscal^3/(48 Pi Mbar^2); check["v86 Gamma = 4 M^3/(48 pi Mbar^2) = 128.1 GeV", GammaScal, 128.146562596`12, 10^-6]; check["v86 T_reh = 9.55e9 GeV (g*=106.75)", (30 (3 GammaScal^2 Mbar^2)/(Pi^2 106.75))^(1/4), 9.55048669665`12 10^9, 10^-6]; AsOf[n_] := n^2 c3^7/(24 Pi^2); check["v86 A_s(51.4406) = 1.764e-9 (the A_s-disfavoured slow point)", AsOf[51.4406], 1.7637`5 10^-9, 10^-3]; check["v86 A_s-preferred N_star = 56.198", Sqrt[2.105`10 10^-9 24 Pi^2/c3^7], 56.198`6, 10^-4]; check["v86 dichotomy: matching A_s at 51.44 needs M x 1.0925", Sqrt[2.105`10 10^-9/AsOf[51.4406]], 1.09248`6, 10^-4]; (* ---- (v87) SO(16)_1 modular data and its six invariants ---- *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L83)
-
 ## Further simple bridges
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex:4665-4682](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex#L4665) · `section:e7c5dbcd2cfde70056f9` · section
@@ -1246,3 +1230,18 @@ The `` [formula in source] '' is the action [formula in source] ; the `` [formul
 Explicit source references:
 
 - [verification/v7_gravity_cosmo.py](../../../../verification/v7_gravity_cosmo.py#L1) · explicit_file_citation
+
+## The ladder is binomial; [formula in source] singles out [formula in source]
+
+[experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex:4128-4148](../../../../experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex#L4128) · `section:0fb505ab97c86fbf0b50` · subsection
+
+In units of the electroweak action [formula in source] , the three rungs are the first three binomial coefficients of the five-slot carrier: The first two are automatic ( [formula in source] , [formula in source] ). The non-trivial content is the cosmological-constant charge: since [formula in source] . So the ``double overlap'' charge [formula in source] equals the number of carrier-slot pairs [formula in source] on
+
+Explicit source references:
+
+- [verification/v2_carrier_pascal.py](../../../../verification/v2_carrier_pascal.py#L1) · explicit_file_citation
+
+Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
+
+- [experiments/lean4-carrier-rigidity/TfptCarrier/ArfSpinorCompiler.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/ArfSpinorCompiler.lean#L1)
+- [(* ---- (v2) carrier / Pascal ---- *) checkExact["dim S+ = 2^(g_car-1) = 16", 2^(gcar - 1) == 16]; checkExact["16 = 1 + 5 + 10 = C(5,0)+C(5,1)+C(5,2)", Binomial[5, 0] + Binomial[5, 1] + Binomial[5, 2] == 16]; checkExact["N_fam = 3", Nfam == 3]; checkExact["rank E8 = g_car + N_fam = 8", gcar + Nfam == 8]; (* ---- (v13) M = 41 budget ---- *)](../../../../verification/wolfram/tfpt_readouts.wl#L50)

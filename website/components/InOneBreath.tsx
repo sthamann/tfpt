@@ -1,7 +1,7 @@
 import { SectionHeader } from "./SectionHeader";
 
 const LINES = [
-  { plain: "Two starting assumptions specify a seam normalization c₃ = 1/(8π) and a carrier rank of five.", href: "/papers/architecture-e8", source: "Inputs and E₈ construction" },
+  { plain: "P1 supplies a structured primitive boundary kernel; c₃ normalizes it. The common marked geometry connects carrier and families, with P2 retaining its declared physical readout scope.", href: "/papers/architecture-e8", source: "Inputs and E₈ construction" },
   { plain: "A lattice construction joins D₅ and A₃ through their discriminant data to obtain E₈ under the stated assumptions.", href: "/papers/e8-audit-bootstrap", source: "Lattice audit and bootstrap" },
   { plain: "The compiler relates this structure to Standard Model representations, flavor readouts and an electromagnetic fixed-point equation.", href: "/papers/standard-model", source: "Standard Model and flavor" },
   { plain: "The published checks test specific mathematical and numerical claims. Physical interpretations and remaining derivations have separate status in the ledger.", href: "/verification", source: "Reproduce a claim and inspect its status" },

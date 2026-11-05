@@ -4,6 +4,16 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Appendix: ablation of the EM fixed point
+
+[experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex:5543-5614](../../../../experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex#L5543) · `section:26a278c5e4594d3a3f3a` · part
+
+The single sharpest reviewer test is: was the closure [formula in source] engineered so that [formula in source] comes out? The honest answer is an ablation — vary each input and see which actually move the root. Three one-parameter scans (all others held at their compiler values) separate the load-bearing integers from the fine last-digit selector.
+
+Explicit source references:
+
+- [verification/make_figures.py](../../../../verification/make_figures.py#L1) · explicit_file_citation
+
 ## Was von der anschaulichen Ursprungserzählung bleibt
 
 [experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/01_idee.tex:87-94](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/01_idee.tex#L87) · `section:52198fefe05251ca8062` · section
@@ -1906,13 +1916,3 @@ Die Texte TFPT Universalraum Fortsetzung, 14.09.2026 NEU und TFPT Universalraum 
 [experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/30_v16_program.tex:39-53](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/30_v16_program.tex#L39) · `section:d7b0a2ba283ad7cf02c6` · section
 
 L8mmL53mmL89mm Tor& Fortschritt dieser Konsolidierung& Was für den vollständigen Nachweis noch fehlt\\ T1&Markierte Matrix-/Gitterbrücke reproduziert; weniger frei hinzugefügte innere Walk-Matrizen; Ressourcenuntergrenze des Records sichtbar.&Auswahl von P1/P2, maximaler Ordnung, Markierungen und Dimension. Native Zulässigkeit von [formula in source] , kohärenter Kontrolle und Normierung. [formula in source] allein e
-
-## S03
-
-[experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/sources_manifest.tex:12-16](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/sources_manifest.tex#L12) · `section:4854b4c6242b5add8c77` · subsection
-
-TFPT_TOE_GEMEINSAMER_URSPRUNG_2026-09-14.md Gemeinsamer Ursprung: Zweizellenenergie, Verschränkung, Uhrsignal, Propagatorbrücke und TOE-Vertrag. SHA-256: 864bd44fa12d8deb88cb359742ee908b 8b5cc8a12cd2d39bc22c6fdced757b2e 32mm
-
-Explicit source references:
-
-- [universal_room/TFPT_TOE_GEMEINSAMER_URSPRUNG_2026-09-14.md](../../../../universal_room/TFPT_TOE_GEMEINSAMER_URSPRUNG_2026-09-14.md#L1) · explicit_file_citation

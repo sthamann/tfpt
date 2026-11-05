@@ -253,11 +253,11 @@ export function SuiteTimeline() {
       </ol>
 
       <p className="border-t border-slate-200/60 px-5 py-4 text-xs leading-relaxed text-slate-600">
-        The two axioms <span className="font-mono">c₃ = 1/(8π)</span> and{" "}
-        <span className="font-mono">g_car = 5</span> are not free knobs: they reduce to the
-        single parabolic anchor <span className="font-mono">a = (1,1,2)</span> plus π, and{" "}
-        <span className="font-mono">g_car = 5</span> is a bootstrap fixed point (forced three
-        ways, Lean-formalised). The full script→check map follows in the index below.
+        The P1 kernel has normalization <span className="font-mono">c₃ = 1/(8π)</span>;
+        P2 declares the physical 3+2 readout. Their numerical data share the
+        four-mark divisor and typed anchor <span className="font-mono">a = (1,1,2)</span>.
+        Existing geometric, bootstrap and finite W-bridge reductions retain their
+        source premises. The full script to check map follows below.
       </p>
     </div>
   );

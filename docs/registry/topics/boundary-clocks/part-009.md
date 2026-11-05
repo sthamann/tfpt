@@ -4,6 +4,32 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## 2026-06-17 (The static [formula in source] dynamic flip: modular flow [formula in source] a recovery Lindblad generator, v238)
+
+[documents/changelog/sections/019-source.tex:86-105](../../../../documents/changelog/sections/019-source.tex#L86) · `section:9f084ccace7baa00bf8d` · subsection
+
+New v238_modular_lindblad_dynamics.py ( DYN.SEMIGROUP.01, cluster registry). A companion to the modular round ( v196/ v198) and the recovery code ( v221/ v64) that reads the same seam objects dynamically rather than statically. \ the modular flow [formula in source] is a unitary one-parameter group (Tomita–Takesaki) whose conservation of the [formula in source] clock, [formula in source] , IS the v198 state-invarianc
+
+Explicit source references:
+
+- [verification/run_all.py](../../../../verification/run_all.py#L1) · explicit_file_citation
+- [DYN.SEMIGROUP.01](../../../../verification/status_ledger.csv#L324) · explicit_claim_identifier · original status at linked ledger row
+- [QGEO.SYM.01](../../../../verification/status_ledger.csv#L261) · explicit_claim_identifier · original status at linked ledger row
+- [verification/v196_seam_energy_functional.py](../../../../verification/v196_seam_energy_functional.py#L1) · explicit_script_identifier
+- [verification/v64_causal_boundary_nogo.py](../../../../verification/v64_causal_boundary_nogo.py#L1) · explicit_script_identifier
+- [verification/v238_modular_lindblad_dynamics.py](../../../../verification/v238_modular_lindblad_dynamics.py#L1) · explicit_file_citation
+- [verification/v198_modular_commutator_reduction.py](../../../../verification/v198_modular_commutator_reduction.py#L1) · explicit_script_identifier
+- [verification/v221_seam_qecc.py](../../../../verification/v221_seam_qecc.py#L1) · explicit_script_identifier
+- [verification/status_ledger.csv](../../../../verification/status_ledger.csv#L1) · explicit_file_citation
+- [verification/script_registry.csv](../../../../verification/script_registry.csv#L1) · explicit_file_citation
+
+Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
+
+- [(* ---- (v198) QGEO.MODULAR.01: principal symbol |k| commutes with the clock rho EXACTLY ---- *) Module[{nn, rho1, absK, comm}, nn = Range[-8, 8]; rho1 = DiagonalMatrix[I^nn]; (* z->iz: e^{in t} -> i^n e^{in t} *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L1638)
+- [experiments/lean4-carrier-rigidity/TfptCarrier/SeamDeckClosure.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/SeamDeckClosure.lean#L1)
+- [(* v100_numerology_null_mc.py is Python-only by design: it is a STATISTICAL module (exact integer census of a declared formula grammar + deterministic Monte-Carlo pseudo-theories + RNG-seeded negative controls + 94500 float root-solves), not an exact algebraic identity -- same convention as the Python-only v62/v64/v65. No Wolfram mirror is required; flagged in README.md and ledger GATE.WOLFRAM.02. *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L326)
+- [(* ---- (v196) QGEO.VARI.01: E_fail = 0 on the mu4 block (exact finite vanishing) ---- *) Module[{rho, Lam, comm, order4, twist}, rho = DiagonalMatrix[{I, -1, -I}]; Lam = DiagonalMatrix[{1, 2, 3}]; (* any real diagonal (mu4-equivariant) DtN *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L1619)
+
 ## 2026-06-17 (Red-team layer re-synced to the paper; shadow export mirrors figures/)
 
 [documents/changelog/sections/019-source.tex:106-125](../../../../documents/changelog/sections/019-source.tex#L106) · `section:c004d2ee68ddeaaf26ff` · subsection
@@ -1437,9 +1463,3 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 [documents/experiments--theory-contracts--universalraum-fable-kernfragen-20260910--fable-runde3--paper--tfpt_anschluss_zellen_seam_2026-09-14/sections/001-section-evidenzkonvention-und-abgrenzung.tex:146-147](../../../../documents/experiments--theory-contracts--universalraum-fable-kernfragen-20260910--fable-runde3--paper--tfpt_anschluss_zellen_seam_2026-09-14/sections/001-section-evidenzkonvention-und-abgrenzung.tex#L146) · `section:5da3c2dfd59709ee909c` · paragraph
 
 Mit [formula in source] (Kawahigashi–Longo–Müger), die das Repo für den Glue-Index 4 benutzt, gilt für jedes injektive [formula in source] : [formula in source] = Hecke-Überlagerungsindex von [formula in source] auf [formula in source] (Zählfunktion [formula in source] , Pol bei [formula in source] ). Pimsner–Popa macht [formula in source] zur bedingten Entropie; das Vakuum ist unter den Dualgruppen-Automorphismen fe
-
-## Grenzen und offene Punkte
-
-[documents/experiments--theory-contracts--universalraum-fable-kernfragen-20260910--fable-runde3--paper--tfpt_anschluss_zellen_seam_2026-09-14/sections/001-section-evidenzkonvention-und-abgrenzung.tex:148-156](../../../../documents/experiments--theory-contracts--universalraum-fable-kernfragen-20260910--fable-runde3--paper--tfpt_anschluss_zellen_seam_2026-09-14/sections/001-section-evidenzkonvention-und-abgrenzung.tex#L148) · `section:eb1aa8a2e4d55b3cc2c4` · section
-
-Der Hüllensatz fixiert Zellstruktur und Vorzeichen, nicht [formula in source] , nicht den Graphen, nicht die Cross-Register-Kopplung der Vor-Messung. Die Superaustausch-Ableitung von [formula in source] aus den [formula in source] -Strukturkonstanten ist formuliert, nicht ausgeführt. Die Uhr ist ein Protokoll auf einem gesetzten Modell; eine Zeit in Sekunden folgt nicht. Die Phasenreferenz für die Periode 12 ist eine

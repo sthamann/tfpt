@@ -4,20 +4,6 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
-## Was damit für die Auswahlregel gewonnen ist.
-
-[documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/009-subsection-zustand-und-wirkung-aus-derselben-r-ckwirkung.tex:160-192](../../../../documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/009-subsection-zustand-und-wirkung-aus-derselben-r-ckwirkung.tex#L160) · `section:e164803d6ba9a40009be` · paragraph
-
-Die ursprüngliche Zustandsinduktion und der konkrete Seesaw-Anschluss sind miteinander verträglich, aber nicht durch unbeschränkte Gleichsetzung der beiden Operatoren. Ihre gemeinsame Realisierung muss den vollständigen Kern und seine Zustandsgewichte erhalten. Die Universalraum-Regel, spätere Antworten zu erhalten, betrifft daher ebenso die reduzierte Momentaufnahme und das variierte Funktional. Eine reine Massentab
-
-Explicit source references:
-
-- [verification/v259_modular_cutoff_kappa.py](../../../../verification/v259_modular_cutoff_kappa.py#L1) · explicit_file_citation
-
-Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
-
-- [(* ==== v237: closing step as physics -- no topological degeneracy <=> det K=1 <=> SRE ==== *) Module[{cartanA, cartanD, e8edges, E8, D8, A3, D5, carrier, gsd}, cartanA[n_] := SparseArray[{{i_, i_} -> 2, {i_, j_} /; Abs[i - j] == 1 -> -1}, {n, n}] // Normal; cartanD[n_] := Module[{K}, K = 2 IdentityMatrix[n]; Do[K[[i, i + 1]] = K[[i + 1, i]] = -1, {i, n - 2}]; K[[n - 2, n]] = K[[n, n - 2]] = -1; K]; e8edges = {{1, 2}, {2, 3}, {3, 4}, {4, 5}, {5, 6}, {6, 7}, {5, 8}}; E8 = 2 IdentityMatrix[8] - Table[If[i != j && MemberQ[e8edges, Sort[{i, j}]], 1, 0], {i, 8}, {j, 8}]; A3 = cartanA[3]; D5 = cartanD[5]; D8 = cartanD[8]; carrier = ArrayFlatten[{{D5, 0}, {0, A3}}]; gsd[K_, g_] := Abs[Det[K]]^g; checkExact["v237 GATE.HOLO.03: the closing step as a physical condition -- the abelian K-matrix " <> "ground-state degeneracy on a genus-g surface is |det K|^g (torus: carrier D5(+)A3 -> 16, D8 -> 4, " <> "E8 -> 1), so 'no topological ground-state degeneracy on any closed surface' <=> det K = 1 <=> the " <> "seam bulk is short-range-entangled (the unique bosonic SRE c=8 phase = the Kitaev E8 state, edge " <> "holomorphic). A unique vacuum on the plane (genus 0, always 1) is necessary but not sufficient; the " <> "torus sees |det K|. NEG: an LRE bulk (D8, det 4) has 4-fold torus degeneracy + non-holomorphic edge.", gsd[carrier, 1] == 16 && gsd[D8, 1] == 4 && gsd[E8, 1] == 1 && gsd[carrier, 2] == 256 && gsd[E8, 2] == 1 && gsd[carrier, 0] == 1 && gsd[E8, 0] == 1 && Det[E8] == 1 && (5 + 3 == 8)]; ]; (* ==== v259: the modular/KMS spectral-action cutoff fixes f_2/f_0 = 1 (PS.SPECACT.02) ==== v258 (Dirac as covariance induction) is numerical matrix-log linear algebra -> Python-only. *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L1991)
-
 ## Warum die Massenrekonstruktion noch keine Massenherkunft ist
 
 [documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/012-section-die-quelle-bewegt-sich-wirklich-eine-exakte-zeit.tex:45-56](../../../../documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/012-section-die-quelle-bewegt-sich-wirklich-eine-exakte-zeit.tex#L45) · `section:2bcbb431d1bad8712643` · subsection
@@ -1859,3 +1845,9 @@ Explicit source references:
 Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
 
 - [(* ---- (v10) K/Q/Sigma determinant ladder ---- *) R = {{1, 3, 0}, {1, 5, 2}, {2, 5, 3}}; W = {{1, 0, 0}, {1, 0, 0}, {1, 0, 0}}; L = R + 6 W; K = {{4, 2, 0}, {4, 3, 2}, {5, 3, 2}}; Q = {{3, 1, 0}, {3, 2, 0}, {3, 2, 1}}; Sig = DiagonalMatrix[{1, -1, -1}]; checkExact["K = R + Q.Sigma", K == R + Q.Sig]; checkExact["L = R + Q.(I + Sigma)", L == R + Q.(IdentityMatrix[3] + Sig)]; checkExact["det ladder (Q,K,R,L) = (3,4,8,20)", {Det[Q], Det[K], Det[R], Det[L]} == {3, 4, 8, 20}]; checkExact["det product = 1920 = |W(D5)|", Det[Q] Det[K] Det[R] Det[L] == 1920]; aVec = {1, 1, 2}; checkExact["a^T K a = 41 (the EM budget anchor)", aVec.K.aVec == 41]; (* ---- (v20/v21) lepton c's: delta=1/2 resolvent + product rule ---- *)](../../../../verification/wolfram/tfpt_readouts.wl#L61)
+
+## Lepton flavor decuple: the charged-lepton determinant carries [formula in source]
+
+[experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex:4575-4597](../../../../experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex#L4575) · `section:6ab5169a509190918ff9` · subsection
+
+The source masses on the [formula in source] branch are [formula in source] . Their product is a pure decuple in the seed: with [formula in source] . So the charged-lepton Yukawa powers [formula in source] are the three carrier numbers [formula in source] , and the lepton determinant carries the same decuple ( [formula in source] ) that the cosmological constant carries in the gauge sector ( [formula in source] ): [f

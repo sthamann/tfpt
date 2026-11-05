@@ -4,6 +4,24 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## 2026-06-23 (Consistency pass: the parameter-free full covariant Einstein equation ( v358/ v359) propagated across ALL stale paper and website surfaces; new v359 keybox; homepage gravity animation)
+
+[documents/changelog/sections/014-source.tex:281-302](../../../../documents/changelog/sections/014-source.tex#L281) · `section:e7b2d5a6deafa57401db` · subsection
+
+Deep-sync of the parameter-free gravity status. A cross-surface audit found several documents and website components still framing gravity as ``exact only in the [formula in source] regime'' or the metric-sector field equation as ``open''. These were reconciled with the canonical post- v358/ v359 status: the local covariant field equation [formula in source] is PARAMETER-FREE (both coefficients fixed); what remains o
+
+Explicit source references:
+
+- [verification/v358_grav_entropy_equilibrium.py](../../../../verification/v358_grav_entropy_equilibrium.py#L1) · explicit_script_identifier
+- [verification/v359_grav_nonlinear_einstein.py](../../../../verification/v359_grav_nonlinear_einstein.py#L1) · explicit_script_identifier
+- [verification/script_registry.csv](../../../../verification/script_registry.csv#L1) · explicit_file_citation
+- [QG.AMB.01](../../../../verification/status_ledger.csv#L47) · explicit_claim_identifier · original status at linked ledger row
+
+Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
+
+- [(* ==== v359 GRAV.NONLINEAR.01: full covariant Einstein eq, both coefficients parameter-free ==== *) Module[{c3, eta, d, Rs, traceG, dtop, prefactor}, c3 = 1/(8 Pi); eta = 1/4; traceG = (1 - d/2); (* g^{ab}G_ab = (1-d/2) R; coefficient of R *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2382)
+- [(* ==== v358 GRAV.ENTROPY.EQUILIBRIUM.01: parameter-free linearised Einstein + thermo=geo ==== *) Module[{c3, eta, Z2, mu4, chi, r, R, w, wint}, c3 = 1/(8 Pi); eta = 1/4; Z2 = 2; mu4 = 4; chi = 2; w = (R^2 - r^2)/(2 R); wint = Integrate[w * 4 Pi r^2, {r, 0, R}]; (* CHM 3-ball weight integral *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2371)
+
 ## 2026-06-23 (Direction 2, the disciplined result: the gap-induced GR correction is the known [formula in source] scalaron — already falsifiable via [formula in source] ; a new forced near-term deviation does NOT survive the discriminator and is declined: v360)
 
 [documents/changelog/sections/014-source.tex:331-347](../../../../documents/changelog/sections/014-source.tex#L331) · `section:b9e3cb43b2bc303303e6` · subsection
@@ -1882,9 +1900,3 @@ Explicit source references:
 - [experiments/lean4-carrier-rigidity/TfptCarrier/Sanity.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/Sanity.lean#L1) · explicit_file_citation
 - [experiments/lean4-carrier-rigidity/TfptCarrier/AuditCheck.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/AuditCheck.lean#L1) · explicit_file_citation
 - [experiments/lean4-carrier-rigidity/TfptCarrier/AuditContract.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/AuditContract.lean#L1) · explicit_file_citation
-
-## Changelog
-
-[documents/experiments--lean4-carrier-rigidity--note_carrier_rigidity_lean4/sections/004-section-interface-table-tfpt-paper-2-texorpdfstring-left.tex:320-323](../../../../documents/experiments--lean4-carrier-rigidity--note_carrier_rigidity_lean4/sections/004-section-interface-table-tfpt-paper-2-texorpdfstring-left.tex#L320) · `section:3f2aaf619c0723316625` · section
-
-No opening prose excerpt; see the source.

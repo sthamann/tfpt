@@ -2,7 +2,7 @@
 
 [Registry index](../INDEX.md) · Topic ID: `methods-verification`
 
-1606 physical section matches. Topic assignment is a lexical navigation suggestion, not semantic review. The excerpts and citations below come from source; no proof or status promotion is asserted.
+1607 physical section matches. Topic assignment is a lexical navigation suggestion, not semantic review. The excerpts and citations below come from source; no proof or status promotion is asserted.
 
 
 ## Bounded reading parts
@@ -25,7 +25,7 @@ Each part contains at most 100 physical section records and their actual explici
 - [Part 14: section matches 1301–1400](methods-verification/part-014.md)
 - [Part 15: section matches 1401–1500](methods-verification/part-015.md)
 - [Part 16: section matches 1501–1600](methods-verification/part-016.md)
-- [Part 17: section matches 1601–1606](methods-verification/part-017.md)
+- [Part 17: section matches 1601–1607](methods-verification/part-017.md)
 
 ## First 20 source locations
 

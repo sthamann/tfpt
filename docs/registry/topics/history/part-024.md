@@ -4,6 +4,23 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## 2026-06-18 (4D QFT: a concrete Epstein–Glaser one-loop quartic renormalization, v271)
+
+[documents/changelog/sections/018-source.tex:93-106](../../../../documents/changelog/sections/018-source.tex#L93) · `section:b45acf2298f96eb443c6` · subsection
+
+v271_eg_oneloop_quartic.py ( QFT4D.SPERT.02) takes the v269 [formula in source] skeleton from ``exists'' to an actual EG number (no path integral). \ the first renormalization is the order-2 product [formula in source] ; the massless propagator has scaling degree [formula in source] in [formula in source] , the one-loop bubble has [formula in source] , so [formula in source] [formula in source] exactly one logarithmi
+
+Explicit source references:
+
+- [verification/v271_eg_oneloop_quartic.py](../../../../verification/v271_eg_oneloop_quartic.py#L1) · explicit_script_identifier
+- [QFT4D.SPERT.02](../../../../verification/status_ledger.csv#L364) · explicit_claim_identifier · original status at linked ledger row
+- [verification/v269_spert_paqft_skeleton.py](../../../../verification/v269_spert_paqft_skeleton.py#L1) · explicit_script_identifier
+- [QG.AMB.01](../../../../verification/status_ledger.csv#L47) · explicit_claim_identifier · original status at linked ledger row
+
+Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
+
+- [(* ==== v268: reactor-angle exponent = carrier hypercharge trace (FLAV.TH13.01) ==== *) Module[{Yvec, trY2, roots}, roots = Sort[Y /. Solve[6 Y^2 - Y - 1 == 0, Y]]; Yvec = {-1/3, -1/3, -1/3, 1/2, 1/2}; trY2 = Total[Yvec^2]; checkExact["v268 FLAV.TH13.01: the theta_13 exponent is the carrier hypercharge trace -- " <> "tr_E Y^2 = 3(1/3)^2 + 2(1/2)^2 = 5/6 over the 5-slot carrier hypercharge " <> "Y=diag(-1/3,-1/3,-1/3,1/2,1/2) (the anomaly-free roots {-1/3,1/2} of 6Y^2-Y-1=0), so " <> "sin^2 theta_13 = phi0 e^{-5/6} = phi0 e^{-tr_E Y^2}; complement 1 - 5/6 = 1/6 = the neutrino ratio. " <> "theta_13 is its own carrier-trace channel (the mu-tau breaking gives only ~1e-3, not 0.023).", roots === Sort[{-1/3, 1/2}] && trY2 === 5/6 && (1 - trY2) === 1/6]; ]; (* ==== v271: concrete Epstein-Glaser one-loop quartic renormalization (QFT4D.SPERT.02) ==== v269 (S_pert skeleton) + v270 (PMNS Jarlskog, numerical) are Python-only; v271's exact EG core (scaling degree, counterterm count, loop factor) is mirrored here. *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2069)
+
 ## 2026-06-18 (PMNS: the complete complex matrix + the leptonic Jarlskog CP strength, v270)
 
 [documents/changelog/sections/018-source.tex:107-119](../../../../documents/changelog/sections/018-source.tex#L107) · `section:3116e55fdb4f7529082e` · subsection
@@ -2046,13 +2063,3 @@ Box reduction (B1). The [formula in source] non-load-bearing aside boxes (audit 
 [documents/changelog/sections/023-source.tex:341-355](../../../../documents/changelog/sections/023-source.tex#L341) · `section:58cade7e0ae49570c7f2` · subsection
 
 Shared figure library tfpt_figures.tex ( input by tfpt_style): reusable TikZ macros for the architecture claim stack ( TFPTclaimstack[zone], B3), the anchor cockpit [formula in source] (B4), the [formula in source] glue diagram (B5), the [formula in source] motif map (B6) and the [formula in source] action lattice (B7). The claim stack and a marker badge bar are now shown near the front of every document, each highli
-
-## 2026-06-12 (review pass on list.txt)
-
-[documents/changelog/sections/023-source.tex:356-381](../../../../documents/changelog/sections/023-source.tex#L356) · `section:b7fc94b9c310d988cbec` · subsection
-
-Claim hygiene (review section A). The introduction's one-sentence claim is softened from ``derives all constants'' to ``constructs a discrete compiler; physical readouts run through named, status-typed bridges''; the ledger zombie in FLAV.QRATIO.01 is removed (the statement no longer says ``stays [P]'' — ratios are \ closed on the derived stratum, only the absolute scale stays , with an explicit forbidden-wording not
-
-Explicit source references:
-
-- [FLAV.QRATIO.01](../../../../verification/status_ledger.csv#L25) · explicit_claim_identifier · original status at linked ledger row

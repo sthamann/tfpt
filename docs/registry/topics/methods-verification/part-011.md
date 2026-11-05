@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## 4. Zustandswahl: keine Rückkehr vor den abgesicherten Grundsatz
+
+[documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/031-subsection-8-w-hrend-der-arbeit-entdeckte-nderung-kommut.tex:321-353](../../../../documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/031-subsection-8-w-hrend-der-arbeit-entdeckte-nderung-kommut.tex#L321) · `section:26c294848c4ee57b51a8` · subsection
+
+Der vorhandene native Satz beweist Eindeutigkeit, N=64, Singulett und positive Lücke bei μ=0 im angegebenen Kopplungsbereich. Eine komplette Clebsch-Gordan-Serie oder Voll-Diagonalisierung ist dafür nicht nötig; Vergleichsungleichungen und Minmax waren gerade der einfache Ausweg. Die physische Auswahl von H beziehungsweise μ=0 bleibt eine andere Frage.
+
 ## Historischer Beweisanhang: vollständiger nativer Herleitungsstand v1.6.4
 
 [documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/032-subsubsection-5-1-anomalien-label-anomalien.tex:139-149](../../../../documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/032-subsubsection-5-1-anomalien-label-anomalien.tex#L139) · `section:eb47e1c679e877d523c3` · section
@@ -706,9 +712,9 @@ Explicit source references:
 
 ## Honest status
 
-[documents/origin_theory/sections/006-section-honest-status-label-sec-status.tex:1-318](../../../../documents/origin_theory/sections/006-section-honest-status-label-sec-status.tex#L1) · `section:888628823bf71f709698` · section
+[documents/origin_theory/sections/006-section-honest-status-label-sec-status.tex:1-332](../../../../documents/origin_theory/sections/006-section-honest-status-label-sec-status.tex#L1) · `section:888628823bf71f709698` · section
 
-@p5.4cmp2.0cmY@ claim & status & basis \\ [formula in source] generates the integer skeleton; Pythagorean [formula in source] split & & v53_compiler_core.py \\ the [formula in source] in [formula in source] is triply forced (geo [formula in source] lattice [formula in source] gravity) & & v54_seam_horizon_keystones.py \\ one boundary transport for flavor and horizon ( [formula in source] ) & & v54_seam_horizon_keysto
+Source reconciliation, 5 November 2026. P1 is the structured RP seam kernel; [formula in source] is its scalar normalization. The shared four-mark/anchor reductions, analytic finite monodromy and the two finite W-bridge premise closures are consolidated in the Architecture chapter ``Shared origin'' ( REC20261105C3). The later charged MMST result retains the named microscopic local-algebra exhaustion condition for the
 
 Explicit source references:
 
@@ -886,7 +892,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 ## Appendix: computational verification
 
-[documents/origin_theory/sections/006-section-honest-status-label-sec-status.tex:319-340](../../../../documents/origin_theory/sections/006-section-honest-status-label-sec-status.tex#L319) · `section:5ef9533c2bf93b6ac923` · section
+[documents/origin_theory/sections/006-section-honest-status-label-sec-status.tex:333-354](../../../../documents/origin_theory/sections/006-section-honest-status-label-sec-status.tex#L333) · `section:5ef9533c2bf93b6ac923` · section
 
 Every \ statement here is machine-checked in the TFPT suite and re-derived independently in Wolfram: @p4.7cmY@ script & content \\ v53_compiler_core.py & [formula in source] skeleton, Pythagorean [formula in source] split, anchor char-poly uniqueness \\ v54_seam_horizon_keystones.py & triply-forced [formula in source] ; shared transport [formula in source] ; de Sitter constants \\ v55_coxeter_cycle.py & computed [for
 
@@ -950,7 +956,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 ## [formula in source] as the Pascal closure
 
-[documents/tfpt_1_architecture_e8/sections/004-source.tex:302-350](../../../../documents/tfpt_1_architecture_e8/sections/004-source.tex#L302) · `section:33a1154dc0cb4b2f67f8` · subsection
+[documents/tfpt_1_architecture_e8/sections/004-source.tex:305-353](../../../../documents/tfpt_1_architecture_e8/sections/004-source.tex#L305) · `section:33a1154dc0cb4b2f67f8` · subsection
 
 A family is exactly the complete Pascal truncation to degree two: the unique positive-integer solution of [formula in source] . Proof of uniqueness. Direct evaluation gives [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] , [formula in source] ; so [formula in source] is the only root in [formula in source] . For [formula in source] the forward difference is
 
@@ -1092,7 +1098,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 ## Theorem 7 — the [formula in source] lift of the [formula in source] atlas
 
-[documents/tfpt_1_architecture_e8/sections/011-source.tex:1-248](../../../../documents/tfpt_1_architecture_e8/sections/011-source.tex#L1) · `section:6b49d8830dc9fa3948be` · section
+[documents/tfpt_1_architecture_e8/sections/011-source.tex:1-259](../../../../documents/tfpt_1_architecture_e8/sections/011-source.tex#L1) · `section:6b49d8830dc9fa3948be` · section
 
 tocsectionTheorem 7 Since [formula in source] , one has the standard chain [formula in source] , with the exact branching (verified dimensions and root/weight counts): The adjoint [formula in source] of [formula in source] is [formula in source] and its spinor [formula in source] is [formula in source] . The TFPT dictionary makes each summand a known object: @llY@ piece & value & TFPT reading \\ [formula in source] &
 
@@ -1120,6 +1126,8 @@ Explicit source references:
 - [verification/v47_selection_theorem.py](../../../../verification/v47_selection_theorem.py#L1) · explicit_file_citation
 - [SEAM.BIT.ORIGIN.01](../../../../verification/status_ledger.csv#L571) · explicit_claim_identifier · original status at linked ledger row
 - [QGEO.EMERGE.LIGHT.01](../../../../verification/status_ledger.csv#L567) · explicit_claim_identifier · original status at linked ledger row
+- [verification/v1015_axiom_core_closure.py](../../../../verification/v1015_axiom_core_closure.py#L1) · explicit_script_identifier
+- [verification/v1014_bridge_refinements.py](../../../../verification/v1014_bridge_refinements.py#L1) · explicit_script_identifier
 - [verification/v503_qgeo_emergence_light.py](../../../../verification/v503_qgeo_emergence_light.py#L1) · explicit_script_identifier
 
 Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
@@ -1144,7 +1152,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 ## Master statement and status
 
-[documents/tfpt_1_architecture_e8/sections/011-source.tex:306-355](../../../../documents/tfpt_1_architecture_e8/sections/011-source.tex#L306) · `section:2e4cf2c588758ec271e5` · section
+[documents/tfpt_1_architecture_e8/sections/011-source.tex:317-366](../../../../documents/tfpt_1_architecture_e8/sections/011-source.tex#L317) · `section:2e4cf2c588758ec271e5` · section
 
 tocsectionMaster statement Five carrier slots give [formula in source] ,\ four family corners give [formula in source] ,\ and [formula in source] gives the [formula in source] atlas. Equivalently: [formula in source] , [formula in source] , [formula in source] ; [formula in source] , [formula in source] , the [formula in source] Coxeter structure and the action ladder read the same five-slot pair-decuple. The Standar
 
@@ -2694,9 +2702,3 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 - [(* v477 (i): Frullani + the moment dictionary at flat weight *) frul = Integrate[(Exp[-aa tt] - Exp[-tt])/tt, {tt, 0, Infinity}, Assumptions -> aa > 0]; eig = Join[{1}, Table[1/4, 4], Table[1/6, 6]]; tr = Total[Exp[-tt (1 - bb # RR)] & /@ eig] - 11 Exp[-tt]; serR = Normal[Series[tr, {RR, 0, 2}]]; mu1f = Integrate[Coefficient[serR, RR, 1]/tt, {tt, 0, Infinity}]; mu2f = Integrate[Coefficient[serR, RR, 2]/tt, {tt, 0, Infinity}]; checkExact["v477 GRAV.ENTROPIC.SCALEFLOW.01 (i): the Frullani/scale-flow identity -Log[a] = Integrate[(e^{-a t}-e^{-t})/t] (symbolic) and the moment dictionary -- at the FLAT weight the maximally-symmetric relative trace integrates to exactly the v475 raw coefficients 3 b R + (17/24) b^2 R^2 (unit moments mu1 = mu2 = 1): the raw entropic action is the unit-moment point of a scale-measure family", frul == -Log[aa] && Simplify[mu1f - 3 bb] == 0 && Simplify[mu2f - (17/24) bb^2] == 0]; (* v477 (ii): the one moment condition + closure + v36 consistency *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L3071)
 - [(* v475 (iii): the Lorentzian timelike positivity witness *) gL = DiagonalMatrix[{-1, 1, 1, 1}]; mM = Outer[Times, {vv, 0, 0, 0}, {vv, 0, 0, 0}]; evT = Sort[Eigenvalues[(gL + aal mM) . Inverse[gL]]]; evS = Sort[Eigenvalues[(gL + aal Outer[Times, {0, vv, 0, 0}, {0, vv, 0, 0}]) . Inverse[gL]]]; checkExact["v475 GRAV.ENTROPIC.SCALARON.01 (iii): the Lorentzian-positivity witness -- on Minkowski a TIMELIKE gradient gives G g^-1 eigenvalues {1 - alpha v^2, 1, 1, 1} (nonpositive for v^2 >= 1/alpha, ln undefined) while a SPACELIKE gradient gives {1 + alpha v^2, 1, 1, 1} (positive for all v) -- the v473 caveat exhibited, the OS route sturdier", Sort[evT] == Sort[{1 - aal vv^2, 1, 1, 1}] && Sort[evS] == Sort[{1 + aal vv^2, 1, 1, 1}]]; ]; (* ==== v477 round: the scale-flow representation of the entropic action -- the exact content: the Frullani identity Integrate[(e^{-a t}-e^{-t})/t] = -Log[a], the moment dictionary (flat weight = unit moments = the v475 raw coefficients 3 b R + (17/24) b^2 R^2), the ONE moment condition mu2/mu1^2 = (72/17)(8 pi)^9 with the exact closure (4608 pi^2/17)/((72/17)(8 pi)^9) = c3^7, and the v36 consistency f0 = 6 (4 pi)^2/c3^7 <=> M^2 = c3^7 Mbar^2; mirrors v477 (the chi-form quadrature is numerical, Python-only). ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L3052)
 - [(* ---- (v24) quark ratio closure ---- *) checkExact["c_u/c_d = g_car*11/(N_fam^2 Delta_Q) = 55/117", (gcar*11)/(Nfam^2*13) == 55/117]; checkExact["c_c/c_s = p_5(a)/(Omega_adm-1) = 34/47", pn[5]/(48 - 1) == 34/47]; checkExact["c_t/c_b = N_fam/(2 Delta_Q) = 3/26", Nfam/(2*13) == 3/26]; check["m_c/m_s = (34/47)/phi0 = 13.605", (34/47)/phi0, 13.605, 10^-3]; check["m_t/m_b = (3/26)/phi0^2 = 40.81", (3/26)/phi0^2, 40.81, 10^-2]; (* ---- (v36) G2: spectral-action Seeley-DeWitt coefficients -> R + R^2 ---- *)](../../../../verification/wolfram/tfpt_readouts.wl#L105)
-
-## -1.2cm TFPT — Red Team / Stress Test layer\\[2mm] Adversarial targets A–E, the QFT round (F) and the seam round (G): try to break the reductions, not confirm them
-
-[documents/tfpt_5_redteam/preamble.tex:1-37](../../../../documents/tfpt_5_redteam/preamble.tex#L1) · `section:57628e792bbc3f4e2f1c` · frontmatter
-
--1.2cm TFPT — Red Team / Stress Test layer\\[2mm] Adversarial targets A–E, the QFT round (F) and the seam round (G): try to break the reductions, not confirm them

@@ -218,6 +218,7 @@ The full precise list (section IDs, physical lines, tokens, candidates) is in `r
 | ambiguous_lean_symbol | `nonempty_iff_finrank_eq_three` | 3 |
 | ambiguous_lean_symbol | `sm_pair_eq` | 1 |
 | ambiguous_lean_symbol | `smith_certificate` | 1 |
+| document_expansion_incomplete | `tfpt_1_architecture_e8.tex` | 1 |
 | unmatched_claim_identifier | `A.1` | 1 |
 | unmatched_claim_identifier | `ARCHITECTURE_ADJUDICATION.01` | 2 |
 | unmatched_claim_identifier | `B.0` | 3 |
@@ -1416,4 +1417,5 @@ The full precise list (section IDs, physical lines, tokens, candidates) is in `r
 | unmatched_script_identifier | `v980` | 2 |
 | unmatched_script_identifier | `v981` | 2 |
 | unmatched_script_identifier | `v982` | 2 |
+| unresolved_include | `documents/tfpt_1_architecture_e8/sections/013-c3-p1-p2-origin.tex` | 1 |
 | unresolved_include | `sources_manifest` | 1 |

@@ -6,7 +6,7 @@ import { SectionHeader } from "@/components/SectionHeader";
 
 const PUBLIC_ORDER = [
   { n: 0, label: "Introduction", note: "Reading guide & status assessment" },
-  { n: 1, label: "Architecture & E₈", note: "Two axioms, the glue, α⁻¹" },
+  { n: 1, label: "Architecture & E₈", note: "Source, shared reductions, glue and α⁻¹" },
   { n: 2, label: "Standard Model", note: "The φ₀-ladder & flavor matrix" },
   { n: 3, label: "E₈ audit & bootstrap", note: "Audit raster, the loop" },
   { n: 4, label: "Frontier", note: "Honest open items" },
@@ -16,7 +16,7 @@ const PUBLIC_ORDER = [
 ];
 
 const MATH_ORDER = [
-  { n: 1, label: "Architecture: the two axioms, D₅ × A₃ → E₈, α⁻¹" },
+  { n: 1, label: "Architecture: the structured source, D₅ × A₃ → E₈, α⁻¹" },
   { n: 2, label: "Standard Model: the φ₀-ladder, flavor matrix, θ₁₂" },
   { n: 3, label: "E₈ audit raster, cascade bridge, Möbius bootstrap" },
   { n: 4, label: "Frontier: η_B, m_p/m_e, Koide, dark matter; QG measure discharged [C], graviton unitarity [C]" },

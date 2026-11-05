@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## 2. Neutral multipoint limits, without changing the source
+
+[tex-artefacts/toe_research_20260909.tex:97-114](../../../../tex-artefacts/toe_research_20260909.tex#L97) · `section:7c988c39ac7db581aaf5` · subsection
+
+For the same strip and filled projector, the alternating four-word [formula in source] cancels the outer history ramps. Normal ordering is the actual finite-sea trace subtraction. Positive heat regularization, Jensen and Cauchy–Schwarz give uniform [formula in source] bounds for [formula in source] on the full four-endpoint torus, including collisions. They promote the separated-point limit to an [formula in source]
+
 ## 3. Full lattice dynamics and a physical neutral ground representation
 
 [tex-artefacts/toe_research_20260909.tex:115-158](../../../../tex-artefacts/toe_research_20260909.tex#L115) · `section:5d5709ce3e52f2ab7b99` · subsection

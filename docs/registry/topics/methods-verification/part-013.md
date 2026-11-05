@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## CROSS: the sufficient one-sided theorem.
+
+[experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tex-artefacts/toe_round4_proofs.tex:143-174](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tex-artefacts/toe_round4_proofs.tex#L143) · `section:e65838beabd687268ea8` · paragraph
+
+Let [formula in source] be the unitary fractional shift with entries [formula in source] , let [formula in source] restrict to [formula in source] , [formula in source] , [formula in source] , [formula in source] and [formula in source] . Crucially [formula in source] . For the finite unitary overlap [formula in source] and [formula in source] , the source identity is [formula in source] Hence [formula in source] . P
+
 ## Validated Fourier core and the missing finite-grid aliases.
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tex-artefacts/toe_round4_proofs.tex:175-242](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tex-artefacts/toe_round4_proofs.tex#L175) · `section:bce0cf0522b937838636` · paragraph
@@ -2113,9 +2119,3 @@ No opening prose excerpt; see the source.
 [experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/18_audit_v13.tex:3-5](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/18_audit_v13.tex#L3) · `section:866e9030194940799837` · section
 
 Die sechs zusätzlichen Unterlagen heißen im neuen Quellenregister N1 bis N6; die ursprünglichen S01 bis S11 bleiben unverändert. Ihr Audit trennt exakte endliche Identitäten, numerische Spektren und zusätzliche Modellannahmen. 100 eigene Bedingungen bestanden: 78 exakte beziehungsweise Integritätsprüfungen und 22 numerische. Die anschließende gemeinsame Ausführung hat einen eigenen 231-Bedingungen-Vertrag. Diese Zähl
-
-## Die zentrale Reparatur: Wege nicht zu früh unterscheiden
-
-[experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/18_audit_v13.tex:6-28](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/18_audit_v13.tex#L6) · `section:a736ece557b95fcb2fb0` · section
-
-Setze [formula in source] und [formula in source] . Der Wedge-Kanal besitzt Für [formula in source] verschwindet [formula in source] . Beide geordneten Wege enden im gleichen virtuellen Zustand und interferieren. Orthogonale Records für [formula in source] und [formula in source] ersetzen dies durch [formula in source] : Der antisymmetrische Rang-6-Kanal wird zum Rang-12-Kanal. Bei gleichem Energienenner entsteht ein

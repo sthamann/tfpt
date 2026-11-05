@@ -431,19 +431,21 @@ export function TourShell() {
             <li className="rounded-2xl border border-amber-400/25 bg-amber-500/5 p-4">
               <div className="flex items-center justify-between gap-2">
                 <span className="font-mono text-sm text-slate-950">
-                  the one input bit
+                  square-marking selection
                 </span>
                 <span className="rounded-full bg-rose-500/15 px-2 py-0.5 font-mono text-[10px] font-semibold text-rose-800 ring-1 ring-rose-400/30">
                   {INPUT_BIT.status}
                 </span>
               </div>
               <p className="mt-2 text-sm text-slate-700">
-                {INPUT_BIT.failedDerivations} side-blind derivation attempts
-                failed — that&apos;s the point. Now defined as the{" "}
+                {INPUT_BIT.failedDerivations} historical side-blind families did
+                not select the square marking. The later v534 interacting family
+                selects it through reflection positivity at toy level. Its{" "}
                 <strong className="font-medium text-slate-900">
                   {INPUT_BIT.definition}
-                </strong>
-                , {INPUT_BIT.measurable}. It remains an input.
+                </strong>{" "}
+                is {INPUT_BIT.measurable}; physical source identification retains
+                its stated premises.
               </p>
             </li>
             <li className="rounded-2xl border border-slate-300/40 bg-slate-50/40 p-4">

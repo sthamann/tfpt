@@ -938,7 +938,7 @@ tocsectionTheorem 3 Requiring the even family to equal the action truncation thr
 
 ## Master statement and status
 
-[documents/tfpt_1_architecture_e8/sections/011-source.tex:306-355](../../../../documents/tfpt_1_architecture_e8/sections/011-source.tex#L306) · `section:2e4cf2c588758ec271e5` · section
+[documents/tfpt_1_architecture_e8/sections/011-source.tex:317-366](../../../../documents/tfpt_1_architecture_e8/sections/011-source.tex#L317) · `section:2e4cf2c588758ec271e5` · section
 
 tocsectionMaster statement Five carrier slots give [formula in source] ,\ four family corners give [formula in source] ,\ and [formula in source] gives the [formula in source] atlas. Equivalently: [formula in source] , [formula in source] , [formula in source] ; [formula in source] , [formula in source] , the [formula in source] Coxeter structure and the action ladder read the same five-slot pair-decuple. The Standar
 

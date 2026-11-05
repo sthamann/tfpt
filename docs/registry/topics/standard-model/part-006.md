@@ -242,9 +242,9 @@ positioning,arrows.meta,fit,backgrounds,calc,shapes.geometric,shapes.misc
 
 ## Front matter / support
 
-[documents/introduction/sections/001-section-what-this-is-about-the-jump-in-construction-prin.tex:1-86](../../../../documents/introduction/sections/001-section-what-this-is-about-the-jump-in-construction-prin.tex#L1) · `section:ac978079d55f2c41f62b` · frontmatter
+[documents/introduction/sections/001-section-what-this-is-about-the-jump-in-construction-prin.tex:1-87](../../../../documents/introduction/sections/001-section-what-this-is-about-the-jump-in-construction-prin.tex#L1) · `section:ac978079d55f2c41f62b` · frontmatter
 
-Topological Fixed-Point Theory (TFPT) constructs, from exactly two inputs — a boundary constant [formula in source] (P1) and a five-slot carrier [formula in source] (P2) — a discrete compiler for the Standard-Model skeleton: the gauge group, three families, hypercharges and the flavor matrix, with [formula in source] ( [formula in source] ) as the consistency checksum. The algebraic core is machine-checkable and the
+Topological Fixed-Point Theory (TFPT) constructs, from exactly two inputs — a boundary kernel normalization [formula in source] (P1 supplies the structured RP seam kernel) and a five-slot carrier [formula in source] (P2, with existing conditional source reductions) — a discrete compiler for the Standard-Model skeleton: the gauge group, three families, hypercharges and the flavor matrix, with [formula in source] ( [fo
 
 Explicit source references:
 

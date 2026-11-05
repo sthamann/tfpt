@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Changelog
+
+[documents/experiments--lean4-carrier-rigidity--note_carrier_rigidity_lean4/sections/004-section-interface-table-tfpt-paper-2-texorpdfstring-left.tex:320-323](../../../../documents/experiments--lean4-carrier-rigidity--note_carrier_rigidity_lean4/sections/004-section-interface-table-tfpt-paper-2-texorpdfstring-left.tex#L320) · `section:3f2aaf619c0723316625` · section
+
+No opening prose excerpt; see the source.
+
 ## v11 — review-pass closure and typed targets for the remaining upstream theorems (the present revision)
 
 [documents/experiments--lean4-carrier-rigidity--note_carrier_rigidity_lean4/sections/005-subsection-v11-review-pass-closure-and-typed-targets-for.tex:1-94](../../../../documents/experiments--lean4-carrier-rigidity--note_carrier_rigidity_lean4/sections/005-subsection-v11-review-pass-closure-and-typed-targets-for.tex#L1) · `section:307d97065ae218f24093` · subsection
@@ -882,9 +888,3 @@ Aus den CAR folgen für jeden normierten G-Singulettzustand mit N=64:
 Explicit source references:
 
 - [experiments/theory-contracts/universalraum-common-process-20260915/agents/mechanism/late_a/moment_audit.py](../../../../experiments/theory-contracts/universalraum-common-process-20260915/agents/mechanism/late_a/moment_audit.py#L1) · explicit_file_citation
-
-## 4. Was bereits überholt ist
-
-[documents/experiments--theory-contracts--universalraum-source-composition-20260915--tmp--pdfs--TFPT_Universalraum_Quellkomposition_Konsolidierung_2026-09-15_v1.6.9/sections/013-subsection-beweisumfang-label-beweisumfang.tex:277-323](../../../../documents/experiments--theory-contracts--universalraum-source-composition-20260915--tmp--pdfs--TFPT_Universalraum_Quellkomposition_Konsolidierung_2026-09-15_v1.6.9/sections/013-subsection-beweisumfang-label-beweisumfang.tex#L277) · `section:38c5fefe918ee0afdd3b` · subsection
-
-@ > p( - 2 ) * 0.5000 > p( - 2 ) * 0.5000@ Aussage der Anlage & Prüfung \\ Clock sei ein äußerer Handgriff, weil er Gewichte verschiebt & Bereits in v1.6.6/7 durch das explizite Spin(10)-Wort widerlegt. Nichtskalare Wirkung innerhalb eines Irreps bedeutet keine äußere Symmetrie. Die aktuelle Mechanismusprüfung reproduziert zudem den ursprünglichen Clock und seinen passiven Focklift. \\ Mit allen gewährten inneren Kon

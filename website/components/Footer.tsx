@@ -54,10 +54,11 @@ export function Footer() {
         <div>
           <Logo size={40} />
           <p className="mt-4 max-w-md text-sm leading-relaxed text-slate-600">
-            Topological Fixed-Point Theory connects seam and carrier inputs to
-            E₈, Standard Model structure, flavour and the electromagnetic fixed
-            point. Every result retains its stated premises. Follow the derivations,
-            inspect the sources and explore the remaining physical connections.
+            Topological Fixed-Point Theory connects a structured boundary kernel
+            with a common marked geometry. Its seam normalization, carrier and
+            families have conditional derivations that lead to the E₈ compiler,
+            Standard-Model structure, flavor and α relations. Each physical
+            readout retains its stated premises.
           </p>
           <div className="mt-3">
             <SuiteBadge />
@@ -157,7 +158,7 @@ export function Footer() {
             <span>All papers and predictions distributed for academic use.</span>
           </p>
           <p className="text-slate-500">
-            TFPT {SITE_VERSION} — two axioms · one E₈ compiler · the Standard Model
+            TFPT {SITE_VERSION} · shared geometry · E₈ compiler · Standard-Model structure
           </p>
         </div>
         <div className="mx-auto mt-3 max-w-7xl text-[11px] leading-relaxed text-slate-500">

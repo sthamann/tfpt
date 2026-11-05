@@ -5,7 +5,7 @@ export function CompilerDiagram() {
   return (
     <figure
       className="mt-6 overflow-x-auto rounded-2xl border border-slate-300/40 bg-slate-50/40 p-4 sm:p-5"
-      aria-label="Compiler pipeline from two axioms to Standard Model readouts"
+      aria-label="Compiler pipeline from the structured source and carrier interface to Standard-Model readouts"
     >
       <svg
         viewBox="0 0 640 160"

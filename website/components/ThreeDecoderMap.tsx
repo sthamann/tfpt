@@ -63,11 +63,11 @@ export function ThreeDecoderMap() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
       className="glass mx-auto mt-12 max-w-5xl overflow-hidden rounded-2xl ring-1 ring-slate-300/40"
-      aria-label="The compiler map: two axioms, the two atoms, the E8 glue, and three readouts."
+      aria-label="The compiler map: a structured source, shared carrier and family geometry, E8 glue, and three readouts."
     >
       <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200/60 px-5 py-3">
         <span className="text-[11px] font-semibold uppercase tracking-widest text-blue-700/80">
-          Two axioms · one compiler · three readouts
+          Shared geometry · one compiler · three readouts
         </span>
         <span className="rounded-full bg-slate-200/60 px-2.5 py-0.5 text-[10px] font-mono uppercase tracking-widest text-slate-700 ring-1 ring-slate-300/40">
           15-second overview
@@ -78,7 +78,8 @@ export function ThreeDecoderMap() {
         <ol className="mx-auto flex max-w-3xl flex-col items-stretch gap-3">
           <TrunkStep
             n="1"
-            label="Two axioms"
+            label="Source and readout"
+            sublabel="P1 is the structured RP kernel; these numbers are its normalization and the P2 carrier readout"
             tex="c_3 = \tfrac{1}{8\pi}, \qquad g_{\mathrm{car}} = 5\ (3{+}2)"
             accent="from-slate-600 to-slate-500"
           />

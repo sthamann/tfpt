@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## 4. Was bereits überholt ist
+
+[documents/experiments--theory-contracts--universalraum-source-composition-20260915--tmp--pdfs--TFPT_Universalraum_Quellkomposition_Konsolidierung_2026-09-15_v1.6.9/sections/013-subsection-beweisumfang-label-beweisumfang.tex:277-323](../../../../documents/experiments--theory-contracts--universalraum-source-composition-20260915--tmp--pdfs--TFPT_Universalraum_Quellkomposition_Konsolidierung_2026-09-15_v1.6.9/sections/013-subsection-beweisumfang-label-beweisumfang.tex#L277) · `section:38c5fefe918ee0afdd3b` · subsection
+
+@ > p( - 2 ) * 0.5000 > p( - 2 ) * 0.5000@ Aussage der Anlage & Prüfung \\ Clock sei ein äußerer Handgriff, weil er Gewichte verschiebt & Bereits in v1.6.6/7 durch das explizite Spin(10)-Wort widerlegt. Nichtskalare Wirkung innerhalb eines Irreps bedeutet keine äußere Symmetrie. Die aktuelle Mechanismusprüfung reproduziert zudem den ursprünglichen Clock und seinen passiven Focklift. \\ Mit allen gewährten inneren Kon
+
 ## 5. Was daran spannend ist und was als nächstes trägt
 
 [documents/experiments--theory-contracts--universalraum-source-composition-20260915--tmp--pdfs--TFPT_Universalraum_Quellkomposition_Konsolidierung_2026-09-15_v1.6.9/sections/013-subsection-beweisumfang-label-beweisumfang.tex:324-340](../../../../documents/experiments--theory-contracts--universalraum-source-composition-20260915--tmp--pdfs--TFPT_Universalraum_Quellkomposition_Konsolidierung_2026-09-15_v1.6.9/sections/013-subsection-beweisumfang-label-beweisumfang.tex#L324) · `section:c8886a87174ed386526d` · subsection
@@ -726,9 +732,3 @@ Explicit source references:
 [documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/029-subsection-3-die-richtige.tex:320-330](../../../../documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/029-subsection-3-die-richtige.tex#L320) · `section:24c79216c6a79f0c724c` · subsubsection
 
 Die mitgelieferte Round37-Rechnung wurde exakt reproduziert. Ihre sechs Zustände sind der vollständige Gausssektor eines Vierfermion-Modells mit einem Link. Der zertifizierte Wert bei [formula in source] betrifft diesen Parent und diesen vorbereiteten Zustand. Er ist weder eine Zwei-64-Moden-Banken-Simulation noch ein Beweis für deren ursprüngliche Auswahl. Unser folgender Satz ist davon unabhängig und benutzt die ta
-
-## 4. Zustandswahl: keine Rückkehr vor den abgesicherten Grundsatz
-
-[documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/031-subsection-8-w-hrend-der-arbeit-entdeckte-nderung-kommut.tex:321-353](../../../../documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/031-subsection-8-w-hrend-der-arbeit-entdeckte-nderung-kommut.tex#L321) · `section:26c294848c4ee57b51a8` · subsection
-
-Der vorhandene native Satz beweist Eindeutigkeit, N=64, Singulett und positive Lücke bei μ=0 im angegebenen Kopplungsbereich. Eine komplette Clebsch-Gordan-Serie oder Voll-Diagonalisierung ist dafür nicht nötig; Vergleichsungleichungen und Minmax waren gerade der einfache Ausweg. Die physische Auswahl von H beziehungsweise μ=0 bleibt eine andere Frage.

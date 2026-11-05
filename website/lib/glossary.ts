@@ -20,7 +20,7 @@ export const GLOSSARY: GlossaryEntry[] = [
     term: "seam constant",
     alias: ["c₃", "c3", "boundary number", "c_3"],
     short:
-      "The first axiom P1: c₃ = 1/(8π). The boundary/seam normaliser, Gauss–Bonnet-hardenable as 1/(|ℤ₂|·∮ K). Drives the seed, α⁻¹ and the scale grammar.",
+      "c₃ = 1/(8π) normalizes the structured primitive boundary kernel P1. Self-linking, the shared parabolic anchor and the conditional modular response explain the value under their stated premises. The modular route retains the actual determinant-response identification. The whole P1 kernel includes more data than this number.",
   },
   {
     term: "readout",
@@ -32,7 +32,7 @@ export const GLOSSARY: GlossaryEntry[] = [
     term: "carrier",
     alias: ["g_car", "carrier rank", "g_{car}", "five-slot carrier", "3+2"],
     short:
-      "The second axiom P2: a five-slot carrier g_car = 5 (3 colour + 2 weak). Its even-Hamming code is the D₅ half-spinor; the Pascal sum 1+5+10 = 16 forces g_car = 5.",
+      "P2 is the declared five-slot 3+2 physical readout. Its algebraic consequences are proved. The common four-mark divisor gives five meromorphic modes, their Clifford construction gives the D₅ half-spinor, and the anchor, Pascal and finite W-bridge routes supply further conditional reductions. Five modes alone do not select the physical 3+2 split.",
   },
   {
     term: "E8 compiler",
@@ -188,7 +188,7 @@ export const GLOSSARY: GlossaryEntry[] = [
     term: "twist-class choice",
     alias: ["twist class", "alignment bit", "symmetry-lift bit", "the bit"],
     short:
-      "The physical definition of the one discrete carrier input: which twist class nature realises on the seam (v528). A 15-facet exact equivalence web (flag transitivity ⟺ τ = i) with a gauge-robust order parameter O = 1/2 vs 0, in principle interferometrically readable via the η holonomy. Survivor of ten side-blind tests — and since v534 carrier of the first POSITIVE selection datum: reflection positivity on the interacting mark family keeps exactly the δ = π/2 member alive (toy-fenced). It remains formal input, not derived.",
+      "The physical definition of the one discrete carrier input: which twist class nature realises on the seam (v528). A 15-facet exact equivalence web (flag transitivity ⟺ τ = i) with a gauge-robust order parameter O = 1/2 vs 0, in principle interferometrically readable via the η holonomy. Survivor of ten side-blind tests — and since v534 carrier of the first POSITIVE selection datum: reflection positivity on the interacting mark family keeps exactly the δ = π/2 member alive (toy-fenced). The physical source identification retains its premises; the stated toy selection is an existing result.",
   },
   {
     term: "thermal seam",
@@ -206,7 +206,7 @@ export const GLOSSARY: GlossaryEntry[] = [
     term: "side-blind scoreboard",
     alias: ["side-blind test", "side-blind tests", "ten side-blind tests"],
     short:
-      "The running tally of attacks that tried to DERIVE the alignment bit from side-blind data — all killed: the v512 jet web, free RP/Θ (8th, v521), the exhausted Wick-computable twist-state class (9th, v525), the interacting FK toy (10th, v529). Ten tests, ten kills: the bit stays genuine discrete input.",
+      "Historical tests of whether side-blind data select the square marking: the v512 jet web, free RP/Θ (v521), the Wick-computable twist-state class (v525) and the interacting FK toy (v529). Their negatives apply to those tested families. The later v534 RP selector chooses the square member in its interacting toy family; physical source identification remains separate.",
   },
 ];
 

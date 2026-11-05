@@ -17,7 +17,7 @@ export default function CompilerPage() {
     <CompilerExplorer />
     <section className={styles.section}>
       <h2>Connect the example to the wider theory.</h2>
-      <p>The compiler gives a common mathematical language for lattice structure, clock operations and readouts. Each claimed physical connection has its own premises and evidence.</p>
+      <p>The compiler gives a common mathematical language for lattice structure, clock operations and readouts. P1 is the structured primitive boundary kernel; c₃ is its normalization. Its common marked geometry connects the carrier and family reductions, while P2 retains its declared physical readout scope. Each physical connection keeps its own premises and evidence.</p>
       <nav className={styles.reading} aria-label="Compiler reading routes">
         <Link href="/papers/architecture-e8"><strong>Architecture and the E₈ construction</strong><span>The inputs, glue and electromagnetic closure <ArrowRight size={17} aria-hidden /></span></Link>
         <Link href="/papers/standard-model"><strong>Representations and flavor</strong><span>The Standard Model readout and its transport layer <ArrowRight size={17} aria-hidden /></span></Link>

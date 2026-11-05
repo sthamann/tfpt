@@ -4,7 +4,7 @@
  * Sources: verification/status_ledger.csv, predictions_frozen.json,
  * website/lib/suite.ts (SCRIPT_TOTAL), website/lib/predictions.ts,
  * public verification stack (Python / Wolfram / Lean).
- * Snapshot date: 2026-07-23. Do not invent values; refresh from ledger/suite.
+ * Numerical snapshot date: 2026-07-23. Source explanations reconciled 2026-11-05; refresh values from ledger/suite.
  */
 
 import { SCRIPT_TOTAL } from "@/lib/suite";
@@ -17,20 +17,20 @@ export const AXIOMS = {
     symbol: "c₃",
     value: "1/(8π)",
     latex: "c_3 = 1/(8\\pi)",
-    label: "seam constant",
+    label: "P1 kernel normalization",
   },
   gCar: {
     symbol: "g_car",
     value: "5",
     latex: "g_{\\mathrm{car}} = 5",
-    label: "carrier grade",
+    label: "P2 physical readout",
   },
 } as const;
 
 export const COMPILER = {
   chain: "D5 ⊕ A3 + μ4 ⇒ E8 ⇒ SM readouts",
   plain:
-    "Two axioms feed a discrete compiler. The carrier algebra D₅ ⊕ A₃ with the μ₄ clock closes into the E₈ audit hull; Standard-Model readouts are read off that closure.",
+    "P1 is the structured primitive RP boundary kernel; c₃ normalizes it. P2 is the declared physical 3+2 readout. Their common marked geometry and conditional reductions supply the D₅/A₃ carrier and family data, whose μ₄ glue closes to E₈.",
 } as const;
 
 export const ALPHA = {
@@ -88,7 +88,7 @@ export const INPUT_BIT = {
   definition: "twist-class choice",
   measurable: "in principle interferometrically readable",
   status: "[O]" as const,
-  note: "Ten side-blind derivation attempts failed; the bit stays an input, now physically defined.",
+  note: "Ten historical side-blind families did not select the square marking. The later v534 family selects it through RP at toy level; identifying the physical source remains separate.",
 } as const;
 
 export const TOY_KILL = {
@@ -164,18 +164,18 @@ export const TOUR_STEPS: readonly TourStepMeta[] = [
   {
     id: "two-numbers",
     n: 1,
-    short: "Two numbers",
-    title: "What if two numbers were enough?",
+    short: "Source and readout",
+    title: "Where do the shared numbers come from?",
     plain:
-      "Everything here starts from two axioms: c₃ = 1/(8π) and g_car = 5. No secret knobs behind the curtain.",
+      "P1 supplies a structured primitive boundary kernel, with c₃ = 1/(8π) as its normalization. P2 declares the physical 3+2 readout. The shared four-mark geometry and anchor already connect their numerical data under stated source conditions.",
   },
   {
     id: "compiler",
     n: 2,
     short: "The compiler",
-    title: "Axioms in → machine → readouts out",
+    title: "Shared source → compiler → readouts",
     plain:
-      "Think of TFPT as a discrete compiler: feed the two axioms, run the carrier algebra, audit against E₈, read off Standard-Model structure.",
+      "The structured boundary source and its conditional carrier reductions feed the D₅/A₃ compiler. The μ₄ glue closes to E₈, from which the Standard-Model structure is read under the declared interface.",
   },
   {
     id: "outputs",
@@ -223,7 +223,7 @@ export const TOUR_STEPS: readonly TourStepMeta[] = [
     short: "Still open",
     title: "What we do not pretend to have closed",
     plain:
-      "SEAM.EQUIV stays [O] unconditionally. One input bit survives ten failed derivations — that failure is the point. The interacting seam is still open.",
+      "The unconditional SEAM.EQUIV parent stays [O], while its cited MMST route and existing conditional reductions remain available. Ten historical side-blind tests failed; v534 later selects the square member in its interacting toy family. The complete physical source identification remains separate.",
   },
   {
     id: "two-bridges",

@@ -42,7 +42,7 @@ export function Decoders() {
         <SectionHeader
           eyebrow="The two engines"
           title="Discrete closure, boundary dressing, bootstrap"
-          description="Read from the two axioms, the theory factorises into exactly two engines — a discrete closure from g_car and a boundary dressing from c₃ — and the bootstrap loop that feeds the E₈ closure back to fix the inputs."
+          description="The structured boundary source and its conditional reductions support discrete closure through the carrier and boundary response through c₃. Their shared geometry connects the E₈ compiler, constant relations and physical readouts under stated premises."
         />
 
         <div className="mt-12 grid gap-5 lg:grid-cols-3">

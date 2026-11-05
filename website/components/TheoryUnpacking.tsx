@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils";
  * The narrative shows the compiler construction — geometrically — in six
  * tightly-coupled steps:
  *
- *   1. The two axioms (seam constant c₃, five-slot carrier g_car)
+ *   1. The structured P1 source, its c₃ normalization and P2 readout
  *   2. The seam and its ℤ₂ sheet (Gauss–Bonnet normalisation)
  *   3. Carrier split → 3 + 2 (the D₅ half-spinor)
  *   4. The 3 + 2 carrier (hypercharge, dim S⁺ = 16)
@@ -40,9 +40,9 @@ const STEPS: UnpackingStep[] = [
   {
     id: 0,
     badge: "Step 1",
-    short: "Two numbers",
-    title: "Two numbers in",
-    body: "The Standard Model takes ~20 parameters as input. Here only two numbers enter: the seam constant c₃ = 1/(8π) on the boundary and a five-slot carrier g_car = 5. No gauge group, no families, no α is put in by hand — everything below is a consequence.",
+    short: "Source and readout",
+    title: "A structured source and its readouts",
+    body: "P1 supplies a primitive reflection-positive boundary kernel. c₃ = 1/(8π) normalizes that kernel; P2 declares the physical five-slot 3+2 readout. Their common marked geometry and existing conditional reductions feed the discrete compiler.",
     formula: "c_3 = \\tfrac{1}{8\\pi}, \\qquad g_{\\mathrm{car}} = 5",
     plain: "The seam constant c₃ equals one over eight pi; the carrier rank g_car equals five.",
   },
@@ -51,7 +51,7 @@ const STEPS: UnpackingStep[] = [
     badge: "Step 2",
     short: "The seam",
     title: "The seam and its sheet",
-    body: "The seam carries a ℤ₂ sheet involution. The Gauss–Bonnet normalisation of the one-sided seam sphere fixes the seam constant — only π stays continuous.",
+    body: "The seam carries a ℤ₂ sheet involution. Its one-sided Gauss–Bonnet normalization fixes c₃ in the stated geometric class. Four marks follow for the flat spherical branch class; the square position has its own symmetry conditions.",
     formula:
       "c_3 = \\frac{1}{|\\mathbb{Z}_2|\\oint_{S^2}K\\,dA} = \\frac{1}{8\\pi}",
     plain: "The seam constant is one divided by the ℤ₂-halved total curvature of the seam sphere (Gauss–Bonnet) — which equals one over eight pi.",
@@ -61,7 +61,7 @@ const STEPS: UnpackingStep[] = [
     badge: "Step 3",
     short: "Carrier 3+2",
     title: "Carrier split → 3 + 2",
-    body: "The five carrier slots split into 3 colour + 2 weak. The even-Hamming code on the slots is the D₅ half-spinor — the split is arithmetic, not assumed.",
+    body: "The common four-mark divisor gives five meromorphic modes, whose Clifford construction yields the D₅ half-spinor. The physical 3 colour + 2 weak readout is the declared P2 interface; five modes alone do not select that split.",
     formula:
       "g_{\\mathrm{car}} = 5 = 3 + 2 \\;\\Rightarrow\\; C^+ = D_5",
     plain: "The five carrier slots split as three colour plus two weak, giving the D₅ half-spinor.",
@@ -147,7 +147,7 @@ export function TheoryUnpacking() {
       <header className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 px-5 py-3.5">
         <div className="flex min-w-0 flex-col gap-0.5">
           <span className="text-[10px] font-semibold uppercase tracking-widest text-blue-700/70">
-            How the compiler works · two axioms → E₈ → the observables
+            How the compiler works · shared source → E₈ → the readouts
           </span>
           <span className="flex items-baseline gap-2">
             <span className="font-mono text-[11px] font-semibold text-violet-700/90">

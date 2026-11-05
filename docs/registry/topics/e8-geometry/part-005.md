@@ -4,20 +4,6 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
-## [formula in source] -anchored metrology closure, and two anchors
-
-[documents/tfpt_1_architecture_e8/sections/008-source.tex:47-118](../../../../documents/tfpt_1_architecture_e8/sections/008-source.tex#L47) · `section:2e952b790b5a8d78fbb2` · section
-
-Machine checks for this section: v60_ lambda_ metrology_ branch.py
-
-Explicit source references:
-
-- [verification/v60_lambda_metrology_branch.py](../../../../verification/v60_lambda_metrology_branch.py#L1) · explicit_file_citation
-
-Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
-
-- [(* ---- (v60) Lambda branch selection: prefactor 3/(4pi^2), branch mis-scale 64pi^3/3 ---- *) checkExact["delta_top=48 c3^4=3/(256 pi^4); (8pi)^2 delta_top=3/(4 pi^2); 2c3/delta_top=64 pi^3/3 (G_N pinned)", With[{c3 = 1/(8 Pi), dt = 48 (1/(8 Pi))^4}, Simplify[dt - 3/(256 Pi^4)] == 0 && Simplify[(8 Pi)^2 dt - 3/(4 Pi^2)] == 0 && Simplify[2 c3/dt - 64 Pi^3/3] == 0]]; checkExact["action exponents (1,5,10) = K5 counts (5 vertices, C(5,2)=10 edges); Pascal 16=1+5+10", {1, 5, Binomial[5, 2]} == {1, 5, 10} && 1 + 5 + 10 == 16]; (* ---- (v61) boundary-CFT bridge: WZW central charges = atoms, conformal embedding ---- *)](../../../../verification/wolfram/tfpt_readouts.wl#L282)
-
 ## The landscape: [formula in source] is overdetermined
 
 [documents/tfpt_1_architecture_e8/sections/008-source.tex:119-144](../../../../documents/tfpt_1_architecture_e8/sections/008-source.tex#L119) · `section:02cd9e4255c0130088b5` · section
@@ -311,7 +297,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 ## Theorem 7 — the [formula in source] lift of the [formula in source] atlas
 
-[documents/tfpt_1_architecture_e8/sections/011-source.tex:1-248](../../../../documents/tfpt_1_architecture_e8/sections/011-source.tex#L1) · `section:6b49d8830dc9fa3948be` · section
+[documents/tfpt_1_architecture_e8/sections/011-source.tex:1-259](../../../../documents/tfpt_1_architecture_e8/sections/011-source.tex#L1) · `section:6b49d8830dc9fa3948be` · section
 
 tocsectionTheorem 7 Since [formula in source] , one has the standard chain [formula in source] , with the exact branching (verified dimensions and root/weight counts): The adjoint [formula in source] of [formula in source] is [formula in source] and its spinor [formula in source] is [formula in source] . The TFPT dictionary makes each summand a known object: @llY@ piece & value & TFPT reading \\ [formula in source] &
 
@@ -339,6 +325,8 @@ Explicit source references:
 - [verification/v47_selection_theorem.py](../../../../verification/v47_selection_theorem.py#L1) · explicit_file_citation
 - [SEAM.BIT.ORIGIN.01](../../../../verification/status_ledger.csv#L571) · explicit_claim_identifier · original status at linked ledger row
 - [QGEO.EMERGE.LIGHT.01](../../../../verification/status_ledger.csv#L567) · explicit_claim_identifier · original status at linked ledger row
+- [verification/v1015_axiom_core_closure.py](../../../../verification/v1015_axiom_core_closure.py#L1) · explicit_script_identifier
+- [verification/v1014_bridge_refinements.py](../../../../verification/v1014_bridge_refinements.py#L1) · explicit_script_identifier
 - [verification/v503_qgeo_emergence_light.py](../../../../verification/v503_qgeo_emergence_light.py#L1) · explicit_script_identifier
 
 Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
@@ -363,7 +351,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 ## Theorem 8 — the [formula in source] anchor microcode and the [formula in source] -ladder
 
-[documents/tfpt_1_architecture_e8/sections/011-source.tex:249-305](../../../../documents/tfpt_1_architecture_e8/sections/011-source.tex#L249) · `section:5d8f619883df80c56b36` · section
+[documents/tfpt_1_architecture_e8/sections/011-source.tex:260-316](../../../../documents/tfpt_1_architecture_e8/sections/011-source.tex#L260) · `section:5d8f619883df80c56b36` · section
 
 tocsectionTheorem 8 — anchor microcode The parabolic flavor bundle [formula in source] on [formula in source] has splitting type [formula in source] , whose power sums [formula in source] generate the whole compiler budget:
 
@@ -381,7 +369,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 ## Master statement and status
 
-[documents/tfpt_1_architecture_e8/sections/011-source.tex:306-355](../../../../documents/tfpt_1_architecture_e8/sections/011-source.tex#L306) · `section:2e4cf2c588758ec271e5` · section
+[documents/tfpt_1_architecture_e8/sections/011-source.tex:317-366](../../../../documents/tfpt_1_architecture_e8/sections/011-source.tex#L317) · `section:2e4cf2c588758ec271e5` · section
 
 tocsectionMaster statement Five carrier slots give [formula in source] ,\ four family corners give [formula in source] ,\ and [formula in source] gives the [formula in source] atlas. Equivalently: [formula in source] , [formula in source] , [formula in source] ; [formula in source] , [formula in source] , the [formula in source] Coxeter structure and the action ladder read the same five-slot pair-decuple. The Standar
 
@@ -1974,3 +1962,9 @@ Explicit source references:
 Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
 
 - [(* ==== v522 round: WOIT.BETA1.GSO.01 -- "the clock is time-like, GSO is the gauge datum": the Z8/NS tower + Ramond control, the invariant- dimension chain, the time-like reflection census, the exact Hermiticity witness of the clock insertion, the GSO 2-torsion census and the family-A tower-normalisation failure. The 40-digit GSO-fixed RP inertia certificates ((29,0,0)/(8,0,0)/(7,9,6)/(17,12,0)) are Python-only by the suite convention. Mirrors v522. ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L7609)
+
+## Die Majoranapaare bleiben als lokale CAR-Komposite erhalten
+
+[documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/006-subsection-die-48-und-die-41-sind-zwei-antworten-derselb.tex:345-393](../../../../documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/006-subsection-die-48-und-die-41-sind-zwei-antworten-derselb.tex#L345) · `section:faadce3641621281c19b` · subsection
+
+Die Sektorunterscheidung lässt einen konstruktiven gemeinsamen Anschluss zu. Die geraden Paaroperatoren liegen im gemeinsamen [formula in source] -Vakuummodul [formula in source] . Für die hier auftretenden ganzzahligen Impulse [formula in source] setze [formula in source] in wachsender Koordinatenfolge. Die ursprünglichen E8- und CAR-Kokzyklen auf [formula in source] sind durch die im Programm angegebene quadratisch

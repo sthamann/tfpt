@@ -2,7 +2,7 @@
 
 [Registry index](../INDEX.md) · Topic ID: `foundations`
 
-972 physical section matches. Topic assignment is a lexical navigation suggestion, not semantic review. The excerpts and citations below come from source; no proof or status promotion is asserted.
+973 physical section matches. Topic assignment is a lexical navigation suggestion, not semantic review. The excerpts and citations below come from source; no proof or status promotion is asserted.
 
 
 ## Bounded reading parts
@@ -18,7 +18,7 @@ Each part contains at most 100 physical section records and their actual explici
 - [Part 7: section matches 601–700](foundations/part-007.md)
 - [Part 8: section matches 701–800](foundations/part-008.md)
 - [Part 9: section matches 801–900](foundations/part-009.md)
-- [Part 10: section matches 901–972](foundations/part-010.md)
+- [Part 10: section matches 901–973](foundations/part-010.md)
 
 ## First 20 source locations
 

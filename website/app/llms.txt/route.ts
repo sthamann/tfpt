@@ -31,14 +31,16 @@ function buildLlmsTxt(): string {
 
   return `# TFPT — Topological Fixed-Point Theory
 
-> Topological Fixed-Point Theory (TFPT) is a parameter-free theoretical-physics
-> framework by Stefan Hamann and Alessandro Rizzo. From two numbers — the seam
-> constant c3 = 1/(8pi) and the carrier rank g_car = 5 — a discrete "compiler"
-> builds an E8 audit hull and reads off the Standard Model gauge group, three
-> fermion generations, the flavor sector, the fine-structure constant
-> alpha^-1 = 137.0359992 (1.9 sigma from CODATA-2022), and the scale grammar.
-> ${predictions.length} status-graded falsifiable test surfaces; zero fitted
-> constants in the closed branch; only pi is irreducible.
+> Topological Fixed-Point Theory (TFPT) is a theoretical-physics framework
+> by Stefan Hamann and Alessandro Rizzo. P1 supplies a structured primitive
+> reflection-positive boundary kernel; c3 = 1/(8pi) is its normalization.
+> P2 declares the physical five-slot 3+2 readout. Their shared four-mark
+> geometry, anchor and finite W-bridge provide existing conditional reductions.
+> The compiler closes D5 plus A3 to E8 and supplies Standard-Model structure,
+> flavor and alpha relations under stated premises. The operational source
+> already contains state and time. Full physical source identification and
+> readout completion remain separate from finite compiler closure.
+> ${predictions.length} status-graded falsifiable test surfaces are listed.
 
 Disambiguation: this is the physics theory "TFPT" (compiler closure for the
 Standard Model). It is NOT the established Brouwer–Lefschetz "topological fixed
@@ -53,7 +55,7 @@ License: documents CC-BY; code MPL-2.0
 
 ## What TFPT claims
 - The Standard Model gauge group (SU(3)×SU(2)×U(1))/Z6, hypercharge, and exactly
-  three families follow from the two axioms — not fitted.
+  three families follow in the declared carrier and marked source construction.
 - alpha^-1 = 137.0359992 is the unique positive root of a parameter-free self-consistent closure equation
   boundary Ward identity (a fixed point, with proven existence and uniqueness),
   not a fit.

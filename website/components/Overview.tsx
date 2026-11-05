@@ -20,14 +20,15 @@ interface Pillar {
 const PILLARS: Pillar[] = [
   {
     icon: Compass,
-    title: "Two axioms",
+    title: "Structured source and readout",
     body: (
       <>
-        Everything starts from the{" "}
-        <GlossTerm term="seam constant">seam constant</GlossTerm> c₃ = 1/(8π) (P1)
-        and the five-slot{" "}
-        <GlossTerm term="carrier">carrier</GlossTerm> g_car = 5 (P2). No SM gauge
-        group, no families, no α is inserted by hand — they are consequences.
+        P1 supplies a primitive reflection-positive boundary kernel. Its{" "}
+        <GlossTerm term="seam constant">normalization</GlossTerm> is c₃ = 1/(8π).
+        P2 declares the physical 3+2{" "}
+        <GlossTerm term="carrier">readout</GlossTerm>. Their shared geometry,
+        algebra and conditional reductions are already derived in their stated
+        scopes.
       </>
     ),
     accent: "from-blue-500 to-cyan-500",
@@ -51,10 +52,11 @@ const PILLARS: Pillar[] = [
     title: "The bootstrap loop",
     body: (
       <>
-        The E₈ closure feeds back and fixes the inputs: g_car = 5 is forced three
-        ways and the 8 in c₃ equals rank E₈ = h(D₅) = φ(30). The discrete core is{" "}
-        <GlossTerm term="bootstrap loop">overdetermined</GlossTerm> — only π stays
-        irreducible.
+        The common four-mark divisor gives family rank three and five carrier
+        modes. Anchor, Pascal and E₈ closure supply further constraints, while
+        v1014/v1015 close the finite W-bridge premises modulo MMST identification.
+        The <GlossTerm term="bootstrap loop">bootstrap</GlossTerm> retains these
+        precise source conditions.
       </>
     ),
     accent: "from-emerald-500 to-teal-500",
@@ -86,7 +88,7 @@ export function Overview() {
         <SectionHeader
           eyebrow="What the compiler derives"
           title="One compiler reads off the Standard Model, the constants and the scales"
-          description="The same small integers (2, 3, 5, 16, 240, 248) recur across every sector because they come from one source: a single machine, fed by two inputs, builds E₈ and reads off the Standard-Model skeleton, the constants, and the scale grammar — dozens of real numbers, none fitted in the closed branch."
+          description="A common marked geometry connects the boundary normalization, carrier and families. Their algebra closes to E₈ and supplies the Standard-Model structure, flavor and constant relations under stated premises. The full physical source and its readouts keep their separate scope."
         />
 
         <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-4">

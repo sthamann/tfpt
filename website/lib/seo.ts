@@ -25,11 +25,11 @@ export const PAGE_SEARCH = {
   ],
   "/orientation": [
     "What Is TFPT? Assumptions, Results & Reading Guide",
-    "Start with Topological Fixed-Point Theory: its two inputs, E₈ construction, alpha equation, research papers and the physical questions that remain open."
+    "Start with TFPT: its structured P1 kernel, c₃ normalization, P2 readout and shared conditional reductions, E₈ construction, alpha equation and remaining physical questions."
   ],
   "/tour": [
     "TFPT Explained: A Guided Tour of the Research",
-    "Follow TFPT from its two starting assumptions through E₈ and the alpha fixed point to testable readouts. See what is established and how to check it."
+    "Follow the structured TFPT source and its shared conditional reductions through E₈ and the alpha fixed point to readouts with stated premises and checks."
   ],
   "/compiler": [
     "TFPT Construction Lab: Inspect the E₈ Lattice",

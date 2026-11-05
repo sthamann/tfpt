@@ -32,7 +32,7 @@ const articleJsonLd = {
     { "@type": "Person", name: "Alessandro Rizzo" },
   ],
   abstract:
-    `The entry document for the TFPT ${SITE_VERSION} set. It states what TFPT claims and does not claim, the compiler closure from two axioms to E₈, the two engines, the bootstrap loop, and where each load-bearing argument is isolated in the document set.`,
+    `The entry document for the TFPT ${SITE_VERSION} set. It states what TFPT claims and does not claim, the structured P1 kernel, its c₃ normalization, the P2 readout and their shared conditional reductions to E₈, the two engines, the bootstrap loop, and where each load-bearing argument is isolated in the document set.`,
   about: [
     "Compiler closure",
     "Topological Fixed-Point Theory",

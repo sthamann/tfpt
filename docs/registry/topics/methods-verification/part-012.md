@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## -1.2cm TFPT — Red Team / Stress Test layer\\[2mm] Adversarial targets A–E, the QFT round (F) and the seam round (G): try to break the reductions, not confirm them
+
+[documents/tfpt_5_redteam/preamble.tex:1-37](../../../../documents/tfpt_5_redteam/preamble.tex#L1) · `section:57628e792bbc3f4e2f1c` · frontmatter
+
+-1.2cm TFPT — Red Team / Stress Test layer\\[2mm] Adversarial targets A–E, the QFT round (F) and the seam round (G): try to break the reductions, not confirm them
+
 ## Method
 
 [documents/tfpt_5_redteam/sections/001-section-method.tex:47-63](../../../../documents/tfpt_5_redteam/sections/001-section-method.tex#L47) · `section:f4722dc7a61b6484389b` · section
@@ -2245,9 +2251,3 @@ Put [formula in source] , [formula in source] , [formula in source] , [formula i
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tex-artefacts/toe_round4_proofs.tex:114-142](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tex-artefacts/toe_round4_proofs.tex#L114) · `section:e383ef5a5e1f2ec28db8` · paragraph
 
 The csc-squared finite product identity and trigamma recurrence for the original remainder give, for [formula in source] , [formula in source] where [formula in source] and [formula in source] . Since [formula in source] for [formula in source] , [formula in source] . The [formula in source] -point Peano kernel and [formula in source] imply [formula in source] On each diagonal cell the imaginary mean vanishes, [formu
-
-## CROSS: the sufficient one-sided theorem.
-
-[experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tex-artefacts/toe_round4_proofs.tex:143-174](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tex-artefacts/toe_round4_proofs.tex#L143) · `section:e65838beabd687268ea8` · paragraph
-
-Let [formula in source] be the unitary fractional shift with entries [formula in source] , let [formula in source] restrict to [formula in source] , [formula in source] , [formula in source] , [formula in source] and [formula in source] . Crucially [formula in source] . For the finite unitary overlap [formula in source] and [formula in source] , the source identity is [formula in source] Hence [formula in source] . P

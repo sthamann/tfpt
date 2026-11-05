@@ -20,7 +20,7 @@ const SIDEBAR_LINKS: SidebarLink[] = [
   {
     href: "/papers/tfpt_1_architecture_e8.pdf",
     label: "Architecture & E₈",
-    desc: "The two axioms, the glue, α⁻¹",
+    desc: "The source, shared reductions, glue and α⁻¹",
     kind: "paper",
   },
   {

@@ -16,8 +16,8 @@ const NEGATIVES: { title: string; body: string }[] = [
     body: "Interacting Fidkowski–Kitaev toy fails Kill-Test 2 — the straddle law (v529). Published, not buried.",
   },
   {
-    title: "Ten side-blind bit tests",
-    body: "Ten derivation attempts on the remaining input bit all failed — the bit stays an input (twist-class choice).",
+    title: "Ten historical side-blind tests",
+    body: "The ten tested families did not select the square marking. The later v534 interacting family selects it through RP in that toy scope; the physical source identification remains separate.",
   },
 ];
 
@@ -46,13 +46,13 @@ export function HonestyBand() {
               <span className="font-semibold text-amber-800">
                 What we do not claim.{" "}
               </span>
-              SEAM.EQUIV is not closed as an unconditional theorem. One input
-              bit stays an input (ten blind derivation attempts failed —
-              that&rsquo;s the point). The first interacting toy fails our own
-              kill test (v529) — published, not buried. Empirical HFQPO
-              searches returned nulls; they are search targets, not claims. No
-              external lab has reproduced the suite yet — we want that to
-              change.
+              The unconditional SEAM.EQUIV parent remains open. Existing
+              conditional origin results and the cited MMST closure are retained.
+              Ten historical side-blind families failed to select the square
+              marking; v534 later selects it through reflection positivity in
+              its interacting toy family. The v529 toy still fails its stated
+              kill test. Empirical HFQPO searches returned nulls and remain
+              search targets. No external lab has reproduced the suite yet.
             </p>
             <div className="mt-4 flex flex-wrap gap-3 text-xs font-semibold">
               <Link

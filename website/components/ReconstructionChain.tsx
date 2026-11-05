@@ -73,11 +73,11 @@ const TRUNK_BEFORE: StepNode[] = [
   {
     id: "axioms",
     step: 1,
-    label: "Two axioms",
+    label: "Structured source and readout",
     formula: "c_3 = \\tfrac{1}{8\\pi}, \\qquad g_{\\mathrm{car}} = 5",
-    input: "Declared (P1 Gauss–Bonnet-hardenable, P2 Lean-formalised)",
-    fixed: "The seam constant and the five-slot carrier — the only structural inputs",
-    notClaimed: "No SM gauge group, no families, no α inserted by hand",
+    input: "P1 primitive RP kernel and P2 physical 3+2 readout; declared interfaces with existing conditional reductions",
+    fixed: "c₃ normalizes P1; the common four-mark object, anchor and finite W-bridge explain the carrier data under their premises",
+    notClaimed: "The full kernel is not reconstructed from c₃ alone; the operative source already includes state and time",
     fail: "No reflection-positive seam, or the wrong family/charge lattice",
     status: "operational",
   },
@@ -165,8 +165,8 @@ const TRUNK_AFTER: StepNode[] = [
     formula: "E_8\\text{ closure} \\Rightarrow g_{\\mathrm{car}}{=}5,\\ \\ 8 = \\operatorname{rank}E_8",
     input: "The E₈ closure fed back to the inputs",
     fixed:
-      "The two inputs are re-derived — the discrete core is overdetermined, not fitted; only π stays free",
-    notClaimed: "Not creation from nothing — two inputs remain",
+      "Anchor, Pascal and E₈ closure constrain the shared numerical data; v1014/v1015 close the finite W-bridge modulo MMST identification",
+    notClaimed: "These reductions retain the structured source, marked branch and physical readout premises",
     fail: "g_car = 5 not forced three ways, or the reverse glue μ² − 5μ + 4 = 0 does not pick μ = 4",
     status: "theorem-core",
   },
@@ -193,7 +193,7 @@ const TRUNK_AFTER: StepNode[] = [
     input: "The compiler closure",
     fixed:
       "One flavor wall-selection (v_geo, [O]); the ambient quantum-gravity measure discharged as a redundancy [C] within the historical seam/compiler DAG (v369+v379; the classical covariant field equation is conditional on named QFT/entanglement premises [C], v358/v359); and typed frontier solvers (F_transfer, v371–v375). Only the finite boundary-net/MMST lane reduces to the G_metric keystone (step 7), closed modulo cited theorems",
-    notClaimed: "No strict physical TOE is certified end-to-end. Round 4 (v1026–v1030) closes the fixed-M=1, Ny=8 relaxed TEL-B norm below 2.995906 and adds narrow T3/T4/T6–T8 identities/counterbounds; native v1026 uses v1022/v1025 for the former CF/DG estimates. FE-GEN/ALG-EXH, every T1–T8 gate and TFPT.TOE.COMPLETE.01 remain [O], and the shared 3+1D parent is absent. The v1029 tensor target is not a TFPT embedding. Round 7 adds a free covariant helicity-±2 curvature field, auxiliary charged corners, a factorized mirror bound and linear prescribed-source Ward propagation, not microscopic TFPT emergence or universal quantum coupling. SEAM.EQUIV.01 is closed only on its MMST route modulo a cited theorem (v336; extension leg v469) and stays [O]; v_geo stays the one unit. The G6 redundancy statement is scoped to the historical seam/compiler DAG, not Rest_TOE",
+    notClaimed: "No strict physical TOE is certified end-to-end. Round 4 (v1026–v1030) closes the fixed-M=1, Ny=8 relaxed TEL-B norm below 2.995906 and adds narrow T3/T4/T6–T8 identities/counterbounds; native v1026 uses v1022/v1025 for the former CF/DG estimates. FE-GEN/ALG-EXH, every T1–T8 gate and TFPT.TOE.COMPLETE.01 remain [O], and the shared 3+1D parent is absent. The v1029 tensor target is not a TFPT embedding. Round 7 adds a free covariant helicity-±2 curvature field, auxiliary charged corners, a factorized mirror bound and linear prescribed-source Ward propagation, not microscopic TFPT emergence or universal quantum coupling. The MMST route is closed modulo its cited theorems. Its later charged master theorem retains ALG-EXH and the actual field identification as explicit premises; the P1 determinant-response identification is separate. The unconditional SEAM.EQUIV.01 parent stays [O]; v_geo stays the one unit. The G6 redundancy statement is scoped to the historical seam/compiler DAG, not Rest_TOE",
     fail: "A gate's closing theorem asserted before its lemma chain completes",
     status: "conditional",
   },
@@ -311,8 +311,8 @@ export function ReconstructionChain() {
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <SectionHeader
           eyebrow="The compiler pipeline"
-          title="From two axioms to the observables"
-          description="TFPT is a directed acyclic graph: two axioms at the source, the E₈ compiler in the middle, the observables as sinks. The compiler factorises into two engines — a discrete closure (from g_car) and a boundary dressing (from c₃) — that branch into three readouts, and the bootstrap loop feeds the output back to fix the inputs. On top, the boundary QFT assembles into one relative object — the Modular Spectral Closure — reduced to a single seam premise."
+          title="From the structured source to the observables"
+          description="P1 supplies the structured boundary kernel; c₃ is its normalization. The same marked geometry connects carrier and families, and its conditional reductions feed the E₈ compiler. Discrete closure and boundary response then lead to physical readouts with their own premises. The operative source already contains state and time."
         />
 
         <div ref={ref} className="relative mx-auto mt-14 max-w-5xl space-y-3">

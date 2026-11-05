@@ -56,7 +56,7 @@ export function OrientationHero() {
           </h1>
 
           <p className="mt-2 font-serif text-xl text-slate-600 sm:text-2xl">
-            Two axioms, one discrete compiler, the Standard Model.
+            Shared geometry, one discrete compiler, Standard-Model structure.
           </p>
 
           <p className="mt-6 max-w-3xl text-base leading-relaxed text-slate-700 sm:text-lg">
