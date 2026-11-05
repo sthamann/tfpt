@@ -494,6 +494,12 @@ The original common affine Higgs/Yukawa sewing already gives [formula in source]
 
 The follow-up uses the original joint R113 contact branch, rather than another fixed-background evaluation. In that branch let [formula in source] , [formula in source] , and [formula in source] , with all original Yukawa matrices, including the Dirac-neutrino term. The existing full internal Gram identity and CAR give [formula in source] For the Hamiltonian insertion [formula in source] , the whole mixed word is a s
 
+## An evaluated connected original pair response.
+
+[tex-artefacts/toe_field_integration_20261105.tex:288-321](../../../../tex-artefacts/toe_field_integration_20261105.tex#L288) · `section:3af2d927d144fcfb5d31` · paragraph
+
+For the original free product's 384 dimensional opposite momentum Spin4 pair, let [formula in source] be its given momentum and [formula in source] the original IR insertion [formula in source] . The global Euclidean Yukawa action mark gives [formula in source] [formula in source] All four supplied Yukawa matrices are invertible in this statement; the held fixed remainder is bounded and has the stated nonzero dominat
+
 ## 1. A charged field from the original filled microscopic sea
 
 [tex-artefacts/toe_research_20260909.tex:16-96](../../../../tex-artefacts/toe_research_20260909.tex#L16) · `section:75239cddbc07384c33f4` · subsection

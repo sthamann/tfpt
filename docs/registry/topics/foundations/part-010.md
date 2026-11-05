@@ -201,9 +201,15 @@ The whole neutral Higgs norm source is now integrated exactly within the existin
 
 Recovered verification calculations retain their original scope. Current Lean kernel checks distinguish proved consequences from explicit physical hypotheses; they do not turn those hypotheses into calculated joint field values. On the same finite fixed background R048 radial caller, a convergent integration method now retains the original cubic and quartic vertices without expanding their exponential. Its global pol
 
+## An evaluated connected original pair response.
+
+[tex-artefacts/toe_field_integration_20261105.tex:288-321](../../../../tex-artefacts/toe_field_integration_20261105.tex#L288) · `section:3af2d927d144fcfb5d31` · paragraph
+
+For the original free product's 384 dimensional opposite momentum Spin4 pair, let [formula in source] be its given momentum and [formula in source] the original IR insertion [formula in source] . The global Euclidean Yukawa action mark gives [formula in source] [formula in source] All four supplied Yukawa matrices are invertible in this statement; the held fixed remainder is bounded and has the stated nonzero dominat
+
 ## Durable result route.
 
-[tex-artefacts/toe_field_integration_20261105.tex:288-303](../../../../tex-artefacts/toe_field_integration_20261105.tex#L288) · `section:311cda8e2201599f83be` · paragraph
+[tex-artefacts/toe_field_integration_20261105.tex:322-341](../../../../tex-artefacts/toe_field_integration_20261105.tex#L322) · `section:311cda8e2201599f83be` · paragraph
 
 The earlier research records WEIGHTS20261105B, SEWING20261105C, FIELDINT20261105D, HYP20261105E and HYP20261105F retain their stated scope. The followups SHORTTIME20261105G and SHORTTIME20261105H add the calculated source coefficients. The continuation SHORTTIME20261105I records the neutral source integration and its full source boundary. The continuation SHORTTIME20261105J records the recovered proof scopes and conv
 

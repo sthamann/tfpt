@@ -88,9 +88,15 @@ The whole neutral Higgs norm source is now integrated exactly within the existin
 
 Recovered verification calculations retain their original scope. Current Lean kernel checks distinguish proved consequences from explicit physical hypotheses; they do not turn those hypotheses into calculated joint field values. On the same finite fixed background R048 radial caller, a convergent integration method now retains the original cubic and quartic vertices without expanding their exponential. Its global pol
 
+## An evaluated connected original pair response.
+
+[tex-artefacts/toe_field_integration_20261105.tex:288-321](../../../../tex-artefacts/toe_field_integration_20261105.tex#L288) · `section:3af2d927d144fcfb5d31` · paragraph
+
+For the original free product's 384 dimensional opposite momentum Spin4 pair, let [formula in source] be its given momentum and [formula in source] the original IR insertion [formula in source] . The global Euclidean Yukawa action mark gives [formula in source] [formula in source] All four supplied Yukawa matrices are invertible in this statement; the held fixed remainder is bounded and has the stated nonzero dominat
+
 ## Durable result route.
 
-[tex-artefacts/toe_field_integration_20261105.tex:288-303](../../../../tex-artefacts/toe_field_integration_20261105.tex#L288) · `section:311cda8e2201599f83be` · paragraph
+[tex-artefacts/toe_field_integration_20261105.tex:322-341](../../../../tex-artefacts/toe_field_integration_20261105.tex#L322) · `section:311cda8e2201599f83be` · paragraph
 
 The earlier research records WEIGHTS20261105B, SEWING20261105C, FIELDINT20261105D, HYP20261105E and HYP20261105F retain their stated scope. The followups SHORTTIME20261105G and SHORTTIME20261105H add the calculated source coefficients. The continuation SHORTTIME20261105I records the neutral source integration and its full source boundary. The continuation SHORTTIME20261105J records the recovered proof scopes and conv
 
@@ -800,19 +806,3 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 [tex-artefacts/toe_source_completion_20261103.tex:154-221](../../../../tex-artefacts/toe_source_completion_20261103.tex#L154) · `section:206a9bd3daad77367425` · subsection
 
 The given finite-range uniformly local Hamiltonian class has its thermodynamic real-time norm dynamics and ground/KMS states. Restrictions of one limiting state are compatible. Independently restarted small bare Gibbs weights need not be projective. Exact elimination carries the effective fiber weights, exterior determinants, higher vertices and memory, rather than imposing the original bare ansatz again at each cut.
-
-## The complete transfer comparison and its field requirements (K, R104–R108)
-
-[tex-artefacts/toe_source_completion_20261103.tex:222-310](../../../../tex-artefacts/toe_source_completion_20261103.tex#L222) · `section:2bbc10475616c74f0d3b` · subsection
-
-The complete original word source gives its actual pairing and time kernel, [formula in source] Its first derivative defines the generator form on the actual quotient. Equal full pairings and closed forms, with actual autonomous sewing, determine the whole transfer. A discrete source can instead be compared at its whole fixed step. In general [formula in source] is not [formula in source] ; a nonreducing compression
-
-Explicit source references:
-
-- [verification/v1002_spin10_mirror_projector.py](../../../../verification/v1002_spin10_mirror_projector.py#L1) · explicit_script_identifier
-- [verification/v474_entropic_hodge_carrier.py](../../../../verification/v474_entropic_hodge_carrier.py#L1) · explicit_script_identifier
-
-Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
-
-- [(* v474 (i): Q-target enumeration + mode-count ratio *) sols = Select[Table[{d, Sqrt[32/d]}, {d, 1, 32}], IntegerQ[#[[2]]] &]; q32 = (1/(8 Pi))^2; checkExact["v474 GRAV.ENTROPIC.HODGE.01 (i): the Q-target enumeration -- Tr Q^2 = d k^2 c3^4 = 32 c3^4 with INTEGER k has exactly the supports (d,k) = (2,4), (8,2), (32,1) = {|Z2|, g_car+N_fam = rank E8, 2^g_car = dim Lambda^* C^5}; the two-form block d = 10 needs Sqrt[16/5] and the fiber d = 16 needs Sqrt[2] (both irrational, the naive pair-block reading KILLED); minimal uniform q = c3^2 = 1/(64 pi^2); mode-ratio identity 32 c3^4 / delta_top = 32/48 = 2/3", sols == {{2, 4}, {8, 2}, {32, 1}} && ! Element[Sqrt[32/10], Rationals] && ! Element[Sqrt[32/16], Rationals] && Simplify[q32 - 1/(64 Pi^2)] == 0 && 32/48 == 2/3]; (* v474 (ii): the fold is the 5 -> 5bar conjugation (traceless u(5) weights) *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L3000)
-- [(* v473 (iii): the R^2 kill-test gap *) gap = Simplify[(1/(12 c3v^7))/((c3v/6)^2)]; checkExact["v473 GRAV.ENTROPIC.ACTION.01 (iii): the R^2 kill-test gap -- raw log-expansion coefficient (c3/6)^2 vs the TFPT Starobinsky 1/(12 c3^7) (M_scal^2 = c3^7 Mbar^2) mismatch EXACTLY 3 c3^-9 = 3 (8 pi)^9 ~ 1.2e13 (13 orders): direct identification FALSE without a mechanism -- the pre-registered kill test", gap == 3 (8 Pi)^9 && Abs[N[gap] - 1.2002728758784*^13]/1.2*^13 < 10^-3]; ]; (* ==== v474 round: the operator level of the entropic-action bridge -- the exact arithmetic content: the Q-target enumeration d k^2 = 32 with integer k has exactly the supports (2,4), (8,2), (32,1) = {|Z2|, rank E8, 2^g_car} with the 10/16 blocks excluded (irrational multipliers) and the mode-ratio identity Tr Q^2/delta_top = 32/48 = 2/3; and the fold-is-conjugation weight identity: the traceless u(5) weights of Lambda^4 are the negatives of those of Lambda^1 (5 -> 5bar), with the Pascal blocks {1,5,10} vs {1,10,5}; mirrors v474 (the 32x32 Fock/Clifford matrix checks are Python-only). ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2985)

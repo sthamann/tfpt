@@ -56,6 +56,12 @@ Use exactly the original R104 sixteen-mode CAR factor, [formula in source] Thus 
 
 The whole spectral parameter dependent Dirichlet to Neumann family now reconstructs the original conditional quarter circle heat source with all 96 internal directions, including its pointwise cross arc matrix kernel. All 12 Schur and 18 quarter circle controls passed. The original profile action also has an explicitly evaluated nonlocal cross kernel with its required contact term. These are operator space heat and a
 
+## An evaluated connected original pair response.
+
+[tex-artefacts/toe_field_integration_20261105.tex:288-321](../../../../tex-artefacts/toe_field_integration_20261105.tex#L288) · `section:3af2d927d144fcfb5d31` · paragraph
+
+For the original free product's 384 dimensional opposite momentum Spin4 pair, let [formula in source] be its given momentum and [formula in source] the original IR insertion [formula in source] . The global Euclidean Yukawa action mark gives [formula in source] [formula in source] All four supplied Yukawa matrices are invertible in this statement; the held fixed remainder is bounded and has the stated nonzero dominat
+
 ## Research consolidation: source fields, dynamics and the remaining bridge (2026-09-09)
 
 [tex-artefacts/toe_research_20260909.tex:2-15](../../../../tex-artefacts/toe_research_20260909.tex#L2) · `section:c45244b17d018accceaf` · section
