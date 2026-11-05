@@ -665,6 +665,12 @@ The original common affine Higgs/Yukawa sewing already gives [formula in source]
 
 The earlier fixed-rank bounded-profile test excludes absolute normalization over the explicitly tested flat noncompact [formula in source] Higgs volume with any nonzero finite polynomial Pfaffian coefficient. The original constant-circle positive-Laplace-profile result makes its bound uniform in the mode cutoff. These scoped results are reused. They are not exclusions of every original measure or fluctuating field.
 
+## Integrated neutral source and the remaining joint value.
+
+[tex-artefacts/toe_field_integration_20261105.tex:245-257](../../../../tex-artefacts/toe_field_integration_20261105.tex#L245) · `section:ca6504ff4287090b2550` · paragraph
+
+The whole neutral Higgs norm source is now integrated exactly within the existing fixed background R048 quadratic radial caller. Its source determinant ratio [formula in source] , regulated [formula in source] contact and original absolute baseline are retained. The original cubic and quartic vertices give a nonzero first Schwinger Dyson remainder when this Gaussian is substituted for the whole radial source on its p
+
 ## What the intermediate contracts establish.
 
 [tex-artefacts/toe_round27_full_reference.tex:18-35](../../../../tex-artefacts/toe_round27_full_reference.tex#L18) · `section:a640c5eb4e003323685c` · paragraph

@@ -1,5 +1,10 @@
 # TFPT: Aufgabenplan zur fundamentalen Herleitung
 
+## Current scientific continuation: SHORTTIME20261105I
+
+Use progress.json revision143 and CURRENT-PUBLIC-STATE.md. Evaluate the actual original joint marked kernel or mixed UY value. Existing G/H and neutral R048 source reductions remain scoped; additional integrand coefficients or a repeated source transport do not evaluate that value. The original cubic/quartic interactions and every other field remain in the common integral. No primitive joint completion is claimed.
+
+
 Current scientific state: [5 November 2026](CURRENT-PUBLIC-STATE.md). The public progress record retains historical detail with an explicit current scientific projection.
 
 ## R111: Ausgeführter ursprünglicher Quellenvergleich

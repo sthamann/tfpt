@@ -600,6 +600,12 @@ I. B. Frenkel, V. G. Kac, Basic representations of affine Lie algebras and dual 
 
 J. H. Conway, N. J. A. Sloane, Sphere Packings, Lattices and Groups, 3rd ed., Grundlehren der math.\ Wiss.\ 290, Springer (1999). C. L. Siegel, \"Uber die analytische Theorie der quadratischen Formen (the Minkowski–Siegel mass formula), Ann.\ of Math.\ 36 (1935) 527–606.
 
+## Integrated neutral source and the remaining joint value.
+
+[tex-artefacts/toe_field_integration_20261105.tex:245-257](../../../../tex-artefacts/toe_field_integration_20261105.tex#L245) · `section:ca6504ff4287090b2550` · paragraph
+
+The whole neutral Higgs norm source is now integrated exactly within the existing fixed background R048 quadratic radial caller. Its source determinant ratio [formula in source] , regulated [formula in source] contact and original absolute baseline are retained. The original cubic and quartic vertices give a nonzero first Schwinger Dyson remainder when this Gaussian is substituted for the whole radial source on its p
+
 ## 3. Full lattice dynamics and a physical neutral ground representation
 
 [tex-artefacts/toe_research_20260909.tex:115-158](../../../../tex-artefacts/toe_research_20260909.tex#L115) · `section:5d5709ce3e52f2ab7b99` · subsection

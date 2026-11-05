@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Larger charged sources and the remaining actual insertion (R109, R110)
+
+[tex-artefacts/toe_source_completion_20261103.tex:401-430](../../../../tex-artefacts/toe_source_completion_20261103.tex#L401) · `section:2168da76f91bd76c19e5` · subsection
+
+The larger integral odd spinor vertices have their explicit original spatial vectors, cocycle and all sixteen [formula in source] time weights. Their separately supplied collective [formula in source] is not substituted for [formula in source] . A concrete original vertex-mode anticommutator is nonzero between two distinct components, so those components are not directly independent elementary CAR. This does not excl
+
 ## Dated continuation: the actual residual time form (R111)
 
 [tex-artefacts/toe_source_completion_20261103.tex:431-489](../../../../tex-artefacts/toe_source_completion_20261103.tex#L431) · `section:0f8ee3912de706f173b8` · subsection
