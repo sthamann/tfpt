@@ -414,7 +414,7 @@ def freeze(root, publication_root=None):
   q=Path(path)
   if q.is_absolute() or '..' in q.parts or not science_allowed(path):
    errors.append({'sourceId':ident,'path':path,'reason':'outside approved scientific publication roots'})
-   item={'id':ident,'path':path,'sha256':s['sha256'],'lineStart':a,'lineEnd':b,'href':None,'freshness':'not-published','publicationState':'withheld-root'}
+   item={'id':ident,'path':path,'sha256':s['sha256'],'lineStart':a,'lineEnd':b,'href':None,'freshness':'not-published','publicationState':'withheld-root','historicalSource':historical(path)}
    sources[ident]=item;return item
   if path not in rawcache:rawcache[path]=(root/path).read_bytes()
   raw=rawcache[path];actual=sha(raw);n=len(raw.splitlines())
@@ -521,7 +521,7 @@ def build(snap):
  'reviewedSourceFreshness':dict(collections.Counter(s['freshness'] for s in snap['sourceRefs']))}
  coverage={**manifest,'counts':counts,'checks':{'exactLedgerIds':True,'exactEligibleFindingIds':True,
  'exactProblemIds':True,'exactPremiseIds':True,'exactSourceRefIds':True,
- 'allSourceReferencesAuditedAtFreeze':True,'allSourceHashesAndRangesValidatedAtFreeze':not manifest.get('sourceIssues'),
+ 'allSourceReferencesAuditedAtFreeze':True,'allSourceHashesAndRangesValidatedAtFreeze':not manifest.get('sourceIssues') and not manifest.get('sourceOmissions'),
  'allExcerptHashesValidated':True,'allPremisesResolved':True,'statusScopeAndSourcesPresent':True},
  'freshProofExecution':False}
  data={k:snap[k] for k in ['schemaVersion','ledger','findings','problems','premises','predictions','scripts','sourceRefs']}
@@ -540,6 +540,22 @@ def build_foundations(snap,meta):
  result['meta']={k:meta[k] for k in ('generatedAt','sourceRevision','sourceCommit','publicSourceCommit')}
  result['meta']['notice']='Public authored foundation navigation and original registered source synopsis. Current ledger statuses are separate. No fresh proof execution.'
  return result
+
+def validate_source_ref(ref, omissions, artifacts):
+ if ref['publicationState']=='withheld-root':
+  metadata={'id','path','sha256','lineStart','lineEnd','href','freshness','publicationState','historicalSource'}
+  assert set(ref)<=metadata and ref['href'] is None and ref['freshness']=='not-published',f'withheld source carries publication payload: {ref["id"]}'
+  assert ref['historicalSource']==historical(ref['path'])
+  assert any(o['sourceId']==ref['id'] and o['path']==ref['path'] and o.get('reason') for o in omissions),f'missing withheld-source reason: {ref["id"]}'
+  filename='sources/'+ref['id'].split(':',1)[1]+'.txt'
+  assert not any(a['path']==filename for a in artifacts) and not (PUBLIC/filename).exists(),f'withheld source has an excerpt artifact: {ref["id"]}'
+  return
+ assert science_allowed(ref['path']) and ref['freshness'] in ('current-at-snapshot','source-stale') and ref.get('excerptSha256')
+ if ref['freshness']=='source-stale':
+  assert ref['publicationState']=='retained-previously-validated-excerpt' and ref.get('previouslyValidatedAt') and ref.get('lastValidatedRevision')
+  assert ref.get('actualSha256') and ref['actualSha256']!=ref['sha256']
+ text=(PUBLIC/ref['href'].removeprefix('/research/')).read_text()
+ assert not PRIVATE.search('\n'.join(text.splitlines()[8:])),f'private text in excerpt {ref["id"]}'
 
 def validate(snap, data):
  m=snap['expectedCoverage']
@@ -562,12 +578,7 @@ def validate(snap, data):
   assert r['id']==original['claim_id'] and r['claim']==original['claim'] and r['status']==original['status'] and r['canonicalStatus']==original['canonical_status'] and r['dependencies']==original['dependencies'] and r['script']==original['script'],'ledger original text/status changed'
   assert r['sourceHref']
  for ref in data['sourceRefs']:
-  assert science_allowed(ref['path']) and ref['freshness'] in ('current-at-snapshot','source-stale') and ref.get('excerptSha256')
-  if ref['freshness']=='source-stale':
-   assert ref['publicationState']=='retained-previously-validated-excerpt' and ref.get('previouslyValidatedAt') and ref.get('lastValidatedRevision')
-   assert ref.get('actualSha256') and ref['actualSha256']!=ref['sha256']
-  text=(PUBLIC/ref['href'].removeprefix('/research/')).read_text()
-  assert not PRIVATE.search('\n'.join(text.splitlines()[8:])),f'private text in excerpt {ref["id"]}'
+  validate_source_ref(ref,m.get('sourceOmissions',[]),snap['artifacts'])
  for artifact in snap['artifacts']:
   p=PUBLIC/artifact['path'];assert p.is_file() and sha(p.read_bytes())==artifact['sha256'],f'changed/missing excerpt {p}'
  for k,ids in m['predictionIds'].items():assert [r['id'] for r in data['predictions'][k]]==ids

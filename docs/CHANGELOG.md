@@ -4,6 +4,23 @@ Scientific findings, their original scope and dated publication history remain
 in the modular `changelog.tex` document. This file records repository structure,
 navigation and maintenance changes that make no new scientific claim.
 
+## 2026-11-05 — Preserve the shared source update in every public view
+
+The c3/P1/P2 architecture chapter and the new shared source supplement are now
+declared in the public source inventory. Active document checks reject an
+incomplete include expansion. A regression covers the actual missing-declaration
+failure and preserves historical archive diagnostics.
+
+The research exporter retains an explicitly withheld source as metadata with a
+reason and no excerpt or link. Its validator checks that boundary instead of
+requiring publication of the omitted text. A targeted regression rejects a
+withheld source carrying a publication payload. Approved publication roots stay
+unchanged. Website synchronization also propagates release-hash helper failure.
+
+Scientific source evaluations and the clearly proposed next research routes
+are recorded separately in the shared paper supplement and public Atlas view.
+The physical ledger is unchanged.
+
 ## 2026-11-03 — Publish the consolidated source research
 
 The public research inventory is regenerated from the reviewed Atlas authoring

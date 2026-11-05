@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## 2026-06-12 (visual pass: shared figures, badges, marker typology)
+
+[documents/changelog/sections/023-source.tex:341-355](../../../../documents/changelog/sections/023-source.tex#L341) · `section:58cade7e0ae49570c7f2` · subsection
+
+Shared figure library tfpt_figures.tex ( input by tfpt_style): reusable TikZ macros for the architecture claim stack ( TFPTclaimstack[zone], B3), the anchor cockpit [formula in source] (B4), the [formula in source] glue diagram (B5), the [formula in source] motif map (B6) and the [formula in source] action lattice (B7). The claim stack and a marker badge bar are now shown near the front of every document, each highli
+
 ## 2026-06-12 (review pass on list.txt)
 
 [documents/changelog/sections/023-source.tex:356-381](../../../../documents/changelog/sections/023-source.tex#L356) · `section:b7fc94b9c310d988cbec` · subsection
@@ -1169,9 +1175,3 @@ Die historische Kurzfassung nennt [formula in source] und einen fünfteiligen Tr
 [experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/06_zeit_echo.tex:58-62](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/06_zeit_echo.tex#L58) · `section:d9cb81021e9bdd93448f` · section
 
 Aus [formula in source] folgt [formula in source] . Die historischen Größen [formula in source] und [formula in source] beschreiben deshalb sechsfach wiederholte Faktoren [formula in source] und [formula in source] . Eine physikalische Rate ist erst [formula in source] für einen festgelegten Schritt [formula in source] .
-
-## Flavor und Massenschemata
-
-[experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/09_physik.tex:125-150](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/09_physik.tex#L125) · `section:974dd665a1d27f23702d` · section
-
-Der historische Quellmassenansatz lautet Die sektorabhängigen [formula in source] sind nicht automatisch eins. Die Restklassenmatrix mit Zeilen [formula in source] , [formula in source] , [formula in source] hat Determinante acht und charakteristisches Polynom [formula in source] . Das sind interne Daten, keine direkte Massenmessung.

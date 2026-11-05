@@ -4,6 +4,54 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Der ganze endliche Operator besitzt bereits ein gemeinsames Wörterbuch
+
+[documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/004-subsection-auch-die-skalen-besitzen-einen-gemeinsamen-va.tex:183-202](../../../../documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/004-subsection-auch-die-skalen-besitzen-einen-gemeinsamen-va.tex#L183) · `section:7462e3e53c3e50ebcad8` · subsection
+
+Der Originalvertrag source-native-clock-flavor-bridge-20260922/PROOF.md liefert eine feste invertierbare Matrix [formula in source] mit [formula in source] ist die dort ausgewählte positive Familienform, [formula in source] der ganzzahlige Dreierzyklus, [formula in source] die Familienmonodromie und [formula in source] die Vierteldrehung. Die Orientierungsgerade ist in [formula in source] ausdrücklich mitgeführt. Für
+
+Explicit source references:
+
+- [experiments/theory-contracts/source-native-clock-flavor-bridge-20260922/PROOF.md](../../../../experiments/theory-contracts/source-native-clock-flavor-bridge-20260922/PROOF.md#L1) · explicit_file_citation
+
+## Warum die vorhandene Fermionisierung den Statistikschritt nicht überspringt
+
+[documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/006-subsection-die-48-und-die-41-sind-zwei-antworten-derselb.tex:332-344](../../../../documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/006-subsection-die-48-und-die-41-sind-zwei-antworten-derselb.tex#L332) · `section:0444ab0b0ae0c5cad185` · subsection
+
+Für die tatsächliche chirale E8-Fermionisierung gelten Die E8-Decksymmetrie hat Zeichen [formula in source] ; Fermionparität in den neuen Sektoren hat Zeichen [formula in source] beziehungsweise [formula in source] boylesmith. Das sind verschiedene Operatoren auf verschiedenen Sektoren.
+
+Explicit source references:
+
+- [verification/v522_woit_beta1_gso_gauge.py](../../../../verification/v522_woit_beta1_gso_gauge.py#L1) · explicit_script_identifier
+
+Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
+
+- [(* ==== v522 round: WOIT.BETA1.GSO.01 -- "the clock is time-like, GSO is the gauge datum": the Z8/NS tower + Ramond control, the invariant- dimension chain, the time-like reflection census, the exact Hermiticity witness of the clock insertion, the GSO 2-torsion census and the family-A tower-normalisation failure. The 40-digit GSO-fixed RP inertia certificates ((29,0,0)/(8,0,0)/(7,9,6)/(17,12,0)) are Python-only by the suite convention. Mirrors v522. ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L7609)
+
+## Schwere und leichte Neutrinos bleiben verschiedene physische Felder.
+
+[documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/007-subsection-die-vollst-ndige-neutrinomatrix-besitzt-ein-n.tex:48-81](../../../../documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/007-subsection-die-vollst-ndige-neutrinomatrix-besitzt-ein-n.tex#L48) · `section:6bc5f7df6561e72eadcc` · paragraph
+
+Der konkrete D5-Singulettpaarkanal besitzt [formula in source] und gehört zum [formula in source] - beziehungsweise konjugierten schweren Majorana-Anschluss. Sein direkter Familientensor ist die ursprüngliche schwere Form [formula in source] in der erklärten Q [formula in source] -Eigenbasis. Auch sie wird durch [formula in source] samt allen sechs Rückleseamplituden dargestellt. Für den dimensionslosen Tensor [formu
+
+## Die direkte Konstruktion
+
+[documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/010-subsection-der-st-rkste-neue-selektor-verbindet-orientie.tex:28-46](../../../../documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/010-subsection-der-st-rkste-neue-selektor-verbindet-orientie.tex#L28) · `section:0c79cc1eb6af26352be4` · subsection
+
+Aus dem positiven geraden unimodularen [formula in source] -Ladungsgitter und einem kompatiblen Kokzyklus entsteht in der erklärten Level-1-Gitterquantisierung Die grundlegenden geladenen Vertexantworten haben die Form Ladungsneutralität, Kokzyklus und Gitterpaarung bestimmen hier gemeinsam die Antwort. Die Unimodularität begründet die Holomorphie der Gitter-VOA; sie muss nicht als zusätzliche freie Auswahl erneut ei
+
+Explicit source references:
+
+- [verification/v459_seam_lattice_voa_route.py](../../../../verification/v459_seam_lattice_voa_route.py#L1) · explicit_file_citation
+
+Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
+
+- [experiments/lean4-carrier-rigidity/TfptCarrier/SeamResidualAxiom.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/SeamResidualAxiom.lean#L1)
+- [(* ==== v454/v456/v457/v459 round (G-block): the edge current-algebra/Sugawara c=8, the S3-from-P1 one-sided arithmetic, the (E8)_1 character/sector kill-test, and the lattice-VOA second route; mirrors v454/v456/v457/v459. The Casimir + Kac-Moody fits (v454), the Chern flip (v456) and the Tomita-Takesaki tower (v455) are numerical, Python-only; the exact algebra is mirrored here. ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2827)
+- [experiments/lean4-carrier-rigidity/TfptCarrier/AxiomCheck.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/AxiomCheck.lean#L1)
+- [experiments/lean4-carrier-rigidity/TfptCarrier/AuditContract.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/AuditContract.lean#L1)
+- [(* v457: the (E8)_1 character tower {1,248,4124,34752} and the kill-test discriminators *) cartanE8 = {{2, -1, 0, 0, 0, 0, 0, 0}, {-1, 2, -1, 0, 0, 0, 0, 0}, {0, -1, 2, -1, 0, 0, 0, 0}, {0, 0, -1, 2, -1, 0, 0, 0}, {0, 0, 0, -1, 2, -1, 0, -1}, {0, 0, 0, 0, -1, 2, -1, 0}, {0, 0, 0, 0, 0, -1, 2, 0}, {0, 0, 0, 0, -1, 0, 0, 2}}; cartanD8 = {{2, -1, 0, 0, 0, 0, 0, 0}, {-1, 2, -1, 0, 0, 0, 0, 0}, {0, -1, 2, -1, 0, 0, 0, 0}, {0, 0, -1, 2, -1, 0, 0, 0}, {0, 0, 0, -1, 2, -1, 0, 0}, {0, 0, 0, 0, -1, 2, -1, -1}, {0, 0, 0, 0, 0, -1, 2, 0}, {0, 0, 0, 0, 0, -1, 0, 2}}; E4q = 1 + 240 Sum[DivisorSigma[3, n] q^n, {n, 1, 6}]; inv8 = Series[Product[(1 - q^n)^-8, {n, 1, 6}], {q, 0, 4}]; chiSeries = Series[E4q inv8, {q, 0, 4}]; coeffs = CoefficientList[Normal[chiSeries], q]; checkExact["v457 SEAM.EQUIV.KILLTEST.01 (i): the (E8)_1 character tower chi=E4/eta^8=q^{-1/3}(1+248q+4124q^2+34752q^3+...); E4/Product(1-q^n)^8 q-series coeffs {1,248,4124,34752} -- the exact (E8)_1 conformal-tower degeneracies", Take[coeffs, 4] == {1, 248, 4124, 34752}]; checkExact["v457 SEAM.EQUIV.KILLTEST.01 (ii): the kill-test discriminators -- weight-1 count 248=dim E8=120(SO16)+128(spinor); |det Cartan(E8)|=1 (invertible, one sector) vs |det Cartan(D8=SO16)|=4 (four sectors); a measured 120 or 4 would FALSIFY (E8)_1, the data give 248/1", 120 + 128 == 248 && Det[cartanE8] == 1 && Abs[Det[cartanD8]] == 4]; (* v459: E8 even unimodular + the 240 roots split 112+128; 248=8+240=120+128 *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2847)
+
 ## Die Quellen- und Clockprüfungen: Welche Alternativen wirklich ausgeschlossen sind
 
 [documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/010-subsection-der-st-rkste-neue-selektor-verbindet-orientie.tex:298-299](../../../../documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/010-subsection-der-st-rkste-neue-selektor-verbindet-orientie.tex#L298) · `section:afec65d6f247eac024e1` · section
@@ -3009,94 +3057,3 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 - [(* ==== v501 round: CELEST.WP5D.01 -- WP5d-alpha of CELEST.SEAM.01, "the two-interval index from the lattice" (the local-net question, alpha stage). Exact content mirrored: (i) the Cartan determinants det(D5) = det(A3) = 4, product 16 = mu(carrier), det(D8) = 4 = mu(SO(16)_1), det(E8) = 1 = mu((E8)_1) (v378 replication, explicit matrices); (ii) the KLM/Longo-Rehren quotients mu/|L|^2 -- 16/4^2 = 1 (one-step mu4 glue, |L| = |mu4| = 4) and 16/2^2 = 4 -> 4/2^2 = 1 (via SO(16)_1), both routes exact; (iii) the Sigma d_i^2 cross-checks (Ising 1+1+2 = 4, SO(16)_1 four abelian sectors = 4, (E8)_1 one sector = 1) + the index reading arithmetic ([F:F_even] = e^(ln 2) = 2, mu_gauged = e^(2 ln 2) = 4, per-layer gauging 16 ln 2 = ln 2^16, budget ln 4 = ln mu(SO(16)_1)); (iv) the 16-fold-way condensability theta_v = e^(2 pi i nu/16) = 1 EXACTLY at nu = 2 c_- = 16 (c_- = 8 = g_car + N_fam, 16 layers = 2^(g_car - 1)) vs the rivals nu = 1, 2, 8. The lattice curves (Peschel covariance, Renyi-2 offsets, the ln 2 plateau, the duality-asymmetry witness, all ED validations) are numerical and stay Python-only (v501 S0-S4, S6). Mirrors v501. ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L3830)
 - [experiments/lean4-carrier-rigidity/TfptCarrier/SeamApplicabilityLedger.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/SeamApplicabilityLedger.lean#L1)
 - [(* ==== v524 round: WOIT.BETA2.OS.01 -- "the OS quotient of the free system made explicit" (verdict SUCCESS, [C]-typed per contract precision (iii)). Four exact mirrors: (i) the euclidean-rotation preconditions (alpha_1^N = (-1)^F wrap arithmetic at N = 16 and N = 8) + the exact PD certificate identity sin^2(3pi/8) - sin(pi/8) sin(5pi/8) = 1/2; (ii) the Klein-Landau one-particle transfer forms tau_k on the shrinking domains at N = 16, k = 1..7: exactly Hermitian, odd k with exactly ZERO diagonal (the C(even) = 0 checkerboard), even k = 2j obeying the exact square identity tau_2j(a, b) = <alpha_j a, alpha_j b> entrywise; (iii) the clock identities (C(9) = C(7), C(11) = C(5), the transparency product formula sin(7pi/16) - sin(5pi/16) = 2 cos(3pi/8) sin(pi/16) > 0) + the N = 8 compressed clock spectrum EXACTLY {1, sqrt(2)-1} = {1, 1/delta_S} via the generalized eigenvalues of (tau_2, G) on the one-particle domain, with sin(pi/8)/sin(3pi/8) = sqrt(2)-1; (iv) the pre-declared KMS witnesses (C(1)/C(3) = 1 + sqrt(2) = delta_S at N = 8; -(C5-C7)((C3-C7)+(C5-C7)) < 0 exactly at N = 16, i.e. det(G - tau_4) < 0 on the odd one-particle clock block). The 37x37/16x16 H_phys Grams, the 40-digit inertia certificates, the spectral projections and the reconstructed rotation group are numerical (mpmath eighe), Python-only, flagged here. Mirrors v524. ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L7965)
-
-## Research Contract — BULK.PRIME_COMPLETION.01 (prime/seam-generated completions, no spectator)
-
-[experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tfpt_research_contracts.tex:12687-12725](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tfpt_research_contracts.tex#L12687) · `section:f287beabd75c01fb7360` · section
-
-Typing. A research contract \ (ledger row BULK.PRIME_COMPLETION.01: Open, research contract), not a claim. Registered 2026-09-04 from the r644 audit harvest; it replaces the ``unique from seam data alone'' reading of SEAM.BULK4D.RECON.01/B7 by uniqueness in the category of seam-generated (prime) completions. Dimension typing ( DIMENSION.UPLIFT.FIREWALL.01 F2): the hypothesis is [formula in source] D free-fermion, the
-
-Explicit source references:
-
-- [DIMENSION.UPLIFT.FIREWALL.01](../../../../verification/status_ledger.csv#L739) · explicit_claim_identifier · original status at linked ledger row
-- [SEAM.BULK4D.RECON.01](../../../../verification/status_ledger.csv#L740) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v1020_spectator_sector_obstruction.py](../../../../verification/v1020_spectator_sector_obstruction.py#L1) · explicit_file_citation
-- [BULK.PRIME_COMPLETION.01](../../../../verification/status_ledger.csv#L773) · explicit_claim_identifier · original status at linked ledger row
-
-## Research Contract — QFT4D.OS.RECON.01 (the genuine 4D Euclidean lattice package)
-
-[experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tfpt_research_contracts.tex:12869-12959](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tfpt_research_contracts.tex#L12869) · `section:c01350c4771209b4c9e1` · section
-
-Typing. A research contract \ (ledger row QFT4D.OS.RECON.01: Open, research contract), not a claim. This is step (3) of the DIMENSION.UPLIFT.FIREWALL.01 route ordering: the nonperturbative 4D existence statement that no perturbative or seam-level result can substitute for.
-
-Explicit source references:
-
-- [verification/v1013_thermodynamic_dynamics.py](../../../../verification/v1013_thermodynamic_dynamics.py#L1) · explicit_file_citation
-- [QFT4D.OS.RECON.01](../../../../verification/status_ledger.csv#L745) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v1011_3p1d_ladder_battery.py](../../../../verification/v1011_3p1d_ladder_battery.py#L1) · explicit_file_citation
-- [QFT4D.LATTICE.FUNDAMENTAL.01](../../../../verification/status_ledger.csv#L760) · explicit_claim_identifier · original status at linked ledger row
-- [QFT4D.EG.ALLORDER.01](../../../../verification/status_ledger.csv#L444) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v1008_master_assembly_scaffold.py](../../../../verification/v1008_master_assembly_scaffold.py#L1) · explicit_file_citation
-- [DIMENSION.UPLIFT.FIREWALL.01](../../../../verification/status_ledger.csv#L739) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v989_lattice_gate_battery.py](../../../../verification/v989_lattice_gate_battery.py#L1) · explicit_file_citation
-- [verification/v381_qft4d_eg_allorder.py](../../../../verification/v381_qft4d_eg_allorder.py#L1) · explicit_script_identifier
-
-## Research Contract — CHIRAL4D.NOMIRROR.01 (the chiral 4D lattice matter theorem)
-
-[experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tfpt_research_contracts.tex:12960-13028](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tfpt_research_contracts.tex#L12960) · `section:11cf2220db595f7b5339` · section
-
-Typing. A research contract \ (ledger row CHIRAL4D.NOMIRROR.01: Open, research contract), not a claim. Step (4) of the firewall route ordering: chirality and mirror decoupling must be proven in the same 4D model that QFT4D.OS.RECON.01 constructs — the seam's [formula in source] and Chern/inflow structure are a boundary- anomaly signal, not yet 4D matter.
-
-Explicit source references:
-
-- [verification/v1002_spin10_mirror_projector.py](../../../../verification/v1002_spin10_mirror_projector.py#L1) · explicit_file_citation
-- [verification/v997_spin2_smg_witnesses.py](../../../../verification/v997_spin2_smg_witnesses.py#L1) · explicit_file_citation
-- [verification/v989_lattice_gate_battery.py](../../../../verification/v989_lattice_gate_battery.py#L1) · explicit_file_citation
-- [docs/OPEN_PROBLEMS.md](../../../../docs/OPEN_PROBLEMS.md#L1) · explicit_file_citation
-- [WOIT.OS.TWISTOR.01](../../../../verification/status_ledger.csv#L585) · explicit_claim_identifier · original status at linked ledger row
-- [CHIRAL4D.MIRROR.DET16.01](../../../../verification/status_ledger.csv#L766) · explicit_claim_identifier · original status at linked ledger row
-- [CHIRAL4D.NOMIRROR.01](../../../../verification/status_ledger.csv#L746) · explicit_claim_identifier · original status at linked ledger row
-- [QFT4D.OS.RECON.01](../../../../verification/status_ledger.csv#L745) · explicit_claim_identifier · original status at linked ledger row
-
-Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
-
-- [(* ---- (v997) GRAV.SPIN2.EMERGENCE.01: Barnes-Rivers ranks (5,3,1,1) ---- Python-only: Weyl^2 ghost residues, random-p numeric, SMG N=8 Fidkowski-Kitaev toy (spectrum / Spin(7) / Schmidt / edge). *)](../../../../verification/wolfram/tfpt_readouts.wl#L699)
-
-## Firewall Contract — GRAV.NONCIRCULAR.01 (the Bisognano–Wichmann direction discipline)
-
-[experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tfpt_research_contracts.tex:13092-13141](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tfpt_research_contracts.tex#L13092) · `section:136a1e576865c1424f29` · section
-
-Typing. A standing discipline rule, in force immediately (ledger row GRAV.NONCIRCULAR.01), with an audit census at registration. Bisognano–Wichmann (BW) is a theorem within an already-local, Poincar\'e-covariant QFT with a suitable vacuum: the modular flow of a wedge algebra acts as the boost. It is not a device that generates Lorentz spacetime from an arbitrary modular flow — there exist Poincar\'e-covariant nets vi
-
-Explicit source references:
-
-- [verification/v369_qgamb_redundancy.py](../../../../verification/v369_qgamb_redundancy.py#L1) · explicit_script_identifier
-- [verification/v359_grav_nonlinear_einstein.py](../../../../verification/v359_grav_nonlinear_einstein.py#L1) · explicit_script_identifier
-- [GRAV.NONCIRCULAR.01](../../../../verification/status_ledger.csv#L747) · explicit_claim_identifier · original status at linked ledger row
-- [QG.AMB.01](../../../../verification/status_ledger.csv#L47) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v446_seam_clock_invariance.py](../../../../verification/v446_seam_clock_invariance.py#L1) · explicit_script_identifier
-- [verification/v358_grav_entropy_equilibrium.py](../../../../verification/v358_grav_entropy_equilibrium.py#L1) · explicit_script_identifier
-- [QFT4D.OS.RECON.01](../../../../verification/status_ledger.csv#L745) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v259_modular_cutoff_kappa.py](../../../../verification/v259_modular_cutoff_kappa.py#L1) · explicit_script_identifier
-- [verification/v323_bw_geometric_modular.py](../../../../verification/v323_bw_geometric_modular.py#L1) · explicit_script_identifier
-- [verification/v478_entropic_continuum_legs.py](../../../../verification/v478_entropic_continuum_legs.py#L1) · explicit_script_identifier
-- [SEAM.EQUIV.01](../../../../verification/status_ledger.csv#L381) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v215_seam_deck_killtest.py](../../../../verification/v215_seam_deck_killtest.py#L1) · explicit_script_identifier
-- [verification/v440_seam_lto_rp_beta.py](../../../../verification/v440_seam_lto_rp_beta.py#L1) · explicit_script_identifier
-- [verification/v438_seam_hsmi_borchers.py](../../../../verification/v438_seam_hsmi_borchers.py#L1) · explicit_script_identifier
-- [verification/v526_seam_thermal_kms_nariai_bridge.py](../../../../verification/v526_seam_thermal_kms_nariai_bridge.py#L1) · explicit_script_identifier
-
-Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
-
-- [experiments/lean4-carrier-rigidity/TfptCarrier/SeamRigidityForcing.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/SeamRigidityForcing.lean#L1)
-- [(* ==== v526 round: SEAM.THERMAL.KMS.01 -- the thermal seam / third leg of c3. Exact mirrors: (i) Q-polynomial / measured beta = N at N = 8; (ii) beta_angle = 2 pi = 1/(4 c3) chain + Hawking/Nariai identities; (iii) nu char-poly / closed modular spectrum at N = 8. Tomita 40-digit residuals and the entropy tower are Python-only. Mirrors v526. ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L8139)
-- [(* ==== v503 round: QGEO.EMERGE.LIGHT.01 -- the v215 deferred emergence test (lever 7) executed light + the residual convergence QGEO-R1 == P2-R1. Exact/numeric content mirrored: (i) the CM-POINT IDENTITIES -- E2(i) = 3/Pi and E2(rho) = 2 Sqrt[3]/Pi (30-digit q-series vs the classical closed forms), hence E2*(i) = E2*(rho) = 0 EXACTLY by arithmetic; j(i) = 1728, j(rho) = 0 (KleinInvariantJ); DedekindEta[I] = Gamma[1/4]/(2 Pi^(3/4)) exact; (ii) NO DYNAMICAL SELECTION -- logF = log(tau2 |eta|^4) is S-invariant (30 digits at a generic point), the HEXAGONAL point wins (logF(rho) > logF(i)) and tau = i is a saddle (max along it, min along tau1 + i, sampled); (iii) the PILLOWCASE HALVING -- exact N = 8 discrete-torus spectrum (algebraic eigenvalues), Z2 pairing with exactly 4 self-paired cone modes, dim(even) = (N^2+4)/2 = 34, and det'_even^2 = det'_torus x prod_self EXACTLY; (iv) CLOCK => SQUARE + COXETER -- P(iZ) = P(Z) forces a3 = a2 = a1 = 0 (SolveAlways), j = 6912 I^3/(4 I^3 - J^2) = 1728 identically for Z^4 + a0, the order-4 element on H^1 has char poly lam^3 + lam^2 + lam + 1 (Coxeter of W(A3), order 4 = |mu4| = N_fam + 1), and Z6 = Aut(hexagonal) has element orders {1,2,3,6} -- no order 4. The v280-style lattice DtN curves (mod-4 off-character weights, sqrtm/expm) are numerical and stay Python-only (v503 B3-B5). Mirrors v503. ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L4053)
-- [experiments/lean4-carrier-rigidity/TfptCarrier/Mu4Commutation.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/Mu4Commutation.lean#L1)
-- [experiments/lean4-carrier-rigidity/TfptCarrier/AuditContract.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/AuditContract.lean#L1)
-- [experiments/lean4-carrier-rigidity/TfptCarrier/AxiomCheck.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/AxiomCheck.lean#L1)
-- [experiments/lean4-carrier-rigidity/TfptCarrier/BWKeystone.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/BWKeystone.lean#L1)
-- [experiments/lean4-carrier-rigidity/TfptCarrier/SeamStandardPair.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/SeamStandardPair.lean#L1)
-- [(* ==== v359 GRAV.NONLINEAR.01: full covariant Einstein eq, both coefficients parameter-free ==== *) Module[{c3, eta, d, Rs, traceG, dtop, prefactor}, c3 = 1/(8 Pi); eta = 1/4; traceG = (1 - d/2); (* g^{ab}G_ab = (1-d/2) R; coefficient of R *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2382)
-- [(* ==== v237: closing step as physics -- no topological degeneracy <=> det K=1 <=> SRE ==== *) Module[{cartanA, cartanD, e8edges, E8, D8, A3, D5, carrier, gsd}, cartanA[n_] := SparseArray[{{i_, i_} -> 2, {i_, j_} /; Abs[i - j] == 1 -> -1}, {n, n}] // Normal; cartanD[n_] := Module[{K}, K = 2 IdentityMatrix[n]; Do[K[[i, i + 1]] = K[[i + 1, i]] = -1, {i, n - 2}]; K[[n - 2, n]] = K[[n, n - 2]] = -1; K]; e8edges = {{1, 2}, {2, 3}, {3, 4}, {4, 5}, {5, 6}, {6, 7}, {5, 8}}; E8 = 2 IdentityMatrix[8] - Table[If[i != j && MemberQ[e8edges, Sort[{i, j}]], 1, 0], {i, 8}, {j, 8}]; A3 = cartanA[3]; D5 = cartanD[5]; D8 = cartanD[8]; carrier = ArrayFlatten[{{D5, 0}, {0, A3}}]; gsd[K_, g_] := Abs[Det[K]]^g; checkExact["v237 GATE.HOLO.03: the closing step as a physical condition -- the abelian K-matrix " <> "ground-state degeneracy on a genus-g surface is |det K|^g (torus: carrier D5(+)A3 -> 16, D8 -> 4, " <> "E8 -> 1), so 'no topological ground-state degeneracy on any closed surface' <=> det K = 1 <=> the " <> "seam bulk is short-range-entangled (the unique bosonic SRE c=8 phase = the Kitaev E8 state, edge " <> "holomorphic). A unique vacuum on the plane (genus 0, always 1) is necessary but not sufficient; the " <> "torus sees |det K|. NEG: an LRE bulk (D8, det 4) has 4-fold torus degeneracy + non-holomorphic edge.", gsd[carrier, 1] == 16 && gsd[D8, 1] == 4 && gsd[E8, 1] == 1 && gsd[carrier, 2] == 256 && gsd[E8, 2] == 1 && gsd[carrier, 0] == 1 && gsd[E8, 0] == 1 && Det[E8] == 1 && (5 + 3 == 8)]; ]; (* ==== v259: the modular/KMS spectral-action cutoff fixes f_2/f_0 = 1 (PS.SPECACT.02) ==== v258 (Dirac as covariance induction) is numerical matrix-log linear algebra -> Python-only. *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L1991)
-- [(* ==== v358 GRAV.ENTROPY.EQUILIBRIUM.01: parameter-free linearised Einstein + thermo=geo ==== *) Module[{c3, eta, Z2, mu4, chi, r, R, w, wint}, c3 = 1/(8 Pi); eta = 1/4; Z2 = 2; mu4 = 4; chi = 2; w = (R^2 - r^2)/(2 R); wint = Integrate[w * 4 Pi r^2, {r, 0, R}]; (* CHM 3-ball weight integral *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2371)
-- [experiments/lean4-carrier-rigidity/TfptCarrier/SeamApplicabilityLedger.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/SeamApplicabilityLedger.lean#L1)

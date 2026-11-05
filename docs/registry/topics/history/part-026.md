@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Flavor und Massenschemata
+
+[experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/09_physik.tex:125-150](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/09_physik.tex#L125) · `section:974dd665a1d27f23702d` · section
+
+Der historische Quellmassenansatz lautet Die sektorabhängigen [formula in source] sind nicht automatisch eins. Die Restklassenmatrix mit Zeilen [formula in source] , [formula in source] , [formula in source] hat Determinante acht und charakteristisches Polynom [formula in source] . Das sind interne Daten, keine direkte Massenmessung.
+
 ## Die übrigen Zweige bleiben Teil des Bildes
 
 [experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/09_physik.tex:173-188](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/09_physik.tex#L173) · `section:8eab23ee8b92a00b03ff` · section
@@ -66,6 +72,12 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 - [(* ---- (v16/v21) solar angle from the A3 glue-norm q(A3) = 3/4 ---- *) qA3 = 3/4; qD5 = 5/4; checkExact["E8 glue norm q(D5) + q(A3) = 2", qA3 + qD5 == 2]; checkExact["eps leading q(A3)/(6pi) = 1/(8pi) = c3", Simplify[qA3/(6 Pi) - c3] == 0]; s12 = 1/3 - (2/3) qA3 phi0; checkExact["sin^2 theta12 = 1/3 - phi0/2 (exact)", Simplify[s12 - (1/3 - phi0/2)] == 0]; (* ---- (v23) anchor generator a=(1,1,2) ---- *)](../../../../verification/wolfram/tfpt_readouts.wl#L88)
 
+## Existing producers and their actual composition
+
+[tex-artefacts/toe_field_integration_20261105.tex:20-36](../../../../tex-artefacts/toe_field_integration_20261105.tex#L20) · `section:aeb101993c6293200085` · subsection
+
+The original C6 whole-word expansion already has exact convolution over all cut positions. Its Green and inverse-square-root amplitudes retain their absolute scale; the calculation at the three original cusps has exact rational remainder bounds below [formula in source] . The existing three-state family transfer likewise gives its complete spectral, stationary and history weights. These are different typed producers.
+
 ## Research consolidation: source fields, dynamics and the remaining bridge (2026-09-09)
 
 [tex-artefacts/toe_research_20260909.tex:2-15](../../../../tex-artefacts/toe_research_20260909.tex#L2) · `section:c45244b17d018accceaf` · section
@@ -124,7 +136,7 @@ The literal original positive-parent clause leaves its residual [formula in sour
 
 ## Source and reproducibility route
 
-[tex-artefacts/toe_source_completion_20261103.tex:645-700](../../../../tex-artefacts/toe_source_completion_20261103.tex#L645) · `section:5a9ea639ada21fb1a3c4` · subsection
+[tex-artefacts/toe_source_completion_20261103.tex:645-702](../../../../tex-artefacts/toe_source_completion_20261103.tex#L645) · `section:5a9ea639ada21fb1a3c4` · subsection
 
 The dated report labels resolve through docs/research/fundamental-plan/RESULTS.md and the synthesis docs/research/fundamental-plan/CONSOLIDATION-R110-20261103.md. The main proof owners are: A and B: experiments/theory-contracts/puncture-metric-joint-completion-20261102/PROOF.txt and experiments/theory-contracts/joint-source-clock-field-closure-20261102/PROOF.txt. C: experiments/theory-contracts/original-paper-source-
 

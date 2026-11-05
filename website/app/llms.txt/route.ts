@@ -40,6 +40,9 @@ function buildLlmsTxt(): string {
 > flavor and alpha relations under stated premises. The operational source
 > already contains state and time. Full physical source identification and
 > readout completion remain separate from finite compiler closure.
+> The 5 November source continuation retains the closed whole-source transport
+> and evaluates entire conditional mirror and nonlinear number-source families.
+> The primitive common interacting field integral remains unevaluated.
 > ${predictions.length} status-graded falsifiable test surfaces are listed.
 
 Disambiguation: this is the physics theory "TFPT" (compiler closure for the

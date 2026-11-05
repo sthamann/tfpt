@@ -4,6 +4,50 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## 2026-06-30 ( v461/ v462 + Lean axiom merge — the strict-locality obstruction made explicit, the 128-spinor extension exhibited at character level, and the SEAM.EQUIV.01 residual reduced to ONE realisation axiom [formula in source] ONE combined cited theorem)
+
+[documents/changelog/sections/010-source.tex:309-347](../../../../documents/changelog/sections/010-source.tex#L309) · `section:9d4f17be173ce81f109e` · subsection
+
+v461_seam_strict_locality.py ( SEAM.S3.LOCALITY.01). Sharpens v460's verdict from a cited statement to an exhibited topological obstruction on the same v367 [formula in source] collar. \ CHERN INTEGER: the FHS Chern is [formula in source] (chiral [formula in source] ), [formula in source] (trivial [formula in source] ), [formula in source] (opposite mass). \ WILSON-LOOP / WANNIER-CENTRE WINDING [formula in source] CH
+
+Explicit source references:
+
+- [SEAM.EQUIV.SPINOR.01](../../../../verification/status_ledger.csv#L525) · explicit_claim_identifier · original status at linked ledger row
+- [verification/v462_seam_spinor_continuum.py](../../../../verification/v462_seam_spinor_continuum.py#L1) · explicit_script_identifier
+- [TfptCarrier.SeamScalingLimit.ChiralCFT_c8](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/SeamScalingLimit.lean#L68) · explicit_lean_symbol
+- [FORM.SEAM.RESIDUAL.01](../../../../verification/status_ledger.csv#L523) · explicit_claim_identifier · original status at linked ledger row
+- [verification/v460_seam_s3_lto.py](../../../../verification/v460_seam_s3_lto.py#L1) · explicit_script_identifier
+- [verification/v367_seam_s3_lattice.py](../../../../verification/v367_seam_s3_lattice.py#L1) · explicit_script_identifier
+- [TfptCarrier.SeamResidualAxiom.seam_realisation_theorem](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/SeamResidualAxiom.lean#L226) · explicit_lean_symbol
+- [verification/v336_continuum_limit.py](../../../../verification/v336_continuum_limit.py#L1) · explicit_script_identifier
+- [verification/v424_seam_lto_rp_reduction.py](../../../../verification/v424_seam_lto_rp_reduction.py#L1) · explicit_script_identifier
+- [verification/v461_seam_strict_locality.py](../../../../verification/v461_seam_strict_locality.py#L1) · explicit_file_citation
+- [experiments/lean4-carrier-rigidity/TfptCarrier/SeamResidualAxiom.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/SeamResidualAxiom.lean#L1) · explicit_file_citation
+- [SEAM.S3.LOCALITY.01](../../../../verification/status_ledger.csv#L524) · explicit_claim_identifier · original status at linked ledger row
+- [SEAM.EQUIV.01](../../../../verification/status_ledger.csv#L381) · explicit_claim_identifier · original status at linked ledger row
+- [verification/v458_seam_mmst_citation_audit.py](../../../../verification/v458_seam_mmst_citation_audit.py#L1) · explicit_script_identifier
+- [verification/v459_seam_lattice_voa_route.py](../../../../verification/v459_seam_lattice_voa_route.py#L1) · explicit_script_identifier
+- [verification/wolfram/tfpt_readouts_extension.wl](../../../../verification/wolfram/tfpt_readouts_extension.wl#L1) · explicit_file_citation
+- [verification/v456_seam_chirality_from_c3.py](../../../../verification/v456_seam_chirality_from_c3.py#L1) · explicit_script_identifier
+- [TfptCarrier.SeamResidualAxiom.fock_sectors](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/SeamResidualAxiom.lean#L153) · explicit_lean_symbol
+- [TfptCarrier.SeamResidualAxiom.strict_locality_forbidden](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/SeamResidualAxiom.lean#L138) · explicit_lean_symbol
+- [TfptCarrier.SeamResidualAxiom.residual_arithmetic](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/SeamResidualAxiom.lean#L286) · explicit_lean_symbol
+
+Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
+
+- [experiments/lean4-carrier-rigidity/TfptCarrier/SeamResidualAxiom.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/SeamResidualAxiom.lean#L1)
+- [experiments/lean4-carrier-rigidity/TfptCarrier/SeamScalingLimit.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/SeamScalingLimit.lean#L1)
+- [experiments/lean4-carrier-rigidity/TfptCarrier/AuditContract.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/AuditContract.lean#L1)
+- [(* ==== v454/v456/v457/v459 round (G-block): the edge current-algebra/Sugawara c=8, the S3-from-P1 one-sided arithmetic, the (E8)_1 character/sector kill-test, and the lattice-VOA second route; mirrors v454/v456/v457/v459. The Casimir + Kac-Moody fits (v454), the Chern flip (v456) and the Tomita-Takesaki tower (v455) are numerical, Python-only; the exact algebra is mirrored here. ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2827)
+- [(* v454: level-1 Sugawara c = dim G/(1+h^v) = 8 for both SO(16)_1 and (E8)_1 *) cSO16 = 120/(1 + 14); cE8 = 248/(1 + 30); checkExact["v454 SEAM.EQUIV.EDGE.VIRASORO.01: level-1 Sugawara c=dim G/(1+h^v)=8 for BOTH SO(16)_1 (120/15) and (E8)_1 (248/31); 16 Majoranas => c_-=8=g_car+N_fam (the Casimir c and Kac-Moody central term <J_n J_-n>=n are numerical, Python-only)", cSO16 == 8 && cE8 == 8 && cSO16 == cE8 && 8 == gcar + Nfam]; (* v456: c3's '8' is the one-sided count; reflection C->-C so two-sided forces C=0 *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2835)
+- [(* v461: tied obstruction integers + the reflection forcing (strict-local => C=-C => C=0) *) cMinus = 2^(gcar - 1)*1/2; (* 16*|C|/2 = 8, |C|=1 *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2881)
+- [experiments/lean4-carrier-rigidity/TfptCarrier/AxiomCheck.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/AxiomCheck.lean#L1)
+- [experiments/lean4-carrier-rigidity/TfptCarrier/SeamApplicabilityLedger.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/SeamApplicabilityLedger.lean#L1)
+- [(* ==== v461/v462 round: the Kapustin-Fidkowski strict-locality obstruction (integer logic; the Wilson-loop winding/Chern themselves are numerical, Python-only) and the 128-spinor extension at character level -- the Jacobi/E8 theta identity theta2^8+theta3^8+theta4^8=2E4 (so the (E8)_1 character is the SO(16)_1 vacuum+spinor sum) and the 120+128=248 sector + finite 16-Majorana Fock counts; mirrors v461/v462. ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2874)
+- [experiments/lean4-carrier-rigidity/TfptCarrier/SeamEdgeChern.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/SeamEdgeChern.lean#L1)
+- [(* v462 (i): the Jacobi/E8 theta identity theta2^8+theta3^8+theta4^8 = 2 E4 (numerical at q=1/50) *) qq = N[1/50, 50]; th2 = 2 qq^(1/8) Sum[qq^(n (n + 1)/2), {n, 0, 30}]; th3 = 1 + 2 Sum[qq^(n^2/2), {n, 1, 30}]; th4 = 1 + 2 Sum[(-1)^n qq^(n^2/2), {n, 1, 30}]; qE4 = 1 + 240 Sum[DivisorSigma[3, n] qq^n, {n, 1, 40}]; check["v462 SEAM.EQUIV.SPINOR.01 (i): the Jacobi/E8 theta identity theta2^8+theta3^8+theta4^8 = 2 E4 => chi_{(E8)_1}=E4/eta^8 = chi_o^{SO16}+chi_s^{SO16} (the holomorphic (E8)_1 character IS the SO(16)_1 vacuum + spinor sector sum, the conformal embedding SO(16)_1 in (E8)_1)", th2^8 + th3^8 + th4^8, 2 qE4, 10^-20]; (* v462 (ii): (E8)_1 weight-1 = SO(16)_1 vacuum 120 + spinor 128; finite 16-Majorana Fock *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2886)
+- [(* v457: the (E8)_1 character tower {1,248,4124,34752} and the kill-test discriminators *) cartanE8 = {{2, -1, 0, 0, 0, 0, 0, 0}, {-1, 2, -1, 0, 0, 0, 0, 0}, {0, -1, 2, -1, 0, 0, 0, 0}, {0, 0, -1, 2, -1, 0, 0, 0}, {0, 0, 0, -1, 2, -1, 0, -1}, {0, 0, 0, 0, -1, 2, -1, 0}, {0, 0, 0, 0, 0, -1, 2, 0}, {0, 0, 0, 0, -1, 0, 0, 2}}; cartanD8 = {{2, -1, 0, 0, 0, 0, 0, 0}, {-1, 2, -1, 0, 0, 0, 0, 0}, {0, -1, 2, -1, 0, 0, 0, 0}, {0, 0, -1, 2, -1, 0, 0, 0}, {0, 0, 0, -1, 2, -1, 0, 0}, {0, 0, 0, 0, -1, 2, -1, -1}, {0, 0, 0, 0, 0, -1, 2, 0}, {0, 0, 0, 0, 0, -1, 0, 2}}; E4q = 1 + 240 Sum[DivisorSigma[3, n] q^n, {n, 1, 6}]; inv8 = Series[Product[(1 - q^n)^-8, {n, 1, 6}], {q, 0, 4}]; chiSeries = Series[E4q inv8, {q, 0, 4}]; coeffs = CoefficientList[Normal[chiSeries], q]; checkExact["v457 SEAM.EQUIV.KILLTEST.01 (i): the (E8)_1 character tower chi=E4/eta^8=q^{-1/3}(1+248q+4124q^2+34752q^3+...); E4/Product(1-q^n)^8 q-series coeffs {1,248,4124,34752} -- the exact (E8)_1 conformal-tower degeneracies", Take[coeffs, 4] == {1, 248, 4124, 34752}]; checkExact["v457 SEAM.EQUIV.KILLTEST.01 (ii): the kill-test discriminators -- weight-1 count 248=dim E8=120(SO16)+128(spinor); |det Cartan(E8)|=1 (invertible, one sector) vs |det Cartan(D8=SO16)|=4 (four sectors); a measured 120 or 4 would FALSIFY (E8)_1, the data give 248/1", 120 + 128 == 248 && Det[cartanE8] == 1 && Abs[Det[cartanD8]] == 4]; (* v459: E8 even unimodular + the 240 roots split 112+128; 248=8+240=120+128 *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2847)
+
 ## 2026-06-30 ( v454– v459 + Lean + Wolfram — the post-F ``G-block'': the lattice Sugawara current algebra, a uniform-in- [formula in source] Tomita–Takesaki tower, chirality forced by [formula in source] , an [formula in source] character kill test, the exact MMST citation audit and the complementary lattice-VOA route)
 
 [documents/changelog/sections/011-source.tex:1-52](../../../../documents/changelog/sections/011-source.tex#L1) · `section:7ca01292e7152e165e80` · subsection
@@ -1238,9 +1282,3 @@ Quadratisches Ergänzen liefert mit der nativen Casimirnorm [formula in source]
 [documents/experiments--theory-contracts--universalraum-singlet-observable-20260915--tmp--pdfs--TFPT_Universalraum_Richtige_Kette_Konsolidierung_2026-09-15_v1.6.7/sections/013-subsubsection-4-5-dieselbe-urspr-ngliche-fermionantwort-.tex:106-136](../../../../documents/experiments--theory-contracts--universalraum-singlet-observable-20260915--tmp--pdfs--TFPT_Universalraum_Richtige_Kette_Konsolidierung_2026-09-15_v1.6.7/sections/013-subsubsection-4-5-dieselbe-urspr-ngliche-fermionantwort-.tex#L106) · `section:96445a07838ee8ca073c` · subsubsection
 
 Auf [formula in source] kann man [formula in source] definieren. Die additive Primfaktorbesetzung erklärt dann die Eulerstruktur. Der Definitionsbereich lautet [formula in source] . Dass quantenstatistische Systeme mit Zeta-Zustandssumme existieren, ist bereits ein Ergebnis von https://alainconnes.org/wp-content/uploads/bostconnesscan.pdfBost und Connes. Das ist ein relevanter Anschluss, nicht die fehlende native Her
-
-## 6.3 Der RH-Zielsatz bleibt unbewiesen
-
-[documents/experiments--theory-contracts--universalraum-singlet-observable-20260915--tmp--pdfs--TFPT_Universalraum_Richtige_Kette_Konsolidierung_2026-09-15_v1.6.7/sections/013-subsubsection-4-5-dieselbe-urspr-ngliche-fermionantwort-.tex:137-160](../../../../documents/experiments--theory-contracts--universalraum-singlet-observable-20260915--tmp--pdfs--TFPT_Universalraum_Richtige_Kette_Konsolidierung_2026-09-15_v1.6.7/sections/013-subsubsection-4-5-dieselbe-urspr-ngliche-fermionantwort-.tex#L137) · `section:856ac53b2edc89047b41` · subsubsection
-
-für einen strikt positiven selbstadjungierten Operator [formula in source] mit kompakter Inverser und [formula in source] von Spurklasse wäre tatsächlich hinreichend: Die gesamte rechte Funktion hat ihre Nullstellen nur bei reellen [formula in source] , einschließlich Multiplizitäten. Aber dieser Operator und die gesamte Funktionsidentität sind nicht konstruiert. Ein Operator mit lediglich den Imaginärteilen der Null

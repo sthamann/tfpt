@@ -4,6 +4,139 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## S03
+
+[experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/sources_manifest.tex:12-16](../../../../experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/sources_manifest.tex#L12) · `section:3b9468b6c21f262e79c7` · subsection
+
+TFPT_TOE_GEMEINSAMER_URSPRUNG_2026-09-14.md Gemeinsamer Ursprung: Zweizellenenergie, Verschränkung, Uhrsignal, Propagatorbrücke und TOE-Vertrag. SHA-256: 864bd44fa12d8deb88cb359742ee908b 8b5cc8a12cd2d39bc22c6fdced757b2e 32mm
+
+Explicit source references:
+
+- [universal_room/TFPT_TOE_GEMEINSAMER_URSPRUNG_2026-09-14.md](../../../../universal_room/TFPT_TOE_GEMEINSAMER_URSPRUNG_2026-09-14.md#L1) · explicit_file_citation
+
+## S04
+
+[experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/sources_manifest.tex:17-21](../../../../experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/sources_manifest.tex#L17) · `section:cbbd0312485a4044b734` · subsection
+
+TFPT_UNIVERSALRAUM_GESAMTSYNTHESE_2026-09-14.md Frühe Gesamtsynthese mit Fixpunkthypothese, Zahlenübersicht und Einordnung zu RH und Komplexität; mehrere Aussagen später korrigiert. SHA-256: f62f91af70b43ce349a9e4c17f9e4887 7099ae9b6c992f0c1482f4eb77ee6694 32mm
+
+Explicit source references:
+
+- [universal_room/TFPT_UNIVERSALRAUM_GESAMTSYNTHESE_2026-09-14.md](../../../../universal_room/TFPT_UNIVERSALRAUM_GESAMTSYNTHESE_2026-09-14.md#L1) · explicit_file_citation
+
+## -1.2cm TFPT — Architecture and the [formula in source] Compiler\\[2mm] The two axioms [formula in source] , the derivation map, and the Coxeter–cyclotomic [formula in source] construction
+
+[experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex:1-117](../../../../experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex#L1) · `section:024229b64f9d20277306` · frontmatter
+
+arrows.meta,positioning,calc,fit,backgrounds,shapes.geometric,shapes.misc,decorations.pathmorphing,decorations.pathreplacing,patterns,angles,quotes,matrix =3.5em
+
+## Architecture and the derivation map
+
+[experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex:118-146](../../../../experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex#L118) · `section:cf8ad1fb378e48fe5236` · part
+
+This document develops the architecture layer of TFPT: the two axioms, the derivation map, and the explicit [formula in source] construction. The thesis is that the bridge layer of TFPT is governed by three nested grammars: a carrier grammar (from [formula in source] come charges, families, hypercharge, [formula in source] , [formula in source] ), a seed grammar (one seed [formula in source] generates the Cabibbo ang
+
+## The EM closure: [formula in source] as an explicit fixed point (made explicit here)
+
+[experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex:3789-4044](../../../../experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex#L3789) · `section:3d3092d4174b4ba2e0ec` · subsection
+
+The engine [formula in source] is not an input — it is the unique root of an explicit closure equation (the exact electromagnetic closure theorem). With [formula in source] , [formula in source] , [formula in source] and the seam response [formula in source] , where the coefficient is [formula in source] , so the fine-structure constant reads the flavor transport budget [formula in source] and the [formula in source]
+
+Explicit source references:
+
+- [verification/v483_pillowcase_exact_traces.py](../../../../verification/v483_pillowcase_exact_traces.py#L1) · explicit_script_identifier
+- [verification/v159_pyrate_gauge_crosscheck.py](../../../../verification/v159_pyrate_gauge_crosscheck.py#L1) · explicit_script_identifier
+- [HYP.PHI0.PUNCTURE.01](../../../../verification/status_ledger.csv#L464) · explicit_claim_identifier · original status at linked ledger row
+- [verification/v342_em_ward_heatkernel.py](../../../../verification/v342_em_ward_heatkernel.py#L1) · explicit_script_identifier
+- [verification/v151_bfk_split.py](../../../../verification/v151_bfk_split.py#L1) · explicit_script_identifier
+- [verification/v974_alpha_faces_computed.py](../../../../verification/v974_alpha_faces_computed.py#L1) · explicit_file_citation
+- [verification/v461_seam_strict_locality.py](../../../../verification/v461_seam_strict_locality.py#L1) · explicit_script_identifier
+- [verification/v382_alpha_quillen_exact.py](../../../../verification/v382_alpha_quillen_exact.py#L1) · explicit_file_citation
+- [verification/v391_alpha_quillen_progress.py](../../../../verification/v391_alpha_quillen_progress.py#L1) · explicit_script_identifier
+- [verification/v484_seam_contact_unit.py](../../../../verification/v484_seam_contact_unit.py#L1) · explicit_file_citation
+- [verification/v48_em_ward.py](../../../../verification/v48_em_ward.py#L1) · explicit_script_identifier
+- [verification/v216_marks_gauss_bonnet.py](../../../../verification/v216_marks_gauss_bonnet.py#L1) · explicit_script_identifier
+- [verification/v341_alpha_quillen.py](../../../../verification/v341_alpha_quillen.py#L1) · explicit_file_citation
+- [verification/v472_quillen_detline_moduli.py](../../../../verification/v472_quillen_detline_moduli.py#L1) · explicit_file_citation
+- [verification/v239_kms_thermal_time.py](../../../../verification/v239_kms_thermal_time.py#L1) · explicit_script_identifier
+- [verification/v246_unification_data_crosscheck.py](../../../../verification/v246_unification_data_crosscheck.py#L1) · explicit_script_identifier
+- [verification/v470_alpha_inflow_level.py](../../../../verification/v470_alpha_inflow_level.py#L1) · explicit_script_identifier
+- [verification/v435_alpha_quillen_chernlevel.py](../../../../verification/v435_alpha_quillen_chernlevel.py#L1) · explicit_file_citation
+- [ALPHA.QUILLEN.EXACT.01](../../../../verification/status_ledger.csv#L445) · explicit_claim_identifier · original status at linked ledger row
+- [verification/v384_residual_certification.py](../../../../verification/v384_residual_certification.py#L1) · explicit_script_identifier
+- [verification/v3_em_alpha.py](../../../../verification/v3_em_alpha.py#L1) · explicit_file_citation
+- [EM.WARD.01](../../../../verification/status_ledger.csv#L70) · explicit_claim_identifier · original status at linked ledger row
+- [verification/v60_lambda_metrology_branch.py](../../../../verification/v60_lambda_metrology_branch.py#L1) · explicit_script_identifier
+- [verification/v456_seam_chirality_from_c3.py](../../../../verification/v456_seam_chirality_from_c3.py#L1) · explicit_script_identifier
+- [SEAM.STATE.RPMIXING.01](../../../../verification/status_ledger.csv#L752) · explicit_claim_identifier · original status at linked ledger row
+- [verification/v336_continuum_limit.py](../../../../verification/v336_continuum_limit.py#L1) · explicit_script_identifier
+- [SEAM.EQUIV.01](../../../../verification/status_ledger.csv#L381) · explicit_claim_identifier · original status at linked ledger row
+- [verification/v433_alpha_quillen_heatkernel.py](../../../../verification/v433_alpha_quillen_heatkernel.py#L1) · explicit_file_citation
+- [verification/v485_contact_diagonal_closed.py](../../../../verification/v485_contact_diagonal_closed.py#L1) · explicit_script_identifier
+- [verification/v985_quillen_channel_swap.py](../../../../verification/v985_quillen_channel_swap.py#L1) · explicit_file_citation
+- [verification/v434_alpha_quillen_betafunction.py](../../../../verification/v434_alpha_quillen_betafunction.py#L1) · explicit_file_citation
+- [verification/v367_seam_s3_lattice.py](../../../../verification/v367_seam_s3_lattice.py#L1) · explicit_script_identifier
+- [ALPHA.QUILLEN.FACES.01](../../../../verification/status_ledger.csv#L754) · explicit_claim_identifier · original status at linked ledger row
+
+Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
+
+- [experiments/lean4-carrier-rigidity/TfptCarrier/SeamApplicabilityLedger.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/SeamApplicabilityLedger.lean#L1)
+- [experiments/lean4-carrier-rigidity/TfptCarrier/SeamResidualAxiom.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/SeamResidualAxiom.lean#L1)
+- [(* v461: tied obstruction integers + the reflection forcing (strict-local => C=-C => C=0) *) cMinus = 2^(gcar - 1)*1/2; (* 16*|C|/2 = 8, |C|=1 *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2881)
+- [(* ==== v461/v462 round: the Kapustin-Fidkowski strict-locality obstruction (integer logic; the Wilson-loop winding/Chern themselves are numerical, Python-only) and the 128-spinor extension at character level -- the Jacobi/E8 theta identity theta2^8+theta3^8+theta4^8=2E4 (so the (E8)_1 character is the SO(16)_1 vacuum+spinor sum) and the 120+128=248 sector + finite 16-Majorana Fock counts; mirrors v461/v462. ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2874)
+- [experiments/lean4-carrier-rigidity/TfptCarrier/SeamScalingLimit.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/SeamScalingLimit.lean#L1)
+- [experiments/lean4-carrier-rigidity/TfptCarrier/SeamEdgeChern.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/SeamEdgeChern.lean#L1)
+- [(* ==== v341 ALPHA.QUILLEN.01: the seam-form discriminant identities ==== *) Module[{c3v, phib}, c3v = 1/(8 Pi); phib = 1/(6 Pi); (* phi_base = (4/3) c3 carries q(A3): c3/phi_base = 3/4; with -5/4 = -q(D5) the F_U(1) seam response carries BOTH glue forms, q(D5)+q(A3)=2 = E8 root norm; counterterm coefficient (4/5)M = 8 b1 = 8*(41/10) with b1 the U(1)_Y one-loop beta (rank E8 = 8) *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2248)
+- [(* ---- (v3) electromagnetic closure: alpha^-1 ---- *) M = 41; phiseam[a_] := phibase + (dtop Exp[-2 a]) (1 - dtop Exp[-2 a])^(-5/4); F[a_] := a^3 - 2 c3^3 a^2 - (4/5) c3^6 M Log[1/phiseam[a]]; aStar = a /. FindRoot[F[a] == 0, {a, 0.0073}, WorkingPrecision -> 40]; alphaInv = 1/aStar; check["alpha_* = 0.00729735256220985", aStar, 0.00729735256220985, 10^-15]; check["alpha^-1 = 137.0359992168407", alphaInv, 137.0359992168407, 10^-12]; (* ---- (v1) E8 glue arithmetic ---- *)](../../../../verification/wolfram/tfpt_readouts.wl#L36)
+- [(* ==== v454/v456/v457/v459 round (G-block): the edge current-algebra/Sugawara c=8, the S3-from-P1 one-sided arithmetic, the (E8)_1 character/sector kill-test, and the lattice-VOA second route; mirrors v454/v456/v457/v459. The Casimir + Kac-Moody fits (v454), the Chern flip (v456) and the Tomita-Takesaki tower (v455) are numerical, Python-only; the exact algebra is mirrored here. ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2827)
+- [experiments/lean4-carrier-rigidity/TfptCarrier/AuditContract.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/AuditContract.lean#L1)
+- [(* ---- (v159) PyR@TE gauge cross-check: carrier content -> SM 1-loop b_i ---- *) Module[{fields, pre, u1, su2, su3, b1, b2, b3, fermIdx, scalIdx}, (* {Y, dimSU2, dimSU3, nGen, kind}: kind 1 = Weyl fermion, 2 = complex scalar *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L1432)
+- [(* ---- (v983) SEAM.SIMPLECURRENT.GENERATOR.01: glue vector lambda = (omega_s, omega_f) ---- *) Module[{omegaS, omegaF, lam, inD5, inA3, inL0, gensD5, gensA3, dots, cosetRoots, census, lamV, omega2, nV, n2, cartanD8}, omegaS = ConstantArray[1/2, 5]; omegaF = {3/4, -1/4, -1/4, -1/4}; lam = Join[omegaS, omegaF]; inD5[x_] := (And @@ (IntegerQ /@ x)) && EvenQ[Total[x]]; inA3[y_] := (And @@ (IntegerQ /@ y)) && Total[y] === 0; inL0[z_] := inD5[Take[z, 5]] && inA3[Take[z, {6, 9}]]; checkExact["v983 NORMS+WEIGHT [E]: |omega_s|^2=5/4, |omega_f|^2=3/4, |lambda|^2=2, h_lambda=1", Total[omegaS^2] === 5/4 && Total[omegaF^2] === 3/4 && Total[lam^2] === 2 && Total[lam^2]/2 === 1]; checkExact["v983 ORDER FOUR [E]: 4*lambda in D5(+)A3, lambda and 2*lambda not -- [lambda] generates the diagonal Z4", inL0[4 lam] && ! inL0[2 lam] && ! inL0[lam]]; gensD5 = {{1, 1, 0, 0, 0}, {1, -1, 0, 0, 0}, {0, 1, 1, 0, 0}, {0, 0, 1, 1, 0}, {0, 0, 0, 1, 1}}; gensA3 = {{1, -1, 0, 0}, {0, 1, -1, 0}, {0, 0, 1, -1}}; dots = Join[omegaS . # & /@ gensD5, omegaF . # & /@ gensA3]; checkExact["v983 ISOTROPY+UNIMODULAR [E]: lambda.L0 subset Z on a generator set; det(D5)*det(A3)=16, index-4 glue => det L=1", (And @@ (IntegerQ /@ dots)) && 16/4^2 === 1]; cosetRoots[k_] := Module[{t = k lam, d5, a3}, d5 = Counts @ Select[ Total[(# + Take[t, 5])^2] & /@ Select[Tuples[Range[-5, 3], 5], EvenQ[Total[#]] &], # <= 2 &]; a3 = Counts @ Select[ Total[(Join[#, {-Total[#]}] + Take[t, {6, 9}])^2] & /@ Tuples[Range[-6, 6], 3], # <= 2 &]; Total[KeyValueMap[#2 Lookup[a3, 2 - #1, 0] &, d5]]]; census = Table[cosetRoots[k], {k, 0, 3}]; checkExact["v983 COSET ROOT CENSUS [E]: norm-2 vectors per fusion power k=0..3 = {52,64,60,64}, total 240; odd powers 64+64=128", census === {52, 64, 60, 64} && Total[census] === 240 && census[[2]] + census[[4]] === 128]; lamV = Join[{1, 0, 0, 0, 0}, omegaF]; omega2 = {1/2, 1/2, -1/2, -1/2}; nV = Total[lamV^2]; n2 = Total[omegaS^2] + Total[omega2^2]; cartanD8 = {{2, -1, 0, 0, 0, 0, 0, 0}, {-1, 2, -1, 0, 0, 0, 0, 0}, {0, -1, 2, -1, 0, 0, 0, 0}, {0, 0, -1, 2, -1, 0, 0, 0}, {0, 0, 0, -1, 2, -1, 0, 0}, {0, 0, 0, 0, -1, 2, -1, -1}, {0, 0, 0, 0, 0, -1, 2, 0}, {0, 0, 0, 0, 0, -1, 0, 2}}; checkExact["v983 KILLS+HOLOMORPHY SHADOW [E]: vector glue (v,omega_f) norm 7/4 and mismatched (omega_s, omega_2) norm 9/4 not in 2Z; det Cartan D8=4 vs glued det=1", nV === 7/4 && n2 === 9/4 && Det[cartanD8] === 4 && 16/4^2 === 1]; ]; (* ---- (v985) ALPHA.QUILLEN.EXACT.01: mu4 circulant spectra + graded channel swap ---- *)](../../../../verification/wolfram/tfpt_readouts.wl#L444)
+- [experiments/lean4-carrier-rigidity/TfptCarrier/AxiomCheck.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/AxiomCheck.lean#L1)
+- [(* ---- (v216) QGEO.MARKS.03: the four marks from Gauss-Bonnet + Euclidean-orbifold uniqueness ---- *) Module[{orbs, gb, nn}, orbs = {{2, 3, 6}, {2, 4, 4}, {3, 3, 3}, {2, 2, 2, 2}}; gb = nn /. Solve[nn (2 Pi - Pi) == 2 Pi 2, nn][[1]]; (* Z2 deficit pi, chi(S^2)=2 *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L1740)
+- [(* v469 (ii): KLM mu-index + the 16-fold-way pin *) muI2 = 4/2^2; muI4 = 16/4^2; nu = 16*1; cminus = nu/2; checkExact["v469 SEAM.EQUIV.CROSSEDPRODUCT.01 (ii): KLM mu-index -- both routes land holomorphic, mu = 4/2^2 = 1 (index-2 SO(16)_1 route) and mu = 16/4^2 = 1 (index-4 mu4 route); and the Kitaev 16-fold-way pin nu = 16 x |C| = 16 = 0 mod 16 with c_- = nu/2 = 8 = g_car + N_fam = rank E8 (the class-D phase whose edge is the purely bosonic (E8)_1 state)", muI2 == 1 && muI4 == 1 && Mod[nu, 16] == 0 && cminus == 8 && cminus == 5 + 3]; ]; (* ==== v470 round: the alpha^3 level / embedding-index rigidity -- the exact k_Y = 5/3 arithmetic (tr Y^2 / tr T3^2 over the 5bar), the b1 conversion (3/5)(41/6) = 41/10, and the carrier decomposition 41/6 = 20/3 + 1/6; mirrors v470 (the FHS Chern and the alpha^-1 root re-verification are numerical, Python-only). ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2937)
+- [(* v454: level-1 Sugawara c = dim G/(1+h^v) = 8 for both SO(16)_1 and (E8)_1 *) cSO16 = 120/(1 + 14); cE8 = 248/(1 + 30); checkExact["v454 SEAM.EQUIV.EDGE.VIRASORO.01: level-1 Sugawara c=dim G/(1+h^v)=8 for BOTH SO(16)_1 (120/15) and (E8)_1 (248/31); 16 Majoranas => c_-=8=g_car+N_fam (the Casimir c and Kac-Moody central term <J_n J_-n>=n are numerical, Python-only)", cSO16 == 8 && cE8 == 8 && cSO16 == cE8 && 8 == gcar + Nfam]; (* v456: c3's '8' is the one-sided count; reflection C->-C so two-sided forces C=0 *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2835)
+- [(* ---- (v47) Boundary Carrier Selection Theorem (Theorem A) ---- *) checkExact["q(D5)+q(A3)=5/4+3/4=2 (E8 root norm); glue index sqrt(4*4/1)=4=|mu4|", 5/4 + 3/4 == 2 && Sqrt[4*4/1] == 4]; checkExact["only n=5 gives 16-dim D_n half-spinor (2^{n-1}=16) => D5", Select[Range[2, 8], 2^(# - 1) == 16 &] == {5}]; (* ---- (v48) EM boundary Ward decomposition (Theorem C) ---- *)](../../../../verification/wolfram/tfpt_readouts.wl#L184)
+- [(* ---- (v150) replica EH model ---- *) Module[{cdef, imgOK, convOK, mellin, dz0, dC, target}, cdef[g_] := (1/12) (2 Pi/g - g/(2 Pi)); imgOK = And @@ Table[ FullSimplify[Sum[1/Sin[Pi k/n]^2, {k, 1, n - 1}] - (n^2 - 1)/3] === 0, {n, 2, 8}]; convOK = Simplify[(1/(4 nn)) (nn^2 - 1)/3 - cdef[2 Pi/nn]] === 0; mellin = Integrate[tt^(ss - 1) Exp[-mm^2 tt], {tt, 0, Infinity}, Assumptions -> ss > 0 && mm > 0]; dz0 = D[mm^(-2 ss), ss] /. ss -> 0; dC = D[cdef[gg], gg] /. gg -> 2 Pi; target = Simplify[12 Pi (1/2) (1/(8 Pi))]; checkExact["v150 replica EH model: image sum exact (N=2..8); orbifold deficit = C(2pi/N); Mellin Delta-zeta(s) = C m^-2s => Delta log det' = 2C ln m (cutoff-independent); dC/dgamma|_{2pi} = -1/(12pi) => EH form with k = ln m/(12pi); target k = c3/2 <=> ln m = 3/4 = q(A3)", imgOK && convOK && Simplify[mellin - Gamma[ss] mm^(-2 ss)] === 0 && Simplify[dz0 + 2 Log[mm]] === 0 && Simplify[dC + 1/(12 Pi)] === 0 && target == 3/4]; ]; (* ---- (v151) BFK split ---- *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L1321)
+- [(* ---- (v60) Lambda branch selection: prefactor 3/(4pi^2), branch mis-scale 64pi^3/3 ---- *) checkExact["delta_top=48 c3^4=3/(256 pi^4); (8pi)^2 delta_top=3/(4 pi^2); 2c3/delta_top=64 pi^3/3 (G_N pinned)", With[{c3 = 1/(8 Pi), dt = 48 (1/(8 Pi))^4}, Simplify[dt - 3/(256 Pi^4)] == 0 && Simplify[(8 Pi)^2 dt - 3/(4 Pi^2)] == 0 && Simplify[2 c3/dt - 64 Pi^3/3] == 0]]; checkExact["action exponents (1,5,10) = K5 counts (5 vertices, C(5,2)=10 edges); Pascal 16=1+5+10", {1, 5, Binomial[5, 2]} == {1, 5, 10} && 1 + 5 + 10 == 16]; (* ---- (v61) boundary-CFT bridge: WZW central charges = atoms, conformal embedding ---- *)](../../../../verification/wolfram/tfpt_readouts.wl#L282)
+- [(* ==== v342 EM.WARD.02: the heat-kernel origin of the F_U(1) terms ==== *) Module[{c3v, ointK, c3gb, gilkey, q2}, c3v = 1/(8 Pi); (* c3 = boundary Gauss-Bonnet coefficient: oint_{S^2} K = 2 pi chi = 4 pi (chi=2), c3 = 1/(|Z2| oint K) *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2259)
+
+## The landscape: [formula in source] is overdetermined
+
+[experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex:4283-4308](../../../../experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex#L4283) · `section:f21263a5b5ce0586b9f8` · section
+
+Machine checks for this section: v6_ bootstrap.py v14_ carrier_ uniqueness.py
+
+Explicit source references:
+
+- [verification/v14_carrier_uniqueness.py](../../../../verification/v14_carrier_uniqueness.py#L1) · explicit_file_citation
+- [verification/v6_bootstrap.py](../../../../verification/v6_bootstrap.py#L1) · explicit_file_citation
+
+Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
+
+- [experiments/lean4-carrier-rigidity/TfptCarrier/CarrierRankUniqueness.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/CarrierRankUniqueness.lean#L1)
+
+## The [formula in source] carrier atlas — stated unambiguously
+
+[experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex:4309-4317](../../../../experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex#L4309) · `section:c65ae1d24385856b2176` · section
+
+In the series [formula in source] is a downstream scale grammar, not a primitive cause: the boundary kernel fixes [formula in source] , the carrier rank, families and admissibility without [formula in source] upstream. Three levels.
+
+Explicit source references:
+
+- [verification/v5_e8_cascade.py](../../../../verification/v5_e8_cascade.py#L1) · explicit_file_citation
+
+Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
+
+- [experiments/lean4-carrier-rigidity/TfptCarrier/YukawaTrilinearForm.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/YukawaTrilinearForm.lean#L1)
+- [experiments/lean4-carrier-rigidity/TfptCarrier/CalderonInterface.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/CalderonInterface.lean#L1)
+
+## Level 1 — original [formula in source] data of the series ( )
+
+[experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex:4318-4334](../../../../experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex#L4318) · `section:6b9dec719137c69d70de` · subsection
+
+Coxeter/gauge typing of the lcm–gcd pair. Writing [formula in source] and [formula in source] , the relations become [formula in source] and [formula in source] : the local SM algebra is the gcd of the Coxeter double-period and the [formula in source] rank-occupancy, and the [formula in source] root count is their lcm. Likewise the EW exponent reads [formula in source] (Coxeter principal part plus a rank singlet). \
+
 ## Appendix: ablation of the EM fixed point
 
 [experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex:5543-5614](../../../../experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex#L5543) · `section:26a278c5e4594d3a3f3a` · part
@@ -1864,55 +1997,3 @@ Ein traceloses hermitesches [formula in source] -Objekt hat genau drei reelle Ko
 [experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/16_schatten_synthese.tex:8-20](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/16_schatten_synthese.tex#L8) · `section:fd626374a8e99ccde304` · section
 
 Die bildhafte Aussage Alles ist aus Primzahlen gebaut lässt sich zu einer brauchbareren Hypothese präzisieren: Ein möglicher gemeinsamer Ursprung besitzt elementare, zusammensetzbare Operationen. In einem kommutativen arithmetischen Schatten erscheinen primitive Faktoren. Vor dieser Auslesung bleiben zusätzliche Phasen, Kontexte und Aufzeichnungen erhalten. Räumliche Nachbarschaft und Zeitordnung müssten aus den erla
-
-## Warum getrennte passende Modelle noch keine gemeinsame Quelle sind
-
-[experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/16_schatten_synthese.tex:77-97](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/16_schatten_synthese.tex#L77) · `section:13619c0952c87b436292` · section
-
-Man könnte einen arithmetischen Raum, ein Quantensystem und ein geometrisches Modell einfach nebeneinanderstellen: [formula in source] Bei Produktzustand und unabhängig wirkenden Operationen passen dann vielleicht alle Einzelstatistiken. Der gemeinsame Ursprung wäre dadurch nicht erklärt. Nötig sind gemeinsame Relationen und überprüfbare Antworten auf gemischte Eingriffe. Die oben konstruierte Wegphase ist ein kleine
-
-## Zusätzlicher Einblick in den RH-Forschungsbestand
-
-[experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/17_schatten_quellen.tex:3-29](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/17_schatten_quellen.tex#L3) · `section:df883b4e7a2ccf794d52` · section
-
-Die Erweiterung wurde am 14. September 2026 gegen verfügbare Originalabschnitte im lokalen Repository tfpt-theoryv4 abgeglichen. Der gelesene Git-Stand war 66b91e40e245569f06ab440ead80f446c9be0ee5. Dies identifiziert den Checkout; es behauptet keinen frischen vollständigen Beweis- oder Testlauf. Die tatsächlich verwendeten Dateiinhalte sind zusätzlich mit SHA-256 im Paket erfasst, auch soweit der Arbeitsbaum von Git
-
-Explicit source references:
-
-- [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/experiments/tfpt-discovery/gabor_first_contact_selberg_result.json](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/experiments/tfpt-discovery/gabor_first_contact_selberg_result.json#L1) · explicit_file_citation
-
-## Ungelesener Austausch ist keine Kühlung
-
-[experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/19_execution_v13.tex:119-125](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/19_execution_v13.tex#L119) · `section:01d17811a6df29ed63d0` · section
-
-Alle [formula in source] kommutieren mit [formula in source] ; der ungelesene Kanal erhält das Zielgewicht. Seine einzelnen Dephasierungen sind orthogonale Hilbert–Schmidt-Projektionen. Ein Fixpunkt ihres Zyklus kann bei keinem Schritt Norm verlieren und liegt deshalb im Schnitt der Fixräume: in der Kommutante der [formula in source] -Wirkung. Deren Dimension ist Die spurlose Dimension 3875 identifiziert keinen gleic
-
-## Neue Quellen und unveränderte Originale
-
-[experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/20_release_v13.tex:8-18](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/20_release_v13.tex#L8) · `section:2674cdfc38ac21ad58d7` · section
-
-Die alten IDs S01–S11 bleiben unverändert. N1–N6 bezeichnen die sechs bereits archivierten Konsolidierungen: Fable-Konsolidierung, Sol-Rekonstruktion, kurze Universalraum-Konsolidierung, Q-Audit/U-Regel, TFPT-Rekonstruktion und Sechs-Prüfpunkte-Analyse, jeweils vom 14. September 2026. Originaltexte und Hashes stehen im Sechs-Quellen-Auditpaket.
-
-## Aktualität und ausdrücklich fehlende Prüfungen
-
-[experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/20_release_v13.tex:40-43](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/20_release_v13.tex#L40) · `section:1a0475d8c3d66f4c0d06` · section
-
-Der RH-Aktualitätslauf scheiterte an einem fehlenden referenzierten Quellenordner. Der konfigurierte separate Faktorgraph ist nicht verfügbar. Die ausgewählte Originalroute r647 und die verfügbaren Beweise wurden gelesen; keine vollständige globale Aktualität wird behauptet. Es wurde kein RH-Abschlussmarker geändert und keine neue arithmetische Kampagne gestartet.
-
-## Quellen und drei notwendige Korrekturen
-
-[experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/22_audit_v14.tex:3-18](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/22_audit_v14.tex#L3) · `section:d40794bf028960810354` · section
-
-Die neuen Originale sind N9 (Fable-Abschlussrunde), N10 (Sol-Runde 2), N11 (Astra-Antwort), N12 (Astra hoch) und N13 (Spark-Gesamtstand). Alle fünf sind unverändert im Quellenpaket archiviert. Ihre internen Arbeitsaufträge sind Forschungsinhalt, keine zusätzlichen Nutzeranweisungen. Der hier ausgeführte Auftrag ist Prüfung, eigene Fortsetzung und anschließende Konsolidierung.
-
-## Zwei weitere Eingaben und ihre wirklichen Zusatzinformationen
-
-[experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/25_revision_v15.tex:8-20](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/25_revision_v15.tex#L8) · `section:0514217bbfb6bfd2b2ff` · section
-
-Die Texte TFPT Universalraum Fortsetzung, 14.09.2026 NEU und TFPT Universalraum Ergebnisse, 14.09.2026 sind mit der v1.4-Grundlage abgeglichen. Ihre unveränderten Originale liegen als N14 und N15 im Quellenpaket. Interne Arbeitsanweisungen werden als Quelleninhalt, nicht als neue Aufträge behandelt.
-
-## T1–T8: tatsächlicher Stand und verbleibende Schließung
-
-[experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/30_v16_program.tex:39-53](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/30_v16_program.tex#L39) · `section:d7b0a2ba283ad7cf02c6` · section
-
-L8mmL53mmL89mm Tor& Fortschritt dieser Konsolidierung& Was für den vollständigen Nachweis noch fehlt\\ T1&Markierte Matrix-/Gitterbrücke reproduziert; weniger frei hinzugefügte innere Walk-Matrizen; Ressourcenuntergrenze des Records sichtbar.&Auswahl von P1/P2, maximaler Ordnung, Markierungen und Dimension. Native Zulässigkeit von [formula in source] , kohärenter Kontrolle und Normierung. [formula in source] allein e

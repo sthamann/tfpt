@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Ein exakter Zeuge gegen Kompression auf Paaransichten
+
+[documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/009-subsection-zustand-und-wirkung-aus-derselben-r-ckwirkung.tex:295-328](../../../../documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/009-subsection-zustand-und-wirkung-aus-derselben-r-ckwirkung.tex#L295) · `section:5e5ac9ef76208ec98a5b` · subsection
+
+Setze auf drei Qubits und Beide Zustände besitzen die Eigenwerte [formula in source] , jeweils vierfach. Ihre sämtlichen Ein- und Zweiteilreduktionen sind gleich: Trotzdem liefert dieselbe zugelassene Paaroperation [formula in source] Die anfänglichen Steigungen sind [formula in source] und [formula in source] . Gleiche Paaransichten und gleiche globale Spektren bestimmen somit nicht alle zukünftigen Paarantworten.
+
 ## Zwei unterschiedliche, jeweils sinnvolle Rekursionen
 
 [documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/010-subsection-der-st-rkste-neue-selektor-verbindet-orientie.tex:149-174](../../../../documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/010-subsection-der-st-rkste-neue-selektor-verbindet-orientie.tex#L149) · `section:b0a738e155ebe97b3505` · subsection
@@ -978,9 +984,3 @@ Eine Algebra mit Darstellung und geeignetem Diracoperator kann Geometrie kodiere
 [experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/11_anhang.tex:76-79](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/11_anhang.tex#L76) · `section:dc396e4ac3e45d09a2bc` · section
 
 Die Quellenkürzel S01 bis S11 gelten durchgängig für dieses Buch und sind von den jeweils eigenen Kürzeln der Anhänge zu unterscheiden. Die vollständigen Originalpfade und SHA-256-Werte stehen im beiliegenden Manifest. Hier werden die Dateinamen und inhaltlichen Rollen aufgeführt.
-
-## Primzahlen, RH und die Musik hinter den Schatten
-
-[experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/12_schatten_arithmetik.tex:1-8](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/12_schatten_arithmetik.tex#L1) · `section:50968a8a25060bbb54ca` · chapter
-
-Was uns ein Schatten verraten kann Wenn wir nur den Schatten eines Rades sehen, erkennen wir vielleicht einen Kreis. Erst wenn wir das Rad drehen, belasten und mit einem zweiten Rad verbinden, erkennen wir seine Achse, seine Zähne und seine Übersetzung. Genau so lesen wir hier Primzahlen, Quanteneffekte und Raumzeit: als verschiedene Antworten, die eine mögliche gemeinsame Struktur gleichzeitig erklären müsste.

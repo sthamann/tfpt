@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## 6.3 Der RH-Zielsatz bleibt unbewiesen
+
+[documents/experiments--theory-contracts--universalraum-singlet-observable-20260915--tmp--pdfs--TFPT_Universalraum_Richtige_Kette_Konsolidierung_2026-09-15_v1.6.7/sections/013-subsubsection-4-5-dieselbe-urspr-ngliche-fermionantwort-.tex:137-160](../../../../documents/experiments--theory-contracts--universalraum-singlet-observable-20260915--tmp--pdfs--TFPT_Universalraum_Richtige_Kette_Konsolidierung_2026-09-15_v1.6.7/sections/013-subsubsection-4-5-dieselbe-urspr-ngliche-fermionantwort-.tex#L137) · `section:856ac53b2edc89047b41` · subsubsection
+
+für einen strikt positiven selbstadjungierten Operator [formula in source] mit kompakter Inverser und [formula in source] von Spurklasse wäre tatsächlich hinreichend: Die gesamte rechte Funktion hat ihre Nullstellen nur bei reellen [formula in source] , einschließlich Multiplizitäten. Aber dieser Operator und die gesamte Funktionsidentität sind nicht konstruiert. Ein Operator mit lediglich den Imaginärteilen der Null
+
 ## 7. Die lokale Polnäherung wird präziser, das relativistische Feld bleibt offen
 
 [documents/experiments--theory-contracts--universalraum-singlet-observable-20260915--tmp--pdfs--TFPT_Universalraum_Richtige_Kette_Konsolidierung_2026-09-15_v1.6.7/sections/013-subsubsection-4-5-dieselbe-urspr-ngliche-fermionantwort-.tex:161-204](../../../../documents/experiments--theory-contracts--universalraum-singlet-observable-20260915--tmp--pdfs--TFPT_Universalraum_Richtige_Kette_Konsolidierung_2026-09-15_v1.6.7/sections/013-subsubsection-4-5-dieselbe-urspr-ngliche-fermionantwort-.tex#L161) · `section:f2a2540bf039e794a727` · subsection
@@ -613,9 +619,3 @@ Auf der Referenz [formula in source] füllt das lokale CPTP-Instrument mit Kraus
 [documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/016-subsection-beweisumfang-label-beweisumfang.tex:277-323](../../../../documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/016-subsection-beweisumfang-label-beweisumfang.tex#L277) · `section:90ec09e62f7374419228` · subsection
 
 @ > p( - 2 ) * 0.5000 > p( - 2 ) * 0.5000@ Aussage der Anlage & Prüfung \\ Clock sei ein äußerer Handgriff, weil er Gewichte verschiebt & Bereits in v1.6.6/7 durch das explizite Spin(10)-Wort widerlegt. Nichtskalare Wirkung innerhalb eines Irreps bedeutet keine äußere Symmetrie. Die aktuelle Mechanismusprüfung reproduziert zudem den ursprünglichen Clock und seinen passiven Focklift. \\ Mit allen gewährten inneren Kon
-
-## 2.2 Übernahmeentscheidung
-
-[documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/018-subsection-50-gegen-die-lteren-gepinnten-zertifikate.tex:243-290](../../../../documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/018-subsection-50-gegen-die-lteren-gepinnten-zertifikate.tex#L243) · `section:4dba61194e3f14b294c9` · subsubsection
-
-@ > p( - 2 ) * 0.5000 > p( - 2 ) * 0.5000@ Aussage aus den Eingaben & Entscheidung für v1.6.7 \\ Korrigierter Anfangskommutant 3829536 / 1444233216 & Bestätigt; keine neue Größe gegenüber v1.6.6 \\ Nur SU(4) oder nur Spin(10) als zusätzliche Kontrollen & Übernommen; echte Zwischenstufen statt binärer Verfügbarkeit \\ Volle Gruppe plus alle Modenbesetzungen erzeugt volle Sektoralgebra & Unabhängig bestätigt, ausdrückl

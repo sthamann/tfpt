@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## 2.2 Übernahmeentscheidung
+
+[documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/018-subsection-50-gegen-die-lteren-gepinnten-zertifikate.tex:243-290](../../../../documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/018-subsection-50-gegen-die-lteren-gepinnten-zertifikate.tex#L243) · `section:4dba61194e3f14b294c9` · subsubsection
+
+@ > p( - 2 ) * 0.5000 > p( - 2 ) * 0.5000@ Aussage aus den Eingaben & Entscheidung für v1.6.7 \\ Korrigierter Anfangskommutant 3829536 / 1444233216 & Bestätigt; keine neue Größe gegenüber v1.6.6 \\ Nur SU(4) oder nur Spin(10) als zusätzliche Kontrollen & Übernommen; echte Zwischenstufen statt binärer Verfügbarkeit \\ Volle Gruppe plus alle Modenbesetzungen erzeugt volle Sektoralgebra & Unabhängig bestätigt, ausdrückl
+
 ## 3.1 Warum vier und nicht eins?
 
 [documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/018-subsection-50-gegen-die-lteren-gepinnten-zertifikate.tex:294-360](../../../../documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/018-subsection-50-gegen-die-lteren-gepinnten-zertifikate.tex#L294) · `section:5a54e89abf080c1fd62c` · subsubsection
@@ -1455,9 +1461,3 @@ Explicit source references:
 - [GNET.LOCALNET.01](../../../../verification/status_ledger.csv#L675) · explicit_claim_identifier · original status at linked ledger row
 - [verification/v746_phys_gnet_local_functor.py](../../../../verification/v746_phys_gnet_local_functor.py#L1) · explicit_file_citation
 - [verification/v779_gnet_gns_arf.py](../../../../verification/v779_gnet_gns_arf.py#L1) · explicit_file_citation
-
-## The seam elliptic complex is Fredholm (APS)
-
-[documents/tfpt_2_standard_model/sections/010-section-the-explicit-mass-gap-closes-dynamics-and-cluste.tex:161-183](../../../../documents/tfpt_2_standard_model/sections/010-section-the-explicit-mass-gap-closes-dynamics-and-cluste.tex#L161) · `section:0a3610a9e32985012149` · section
-
-Compactify the oriented two-dimensional normal slice [formula in source] to [formula in source] . The geometric BRST/Hodge differential, restricted to the seam-even sector with Atiyah–Patodi–Singer boundary conditions on [formula in source] , is an elliptic operator on a compact manifold; hence it is Fredholm, with finite-dimensional kernel and cokernel and an integer index. The compact bosonic Higgs index selects [f

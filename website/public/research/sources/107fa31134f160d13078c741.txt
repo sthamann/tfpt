@@ -1,0 +1,137 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/constant-triangulation-20261103/evaluate_original_joint_source.py
+Original file SHA-256: ae52b4a2c1ac7c0b86eb44a6907a33893ec0e0ffb7b536b8345d8e6541c57a8b
+Inclusive original lines: 1-129
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | from pathlib import Path
+000002 | import hashlib,json
+000003 | import sympy as s
+000004 | import mpmath as m
+000005 | 
+000006 | m.mp.dps=160
+000007 | [OMITTED: non-scientific conversation or execution metadata]
+000008 | paths={
+000009 |  'primitive':'documents/archive--tfpt-45--source_extracts--01_boundary_kernel_source/sections/001-section-primitive-core-and-carrier-interface-handoff.tex',
+000010 |  'geometric':'documents/archive--tfpt-45--source_extracts--05_metrology_source/sections/001-subsection-from-bridge-to-geometric-completion.tex',
+000011 |  'local':'documents/archive--tfpt-45--source_extracts--05_metrology_source/sections/002-subsection-closed-texorpdfstring-41-41-chain-after-famil.tex',
+000012 |  'planck':'documents/archive--tfpt-45--source_extracts--05_metrology_source/sections/004-subsection-absolute-spectral-planck-closure.tex',
+000013 |  'ir':'documents/archive--tfpt-45--source_extracts--05_metrology_source/sections/006-subsection-infrared-seam-and-sector-bifurcation.tex',
+000014 |  'qft':'documents/archive--tfpt-45--source_extracts--04_qft_source/sections/007-subsection-renormalized-physical-and-scheme-readout-laye.tex',
+000015 | }
+000016 | texts={k:(root/p).read_text() for k,p in paths.items()}
+000017 | assert r'\rho(U_\Sigma)=\phibase\,q_\star^{31}' in texts['ir']
+000018 | assert r'q_\star:=\deltatop e^{-2\alpha_\star}' in texts['ir']
+000019 | assert r'-\log\!\bigl(1-\rho(U_\Sigma)\bigr)' in texts['ir']
+000020 | assert r'\frac{\rho_\star}{2\pi^2}' in texts['planck']
+000021 | assert r'S_{\mathrm{adm}}[\varphi]' in texts['qft']
+000022 | 
+000023 | # Existing TFPT resummed alpha contract, no experimental alpha fitted here.
+000024 | c3=1/(8*m.pi); delta=48*c3**4
+000025 | def F(alpha):
+000026 |     q=delta*m.exp(-2*alpha)
+000027 |     ph=1/(6*m.pi)+q*(1-q)**(-m.mpf(5)/4)
+000028 |     return alpha**3-2*c3**3*alpha**2-m.mpf(4)/5*41*c3**6*m.log(1/ph)
+000029 | alpha=m.findroot(F,(m.mpf('0.007'),m.mpf('0.0075')))
+000030 | assert abs(F(alpha))<m.mpf('1e-150')
+000031 | q=delta*m.exp(-2*alpha); phi=1/(6*m.pi)
+000032 | z=phi*q**31
+000033 | rank1=-m.log1p(-z)
+000034 | overlap=delta*m.exp(-2/alpha)
+000035 | logrank1=m.log(phi)+31*(m.log(delta)-2*alpha)
+000036 | assert abs(logrank1-m.log(z))<m.mpf('1e-145')
+000037 | assert abs(rank1/z-1)<m.mpf('1e-120')
+000038 | needed_factor=(-m.expm1(-overlap))/z
+000039 | needed_power=m.log((-m.expm1(-overlap))/phi)/m.log(q)
+000040 | assert abs(-m.log1p(-needed_factor*z)-overlap)<m.mpf('1e-270')
+000041 | 
+000042 | # Common local scalar/metric equations on a constant Einstein background.
+000043 | x,R=s.symbols('x R',positive=True)
+000044 | Fc=s.Function('F')(x); V=s.Function('V')(x); ac=s.Function('a')(x)
+000045 | u=V/Fc**2
+000046 | scalar=s.diff(Fc,x)*R/2-s.diff(V,x)+s.diff(ac,x)*R**2
+000047 | onshell=s.simplify(scalar.subs(R,4*V/Fc))
+000048 | assert s.simplify(onshell/Fc**2+s.diff(u,x)-16*s.diff(ac,x)*u**2)==0
+000049 | # Constant-a R^2 trace vanishes on constant Einstein space.
+000050 | assert s.simplify(2*R*(R/4)-R**2/2)==0
+000051 | rho,k=s.symbols('rho k',positive=True)
+000052 | v=s.Function('v')(rho)
+000053 | assert s.simplify(s.diff(v/(k*rho)**2,rho)
+000054 |                   -(rho*s.diff(v,rho)-2*v)/(k**2*rho**3))==0
+000055 | # Retained local homogeneous quartic / quadratic coefficients leave a scale ray.
+000056 | chi,H,t=s.symbols('chi H t',positive=True)
+000057 | A,B,C,K,L=s.symbols('A B C K L')
+000058 | VV=A*chi**4+B*chi**2*H**2+C*H**4
+000059 | FF=K*chi**2+L*H**2
+000060 | assert s.simplify((VV/FF**2).subs({chi:t*chi,H:t*H},simultaneous=True)-VV/FF**2)==0
+000061 | 
+000062 | # The original fixed-curvature Planck functional is not vacuum potential itself.
+000063 | E=s.symbols('E'); G4=s.Function('G4')(rho); LS=s.Function('L')(rho)
+000064 | W=-6*E*rho+G4+rho**2*LS
+000065 | stationaryE=s.solve(s.diff(W,rho),E)[0]
+000066 | Wstar=s.simplify(W.subs(E,stationaryE))
+000067 | assert s.simplify(Wstar-(G4-rho*s.diff(G4,rho)-rho**2*LS-rho**3*s.diff(LS,rho)))==0
+000068 | # Actual operator-defined residue can depend on the same scale field.
+000069 | EE=s.Function('E')(rho)
+000070 | Wfull=-6*rho*EE+G4+rho**2*LS
+000071 | expected_hessian=(-12*s.diff(EE,rho)-6*rho*s.diff(EE,rho,2)
+000072 |                   +s.diff(G4,rho,2)+2*LS+4*rho*s.diff(LS,rho)+rho**2*s.diff(LS,rho,2))
+000073 | assert s.simplify(s.diff(Wfull,rho,2)-expected_hessian)==0
+000074 | expected_value=G4-rho*s.diff(G4,rho)-rho**2*LS-rho**3*s.diff(LS,rho)+6*rho**2*s.diff(EE,rho)
+000075 | assert s.simplify(Wfull-rho*s.diff(Wfull,rho)-expected_value)==0
+000076 | # Exact regular spectral scaling diagnostic, fixed bundle/domain, Brel=0.
+000077 | eps,zeta_res,zeta_fp=s.symbols('eps zeta_res zeta_fp')
+000078 | sig=s.symbols('sig',real=True)
+000079 | laurent=s.exp(2*sig*(1+eps))*(zeta_res/eps+zeta_fp)
+000080 | assert s.simplify(s.limit(eps*laurent,eps,0)-s.exp(2*sig)*zeta_res)==0
+000081 | 
+000082 | # Exact original SM finite representation indices, full96 incl. antiparticles.
+000083 | charges=[(6,s.Rational(1,6)),(3,s.Rational(2,3)),(3,s.Rational(-1,3)),
+000084 |          (2,s.Rational(-1,2)),(1,s.Integer(-1)),(1,s.Integer(0))]
+000085 | KY=2*3*sum(n*y*y for n,y in charges)
+000086 | K2=2*3*(3+1)*s.Rational(1,2)
+000087 | K3=2*3*(2+1+1)*s.Rational(1,2)
+000088 | assert (KY,K2,K3)==(20,12,12)
+000089 | assert s.simplify(K2/(KY+K2))==s.Rational(3,8)
+000090 | # One-loop source shadow, common scale above the light SM thresholds.
+000091 | b1,b2,b3=s.Rational(41,10),s.Rational(-19,6),s.Integer(-7)
+000092 | AU,logs,EM=s.symbols('AU logs EM')
+000093 | i1=AU+b1*logs/(2*s.pi);i2=AU+b2*logs/(2*s.pi);i3=AU+b3*logs/(2*s.pi)
+000094 | em=s.Rational(5,3)*i1+i2
+000095 | au=s.solve(em-EM,AU)[0]
+000096 | assert s.simplify(em-(s.Rational(8,3)*AU+11*logs/(6*s.pi)))==0
+000097 | assert s.simplify(i3.subs(AU,au)-(s.Rational(3,8)*EM-67*logs/(16*s.pi)))==0
+000098 | 
+000099 | def ns(v):return m.nstr(v,45)
+000100 | out={
+000101 |  'result_id':'JOINT20261103',
+000102 |  'verdict':'PARTIAL_ORIGINAL_BRANCH_EVALUATION_NO_FULL_SOURCE_CLOSURE',
+000103 |  'alpha_inverse_recomputed_existing_contract':ns(1/alpha),
+000104 |  'rank_one_exhausted_IR_branch_unreduced_Planck_units':ns(rank1),
+000105 |  'overlap_branch_same_unreduced_Planck_units':ns(overlap),
+000106 |  'ratio_IR_to_overlap':ns(rank1/overlap),
+000107 |  'fractional_difference':ns(rank1/overlap-1),
+000108 |  'required_eigenvalue_factor_if_identified':ns(needed_factor),
+000109 |  'required_occupancy_power_if_identified':ns(needed_power),
+000110 |  'rank_one_scope':'Additional archived rank-one carrier-exhaustion hypothesis only. No identification with entire Planck determinant or complete physical vacuum. Factor/power diagnostics are not fitted source parameters.',
+000111 |  'joint_constant_background_equation':'d_i(V/F^2)=16 (d_i a)(V/F^2)^2 for local L=F R/2+a R^2-V. Constant a gives d_i(V/F^2)=0.',
+000112 |  'joint_equation_scope':'Original local scalar/metric R^2 chart; no new scalar is added. F includes actual mixed Higgs curvature terms. Higher curvature/nonlocal terms require their actual derivatives.',
+000113 |  'fixed_curvature_planck_stationary_value':str(Wstar),
+000114 |  'planck_scope':'E held independent of rho only in stated partial derivative, as in the displayed linear-term convexity argument. W includes gravitational curvature and is not identified with vacuum V.',
+000115 |  'scale_dependent_residue_full_planck_hessian':str(expected_hessian),
+000116 |  'scale_dependent_residue_stationary_value':str(expected_value),
+000117 |  'residue_scaling_scope':'Definitions use Ksigma=exp(-sigma/2)Dgeo exp(-sigma/2)+Brel. General scale derivatives of E cannot be omitted. Brel=0 fixed-domain homogeneous scaling gives Res1 zeta_sigma=exp(2sigma)Res1 zeta_D, before actual reference subtraction. This diagnostic does not identify Brel=0 with the physical TFPT source or establish a physical failure.',
+000118 |  'full96_gauge_indices':{'Y':str(KY),'SU2':str(K2),'SU3':str(K3)},
+000119 |  'common_coefficient_gauge_ratio_sin2thetaW':'3/8',
+000120 |  'one_loop_alpha_s_inverse_after_EM':'3*alphaEM_inverse/8 - 67*log(MU/mu)/(16*pi)',
+000121 |  'coupling_scope':'Common trace coefficient and SM one-loop shadow with GUT-normalized g1, common scale above SM thresholds. Original unification-scale relation and physical thresholds still required; not a new complete coupling prediction.',
+000122 |  'physical_outputs_from_full_original_integral':{'vacuum_energy':None,'Newton_constant':None,'all_gauge_couplings':None},
+000123 |  'full_original_field_integral_evaluated':False,
+000124 |  'blocking_inputs':'Actual I_N,w_A,N,w_R,N on common original field domain; explicit rho/g/A dependence of renormalized source, full admissible determinant and reference derivatives, not merely convexity/branch definitions.',
+000125 |  'source_pins':{k:{'path':p,'sha256':hashlib.sha256((root/p).read_bytes()).hexdigest()} for k,p in paths.items()},
+000126 |  'executed':'Alpha root and both original IR expressions at160 digits, independent logarithmic evaluation; exact local joint stationarity and scale identity; exact96 gauge indices and symbolic one-loop elimination. No full path integral, Lean/Wolfram or ledger promotion.'
+000127 | }
+000128 | Path(__file__).with_name('results.json').write_text(json.dumps(out,indent=2,ensure_ascii=False)+'\n')
+000129 | print(json.dumps(out,indent=2,ensure_ascii=False))

@@ -482,6 +482,24 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 - [(* ==== v473 round: the entropic-action bridge (Bianconi, PRD 111, 066001 (2025); arXiv:2408.14391) -- the exact algebraic content: the carrier Hodge count 1+5+10 = 16 = 2^(g_car-1) (vs the 4d fiber 11), the coefficient pin beta'_B = c3/6 = 1/(48 pi) from 3 beta' = 1/(16 pi), the entropy potential s(x) = x-1-ln x (nonnegative, quadratic minimum), the Lambda-channel target Tr Q^2 = 32 c3^4 = 1/(128 pi^4) = (2/3) delta_top, and the R^2 kill-test gap 3 c3^-9 = 3 (8 pi)^9; mirrors v473 (the Frullani quadrature is numerical, Python-only). ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2957)
 - [(* ---- (v152) R3 normalisation = the anchor ---- *) Module[{c3, k, lnratio, dlogdet}, c3 = 1/(8 Pi); k = c3/2; lnratio = Simplify[12 Pi k]; dlogdet = -D[(mm/muu)^(-2 ss), ss] /. ss -> 0; checkExact["v152 R3 normalisation = anchor: Delta log det' = 2 C ln(m/mu) (scale-ambiguous ln m; only m/mu physical); k = c3/2 <=> ln(m/mu) = 3/4 => m/mu = e^{3/4}; 1/(16 pi G)|_{G=1} = c3/2 (induced 1/G = the v68 anchor); audit: 3/4 = q(A3) is the target value, not a derivation", Simplify[dlogdet - 2 Log[mm/muu]] === 0 && k == 1/(16 Pi) && lnratio == 3/4 && Simplify[1/(16 Pi) - c3/2] === 0 && 3/4 == 3/4]; ]; (* ---- (v153) No-Unit Theorem ---- *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L1355)
 
+## What the whole Higgs integration still has to evaluate
+
+[tex-artefacts/toe_field_integration_20261105.tex:112-140](../../../../tex-artefacts/toe_field_integration_20261105.tex#L112) · `section:f463bbe11849aa5cfb65` · subsection
+
+The original common affine Higgs/Yukawa sewing already gives [formula in source] , retaining any further original Higgs-dependent vertices. Its mixed matter coefficient includes [formula in source] . Here [formula in source] is a derivative with the Higgs field integrated. A derivative of a conditional fermion determinant with respect to a prescribed background Higgs value is a different operation. The later complete
+
+## Conditional operator routes for the next evaluation.
+
+[tex-artefacts/toe_field_integration_20261105.tex:185-221](../../../../tex-artefacts/toe_field_integration_20261105.tex#L185) · `section:85421518a2101c3be34d` · paragraph
+
+The follow-up uses the original joint R113 contact branch, rather than another fixed-background evaluation. In that branch let [formula in source] , [formula in source] , and [formula in source] , with all original Yukawa matrices, including the Dirac-neutrino term. The existing full internal Gram identity and CAR give [formula in source] For the Hamiltonian insertion [formula in source] , the whole mixed word is a s
+
+## Durable result route.
+
+[tex-artefacts/toe_field_integration_20261105.tex:222-230](../../../../tex-artefacts/toe_field_integration_20261105.tex#L222) · `section:311cda8e2201599f83be` · paragraph
+
+The research records WEIGHTS20261105B, SEWING20261105C, FIELDINT20261105D, HYP20261105E and HYP20261105F distinguish recovered original results, executed calculations, analytic class statements and the unevaluated primitive integral. The full original source remains the common calculation target. These records neither choose a new state or measure nor change the existing c3/P1/P2, compiler, flavor, clock or physical
+
 ## 1. A charged field from the original filled microscopic sea
 
 [tex-artefacts/toe_research_20260909.tex:16-96](../../../../tex-artefacts/toe_research_20260909.tex#L16) · `section:75239cddbc07384c33f4` · subsection

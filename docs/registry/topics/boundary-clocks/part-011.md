@@ -1303,6 +1303,39 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 - [(* v475 (iii): the Lorentzian timelike positivity witness *) gL = DiagonalMatrix[{-1, 1, 1, 1}]; mM = Outer[Times, {vv, 0, 0, 0}, {vv, 0, 0, 0}]; evT = Sort[Eigenvalues[(gL + aal mM) . Inverse[gL]]]; evS = Sort[Eigenvalues[(gL + aal Outer[Times, {0, vv, 0, 0}, {0, vv, 0, 0}]) . Inverse[gL]]]; checkExact["v475 GRAV.ENTROPIC.SCALARON.01 (iii): the Lorentzian-positivity witness -- on Minkowski a TIMELIKE gradient gives G g^-1 eigenvalues {1 - alpha v^2, 1, 1, 1} (nonpositive for v^2 >= 1/alpha, ln undefined) while a SPACELIKE gradient gives {1 + alpha v^2, 1, 1, 1} (positive for all v) -- the v473 caveat exhibited, the OS route sturdier", Sort[evT] == Sort[{1 - aal vv^2, 1, 1, 1}] && Sort[evS] == Sort[{1 + aal vv^2, 1, 1, 1}]]; ]; (* ==== v477 round: the scale-flow representation of the entropic action -- the exact content: the Frullani identity Integrate[(e^{-a t}-e^{-t})/t] = -Log[a], the moment dictionary (flat weight = unit moments = the v475 raw coefficients 3 b R + (17/24) b^2 R^2), the ONE moment condition mu2/mu1^2 = (72/17)(8 pi)^9 with the exact closure (4608 pi^2/17)/((72/17)(8 pi)^9) = c3^7, and the v36 consistency f0 = 6 (4 pi)^2/c3^7 <=> M^2 = c3^7 Mbar^2; mirrors v477 (the chi-form quadrature is numerical, Python-only). ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L3052)
 - [(* v477 (i): Frullani + the moment dictionary at flat weight *) frul = Integrate[(Exp[-aa tt] - Exp[-tt])/tt, {tt, 0, Infinity}, Assumptions -> aa > 0]; eig = Join[{1}, Table[1/4, 4], Table[1/6, 6]]; tr = Total[Exp[-tt (1 - bb # RR)] & /@ eig] - 11 Exp[-tt]; serR = Normal[Series[tr, {RR, 0, 2}]]; mu1f = Integrate[Coefficient[serR, RR, 1]/tt, {tt, 0, Infinity}]; mu2f = Integrate[Coefficient[serR, RR, 2]/tt, {tt, 0, Infinity}]; checkExact["v477 GRAV.ENTROPIC.SCALEFLOW.01 (i): the Frullani/scale-flow identity -Log[a] = Integrate[(e^{-a t}-e^{-t})/t] (symbolic) and the moment dictionary -- at the FLAT weight the maximally-symmetric relative trace integrates to exactly the v475 raw coefficients 3 b R + (17/24) b^2 R^2 (unit moments mu1 = mu2 = 1): the raw entropic action is the unit-moment point of a scale-measure family", frul == -Log[aa] && Simplify[mu1f - 3 bb] == 0 && Simplify[mu2f - (17/24) bb^2] == 0]; (* v477 (ii): the one moment condition + closure + v36 consistency *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L3071)
 
+## Shared origin of the seam normalization and carrier data
+
+[documents/tfpt_1_architecture_e8/sections/013-c3-p1-p2-origin.tex:2-10](../../../../documents/tfpt_1_architecture_e8/sections/013-c3-p1-p2-origin.tex#L2) · `section:ee3f21621def60705393` · section
+
+What is being explained. P1 supplies a primitive reflection-positive kernel on an oriented seam with unit winding. The number [formula in source] is its normalization. P2 declares the five-slot [formula in source] readout; its algebraic consequences and its conditional source reductions are already available. Calling both entries ``axioms'' records these interfaces and does not erase those reductions.
+
+## Two normalization arguments with different hypotheses.
+
+[documents/tfpt_1_architecture_e8/sections/013-c3-p1-p2-origin.tex:48-59](../../../../documents/tfpt_1_architecture_e8/sections/013-c3-p1-p2-origin.tex#L48) · `section:a1d6e074fc4bfc823c9f` · paragraph
+
+Unit seam winding gives [formula in source] and the relative Chern normalization [formula in source] . The one-sided normal-sphere argument gives the same value. Boundary-kernel source, primitive seam theorem; original source paths and spans are listed in REC20261105C3. The index/KMS argument instead uses [formula in source] , [formula in source] and [formula in source] . Its arithmetic is exact ( v813_p1_index_kms.p
+
+Explicit source references:
+
+- [verification/v813_p1_index_kms.py](../../../../verification/v813_p1_index_kms.py#L1) · explicit_file_citation
+
+## Which former prerequisites have already been derived.
+
+[documents/tfpt_1_architecture_e8/sections/013-c3-p1-p2-origin.tex:60-83](../../../../documents/tfpt_1_architecture_e8/sections/013-c3-p1-p2-origin.tex#L60) · `section:7232024bf56aec8e3f3b` · paragraph
+
+The W-bridge anchor direction is derived by the winding/triple lock ( v1014_bridge_refinements.py). Its democratic response is derived for the finite factorized abelian collar model ( v1015_axiom_core_closure.py): [formula in source] at sizes [formula in source] , with character-dependent and deck-breaking controls. Both finite W-bridge premises are closed; its finite axiom core is zero modulo the externalized MMST i
+
+Explicit source references:
+
+- [verification/v1015_axiom_core_closure.py](../../../../verification/v1015_axiom_core_closure.py#L1) · explicit_file_citation
+- [verification/v1014_bridge_refinements.py](../../../../verification/v1014_bridge_refinements.py#L1) · explicit_file_citation
+
+## The common explanation and its boundary.
+
+[documents/tfpt_1_architecture_e8/sections/013-c3-p1-p2-origin.tex:84-94](../../../../documents/tfpt_1_architecture_e8/sections/013-c3-p1-p2-origin.tex#L84) · `section:415785fac2ef8712799f` · paragraph
+
+The marked seam supplies the geometric setting; its cycles, sections, parabolic anchor and primitive normalization explain the shared [formula in source] data in their specified branches. P1, its scalar normalization and P2 are three levels of this construction. The operational original seed already contains the local net, state, reflection, time flow and collar generator. Existing conditional OS and common-action re
+
 ## Front matter / support
 
 [documents/tfpt_2_standard_model/sections/001-part-the-standard-model-in-one-master-formula.tex:1-24](../../../../documents/tfpt_2_standard_model/sections/001-part-the-standard-model-in-one-master-formula.tex#L1) · `section:3b5318f0d65e3c120bab` · frontmatter
@@ -2425,51 +2458,3 @@ No opening prose excerpt; see the source.
 [documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/003-subsection-wo-die-ergebnisse-der-sitzung-in-dieses-bild-.tex:102-114](../../../../documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/003-subsection-wo-die-ergebnisse-der-sitzung-in-dieses-bild-.tex#L102) · `section:4ee6daaa9dc2f790fafa` · subsection
 
 Die ursprünglichen Clock-Strukturen enthalten mit den Exponenten [formula in source] . Daneben steht die vierfache Markierung. [formula in source] ist keine Untergruppe eines zyklischen 30-Taktes. Der tatsächliche Anschluss verwendet unter anderem eine Wirkung der Form Die komplexe Reflexionsgruppe [formula in source] hat Ordnung [formula in source] , sechzig Reflexionen und Invariantengrade [formula in source] . Die
-
-## Der ganze endliche Operator besitzt bereits ein gemeinsames Wörterbuch
-
-[documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/004-subsection-auch-die-skalen-besitzen-einen-gemeinsamen-va.tex:183-202](../../../../documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/004-subsection-auch-die-skalen-besitzen-einen-gemeinsamen-va.tex#L183) · `section:7462e3e53c3e50ebcad8` · subsection
-
-Der Originalvertrag source-native-clock-flavor-bridge-20260922/PROOF.md liefert eine feste invertierbare Matrix [formula in source] mit [formula in source] ist die dort ausgewählte positive Familienform, [formula in source] der ganzzahlige Dreierzyklus, [formula in source] die Familienmonodromie und [formula in source] die Vierteldrehung. Die Orientierungsgerade ist in [formula in source] ausdrücklich mitgeführt. Für
-
-Explicit source references:
-
-- [experiments/theory-contracts/source-native-clock-flavor-bridge-20260922/PROOF.md](../../../../experiments/theory-contracts/source-native-clock-flavor-bridge-20260922/PROOF.md#L1) · explicit_file_citation
-
-## Warum die vorhandene Fermionisierung den Statistikschritt nicht überspringt
-
-[documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/006-subsection-die-48-und-die-41-sind-zwei-antworten-derselb.tex:332-344](../../../../documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/006-subsection-die-48-und-die-41-sind-zwei-antworten-derselb.tex#L332) · `section:0444ab0b0ae0c5cad185` · subsection
-
-Für die tatsächliche chirale E8-Fermionisierung gelten Die E8-Decksymmetrie hat Zeichen [formula in source] ; Fermionparität in den neuen Sektoren hat Zeichen [formula in source] beziehungsweise [formula in source] boylesmith. Das sind verschiedene Operatoren auf verschiedenen Sektoren.
-
-Explicit source references:
-
-- [verification/v522_woit_beta1_gso_gauge.py](../../../../verification/v522_woit_beta1_gso_gauge.py#L1) · explicit_script_identifier
-
-Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
-
-- [(* ==== v522 round: WOIT.BETA1.GSO.01 -- "the clock is time-like, GSO is the gauge datum": the Z8/NS tower + Ramond control, the invariant- dimension chain, the time-like reflection census, the exact Hermiticity witness of the clock insertion, the GSO 2-torsion census and the family-A tower-normalisation failure. The 40-digit GSO-fixed RP inertia certificates ((29,0,0)/(8,0,0)/(7,9,6)/(17,12,0)) are Python-only by the suite convention. Mirrors v522. ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L7609)
-
-## Schwere und leichte Neutrinos bleiben verschiedene physische Felder.
-
-[documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/007-subsection-die-vollst-ndige-neutrinomatrix-besitzt-ein-n.tex:48-81](../../../../documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/007-subsection-die-vollst-ndige-neutrinomatrix-besitzt-ein-n.tex#L48) · `section:6bc5f7df6561e72eadcc` · paragraph
-
-Der konkrete D5-Singulettpaarkanal besitzt [formula in source] und gehört zum [formula in source] - beziehungsweise konjugierten schweren Majorana-Anschluss. Sein direkter Familientensor ist die ursprüngliche schwere Form [formula in source] in der erklärten Q [formula in source] -Eigenbasis. Auch sie wird durch [formula in source] samt allen sechs Rückleseamplituden dargestellt. Für den dimensionslosen Tensor [formu
-
-## Die direkte Konstruktion
-
-[documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/010-subsection-der-st-rkste-neue-selektor-verbindet-orientie.tex:28-46](../../../../documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/010-subsection-der-st-rkste-neue-selektor-verbindet-orientie.tex#L28) · `section:0c79cc1eb6af26352be4` · subsection
-
-Aus dem positiven geraden unimodularen [formula in source] -Ladungsgitter und einem kompatiblen Kokzyklus entsteht in der erklärten Level-1-Gitterquantisierung Die grundlegenden geladenen Vertexantworten haben die Form Ladungsneutralität, Kokzyklus und Gitterpaarung bestimmen hier gemeinsam die Antwort. Die Unimodularität begründet die Holomorphie der Gitter-VOA; sie muss nicht als zusätzliche freie Auswahl erneut ei
-
-Explicit source references:
-
-- [verification/v459_seam_lattice_voa_route.py](../../../../verification/v459_seam_lattice_voa_route.py#L1) · explicit_file_citation
-
-Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
-
-- [experiments/lean4-carrier-rigidity/TfptCarrier/SeamResidualAxiom.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/SeamResidualAxiom.lean#L1)
-- [(* ==== v454/v456/v457/v459 round (G-block): the edge current-algebra/Sugawara c=8, the S3-from-P1 one-sided arithmetic, the (E8)_1 character/sector kill-test, and the lattice-VOA second route; mirrors v454/v456/v457/v459. The Casimir + Kac-Moody fits (v454), the Chern flip (v456) and the Tomita-Takesaki tower (v455) are numerical, Python-only; the exact algebra is mirrored here. ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2827)
-- [experiments/lean4-carrier-rigidity/TfptCarrier/AxiomCheck.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/AxiomCheck.lean#L1)
-- [experiments/lean4-carrier-rigidity/TfptCarrier/AuditContract.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/AuditContract.lean#L1)
-- [(* v457: the (E8)_1 character tower {1,248,4124,34752} and the kill-test discriminators *) cartanE8 = {{2, -1, 0, 0, 0, 0, 0, 0}, {-1, 2, -1, 0, 0, 0, 0, 0}, {0, -1, 2, -1, 0, 0, 0, 0}, {0, 0, -1, 2, -1, 0, 0, 0}, {0, 0, 0, -1, 2, -1, 0, -1}, {0, 0, 0, 0, -1, 2, -1, 0}, {0, 0, 0, 0, 0, -1, 2, 0}, {0, 0, 0, 0, -1, 0, 0, 2}}; cartanD8 = {{2, -1, 0, 0, 0, 0, 0, 0}, {-1, 2, -1, 0, 0, 0, 0, 0}, {0, -1, 2, -1, 0, 0, 0, 0}, {0, 0, -1, 2, -1, 0, 0, 0}, {0, 0, 0, -1, 2, -1, 0, 0}, {0, 0, 0, 0, -1, 2, -1, -1}, {0, 0, 0, 0, 0, -1, 2, 0}, {0, 0, 0, 0, 0, -1, 0, 2}}; E4q = 1 + 240 Sum[DivisorSigma[3, n] q^n, {n, 1, 6}]; inv8 = Series[Product[(1 - q^n)^-8, {n, 1, 6}], {q, 0, 4}]; chiSeries = Series[E4q inv8, {q, 0, 4}]; coeffs = CoefficientList[Normal[chiSeries], q]; checkExact["v457 SEAM.EQUIV.KILLTEST.01 (i): the (E8)_1 character tower chi=E4/eta^8=q^{-1/3}(1+248q+4124q^2+34752q^3+...); E4/Product(1-q^n)^8 q-series coeffs {1,248,4124,34752} -- the exact (E8)_1 conformal-tower degeneracies", Take[coeffs, 4] == {1, 248, 4124, 34752}]; checkExact["v457 SEAM.EQUIV.KILLTEST.01 (ii): the kill-test discriminators -- weight-1 count 248=dim E8=120(SO16)+128(spinor); |det Cartan(E8)|=1 (invertible, one sector) vs |det Cartan(D8=SO16)|=4 (four sectors); a measured 120 or 4 would FALSIFY (E8)_1, the data give 248/1", 120 + 128 == 248 && Det[cartanE8] == 1 && Abs[Det[cartanD8]] == 4]; (* v459: E8 even unimodular + the 240 roots split 112+128; 248=8+240=120+128 *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2847)

@@ -4,6 +4,18 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Zwei Zellen: aus Verbindung wird Dynamik
+
+[experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/05_kopplung.tex:1-2](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/05_kopplung.tex#L1) · `section:4358385250c3165a4dd3` · chapter
+
+No opening prose excerpt; see the source.
+
+## Warum viele Zellen noch ein eigener Schritt sind
+
+[experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/05_kopplung.tex:112-120](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/05_kopplung.tex#L112) · `section:c0f2a2dfb49d5566a92d` · section
+
+Ein einzelner eindeutiger Singulettgrundraum besitzt keine logische Zustandsvielfalt. Das Produkt solcher Grundräume bleibt eindimensional. Wer alles auf diese Grundräume projiziert, erhält nur eine skalare Energie. Nichttriviale effektive Dynamik muss Anregungen, Randzustände, Multiplizitäten oder zusätzliche Vakuumsektoren behalten.
+
 ## Drei Bedeutungen des Wortes Clock
 
 [experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/06_zeit_echo.tex:3-15](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/06_zeit_echo.tex#L3) · `section:4d18be97a0f76b18da6a` · section
@@ -632,15 +644,3 @@ Ein klassisch-quantenmechanischer Zustand, kurz CQ-Zustand, besitzt 15 positive 
 [experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/05_kopplung.tex:1-2](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/05_kopplung.tex#L1) · `section:abe4384b96949dfd1c3e` · chapter
 
 No opening prose excerpt; see the source.
-
-## Warum viele Zellen noch ein eigener Schritt sind
-
-[experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/05_kopplung.tex:112-120](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/05_kopplung.tex#L112) · `section:4ae6a758379e532bd502` · section
-
-Ein einzelner eindeutiger Singulettgrundraum besitzt keine logische Zustandsvielfalt. Das Produkt solcher Grundräume bleibt eindimensional. Wer alles auf diese Grundräume projiziert, erhält nur eine skalare Energie. Nichttriviale effektive Dynamik muss Anregungen, Randzustände, Multiplizitäten oder zusätzliche Vakuumsektoren behalten.
-
-## Drei Bedeutungen des Wortes Clock
-
-[experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/06_zeit_echo.tex:3-15](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/06_zeit_echo.tex#L3) · `section:2454620d644e339ac26b` · section
-
-Eine zyklische Matrix ist zunächst ein Taktmuster. Eine Dynamik sagt, wann welcher Zustand entsteht. Eine Uhr braucht zusätzlich eine beobachtbare Anzeige und eine Kalibrierung. Diese drei Ebenen müssen zusammenpassen.

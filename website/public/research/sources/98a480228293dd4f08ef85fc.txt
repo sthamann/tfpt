@@ -1,0 +1,199 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/craig-original-source-bridge-20261103/RESIDUE-REFERENCE-AND-FULL-INTEGRATION.txt
+Original file SHA-256: 353f446053335bc35b539b3dfa660b5fa68514be43a5668fcebd2298d79bb7f1
+Inclusive original lines: 1-191
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | TFPT: Residuenfassung, gebundene Referenz und vollständige Feldintegration
+000002 | 3. November 2026. CRAIG20261103F.
+000003 | 
+000004 | Ergebnis
+000005 | 
+000006 | Der ursprüngliche relative geometrische Residuenfaktor ist bestimmt und kann
+000007 | mit seiner gebundenen Referenz ausgeschrieben werden. Er ist keine bereits
+000008 | ausgeführte vollständige Feldintegration. Ein exakter spektraler Kontrollfall
+000009 | erhält Referenzregel, Graduierung, Lücke und Eta, hat unveränderte Residuen,
+000010 | aber einen veränderten relativen Determinanten. Damit ist der direkte Schluss
+000011 | von diesen Residuen auf den ganzen integrierten Faktor nicht gültig.
+000012 | 
+000013 | Die bekannte Unterscheidung FP0 gegen Zetaableitung aus R040/R041 wird
+000014 | übernommen. Neu ausgeführt ist hier der begrenzte Test mit derselben
+000015 | gebundenen Referenzregel. Er ist kein physischer TFPT Hintergrund und keine
+000016 | neue Modellwelt. Der tatsächliche gemeinsame Bosonfaktor und der vollständige
+000017 | TFPT Kern sind weiterhin nicht berechnet.
+000018 | 
+000019 | 1. Tatsächlicher ursprünglicher Operator und Referenz
+000020 | 
+000021 | Source45 Metrology001:15-17,30-128 definiert
+000022 |  D_geo=D_ref+D_rel=D,
+000023 |  K_sigma=exp(-sigma/2)D_geo exp(-sigma/2)+B_rel,
+000024 |  Zrel(s;sigma)=Tr_rel(|K_sigma|^(-2s)-|D_ref|^(-2s))
+000025 |               +i*pi*DeltaEta/2,
+000026 |  E_D=Res_(s=1)Zrel, Gamma_D4=FP_(s=0)Zrel.
+000027 | 
+000028 | D_ref ist der tatsächlich gebundene ursprüngliche Referenzoperator mit
+000029 | seiner Domain, Spur, Normalisierung und gegebenen Eta. Er ist weder eine
+000030 | frei gewählte Gibbsquelle noch ein zusätzlicher abzuziehender Faktor.
+000031 | REFERENCE-SOURCE-COMPLETION.txt hat seinen vollständigen Transport bereits
+000032 | bewiesen. Diese Frage wird nicht wieder geöffnet.
+000033 | 
+000034 | Im dort ausdrücklich gedruckten homogenen Zweig sigma=sigma0 gilt
+000035 |  Gamma_grav=-6chi0^2 E_D+Gamma_D4,
+000036 |  R_geo=exp(6chi0^2 E_D-Gamma_D4).                         (1)
+000037 | 
+000038 | Das ist der bereits gegebene gemeinsame geometrische Faktor, einschließlich
+000039 | des relativen Referenzabzugs. Der Etaanteil in Gamma_D4 geht einmal ein.
+000040 | Eine zusätzliche spektrale Referenzsubtraktion wäre eine Doppelzählung.
+000041 | Bei lokalem sigma bleibt der tatsächliche ursprüngliche lokale Caller
+000042 | maßgeblich; chi0^2 wird nicht ungeprüft durch einen ortsabhängigen Vorfaktor
+000043 | vor einer integrierten Zahl ersetzt.
+000044 | 
+000045 | 2. Konkretes Einsetzen der gedruckten Residuen
+000046 | 
+000047 | Metrology002:139-170 gibt, mit u=Phi*Phi und den dortigen Konventionen,
+000048 |  E_D=-int sqrt(g)[R/(24pi^2)+u/(48pi^2)]+E_Sigma,
+000049 |  Gamma_D4=int sqrt(g)[|D Phi|^2/(16pi^2)+u^2/(16pi^2)
+000050 |           +R*u/(96pi^2)+tr F^2/(192pi^2)+R^2/(6M^2)+...]+A_Sigma.
+000051 | 
+000052 | Direktes Einsetzen in den homogenen Originalfunktional ergibt daher
+000053 |  Gamma_grav=int sqrt(g)[chi0^2*R/(4pi^2)+chi0^2*u/(8pi^2)
+000054 |              +|D Phi|^2/(16pi^2)+u^2/(16pi^2)+R*u/(96pi^2)
+000055 |              +tr F^2/(192pi^2)+R^2/(6M^2)+...]
+000056 |              -6chi0^2 E_Sigma+A_Sigma.                   (2)
+000057 | 
+000058 | Diese Rechnung erhält die gedruckten euklidischen Koeffizienten und Vorzeichen.
+000059 | Sie identifiziert weder eine andere Lorentzkonvention noch die Auslassung
+000060 | "..." mit null. Sie ist eine lokale Niedrigkrümmungslesart des gegebenen
+000061 | Residuenkonstruktors, keine exakte Integration aller Feldfluktuationen.
+000062 | Die R040/R041 und JOINT20261103 Skalen, Referenz und Domainantworten bleiben.
+000063 | 
+000064 | 3. Wo die spektrale Integration mehr benötigt
+000065 | 
+000066 | Setze L=|K_sigma|^2 und L_ref=|D_ref|^2 auf den tatsächlichen Originaldomains.
+000067 | Für eine berechtigte gemeinsame relative Wärmespur mit ausgeschlossenen
+000068 | Nullmoden definiere
+000069 |  H(t)=Tr_rel(exp(-tL)-exp(-tL_ref)).
+000070 | Dann gilt zunächst im Konvergenzgebiet und danach unter derselben berechtigten
+000071 | meromorphen Fortsetzung
+000072 |  zeta_rel(s)=1/Gamma(s) int_0^infinity t^(s-1) H(t) dt.    (3)
+000073 | 
+000074 | Für die gewöhnliche reguläre Variante an s=0, in derselben festen
+000075 | Spektraleinheit und bei einer Entwicklung
+000076 |  H(t)=sum_(p>0)c_p t^(-p)+c_0+O(t^epsilon), epsilon>0,
+000077 | definiere für eine rein rechnerische Trennstelle T>0
+000078 |  I(T)=int_0^T [H(t)-sum c_p t^(-p)-c_0] dt/t
+000079 |        +int_T^infinity H(t) dt/t.
+000080 | 
+000081 | Die vollständige Mellinrechnung ergibt
+000082 |  Res_1 zeta_rel=c_1,
+000083 |  zeta_rel(0)=c_0,
+000084 |  zeta_rel'(0)=I(T)-sum_(p>0)c_p T^(-p)/p
+000085 |                     +c_0(log T+EulerGamma).             (4)
+000086 | 
+000087 | Hier umfasst p auch vorhandene halbzahlig positive Exponenten. Die
+000088 | Trennstelle T fällt im Ergebnis heraus. Sie ist kein physischer Parameter.
+000089 | Die ganze Referenzwärmespur wird in H mitgeführt. Bei Randlogarithmen oder
+000090 | einem Pol an s=0 ist die einfache reguläre Fassung(4) nicht anwendbar;
+000091 | die tatsächlichen Laurent und Randdaten sind dann zusätzlich zu behalten.
+000092 | 
+000093 | Die Größe I(T) enthält die volle relative Wärmespur, auch für große t.
+000094 | Sie ist nicht durch c_1 und c_0 ersetzt. Der bekannte Determinantenbetrag
+000095 | eines tatsächlich passenden vollen invertierbaren Operators wäre bei
+000096 | regulärer Zeta und gebundener Normierung
+000097 |  log|det_rel K|=-zeta_rel'(0)/2.                          (5)
+000098 | 
+000099 | Formel(5) ist keine Behauptung über die ursprüngliche physische chirale
+000100 | Fermionpaarung. Diese hat ihren tatsächlichen Feldraum und Linienfaktor;
+000101 | Majorana und Weylreduktionen dürfen nicht durch einen vollen Determinanten
+000102 | ersetzt werden. Die ursprüngliche Eta beziehungsweise Linienphase bleibt
+000103 | zusätzlich erhalten. Eine freie neue Renormalisierungsskala wird nicht gewählt.
+000104 | 
+000105 | 4. Kleinster entscheidender Test mit gebundener Referenz
+000106 | 
+000107 | Geprüfte Frage: Erzwingen Res1 und FP0 den relativen Determinanten, wenn
+000108 | die Referenz durch die ursprüngliche gerade Teilregel gebunden bleibt?
+000109 | Abbruchkriterium: Ein exakter Gegenfall beendet diese direkte Gleichsetzung.
+000110 | Es wird kein daraus gebautes Hilfsmodell weiterentwickelt.
+000111 | 
+000112 | Mit Pauli x,z und 0<b<a setze auf C^2 tensor C^2
+000113 |  D_b=(a I+b x) tensor x,
+000114 |  tau=z tensor I,
+000115 |  gamma=I tensor z.
+000116 | Dann gilt exakt
+000117 |  (D_b+tau D_b tau)/2=D_ref=a I tensor x,
+000118 |  {gamma,D_b}={gamma,D_ref}=0.
+000119 | 
+000120 | Die Referenz ist unabhängig von b. Die Eigenwerte sind +(a+b),-(a+b),
+000121 | +(a-b),-(a-b). Eta bleibt null; es gibt keinen Nullmodenübergang.
+000122 | Die relative Zeta ist die ganze Funktion
+000123 |  delta_zeta(s)=2[(a+b)^(-2s)+(a-b)^(-2s)-2a^(-2s)].
+000124 | Somit sind Res1=0 und FP0=0 für jedes b, aber
+000125 |  exp[-delta_zeta'(0)/2]=(1-b^2/a^2)^2.                   (6)
+000126 | 
+000127 | Am Kontrollpunkt a=2,b=1 ist die kleinste absolute Eigenzahl1 und
+000128 |  delta_zeta'(0)=log(256/81),
+000129 |  R_geo=1, |det D_b/det D_ref|=9/16.
+000130 | 
+000131 | Direkte symbolische Matrixdeterminante und unabhängig daraus ausgewertete
+000132 | Zetaableitung stimmen exakt überein. Referenzbindung und Graduierung sind
+000133 | direkt am Operator geprüft. Kein Zahlenfit und keine Rundungsentscheidung.
+000134 | 
+000135 | Geltungsgrenze: Das ist ein Test der behaupteten allgemeinen Umwandlung von
+000136 | Residuen in einen vollen Determinanten, keine zweite vollständige TFPT
+000137 | Quelle und kein nachgewiesener erlaubter physischer Hintergrund. Auch eine
+000138 | Residuenwirkung als eigenständig deklarierter Wirkungsanteil ist dadurch
+000139 | nicht widerlegt. Ausgeschlossen ist die automatische Identifikation dieses
+000140 | Anteils mit dem bereits vollständig integrierten Quellgewicht.
+000141 | 
+000142 | 5. Tatsächlicher Stand der vollständigen Feldintegration
+000143 | 
+000144 | QFT007:3-29 definiert exp W_k durch das volle Integral über exp(-S_adm)
+000145 | mit Regulator und Quellen. Derselbe Originaltext:119-145 trennt ausdrücklich
+000146 | S_adm, den Supertrace seines Hessians und sämtliche höheren Schleifen.
+000147 | Die exakte Flussgleichung wird aus diesem Integral hergeleitet. Sie ist
+000148 | keine Auswertung seiner Anfangswirkung, seines Maßes oder sämtlicher Vertexwerte.
+000149 | 
+000150 | Damit lässt sich der verbleibende Aufruf präzise benennen. Für dieselben
+000151 | tatsächlichen ursprünglichen Feldkoordinaten wäre zunächst die geordnete
+000152 | partielle Berezinoperation an exp(-S_adm[b,Psi,c,...]) mit allen ursprünglichen
+000153 | Paarungen und Selektoren auszuführen. Ihr Ergebnis wäre das unnormierte
+000154 | Gewicht der verbleibenden Bosonfelder b. Danach folgen deren ursprüngliche
+000155 | Integration, der Referenznenner und ein kontrollierter Quellenlimes.
+000156 | 
+000157 | In den geprüften Originalstellen und späteren Quellenreviews ist weder die
+000158 | Identität dieser ganzen Operation mit dem Residuenfaktor(1) ausgewertet noch
+000159 | ein dadurch bestimmter voller physischer S_adm Hessian geliefert. Die
+000160 | Symbole I_N,w_A,w_R benennen weiterhin den vorausgesetzten Caller.
+000161 | Sie werden hier nicht als implementierter Produzent ausgegeben.
+000162 | 
+000163 | Der ursprüngliche operative Seed enthält omega und Zeit bereits vollständig.
+000164 | Auf seiner tatsächlichen kommutativen Bosonalgebra wäre das Maß deshalb
+000165 | schon durch omega bestimmt. Die offene Aufgabe ist dessen konkrete
+000166 | Identifikation und Auswertung in dieser selben spektralen Feldquelle.
+000167 | Ein neues freies Maß, eine zweite Referenz oder ein zusätzlicher angepasster
+000168 | Faktor wird nicht ergänzt. Die vorhandenen Transfer und Hamiltonquellen
+000169 | behalten ihre jeweils tatsächlich bewiesenen Geltungsbereiche.
+000170 | 
+000171 | Verdict
+000172 | 
+000173 | Ursprünglicher relativer Residuenfaktor explizit eingesetzt. Gebundene Referenz
+000174 | erhalten. Direkte Identifikation mit dem vollständig integrierten Faktor
+000175 | durch exakten beschränkten spektralen Gegenfall ausgeschlossen. Die schon
+000176 | bekannte FP0/Determinant Unterscheidung wird nicht als neue Theorie ausgegeben.
+000177 | Keine vollständige physische Feldintegration, kein tatsächlicher gemeinsamer
+000178 | Bosonmaßwert, keine Craig Maßidentität und kein vollständiger TFPT Kern bewiesen.
+000179 | 
+000180 | Quellen
+000181 | 
+000182 | [OMITTED: non-scientific conversation or execution metadata]
+000183 | [OMITTED: non-scientific conversation or execution metadata]
+000184 | [OMITTED: non-scientific conversation or execution metadata]
+000185 | [OMITTED: non-scientific conversation or execution metadata]
+000186 | [OMITTED: non-scientific conversation or execution metadata]
+000187 | [OMITTED: non-scientific conversation or execution metadata]
+000188 | [OMITTED: non-scientific conversation or execution metadata]
+000189 | [OMITTED: non-scientific conversation or execution metadata]
+000190 | [OMITTED: non-scientific conversation or execution metadata]
+000191 | [OMITTED: non-scientific conversation or execution metadata]

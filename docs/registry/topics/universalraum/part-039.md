@@ -4,6 +4,88 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Covariant action and its variational scope (R112)
+
+[tex-artefacts/toe_source_completion_20261103.tex:490-527](../../../../tex-artefacts/toe_source_completion_20261103.tex#L490) · `section:36cb2b808681993cd807` · subsection
+
+On the existing conditional PS branch, the actual two-sided unitary orbit [formula in source] forces the quadratic fluctuation with coefficient one in the known https://arxiv.org/abs/1304.7583CCvS construction: [formula in source] For the original right-quaternion subgroup its only nonzero correction is the Majorana block [formula in source] and its adjoint, where [formula in source] . The full original [formula in s
+
+## The actual product pairing and the Craig comparison (CRAIG20261103B)
+
+[tex-artefacts/toe_source_completion_20261103.tex:528-553](../../../../tex-artefacts/toe_source_completion_20261103.tex#L528) · `section:698050fdcedcbfc5c455` · subsection
+
+For the existing ordinary four-dimensional product branch with the whole original internal matrix [formula in source] , the total spin/finite real structure gives an antisymmetric Grassmann kernel on each total chiral fiber. Its mass block satisfies [formula in source] It is nonzero for nonzero Hermitian [formula in source] . The isolated finite KO6 pairing cannot be substituted for this full product pairing. At the
+
+## A joint Einstein and vacuum test (CONST20261103)
+
+[tex-artefacts/toe_source_completion_20261103.tex:554-585](../../../../tex-artefacts/toe_source_completion_20261103.tex#L554) · `section:9e7a72c157343bf5a789` · subsection
+
+Take the explicitly conditional ordinary four-dimensional Dirac product with constant selfadjoint internal mass [formula in source] , an equal-rank reference on the same geometry, and the single heat profile [formula in source] , [formula in source] . Assume its classical relative bulk trace alone supplies the vacuum and Einstein coefficients. With [formula in source] the complete constant-mass dependence gives [form
+
+## Internal relaxation and physical cyclic time (GENESIS20261103)
+
+[tex-artefacts/toe_source_completion_20261103.tex:586-603](../../../../tex-artefacts/toe_source_completion_20261103.tex#L586) · `section:4c11a45464a1c6e91f1a` · subsection
+
+The original family transfer has eigenvalues [formula in source] . It relaxes in its two nonstationary directions and has no positive integer power equal to the identity. Under the additional identification [formula in source] , [formula in source] , the two positive energies are [formula in source] and [formula in source] . Their ratio is irrational by unique prime factorization, so this conditional Hamiltonian has
+
+## Whole color projection (CRAIG20261103C).
+
+[tex-artefacts/toe_source_completion_20261103.tex:604-622](../../../../tex-artefacts/toe_source_completion_20261103.tex#L604) · `section:f57b990a3d04ecc15b6e` · paragraph
+
+On the compatible existing CAR representation, average the three whole exterior lifts of the original color-center action. Its neutral sector has rank [formula in source] on the full sixteen-mode exterior space; the exterior lift of the neutral one-particle projector has rank only [formula in source] . The whole coherent transfer kernel is [formula in source] It retains neutral composite words with charged intermedia
+
+## Joint marked source and selector contacts (R113).
+
+[tex-artefacts/toe_source_completion_20261103.tex:623-644](../../../../tex-artefacts/toe_source_completion_20261103.tex#L623) · `section:77ed29ad0e1de1f8daa9` · paragraph
+
+For the same conditional whole Clifford caller, assume its actual semigroup time, justified short-time product rule, compatible finite CAR factor and Hermitian boson/rest coefficient operators. The resulting joint generator is [formula in source] Here each [formula in source] is the original zero-time marked operator [formula in source] , not a normalized mean. The original Fock-vacuum matrix leg fixes [formula in so
+
+## Source and reproducibility route
+
+[tex-artefacts/toe_source_completion_20261103.tex:645-702](../../../../tex-artefacts/toe_source_completion_20261103.tex#L645) · `section:5a9ea639ada21fb1a3c4` · subsection
+
+The dated report labels resolve through docs/research/fundamental-plan/RESULTS.md and the synthesis docs/research/fundamental-plan/CONSOLIDATION-R110-20261103.md. The main proof owners are: A and B: experiments/theory-contracts/puncture-metric-joint-completion-20261102/PROOF.txt and experiments/theory-contracts/joint-source-clock-field-closure-20261102/PROOF.txt. C: experiments/theory-contracts/original-paper-source-
+
+Explicit source references:
+
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/VARIABLE-BACKGROUND-PROOF.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/VARIABLE-BACKGROUND-PROOF.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/GROUND-SOURCE.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/GROUND-SOURCE.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/cyclic-genesis-literature-20261103/GENESIS-CYCLIC.txt](../../../../experiments/theory-contracts/cyclic-genesis-literature-20261103/GENESIS-CYCLIC.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/joint-source-clock-field-closure-20261102/PROOF.txt](../../../../experiments/theory-contracts/joint-source-clock-field-closure-20261102/PROOF.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/LARGER-CHARGED-SOURCE-EVALUATION.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/LARGER-CHARGED-SOURCE-EVALUATION.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/ZERO-FREE-JOINT.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/ZERO-FREE-JOINT.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/SEED-FIELD.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/SEED-FIELD.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/SHARED-METRIC-SOURCE.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/SHARED-METRIC-SOURCE.txt#L1) · explicit_file_citation
+- [docs/research/fundamental-plan/RESULTS.md](../../../../docs/research/fundamental-plan/RESULTS.md#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-paper-source-reconciliation-20261102/AUDIT.txt](../../../../experiments/theory-contracts/original-paper-source-reconciliation-20261102/AUDIT.txt#L1) · explicit_file_citation
+- [docs/research/fundamental-plan/CONSOLIDATION-R110-20261103.md](../../../../docs/research/fundamental-plan/CONSOLIDATION-R110-20261103.md#L1) · explicit_file_citation
+- [experiments/theory-contracts/puncture-metric-joint-completion-20261102/PROOF.txt](../../../../experiments/theory-contracts/puncture-metric-joint-completion-20261102/PROOF.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/FULL-SOURCE-CORRECTION.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/FULL-SOURCE-CORRECTION.txt#L1) · explicit_file_citation
+- [verification/v1027_signed_det_car_wall.py](../../../../verification/v1027_signed_det_car_wall.py#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/PHYSICAL-THERMAL-SOURCE.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/PHYSICAL-THERMAL-SOURCE.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/craig-original-source-bridge-20261103/ACTUAL-PRODUCT-PAIRING.txt](../../../../experiments/theory-contracts/craig-original-source-bridge-20261103/ACTUAL-PRODUCT-PAIRING.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/TRANSFER-EXTRACTION.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/TRANSFER-EXTRACTION.txt#L1) · explicit_file_citation
+- [verification/v1002_spin10_mirror_projector.py](../../../../verification/v1002_spin10_mirror_projector.py#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/ZERO-FREE-ORIGIN.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/ZERO-FREE-ORIGIN.txt#L1) · explicit_file_citation
+- [verification/v252_full_finite_triple.py](../../../../verification/v252_full_finite_triple.py#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/PAIRED-DYSON-PROOF.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/PAIRED-DYSON-PROOF.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/PROJECTED-JOINT-SOURCE-GENERATOR-20261103.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/PROJECTED-JOINT-SOURCE-GENERATOR-20261103.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/ADMISSIBLE-ACTION-DERIVATION-20261103.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/ADMISSIBLE-ACTION-DERIVATION-20261103.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/REFERENCE-SOURCE-COMPLETION.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/REFERENCE-SOURCE-COMPLETION.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/craig-original-source-bridge-20261103/COLOR-PROJECTED-KERNEL.txt](../../../../experiments/theory-contracts/craig-original-source-bridge-20261103/COLOR-PROJECTED-KERNEL.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/SOURCE-GENERATOR-RESIDUAL-20261103.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/SOURCE-GENERATOR-RESIDUAL-20261103.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/constant-triangulation-20261103/CONSTANT-TRIANGULATION.txt](../../../../experiments/theory-contracts/constant-triangulation-20261103/CONSTANT-TRIANGULATION.txt#L1) · explicit_file_citation
+
+Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
+
+- [(* v1027: exact signed-wall determinant and unsquared low branch. *) {a, delta, lambda, g} = Unique /@ {"a", "delta", "lambda", "g"}; mass = delta + lambda; beta = lambda g^2; eta = lambda g; c = beta - eta^2/mass; h = {{a + beta a^2, eta a}, {eta a, mass}}; check["v1027 signed determinant M a (1+c a)", Together[Det[h] - mass a (1 + c a)] === 0]; check["v1027 physical kernel remains one-dimensional at a=0", NullSpace[h /. a -> 0] === {{1, 0}}]; (* v1028: exact characteristic-five reduction of the full 192-mode one-site character. P^12 == P^2 P(z^5)^2 mod 5 is evaluated by coefficient dictionaries, never by floating group quadrature. *)](../../../../verification/wolfram/tfpt_round4.wl#L28)
+
+## Front matter / support
+
+[tex-artefacts/toe_universalraum_synthesis_20260912.tex:1-1](../../../../tex-artefacts/toe_universalraum_synthesis_20260912.tex#L1) · `section:210d0b40745aefdcdeaf` · frontmatter
+
+No opening prose excerpt; see the source.
+
 ## Universalraum synthesis: source selection, reconstruction and accessible dynamics
 
 [tex-artefacts/toe_universalraum_synthesis_20260912.tex:2-4](../../../../tex-artefacts/toe_universalraum_synthesis_20260912.tex#L2) · `section:6e1860c8f024840a2d59` · section

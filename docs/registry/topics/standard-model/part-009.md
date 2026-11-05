@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Discriminant action theorem: the ladder reads the hypercharge discriminant
+
+[experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex:4149-4164](../../../../experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex#L4149) · `section:af1dfdb3af7eeb583cb9` · subsection
+
+The [formula in source] in the action ladder is not merely a rank: it is the square root of the discriminant of the carrier (hypercharge) polynomial. For a general split [formula in source] the carrier polynomial is [formula in source] with discriminant Hence the action ladder is, exactly, The electroweak hierarchy therefore reads the discriminant of the hypercharge polynomial, tying the Standard-Model hypercharge de
+
 ## A two-dimensional action lattice
 
 [experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex:4165-4192](../../../../experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex#L4165) · `section:90d3f73fd608744f36cd` · subsection
@@ -646,6 +652,18 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 - [(* v473 (i): carrier Hodge count + coefficient pin *) dims = Table[Binomial[5, k], {k, 0, 2}]; fiber4d = Total[Table[Binomial[4, k], {k, 0, 2}]]; betaP = bp /. First[Solve[3 bp == 1/(16 Pi), bp]]; checkExact["v473 GRAV.ENTROPIC.ACTION.01 (i): the carrier Hodge count -- dim Omega^{0,1,2}(C^5) = 1+5+10 = 16 = 2^(g_car-1) = dim S+_{D5} (Hodge-folded onto L^even C^5 = 1+10+5), while on 4d spacetime the fiber is only 1+4+6 = 11 (the 16 REQUIRES the five-slot carrier); and the coefficient pin -- her weak-coupling 3 beta' R matched to the TFPT EH normalisation 1/(16 pi G) = c3/(2G) fixes beta'_B = c3/6 = 1/(48 pi) exactly (the 6 = 3 form blocks x 2 = p2 = |R+(A3)|)", Total[dims] == 16 && dims == {1, 5, 10} && Total[{1, 10, 5}] == 16 && fiber4d == 11 && betaP == c3v/6 && betaP == 1/(48 Pi) && Binomial[4, 2] == 6]; (* v473 (ii): entropy potential + Lambda-channel target *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2968)
 - [(* ==== v473 round: the entropic-action bridge (Bianconi, PRD 111, 066001 (2025); arXiv:2408.14391) -- the exact algebraic content: the carrier Hodge count 1+5+10 = 16 = 2^(g_car-1) (vs the 4d fiber 11), the coefficient pin beta'_B = c3/6 = 1/(48 pi) from 3 beta' = 1/(16 pi), the entropy potential s(x) = x-1-ln x (nonnegative, quadratic minimum), the Lambda-channel target Tr Q^2 = 32 c3^4 = 1/(128 pi^4) = (2/3) delta_top, and the R^2 kill-test gap 3 c3^-9 = 3 (8 pi)^9; mirrors v473 (the Frullani quadrature is numerical, Python-only). ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2957)
 - [(* ---- (v152) R3 normalisation = the anchor ---- *) Module[{c3, k, lnratio, dlogdet}, c3 = 1/(8 Pi); k = c3/2; lnratio = Simplify[12 Pi k]; dlogdet = -D[(mm/muu)^(-2 ss), ss] /. ss -> 0; checkExact["v152 R3 normalisation = anchor: Delta log det' = 2 C ln(m/mu) (scale-ambiguous ln m; only m/mu physical); k = c3/2 <=> ln(m/mu) = 3/4 => m/mu = e^{3/4}; 1/(16 pi G)|_{G=1} = c3/2 (induced 1/G = the v68 anchor); audit: 3/4 = q(A3) is the target value, not a derivation", Simplify[dlogdet - 2 Log[mm/muu]] === 0 && k == 1/(16 Pi) && lnratio == 3/4 && Simplify[1/(16 Pi) - c3/2] === 0 && 3/4 == 3/4]; ]; (* ---- (v153) No-Unit Theorem ---- *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L1355)
+
+## What the whole Higgs integration still has to evaluate
+
+[tex-artefacts/toe_field_integration_20261105.tex:112-140](../../../../tex-artefacts/toe_field_integration_20261105.tex#L112) · `section:f463bbe11849aa5cfb65` · subsection
+
+The original common affine Higgs/Yukawa sewing already gives [formula in source] , retaining any further original Higgs-dependent vertices. Its mixed matter coefficient includes [formula in source] . Here [formula in source] is a derivative with the Higgs field integrated. A derivative of a conditional fermion determinant with respect to a prescribed background Higgs value is a different operation. The later complete
+
+## Whole configuration classes and the exact limit of the heat factor
+
+[tex-artefacts/toe_field_integration_20261105.tex:141-184](../../../../tex-artefacts/toe_field_integration_20261105.tex#L141) · `section:a02c216d5b2c9d8cfda2` · subsection
+
+The earlier fixed-rank bounded-profile test excludes absolute normalization over the explicitly tested flat noncompact [formula in source] Higgs volume with any nonzero finite polynomial Pfaffian coefficient. The original constant-circle positive-Laplace-profile result makes its bound uniform in the mode cutoff. These scoped results are reused. They are not exclusions of every original measure or fluctuating field.
 
 ## What the intermediate contracts establish.
 

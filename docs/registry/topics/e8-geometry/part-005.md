@@ -413,6 +413,82 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 - [experiments/lean4-carrier-rigidity/TfptCarrier/ArfSpinorCompiler.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/ArfSpinorCompiler.lean#L1)
 - [experiments/lean4-carrier-rigidity/TfptCarrier/YukawaPrimitive.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/YukawaPrimitive.lean#L1)
 
+## Front matter / support
+
+[documents/tfpt_1_architecture_e8/sections/013-c3-p1-p2-origin.tex:1-1](../../../../documents/tfpt_1_architecture_e8/sections/013-c3-p1-p2-origin.tex#L1) · `section:ad898925e3c942863a35` · frontmatter
+
+No opening prose excerpt; see the source.
+
+## Shared origin of the seam normalization and carrier data
+
+[documents/tfpt_1_architecture_e8/sections/013-c3-p1-p2-origin.tex:2-10](../../../../documents/tfpt_1_architecture_e8/sections/013-c3-p1-p2-origin.tex#L2) · `section:ee3f21621def60705393` · section
+
+What is being explained. P1 supplies a primitive reflection-positive kernel on an oriented seam with unit winding. The number [formula in source] is its normalization. P2 declares the five-slot [formula in source] readout; its algebraic consequences and its conditional source reductions are already available. Calling both entries ``axioms'' records these interfaces and does not erase those reductions.
+
+## One marked geometry, several typed readouts.
+
+[documents/tfpt_1_architecture_e8/sections/013-c3-p1-p2-origin.tex:11-29](../../../../documents/tfpt_1_architecture_e8/sections/013-c3-p1-p2-origin.tex#L11) · `section:2fd8fdcfe7668d08b693` · paragraph
+
+In the flat spherical [formula in source] branch class, each branch point has deficit [formula in source] . Gauss–Bonnet gives [formula in source] , hence four marks ( v216_marks_gauss_bonnet.py). For the common divisor [formula in source] , [formula in source] The functions and cycles belong to the same marked geometry ( v189_riemann_roch_carrier.py, v197_rr_carrier_clifford_d5.py). They are different spaces: meromo
+
+Explicit source references:
+
+- [verification/v189_riemann_roch_carrier.py](../../../../verification/v189_riemann_roch_carrier.py#L1) · explicit_file_citation
+- [verification/v216_marks_gauss_bonnet.py](../../../../verification/v216_marks_gauss_bonnet.py#L1) · explicit_file_citation
+- [verification/v512_seam_tau_flag.py](../../../../verification/v512_seam_tau_flag.py#L1) · explicit_file_citation
+- [verification/v197_rr_carrier_clifford_d5.py](../../../../verification/v197_rr_carrier_clifford_d5.py#L1) · explicit_file_citation
+
+Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
+
+- [(* ---- (v216) QGEO.MARKS.03: the four marks from Gauss-Bonnet + Euclidean-orbifold uniqueness ---- *) Module[{orbs, gb, nn}, orbs = {{2, 3, 6}, {2, 4, 4}, {3, 3, 3}, {2, 2, 2, 2}}; gb = nn /. Solve[nn (2 Pi - Pi) == 2 Pi 2, nn][[1]]; (* Z2 deficit pi, chi(S^2)=2 *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L1740)
+- [(* ---- (v189) Riemann-Roch carrier: (g_car,N_fam)=(5,3) from the mu4 divisor ---- *) Module[{degD, h0, rkH1, rankD5, rankA3}, degD = 4; (* |mu4| = deg D *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L1564)
+- [(* ==== v512 round: SEAM.TAU.FLAG.01 -- "the flag-transitivity equivalence web": the tau = i attack on the free RP seam circle. Test family M(delta) = {+-1, +-e^(i delta)}; bare mark-transitivity is delta-blind (pair-exchanging V4), FLAG transitivity <=> delta = pi/2 <=> tau = i. Six exact mirrors: (i) the V4/D4 census over five exact members incl. flag/arc orbit counts, (ii) the solveset equivalences + family identities, (iii) the odd-split closed form + arc Laplacian + K3 indicator, (iv) the twist mode identity + AB delta-blindness + j-rationality control, (v) the H4 centraliser rigidity (Schur), and (vi) the negative controls (hexagonal/silver/Z16 census/n = 3). Mirrors v512. ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L5675)
+- [(* ---- (v197) ARCH.RRCAR.02: even Clifford of the 5-dim carrier = the D5 half-spinor ---- *) Module[{h0, lamEven}, h0 = 4 + 1; (* h^0(P^1,O(mu4)) = deg+1 = 5 = g_car *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L1630)
+- [(* ==== v525 round: SEAM.BIT.TWISTBLIND.01 -- "the twist-state kill": the NINTH side-blind test on the v512 scoreboard (8 -> 9); the free-plus-twist class is exhausted. Three exact mirrors: (i) the integer incidence frame + the sigma o r = +-sigma congruence mechanism (swap axes: sigma o r = sigma => the twisted Gram is the diagonal unitary congruence D M D = spectrally invisible; fixing axes at pi/2: sigma o r = -sigma = the eta flip); (ii) the pi/2-existence solveset of the mark-fixing axes + the exact counterwitness census ((3+4i)/5 unimodular but NEVER a root of unity up to order 64 -- no lattice mark-compatible reflection at any dyadic refinement); (iii) the delta <-> pi - delta mirror equivariance (the lattice reflection maps the m-mark set EXACTLY to the (8-m)-mark set -- the exact mechanism behind the Casimir mirror symmetry ln|omega(D)|(m) = ln|omega(D)|(8-m) and behind pi/2 as the symmetric point of every invariant readout). The Pfaffian insertion spectra, the Bogoliubov 2-of-16 pattern census, the defect energy and the 40-digit inertia certificates are numerical (mpmath), Python-only, flagged here. Mirrors v525. ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L8058)
+
+## The anchor and the two numerical readouts.
+
+[documents/tfpt_1_architecture_e8/sections/013-c3-p1-p2-origin.tex:30-47](../../../../documents/tfpt_1_architecture_e8/sections/013-c3-p1-p2-origin.tex#L30) · `section:6f175888ba380a304838` · paragraph
+
+The typed parabolic splitting [formula in source] gives [formula in source] The uniqueness of three positive integer weights summing to four is exact; the Deligne extension, Birkhoff–Grothendieck splitting and stability route explain the typing for the specified connection ( v491_p2_partition_corollary.py, v499_p2_weights_deligne_bg.py). Later analytic descent of the actual [formula in source] system gives finite [fo
+
+Explicit source references:
+
+- [verification/v499_p2_weights_deligne_bg.py](../../../../verification/v499_p2_weights_deligne_bg.py#L1) · explicit_file_citation
+- [verification/v491_p2_partition_corollary.py](../../../../verification/v491_p2_partition_corollary.py#L1) · explicit_file_citation
+
+Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
+
+- [(* ==== v499 round: P2.TYPING.01 -- the P2 weight-typing postulate hardened: the anchor a = (1,1,2) as the Birkhoff-Grothendieck splitting exponents of the Deligne canonical extension E of the flavor connection (types the v491 check-9 residual). Exact content mirrored: (i) partition enumeration under the full typing (BG dictionary h^0 = 0 <=> a_i >= 1, exhaustive window) + the naive- typing negative control (h^1(E') = 3 forces deg -6, three splittings, e2 never 5) + the h^1 discrepancy (h^1(anchor bundle) = 1 != 3); (ii) the Deligne residue-trace degree (cusp exponents {0,1/3,2/3} = the unique lift of spec(lam^3 - 1) to [0,1), trace 1 per mark, deg E = -4, par-deg 0, witness A0* charpoly); (iii) the Schur-Horn permutohedron integer points {(2,2,0),(2,1,1)} with h^0 = 0 killing {2,2,0}; (iv) the Biswas Z3-cover degree arithmetic (genus 2, eigensheaves O(-2)^2, chi cross-check, regular-rep weights, the decomposable model {0,2,2} with h^0 = 1 = the unstable companion; deck double genus 1, j = 1728); (v) the n-mark formula e2 = (n-2)(n+1)/2 = 5 only at n = 4. The sympy symbolic parts (H^1 residue basis, monodromy group closure |<U,M0>| = 24, the 324-case stability skeleton) stay Python-side (v499). Mirrors v499. ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L3620)
+- [(* ==== v491 round: P2.PARTITION.01 -- g_car = 5 as the partition corollary of the four marks (the sharpening of v53). Exact content: 4 into exactly 3 positive integer parts is uniquely {1,1,2} => e = (4,5,2) => g_car = e2 = 5, |Z2| = e3 = 2, N_fam = e2 - e3 = 3 as corollaries; every assumption load-bearing (positivity / sum / part count / integrality negative controls); v53 needs all three targets, the partition only e1 = 4; sum rule 4(N-1)/2 = 4 iff N = 3; mirrors v491. ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L3116)
+
+## Two normalization arguments with different hypotheses.
+
+[documents/tfpt_1_architecture_e8/sections/013-c3-p1-p2-origin.tex:48-59](../../../../documents/tfpt_1_architecture_e8/sections/013-c3-p1-p2-origin.tex#L48) · `section:a1d6e074fc4bfc823c9f` · paragraph
+
+Unit seam winding gives [formula in source] and the relative Chern normalization [formula in source] . The one-sided normal-sphere argument gives the same value. Boundary-kernel source, primitive seam theorem; original source paths and spans are listed in REC20261105C3. The index/KMS argument instead uses [formula in source] , [formula in source] and [formula in source] . Its arithmetic is exact ( v813_p1_index_kms.p
+
+Explicit source references:
+
+- [verification/v813_p1_index_kms.py](../../../../verification/v813_p1_index_kms.py#L1) · explicit_file_citation
+
+## Which former prerequisites have already been derived.
+
+[documents/tfpt_1_architecture_e8/sections/013-c3-p1-p2-origin.tex:60-83](../../../../documents/tfpt_1_architecture_e8/sections/013-c3-p1-p2-origin.tex#L60) · `section:7232024bf56aec8e3f3b` · paragraph
+
+The W-bridge anchor direction is derived by the winding/triple lock ( v1014_bridge_refinements.py). Its democratic response is derived for the finite factorized abelian collar model ( v1015_axiom_core_closure.py): [formula in source] at sizes [formula in source] , with character-dependent and deck-breaking controls. Both finite W-bridge premises are closed; its finite axiom core is zero modulo the externalized MMST i
+
+Explicit source references:
+
+- [verification/v1015_axiom_core_closure.py](../../../../verification/v1015_axiom_core_closure.py#L1) · explicit_file_citation
+- [verification/v1014_bridge_refinements.py](../../../../verification/v1014_bridge_refinements.py#L1) · explicit_file_citation
+
+## The common explanation and its boundary.
+
+[documents/tfpt_1_architecture_e8/sections/013-c3-p1-p2-origin.tex:84-94](../../../../documents/tfpt_1_architecture_e8/sections/013-c3-p1-p2-origin.tex#L84) · `section:415785fac2ef8712799f` · paragraph
+
+The marked seam supplies the geometric setting; its cycles, sections, parabolic anchor and primitive normalization explain the shared [formula in source] data in their specified branches. P1, its scalar normalization and P2 are three levels of this construction. The operational original seed already contains the local net, state, reflection, time flow and collar generator. Existing conditional OS and common-action re
+
 ## The Riemann–Hilbert side (what the monodromy fixes)
 
 [documents/tfpt_2_standard_model/sections/008-section-the-setup-parabolic-data-on-the-family-curve.tex:87-114](../../../../documents/tfpt_2_standard_model/sections/008-section-the-setup-parabolic-data-on-the-family-curve.tex#L87) · `section:075d23efb7b920a44ee1` · section
@@ -1902,69 +1978,3 @@ Die gemeinsame Verbindung ist konkreter geworden. Das ursprüngliche Fuchssystem
 [documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/005-subsection-die-urspr-ngliche-determinantenlinie-tr-gt-be.tex:115-156](../../../../documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/005-subsection-die-urspr-ngliche-determinantenlinie-tr-gt-be.tex#L115) · `section:65038733291239a68723` · subsection
 
 Die ursprüngliche Level-eins-E8-Quelle enthält die Spinorströme [formula in source] mit 64 Komponenten und ihre Gegenfelder. Unter der erklärten Familienauswahl [formula in source] zerfällt dieser Block in [formula in source] . Die erste Komponente ist der hier untersuchte 48er-Materiereadout. Seine Identifikation mit dem ursprünglichen topologischen Familienraum bleibt Teil des markierten Wörterbuchs; die Rechnung b
-
-## Ausführbare Nachweise dieser Fortsetzung
-
-[documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/006-subsection-die-48-und-die-41-sind-zwei-antworten-derselb.tex:119-123](../../../../documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/006-subsection-die-48-und-die-41-sind-zwei-antworten-derselb.tex#L119) · `section:e7294e8d8a250400195d` · subsection
-
-tfpt_explorer/flavor_path_transport.py integriert die ursprüngliche Verbindung entlang beider Halbwege und unabhängig entlang des geschlossenen Kreises. Es berechnet die Determinantenwindung aus den integrierten Lösungen und vergleicht die vollständigen endlichen Greenmatrizen. tfpt_explorer/neutral_source_response.py benutzt die ursprünglichen E8-Wurzeln, ihre Stressmomentmatrizen und den tatsächlichen Heisenbergzus
-
-Explicit source references:
-
-- [verification/v117_monodromy_weyl_a3.py](../../../../verification/v117_monodromy_weyl_a3.py#L1) · explicit_file_citation
-- [tfpt_explorer/neutral_source_response.py](../../../../tfpt_explorer/neutral_source_response.py#L1) · explicit_file_citation
-- [verification/v118_hexagon_family_dictionary.py](../../../../verification/v118_hexagon_family_dictionary.py#L1) · explicit_file_citation
-- [experiments/theory-contracts/matter-geometry-round15/PROOF.md](../../../../experiments/theory-contracts/matter-geometry-round15/PROOF.md#L1) · explicit_file_citation
-- [verification/v498_celestial_wp5b_singular_vector.py](../../../../verification/v498_celestial_wp5b_singular_vector.py#L1) · explicit_file_citation
-- [tfpt_explorer/flavor_path_transport.py](../../../../tfpt_explorer/flavor_path_transport.py#L1) · explicit_file_citation
-
-Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
-
-- [(* ---- (v118) hexagon-family dictionary ---- *) Module[{m0, usym, t, z6, specU, mu6, detm, detp, elems, frontier, newE}, m0 = {{0, -(1 + I)/2, (1 - I)/2}, {-(1 + I)/2, -I/2, -1/2}, {(1 - I)/2, -1/2, I/2}}; usym = DiagonalMatrix[{1, I, -I}]; z6 = Exp[I Pi/3]; specU = Sort[Join[Eigenvalues[m0], -Eigenvalues[m0]], LessEqual[Arg[#1], Arg[#2]] &]; mu6 = Sort[Table[Exp[I Pi k/3], {k, 0, 5}], LessEqual[Arg[#1], Arg[#2]] &]; checkExact["v118 sign-twist lemma: (-M0)^3 = -1 and spec(M0) u spec(-M0) = mu_6 (the hexagon); denominators 5/4 - cos(r pi/3) = |1 - zeta_6^r/2|^2", Simplify[MatrixPower[-m0, 3]] === -IdentityMatrix[3] && AllTrue[Transpose[{FullSimplify[specU], FullSimplify[mu6]}], FullSimplify[#[[1]] - #[[2]]] === 0 &] && AllTrue[Range[0, 5], FullSimplify[(5/4 - Cos[# Pi/3]) - (1 - z6^#/2) (1 - Conjugate[z6^#]/2)] === 0 &]]; t = \[FormalT]; detm = Det[IdentityMatrix[3] - m0/2]; detp = Det[IdentityMatrix[3] + m0/2]; checkExact["v118 cyclotomic determinant: det(1 - t M0) = 1 - t^3; det(1 -+ M0/2) = (7/8, 9/8)", FullSimplify[Det[IdentityMatrix[3] - t m0] - (1 - t^3)] === 0 && Simplify[detm] == 7/8 && Simplify[detp] == 9/8]; checkExact["v118 lepton coefficients = resolvent determinants: c_e = 4/(2 det-) = 16/7, c_mu = 3/(2 det+) = 4/3, c_tau = 4 det-/3 = 7/6, product = 4/det+ = 32/9", Simplify[4/(2 detm)] == 16/7 && Simplify[3/(2 detp)] == 4/3 && Simplify[4 detm/3] == 7/6 && Simplify[4/detp] == 32/9 && Abs[m0[[2, 2]]] == 1/2]; elems = <|Expand[IdentityMatrix[3]] -> True|>; frontier = {IdentityMatrix[3]}; While[frontier =!= {}, newE = {}; Do[Module[{xg = Expand[g . e]}, If[! KeyExistsQ[elems, xg], elems[xg] = True; AppendTo[newE, xg]]], {e, frontier}, {g, {usym, m0, -IdentityMatrix[3]}}]; frontier = newE]; checkExact["v118 sheet-extended group: <U, M0, -1> has order 48 = Omega_adm = 3 x 16 = |S4 x Z2|", Length[elems] == 48 && 3*16 == 48]; ]; (* ---- (v119) second review validation ---- *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L749)
-- [(* ---- (v117) monodromy = W(A3) ---- The [N] ODE identification (scipy monodromy of the exact A0* system) is Python-only by convention; the exact statements are mirrored here. *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L713)
-- [(* ==== v498 round: CELEST.WP5B.01 -- WP5b of CELEST.SEAM.01, "the singular vector as an operator" (the deleting object of the v497 null ideal made explicit). Exact content mirrored: (i) the case classification of the J^a_1 condition over the 248-element basis (190/57/1, exactly one case sees the level k) from the standard E8 root data + the theta-grading (1,56,134,56,1); (ii) the LEVEL DIAL derived from the affine sl2 commutation -- F^theta_1 (E^theta_{-1})^n|0> = n(k-n+1) (E_{-1})^{n-1}|0>, square coefficient 2(k-1) = -2(1-k) with values (-2,0,2) at k = 0,1,2, Shapovalov 2k(k-1) (0 at k = 1, 4 at k = 2), cube singular exactly at k = 2; (iii) the glue frame -- 240 roots with classes (52,64,60,64), inner grading <r,h> = class mod 4 on all 240, theta_glue = argmax with <theta,h> = 5 => j(theta) = 1, clock phase i^(2j) = -1, cross-table rows (1,56,126,56,1); (iv) multiplicity 1 of weight 2 theta in the level-2 Fock (U(g)|s> is THE 27000 = 30^3), lattice reading (2t,2t)/2 = 4 > 2, and the comark discriminator (E8 comarks all >= 2 -- vacuum the only level-1 primary; D8 has three comark-1 weights with h = (1/2,1,1)); (v) the twisted-slot tension (two sector-C_1 modes never sum to 8 quarters, minimum 6 = q^(3/2)) + the per-period 248. The full Chevalley/PBW singularity run (J^a_1|s> = 0 on all 248 basis elements, engine unit tests on all 61504 pairs) is Python-side (v498 S1-S3); the counting/dial/grading consequences are what is mirrored here. Mirrors v498. ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L3463)
-- [(* ==== v500 round: CELEST.WP5C.01 -- WP5c of CELEST.SEAM.01, "the GNS limit state" (the state whose GNS kernel contains the v497/v498 null ideal). Exact content mirrored: (i) the LEVEL-2 BLOCK CENSUS from the standard E8 root data -- 31124 = 248 + 30876 monomials in 9361 weight blocks with dim profile {164:1, 37:240, 7:2160, 1:6960}, orbit census by lattice norm (8,6,4,2,0) -> (240, 6720, 2160, 240, 1) with constant block dims (1,1,7,37,164); (ii) the RANK/KERNEL ARITHMETIC of the full Gram -- rank table per orbit (0,0,1,8,44) (the Python-side Gram result) gives total rank 4124 = 1 + 248 + 3875 = chi_2 (dim V(omega) = 3875 recomputed by Weyl from the dominant norm-4 weight) and kernel per orbit (1,1,6,29,120) summing to 27000 = 30^3 = dim V(2 theta) (Weyl); (iii) the CLOCK-CLASS SPLIT at the state level -- the same census in the glue frame with class(lambda) = <lambda,h> mod 4 turns the rank table into the split (1036,1024,1040,1024) = Theta_Cj/eta^8 at q^2, and level 1 gives (52+8,64,60,64) = (60,64,60,64); (iv) the THRESHOLD + LEVEL-DIAL + D8 arithmetic -- x-adic order w*r >= N+1 for all r >= 1 iff w >= N+1 (sharp at w = N via r = 1), level-1 root-mode norm = k (no 248 layer at k = 0), <s|s> = 2k(k-1) (0 at k = 1, +4 at k = 2), D8 census 7380 = 120 + 7260 in 2705 blocks with quotient 7380 - 5304 = 2076. The exact Gram computation itself (9361 blocks over Fractions, PSD inertia, the highest-weight norms (3844, 49, 2, 0), the contravariance and anti-involution machine checks on 61504 pairs) is Python-side (v500 S1-S4). Mirrors v500. ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L3709)
-
-## Die Windung wirkt auf der ganzen Quelle: neuer Anschluss und gemeinsamer Massentest
-
-[documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/006-subsection-die-48-und-die-41-sind-zwei-antworten-derselb.tex:124-130](../../../../documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/006-subsection-die-48-und-die-41-sind-zwei-antworten-derselb.tex#L124) · `section:dd6ae75f0a051dc057b2` · section
-
-Der neue positive Herkunftssatz: Die primitive Determinantenwindung des ursprünglichen Flavorprozesses bestimmt beim internen Spin-Lift ein zusätzliches Minuszeichen. In der vorhandenen E8-Verklebung ist dieses Zeichen genau die Involution, die den 120er-Tensorsektor vom 128er-Spinorsektor unterscheidet. Damit ist ein Sechserumlauf auf tatsächlichen geladenen Quellenfeldern konstruiert. Die Identifikation dieses inne
-
-## Der Spinrahmen trifft genau die ursprüngliche E8-Verklebung
-
-[documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/006-subsection-die-48-und-die-41-sind-zwei-antworten-derselb.tex:152-184](../../../../documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/006-subsection-die-48-und-die-41-sind-zwei-antworten-derselb.tex#L152) · `section:d74cb58447f8b5833b9e` · subsection
-
-Im Original gilt als wirkliche Untergruppe von E8 Die diagonale Vierergruppe ist der Kern dieser Darstellung: Sie wirkt auf E8 trivial. Die einzeln wirksamen Faktorzentren erfüllen dagegen Alle 240 Originalwurzeln bestätigen dieselbe Charaktergleichheit; die acht Cartanrichtungen gehören zum geraden 120er-Sektor. Die Vorzeichen respektieren die ursprünglichen Wurzelklammern und damit die ganze von ihnen erzeugte Quel
-
-## Der benötigte geladene Paarkanal ist in der tatsächlichen Quelle vorhanden
-
-[documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/006-subsection-die-48-und-die-41-sind-zwei-antworten-derselb.tex:224-273](../../../../documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/006-subsection-die-48-und-die-41-sind-zwei-antworten-derselb.tex#L224) · `section:1619e17fcf57340feb0f` · subsection
-
-Der Konflikt wurde unmittelbar in der bestehenden Quelle weiterverfolgt. Es wurde kein neues elementares Higgsfeld eingeführt. Die ursprünglichen vier Singletströme [formula in source] im markierten Spinorblock besitzen Wurzeln [formula in source] mit [formula in source] und [formula in source] sind die tatsächlichen Originalphasen und der ursprüngliche Gitterkokzyklus. Bei der Konvention [formula in source] trägt di
-
-## Der neutrale Alpha-Kandidat antwortet auf diesen Neutrinokanal
-
-[documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/006-subsection-die-48-und-die-41-sind-zwei-antworten-derselb.tex:310-331](../../../../documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/006-subsection-die-48-und-die-41-sind-zwei-antworten-derselb.tex#L310) · `section:1b4dc6009cb25792e1b9` · subsection
-
-Die neue Paarstruktur kann mit dem bereits bestimmten neutralen Feld [formula in source] in derselben Quelle geprüft werden. Verwende dieselbe Auswahl, in der [formula in source] der ausgelassene Familien-Singulettzugang und [formula in source] der Dreieranteil sind. Für einen reinen normierten Gitterzustand [formula in source] gilt mit der ursprünglichen Matrix [formula in source] Der symmetrische Paarzustand [formu
-
-## Warum die vorhandene Fermionisierung den Statistikschritt nicht überspringt
-
-[documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/006-subsection-die-48-und-die-41-sind-zwei-antworten-derselb.tex:332-344](../../../../documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/006-subsection-die-48-und-die-41-sind-zwei-antworten-derselb.tex#L332) · `section:0444ab0b0ae0c5cad185` · subsection
-
-Für die tatsächliche chirale E8-Fermionisierung gelten Die E8-Decksymmetrie hat Zeichen [formula in source] ; Fermionparität in den neuen Sektoren hat Zeichen [formula in source] beziehungsweise [formula in source] boylesmith. Das sind verschiedene Operatoren auf verschiedenen Sektoren.
-
-Explicit source references:
-
-- [verification/v522_woit_beta1_gso_gauge.py](../../../../verification/v522_woit_beta1_gso_gauge.py#L1) · explicit_script_identifier
-
-Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
-
-- [(* ==== v522 round: WOIT.BETA1.GSO.01 -- "the clock is time-like, GSO is the gauge datum": the Z8/NS tower + Ramond control, the invariant- dimension chain, the time-like reflection census, the exact Hermiticity witness of the clock insertion, the GSO 2-torsion census and the family-A tower-normalisation failure. The 40-digit GSO-fixed RP inertia certificates ((29,0,0)/(8,0,0)/(7,9,6)/(17,12,0)) are Python-only by the suite convention. Mirrors v522. ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L7609)
-
-## Die Majoranapaare bleiben als lokale CAR-Komposite erhalten
-
-[documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/006-subsection-die-48-und-die-41-sind-zwei-antworten-derselb.tex:345-393](../../../../documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/006-subsection-die-48-und-die-41-sind-zwei-antworten-derselb.tex#L345) · `section:faadce3641621281c19b` · subsection
-
-Die Sektorunterscheidung lässt einen konstruktiven gemeinsamen Anschluss zu. Die geraden Paaroperatoren liegen im gemeinsamen [formula in source] -Vakuummodul [formula in source] . Für die hier auftretenden ganzzahligen Impulse [formula in source] setze [formula in source] in wachsender Koordinatenfolge. Die ursprünglichen E8- und CAR-Kokzyklen auf [formula in source] sind durch die im Programm angegebene quadratisch

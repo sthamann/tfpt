@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Primzahlen, RH und die Musik hinter den Schatten
+
+[experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/12_schatten_arithmetik.tex:1-8](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/12_schatten_arithmetik.tex#L1) · `section:50968a8a25060bbb54ca` · chapter
+
+Was uns ein Schatten verraten kann Wenn wir nur den Schatten eines Rades sehen, erkennen wir vielleicht einen Kreis. Erst wenn wir das Rad drehen, belasten und mit einem zweiten Rad verbinden, erkennen wir seine Achse, seine Zähne und seine Übersetzung. Genau so lesen wir hier Primzahlen, Quanteneffekte und Raumzeit: als verschiedene Antworten, die eine mögliche gemeinsame Struktur gleichzeitig erklären müsste.
+
 ## In welchem Sinn Primzahlen Bausteine sind
 
 [experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/12_schatten_arithmetik.tex:9-25](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/12_schatten_arithmetik.tex#L9) · `section:6ebd23f6c737fb0bd01d` · section

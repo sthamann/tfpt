@@ -27,7 +27,19 @@ The [source reconciliation](docs/research/REC20261105C3.md)
 and the Architecture chapter “Shared origin” give the common explanation and
 the exact remaining determinant-response and source-identification premises.
 
-## Source and transfer results, 3 November 2026
+## Source and field integration results, 5 November 2026
+
+The latest shared paper update records the existing whole-source concatenation,
+evaluated original C6 and family-history weights, whole canonical R104 mirror
+words and an entire nonlinear total-number source. Its configuration-class
+review distinguishes the bounded circle fermionheat factor from the remaining
+whole geometric weight. The complete primitive mixed field integral and its
+interacting physical spectrum remain unevaluated. The single public source is
+[the shared field integration update](tex-artefacts/toe_field_integration_20261105.tex),
+included by the six active source-completion paper views and mirrored on the
+[common-source explanation](https://www.fixpoint-theory.com/explain#source).
+The existing whole field, reference, state and time transports are retained;
+no new measure or physical completion marker is introduced.
 
 The current [shared research plan](docs/research/fundamental-plan/PLAN.md) and
 [consolidated source assessment](docs/research/fundamental-plan/CONSOLIDATION-SESSION-20261103.md)

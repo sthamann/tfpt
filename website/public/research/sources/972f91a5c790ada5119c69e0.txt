@@ -1,0 +1,84 @@
+TFPT scientific source excerpt
+Original repository path: verification/v369_qgamb_redundancy.py
+Original file SHA-256: 89e640abf05b9c86212b5e30c896e7f6458e7ad43660a507f62068452fc6b195
+Inclusive original lines: 75-150
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000075 | def run():
+000076 |     reset()
+000077 |     print("v369  QGAMB.REDUNDANCY.01: the ambient measure is boundary-redundant "
+000078 |           "(the holographic route to Gravity-complete)")
+000079 | 
+000080 |     # --- Cartan-matrix discriminators (Bourbaki simply-laced diagrams) ---------
+000081 |     # E8: chain 1-3-4-5-6-7-8 with leg node 2 attached to node 4
+000082 |     detE8, _ = _cartan_det(8, [(1, 3), (3, 4), (4, 5), (5, 6), (6, 7), (7, 8), (2, 4)])
+000083 |     # D8 (SO(16)): chain 1-2-3-4-5-6 with the fork nodes 7,8 both on node 6
+000084 |     detD8, _ = _cartan_det(8, [(1, 2), (2, 3), (3, 4), (4, 5), (5, 6), (6, 7), (6, 8)])
+000085 | 
+000086 |     # 1. holomorphic => trivial DHR (Vec): #primaries = |det Cartan|
+000087 |     check("HOLOMORPHIC => DHR = Vec [E]: #DHR primaries = |det Cartan| -- E8 gives %d (ONE "
+000088 |           "primary = vacuum, trivial braided category) vs SO(16)/D8 = %d (four primaries); "
+000089 |           "a holomorphic boundary net has NO nontrivial superselection charges => no hidden "
+000090 |           "boundary sector a bulk could carry invisibly" % (detE8, detD8),
+000091 |           detE8 == 1 and detD8 == 4)
+000092 | 
+000093 |     # 2. no torus ground-state degeneracy: GSD(T^2) = #anyons = |det K| = 1 for E8
+000094 |     GSD_T2 = abs(detE8)
+000095 |     check("NO TORUS GSD [E]: ground-state degeneracy on T^2 = #anyons = |det K| = %d for E8 "
+000096 |           "(vs %d for SO(16)) => a UNIQUE ground state => no topologically protected bulk "
+000097 |           "d.o.f. invisible to the boundary (the genus-1 obstruction of v344, redundancy "
+000098 |           "reading)" % (GSD_T2, abs(detD8)),
+000099 |           GSD_T2 == 1)
+000100 | 
+000101 |     # 3. finite-rate Petz recovery on the deviation subspace: rate (2/3)^6 = 64/729 < 1
+000102 |     recov = sp.Rational(2, 3) ** 6
+000103 |     check("FINITE PETZ RECOVERY [E]: the seam transfer deviation subspace contracts at rate "
+000104 |           "(2/3)^6 = %s ~ %.4f < 1 (v221) => bulk perturbations are boundary-recoverable by "
+000105 |           "a Petz map at a finite gapped rate => Rec_Sigma is bounded"
+000106 |           % (recov, float(recov)),
+000107 |           recov == sp.Rational(64, 729) and 0 < float(recov) < 1)
+000108 | 
+000109 |     # 4. gap-decoupling margin Delta_eff > 0 (the ambient sector is energetically separated)
+000110 |     Delta = 6 * sp.log(sp.Rational(3, 2))
+000111 |     backreaction = 2 * 248 * (sp.Rational(1, 1) / (8 * sp.pi)) ** 2   # 2*dim(E8)*c3^2 = 31/(4 pi^2)
+000112 |     Delta_eff = Delta - backreaction
+000113 |     check("GAP-DECOUPLING MARGIN [E]: Delta_eff = 6 ln(3/2) - 2*dim(E8)*c3^2 = "
+000114 |           "6 ln(3/2) - 31/(4 pi^2) ~ %.4f > 0 (v76/v337) => the un-built ambient sector is "
+000115 |           "energetically separated from the admissible (boundary-reconstructible) sector => "
+000116 |           "ambient fluctuations inject no new low-energy physical d.o.f. into A_Sigma"
+000117 |           % float(Delta_eff),
+000118 |           sp.simplify(backreaction - sp.Rational(31, 4) / sp.pi**2) == 0 and float(Delta_eff) > 1.6)
+000119 | 
+000120 |     # 5. reconstruction map from modular (Bisognano-Wichmann) covariance (cited, conditional)
+000121 |     check("RECONSTRUCTION MAP [C]: Bisognano-Wichmann / Tomita-Takesaki gives the modular "
+000122 |           "flow as the geometric boost (v258/v309/v323); with holomorphy this supplies the "
+000123 |           "canonical reconstruction Rec_Sigma: (bulk algebra) -> A_Sigma^{mu4} (cited)", True)
+000124 | 
+000125 |     # 6. THE REDUNDANCY STATEMENT (conditional on SEAM.EQUIV.01 + BW): the assembly is valid
+000126 |     #    iff all four [E] discriminators above hold (trivial DHR, no GSD, finite recovery,
+000127 |     #    positive gap margin) -- then ambient measures with the same boundary state are
+000128 |     #    physically equivalent.
+000129 |     redundancy_well_posed = (detE8 == 1) and (GSD_T2 == 1) and (0 < float(recov) < 1) \
+000130 |         and (float(Delta_eff) > 0)
+000131 |     check("AMBIENT REDUNDANCY [C]: under SEAM.EQUIV.01 (boundary = (E8)_1) + BW, every "
+000132 |           "gauge-invariant bulk observable is boundary-reconstructible (O_phys^bulk/Diff ~= "
+000133 |           "A_Sigma^{mu4}) and ambient measures sharing the boundary state are physically "
+000134 |           "equivalent => QG.AMB.01 carries NO extra physical d.o.f. (a certification object, "
+000135 |           "not missing dynamics) -- well-posed since DHR=Vec & no GSD & finite recovery & "
+000136 |           "gap margin>0", redundancy_well_posed)
+000137 | 
+000138 |     # 7. residual: the two consumed premises (does NOT close QG.AMB.01)
+000139 |     check("RESIDUAL [O]: the theorem consumes exactly TWO premises -- (a) SEAM.EQUIV.01 "
+000140 |           "(boundary IS (E8)_1; the S3 lattice input, v366) and (b) the BW intrinsicality of "
+000141 |           "the raw collar (v329 NEG); it does NOT construct QG.AMB.01 but provides the "
+000142 |           "ALTERNATIVE (holographic redundancy) route to Gravity-complete, conditional on "
+000143 |           "those two", True)
+000144 | 
+000145 |     return summary("v369 QGAMB.REDUNDANCY.01: the ambient QG measure (C7/QG.AMB.01) is "
+000146 |                    "boundary-REDUNDANT -- holomorphic (E8)_1 gives det K=1 => DHR=Vec (no "
+000147 |                    "superselection) + no torus GSD, finite Petz recovery (2/3)^6, and the gap "
+000148 |                    "margin Delta_eff~1.648>0 make O_phys^bulk/Diff ~= A_Sigma^{mu4} well-posed; "
+000149 |                    "so QG.AMB.01 is a non-fundamental certification object [C], conditional on "
+000150 |                    "SEAM.EQUIV.01 + BW intrinsicality [O]. The holographic route to Gravity-complete")

@@ -2,7 +2,7 @@
 
 [Registry index](../INDEX.md) · Topic ID: `e8-geometry`
 
-888 physical section matches. Topic assignment is a lexical navigation suggestion, not semantic review. The excerpts and citations below come from source; no proof or status promotion is asserted.
+895 physical section matches. Topic assignment is a lexical navigation suggestion, not semantic review. The excerpts and citations below come from source; no proof or status promotion is asserted.
 
 
 ## Bounded reading parts
@@ -17,7 +17,7 @@ Each part contains at most 100 physical section records and their actual explici
 - [Part 6: section matches 501–600](e8-geometry/part-006.md)
 - [Part 7: section matches 601–700](e8-geometry/part-007.md)
 - [Part 8: section matches 701–800](e8-geometry/part-008.md)
-- [Part 9: section matches 801–888](e8-geometry/part-009.md)
+- [Part 9: section matches 801–895](e8-geometry/part-009.md)
 
 ## First 20 source locations
 

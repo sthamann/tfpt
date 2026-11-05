@@ -2,7 +2,7 @@
 
 [Registry index](../INDEX.md) · Topic ID: `boundary-clocks`
 
-1434 physical section matches. Topic assignment is a lexical navigation suggestion, not semantic review. The excerpts and citations below come from source; no proof or status promotion is asserted.
+1440 physical section matches. Topic assignment is a lexical navigation suggestion, not semantic review. The excerpts and citations below come from source; no proof or status promotion is asserted.
 
 
 ## Bounded reading parts
@@ -23,7 +23,7 @@ Each part contains at most 100 physical section records and their actual explici
 - [Part 12: section matches 1101–1200](boundary-clocks/part-012.md)
 - [Part 13: section matches 1201–1300](boundary-clocks/part-013.md)
 - [Part 14: section matches 1301–1400](boundary-clocks/part-014.md)
-- [Part 15: section matches 1401–1434](boundary-clocks/part-015.md)
+- [Part 15: section matches 1401–1440](boundary-clocks/part-015.md)
 
 ## First 20 source locations
 

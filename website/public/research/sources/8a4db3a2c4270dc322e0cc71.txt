@@ -1,0 +1,56 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/craig-original-source-bridge-20261103/residue_reference_check.py
+Original file SHA-256: 93150dc8647ba78fe6cea74a580fffb85e981db4590405dd60a7a8aba0b7d0b0
+Inclusive original lines: 1-48
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Exact implication test, not a new TFPT field model or physical evaluation."""
+000002 | import json
+000003 | import sympy as s
+000004 | 
+000005 | a, b = s.symbols('a b', positive=True, real=True)
+000006 | x = s.Matrix([[0, 1], [1, 0]])
+000007 | z = s.diag(1, -1)
+000008 | I = s.eye(2)
+000009 | tau = s.kronecker_product(z, I)
+000010 | grading = s.kronecker_product(I, z)
+000011 | D = s.kronecker_product(a*I + b*x, x)
+000012 | reference = s.kronecker_product(a*I, x)
+000013 | assert (D + tau*D*tau)/2 == reference
+000014 | assert D*grading + grading*D == s.zeros(4)
+000015 | assert reference*grading + grading*reference == s.zeros(4)
+000016 | ratio = s.factor(D.det()/reference.det())
+000017 | assert s.simplify(ratio - (1-b*b/(a*a))**2) == 0
+000018 | 
+000019 | q = s.symbols('q')
+000020 | relative_zeta = 2*((a+b)**(-2*q) + (a-b)**(-2*q) - 2*a**(-2*q))
+000021 | assert s.residue(relative_zeta, q, 1) == 0
+000022 | assert relative_zeta.subs(q, 0) == 0
+000023 | derivative = s.diff(relative_zeta, q).subs(q, 0)
+000024 | probe_derivative = s.simplify(derivative.subs({a:2,b:1}))
+000025 | assert s.simplify(s.exp(-probe_derivative/2) - s.Rational(9,16)) == 0
+000026 | 
+000027 | v0,v2,v4,J,g = s.symbols('v0 v2 v4 J g')
+000028 | # Laurent coefficients of the relative Mellin numerator; no heat data fitted.
+000029 | numerator = v4/q + (J-v0/s.Integer(2)-v2)
+000030 | germ = s.expand((q+s.EulerGamma*q*q)*numerator)
+000031 | assert s.simplify(germ.coeff(q,0)-v4) == 0
+000032 | assert s.simplify(germ.coeff(q,1)-(J-v0/2-v2+s.EulerGamma*v4)) == 0
+000033 | 
+000034 | print(json.dumps({
+000035 |  'scope':'Spectral implication test only, not an actual TFPT background or full source',
+000036 |  'bound_reference':'(D+tau D tau)/2 = a I tensor sigma_x, independent of b',
+000037 |  'domain':'0 < b < a; same finite domain, grading and no zero crossing',
+000038 |  'relative_residue_at_1':0,
+000039 |  'relative_finite_part_at_0':0,
+000040 |  'relative_eta':0,
+000041 |  'determinant_ratio':str(ratio),
+000042 |  'probe':{'a':2,'b':1,'minimum_absolute_eigenvalue':1,
+000043 |           'residue_exponent_weight':1,
+000044 |           'relative_determinant_modulus':'9/16',
+000045 |           'relative_zeta_derivative':str(probe_derivative)},
+000046 |  'mellin_derivative':'J - v0/2 - v2 + EulerGamma*v4',
+000047 |  'verdict':'RESIDUE_PAIR_AND_BOUND_REFERENCE_ALONE_DO_NOT_RECOVER_FULL_DETERMINANT'
+000048 | },indent=2))

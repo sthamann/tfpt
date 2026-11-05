@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## The seam elliptic complex is Fredholm (APS)
+
+[documents/tfpt_2_standard_model/sections/010-section-the-explicit-mass-gap-closes-dynamics-and-cluste.tex:161-183](../../../../documents/tfpt_2_standard_model/sections/010-section-the-explicit-mass-gap-closes-dynamics-and-cluste.tex#L161) · `section:0a3610a9e32985012149` · section
+
+Compactify the oriented two-dimensional normal slice [formula in source] to [formula in source] . The geometric BRST/Hodge differential, restricted to the seam-even sector with Atiyah–Patodi–Singer boundary conditions on [formula in source] , is an elliptic operator on a compact manifold; hence it is Fredholm, with finite-dimensional kernel and cokernel and an integer index. The compact bosonic Higgs index selects [f
+
 ## The [formula in source] truncation is [formula in source] -bounded
 
 [documents/tfpt_2_standard_model/sections/010-section-the-explicit-mass-gap-closes-dynamics-and-cluste.tex:184-272](../../../../documents/tfpt_2_standard_model/sections/010-section-the-explicit-mass-gap-closes-dynamics-and-cluste.tex#L184) · `section:ee5c68ec39d878e448bd` · section
@@ -2299,18 +2305,3 @@ The [formula in source] in the action ladder is not merely a rank: it is the squ
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex:4165-4192](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex#L4165) · `section:68f8e4041285d7570703` · subsection
 
 All scales sit on the integer lattice spanned by two generators — the gauge unit [formula in source] and the flavor unit [formula in source] — as [formula in source] : @llll@ scale & [formula in source] & [formula in source] & axis \\ [formula in source] & [formula in source] & [formula in source] & gauge \\ [formula in source] & [formula in source] & [formula in source] & gauge \\ [formula in source] & [formula in s
-
-## The Einstein normaliser as a corrected tree value
-
-[experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex:4193-4210](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex#L4193) · `section:86ee384c6e99f300527f` · section
-
-The gravitational normaliser [formula in source] has a transparent exact form. Writing [formula in source] , So [formula in source] is the exact leading value (the inverse of the [formula in source] family/gauge compression that sits in the seed [formula in source] , so [formula in source] ), and the deviation is precisely the small topological seed correction [formula in source] , i.e.\ [formula in source] . Gravity
-
-Explicit source references:
-
-- [verification/v1_e8_glue.py](../../../../verification/v1_e8_glue.py#L1) · explicit_file_citation
-
-Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
-
-- [(* ==== v260: one Kummer/K3 carries seam + carrier-16 + E8 (ARCH.K3.01) ==== *) Module[{e8edges, E8, U, L, sig, nodes, marks}, e8edges = {{1, 2}, {2, 3}, {3, 4}, {4, 5}, {5, 6}, {6, 7}, {5, 8}}; E8 = 2 IdentityMatrix[8] - Table[If[i != j && MemberQ[e8edges, Sort[{i, j}]], 1, 0], {i, 8}, {j, 8}]; U = {{0, 1}, {1, 0}}; L = ArrayFlatten[{{U, 0, 0, 0, 0}, {0, U, 0, 0, 0}, {0, 0, U, 0, 0}, {0, 0, 0, -E8, 0}, {0, 0, 0, 0, -E8}}]; sig = {Count[Eigenvalues[N[L]], x_ /; x > 0], Count[Eigenvalues[N[L]], x_ /; x < 0]}; nodes = 2^4; marks = 2^2; checkExact["v260 ARCH.K3.01: one Kummer/K3 surface carries seam + carrier-16 + E8. E8 Cartan even, det 1, " <> "positive-definite (the unique even unimodular pos-def rank-8 lattice); the K3 lattice U^3(+)E8(-1)^2 " <> "has rank 22=b_2, det -1 (unimodular), even, signature (3,19) with E8(-1)^2 an orthogonal summand; the " <> "seam T^2/(z->-z) has 4=|(Z/2)^2| marks (pillowcase); the carrier-16 = Kummer nodes |A[2]|=2^4=16 = " <> "dim S+ = 4x4 = (seam marks)^2. So the v1 glue D5(+)A3+mu4=>E8 is the lattice shadow of one object.", Det[E8] == 1 && AllTrue[Diagonal[E8], EvenQ] && PositiveDefiniteMatrixQ[E8] && Length[L] == 22 && Det[L] == -1 && AllTrue[Diagonal[L], EvenQ] && sig == {3, 19} && nodes == 16 && marks == 4 && nodes == marks^2]; ]; (* ==== v267: QGEO rigidity / minimal-axiom form of QGEO.SYM.01 (QGEO.SYM.02) ==== v262 (alpha_s RG), v263 (seesaw numpy), v264 (DtN FFT), v265 (RG+text guard), v266 (proton RG) are numerical -> Python-only; v267's exact cross-ratio/j core is mirrored here (the DtN/FFT part of v267 stays Python-only). *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2032)
-- [(* ---- (v3) electromagnetic closure: alpha^-1 ---- *) M = 41; phiseam[a_] := phibase + (dtop Exp[-2 a]) (1 - dtop Exp[-2 a])^(-5/4); F[a_] := a^3 - 2 c3^3 a^2 - (4/5) c3^6 M Log[1/phiseam[a]]; aStar = a /. FindRoot[F[a] == 0, {a, 0.0073}, WorkingPrecision -> 40]; alphaInv = 1/aStar; check["alpha_* = 0.00729735256220985", aStar, 0.00729735256220985, 10^-15]; check["alpha^-1 = 137.0359992168407", alphaInv, 137.0359992168407, 10^-12]; (* ---- (v1) E8 glue arithmetic ---- *)](../../../../verification/wolfram/tfpt_readouts.wl#L36)

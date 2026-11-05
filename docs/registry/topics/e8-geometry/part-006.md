@@ -4,6 +4,72 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Ausführbare Nachweise dieser Fortsetzung
+
+[documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/006-subsection-die-48-und-die-41-sind-zwei-antworten-derselb.tex:119-123](../../../../documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/006-subsection-die-48-und-die-41-sind-zwei-antworten-derselb.tex#L119) · `section:e7294e8d8a250400195d` · subsection
+
+tfpt_explorer/flavor_path_transport.py integriert die ursprüngliche Verbindung entlang beider Halbwege und unabhängig entlang des geschlossenen Kreises. Es berechnet die Determinantenwindung aus den integrierten Lösungen und vergleicht die vollständigen endlichen Greenmatrizen. tfpt_explorer/neutral_source_response.py benutzt die ursprünglichen E8-Wurzeln, ihre Stressmomentmatrizen und den tatsächlichen Heisenbergzus
+
+Explicit source references:
+
+- [verification/v117_monodromy_weyl_a3.py](../../../../verification/v117_monodromy_weyl_a3.py#L1) · explicit_file_citation
+- [tfpt_explorer/neutral_source_response.py](../../../../tfpt_explorer/neutral_source_response.py#L1) · explicit_file_citation
+- [verification/v118_hexagon_family_dictionary.py](../../../../verification/v118_hexagon_family_dictionary.py#L1) · explicit_file_citation
+- [experiments/theory-contracts/matter-geometry-round15/PROOF.md](../../../../experiments/theory-contracts/matter-geometry-round15/PROOF.md#L1) · explicit_file_citation
+- [verification/v498_celestial_wp5b_singular_vector.py](../../../../verification/v498_celestial_wp5b_singular_vector.py#L1) · explicit_file_citation
+- [tfpt_explorer/flavor_path_transport.py](../../../../tfpt_explorer/flavor_path_transport.py#L1) · explicit_file_citation
+
+Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
+
+- [(* ---- (v118) hexagon-family dictionary ---- *) Module[{m0, usym, t, z6, specU, mu6, detm, detp, elems, frontier, newE}, m0 = {{0, -(1 + I)/2, (1 - I)/2}, {-(1 + I)/2, -I/2, -1/2}, {(1 - I)/2, -1/2, I/2}}; usym = DiagonalMatrix[{1, I, -I}]; z6 = Exp[I Pi/3]; specU = Sort[Join[Eigenvalues[m0], -Eigenvalues[m0]], LessEqual[Arg[#1], Arg[#2]] &]; mu6 = Sort[Table[Exp[I Pi k/3], {k, 0, 5}], LessEqual[Arg[#1], Arg[#2]] &]; checkExact["v118 sign-twist lemma: (-M0)^3 = -1 and spec(M0) u spec(-M0) = mu_6 (the hexagon); denominators 5/4 - cos(r pi/3) = |1 - zeta_6^r/2|^2", Simplify[MatrixPower[-m0, 3]] === -IdentityMatrix[3] && AllTrue[Transpose[{FullSimplify[specU], FullSimplify[mu6]}], FullSimplify[#[[1]] - #[[2]]] === 0 &] && AllTrue[Range[0, 5], FullSimplify[(5/4 - Cos[# Pi/3]) - (1 - z6^#/2) (1 - Conjugate[z6^#]/2)] === 0 &]]; t = \[FormalT]; detm = Det[IdentityMatrix[3] - m0/2]; detp = Det[IdentityMatrix[3] + m0/2]; checkExact["v118 cyclotomic determinant: det(1 - t M0) = 1 - t^3; det(1 -+ M0/2) = (7/8, 9/8)", FullSimplify[Det[IdentityMatrix[3] - t m0] - (1 - t^3)] === 0 && Simplify[detm] == 7/8 && Simplify[detp] == 9/8]; checkExact["v118 lepton coefficients = resolvent determinants: c_e = 4/(2 det-) = 16/7, c_mu = 3/(2 det+) = 4/3, c_tau = 4 det-/3 = 7/6, product = 4/det+ = 32/9", Simplify[4/(2 detm)] == 16/7 && Simplify[3/(2 detp)] == 4/3 && Simplify[4 detm/3] == 7/6 && Simplify[4/detp] == 32/9 && Abs[m0[[2, 2]]] == 1/2]; elems = <|Expand[IdentityMatrix[3]] -> True|>; frontier = {IdentityMatrix[3]}; While[frontier =!= {}, newE = {}; Do[Module[{xg = Expand[g . e]}, If[! KeyExistsQ[elems, xg], elems[xg] = True; AppendTo[newE, xg]]], {e, frontier}, {g, {usym, m0, -IdentityMatrix[3]}}]; frontier = newE]; checkExact["v118 sheet-extended group: <U, M0, -1> has order 48 = Omega_adm = 3 x 16 = |S4 x Z2|", Length[elems] == 48 && 3*16 == 48]; ]; (* ---- (v119) second review validation ---- *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L749)
+- [(* ---- (v117) monodromy = W(A3) ---- The [N] ODE identification (scipy monodromy of the exact A0* system) is Python-only by convention; the exact statements are mirrored here. *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L713)
+- [(* ==== v498 round: CELEST.WP5B.01 -- WP5b of CELEST.SEAM.01, "the singular vector as an operator" (the deleting object of the v497 null ideal made explicit). Exact content mirrored: (i) the case classification of the J^a_1 condition over the 248-element basis (190/57/1, exactly one case sees the level k) from the standard E8 root data + the theta-grading (1,56,134,56,1); (ii) the LEVEL DIAL derived from the affine sl2 commutation -- F^theta_1 (E^theta_{-1})^n|0> = n(k-n+1) (E_{-1})^{n-1}|0>, square coefficient 2(k-1) = -2(1-k) with values (-2,0,2) at k = 0,1,2, Shapovalov 2k(k-1) (0 at k = 1, 4 at k = 2), cube singular exactly at k = 2; (iii) the glue frame -- 240 roots with classes (52,64,60,64), inner grading <r,h> = class mod 4 on all 240, theta_glue = argmax with <theta,h> = 5 => j(theta) = 1, clock phase i^(2j) = -1, cross-table rows (1,56,126,56,1); (iv) multiplicity 1 of weight 2 theta in the level-2 Fock (U(g)|s> is THE 27000 = 30^3), lattice reading (2t,2t)/2 = 4 > 2, and the comark discriminator (E8 comarks all >= 2 -- vacuum the only level-1 primary; D8 has three comark-1 weights with h = (1/2,1,1)); (v) the twisted-slot tension (two sector-C_1 modes never sum to 8 quarters, minimum 6 = q^(3/2)) + the per-period 248. The full Chevalley/PBW singularity run (J^a_1|s> = 0 on all 248 basis elements, engine unit tests on all 61504 pairs) is Python-side (v498 S1-S3); the counting/dial/grading consequences are what is mirrored here. Mirrors v498. ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L3463)
+- [(* ==== v500 round: CELEST.WP5C.01 -- WP5c of CELEST.SEAM.01, "the GNS limit state" (the state whose GNS kernel contains the v497/v498 null ideal). Exact content mirrored: (i) the LEVEL-2 BLOCK CENSUS from the standard E8 root data -- 31124 = 248 + 30876 monomials in 9361 weight blocks with dim profile {164:1, 37:240, 7:2160, 1:6960}, orbit census by lattice norm (8,6,4,2,0) -> (240, 6720, 2160, 240, 1) with constant block dims (1,1,7,37,164); (ii) the RANK/KERNEL ARITHMETIC of the full Gram -- rank table per orbit (0,0,1,8,44) (the Python-side Gram result) gives total rank 4124 = 1 + 248 + 3875 = chi_2 (dim V(omega) = 3875 recomputed by Weyl from the dominant norm-4 weight) and kernel per orbit (1,1,6,29,120) summing to 27000 = 30^3 = dim V(2 theta) (Weyl); (iii) the CLOCK-CLASS SPLIT at the state level -- the same census in the glue frame with class(lambda) = <lambda,h> mod 4 turns the rank table into the split (1036,1024,1040,1024) = Theta_Cj/eta^8 at q^2, and level 1 gives (52+8,64,60,64) = (60,64,60,64); (iv) the THRESHOLD + LEVEL-DIAL + D8 arithmetic -- x-adic order w*r >= N+1 for all r >= 1 iff w >= N+1 (sharp at w = N via r = 1), level-1 root-mode norm = k (no 248 layer at k = 0), <s|s> = 2k(k-1) (0 at k = 1, +4 at k = 2), D8 census 7380 = 120 + 7260 in 2705 blocks with quotient 7380 - 5304 = 2076. The exact Gram computation itself (9361 blocks over Fractions, PSD inertia, the highest-weight norms (3844, 49, 2, 0), the contravariance and anti-involution machine checks on 61504 pairs) is Python-side (v500 S1-S4). Mirrors v500. ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L3709)
+
+## Die Windung wirkt auf der ganzen Quelle: neuer Anschluss und gemeinsamer Massentest
+
+[documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/006-subsection-die-48-und-die-41-sind-zwei-antworten-derselb.tex:124-130](../../../../documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/006-subsection-die-48-und-die-41-sind-zwei-antworten-derselb.tex#L124) · `section:dd6ae75f0a051dc057b2` · section
+
+Der neue positive Herkunftssatz: Die primitive Determinantenwindung des ursprünglichen Flavorprozesses bestimmt beim internen Spin-Lift ein zusätzliches Minuszeichen. In der vorhandenen E8-Verklebung ist dieses Zeichen genau die Involution, die den 120er-Tensorsektor vom 128er-Spinorsektor unterscheidet. Damit ist ein Sechserumlauf auf tatsächlichen geladenen Quellenfeldern konstruiert. Die Identifikation dieses inne
+
+## Der Spinrahmen trifft genau die ursprüngliche E8-Verklebung
+
+[documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/006-subsection-die-48-und-die-41-sind-zwei-antworten-derselb.tex:152-184](../../../../documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/006-subsection-die-48-und-die-41-sind-zwei-antworten-derselb.tex#L152) · `section:d74cb58447f8b5833b9e` · subsection
+
+Im Original gilt als wirkliche Untergruppe von E8 Die diagonale Vierergruppe ist der Kern dieser Darstellung: Sie wirkt auf E8 trivial. Die einzeln wirksamen Faktorzentren erfüllen dagegen Alle 240 Originalwurzeln bestätigen dieselbe Charaktergleichheit; die acht Cartanrichtungen gehören zum geraden 120er-Sektor. Die Vorzeichen respektieren die ursprünglichen Wurzelklammern und damit die ganze von ihnen erzeugte Quel
+
+## Der benötigte geladene Paarkanal ist in der tatsächlichen Quelle vorhanden
+
+[documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/006-subsection-die-48-und-die-41-sind-zwei-antworten-derselb.tex:224-273](../../../../documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/006-subsection-die-48-und-die-41-sind-zwei-antworten-derselb.tex#L224) · `section:1619e17fcf57340feb0f` · subsection
+
+Der Konflikt wurde unmittelbar in der bestehenden Quelle weiterverfolgt. Es wurde kein neues elementares Higgsfeld eingeführt. Die ursprünglichen vier Singletströme [formula in source] im markierten Spinorblock besitzen Wurzeln [formula in source] mit [formula in source] und [formula in source] sind die tatsächlichen Originalphasen und der ursprüngliche Gitterkokzyklus. Bei der Konvention [formula in source] trägt di
+
+## Der neutrale Alpha-Kandidat antwortet auf diesen Neutrinokanal
+
+[documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/006-subsection-die-48-und-die-41-sind-zwei-antworten-derselb.tex:310-331](../../../../documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/006-subsection-die-48-und-die-41-sind-zwei-antworten-derselb.tex#L310) · `section:1b4dc6009cb25792e1b9` · subsection
+
+Die neue Paarstruktur kann mit dem bereits bestimmten neutralen Feld [formula in source] in derselben Quelle geprüft werden. Verwende dieselbe Auswahl, in der [formula in source] der ausgelassene Familien-Singulettzugang und [formula in source] der Dreieranteil sind. Für einen reinen normierten Gitterzustand [formula in source] gilt mit der ursprünglichen Matrix [formula in source] Der symmetrische Paarzustand [formu
+
+## Warum die vorhandene Fermionisierung den Statistikschritt nicht überspringt
+
+[documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/006-subsection-die-48-und-die-41-sind-zwei-antworten-derselb.tex:332-344](../../../../documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/006-subsection-die-48-und-die-41-sind-zwei-antworten-derselb.tex#L332) · `section:0444ab0b0ae0c5cad185` · subsection
+
+Für die tatsächliche chirale E8-Fermionisierung gelten Die E8-Decksymmetrie hat Zeichen [formula in source] ; Fermionparität in den neuen Sektoren hat Zeichen [formula in source] beziehungsweise [formula in source] boylesmith. Das sind verschiedene Operatoren auf verschiedenen Sektoren.
+
+Explicit source references:
+
+- [verification/v522_woit_beta1_gso_gauge.py](../../../../verification/v522_woit_beta1_gso_gauge.py#L1) · explicit_script_identifier
+
+Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
+
+- [(* ==== v522 round: WOIT.BETA1.GSO.01 -- "the clock is time-like, GSO is the gauge datum": the Z8/NS tower + Ramond control, the invariant- dimension chain, the time-like reflection census, the exact Hermiticity witness of the clock insertion, the GSO 2-torsion census and the family-A tower-normalisation failure. The 40-digit GSO-fixed RP inertia certificates ((29,0,0)/(8,0,0)/(7,9,6)/(17,12,0)) are Python-only by the suite convention. Mirrors v522. ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L7609)
+
+## Die Majoranapaare bleiben als lokale CAR-Komposite erhalten
+
+[documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/006-subsection-die-48-und-die-41-sind-zwei-antworten-derselb.tex:345-393](../../../../documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/006-subsection-die-48-und-die-41-sind-zwei-antworten-derselb.tex#L345) · `section:faadce3641621281c19b` · subsection
+
+Die Sektorunterscheidung lässt einen konstruktiven gemeinsamen Anschluss zu. Die geraden Paaroperatoren liegen im gemeinsamen [formula in source] -Vakuummodul [formula in source] . Für die hier auftretenden ganzzahligen Impulse [formula in source] setze [formula in source] in wachsender Koordinatenfolge. Die ursprünglichen E8- und CAR-Kokzyklen auf [formula in source] sind durch die im Programm angegebene quadratisch
+
 ## Schwere und leichte Neutrinos bleiben verschiedene physische Felder.
 
 [documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/007-subsection-die-vollst-ndige-neutrinomatrix-besitzt-ein-n.tex:48-81](../../../../documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/007-subsection-die-vollst-ndige-neutrinomatrix-besitzt-ein-n.tex#L48) · `section:6bc5f7df6561e72eadcc` · paragraph
@@ -1655,68 +1721,3 @@ The number of positive [formula in source] roots equals the master hypercharge m
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex:4442-4467](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex#L4442) · `section:ef6b3386018f18c6b0d4` · subsection
 
 The three hard carrier atoms — weak rank [formula in source] , color rank / family count [formula in source] , carrier rank [formula in source] — generate the [formula in source] data cyclotomically, without taking [formula in source] as input. Set where [formula in source] is the Coxeter number and [formula in source] the rank. Then the standard [formula in source] , [formula in source] give Moreover the [formula in
-
-## Level 3 — conjectural geometric readings ( )
-
-[experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex:4468-4494](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex#L4468) · `section:d6fc33b23f07258c35e0` · subsection
-
-[formula in source] as a structure-bearing transition set, since [formula in source] . Open: a structure-preserving map (roots, lengths, Weyl data), not only the count. [formula in source] reads [formula in source] as the least common refinement of the occupancy lattice and the [formula in source] phase lattice; [formula in source] reads it as a rank- [formula in source] structure over the [formula in source] non-emp
-
-## [formula in source] monodromy, flavor and CP readouts
-
-[experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex:4495-4512](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex#L4495) · `section:98302c2c61efc4bc092a` · section
-
-Machine checks for this section: v88_ cp_ phase_ audit.py
-
-Explicit source references:
-
-- [verification/v88_cp_phase_audit.py](../../../../verification/v88_cp_phase_audit.py#L1) · explicit_file_citation
-
-## CP as triple seed variance; a closed observable quadrilateral
-
-[experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex:4513-4548](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex#L4513) · `section:5eb2d2569c48fb5ad4cc` · subsection
-
-The Cabibbo angle is the Bernoulli width of the seed. The exact CKM phase is the family transport holonomy (document 3), [formula in source] ; on the small-area branch this has the compact readout form (with an [formula in source] remainder) The coefficient [formula in source] is the family number [formula in source] : weak CP is the [formula in source] base angle [formula in source] plus [formula in source] times th
-
-## Mass hierarchy as a hexagon with one extra turn
-
-[experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex:4549-4574](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex#L4549) · `section:12d922a5ee4f1c9c6225` · section
-
-Machine checks for this section: v18_ quark_ yukawa.py v20_ lepton_ c_ derivation.py
-
-Explicit source references:
-
-- [verification/v18_quark_yukawa.py](../../../../verification/v18_quark_yukawa.py#L1) · explicit_file_citation
-- [verification/v20_lepton_c_derivation.py](../../../../verification/v20_lepton_c_derivation.py#L1) · explicit_file_citation
-
-Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
-
-- [(* ---- (v10) K/Q/Sigma determinant ladder ---- *) R = {{1, 3, 0}, {1, 5, 2}, {2, 5, 3}}; W = {{1, 0, 0}, {1, 0, 0}, {1, 0, 0}}; L = R + 6 W; K = {{4, 2, 0}, {4, 3, 2}, {5, 3, 2}}; Q = {{3, 1, 0}, {3, 2, 0}, {3, 2, 1}}; Sig = DiagonalMatrix[{1, -1, -1}]; checkExact["K = R + Q.Sigma", K == R + Q.Sig]; checkExact["L = R + Q.(I + Sigma)", L == R + Q.(IdentityMatrix[3] + Sig)]; checkExact["det ladder (Q,K,R,L) = (3,4,8,20)", {Det[Q], Det[K], Det[R], Det[L]} == {3, 4, 8, 20}]; checkExact["det product = 1920 = |W(D5)|", Det[Q] Det[K] Det[R] Det[L] == 1920]; aVec = {1, 1, 2}; checkExact["a^T K a = 41 (the EM budget anchor)", aVec.K.aVec == 41]; (* ---- (v20/v21) lepton c's: delta=1/2 resolvent + product rule ---- *)](../../../../verification/wolfram/tfpt_readouts.wl#L61)
-
-## Lepton flavor decuple: the charged-lepton determinant carries [formula in source]
-
-[experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex:4575-4597](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex#L4575) · `section:0a8f9d23fbef188c1751` · subsection
-
-The source masses on the [formula in source] branch are [formula in source] . Their product is a pure decuple in the seed: with [formula in source] . So the charged-lepton Yukawa powers [formula in source] are the three carrier numbers [formula in source] , and the lepton determinant carries the same decuple ( [formula in source] ) that the cosmological constant carries in the gauge sector ( [formula in source] ): [f
-
-## Why the top Yukawa is [formula in source] : the [formula in source] anchor (Froggatt–Nielsen ladder)
-
-[experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex:4598-4621](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex#L4598) · `section:41361cd6ccc8858992fc` · subsection
-
-The transport length [formula in source] is a Froggatt–Nielsen-type charge with expansion parameter [formula in source] : The top sits at [formula in source] (the unwound carrier direction), so [formula in source] ( [formula in source] ); every other charged fermion is suppressed by integer powers of [formula in source] . Numerically (with [formula in source] sector prefactors [formula in source] ): @lcccccccc@ [form
-
-## Inflation interface
-
-[experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex:4622-4664](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex#L4622) · `section:5fbc43aa96ffd3bc0ea8` · section
-
-Machine checks for this section: v7_ gravity_ cosmo.py v86_ nstar_ reheating.py v494_ cosmo_ running_ mu_ record.py
-
-Explicit source references:
-
-- [verification/v7_gravity_cosmo.py](../../../../verification/v7_gravity_cosmo.py#L1) · explicit_file_citation
-- [verification/v86_nstar_reheating.py](../../../../verification/v86_nstar_reheating.py#L1) · explicit_file_citation
-- [verification/v494_cosmo_running_mu_record.py](../../../../verification/v494_cosmo_running_mu_record.py#L1) · explicit_file_citation
-
-Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
-
-- [(* ---- (v86) reheating arithmetic (scale chain; pivot solve stays Python) ---- *) Mbar = 2.435323203`20 10^18; Mscal = c3^(7/2) Mbar; GammaScal = 4 Mscal^3/(48 Pi Mbar^2); check["v86 Gamma = 4 M^3/(48 pi Mbar^2) = 128.1 GeV", GammaScal, 128.146562596`12, 10^-6]; check["v86 T_reh = 9.55e9 GeV (g*=106.75)", (30 (3 GammaScal^2 Mbar^2)/(Pi^2 106.75))^(1/4), 9.55048669665`12 10^9, 10^-6]; AsOf[n_] := n^2 c3^7/(24 Pi^2); check["v86 A_s(51.4406) = 1.764e-9 (the A_s-disfavoured slow point)", AsOf[51.4406], 1.7637`5 10^-9, 10^-3]; check["v86 A_s-preferred N_star = 56.198", Sqrt[2.105`10 10^-9 24 Pi^2/c3^7], 56.198`6, 10^-4]; check["v86 dichotomy: matching A_s at 51.44 needs M x 1.0925", Sqrt[2.105`10 10^-9/AsOf[51.4406]], 1.09248`6, 10^-4]; (* ---- (v87) SO(16)_1 modular data and its six invariants ---- *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L83)

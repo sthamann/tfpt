@@ -648,6 +648,27 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 - [experiments/lean4-carrier-rigidity/TfptCarrier/ArfSpinorCompiler.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/ArfSpinorCompiler.lean#L1)
 - [experiments/lean4-carrier-rigidity/TfptCarrier/YukawaPrimitive.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/YukawaPrimitive.lean#L1)
 
+## One marked geometry, several typed readouts.
+
+[documents/tfpt_1_architecture_e8/sections/013-c3-p1-p2-origin.tex:11-29](../../../../documents/tfpt_1_architecture_e8/sections/013-c3-p1-p2-origin.tex#L11) · `section:2fd8fdcfe7668d08b693` · paragraph
+
+In the flat spherical [formula in source] branch class, each branch point has deficit [formula in source] . Gauss–Bonnet gives [formula in source] , hence four marks ( v216_marks_gauss_bonnet.py). For the common divisor [formula in source] , [formula in source] The functions and cycles belong to the same marked geometry ( v189_riemann_roch_carrier.py, v197_rr_carrier_clifford_d5.py). They are different spaces: meromo
+
+Explicit source references:
+
+- [verification/v189_riemann_roch_carrier.py](../../../../verification/v189_riemann_roch_carrier.py#L1) · explicit_file_citation
+- [verification/v216_marks_gauss_bonnet.py](../../../../verification/v216_marks_gauss_bonnet.py#L1) · explicit_file_citation
+- [verification/v512_seam_tau_flag.py](../../../../verification/v512_seam_tau_flag.py#L1) · explicit_file_citation
+- [verification/v197_rr_carrier_clifford_d5.py](../../../../verification/v197_rr_carrier_clifford_d5.py#L1) · explicit_file_citation
+
+Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
+
+- [(* ---- (v216) QGEO.MARKS.03: the four marks from Gauss-Bonnet + Euclidean-orbifold uniqueness ---- *) Module[{orbs, gb, nn}, orbs = {{2, 3, 6}, {2, 4, 4}, {3, 3, 3}, {2, 2, 2, 2}}; gb = nn /. Solve[nn (2 Pi - Pi) == 2 Pi 2, nn][[1]]; (* Z2 deficit pi, chi(S^2)=2 *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L1740)
+- [(* ---- (v189) Riemann-Roch carrier: (g_car,N_fam)=(5,3) from the mu4 divisor ---- *) Module[{degD, h0, rkH1, rankD5, rankA3}, degD = 4; (* |mu4| = deg D *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L1564)
+- [(* ==== v512 round: SEAM.TAU.FLAG.01 -- "the flag-transitivity equivalence web": the tau = i attack on the free RP seam circle. Test family M(delta) = {+-1, +-e^(i delta)}; bare mark-transitivity is delta-blind (pair-exchanging V4), FLAG transitivity <=> delta = pi/2 <=> tau = i. Six exact mirrors: (i) the V4/D4 census over five exact members incl. flag/arc orbit counts, (ii) the solveset equivalences + family identities, (iii) the odd-split closed form + arc Laplacian + K3 indicator, (iv) the twist mode identity + AB delta-blindness + j-rationality control, (v) the H4 centraliser rigidity (Schur), and (vi) the negative controls (hexagonal/silver/Z16 census/n = 3). Mirrors v512. ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L5675)
+- [(* ---- (v197) ARCH.RRCAR.02: even Clifford of the 5-dim carrier = the D5 half-spinor ---- *) Module[{h0, lamEven}, h0 = 4 + 1; (* h^0(P^1,O(mu4)) = deg+1 = 5 = g_car *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L1630)
+- [(* ==== v525 round: SEAM.BIT.TWISTBLIND.01 -- "the twist-state kill": the NINTH side-blind test on the v512 scoreboard (8 -> 9); the free-plus-twist class is exhausted. Three exact mirrors: (i) the integer incidence frame + the sigma o r = +-sigma congruence mechanism (swap axes: sigma o r = sigma => the twisted Gram is the diagonal unitary congruence D M D = spectrally invisible; fixing axes at pi/2: sigma o r = -sigma = the eta flip); (ii) the pi/2-existence solveset of the mark-fixing axes + the exact counterwitness census ((3+4i)/5 unimodular but NEVER a root of unity up to order 64 -- no lattice mark-compatible reflection at any dyadic refinement); (iii) the delta <-> pi - delta mirror equivariance (the lattice reflection maps the m-mark set EXACTLY to the (8-m)-mark set -- the exact mechanism behind the Casimir mirror symmetry ln|omega(D)|(m) = ln|omega(D)|(8-m) and behind pi/2 as the symmetric point of every invariant readout). The Pfaffian insertion spectra, the Bogoliubov 2-of-16 pattern census, the defect energy and the 40-digit inertia certificates are numerical (mpmath), Python-only, flagged here. Mirrors v525. ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L8058)
+
 ## The Riemann–Hilbert side (what the monodromy fixes)
 
 [documents/tfpt_2_standard_model/sections/008-section-the-setup-parabolic-data-on-the-family-curve.tex:87-114](../../../../documents/tfpt_2_standard_model/sections/008-section-the-setup-parabolic-data-on-the-family-curve.tex#L87) · `section:075d23efb7b920a44ee1` · section
@@ -848,9 +869,3 @@ Eine gemeinsame Lösung muss dieselbe Symmetrie auch auf den bereits verwendeten
 Explicit source references:
 
 - [verification/v488_majorana_clebsch_door.py](../../../../verification/v488_majorana_clebsch_door.py#L1) · explicit_file_citation
-
-## Ein exakter Zeuge gegen Kompression auf Paaransichten
-
-[documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/009-subsection-zustand-und-wirkung-aus-derselben-r-ckwirkung.tex:295-328](../../../../documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/009-subsection-zustand-und-wirkung-aus-derselben-r-ckwirkung.tex#L295) · `section:5e5ac9ef76208ec98a5b` · subsection
-
-Setze auf drei Qubits und Beide Zustände besitzen die Eigenwerte [formula in source] , jeweils vierfach. Ihre sämtlichen Ein- und Zweiteilreduktionen sind gleich: Trotzdem liefert dieselbe zugelassene Paaroperation [formula in source] Die anfänglichen Steigungen sind [formula in source] und [formula in source] . Gleiche Paaransichten und gleiche globale Spektren bestimmen somit nicht alle zukünftigen Paarantworten.

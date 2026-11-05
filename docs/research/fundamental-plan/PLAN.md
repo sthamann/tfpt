@@ -1,5 +1,7 @@
 # TFPT: Aufgabenplan zur fundamentalen Herleitung
 
+Current scientific state: [5 November 2026](CURRENT-PUBLIC-STATE.md). The public progress record retains historical detail with an explicit current scientific projection.
+
 ## R111: Ausgeführter ursprünglicher Quellenvergleich
 
 Die tatsächlichen harmonischen Zulässigkeitsstrafen verschwinden auf ihrem

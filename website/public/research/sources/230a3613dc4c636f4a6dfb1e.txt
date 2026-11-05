@@ -1,0 +1,107 @@
+TFPT scientific source excerpt
+Original repository path: verification/v238_modular_lindblad_dynamics.py
+Original file SHA-256: 7938425550d9ad7f199e875f22c52609f4eeeb25b9f51df9a49af508a3576645
+Inclusive original lines: 74-172
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000074 | 
+000075 | def run():
+000076 |     reset()
+000077 |     print("v238  static->dynamic flip: modular flow + recovery Markov generator; "
+000078 |           "dissipative gap = OS mass gap 6 log(3/2)")
+000079 | 
+000080 |     # ---- the seam recovery channel T (exactly as v221) ---------------------
+000081 |     u2 = np.array([1.0, -1.0, 0.0]); u2 /= np.linalg.norm(u2)
+000082 |     u3 = np.array([1.0, 1.0, -2.0]); u3 /= np.linalg.norm(u3)   # Nariai traceless anchor
+000083 |     J = np.ones((3, 3)) / 3.0
+000084 |     T = J + LAMBDA2 * np.outer(u2, u2) + LAMBDA3 * np.outer(u3, u3)
+000085 | 
+000086 |     # ---- 1. modular flow = reversible (Hamiltonian) generator --------------
+000087 |     rho = np.diag([1j, -1.0 + 0j, -1j])                 # the mu4 clock (v196/v198)
+000088 |     Lam = np.diag([1.0, 2.0, 3.0]).astype(complex)       # Lambda_Sigma = log Delta_omega (any real diagonal)
+000089 |     ts = [0.3, 0.7, 1.1]
+000090 | 
+000091 |     def sigma(t):
+000092 |         return _expm_iH(Lam, t)
+000093 | 
+000094 |     grp = all(np.allclose(sigma(s) @ sigma(t), sigma(s + t)) for s in ts for t in ts)
+000095 |     unitary = all(np.allclose(sigma(t).conj().T @ sigma(t), np.eye(3)) for t in ts)
+000096 |     dt = 1e-6
+000097 |     gen_ok = np.allclose((sigma(dt) - np.eye(3)) / dt, 1j * Lam, atol=1e-4)
+000098 |     conserved = all(np.allclose(rho @ sigma(t) @ np.linalg.inv(rho), sigma(t)) for t in ts)
+000099 |     comm0 = np.allclose(rho @ Lam - Lam @ rho, 0)
+000100 |     check("MODULAR FLOW = REVERSIBLE GENERATOR [E]: sigma_t = e^{i t Lambda_Sigma} "
+000101 |           "is a unitary one-parameter group (sigma_s sigma_t = sigma_{s+t}, "
+000102 |           "d/dt|_0 = i Lambda_Sigma); the mu4 clock is CONSERVED -- rho sigma_t "
+000103 |           "rho^{-1} = sigma_t for all t  <=>  [rho,Lambda_Sigma]=0 -- so the STATIC "
+000104 |           "v198 state-invariance IS the conservation law of modular time",
+000105 |           grp and unitary and gen_ok and conserved and comm0)
+000106 | 
+000107 |     # NEG: a mu4-breaking off-diagonal Lambda breaks the conservation law
+000108 |     Lam_b = Lam.copy(); Lam_b[0, 1] = 0.5; Lam_b[1, 0] = 0.5
+000109 |     sig_b = _expm_iH(Lam_b, 0.7)
+000110 |     broken = not np.allclose(rho @ sig_b @ np.linalg.inv(rho), sig_b)
+000111 |     comm_b = not np.allclose(rho @ Lam_b - Lam_b @ rho, 0)
+000112 |     check("NEG mu4-breaking [E]: an off-diagonal (mu4-breaking) Lambda_Sigma gives "
+000113 |           "[rho,Lambda]!=0, so rho sigma_t rho^{-1} != sigma_t -- the mu4 charge is "
+000114 |           "no longer conserved by modular time (cf. v196's E_fail perturbation)",
+000115 |           broken and comm_b)
+000116 | 
+000117 |     # ---- 2. recovery = dissipative (Lindblad/Markov) generator -------------
+000118 |     L = _sym_funcm(T, np.log)                            # generator log T (T real-symmetric PD)
+000119 |     offdiag_nonneg = all(L[i, j] >= -1e-12 for i in range(3) for j in range(3) if i != j)
+000120 |     zero_sums = np.allclose(L.sum(axis=1), 0) and np.allclose(L.sum(axis=0), 0)
+000121 |     reproduces = np.allclose(_sym_funcm(L, np.exp), T)   # e^{L*1} = T
+000122 |     big = _sym_funcm(50.0 * L, np.exp)                   # e^{L tau}, tau=50
+000123 |     arrow = np.allclose(big, J, atol=1e-6)
+000124 |     check("RECOVERY = DISSIPATIVE GENERATOR [E]: L = log T is a valid continuous "
+000125 |           "generator -- real-symmetric, off-diagonals >= 0, zero row/column sums "
+000126 |           "(a doubly-stochastic / CPTP-classical Markov generator); e^{L*1} = T "
+000127 |           "reproduces the v221 channel and e^{L tau} -> the rank-1 projector onto "
+000128 |           "the stationary (democratic) mode as tau->inf (the arrow of time, "
+000129 |           "matching v64's T^n -> projector)",
+000130 |           offdiag_nonneg and zero_sums and reproduces and arrow)
+000131 | 
+000132 |     # ---- 3. KEYSTONE: dissipative gap = OS mass gap ------------------------
+000133 |     evL = sorted(np.linalg.eigvalsh(L))                  # {-6 log 3, -6 log(3/2), 0}
+000134 |     diss_gap = -max(e for e in evL if e < -1e-9)         # slowest non-zero rate = -log((2/3)^6)
+000135 |     Delta = 6 * np.log(1.5)                              # the OS/RP mass gap (v64)
+000136 |     check("KEYSTONE: DISSIPATIVE GAP = OS MASS GAP [E]: the slowest relaxation rate "
+000137 |           "of L = -log((2/3)^6) = 6 log(3/2) = %.6f = the OS/RP mass gap Delta (v64). "
+000138 |           "The STATIC recovery bound (2/3)^6 (v221) and the DYNAMICAL mass gap "
+000139 |           "6 log(3/2) (v64) are ONE number, one exponentiated -- the point where the "
+000140 |           "static compiler becomes a dynamics" % diss_gap,
+000141 |           abs(diss_gap - Delta) < 1e-9 and abs(diss_gap + np.log(LAMBDA2)) < 1e-9)
+000142 | 
+000143 |     # NEG: a free recovery rate r != (2/3)^6 breaks the gap=mass-gap identity
+000144 |     r_free = 0.5
+000145 |     Tf = J + r_free * np.outer(u2, u2) + LAMBDA3 * np.outer(u3, u3)
+000146 |     Lf = _sym_funcm(Tf, np.log)
+000147 |     evLf = sorted(np.linalg.eigvalsh(Lf))
+000148 |     gap_f = -max(e for e in evLf if e < -1e-9)
+000149 |     check("NEG free rate [E]: replacing (2/3)^6 by r=0.5 gives dissipative gap "
+000150 |           "-log(0.5) = %.4f != 6 log(3/2) = %.4f -- the gap=mass-gap identity is NOT "
+000151 |           "generic (anti-numerology, cf. v221's free-ratio control)" % (gap_f, Delta),
+000152 |           abs(gap_f + np.log(r_free)) < 1e-9 and abs(gap_f - Delta) > 0.3)
+000153 | 
+000154 |     # ---- 4. GKSL split: reversible (imaginary) + dissipative (real <= 0) ----
+000155 |     rev_spec = np.linalg.eigvals(1j * Lam)
+000156 |     rev_imag = np.allclose(rev_spec.real, 0)
+000157 |     sym = np.allclose(L, L.T)
+000158 |     check("GKSL SPLIT [E]: G = i Lambda_Sigma (reversible) + L (dissipative): the "
+000159 |           "reversible generator is anti-Hermitian (spectrum purely IMAGINARY, "
+000160 |           "unitary/conserving) and the dissipative generator is symmetric (spectrum "
+000161 |           "REAL and <= 0, gap Delta) -- the canonical Hamiltonian + Lindbladian split "
+000162 |           "of a quantum dynamical semigroup; the arrow of time is the dissipative "
+000163 |           "(real) part",
+000164 |           rev_imag and sym and max(evL) < 1e-9)
+000165 | 
+000166 |     # ---- 5. the residual, honestly typed ----------------------------------
+000167 |     check("THE RESIDUAL [O] (honest, NOT a closure): this EXHIBITS the static->"
+000168 |           "dynamic flip on the finite block -- modular flow as the reversible "
+000169 |           "generator, log T as the dissipative one, dissipative gap = OS mass gap. "
+000170 |           "NOT closed: (a) that sigma_t is GEOMETRIC modular flow on the FULL seam "
+000171 |           "algebra (Connes-Rovelli 'thermal time = physical time' = the "
+000172 |           "Bisognano-Wichmann / QGEO.SYM.01 residual, v198), and (b) that L's "

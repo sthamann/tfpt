@@ -718,6 +718,12 @@ def main(argv=None):
     if args.query or args.topic or args.document:
         data=json.loads((target/"registry.json").read_text());return query(data,args)
     paths,public=discover(config,args.include_local);data,evidence=build(config,paths,public,args.include_local)
+    if args.check:
+        incomplete=[doc for doc in data["documents"] if doc["role"]=="active" and doc["expansion_status"]!="complete_literal_expansion"]
+        if incomplete:
+            print("CONTENT REGISTRY ACTIVE EXPANSION INCOMPLETE:\n"+"\n".join(
+                doc["entry_point"]+": "+str(doc["expansion_error"] or doc["expansion_status"]) for doc in incomplete))
+            return 1
     summary={"schema_version":data["schema_version"],"publication_scope":data["publication_scope"],"coverage":data["coverage"],"input_fingerprint":data["generator"]["input_fingerprint"],"documents":[{key:doc[key]for key in["id","title","entry_point","canonical_source","role","topic_ids","section_count","expansion_status"]}for doc in data["documents"]],"topics":[{"id":t["id"],"title":t["title"],"relation_type":t["relation_type"],"section_count":len(data["reverse_indexes"]["by_topic"].get(t["id"],[])),"navigation_path":"topics/"+t["id"]+".md"}for t in data["topics"]],"editions":data["editions"],"full_registry":"registry.json","query":"python3 verification/make_content_registry.py --query TEXT --limit 20 --json","notice":"Compact derived navigation only; citations, statuses and unresolved details live in the central registry. No proof check or semantic review."}
     outputs={"registry.json":json.dumps(data,ensure_ascii=False,sort_keys=True,separators=(",",":"))+"\n","summary.json":dumps(summary),**markdown_outputs(data),"source_inventory.json":dumps({"schema_version":"1.0","scope":data["publication_scope"],"basis":"Git tracked TeX plus explicitly declared modular sources; Gitless exports use this shipped inventory", "tex_sources":paths,"evidence_sources":evidence,"excluded_nonresearch_evidence_roots":config.get("excluded_evidence_roots",["website"]),"availability_policy":"Every declared research source must exist; source bytes are hashed in Git and Gitless exports alike. Editor/agent configuration and website mirrors are outside evidence scope."})}
     stale=[]

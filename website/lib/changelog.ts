@@ -47,6 +47,17 @@ export const CHANGELOG: ChangelogEntry[] = [
     "heading": [
       {
         "k": "t",
+        "v": ": whole source evaluation and field integration classes"
+      }
+    ],
+    "items": []
+  },
+  {
+    "date": "2026-11-05",
+    "dateLabel": "2026-11-05",
+    "heading": [
+      {
+        "k": "t",
         "v": ": shared c3/P1/P2 source reconciliation"
       }
     ],

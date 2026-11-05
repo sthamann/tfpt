@@ -148,7 +148,7 @@ export const SITE_REV = "$REV";
 export const SITE_DATE = "$DATE";
 EOF
   ( cd "$ROOT/website" \
-    && node scripts/release-hashes.mjs --write --version "TFPT $VER" --date "$DATE" >/dev/null )
+    && node scripts/release-hashes.mjs --write --version "TFPT $VER" --date "$DATE" >/dev/null ) || exit 1
   echo "  synced: ${#NOTES[@]} PDFs, vN scripts, version.ts (v$VER, $DATE, rev $REV), release.ts"
 }
 

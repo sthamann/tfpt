@@ -426,7 +426,7 @@
 | [documents/articles--2026-08-30--tfpt_thermodynamic_dynamics_en/sections/002-section-existence-of-equilibrium-states.tex](../../documents/articles--2026-08-30--tfpt_thermodynamic_dynamics_en/sections/002-section-existence-of-equilibrium-states.tex) | module_fragment | 4 | 1 |
 | [documents/changelog/main.tex](../../documents/changelog/main.tex) | module_entry | 0 | 2 |
 | [documents/changelog/preamble.tex](../../documents/changelog/preamble.tex) | module_preamble | 2 | 2 |
-| [documents/changelog/sections/001-source.tex](../../documents/changelog/sections/001-source.tex) | module_fragment | 30 | 2 |
+| [documents/changelog/sections/001-source.tex](../../documents/changelog/sections/001-source.tex) | module_fragment | 31 | 2 |
 | [documents/changelog/sections/002-source.tex](../../documents/changelog/sections/002-source.tex) | module_fragment | 23 | 2 |
 | [documents/changelog/sections/003-source.tex](../../documents/changelog/sections/003-source.tex) | module_fragment | 16 | 2 |
 | [documents/changelog/sections/004-source.tex](../../documents/changelog/sections/004-source.tex) | module_fragment | 8 | 2 |
@@ -633,6 +633,7 @@
 | [documents/tfpt_1_architecture_e8/sections/010-source.tex](../../documents/tfpt_1_architecture_e8/sections/010-source.tex) | module_fragment | 6 | 1 |
 | [documents/tfpt_1_architecture_e8/sections/011-source.tex](../../documents/tfpt_1_architecture_e8/sections/011-source.tex) | module_fragment | 3 | 1 |
 | [documents/tfpt_1_architecture_e8/sections/012-source.tex](../../documents/tfpt_1_architecture_e8/sections/012-source.tex) | module_fragment | 3 | 1 |
+| [documents/tfpt_1_architecture_e8/sections/013-c3-p1-p2-origin.tex](../../documents/tfpt_1_architecture_e8/sections/013-c3-p1-p2-origin.tex) | module_fragment | 7 | 1 |
 | [documents/tfpt_2_standard_model/main.tex](../../documents/tfpt_2_standard_model/main.tex) | module_entry | 0 | 1 |
 | [documents/tfpt_2_standard_model/preamble.tex](../../documents/tfpt_2_standard_model/preamble.tex) | module_preamble | 1 | 1 |
 | [documents/tfpt_2_standard_model/sections/001-part-the-standard-model-in-one-master-formula.tex](../../documents/tfpt_2_standard_model/sections/001-part-the-standard-model-in-one-master-formula.tex) | module_fragment | 6 | 1 |
@@ -959,6 +960,7 @@
 | [tex-artefacts/tfpt_references.tex](../../tex-artefacts/tfpt_references.tex) | research_fragment | 7 | 14 |
 | [tex-artefacts/tfpt_status.tex](../../tex-artefacts/tfpt_status.tex) | shared_support | 1 | 19 |
 | [tex-artefacts/tfpt_style.tex](../../tex-artefacts/tfpt_style.tex) | shared_support | 1 | 21 |
+| [tex-artefacts/toe_field_integration_20261105.tex](../../tex-artefacts/toe_field_integration_20261105.tex) | research_fragment | 8 | 6 |
 | [tex-artefacts/toe_research_20260909.tex](../../tex-artefacts/toe_research_20260909.tex) | research_fragment | 7 | 2 |
 | [tex-artefacts/toe_round27_full_reference.tex](../../tex-artefacts/toe_round27_full_reference.tex) | research_fragment | 8 | 2 |
 | [tex-artefacts/toe_round4_proofs.tex](../../tex-artefacts/toe_round4_proofs.tex) | research_fragment | 11 | 2 |

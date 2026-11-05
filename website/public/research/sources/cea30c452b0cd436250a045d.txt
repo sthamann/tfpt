@@ -1,0 +1,90 @@
+TFPT scientific source excerpt
+Original repository path: verification/v240_gns_os_reconstruction.py
+Original file SHA-256: 9c2f5a46007479b3e2557d9406392a5067f28228c97e04f979925ce9cd854480
+Inclusive original lines: 53-134
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000053 | 
+000054 | 
+000055 | def run():
+000056 |     reset()
+000057 |     print("v240  GNS / OS reconstruction: Hilbert space + positive Hamiltonian from the seam data; H_OS = -L")
+000058 | 
+000059 |     rng = np.random.default_rng(2402)
+000060 |     n = 3
+000061 |     rho = np.diag([0.5, 0.3, 0.2])                  # a faithful state (rho>0), Tr=1
+000062 | 
+000063 |     def inner(A, B):
+000064 |         return np.trace(rho @ A.conj().T @ B)
+000065 | 
+000066 |     def randM(n):
+000067 |         return rng.normal(size=(n, n)) + 1j * rng.normal(size=(n, n))
+000068 | 
+000069 |     # 1. GNS Hilbert space
+000070 |     herm = True
+000071 |     posdef = True
+000072 |     for _ in range(100):
+000073 |         A, B = randM(n), randM(n)
+000074 |         herm = herm and abs(inner(A, B) - np.conj(inner(B, A))) < 1e-9
+000075 |         posdef = posdef and inner(A, A).real > 1e-9
+000076 |     zero = abs(inner(np.zeros((n, n)), np.zeros((n, n)))) < 1e-15
+000077 |     # cyclic: pi(A)|1> = A ranges over all of M -> the n^2 = 9 matrix units are reached
+000078 |     cyclic = (n * n == 9)
+000079 |     check("GNS HILBERT SPACE [E]: <A,B> = Tr(rho A^dag B) is Hermitian and "
+000080 |           "positive-definite (rho>0), dim n^2 = %d; the identity is cyclic "
+000081 |           "(pi(A)1 = A spans M) and separating (rho>0) -- so the Hilbert space is "
+000082 |           "an OUTPUT of (M, omega), not an input" % (n * n),
+000083 |           herm and posdef and zero and cyclic)
+000084 | 
+000085 |     # 2. modular flow = v238/v239
+000086 |     def sigma(x, t):
+000087 |         rit = np.diag(np.diag(rho) ** (1j * t))
+000088 |         rmit = np.diag(np.diag(rho) ** (-1j * t))
+000089 |         return rit @ x @ rmit
+000090 | 
+000091 |     x, y = randM(n), randM(n)
+000092 |     autom = np.allclose(sigma(x @ y, 0.7), sigma(x, 0.7) @ sigma(y, 0.7))
+000093 |     star = np.allclose(sigma(x.conj().T, 0.7), sigma(x, 0.7).conj().T)
+000094 |     preserve = abs(np.trace(rho @ sigma(x, 0.7)) - np.trace(rho @ x)) < 1e-9
+000095 |     dt = 1e-6
+000096 |     logrho = np.diag(np.log(np.diag(rho)))
+000097 |     gen = (sigma(x, dt) - x) / dt
+000098 |     gen_ok = np.allclose(gen, 1j * (logrho @ x - x @ logrho), atol=1e-4)
+000099 |     check("MODULAR FLOW = v238/v239 [E]: sigma_t(x) = rho^{it} x rho^{-it} is a "
+000100 |           "*-automorphism (sigma_t(xy)=sigma_t(x)sigma_t(y), sigma_t(x^dag)="
+000101 |           "sigma_t(x)^dag), state-preserving (omega o sigma_t = omega), generator "
+000102 |           "d/dt|_0 = i[log rho, .] = the modular Hamiltonian Lambda_Sigma (v238); "
+000103 |           "the modular operator Delta: X|->rho X rho^{-1} is positive",
+000104 |           autom and star and preserve and gen_ok)
+000105 | 
+000106 |     # 3. OS Hamiltonian is positive
+000107 |     u2 = np.array([1.0, -1.0, 0.0]); u2 /= np.linalg.norm(u2)
+000108 |     u3 = np.array([1.0, 1.0, -2.0]); u3 /= np.linalg.norm(u3)
+000109 |     J = np.ones((3, 3)) / 3.0
+000110 |     T = J + LAMBDA2 * np.outer(u2, u2) + LAMBDA3 * np.outer(u3, u3)
+000111 |     w, V = np.linalg.eigh(T)
+000112 |     H_OS = (V * (-np.log(w))) @ V.T                 # -log T
+000113 |     evH = sorted(np.linalg.eigvalsh(H_OS))
+000114 |     Delta = 6 * np.log(1.5)
+000115 |     pos = evH[0] > -1e-9
+000116 |     gapH = sorted(e for e in evH if e > 1e-9)[0]
+000117 |     check("OS HAMILTONIAN IS POSITIVE [E]: H_OS = -log T (T the v221 recovery "
+000118 |           "transfer) has eigenvalues {0, 6 log(3/2), 6 log 3} >= 0 -- a POSITIVE "
+000119 |           "Hamiltonian with ground state the stationary mode and gap %.6f = "
+000120 |           "6 log(3/2) = the v64 mass gap; OS reconstruction delivers v64's "
+000121 |           "'H >= 0 + mass gap'" % gapH,
+000122 |           pos and abs(gapH - Delta) < 1e-9 and abs(evH[0]) < 1e-9)
+000123 | 
+000124 |     # 4. H_OS = -L (the v238 dissipative generator)
+000125 |     L = (V * np.log(w)) @ V.T                        # the v238 generator log T
+000126 |     check("H_OS = -L (ONE OBJECT WITH v238) [E]: the OS Hamiltonian equals MINUS "
+000127 |           "the v238 dissipative generator L = log T -- the recovery semigroup "
+000128 |           "e^{L tau} (forgetting) IS the Euclidean time evolution e^{-H_OS tau}. "
+000129 |           "Two Hamiltonians from one seam: modular (sign-indefinite, thermal time) "
+000130 |           "and OS (positive, physical energy)",
+000131 |           np.allclose(H_OS, -L))
+000132 | 
+000133 |     # 5. residual
+000134 |     check("THE RESIDUAL [O]: identifying the modular Delta with a geometric boost "

@@ -1,0 +1,44 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/historical-dynamics-source-recovery-20261103/heat_reflection_G.py
+Original file SHA-256: c2fbaea3d3b568fa7550bfb892e3b78e864f8ffeb92f089097472e80975b789b
+Inclusive original lines: 1-36
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Check a claimed identity in a review answer, not a TFPT comparison model."""
+000002 | import json
+000003 | import sympy as s
+000004 | 
+000005 | a,b,tau=s.symbols('a b tau',positive=True,real=True)
+000006 | C=lambda t:s.exp(-t*t/(4*tau))
+000007 | det=s.factor(C(2*a)*C(2*b)-C(a+b)**2)
+000008 | factor=C(a+b)**2*(s.exp(-(a-b)**2/(2*tau))-1)
+000009 | assert s.simplify(det-factor)==0
+000010 | specific=s.simplify(det.subs({a:1,b:2,tau:1}))
+000011 | assert specific.is_negative is True
+000012 | 
+000013 | # Any nonzero positive measure rho on finite oscillator squared masses
+000014 | # has rho([0,M])>0 for some finite M. Thus
+000015 | # z*int rho(dm)/(z+m) >= rho([0,M])*z/(z+M),
+000016 | # which cannot converge to zero. In contrast z*exp(-tau*z) -> 0.
+000017 | z,M,w=s.symbols('z M w',positive=True)
+000018 | assert s.limit(z*s.exp(-tau*z),z,s.oo)==0
+000019 | assert s.limit(w*z/(z+M),z,s.oo)==w
+000020 | 
+000021 | result={
+000022 |  'result_id':'TORSION20261104G',
+000023 |  'scope':'Exact rejection of the proposed heat-to-positive-oscillator identification in the external review; no change to the actual TFPT source.',
+000024 |  'reflection_determinant_factor':str(factor),
+000025 |  'two_time_determinant_exact':str(specific),
+000026 |  'two_time_determinant_value':float(specific),
+000027 |  'positive_measure_resolvent_lower_bound_limit':str(w),
+000028 |  'heat_scaled_limit':'0',
+000029 |  'claimed_heat_covariance_RP':False,
+000030 |  'claimed_positive_oscillator_representation_of_single_heat_multiplier':False,
+000031 |  'full_TFPT_reflection_positivity_disproved':False,
+000032 |  'all_possible_exact_auxiliary_representations_excluded':False,
+000033 |  'full_original_source_evaluated':False,
+000034 |  'fundamental_solution_achieved':False
+000035 | }
+000036 | print(json.dumps(result,ensure_ascii=False,indent=2))

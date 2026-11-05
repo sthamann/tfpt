@@ -1,0 +1,93 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/craig-original-source-bridge-20261103/actual_product_pairing.py
+Original file SHA-256: 6acaa9bc2c7a157a30730d7d6de75e944266afbf69b18a31c6fba654b8bd1c04
+Inclusive original lines: 1-85
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Evaluate the existing Spin4 x v252 branch; does not identify it with full S_adm."""
+000002 | import importlib.util
+000003 | import json
+000004 | import sys
+000005 | from pathlib import Path
+000006 | import sympy as s
+000007 | 
+000008 | repo=Path(__file__).resolve().parents[3]
+000009 | sys.path.insert(0,str(repo/'verification'))
+000010 | spec=importlib.util.spec_from_file_location('original_v252',repo/'verification/v252_full_finite_triple.py')
+000011 | v=importlib.util.module_from_spec(spec);spec.loader.exec_module(v)
+000012 | KF=s.Matrix(v.Kswap()).applyfunc(lambda x:s.Integer(int(x)))
+000013 | gF=s.Matrix(v.grading()).applyfunc(lambda x:s.Integer(int(x)))
+000014 | I2=s.eye(2); I4=s.eye(4)
+000015 | pauli=[s.Matrix([[0,1],[1,0]]),s.Matrix([[0,-s.I],[s.I,0]]),s.diag(1,-1)]
+000016 | gam=[s.kronecker_product(pauli[0],q) for q in pauli]+[s.kronecker_product(pauli[1],I2)]
+000017 | g5=gam[0]*gam[1]*gam[2]*gam[3]
+000018 | C=gam[0]*gam[2]
+000019 | checks={}
+000020 | def zero(M):return all(s.simplify(x)==0 for x in M)
+000021 | def ck(name,val):
+000022 |  if not val:raise RuntimeError(name)
+000023 |  checks[name]=True
+000024 | 
+000025 | ck('original_internal_dimension_96',KF.shape==(96,96))
+000026 | ck('original_JF_square_plus',zero(KF*KF-s.eye(96)))
+000027 | ck('original_JF_flips_internal_grading',zero(KF*gF+gF*KF))
+000028 | ck('Spin4_J_square_minus',zero(C*C.conjugate()+I4))
+000029 | ck('Spin4_J_preserves_spin_grading',zero(C*g5.conjugate()-g5*C))
+000030 | ck('Spin4_conjugation_of_clifford',all(zero(C*q.conjugate()+q*C) for q in gam))
+000031 | ck('spin_derivative_pairing_symmetric',all(zero((C.H*q).T-C.H*q) for q in gam))
+000032 | ck('spin_mass_pairing_skew',zero((C.H*g5).T+C.H*g5))
+000033 | ck('original_KF_symmetric',zero(KF.T-KF))
+000034 | 
+000035 | # No special Yukawa value is supplied. The full-family mass result follows
+000036 | # from the original relations Phi*=Phi and KF bar(Phi)=Phi KF:
+000037 | # (KF Phi)^T=bar(Phi) KF=KF Phi, hence the spin product is skew.
+000038 | Gamma_diag=[int(g5[i,i]*gF[j,j]) for i in range(4) for j in range(96)]
+000039 | ranks={str(e):sum(x==e for x in Gamma_diag) for e in [-1,1]}
+000040 | ck('both_total_chiral_fibers_rank192',ranks=={'-1':192,'1':192})
+000041 | 
+000042 | # Symbolic whole original Yukawa/Majorana family, with the v252 index and
+000043 | # constructor pattern. These are indeterminates, not newly fitted couplings.
+000044 | Ys={}
+000045 | for f in ['u','d','e','nu']:
+000046 |  Ys[f]=s.Matrix(3,3,lambda i,j:s.Symbol(f'{f}r{i}{j}',real=True)+s.I*s.Symbol(f'{f}i{i}{j}',real=True))
+000047 | MR=s.zeros(3)
+000048 | for i in range(3):
+000049 |  for j in range(i,3):
+000050 |   MR[i,j]=MR[j,i]=s.Symbol(f'Mr{i}{j}',real=True)+s.I*s.Symbol(f'Mi{i}{j}',real=True)
+000051 | S=s.MutableSparseMatrix(48,48,{})
+000052 | for name,ch,c,g in v.P:
+000053 |  if ch=='L':
+000054 |   for gj in range(3):
+000055 |    i,j=v.IDX[(name,'L',c,g)],v.IDX[(name,'R',c,gj)]
+000056 |    S[i,j]=Ys[name][g,gj];S[j,i]=s.conjugate(S[i,j])
+000057 | T=s.MutableSparseMatrix(48,48,{})
+000058 | for i in range(3):
+000059 |  for j in range(3):T[v.IDX[('nu','R',0,i)],v.IDX[('nu','R',0,j)]]=MR[i,j]
+000060 | Phi=s.SparseMatrix.vstack(s.SparseMatrix.hstack(S,T),s.SparseMatrix.hstack(T.H,S.conjugate()))
+000061 | ck('whole_symbolic_v252_Phi_hermitian',zero(Phi.H-Phi))
+000062 | ck('whole_symbolic_v252_Phi_odd',zero(gF*Phi+Phi*gF))
+000063 | ck('whole_symbolic_v252_reality',zero(KF*Phi.conjugate()-Phi*KF))
+000064 | ck('finite_isolated_mass_pairing_symmetric',zero((KF*Phi).T-KF*Phi))
+000065 | Mass=s.kronecker_product(s.SparseMatrix(C.H*g5),s.SparseMatrix(KF)*Phi)
+000066 | for e in [-1,1]:
+000067 |  inds=[i for i,x in enumerate(Gamma_diag) if x==e]
+000068 |  Me=Mass.extract(inds,inds)
+000069 |  ck(f'whole_product_mass_pairing_skew_{e}',zero(Me.T+Me))
+000070 |  # Exact norm formula establishes nonzero mass action for every nonzero Phi,
+000071 |  # rather than checking a specially chosen mass matrix.
+000072 |  norm=s.expand(sum(s.conjugate(x)*x for x in Me.todok().values()))
+000073 |  target=s.expand(2*s.trace(Phi*Phi))
+000074 |  ck(f'whole_product_mass_norm_identity_{e}',s.expand(norm-target)==0)
+000075 | 
+000076 | # Actual free Craig Eq16, same momentum convention for the traditional
+000077 | # Euclidean kinetic term i gamma.p on the flat product branch.
+000078 | p=s.pi/2;G=gam[0]
+000079 | Ktrad=s.I*G*p
+000080 | D=I4+s.I*G
+000081 | A=I4-D/2
+000082 | Kreq=s.simplify(D*A.inv())
+000083 | Phat=(I4-g5*(I4-D))/2
+000084 | Pminus=(I4-g5)/2
+000085 | Pplus=(I4+g5)/2

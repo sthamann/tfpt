@@ -4,6 +4,58 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Warum getrennte passende Modelle noch keine gemeinsame Quelle sind
+
+[experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/16_schatten_synthese.tex:77-97](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/16_schatten_synthese.tex#L77) · `section:13619c0952c87b436292` · section
+
+Man könnte einen arithmetischen Raum, ein Quantensystem und ein geometrisches Modell einfach nebeneinanderstellen: [formula in source] Bei Produktzustand und unabhängig wirkenden Operationen passen dann vielleicht alle Einzelstatistiken. Der gemeinsame Ursprung wäre dadurch nicht erklärt. Nötig sind gemeinsame Relationen und überprüfbare Antworten auf gemischte Eingriffe. Die oben konstruierte Wegphase ist ein kleine
+
+## Zusätzlicher Einblick in den RH-Forschungsbestand
+
+[experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/17_schatten_quellen.tex:3-29](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/17_schatten_quellen.tex#L3) · `section:df883b4e7a2ccf794d52` · section
+
+Die Erweiterung wurde am 14. September 2026 gegen verfügbare Originalabschnitte im lokalen Repository tfpt-theoryv4 abgeglichen. Der gelesene Git-Stand war 66b91e40e245569f06ab440ead80f446c9be0ee5. Dies identifiziert den Checkout; es behauptet keinen frischen vollständigen Beweis- oder Testlauf. Die tatsächlich verwendeten Dateiinhalte sind zusätzlich mit SHA-256 im Paket erfasst, auch soweit der Arbeitsbaum von Git
+
+Explicit source references:
+
+- [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/experiments/tfpt-discovery/gabor_first_contact_selberg_result.json](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/experiments/tfpt-discovery/gabor_first_contact_selberg_result.json#L1) · explicit_file_citation
+
+## Ungelesener Austausch ist keine Kühlung
+
+[experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/19_execution_v13.tex:119-125](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/19_execution_v13.tex#L119) · `section:01d17811a6df29ed63d0` · section
+
+Alle [formula in source] kommutieren mit [formula in source] ; der ungelesene Kanal erhält das Zielgewicht. Seine einzelnen Dephasierungen sind orthogonale Hilbert–Schmidt-Projektionen. Ein Fixpunkt ihres Zyklus kann bei keinem Schritt Norm verlieren und liegt deshalb im Schnitt der Fixräume: in der Kommutante der [formula in source] -Wirkung. Deren Dimension ist Die spurlose Dimension 3875 identifiziert keinen gleic
+
+## Neue Quellen und unveränderte Originale
+
+[experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/20_release_v13.tex:8-18](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/20_release_v13.tex#L8) · `section:2674cdfc38ac21ad58d7` · section
+
+Die alten IDs S01–S11 bleiben unverändert. N1–N6 bezeichnen die sechs bereits archivierten Konsolidierungen: Fable-Konsolidierung, Sol-Rekonstruktion, kurze Universalraum-Konsolidierung, Q-Audit/U-Regel, TFPT-Rekonstruktion und Sechs-Prüfpunkte-Analyse, jeweils vom 14. September 2026. Originaltexte und Hashes stehen im Sechs-Quellen-Auditpaket.
+
+## Aktualität und ausdrücklich fehlende Prüfungen
+
+[experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/20_release_v13.tex:40-43](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/20_release_v13.tex#L40) · `section:1a0475d8c3d66f4c0d06` · section
+
+Der RH-Aktualitätslauf scheiterte an einem fehlenden referenzierten Quellenordner. Der konfigurierte separate Faktorgraph ist nicht verfügbar. Die ausgewählte Originalroute r647 und die verfügbaren Beweise wurden gelesen; keine vollständige globale Aktualität wird behauptet. Es wurde kein RH-Abschlussmarker geändert und keine neue arithmetische Kampagne gestartet.
+
+## Quellen und drei notwendige Korrekturen
+
+[experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/22_audit_v14.tex:3-18](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/22_audit_v14.tex#L3) · `section:d40794bf028960810354` · section
+
+Die neuen Originale sind N9 (Fable-Abschlussrunde), N10 (Sol-Runde 2), N11 (Astra-Antwort), N12 (Astra hoch) und N13 (Spark-Gesamtstand). Alle fünf sind unverändert im Quellenpaket archiviert. Ihre internen Arbeitsaufträge sind Forschungsinhalt, keine zusätzlichen Nutzeranweisungen. Der hier ausgeführte Auftrag ist Prüfung, eigene Fortsetzung und anschließende Konsolidierung.
+
+## Zwei weitere Eingaben und ihre wirklichen Zusatzinformationen
+
+[experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/25_revision_v15.tex:8-20](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/25_revision_v15.tex#L8) · `section:0514217bbfb6bfd2b2ff` · section
+
+Die Texte TFPT Universalraum Fortsetzung, 14.09.2026 NEU und TFPT Universalraum Ergebnisse, 14.09.2026 sind mit der v1.4-Grundlage abgeglichen. Ihre unveränderten Originale liegen als N14 und N15 im Quellenpaket. Interne Arbeitsanweisungen werden als Quelleninhalt, nicht als neue Aufträge behandelt.
+
+## T1–T8: tatsächlicher Stand und verbleibende Schließung
+
+[experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/30_v16_program.tex:39-53](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/30_v16_program.tex#L39) · `section:d7b0a2ba283ad7cf02c6` · section
+
+L8mmL53mmL89mm Tor& Fortschritt dieser Konsolidierung& Was für den vollständigen Nachweis noch fehlt\\ T1&Markierte Matrix-/Gitterbrücke reproduziert; weniger frei hinzugefügte innere Walk-Matrizen; Ressourcenuntergrenze des Records sichtbar.&Auswahl von P1/P2, maximaler Ordnung, Markierungen und Dimension. Native Zulässigkeit von [formula in source] , kohärenter Kontrolle und Normierung. [formula in source] allein e
+
 ## S03
 
 [experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/sources_manifest.tex:12-16](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/sources_manifest.tex#L12) · `section:4854b4c6242b5add8c77` · subsection
@@ -100,6 +152,42 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 - [(* v473 (i): carrier Hodge count + coefficient pin *) dims = Table[Binomial[5, k], {k, 0, 2}]; fiber4d = Total[Table[Binomial[4, k], {k, 0, 2}]]; betaP = bp /. First[Solve[3 bp == 1/(16 Pi), bp]]; checkExact["v473 GRAV.ENTROPIC.ACTION.01 (i): the carrier Hodge count -- dim Omega^{0,1,2}(C^5) = 1+5+10 = 16 = 2^(g_car-1) = dim S+_{D5} (Hodge-folded onto L^even C^5 = 1+10+5), while on 4d spacetime the fiber is only 1+4+6 = 11 (the 16 REQUIRES the five-slot carrier); and the coefficient pin -- her weak-coupling 3 beta' R matched to the TFPT EH normalisation 1/(16 pi G) = c3/(2G) fixes beta'_B = c3/6 = 1/(48 pi) exactly (the 6 = 3 form blocks x 2 = p2 = |R+(A3)|)", Total[dims] == 16 && dims == {1, 5, 10} && Total[{1, 10, 5}] == 16 && fiber4d == 11 && betaP == c3v/6 && betaP == 1/(48 Pi) && Binomial[4, 2] == 6]; (* v473 (ii): entropy potential + Lambda-channel target *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2968)
 - [(* ==== v473 round: the entropic-action bridge (Bianconi, PRD 111, 066001 (2025); arXiv:2408.14391) -- the exact algebraic content: the carrier Hodge count 1+5+10 = 16 = 2^(g_car-1) (vs the 4d fiber 11), the coefficient pin beta'_B = c3/6 = 1/(48 pi) from 3 beta' = 1/(16 pi), the entropy potential s(x) = x-1-ln x (nonnegative, quadratic minimum), the Lambda-channel target Tr Q^2 = 32 c3^4 = 1/(128 pi^4) = (2/3) delta_top, and the R^2 kill-test gap 3 c3^-9 = 3 (8 pi)^9; mirrors v473 (the Frullani quadrature is numerical, Python-only). ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2957)
 - [(* ---- (v152) R3 normalisation = the anchor ---- *) Module[{c3, k, lnratio, dlogdet}, c3 = 1/(8 Pi); k = c3/2; lnratio = Simplify[12 Pi k]; dlogdet = -D[(mm/muu)^(-2 ss), ss] /. ss -> 0; checkExact["v152 R3 normalisation = anchor: Delta log det' = 2 C ln(m/mu) (scale-ambiguous ln m; only m/mu physical); k = c3/2 <=> ln(m/mu) = 3/4 => m/mu = e^{3/4}; 1/(16 pi G)|_{G=1} = c3/2 (induced 1/G = the v68 anchor); audit: 3/4 = q(A3) is the target value, not a derivation", Simplify[dlogdet - 2 Log[mm/muu]] === 0 && k == 1/(16 Pi) && lnratio == 3/4 && Simplify[1/(16 Pi) - c3/2] === 0 && 3/4 == 3/4]; ]; (* ---- (v153) No-Unit Theorem ---- *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L1355)
+
+## Existing producers and their actual composition
+
+[tex-artefacts/toe_field_integration_20261105.tex:20-36](../../../../tex-artefacts/toe_field_integration_20261105.tex#L20) · `section:aeb101993c6293200085` · subsection
+
+The original C6 whole-word expansion already has exact convolution over all cut positions. Its Green and inverse-square-root amplitudes retain their absolute scale; the calculation at the three original cusps has exact rational remainder bounds below [formula in source] . The existing three-state family transfer likewise gives its complete spectral, stationary and history weights. These are different typed producers.
+
+## An actually evaluated whole mirror source
+
+[tex-artefacts/toe_field_integration_20261105.tex:37-111](../../../../tex-artefacts/toe_field_integration_20261105.tex#L37) · `section:34f80d7f9e6e35d0d5a2` · subsection
+
+Use exactly the original R104 sixteen-mode CAR factor, [formula in source] Thus [formula in source] . The original cyclic rank-one expansion evaluates an ordered word by its full Fock trace and its rank-one intermediate matrix elements. For an actual canonical boundary action [formula in source] , those matrix elements use the exterior identity [formula in source] Each CAR monomial is a partial signed map on the orig
+
+## What the whole Higgs integration still has to evaluate
+
+[tex-artefacts/toe_field_integration_20261105.tex:112-140](../../../../tex-artefacts/toe_field_integration_20261105.tex#L112) · `section:f463bbe11849aa5cfb65` · subsection
+
+The original common affine Higgs/Yukawa sewing already gives [formula in source] , retaining any further original Higgs-dependent vertices. Its mixed matter coefficient includes [formula in source] . Here [formula in source] is a derivative with the Higgs field integrated. A derivative of a conditional fermion determinant with respect to a prescribed background Higgs value is a different operation. The later complete
+
+## Whole configuration classes and the exact limit of the heat factor
+
+[tex-artefacts/toe_field_integration_20261105.tex:141-184](../../../../tex-artefacts/toe_field_integration_20261105.tex#L141) · `section:a02c216d5b2c9d8cfda2` · subsection
+
+The earlier fixed-rank bounded-profile test excludes absolute normalization over the explicitly tested flat noncompact [formula in source] Higgs volume with any nonzero finite polynomial Pfaffian coefficient. The original constant-circle positive-Laplace-profile result makes its bound uniform in the mode cutoff. These scoped results are reused. They are not exclusions of every original measure or fluctuating field.
+
+## Conditional operator routes for the next evaluation.
+
+[tex-artefacts/toe_field_integration_20261105.tex:185-221](../../../../tex-artefacts/toe_field_integration_20261105.tex#L185) · `section:85421518a2101c3be34d` · paragraph
+
+The follow-up uses the original joint R113 contact branch, rather than another fixed-background evaluation. In that branch let [formula in source] , [formula in source] , and [formula in source] , with all original Yukawa matrices, including the Dirac-neutrino term. The existing full internal Gram identity and CAR give [formula in source] For the Hamiltonian insertion [formula in source] , the whole mixed word is a s
+
+## Durable result route.
+
+[tex-artefacts/toe_field_integration_20261105.tex:222-230](../../../../tex-artefacts/toe_field_integration_20261105.tex#L222) · `section:311cda8e2201599f83be` · paragraph
+
+The research records WEIGHTS20261105B, SEWING20261105C, FIELDINT20261105D, HYP20261105E and HYP20261105F distinguish recovered original results, executed calculations, analytic class statements and the unevaluated primitive integral. The full original source remains the common calculation target. These records neither choose a new state or measure nor change the existing c3/P1/P2, compiler, flavor, clock or physical
 
 ## 1. A charged field from the original filled microscopic sea
 
@@ -230,7 +318,7 @@ For the same conditional whole Clifford caller, assume its actual semigroup time
 
 ## Source and reproducibility route
 
-[tex-artefacts/toe_source_completion_20261103.tex:645-700](../../../../tex-artefacts/toe_source_completion_20261103.tex#L645) · `section:5a9ea639ada21fb1a3c4` · subsection
+[tex-artefacts/toe_source_completion_20261103.tex:645-702](../../../../tex-artefacts/toe_source_completion_20261103.tex#L645) · `section:5a9ea639ada21fb1a3c4` · subsection
 
 The dated report labels resolve through docs/research/fundamental-plan/RESULTS.md and the synthesis docs/research/fundamental-plan/CONSOLIDATION-R110-20261103.md. The main proof owners are: A and B: experiments/theory-contracts/puncture-metric-joint-completion-20261102/PROOF.txt and experiments/theory-contracts/joint-source-clock-field-closure-20261102/PROOF.txt. C: experiments/theory-contracts/original-paper-source-
 
