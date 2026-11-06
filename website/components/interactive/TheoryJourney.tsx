@@ -80,7 +80,7 @@ export function TheoryJourney() {
         ctx.globalAlpha=1;
         if(width>640){ctx.textAlign="center";ctx.textBaseline="top";ctx.font="600 13px system-ui,sans-serif";ctx.fillStyle=lit?"#f4f6fb":"#8092a8";ctx.fillText(n.label,point.x,point.y+(i===4?40:31));}
       });
-      if(playing&&!reduced&&visible)frame=requestAnimationFrame(draw);
+      if(playing&&!reduced&&visible&&width>0&&height>0)frame=requestAnimationFrame(draw);
     };
     const resize=()=>{const box=surface.getBoundingClientRect();width=box.width;height=box.height;const dpr=Math.min(window.devicePixelRatio||1,2);surface.width=Math.round(width*dpr);surface.height=Math.round(height*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);cancelAnimationFrame(frame);draw(0);};
     const observer=new ResizeObserver(resize);observer.observe(surface);

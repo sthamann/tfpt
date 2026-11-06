@@ -84,7 +84,7 @@ function RootProjection() {
       context.beginPath(); context.arc(origin.x, origin.y, 7, 0, Math.PI * 2); context.stroke();
       context.fillStyle = "#a9bfd6"; context.font = "12px system-ui";
       context.fillText("ORTHONORMAL 2D PROJECTION", 20, height - 19);
-      if (playing && !reduced) frame = requestAnimationFrame(draw);
+      if (playing && !reduced && width > 0 && height > 0) frame = requestAnimationFrame(draw);
     };
     const resize = () => {
       cancelAnimationFrame(frame); last = 0;
