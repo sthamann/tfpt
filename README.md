@@ -1,10 +1,10 @@
 # Topological Fixed Point Theory
 
-**TFPT connects boundary geometry, the E₈ lattice and a common compiler for particle structure, mass relations and physical constants.**
+**TFPT investigates whether shared geometric data can explain particle families, mass hierarchies and dimensionless constants.**
 
-The central idea is that the same small set of structures should do several jobs. A marked boundary supplies carrier and family data. Their representations determine charges and transport rules. Those rules feed mass and mixing relations, an electromagnetic fixed point, and connected quantum and cosmological readouts. This repository contains the original papers, executable calculations, formal statements and the public explanations of that construction.
+The research programme connects boundary geometry, the E₈ lattice and rules for calculating particle structure and numerical outputs. The idea is to reuse the same inputs: a marked boundary supplies an internal particle space and family data; their representations determine charges and transport rules; those rules feed mass and mixing relations, an electromagnetic fixed point, and connected quantum and cosmological calculations. This repository contains the original papers, executable calculations, formal statements and public explanations.
 
-Each result carries its own premises: a declared starting principle, an exact consequence, a numerical root and a physical identification answer different questions. The [claim ledger](verification/status_ledger.csv) and cited original sources record those distinctions.
+A concrete example is a boundary equation whose positive root gives $\alpha^{-1}=137.03599921684\ldots$. You can [reproduce that number](#reproduce-the-alpha-calculation) and inspect the equation, its inputs and its controls. Identifying its root with the measured electromagnetic coupling retains the physical assumptions stated in the source.
 
 [Explore interactively](https://www.fixpoint-theory.com/interactive) · [Understand the derivations](https://www.fixpoint-theory.com/explain) · [Predictions and tests](https://www.fixpoint-theory.com/predictions) · [Original papers](https://www.fixpoint-theory.com/papers)
 
@@ -17,6 +17,32 @@ Each result carries its own premises: a declared starting principle, an exact co
 | Examine a particular question | [Fine structure constant](https://www.fixpoint-theory.com/fine-structure-constant), [E₈ and the Standard Model](https://www.fixpoint-theory.com/e8-standard-model), or [three fermion generations](https://www.fixpoint-theory.com/three-fermion-generations) |
 | Compare a readout with data | [Frozen predictions](https://www.fixpoint-theory.com/predictions), [dated empirical comparisons](https://www.fixpoint-theory.com/empirical-audit) and [failure criteria](https://www.fixpoint-theory.com/falsification) |
 | Read or reproduce an argument | [Selected original arguments](https://www.fixpoint-theory.com/research), the [papers](https://www.fixpoint-theory.com/papers), and the [source registry](docs/registry/INDEX.md) |
+
+## Results and their scope
+
+The [claim ledger](verification/status_ledger.csv) and original sources distinguish declared premises, exact consequences, numerical calculations and conditional physical identifications. Here is how those distinctions apply to the main results:
+
+| Result | What the statement establishes |
+|---|---|
+| Particle representations and E₈ | Exact representation and lattice constructions under their stated boundary, carrier, pairing and glue hypotheses. The physical particle and family dictionary retains its conditions. |
+| Source masses and mixing | Integer transport lengths, charged lepton coefficients and the stated source ratios have explicit derivations. Absolute quark amplitudes and phase or neutrino branches retain their separate conditions. Measured masses require the physical comparison map, scale and scheme. |
+| The alpha value | A numerical solution of the specified boundary equation, accompanied by an analytic uniqueness argument. The coefficient 41 has its own particle content and transport derivation. Identifying the full response with physical electromagnetism retains the source conditions. |
+| Dynamics and the common physical source | Exact and conditional finite dynamics and reconstruction results exist. The full primitive interacting field integral, its physical responses and the common interacting spectrum remain the calculation target. |
+
+The finite Dirac operator organizes supplied Yukawa and Majorana matrices and the specified Higgs construction. Its assembly alone does not calculate all numerical coupling entries. The mass formulas below have their own source derivation.
+
+<details>
+<summary>Five terms used in the papers</summary>
+
+- **Seam:** the oriented boundary structure supplying the kernel, state and time data used by the construction.
+- **Carrier:** the internal five dimensional space used to build particle representations. Its dimension is separate from spacetime dimensions.
+- **Compiler:** the shared rules mapping geometric inputs to representations, integer transport lengths and calculated outputs.
+- **Readout:** an output of a specified mathematical construction. Its identification with a measured quantity has stated physical premises.
+- **Source mass:** a mass in the source construction, written with a hat. A pole mass or a mass quoted at a renormalization scale requires the corresponding physical transfer.
+
+Precise definitions and assumptions remain in the linked original papers.
+
+</details>
 
 ## The connected construction
 
@@ -37,9 +63,9 @@ Each result carries its own premises: a declared starting principle, an exact co
 \end{aligned}
 ```
 
-The residue, grading and sheet operators determine the transport lengths $L$ and mass powers $K$ for all nine charged fermions. The finite lepton response gives the coefficients $(16/7,4/3,7/6)$. The quark readouts give source ratios including $\widehat m_u/\widehat m_d=55/117$ on the derived selector stratum. The absolute quark amplitude anchor has a separate role. Mixing magnitudes share the same seed, while the phase and neutrino branches retain their named conditions. These are derived source relations; comparison with pole or running masses uses the specified physical reader, scale and scheme. [Work through the mass calculation](https://www.fixpoint-theory.com/explain#flavor) or read [Paper 2](documents/tfpt_2_standard_model/main.tex).
+The residue, grading and sheet operators determine the transport lengths $L$ and mass powers $K$ for all nine charged fermions. The finite lepton response gives the coefficients $(16/7,4/3,7/6)$. The quark readouts give source ratios including $\widehat m_u/\widehat m_d=55/117$ for the specified discrete family of admissible operator data. The remaining absolute quark amplitude anchor has a separate role. Mixing magnitudes share the same seed, while the phase and neutrino branches retain their named conditions. These are derived source relations; comparison with pole or running masses uses the specified physical comparison map, scale and scheme. [Work through the mass calculation](https://www.fixpoint-theory.com/explain#flavor) or read [Paper 2](documents/tfpt_2_standard_model/main.tex).
 
-**The electromagnetic fixed point.** The same carrier, family and transport structure supplies the matter budget 41 in the specified alpha equation. Its root gives $\alpha^{-1}=137.03599921684\ldots$. Existence and uniqueness of that root, coefficient provenance, the response calculation and the physical electromagnetic interpretation are distinct steps of the argument. [Calculate the balance yourself](https://www.fixpoint-theory.com/interactive/alpha) or [inspect the full derivation](https://www.fixpoint-theory.com/fine-structure-constant).
+**The electromagnetic fixed point.** The specified particle content and transport budgets give a fixed matter coefficient, 41, in the alpha equation. Its root gives $\alpha^{-1}=137.03599921684\ldots$. Existence and uniqueness of that root, coefficient provenance, the response calculation and the physical electromagnetic interpretation are distinct steps of the argument. [Calculate the balance yourself](https://www.fixpoint-theory.com/interactive/alpha) or [inspect the full derivation](https://www.fixpoint-theory.com/fine-structure-constant).
 
 **Physical dynamics and other readouts.** The transfer spectrum has an exact continuous stochastic interpolation at finite level. The papers also construct quantum lifts, finite field models, horizon identities, and cosmological and physical transfer calculations. Each keeps its operator, physical branch and limiting hypotheses. The [common source explanation](https://www.fixpoint-theory.com/explain#source) connects these results to the original action, fields, state and time reconstruction. The [frontier paper](documents/tfpt_4_frontier/main.tex) and [research contracts](documents/tfpt_research_contracts/main.tex) give their precise scope.
 
@@ -65,11 +91,13 @@ python3 verification/make_content_registry.py --query 'hypercharge' --limit 10
 python3 verification/make_content_registry.py --topic flavor-masses --limit 10
 ```
 
-The [frozen prediction register](verification/predictions_frozen.json) preserves its dated formulas and distinguishes calculated values, conditional readouts, assigned textures and conditional bands. Existing measurement comparisons keep their dates. The [paper changelog](changelog.tex) preserves publication history, and the [author pages](https://www.fixpoint-theory.com/authors) connect publications to their public author identities. Earlier archived releases retain their own versions and dates.
+The [prediction register frozen on 9 June 2026](verification/predictions_frozen.json) contains sixteen main values, two assigned textures and two conditional inflation bands. A freeze records a commitment date. Whether a particular comparison is prospective depends on when the relevant measurement first became public. The [dated empirical audit](https://www.fixpoint-theory.com/empirical-audit) records the measurements, uncertainties and disclosure dates; values already known at the freeze remain comparisons with known data.
+
+The [paper changelog](changelog.tex) preserves publication history. Earlier archived releases retain their own versions and dates.
 
 ## Run the verifier
 
-Clone the repository and install the numerical dependencies with Python 3:
+Use Python 3.11 or 3.12, the versions exercised by the core verification workflow. Clone the repository and install the numerical dependencies:
 
 ```sh
 git clone https://github.com/sthamann/topological-fixed-point-theory.git
@@ -79,19 +107,39 @@ python3 -m venv .venv
 . .venv/bin/activate
 ```
 
-Start with the core check, or run the registered suite when you need its full coverage:
+Start with the short core check:
 
 ```sh
 ./verify
+```
+
+It runs six existing Python modules covering E₈ glue, the carrier, alpha, the cascade, a neutrino texture and frozen registry consistency. Look for the recomputed E₈ root count 240, the rounded inverse alpha value 137.0359992 and a passing Python summary. The Wolfram and Lean lines point to separate engines; this command does not execute them.
+
+### Reproduce the alpha calculation
+
+From the repository root, with the virtual environment active:
+
+```sh
+python3 verification/v3_em_alpha.py
+```
+
+The module checks the root against 137.0359992168407, encloses it in an interval, and tests neighboring integer budgets and boundary normalizations. Its summary should report zero failed checks. This reproduces the specified numerical equation and its implemented controls. The [analytic uniqueness argument and physical scope](https://www.fixpoint-theory.com/fine-structure-constant) accompany the source; numerical checks alone do not establish the complete physical identification.
+
+### Run broader checks
+
+The full registered Python suite is a separate, substantially longer run:
+
+```sh
 .venv/bin/python verification/run_all.py
 python3 verification/check_project_scope.py
 ```
 
+Check each command's summary and exit status. A nonzero exit status means the run did not complete successfully; inspect the reported failure or setup error before using its result.
+
 For a particular claim, follow its original section to the named verification module and inspect the inputs and negative controls. Python execution, Lean kernel checking and Wolfram evaluation are separate checks. The formal carrier development includes its own toolchain and axiom audit:
 
 ```sh
-cd experiments/lean4-carrier-rigidity
-bash scripts/audit.sh --core
+(cd experiments/lean4-carrier-rigidity && bash scripts/audit.sh --core)
 ```
 
 The [ledger](verification/status_ledger.csv), [script registry](verification/script_registry.csv), actual `.lean` statements and `.wl` sources define the scope of those checks. Report the command and result actually obtained; an inventory entry or passing numerical example does not establish a broader theorem.
@@ -111,11 +159,9 @@ bash build.sh audit        # check source, registry and mirror consistency
 Build or run the public presentation locally:
 
 ```sh
-cd website
-npm ci
-npm run dev
+(cd website && npm ci && npm run dev)
 # For a production build:
-npm run build
+(cd website && npm run build)
 ```
 
 `bash build.sh release` runs the complete publication rebuild. After staging newly shipped source files, generate the manifest last and check it:
@@ -145,6 +191,16 @@ _archive/                  Historical document sets
 The owning LaTeX module and cited original source own the scientific text. `verification/status_ledger.csv` owns claim status; registered scripts own executable checks. Edit the owner once and regenerate its derived tables, indices and public mirrors. Published PDFs and generated files are outputs.
 
 The local Knowledge Atlas, accessed through `tfpt-knowledge` when installed, supplies current research navigation and reviewed decisions. The public checkout includes a reproducible public snapshot; private local databases and unpublished sources are outside that export. The [semantic navigation guide](docs/SEMANTIC_NAVIGATION.md) explains freshness, coverage and public scopes. Source summaries and graph links help locate an argument; its original premises and evidence still decide what follows.
+
+## Authors, citation and discussion
+
+The papers list **Stefan Hamann and Alessandro Rizzo** as authors. Their [public author pages](https://www.fixpoint-theory.com/authors) connect the publications and their versions.
+
+When citing the theory, use the title, authors, version and date of the [paper edition](https://www.fixpoint-theory.com/papers) you actually read. When reporting a code reproduction, include the repository commit and the command you ran. The current website and historical releases retain separate publication identities.
+
+Use [GitHub issues](https://github.com/sthamann/topological-fixed-point-theory/issues) for questions, reproduction failures or corrections. Include the relevant claim or source section and, for a failed check, the command and output.
+
+The repository has no root project LICENSE file. Please direct questions about reuse of the code or papers to the maintainers.
 
 ## Contribute
 
