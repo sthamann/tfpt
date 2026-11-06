@@ -63,7 +63,7 @@ export function AlphaDerivation() {
         <p>The original circle also determines the single defect line: its winding changes the polarization by a rank one projector Π. Consequently its ordered relative Fredholm determinant is exactly 1−q. The later marked D₅ grade calculation realizes the fractional response (1−uq)<sup>−5/4</sup> in the existing source. The common time diagonal has exponent 2, so the marked measurement matters.</p>
         <Math block plain="The seam opening equals its base plus the defect weight times the inverse determinant response with exponent five quarters.">{String.raw`\varphi_s(\alpha)=\frac1{6\pi}+q(\alpha)\,[1-q(\alpha)]^{-5/4}`}</Math>
         <p>The exponent has an exact charge trace origin: Bγ = (3/2)(5/6) = 5/4. Choosing the EM coupling q(α), the outer factor q and this additive baseline in that same physical channel remains part of the response contract.</p>
-        <p className={styles.source}><Link href={source.index}>Original exponential reweighting</Link><Link href={source.circle}>Reconstructed circle defect</Link><Link href={source.grade}>Marked D₅ response proof</Link></p>
+        <p className={styles.source}><a href={source.index}>Original exponential reweighting</a><a href={source.circle}>Reconstructed circle defect</a><a href={source.grade}>Marked D₅ response proof</a></p>
       </li>
       <li id="alpha-budget">
         <h3>Read the shared charge and flavour budget</h3>
@@ -80,7 +80,7 @@ export function AlphaDerivation() {
         <Math block plain="F of alpha equals alpha cubed minus twice c three cubed times alpha squared minus four fifths times forty one times c three to the sixth times the logarithm of one over the seam opening. The closure sets F to zero.">{String.raw`\begin{aligned}F(\alpha)&=\alpha^3-2c_3^3\alpha^2\\&\quad-\frac45\,M c_3^6\log\frac1{\varphi_s(\alpha)},\\M&=41,\qquad F(\alpha)=0.\end{aligned}`}</Math>
         <p>The powers of c₃ follow the stated seam insertion grammar: three in the quadratic coefficient, six in the transport coefficient. The logarithm belongs to the determinant description. The carrier identities fix the displayed coefficient values within this closure; they do not alone derive its local functional form.</p>
         <p>The older scalar potential makes the construction explicit: it supplies the local derivative α³−2c₃³α² and integrates the desired response to obtain a stationary action. The present physical question is whether the original local EM operator and its renormalized measure produce this same variation.</p>
-        <p className={styles.source}><Link href={source.transfer}>Original definition of the closure potential</Link><Link href={source.measure}>Local measure and Quillen scope</Link></p>
+        <p className={styles.source}><a href={source.transfer}>Original definition of the closure potential</a><a href={source.measure}>Local measure and Quillen scope</a></p>
       </li>
       <li id="alpha-root">
         <h3>Prove that the equation selects one positive root</h3>
@@ -88,7 +88,7 @@ export function AlphaDerivation() {
         <details className="guide-details"><summary>Why do those facts rule out a second root?</summary><p>Set t = 2c₃³ and C = (4/5)c₃⁶M. The response satisfies 0 &lt; φs &lt; 1, so its logarithm is negative. Before t, both contributions to F are negative. Beyond t, exact log convexity gives a strictly increasing derivative:</p><Math block>{String.raw`\begin{aligned}F(x)&=x^2(x-t)+C\log\varphi_s(x),\\F''(x)&=6x-4c_3^3+C(\log\varphi_s)''>0\quad(x\ge t).\end{aligned}`}</Math><p>F(t) is negative and the cubic eventually tends to infinity. At its first zero r, convexity makes the derivative greater than the positive secant slope from (t,F(t)) to (r,0). The derivative then keeps increasing, so the function cannot turn back through zero. The source proves log convexity by an exact differentiated identity, without a small term approximation or a sampled sign scan.</p></details>
         <p>The argument holds for every positive budget M. It proves uniqueness after the inputs and response are fixed; it does not select 41 in place of another positive budget. An interval enclosure then locates the root.</p>
         <AlphaExplorer />
-        <p className={styles.source}><Link href={source.proof}>Read the analytic proof and interval enclosure</Link></p>
+        <p className={styles.source}><a href={source.proof}>Read the analytic proof and interval enclosure</a></p>
       </li>
       <li id="alpha-comparison">
         <h3>Compare the result with measurement</h3>
@@ -101,7 +101,7 @@ export function AlphaDerivation() {
 
     <details id="alpha-provenance" className={`guide-details ${styles.ingredients}`}>
       <summary>Trace every ingredient: value, meaning, original source and scope</summary>
-      <div className={styles.tableWrap}><table><caption>Provenance of the specified alpha closure</caption><thead><tr><th scope="col">Value</th><th scope="col">What it means</th><th scope="col">Original source</th><th scope="col">What the step establishes</th></tr></thead><tbody>{ingredients.map((i) => <tr key={i.symbol}><th scope="row"><Math ariaLabel={i.symbol}>{i.symbol}</Math></th><td>{i.meaning}</td><td><Link href={i.href}>{i.label}</Link></td><td>{i.scope}</td></tr>)}</tbody></table></div>
+      <div className={styles.tableWrap}><table><caption>Provenance of the specified alpha closure</caption><thead><tr><th scope="col">Value</th><th scope="col">What it means</th><th scope="col">Original source</th><th scope="col">What the step establishes</th></tr></thead><tbody>{ingredients.map((i) => <tr key={i.symbol}><th scope="row"><Math ariaLabel={i.symbol}>{i.symbol}</Math></th><td>{i.meaning}</td><td><a href={i.href}>{i.label}</a></td><td>{i.scope}</td></tr>)}</tbody></table></div>
     </details>
     <details id="alpha-precision" className={`guide-details ${styles.precision}`}>
       <summary>Inspect the numerical enclosure, full precision and response series</summary>

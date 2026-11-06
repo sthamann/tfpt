@@ -9,7 +9,9 @@ import { ReadingText } from "@/components/ReadingText";
 
 function SourceLinks({ links, label }: { links: readonly TopicLink[]; label: string }) {
   return <nav className="reference-links" aria-label={label}>
-    {links.map((link) => <Link key={link.href} href={link.href}>{link.label}</Link>)}
+    {links.map((link) => /\.(?:txt|py|pdf)(?:$|[?#])/.test(link.href)
+      ? <a key={link.href} href={link.href}>{link.label}</a>
+      : <Link key={link.href} href={link.href}>{link.label}</Link>)}
   </nav>;
 }
 
