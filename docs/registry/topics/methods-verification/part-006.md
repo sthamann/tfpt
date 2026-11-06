@@ -563,7 +563,7 @@ The amended contract makes the continuum limit optional but the thermodynamic li
 
 ## TFPT — Changelog\\[1mm] All changes and new results, by date
 
-[documents/changelog/preamble.tex:1-57](../../../../documents/changelog/preamble.tex#L1) · `section:d85367316428383efbf7` · frontmatter
+[documents/changelog/preamble.tex:1-67](../../../../documents/changelog/preamble.tex#L1) · `section:d85367316428383efbf7` · frontmatter
 
 TFPT — Changelog\\[1mm] All changes and new results, by date Stefan Hamann Alessandro Rizzo This file is the canonical, dated record of every change to the TFPT theory development: new verification modules ( vN), status changes, editorial passes and infrastructure. It is maintained in the same change as the work it records, and it is also imported at the end of the introduction document. Module numbers vN refer to ve
 
@@ -573,7 +573,7 @@ Explicit source references:
 
 ## Appendix: changelog
 
-[documents/changelog/preamble.tex:58-63](../../../../documents/changelog/preamble.tex#L58) · `section:2fca84369c4a253cec63` · section
+[documents/changelog/preamble.tex:68-73](../../../../documents/changelog/preamble.tex#L68) · `section:2fca84369c4a253cec63` · section
 
 tocsectionAppendix: changelog The dated record of every change (canonical source: changelog.tex, also compiled standalone). Module numbers vN refer to verification/vN_*.py.
 

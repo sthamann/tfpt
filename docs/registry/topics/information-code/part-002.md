@@ -194,7 +194,7 @@ Die ursprünglichen Programme wurden mit fixierten Dateihashes in eine eigene Ar
 
 ## The Gaussian code bridge: [formula in source] over [formula in source] , the extended Hamming code, and a four-bit information layer
 
-[documents/note_e8_gaussian_code/preamble.tex:1-46](../../../../documents/note_e8_gaussian_code/preamble.tex#L1) · `section:a3f71cd206278c1f0330` · frontmatter
+[documents/note_e8_gaussian_code/preamble.tex:1-56](../../../../documents/note_e8_gaussian_code/preamble.tex#L1) · `section:a3f71cd206278c1f0330` · frontmatter
 
 theoremTheorem lemma[theorem]Lemma corollary[theorem]Corollary remark remark[theorem]Remark
 

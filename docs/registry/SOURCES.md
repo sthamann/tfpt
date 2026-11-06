@@ -957,6 +957,7 @@
 | [tex-artefacts/predictions.tex](../../tex-artefacts/predictions.tex) | generated | 1 | 1 |
 | [tex-artefacts/tfpt_docset.tex](../../tex-artefacts/tfpt_docset.tex) | shared_support | 1 | 20 |
 | [tex-artefacts/tfpt_figures.tex](../../tex-artefacts/tfpt_figures.tex) | shared_support | 1 | 21 |
+| [tex-artefacts/tfpt_license_footer.tex](../../tex-artefacts/tfpt_license_footer.tex) | shared_support | 1 | 23 |
 | [tex-artefacts/tfpt_references.tex](../../tex-artefacts/tfpt_references.tex) | research_fragment | 7 | 14 |
 | [tex-artefacts/tfpt_status.tex](../../tex-artefacts/tfpt_status.tex) | shared_support | 1 | 19 |
 | [tex-artefacts/tfpt_style.tex](../../tex-artefacts/tfpt_style.tex) | shared_support | 1 | 21 |
