@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## 10. Die drei nächsten entscheidenden Untersuchungen
+
+[documents/experiments--theory-contracts--universalraum-singlet-observable-20260915--tmp--pdfs--TFPT_Universalraum_Richtige_Kette_Konsolidierung_2026-09-15_v1.6.7/sections/003-subsection-10-die-drei-n-chsten-entscheidenden.tex:1-33](../../../../documents/experiments--theory-contracts--universalraum-singlet-observable-20260915--tmp--pdfs--TFPT_Universalraum_Richtige_Kette_Konsolidierung_2026-09-15_v1.6.7/sections/003-subsection-10-die-drei-n-chsten-entscheidenden.tex#L1) · `section:42ab33c3e318578f6c48` · subsection
+
+Den minimalen Ursprungsvertrag auswählen. Teil B klassifiziert die kleinen symmetrieverträglichen Terme und trennt echte Erweiterungen von einem bloßen Wechsel der Bosonvariablen. Der Compiler muss diese Auswahl und die relativen Parameter begründen. Symmetrie allein tut das noch nicht. Die gemeinsame Schattenkarte am vorhandenen Tensor prüfen. Derselbe Zustand und dieselben Operationen müssen die verschiedenen Ausle
+
 ## Schluss in einem Satz
 
 [documents/experiments--theory-contracts--universalraum-singlet-observable-20260915--tmp--pdfs--TFPT_Universalraum_Richtige_Kette_Konsolidierung_2026-09-15_v1.6.7/sections/003-subsection-10-die-drei-n-chsten-entscheidenden.tex:58-66](../../../../documents/experiments--theory-contracts--universalraum-singlet-observable-20260915--tmp--pdfs--TFPT_Universalraum_Richtige_Kette_Konsolidierung_2026-09-15_v1.6.7/sections/003-subsection-10-die-drei-n-chsten-entscheidenden.tex#L58) · `section:24062bfa1aa8db3b6e0a` · subsubsection
@@ -2408,18 +2414,3 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 [documents/tfpt_3_e8_audit_bootstrap/sections/009-section-further-audit-lemmas-machine-verified-this-round.tex:293-389](../../../../documents/tfpt_3_e8_audit_bootstrap/sections/009-section-further-audit-lemmas-machine-verified-this-round.tex#L293) · `section:3cf165baf1e9ef397776` · section
 
 Reading [formula in source] against today's compiler atoms, the secondary-branching atlas and the [formula in source] anchor power sums [formula in source] , 25 of the 27 rungs are load-bearing numbers (machine-checked):
-
-## Three views of one spine
-
-[documents/tfpt_3_e8_audit_bootstrap/sections/010-section-three-views-of-one-spine.tex:1-48](../../../../documents/tfpt_3_e8_audit_bootstrap/sections/010-section-three-views-of-one-spine.tex#L1) · `section:b19a7595d83b1a10d11a` · section
-
-at (0.35,58) [formula in source] — E-series / atlas branchings (UV); at (0.35,40) [formula in source] ; at (0.35,30) [formula in source] \,(Coxeter rung, [formula in source] ); at (0.35,24) [formula in source] — [formula in source] , [formula in source] , [formula in source] ; at (0.35,15) [formula in source] (IR atoms); at (0.35,8) [formula in source] \,(flavor selector, end); at (0,60.5) [formula in source] start;
-
-Explicit source references:
-
-- [verification/v91_spine_tetrahedron.py](../../../../verification/v91_spine_tetrahedron.py#L1) · explicit_file_citation
-
-Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
-
-- [(* v431 (1): two-family split forced by 30 = 2*3*5 *) checkExact["v431 E8.DEGREE.LADDER.01 (i): E8 exponents = phi(30)=8 totatives of h=30=2*N_fam*g_car; coprime to 6 => +-1 mod 6, so degrees occupy ONLY {0,2} mod 6", exps == tot30 && EulerPhi[h] == 8 && h == 2*3*5 && expMod6 == {1, 5} && degMod6 == {0, 2}]; (* v431 (2): 6k family = 6 x spine {2,3,4,5} = v91 anchor a=(1,1,2) *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2663)
-- [(* ---- (v91) spine tetrahedron ---- *) spine = {2, 3, 4, 5}; checkExact["v91 edges/faces/volume of {2,3,4,5}", (Sort[Times @@@ Subsets[spine, {2}]] == {6, 8, 10, 12, 15, 20}) && (Sort[Times @@@ Subsets[spine, {3}]] == {24, 30, 40, 60}) && (Times @@ spine == 120) && (120 == Total[{1, 7, 11, 13, 17, 19, 23, 29}])]; checkExact["v91 graph reading 240 = |mu4| |E(K4)| |E(K5)|; breaks at K6", (4 Binomial[4, 2] Binomial[5, 2] == 240) && (Binomial[6, 2] == 15) && (1 + 1 + 2^4 != 15)]; chiT[t_] := (t - 2) (t - 3) (t - 4) (t - 5); checkExact["v91 chi_T audit: coeffs (14,71,154,120); chi(0)=chi(7)=120, chi(1)=chi(6)=24", (Expand[chiT[t]] == t^4 - 14 t^3 + 71 t^2 - 154 t + 120) && (chiT[0] == 120) && (chiT[7] == 120) && (chiT[1] == 24) && (chiT[6] == 24)]; (* ---- (v92) glue uniqueness ---- *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L136)

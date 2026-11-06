@@ -200,7 +200,11 @@ When citing the theory, use the title, authors, version and date of the [paper e
 
 Use [GitHub issues](https://github.com/sthamann/topological-fixed-point-theory/issues) for questions, reproduction failures or corrections. Include the relevant claim or source section and, for a failed check, the command and output.
 
-The repository has no root project LICENSE file. Please direct questions about reuse of the code or papers to the maintainers.
+## Licensing
+
+Original TFPT software is licensed under [Apache 2.0](LICENSE). Scientific papers, their authored LaTeX text, explanatory documentation and original scientific illustrations are licensed under [CC BY 4.0](LICENSE-CONTENT).
+
+These licenses cover different kinds of material. The [licensing guide](LICENSING.md) explains the allocation, attribution and third party exceptions. Existing licenses for fonts, dependencies and other incorporated works remain in force. Published PDFs display the content license; the website provides the [same licensing information](https://www.fixpoint-theory.com/licensing).
 
 ## Contribute
 

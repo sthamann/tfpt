@@ -48,6 +48,7 @@ def _lean_read_dir():
 
 
 LEAN_DIR = _lean_read_dir()                        # repo path (where the files actually live)
+LICENSE_FILES = ("LICENSE", "LICENSE-CONTENT", "LICENSING.md", "NOTICE")
 
 TEX = [
     "introduction.tex", "changelog.tex", "verification_catalog.tex",
@@ -135,7 +136,7 @@ def collect_tex(root, entries=None):
 
 
 def collect():
-    files = collect_tex(ROOT) + list(FIG) + collect_research(ROOT)
+    files = list(LICENSE_FILES) + collect_tex(ROOT) + list(FIG) + collect_research(ROOT)
     if (Path(ROOT) / "docs/editions.json").is_file():
         files.append("docs/editions.json")
     vdir = os.path.join(ROOT, "verification")
@@ -180,7 +181,7 @@ def collect_lean():
                  # exceed the lakefile's default memory ceiling by design, so
                  # REVIEWER_USAGE.md sends reviewers through this builder first
                  "build_wall_ladder.sh"}
-    out = []
+    out = [(name, name) for name in LICENSE_FILES]
     for dirpath, dirnames, filenames in os.walk(base):
         dirnames[:] = [d for d in dirnames if d != ".lake"]   # skip build cache
         for fn in filenames:

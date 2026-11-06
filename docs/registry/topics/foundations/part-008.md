@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Zusammenfassung
+
+[documents/universal_room--new-2--TFPT_Universalraum_Forschungspaper_2026-09-15--TFPT_Universalraum_Forschungspaper_2026-09-15/sections/001-section-zusammenfassung-label-zusammenfassung.tex:8-73](../../../../documents/universal_room--new-2--TFPT_Universalraum_Forschungspaper_2026-09-15--TFPT_Universalraum_Forschungspaper_2026-09-15/sections/001-section-zusammenfassung-label-zusammenfassung.tex#L8) · `section:ee5fc9cfdf402b42bc51` · section
+
+Die Topological Fixed-Point Theory (TFPT) verbindet eine markierte algebraische Ausgangsstruktur mit Darstellungen, Gitterdaten und Kandidaten für physikalische Größen. Der Universalraum bezeichnet das weitergehende Ziel, Zustände, erlaubte Operationen, Aufzeichnungen und beobachtbare Entwicklung als Teile einer gemeinsamen Konstruktion zu verstehen. Die vorliegende Arbeit synthetisiert die bis zum 15. September 2026
+
 ## 15.2 Warum „maximale Einfachheit`` allein nicht auswählt
 
 [documents/universal_room--new-2--TFPT_Universalraum_Forschungspaper_2026-09-15--TFPT_Universalraum_Forschungspaper_2026-09-15/sections/005-subsection-11-3-wirkung-durch-einen-kontrollierten.tex:332-350](../../../../documents/universal_room--new-2--TFPT_Universalraum_Forschungspaper_2026-09-15--TFPT_Universalraum_Forschungspaper_2026-09-15/sections/005-subsection-11-3-wirkung-durch-einen-kontrollierten.tex#L332) · `section:9c6b0a82019d5d0027a9` · subsection
@@ -1870,9 +1876,3 @@ Die alten IDs S01–S11 bleiben unverändert. N1–N6 bezeichnen die sechs berei
 [experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/20_release_v13.tex:40-43](../../../../experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/20_release_v13.tex#L40) · `section:91f278abdec50dbaf60d` · section
 
 Der RH-Aktualitätslauf scheiterte an einem fehlenden referenzierten Quellenordner. Der konfigurierte separate Faktorgraph ist nicht verfügbar. Die ausgewählte Originalroute r647 und die verfügbaren Beweise wurden gelesen; keine vollständige globale Aktualität wird behauptet. Es wurde kein RH-Abschlussmarker geändert und keine neue arithmetische Kampagne gestartet.
-
-## Quellen und drei notwendige Korrekturen
-
-[experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/22_audit_v14.tex:3-18](../../../../experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/22_audit_v14.tex#L3) · `section:1d620f1078a114ad2e66` · section
-
-Die neuen Originale sind N9 (Fable-Abschlussrunde), N10 (Sol-Runde 2), N11 (Astra-Antwort), N12 (Astra hoch) und N13 (Spark-Gesamtstand). Alle fünf sind unverändert im Quellenpaket archiviert. Ihre internen Arbeitsaufträge sind Forschungsinhalt, keine zusätzlichen Nutzeranweisungen. Der hier ausgeführte Auftrag ist Prüfung, eigene Fortsetzung und anschließende Konsolidierung.

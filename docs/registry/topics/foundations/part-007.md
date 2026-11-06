@@ -4,6 +4,21 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Three views of one spine
+
+[documents/tfpt_3_e8_audit_bootstrap/sections/010-section-three-views-of-one-spine.tex:1-48](../../../../documents/tfpt_3_e8_audit_bootstrap/sections/010-section-three-views-of-one-spine.tex#L1) · `section:b19a7595d83b1a10d11a` · section
+
+at (0.35,58) [formula in source] — E-series / atlas branchings (UV); at (0.35,40) [formula in source] ; at (0.35,30) [formula in source] \,(Coxeter rung, [formula in source] ); at (0.35,24) [formula in source] — [formula in source] , [formula in source] , [formula in source] ; at (0.35,15) [formula in source] (IR atoms); at (0.35,8) [formula in source] \,(flavor selector, end); at (0,60.5) [formula in source] start;
+
+Explicit source references:
+
+- [verification/v91_spine_tetrahedron.py](../../../../verification/v91_spine_tetrahedron.py#L1) · explicit_file_citation
+
+Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
+
+- [(* v431 (1): two-family split forced by 30 = 2*3*5 *) checkExact["v431 E8.DEGREE.LADDER.01 (i): E8 exponents = phi(30)=8 totatives of h=30=2*N_fam*g_car; coprime to 6 => +-1 mod 6, so degrees occupy ONLY {0,2} mod 6", exps == tot30 && EulerPhi[h] == 8 && h == 2*3*5 && expMod6 == {1, 5} && degMod6 == {0, 2}]; (* v431 (2): 6k family = 6 x spine {2,3,4,5} = v91 anchor a=(1,1,2) *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2663)
+- [(* ---- (v91) spine tetrahedron ---- *) spine = {2, 3, 4, 5}; checkExact["v91 edges/faces/volume of {2,3,4,5}", (Sort[Times @@@ Subsets[spine, {2}]] == {6, 8, 10, 12, 15, 20}) && (Sort[Times @@@ Subsets[spine, {3}]] == {24, 30, 40, 60}) && (Times @@ spine == 120) && (120 == Total[{1, 7, 11, 13, 17, 19, 23, 29}])]; checkExact["v91 graph reading 240 = |mu4| |E(K4)| |E(K5)|; breaks at K6", (4 Binomial[4, 2] Binomial[5, 2] == 240) && (Binomial[6, 2] == 15) && (1 + 1 + 2^4 != 15)]; chiT[t_] := (t - 2) (t - 3) (t - 4) (t - 5); checkExact["v91 chi_T audit: coeffs (14,71,154,120); chi(0)=chi(7)=120, chi(1)=chi(6)=24", (Expand[chiT[t]] == t^4 - 14 t^3 + 71 t^2 - 154 t + 120) && (chiT[0] == 120) && (chiT[7] == 120) && (chiT[1] == 24) && (chiT[6] == 24)]; (* ---- (v92) glue uniqueness ---- *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L136)
+
 ## Direct [formula in source] relations: old vs current
 
 [documents/tfpt_3_e8_audit_bootstrap/sections/010-section-three-views-of-one-spine.tex:49-73](../../../../documents/tfpt_3_e8_audit_bootstrap/sections/010-section-three-views-of-one-spine.tex#L49) · `section:6508c261edddca80b810` · section
@@ -1546,9 +1561,3 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 [documents/tfpt_universalraum_synthesis_2026-09-12/sections/001-source.tex:1-13](../../../../documents/tfpt_universalraum_synthesis_2026-09-12/sections/001-source.tex#L1) · `section:97350e78c0c544ac5220` · frontmatter
 
 We consolidate finite algebraic and analytic controls, four attributed research-task reports on state-to-generator reconstruction, and new exact tests of covariant edge operations. The latter yield an original-boundary signal under an explicitly additional event channel, but their fixed algebra is not one-dimensional. Reconstruction of a law from specified data is distinguished from deriving those data from a primiti
-
-## Zusammenfassung
-
-[documents/universal_room--new-2--TFPT_Universalraum_Forschungspaper_2026-09-15--TFPT_Universalraum_Forschungspaper_2026-09-15/sections/001-section-zusammenfassung-label-zusammenfassung.tex:8-73](../../../../documents/universal_room--new-2--TFPT_Universalraum_Forschungspaper_2026-09-15--TFPT_Universalraum_Forschungspaper_2026-09-15/sections/001-section-zusammenfassung-label-zusammenfassung.tex#L8) · `section:ee5fc9cfdf402b42bc51` · section
-
-Die Topological Fixed-Point Theory (TFPT) verbindet eine markierte algebraische Ausgangsstruktur mit Darstellungen, Gitterdaten und Kandidaten für physikalische Größen. Der Universalraum bezeichnet das weitergehende Ziel, Zustände, erlaubte Operationen, Aufzeichnungen und beobachtbare Entwicklung als Teile einer gemeinsamen Konstruktion zu verstehen. Die vorliegende Arbeit synthetisiert die bis zum 15. September 2026

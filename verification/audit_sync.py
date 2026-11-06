@@ -237,6 +237,22 @@ def check_ledger(registered: list[str]) -> None:
 def check_website(registered: list[str]) -> None:
     if SHADOW:
         return                            # no website/ in a shadow-export tree
+    # License downloads must preserve the complete canonical texts and scope.
+    license_mirrors = {
+        "LICENSE": ["licenses/Apache-2.0.txt", "verification/LICENSE"],
+        "LICENSE-CONTENT": ["licenses/CC-BY-4.0.txt", "papers/LICENSE"],
+        "LICENSING.md": ["licenses/LICENSING.md"],
+        "NOTICE": ["licenses/NOTICE"],
+    }
+    for source, destinations in license_mirrors.items():
+        canonical = ROOT / source
+        if not canonical.exists():
+            err("D.licenses", f"canonical {source} missing")
+            continue
+        for destination in destinations:
+            mirror = WEB / "public" / destination
+            if not mirror.exists() or canonical.read_bytes() != mirror.read_bytes():
+                err("D.licenses", f"website/public/{destination} missing or stale (run build.sh website)")
     # 1. verification mirror
     pub_v = WEB / "public" / "verification"
     want = {f"{s}.py" for s in registered} | {"tfpt_constants.py"}

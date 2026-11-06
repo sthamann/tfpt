@@ -25,7 +25,7 @@ export function DownloadsSection() {
         <SectionHeader
           eyebrow="Downloads"
           title="Every document, in one place"
-          description={`The full TFPT ${SITE_VERSION} document set — the introduction reading guide, the five numbered documents (architecture, Standard Model, audit & bootstrap, frontier, Red Team), and the four companions (Appendix H, the Origin Theory synthesis, the research contracts, and the safeguards discipline). All distributed for academic use.`}
+          description={`The full TFPT ${SITE_VERSION} document set — the introduction reading guide, the five numbered documents (architecture, Standard Model, audit & bootstrap, frontier, Red Team), and the four companions (Appendix H, the Origin Theory synthesis, the research contracts, and the safeguards discipline). Original scientific content is licensed under CC BY 4.0.`}
         />
 
         <div className="mt-12">

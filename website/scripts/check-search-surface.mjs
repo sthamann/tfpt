@@ -5,6 +5,7 @@ const base = (process.argv[2] || "http://localhost:3100").replace(/\/$/, "");
 const canonical = "https://www.fixpoint-theory.com";
 const interactivePaths = ["/interactive", ...["alpha", "standard-model", "e8", "dynamics", "predictions", "flavor", "cosmology", "quantum"].map(slug => `/interactive/${slug}`)];
 const paths = ["/", "/fine-structure-constant", "/e8-standard-model", "/three-fermion-generations", "/research", "/research/e8-discriminant-glue", "/research/four-mark-divisor", "/research/alpha-fixed-point-proof", "/authors", "/authors/stefan-hamann", "/authors/alessandro-rizzo", "/faq", "/papers/architecture-e8", "/changelog", "/changelog/2026-06", "/changelog/2026-06-22", "/explain", ...interactivePaths];
+paths.push("/licensing");
 const results = [];
 for (const path of paths) {
   const response = await fetch(base + path);

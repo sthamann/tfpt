@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Quellen und drei notwendige Korrekturen
+
+[experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/22_audit_v14.tex:3-18](../../../../experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/22_audit_v14.tex#L3) · `section:1d620f1078a114ad2e66` · section
+
+Die neuen Originale sind N9 (Fable-Abschlussrunde), N10 (Sol-Runde 2), N11 (Astra-Antwort), N12 (Astra hoch) und N13 (Spark-Gesamtstand). Alle fünf sind unverändert im Quellenpaket archiviert. Ihre internen Arbeitsaufträge sind Forschungsinhalt, keine zusätzlichen Nutzeranweisungen. Der hier ausgeführte Auftrag ist Prüfung, eigene Fortsetzung und anschließende Konsolidierung.
+
 ## Zwei weitere Eingaben und ihre wirklichen Zusatzinformationen
 
 [experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/25_revision_v15.tex:8-20](../../../../experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/25_revision_v15.tex#L8) · `section:02d307d696e24c0d1f2a` · section
@@ -1991,9 +1997,3 @@ Die Quellenkürzel S01 bis S11 gelten durchgängig für dieses Buch und sind von
 [experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/11_anhang.tex:97-108](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/11_anhang.tex#L97) · `section:f9b1423d2780004e14fa` · section
 
 L16mmL41mmY Quelle& Berichtete Prüfung& Reichweite\\ S09&11214 Bedingungen pro Modus, elf Negativvarianten&Ursprungsaudits und Zahlenprüfungen; kein vollständiger Lean-/RH-Neubau.\\ S07&325 + 147 Bedingungen, 19 Tests&Inversion und Follow-ups; mehrere spätere Minimalitätskorrekturen erforderlich.\\ S06&86 eigene Bedingungen sowie ausgewählte Originalreplays&45-/30-Quotienten, Uhr und Herkunftskontrollen; begrenzte Ke
-
-## Drei unterschiedliche Hinweise führen zur Zahl drei
-
-[experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/14_schatten_dimension.tex:9-23](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/14_schatten_dimension.tex#L9) · `section:197a2c8ae00eae55da74` · section
-
-Ein traceloses hermitesches [formula in source] -Objekt hat genau drei reelle Komponenten: [formula in source] Ergänzt man [formula in source] , ergibt die Determinante [formula in source] Der positive Kegel erfüllt [formula in source] . Das ist die präzise Lorentz-Brücke aus dem Ursprungsteil. Sie zeigt eine passende lokale algebraische Form. Noch fehlen ihre Interpretation als Ereignisse, die Verklebung zu einer Ra

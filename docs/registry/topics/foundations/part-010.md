@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Drei unterschiedliche Hinweise führen zur Zahl drei
+
+[experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/14_schatten_dimension.tex:9-23](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/14_schatten_dimension.tex#L9) · `section:197a2c8ae00eae55da74` · section
+
+Ein traceloses hermitesches [formula in source] -Objekt hat genau drei reelle Komponenten: [formula in source] Ergänzt man [formula in source] , ergibt die Determinante [formula in source] Der positive Kegel erfüllt [formula in source] . Das ist die präzise Lorentz-Brücke aus dem Ursprungsteil. Sie zeigt eine passende lokale algebraische Form. Noch fehlen ihre Interpretation als Ereignisse, die Verklebung zu einer Ra
+
 ## Eine engere Arbeitshypothese
 
 [experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/16_schatten_synthese.tex:8-20](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/16_schatten_synthese.tex#L8) · `section:fd626374a8e99ccde304` · section

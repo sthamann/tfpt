@@ -133,7 +133,7 @@ Its ~6.5k inline formulas are **rendered client-side** (`ChangelogMath.tsx`) rat
 
 ## License
 
-Papers and predictions distributed for academic use. © Stefan Hamann & Alessandro Rizzo.
+The original website implementation is [Apache 2.0](../LICENSE). Original explanatory text, scientific illustrations and paper content are [CC BY 4.0](../LICENSE-CONTENT). See the [licensing guide](../LICENSING.md) for the allocation and third party exceptions. Bundled font notices and dependency licenses remain in force.
 
 
 ## Reviewed research snapshot

@@ -2,7 +2,7 @@
 
 [Registry index](../INDEX.md) · Topic ID: `history`
 
-2524 physical section matches. Topic assignment is a lexical navigation suggestion, not semantic review. The excerpts and citations below come from source; no proof or status promotion is asserted.
+2525 physical section matches. Topic assignment is a lexical navigation suggestion, not semantic review. The excerpts and citations below come from source; no proof or status promotion is asserted.
 
 
 ## Bounded reading parts
@@ -34,7 +34,7 @@ Each part contains at most 100 physical section records and their actual explici
 - [Part 23: section matches 2201–2300](history/part-023.md)
 - [Part 24: section matches 2301–2400](history/part-024.md)
 - [Part 25: section matches 2401–2500](history/part-025.md)
-- [Part 26: section matches 2501–2524](history/part-026.md)
+- [Part 26: section matches 2501–2525](history/part-026.md)
 
 ## First 20 source locations
 

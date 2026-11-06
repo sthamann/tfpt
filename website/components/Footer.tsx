@@ -157,7 +157,7 @@ export function Footer() {
             {"\u00A0"}
             <span>Stefan Hamann &amp; Alessandro Rizzo.</span>
             {" "}
-            <span>All papers and predictions distributed for academic use.</span>
+            <Link href="/licensing" className="underline underline-offset-2">Code: Apache 2.0. Original scientific content: CC BY 4.0.</Link>
           </p>
           <p className="text-slate-500">
             TFPT {SITE_VERSION} · shared geometry · E₈ compiler · Standard-Model structure

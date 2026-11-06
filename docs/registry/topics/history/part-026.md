@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Zuse und Wolfram: eine Verwandtschaft ohne Rangordnung
+
+[experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/10_ausblick.tex:2-15](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/10_ausblick.tex#L2) · `section:4a91dc99b94bb4d1e454` · section
+
+Der eingefügte Gesprächstext vergleicht den Universalraum mit Konrad Zuse und Stephen Wolfram. Zuses Werk heißt Rechnender Raum, nicht „denkender Raum“. In seinem Buch von 1969 untersucht er digitale Beschreibungen physikalischer Felder und Teilchen und die Rolle von Automaten. Das ist ein historischer Bezugspunkt für die Vorstellung von Physik als regelgeleitetem Prozess. https://link.springer.com/book/10.1007/978-3
+
 ## Die Ausgangsannahmen enthalten mehr als zwei Zahlen
 
 [experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/02_algebra.tex:3-12](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/02_algebra.tex#L3) · `section:965df915fe3244035611` · section

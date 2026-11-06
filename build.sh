@@ -129,6 +129,13 @@ run_website() {  # mirror PDFs + scripts into website/, stamp version + hashes
     [ -f "$ROOT/$b.pdf" ] && cp "$ROOT/$b.pdf" "$ROOT/website/public/papers/"
   done
   mkdir -p "$ROOT/website/public/documentation"
+  mkdir -p "$ROOT/website/public/licenses"
+  cp "$ROOT/LICENSE" "$ROOT/website/public/licenses/Apache-2.0.txt"
+  cp "$ROOT/LICENSE-CONTENT" "$ROOT/website/public/licenses/CC-BY-4.0.txt"
+  cp "$ROOT/LICENSING.md" "$ROOT/website/public/licenses/LICENSING.md"
+  cp "$ROOT/NOTICE" "$ROOT/website/public/licenses/NOTICE"
+  cp "$ROOT/LICENSE" "$ROOT/website/public/verification/LICENSE"
+  cp "$ROOT/LICENSE-CONTENT" "$ROOT/website/public/papers/LICENSE"
   cp "$ROOT/docs/registry/registry.json" "$ROOT/website/public/documentation/registry.json"
   cp "$ROOT/docs/registry/summary.json" "$ROOT/website/public/documentation/summary.json"
   cp "$ROOT/docs/registry/INDEX.md" "$ROOT/website/public/documentation/INDEX.md"
