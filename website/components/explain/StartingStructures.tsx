@@ -29,7 +29,7 @@ const rootClasses = [
   { label: "Class 3", count: 64, vector: [-.5,.5,.5,.5,.5,-.5,.5,.5], explanation: "The other half integer class has an odd number of minus signs in each block. The combined eight coordinates still have an even number of minus signs.", countRule: "16 × 4 = 64 half integer roots", norm: "5 × (½)² + 3 × (½)² = 5/4 + 3/4 = 2" },
 ] as const;
 
-function CliffordOperation() {
+export function CliffordOperation() {
   const [slot, setSlot] = useState(1);
   const [state, setState] = useState<{ occupied: number[]; sign: number; explanation: string }>({ occupied: [0,3], sign: 1, explanation: "Start with c₁ and w₁ occupied: an even degree two basis state." });
   const act = (creation: boolean) => {
@@ -54,7 +54,7 @@ function CliffordOperation() {
   </div>;
 }
 
-function MarkedModes() {
+export function MarkedModes() {
   return <div className={styles.markedModes}>
     <MarksDiagram/>
     <div className={styles.twoReadings}><div><h5>Read loops around the marks.</h5><p>On the punctured sphere, going around all four punctures is homologically trivial. Thus:</p><p className={styles.shortFormula}>ℓ₁ + ℓᵢ + ℓ₋₁ + ℓ₋ᵢ = 0</p><p>One relation among four loops leaves three independent cycles. This fixes rank H₁ = 3.</p></div><div><h5>Read functions with simple poles.</h5><p>Allow a simple pole at each marked point and require regularity elsewhere, including infinity. Every such function has the form:</p><div className={styles.inlineFormula}><Math>{String.raw`f(z)=b_0+\sum_{a\in D}\frac{b_a}{z-a}`}</Math></div><p>One constant and four independent pole coefficients give five modes.</p></div></div>
@@ -124,7 +124,7 @@ function GlueDiagram() {
   </div>;
 }
 
-function RootClasses() {
+export function RootClasses() {
   const [selected, setSelected] = useState(0);
   const root = rootClasses[selected];
   const coordinate = (value: number) => value === .5 ? "½" : value === -.5 ? "−½" : value === -1 ? "−1" : String(value);

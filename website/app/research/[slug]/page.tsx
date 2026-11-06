@@ -34,7 +34,7 @@ export default async function ResearchArgumentPage({ params }: ResearchPageProps
   const page = researchPages.find((entry) => entry.slug === slug);
   if (!page) notFound();
 
-  return <article className="reference-page">
+  return <article className="reference-page research-reading">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "Article", "@id": `${SITE_URL}/research/${page.slug}#article`, url: `${SITE_URL}/research/${page.slug}`, mainEntityOfPage: `${SITE_URL}/research/${page.slug}`, headline: page.title, description: page.description, inLanguage: "en", author: AUTHOR_ENTITIES, dateModified: EDITORIAL_DATE, citation: page.sources.map(source => source.href ?? researchSourceHref(source.path, source.lineStart, source.lineEnd)) }) }} />
     <header className="reference-header">
       <nav className="reference-links" aria-label="Research navigation"><Link href="/research">All selected arguments</Link><Link href={page.guide.href}>{page.guide.title}</Link></nav>

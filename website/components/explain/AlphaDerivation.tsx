@@ -4,6 +4,18 @@ import { AlphaExplorer } from "./InteractiveReadouts";
 import { AlphaComparison } from "./DerivationFigures";
 import styles from "./AlphaDerivation.module.css";
 
+/** The topic page and connected explanation share this complete derivation. */
+export const ALPHA_CONTENTS = [
+  { id: "alpha-boundary", title: "Boundary and carrier" },
+  { id: "alpha-response", title: "Defect response" },
+  { id: "alpha-budget", title: "Charge and flavour budget" },
+  { id: "alpha-equation", title: "The complete equation" },
+  { id: "alpha-root", title: "Explore the root" },
+  { id: "alpha-comparison", title: "Compare with measurement" },
+  { id: "alpha-provenance", title: "Every coefficient and source" },
+  { id: "alpha-precision", title: "Numerical precision and series" },
+] as const;
+
 const source = {
   closure: "/documentation?section=section%3A6a757c5701557192653a",
   carrier: "/research/sources/3d71560751889525f0373327.txt",
@@ -29,7 +41,7 @@ const ingredients = [
 ];
 
 export function AlphaDerivation() {
-  return <section className={`guide-section ${styles.alpha}`} id="alpha" aria-labelledby="alpha-heading">
+  return <section className={`guide-section alpha-derivation ${styles.alpha}`} id="alpha" aria-labelledby="alpha-heading">
     <h2 id="alpha-heading">Where does the number near 137 come from?</h2>
     <p className="guide-lead">Alpha measures electromagnetic coupling strength. Follow how TFPT combines its boundary normalization, carrier charges and a specified defect response into one equation. That equation has a proved unique positive solution, with inverse coupling α⁻¹ ≈ 137.035 999 2168… .</p>
     <p>Alpha is a dimensionless measure of electromagnetic interaction strength. In familiar SI units it combines the elementary charge, the quantum of action and the speed of light:</p>
@@ -37,14 +49,14 @@ export function AlphaDerivation() {
     <p>Writing its inverse gives the number near 137. The comparison here concerns the low energy Thomson limit. Matching a calculated boundary response to that physical observable is a specific part of the task.</p>
     <p>There are three kinds of step below: exact counts and identities, a response calculated under a named contract, and the remaining identification with physical electromagnetism. Keeping those steps visible explains both the number and what its calculation establishes.</p>
 
-    <ol className={styles.sequence}>
-      <li>
+    <ol className={`alpha-sequence ${styles.sequence}`}>
+      <li id="alpha-boundary">
         <h3>Begin with the boundary and carrier</h3>
         <p>P1 fixes the seam normalization. The marked five slot carrier supplies the 3+2 charge split; its even representation has 16 components. Three family directions then give 48 admissible components. These are internal representation counts.</p>
         <Math block plain="The boundary normalization is one over eight pi. The base opening is one over six pi. Three families of sixteen give the topological weight forty eight times the fourth power of the seam constant.">{String.raw`\begin{aligned}c_3&=\frac1{8\pi},\\\varphi_{\rm base}&=\frac1{6\pi},\\\delta_{\rm top}&=3\cdot16\,c_3^4.\end{aligned}`}</Math>
         <p className={styles.source}><Link href={source.closure}>Original architecture: normalization, carrier count and contact grammar</Link></p>
       </li>
-      <li>
+      <li id="alpha-response">
         <h3>Let the defect respond to alpha</h3>
         <p>In the original defect sector, an additive action shift αJ changes the relative weight by exp(−αJ). On the stated double cover, primitive spectral flow one per sheet gives J = 2. This is the source of the exponential, including its factor two.</p>
         <Math block plain="The alpha dependent defect weight is the topological weight multiplied by the exponential of minus two alpha.">{String.raw`q(\alpha)=\delta_{\rm top}\,e^{-2\alpha}`}</Math>
@@ -53,7 +65,7 @@ export function AlphaDerivation() {
         <p>The exponent has an exact charge trace origin: Bγ = (3/2)(5/6) = 5/4. Choosing the EM coupling q(α), the outer factor q and this additive baseline in that same physical channel remains part of the response contract.</p>
         <p className={styles.source}><Link href={source.index}>Original exponential reweighting</Link><Link href={source.circle}>Reconstructed circle defect</Link><Link href={source.grade}>Marked D₅ response proof</Link></p>
       </li>
-      <li>
+      <li id="alpha-budget">
         <h3>Read the shared charge and flavour budget</h3>
         <p>The compiler gives a total flavour transport length of 40. One Higgs contribution makes 41. The same three family charge content gives the normalized U(1) index b₁ = 41/10. This is why the electromagnetic equation reads a budget already present in the matter construction.</p>
         <Math block plain="Forty transport units plus one Higgs give forty one. Eight times b one equals four fifths times forty one.">{String.raw`\begin{aligned}M&=\sum_{f,j}L_{f,j}+N_\Phi\\&=40+1=41,\\8b_1&=8\cdot\frac{41}{10}=\frac45\cdot41.\end{aligned}`}</Math>
@@ -62,7 +74,7 @@ export function AlphaDerivation() {
         <p className={styles.source}><Link href="/explain#budget">Inspect the charge trace and budget identity</Link><Link href="/results?claim=CARRIER.CUTCODE.01">Read its registered statement</Link></p>
         <p className={styles.source}><Link href={source.closure}>Original budget and hypercharge index</Link><Link href="/explain#matter">Follow the charge construction</Link></p>
       </li>
-      <li>
+      <li id="alpha-equation">
         <h3>Assemble the stated electromagnetic closure</h3>
         <p>The closure balances a local cubic term, a quadratic sheet term and a logarithmic transport response. The paper names these the Maxwell moment, Calderón sheet contribution and C₆ transport determinant.</p>
         <Math block plain="F of alpha equals alpha cubed minus twice c three cubed times alpha squared minus four fifths times forty one times c three to the sixth times the logarithm of one over the seam opening. The closure sets F to zero.">{String.raw`\begin{aligned}F(\alpha)&=\alpha^3-2c_3^3\alpha^2\\&\quad-\frac45\,M c_3^6\log\frac1{\varphi_s(\alpha)},\\M&=41,\qquad F(\alpha)=0.\end{aligned}`}</Math>
@@ -70,7 +82,7 @@ export function AlphaDerivation() {
         <p>The older scalar potential makes the construction explicit: it supplies the local derivative α³−2c₃³α² and integrates the desired response to obtain a stationary action. The present physical question is whether the original local EM operator and its renormalized measure produce this same variation.</p>
         <p className={styles.source}><Link href={source.transfer}>Original definition of the closure potential</Link><Link href={source.measure}>Local measure and Quillen scope</Link></p>
       </li>
-      <li>
+      <li id="alpha-root">
         <h3>Prove that the equation selects one positive root</h3>
         <p>This is a theorem for the specified function, whose seam opening depends on α. For 0 &lt; α ≤ 2c₃³ the function is negative. Log convexity of the seam response gives strict convexity of F beyond that point. The cubic eventually grows without bound, so F crosses zero exactly once, with positive derivative.</p>
         <details className="guide-details"><summary>Why do those facts rule out a second root?</summary><p>Set t = 2c₃³ and C = (4/5)c₃⁶M. The response satisfies 0 &lt; φs &lt; 1, so its logarithm is negative. Before t, both contributions to F are negative. Beyond t, exact log convexity gives a strictly increasing derivative:</p><Math block>{String.raw`\begin{aligned}F(x)&=x^2(x-t)+C\log\varphi_s(x),\\F''(x)&=6x-4c_3^3+C(\log\varphi_s)''>0\quad(x\ge t).\end{aligned}`}</Math><p>F(t) is negative and the cubic eventually tends to infinity. At its first zero r, convexity makes the derivative greater than the positive secant slope from (t,F(t)) to (r,0). The derivative then keeps increasing, so the function cannot turn back through zero. The source proves log convexity by an exact differentiated identity, without a small term approximation or a sampled sign scan.</p></details>
@@ -78,7 +90,7 @@ export function AlphaDerivation() {
         <AlphaExplorer />
         <p className={styles.source}><Link href={source.proof}>Read the analytic proof and interval enclosure</Link></p>
       </li>
-      <li>
+      <li id="alpha-comparison">
         <h3>Compare the result with measurement</h3>
         <AlphaComparison />
         <p>This dated comparison uses the CODATA 2022 recommended inverse coupling, 137.035 999 177 (21). The closure differs by about 1.9 experimental standard deviations. Alpha had already been measured when the formula was constructed; this comparison is a calculated relation to an existing measurement.</p>
@@ -87,11 +99,11 @@ export function AlphaDerivation() {
       </li>
     </ol>
 
-    <details className={`guide-details ${styles.ingredients}`}>
+    <details id="alpha-provenance" className={`guide-details ${styles.ingredients}`}>
       <summary>Trace every ingredient: value, meaning, original source and scope</summary>
       <div className={styles.tableWrap}><table><caption>Provenance of the specified alpha closure</caption><thead><tr><th scope="col">Value</th><th scope="col">What it means</th><th scope="col">Original source</th><th scope="col">What the step establishes</th></tr></thead><tbody>{ingredients.map((i) => <tr key={i.symbol}><th scope="row"><Math ariaLabel={i.symbol}>{i.symbol}</Math></th><td>{i.meaning}</td><td><Link href={i.href}>{i.label}</Link></td><td>{i.scope}</td></tr>)}</tbody></table></div>
     </details>
-    <details className={`guide-details ${styles.precision}`}>
+    <details id="alpha-precision" className={`guide-details ${styles.precision}`}>
       <summary>Inspect the numerical enclosure, full precision and response series</summary>
       <Math block plain="The proved root lies strictly between 0.0072973525622097 and 0.0072973525622100.">{String.raw`\begin{aligned}0.007\,297\,352\,562\,2097&<\alpha_\star,\\\alpha_\star&<0.007\,297\,352\,562\,2100.\end{aligned}`}</Math>
       <p>The original scalar closure gives the following higher precision approximation. These extra digits describe the calculated equation; the displayed interval above states the cited certified enclosure.</p>

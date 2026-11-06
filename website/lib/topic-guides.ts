@@ -19,6 +19,7 @@ export interface TopicGuideData {
   slug: string;
   title: string;
   question: string;
+  intro: string;
   answer: string;
   claim: string;
   scope: string;
@@ -43,6 +44,7 @@ export const TOPIC_GUIDES: readonly TopicGuideData[] = [
     slug: "/fine-structure-constant",
     title: "The fine structure constant in TFPT",
     question: "What does TFPT derive about the fine structure constant?",
+    intro: "Follow TFPT’s electromagnetic equation from its boundary normalization and charge content to the calculated value of alpha. Inspect every coefficient, vary the trial coupling and compare the root with CODATA.",
     answer: "The fine structure constant α measures electromagnetic interaction strength. A specified TFPT boundary equation has exactly one positive solution, giving α⁻¹ = 137.03599921684… . The root and its uniqueness are mathematical results under the stated inputs. Identifying the whole equation with the physical electromagnetic response and the Thomson coupling remains a separate derivation.",
     claim: "The specified alpha dependent boundary equation has a unique positive simple root with α⁻¹ ≈ 137.03599921684.",
     scope: "This is a result for the stated response function and inputs. It does not by itself establish the original electromagnetic functional or its physical Thomson identification.",
@@ -89,6 +91,7 @@ export const TOPIC_GUIDES: readonly TopicGuideData[] = [
     slug: "/e8-standard-model",
     title: "E₈ and Standard Model structure in TFPT",
     question: "How does TFPT connect E₈ to the Standard Model?",
+    intro: "Build the E₈ lattice from D₅ and A₃, then inspect the representations and charges of the marked carrier. Follow the construction through its exact mathematical steps and physical interpretation.",
     answer: "TFPT constructs the E₈ lattice by joining a D₅ carrier lattice and an A₃ family lattice through their matching ℤ₄ discriminant data. Standard Model representations and charges are read from the marked 3+2 carrier and its even exterior representation. The lattice closure is exact under its premises; E₈ itself is not asserted to be the unbroken physical gauge group.",
     claim: "The specified D₅ ⊕ A₃ lattice has an index four even unimodular extension isometric to E₈, with an explicit 240 root certificate.",
     scope: "The lattice theorem and carrier representation do not alone establish a complete interacting chiral Standard Model in physical spacetime. Physical field maps and source premises remain attached to that interpretation.",
@@ -106,7 +109,7 @@ export const TOPIC_GUIDES: readonly TopicGuideData[] = [
       },
       {
         id: "carrier", title: "Where the particle representation enters",
-        paragraphs: ["On a complex five dimensional carrier C, the even exterior representation is Λeven C = Λ⁰C ⊕ Λ²C ⊕ Λ⁴C. Its dimensions are 1 + 10 + 5 = 16. This is the D₅ half spinor in the stated Clifford construction. Its identification with one physical fermion family carries the marked carrier and field dictionary.", "The 3+2 split separates three colour slots and two weak slots. Unitary transformations preserving the split and total determinant form S(U(3) × U(2)), isomorphic to (SU(3) × SU(2) × U(1))/ℤ₆. The normalized slot hypercharges are −1/3 for each colour slot and +1/2 for each weak slot. Charges add on exterior states."],
+        paragraphs: [String.raw`On a complex five dimensional carrier \(C\), the even exterior representation is \(\Lambda^{\mathrm{even}}C=\Lambda^0C\oplus\Lambda^2C\oplus\Lambda^4C\). Its dimensions are \(1+10+5=16\). This is the D₅ half spinor in the stated Clifford construction. Its identification with one physical fermion family carries the marked carrier and field dictionary.`, "The 3+2 split separates three colour slots and two weak slots. Unitary transformations preserving the split and total determinant form S(U(3) × U(2)), isomorphic to (SU(3) × SU(2) × U(1))/ℤ₆.", String.raw`The remaining block phase has one weight \(x_c\) on each colour slot and one weight \(x_w\) on each weak slot. The total determinant condition makes its generator traceless: \(3x_c+2x_w=0\). The primitive integer pair is \((-2,3)\), up to a common sign. In the stated orientation and charge convention \(X=6Y\), this gives \(Y_c=-1/3\) and \(Y_w=+1/2\). Charges add on exterior states.`],
         formula: { tex: String.raw`Y=\frac16\operatorname{diag}(-2,-2,-2,3,3)`, plain: "Selecting one colour slot and one weak slot gives hypercharge −1/3 + 1/2 = 1/6, as required for the quark doublet representation in this charge convention." },
         sources: [standardModel, { label: "Work through the charges and anomaly check", href: "/explain#matter" }],
       },
@@ -132,6 +135,7 @@ export const TOPIC_GUIDES: readonly TopicGuideData[] = [
     slug: "/three-fermion-generations",
     title: "Three fermion generations in TFPT",
     question: "Why does TFPT have three fermion generations?",
+    intro: "Start with four marked points on one sphere. Follow how the same object produces three cycle directions and a five dimensional function space, then inspect their family and carrier interpretation.",
     answer: "The TFPT family geometry is a sphere with four marked points removed, written ℙ¹ ∖ μ₄. Four loops around the punctures obey one relation, leaving three independent cycle directions: H₁(ℙ¹ ∖ μ₄, ℤ) ≅ ℤ³. Reading these directions as the three physical fermion families is the specified geometric identification; the topology alone does not establish that physical map.",
     claim: "The four puncture family geometry has first homology of rank three and an A₃ residue lattice. The same four point divisor has a five dimensional meromorphic function space.",
     scope: "The ranks three and five are exact invariants of the same specified geometry. Their identification with physical families and carrier modes retains the stated field and source premises; they are not independent experimental confirmations.",
@@ -142,6 +146,12 @@ export const TOPIC_GUIDES: readonly TopicGuideData[] = [
         sources: [standardModel],
       },
       {
+        id: "four-marks", title: "Why are there four marks?",
+        paragraphs: [String.raw`The mark count follows in a specified geometric class. Take a sphere that is flat away from its branch points, with every branch point of order \(\mathbb Z_2\). Each point has cone angle \(\pi\), so its angle deficit is also \(\pi\). Gauss–Bonnet requires the deficits to sum to \(2\pi\chi(S^2)=4\pi\). Four such points are therefore required.`, String.raw`This fixes the count under the sphere, flatness and order two branch assumptions. The square arrangement \(\mu_4=\{1,i,-1,-i\}\) uses the separate order four carrier action. The deficit calculation alone leaves the shape parameter of the four marked sphere undetermined; it does not supply that action or the physical source identification.`],
+        formula: { tex: String.raw`n\pi=2\pi\chi(S^2)=4\pi\qquad\Longrightarrow\qquad n=4`, plain: "Each order two branch point contributes a deficit of pi. A flat sphere requires a total deficit of four pi, giving four marked points." },
+        sources: [{ label: "Original Gauss–Bonnet argument and its geometric assumptions", href: "/documentation?source=verification%2Fv216_marks_gauss_bonnet.py" }],
+      },
+      {
         id: "count", title: "Four punctures leave three independent loops",
         paragraphs: ["The complex projective line ℙ¹ is topologically a sphere. The four marks μ₄ = {1, i, −1, −i} are the fourth roots of unity. Remove them and draw a small loop around each missing point. Taken together, the four oriented loops bound the remaining punctured surface, so their sum vanishes in first homology. Any three provide an independent basis."],
         formula: { tex: String.raw`\gamma_1+\gamma_2+\gamma_3+\gamma_4=0,\qquad H_1(\mathbb P^1\setminus\mu_4,\mathbb Z)\cong\mathbb Z^3`, plain: "There are four puncture loops and one relation. The resulting cycle space has rank three." },
@@ -149,14 +159,14 @@ export const TOPIC_GUIDES: readonly TopicGuideData[] = [
       },
       {
         id: "same-divisor", title: "The same four marks also give the five slot carrier reading",
-        paragraphs: ["Let D be the divisor consisting of those four points. Riemann–Roch on ℙ¹ gives h⁰(ℙ¹, O(D)) = 5. This function space allows at most simple poles at the four marks. The cycle space and the function space therefore read the same object in two ways:"],
+        paragraphs: [String.raw`Let \(D\) be the divisor consisting of those four points. Riemann–Roch on ℙ¹ gives \(h^0(\mathbb P^1,\mathcal O(D))=5\). This function space allows at most simple poles at the four marks. The cycle space and the function space therefore read the same object in two ways:`],
         formula: { tex: String.raw`\operatorname{rank}H_1(\mathbb P^1\setminus D)=\deg D-1=3,\qquad h^0(\mathbb P^1,\mathcal O(D))=\deg D+1=5`, plain: "For a degree four divisor on the sphere, the cycle count is four minus one and the meromorphic function count is four plus one." },
         sources: [origin, { label: "Original Riemann–Roch and carrier premises", href: "/documentation?evidence=python_verification%3Averification%2Fv189_riemann_roch_carrier.py" }],
       },
       {
         id: "a3", title: "How the family geometry connects to E₈",
-        paragraphs: ["The residue construction gives an A₃ root lattice with twelve roots, rank three and determinant four. Its canonical integral pairing is the lattice pairing used in the E₈ glue. This pairing must be distinguished from the analytic Green metric of the marked sphere, which is a characterized deformation.", "The A₃ discriminant group ℤ₄ matches the D₅ carrier discriminant group. Their selected discriminant norms 3/4 and 5/4 sum to two, allowing the index four extension to E₈. This connects the family and carrier structures through actual lattice data."],
-        sources: [architecture, glue],
+        paragraphs: ["The residue construction gives an A₃ root lattice with twelve roots, rank three and determinant four. Its canonical integral pairing is the lattice pairing used in the E₈ glue. This pairing must be distinguished from the analytic Green metric of the marked sphere, which is a characterized deformation.", String.raw`The rotation \(\rho:z\mapsto iz\) acts on these directions. In the cohomology basis \(\omega_k=z^{k-1}dz/(z^4-1)\), for \(k=1,2,3\), its pullback is \(\rho^*\omega_k=i^k\omega_k\). The three eigenvalues are therefore \(\{i,-1,-i\}\). This is the order four Coxeter action of the specified \(A_3\) lattice, preserving its Cartan pairing. It gives an actual action on the three dimensional space, beyond the rank count.`, "The A₃ discriminant group ℤ₄ matches the D₅ carrier discriminant group. Their selected discriminant norms 3/4 and 5/4 sum to two, allowing the index four extension to E₈. This connects the family and carrier structures through actual lattice data.", String.raw`Here \(A_3\) describes the rank three lattice associated with \(\mathfrak{su}(4)\). Its lattice rank, the three cohomology directions and the physical fermion family index have different roles. The stated family dictionary relates their actions; identifying the resulting module with physical families still carries the field and source assumptions.`],
+        sources: [architecture, glue, { label: "Original cohomology basis and order four action", href: "/documentation?source=verification%2Fv177_seam_marking_kernel.py" }],
       },
       {
         id: "physical-scope", title: "What remains a physical identification?",

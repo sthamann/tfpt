@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 // Check the delivered site, including metadata and legacy navigation behavior.
 const base = (process.argv[2] || "http://localhost:3100").replace(/\/$/, "");
 const canonical = "https://www.fixpoint-theory.com";
-const paths = ["/", "/fine-structure-constant", "/e8-standard-model", "/three-fermion-generations", "/research", "/research/e8-discriminant-glue", "/research/four-mark-divisor", "/research/alpha-fixed-point-proof", "/authors", "/authors/stefan-hamann", "/authors/alessandro-rizzo", "/faq", "/papers/architecture-e8", "/changelog", "/changelog/2026-06", "/changelog/2026-06-22"];
+const paths = ["/", "/fine-structure-constant", "/e8-standard-model", "/three-fermion-generations", "/research", "/research/e8-discriminant-glue", "/research/four-mark-divisor", "/research/alpha-fixed-point-proof", "/authors", "/authors/stefan-hamann", "/authors/alessandro-rizzo", "/faq", "/papers/architecture-e8", "/changelog", "/changelog/2026-06", "/changelog/2026-06-22", "/explain"];
 const results = [];
 for (const path of paths) {
   const response = await fetch(base + path);
@@ -19,6 +19,31 @@ for (const path of paths) {
   const schemas = [...html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)].map(match => JSON.parse(match[1]));
   assert.ok(schemas.length, `${path}: structured data`);
   if (path.startsWith("/research/") || paths.slice(1, 4).includes(path)) assert.doesNotMatch(html, /\[formula in source\]/, `${path}: readable formulas`);
+  // Guard against replacing the existing construction experiences with summaries.
+  // These check delivered controls and mathematical markup; their behavior and
+  // computed styling require the separate browser checks.
+  if (path === "/fine-structure-constant" || path === "/explain") {
+    for (const step of ["boundary", "response", "budget", "equation", "root", "comparison"]) {
+      assert.ok(html.includes(`id="alpha-${step}"`), `${path}: complete alpha derivation target ${step}`);
+    }
+    assert.match(html, /<input\b(?=[^>]*\bid="alpha-trial")(?=[^>]*\btype="range")[^>]*>/, `${path}: delivered trial coupling slider`);
+    assert.ok(html.includes("Locate the calculated root"), `${path}: root location control`);
+    assert.ok(html.includes("Zoom into the root"), `${path}: residual zoom control`);
+    assert.ok(html.includes("Provenance of the specified alpha closure"), `${path}: coefficient provenance table`);
+    assert.ok(html.includes("katex-mathml"), `${path}: mathematical semantic markup`);
+  }
+  if (path === "/e8-standard-model") {
+    const text = html.replace(/<!--[\s\S]*?-->/g, "").replace(/<[^>]*>/g, " ");
+    assert.ok(html.includes('aria-label="Inspect one of the four gluing classes"'), "E8: delivered coset controls");
+    for (const label of ["Class 0", "Class 1", "Class 2", "Class 3"]) assert.ok(text.includes(label), `E8: ${label} control`);
+    assert.match(html, /<select\b/, "E8: carrier slot selector");
+    assert.ok(html.includes('aria-label="Show Q sector"'), "E8: delivered charge sector controls");
+    assert.ok(html.includes("From five operator pairs to the D₅ spin action"), "E8: complete Clifford action argument");
+  }
+  if (path === "/three-fermion-generations") {
+    assert.ok(html.includes('aria-label="Five meromorphic basis functions"'), "Families: explicit divisor mode basis");
+    assert.ok(html.includes("Which pairing turns the three directions into A₃?"), "Families: residue pairing argument");
+  }
   if (path === "/papers/architecture-e8") {
     assert.match(head, /name="citation_author" content="Hamann, Stefan"/);
     assert.match(head, /name="citation_author" content="Rizzo, Alessandro"/);
