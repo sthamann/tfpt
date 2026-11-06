@@ -5,6 +5,7 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { ChapterNavigation } from "@/components/interactive/ChapterNavigation";
 import { ChapterExperience } from "@/components/interactive/ChapterExperience";
 import { CosmologyExperience } from "@/components/interactive/CosmologyExperience";
+import { ChapterJourney } from "@/components/interactive/ChapterJourney";
 import { BeginnerExperiments } from "@/components/interactive/BeginnerExperiments";
 import { comparisonFor } from "@/lib/measurement-comparisons";
 import { INTERACTIVE_CHAPTERS } from "@/lib/interactive-content";
@@ -27,8 +28,8 @@ export default async function InteractiveChapterPage({params}:Props){
     <script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify({"@context":"https://schema.org","@type":"LearningResource",name:chapter.question,url:`${SITE_URL}/interactive/${chapter.id}`,description:chapter.summary,inLanguage:"en",learningResourceType:"Interactive explanation",educationalLevel:"Introductory",isAccessibleForFree:true,isPartOf:{"@type":"LearningResource",name:"Explore TFPT interactively",url:`${SITE_URL}/interactive`}})}}/>
     <ChapterNavigation current={chapter.id}/>
     <header className={styles.chapterHeader}><h1>{chapter.question}</h1><p>{chapter.summary}</p></header>
-    <p className={styles.tryThis}><strong>Try this.</strong> {chapter.tryThis}</p>
-    <BeginnerExperiments embedded chapter={chapter.id} inverseAlpha={alpha.predicted} comparison={{predicted:alpha.predicted,central:alpha.central,uncertaintyMinus:alpha.uncertaintyMinus,date:alpha.date,measured:alpha.measured}}/>
+    <ChapterJourney key={chapter.id} chapter={chapter.id} freezeDate={frozenRegistry.freeze_date} comparison={{predicted:alpha.predicted,central:alpha.central,uncertaintyMinus:alpha.uncertaintyMinus,date:alpha.date,measured:alpha.measured}}/>
+    <details className={styles.deepDive}><summary>Try the individual controls</summary><p className={styles.tryThis}><strong>Try this.</strong> {chapter.tryThis}</p><BeginnerExperiments embedded chapter={chapter.id} inverseAlpha={alpha.predicted} comparison={{predicted:alpha.predicted,central:alpha.central,uncertaintyMinus:alpha.uncertaintyMinus,date:alpha.date,measured:alpha.measured}}/></details>
     <section className={styles.explanation} aria-label="Understand the mechanism">{chapter.steps.map(step=><div key={step.title}><h2>{step.title}</h2><p>{step.body}</p></div>)}</section>
     <details className={styles.deepDive}><summary>Explore the full interactive calculation</summary>{chapter.id === "cosmology" ? <CosmologyExperience inverseAlpha={alpha.predicted}/> : <ChapterExperience chapter={chapter.id} predictions={predictions}/>}</details>
     <section className={styles.connections}><h2>How this fits into the whole theory</h2><div><p>{chapter.connection}</p><details><summary>What this experiment establishes</summary><p>{chapter.scope}</p></details><nav aria-label="Sources and further explanation">{chapter.links.map(link=>/\.(?:json|txt|pdf|py)(?:$|[?#])/.test(link.href)?<a key={link.href} href={link.href}>{link.label}<ArrowRight size={15}/></a>:<Link key={link.href} href={link.href}>{link.label}<ArrowRight size={15}/></Link>)}</nav></div></section>
