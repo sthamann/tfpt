@@ -4,6 +4,16 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Die mittleren Antwortenergien lassen sich ohne riesige Zustandsdateien korrigieren
+
+[documents/experiments--theory-contracts--universalraum-source-composition-20260915--tmp--pdfs--TFPT_Universalraum_Quellkomposition_Konsolidierung_2026-09-15_v1.6.9/sections/013-subsection-beweisumfang-label-beweisumfang.tex:237-276](../../../../documents/experiments--theory-contracts--universalraum-source-composition-20260915--tmp--pdfs--TFPT_Universalraum_Quellkomposition_Konsolidierung_2026-09-15_v1.6.9/sections/013-subsection-beweisumfang-label-beweisumfang.tex#L237) · `section:ec3804e1a8260dcf8442` · subsubsection
+
+Aus den CAR folgen für jeden normierten G-Singulettzustand mit N=64:
+
+Explicit source references:
+
+- [experiments/theory-contracts/universalraum-common-process-20260915/agents/mechanism/late_a/moment_audit.py](../../../../experiments/theory-contracts/universalraum-common-process-20260915/agents/mechanism/late_a/moment_audit.py#L1) · explicit_file_citation
+
 ## 4. Was bereits überholt ist
 
 [documents/experiments--theory-contracts--universalraum-source-composition-20260915--tmp--pdfs--TFPT_Universalraum_Quellkomposition_Konsolidierung_2026-09-15_v1.6.9/sections/013-subsection-beweisumfang-label-beweisumfang.tex:277-323](../../../../documents/experiments--theory-contracts--universalraum-source-composition-20260915--tmp--pdfs--TFPT_Universalraum_Quellkomposition_Konsolidierung_2026-09-15_v1.6.9/sections/013-subsection-beweisumfang-label-beweisumfang.tex#L277) · `section:38c5fefe918ee0afdd3b` · subsection
@@ -726,9 +736,3 @@ Explicit source references:
 - [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/user-attachments/39228cf8-f71d-43e6-9a05-4d49d38d721b/pasted-text.txt](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/user-attachments/39228cf8-f71d-43e6-9a05-4d49d38d721b/pasted-text.txt#L1) · explicit_file_citation
 - [experiments/theory-contracts/universalraum-two-bank-transfer-20260915/sources/user_attachment.txt](../../../../experiments/theory-contracts/universalraum-two-bank-transfer-20260915/sources/user_attachment.txt#L1) · explicit_file_citation
 - [experiments/theory-contracts/universalraum-two-bank-transfer-20260915/LATE_AUDIT.md](../../../../experiments/theory-contracts/universalraum-two-bank-transfer-20260915/LATE_AUDIT.md#L1) · explicit_file_citation
-
-## 3.3 Das ältere 99,8718-\%-Beispiel ist ein anderer Träger
-
-[documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/029-subsection-3-die-richtige.tex:320-330](../../../../documents/experiments--theory-contracts--universalraum-spin-lift-basics-20260915--tmp--pdfs--TFPT_Universalraum_Spinlift_Hauptdokument_2026-09-15_v1.6.10/sections/029-subsection-3-die-richtige.tex#L320) · `section:24c79216c6a79f0c724c` · subsubsection
-
-Die mitgelieferte Round37-Rechnung wurde exakt reproduziert. Ihre sechs Zustände sind der vollständige Gausssektor eines Vierfermion-Modells mit einem Link. Der zertifizierte Wert bei [formula in source] betrifft diesen Parent und diesen vorbereiteten Zustand. Er ist weder eine Zwei-64-Moden-Banken-Simulation noch ein Beweis für deren ursprüngliche Auswahl. Unser folgender Satz ist davon unabhängig und benutzt die ta

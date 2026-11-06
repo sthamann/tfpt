@@ -47,6 +47,17 @@ export const CHANGELOG: ChangelogEntry[] = [
     "heading": [
       {
         "k": "t",
+        "v": ": correction of the finite saddle determinant diagnostic"
+      }
+    ],
+    "items": []
+  },
+  {
+    "date": "2026-11-06",
+    "dateLabel": "2026-11-06",
+    "heading": [
+      {
+        "k": "t",
         "v": ": three original dynamic source tests"
       }
     ],

@@ -75,7 +75,7 @@ _Why the two axioms build E₈, why the carrier rank is forced, and the integer 
   - deps: v359_grav_nonlinear_einstein, v359, v358, v60, v337, v159, v354, v355 · cited: introduction, 4 frontier
 - **v364_vgeo_sharpen** [E/O] `VGEO.SHARPEN.01` — Direction 6: v_geo is the SINGLE dimensionful input of the WHOLE theory -- confirmed across matter AND gravity -- and irreducibly primitive. The No-Unit Theorem (v153) showed the d
   - deps: v153, v358, v359, v361, v60, v68, v78 · cited: introduction, research contracts
-- **v365_qg_oneloop_saddle** [E/C/O] `QGAMB.SADDLE.01` — Direction 3: the QG measure (gate C7/QG.AMB.01) as one-loop GAUSSIAN fluctuations around the PARAMETER-FREE saddle (v358/v359). [E] the fluctuation stiffness is 1/c3=8pi (no free d
+- **v365_qg_oneloop_saddle** [E/C/O] `QGAMB.SADDLE.01` — Finite saddle diagnostics [E]/[C]/[O]. The scalar stiffness is 1/c3=8pi and the gap margin is 6 ln(3/2)-31/(4pi^2)>0. On the stated two positive OS modes, Tr' H=-log det' T=6 ln(9/
   - deps: QG.AMB.01, v358, v359, v76, v337, v330, v334, v364 · cited: introduction, research contracts
 - **v366_mmst_seam_collar** [E/C/O] `SEAM.MMST.INCLASS.01` — Direction 7: the seam collar is IN MMST's free-lattice-fermion scaling-limit class, so the chiral scaling limit is a chiral CFT of central charge 8 pinned to (E8)_1 -- reducing SEA
   - deps: v286_seam_equivalence_contract, v336, v356, v351, v302, v155, v160, v297 · cited: introduction, research contracts

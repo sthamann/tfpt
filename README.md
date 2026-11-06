@@ -37,6 +37,10 @@ the exact remaining determinant-response and source-identification premises.
 
 ## Source and field integration results, 6 November 2026
 
+The finite saddle diagnostic in v365 distinguishes `Tr′H = −log det′T` from
+the conditional Gaussian Hessian log determinant. Its finite susceptibility
+does not establish a whole geometric measure or its tightness.
+
 The shared paper update retains the evaluated C6 and family histories,
 canonical R104 mirror source and whole original field, reference, state and
 time transports. The original finite static product family has an evaluated connected

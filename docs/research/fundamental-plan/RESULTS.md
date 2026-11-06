@@ -3276,3 +3276,713 @@ Alle bisher begrenzten Erledigungen und aktiven Owner bleiben erhalten.
 Beleg: PROJECTED-JOINT-SOURCE-GENERATOR-20261103.txt im bestehenden Contract.
 
 R113 Atlasbindung: 85a73be77d6a100b54e15e8b, Planrevision 112. Ganze markierte Generatorherleitung bleibt bedingt; primitive physische Quelle und Spektrum nicht hochgestuft.
+
+
+## JOINT20261103: Ursprüngliche gemeinsame Quellenformeln konkret ausgewertet
+
+Aktueller Nutzerauftrag: Vakuumenergie, Gravitation und Kopplungen gemeinsam
+aus der ursprünglichen Quelle herleiten und bis zum vollständigen Abschluss
+weiterarbeiten. Der vollständige Auftrag ist nicht erfüllt. R112 und sämtliche
+vorherigen Resultate bleiben erhalten; kein neues Ersatzmodell.
+
+Die Originaloperatorquelle K_sigma und der ursprüngliche Planckfunktional
+W=-6rho E(rho)+G4(rho)+rho²L(rho) wurden gemeinsam differenziert. Falls die
+über K_sigma definierte Residue skalenabhängig ist, enthält W'' zusätzlich
+-12E'-6rhoE''. Auf W'=0 enthält W* den Term+6rho²E'. Die eingefrorene
+Residuenannahme im gedruckten linearen Konvexitätsargument muss daher an
+derselben Operator/Referenz/Spurkarte geprüft werden; keine pauschale
+Widerlegung des Planckzweiges. Die Skalierungsidentität selbst ist R030
+Bestand, neu ist ihre konkrete Anwendung auf diesen Planckfunktional.
+
+Gemeinsame konstante Metrik/Skalarvariation des vorhandenen lokalen
+L=FR/2+aR²-V liefert FR=4V und d_i(V/F²)=16(d_i a)(V/F²)².
+Bei konstantem a gilt d_i(V/F²)=0. Das ist die tatsächlich gemeinsam zu
+prüfende Vakuumbedingung; W bei festem g_vac ist kein nacktes Vakuumpotential.
+Keine neue skalare Freiheit oder allgemeine UV Aussage eingeführt.
+
+Bestehenden Alpha Vertrag mit160 Stellen gelöst. Archivierter zusätzlicher
+Rang1 Carrierexhaustionszweig -log(1-phi_base q^31) ergibt
+1.03978665101373e-123 in unreduzierten Planckeinheiten. Die vorhandene
+Überlappungsformel delta_top exp(-2/alpha) ergibt in DENSELBEN Einheiten
+1.12804190857433e-123; Verhältnis0.921762430198942. Eine unberichtigte
+Identifikation beider Ausgaben scheitert um7.82375698 Prozent. Die
+zusätzliche Rang1 Hypothese wird nicht zum vollen Planckdeterminant oder
+zur bewiesenen physischen Vakuumquelle erklärt; kein kosmologischer Fit.
+
+Bekannte96er Eichindizes20,12,12 und UV Mischungsverhältnis3/8 exakt
+übernommen. Einloopelimination zeigt die weiter benötigte ursprüngliche
+Skalen und Schwellenantwort. Keine vollständigen IR Kopplungswerte.
+
+Belege im bestehenden constant-triangulation-20261103 Contract:
+ORIGINAL-JOINT-SOURCE-EVALUATION.txt,evaluate_original_joint_source.py,
+original-joint-results.json. Exakte symbolische Ableitungen und160stellige
+numerische Originalauswertung mit separatem Logarithmusvergleich ausgeführt.
+Keine vollständige I_N,w_A,w_R Integration,Lean/Wolfram/Vollsuite oder
+Paper/Ledgerpromotion. Physische Gesamtwerte bleiben ausdrücklich null.
+
+Nächster tatsächlicher Aufruf ist dieselbe ursprüngliche I_N,w_A,w_R Quelle
+mit rho,g,A Ableitungen und ihren tatsächlichen Referenz/Domain/Spurgewichten.
+Zuerst die ursprüngliche skalenabhängige Residue und den vollen zulässigen
+Determinant einsetzen; gemeinsame Metrik/Skalarstationarität und die beiden
+Vakuumausgaben getrennt nach ihren ursprünglichen Zweigbedingungen prüfen.
+Kein Fit des diagnostischen fehlenden Faktors und keine weitere unveränderte
+Wärmeproduktsuche. F1, aktive Owner und alle scoped Erledigungen bleiben.
+
+JOINT20261103 Atlasrücklese: Revision279ecb9c167424b9ceca5a6a; neue Befunde source_state=current. Zwischenzeitliche R113 und CRAIG20261103C ausdrücklich gelesen und erhalten; sie schließen die physische Gesamtquelle ebenfalls nicht. Planrevision114.
+
+
+## CRAIG20261103D: Gemeinsame Selektorabbildung und ungekürztes Quellintegral
+
+Die drei ursprünglichen kommutierenden Projektoren liefern ohne neue Feldwahl die gemeinsame Spektralabbildung W und A_ab=E_a A E_b,sowie ihre achtteilige Fourierdarstellung. P Q P hat damit den genauen ungekürzten64 Termaufruf,mit Colorverfeinerung144;die kohärente Kernfaltung erhält beide ganzen Selektorkerne und bosonische Randdaten. Kein P_b eingeschoben,keine Projektion zwischen alle geladenen Zwischenfelder,keine Trace oder Gaußannahme für einen anderen ursprünglichen Caller. Das ist eine Darstellung des vorhandenen Aufrufs,keine primitive Erzeugung.
+
+Die relative Det/Fermionplatzierung ist durch CAR,Color und gerade endliche Koeffizienten allein nicht ausgewertet. Zwei explizite algebraische Kleinplatzierungen am tatsächlichen16CAR geben dieselben geraden Fermionwörter und einen Det markierten leeren Koordinatenwert+1/-1. Der Test behauptet nicht die gleiche ganze Zeit,Locality,Realstruktur oder primitive Quelle und führt keine physische Detparität ein. Er benennt einen möglichen gemeinsamen Quellendiskriminator,nur sofern das jeweilige Wort tatsächlich admissibel ist.29 Kontrollen bestehen.
+
+R112/R113 und alle früheren Ergebnisse bleiben erhalten. Ganze primitive S_adm,physischer Kern/Generator und Spektrum nicht hergeleitet;F1,Owner und die52 scoped Erledigungen unverändert. Beleg: craig-original-source-bridge-20261103/JOINT-SELECTORS-AND-SOURCE.txt,joint_selectors.py,joint-selector-results.json. Keine Paper/Ledgerpromotion.
+
+
+## CRAIG20261103F: Residuenfassung mit gebundener Referenz ausgewertet
+
+Die tatsächliche homogene Originalfassung liefert den relativen Faktor
+exp(6chi0² E_D-Gamma_D4), mit bereits enthaltener spektraler Referenz.
+Die gedruckten Niedrigkrümmungskoeffizienten sind direkt eingesetzt;
+lokale Skalenvariation und die ausgelassenen höheren Terme bleiben erhalten.
+Die FP0/Determinant Unterscheidung ist R040/R041 Bestand, keine neue Theorie.
+
+Ein neuer begrenzter spektraler Implikationstest hält die ursprüngliche
+gerade Referenzregel, Graduierung, Lücke und Eta fest. Für
+D_b=(aI+bx) tensor x, tau=z tensor I gilt D_ref=aI tensor x.
+Res1 und FP0 sind0, während det(D_b)/det(D_ref)=(1-b²/a²)².
+Bei a2,b1 liefert direkte Determinante und Zetaableitung exakt9/16.
+Dies ist kein tatsächlicher TFPT Hintergrund und kein zweiter physischer
+Kandidat. Ausgeschlossen ist nur die automatische Gleichsetzung des
+Residuenfaktors mit einem schon vollständig integrierten Quellgewicht.
+
+Die relative Mellinrechnung benennt den für einen passenden Determinanten
+zusätzlich benötigten vollen Wärmespurrest. Die Originale QFT007 verlangen
+die ganze Feldintegration über S_adm weiterhin separat. I_N,w_A,w_R sind
+Bezeichnungen dieses vorausgesetzten Calls, keine ausgeführten Produzenten.
+Kein neues freies Maß, keine zweite Referenz und kein zusätzliches Vakuum.
+
+CRAIG20261103E übernimmt außerdem R113s physische Kontaktreduktion:
+Feste Selektoreinfügungen zwischen einzeln admissiblen physischen Feldern
+sind Identitäten, ihre verbundenen Antworten null. Das berechnet keine
+bewegte Hintergrundantwort und kein unbedingtes Bosongewicht. Ambient
+geladene CAR Beine sind keine universelle Pflicht des physischen Netzes.
+
+Belege: bestehender craig-original-source-bridge-20261103 Contract,
+RESIDUE-REFERENCE-AND-FULL-INTEGRATION.txt,residue_reference_check.py,
+residue-reference-results.json. Exakte symbolische Rechnung ausgeführt;
+Primärmethodenabgleich mit hep-th/0306138 Abschnitt2.2 und5.4.2.
+JOINT20261103,R112/R113,R109/L,Owner und sämtliche begrenzten Resultate
+erhalten. Kein vollständiger primitiver Kern, keine physische gemeinsame
+Feldintegration oder Craig Maßidentität; keine Paper oder Ledgerpromotion.
+
+
+## REC20261103: Rekursion, Hypergraphen und gespiegelte Wechselwirkung
+
+Auf Nutzerauftrag kreative gemeinsame Ursprungsansätze mit dem ganzen aktuellen
+TFPT Stand geprüft. Vorhandene Viermarken/Drei/Fünf, E8, Clocks, Flavor/Yukawa/Alpha,
+v395, R097, R112/R113 und CRAIG20261103E/F werden übernommen. Neue Quelle nicht gewählt.
+
+Am ursprünglichen bedingten Einmoden Cauchygraph ist der Rand bei r1 verschränkt,
+obwohl seine gegebene orientierte Auslesung den Identitätstransfer ergibt.
+Unabhängige Operatorvektorisierung bestätigt die begrenzte Implikationsdiagnose.
+Auf tatsächlich gespaltenem Raum erlaubt Austausch H=[[A,B],[B,A]] beliebiges
+selbstadjungiertes B innerhalb seiner Zulässigkeit; Spiegelung wählt B nicht.
+Korrelation von kausaler Antwort, geometrisches Deck von CPT/Spinlift sowie
+Randpaarung von zwei physischen Sektoren getrennt. Kein universeller Coverausschluss.
+
+R112 liefert bereits die ganze bedingte Kumulantenhierarchie. Ihre Anwendung auf
+tatsächlich gemeinsam gekoppelte j_plus/j_minus liefert den effektiven Kreuzterm
+-kappa2(b)j_plus j_minus. Keine neue Gaußmaßwahl oder ausgewertete Kopplung.
+Effektive 1PI Vertices als gewichtete Hyperkanten, volle unnormierte Quellenverkettung
+und R113 Erinnerung bilden den priorisierten Zusammenhang der vorgeschlagenen Ideen.
+E8 bleibt innere Struktur,keine Raumdimensionsableitung. Literaturprimärvergleich
+mit Quantenautomaten,Tensornetzen,Quantum Graphity und dem bedingten CPT Kosmos.
+Minimaler CPT Zweig ohne primordiale Tensoren nicht unverändert mit positivem
+TFPT R+R2 Inflationszweig identifiziert. Keine komplette Ursprungsherleitung.
+
+Ausgeführt:16 exakte symbolische Identitäten. Kein neuer physischer Kandidat,
+kein primitives Bosongewicht,kein gemeinsames physisches Spektrum,kein Lean/Wolfram
+oder Vollsuitelauf,keine Paper/Ledgerpromotion. Standardidentitäten ohne Neuheitsanspruch.
+Belege:recursive-mirrored-source-20261103/ANALYSIS.txt,check_mirrored_source.py,results.json.
+Atlasproblem:problem:recursive-mirrored-original-source,Revision5b11a23995605202c754dd5d;
+Rücklese alle drei Befunde source_state=current. F1,next_action,alle früheren Erledigungen
+und aktive Owner erhalten. Tatsächliche gemeinsame Quellen/Feldintegration fortführen.
+
+Globale Einstiegskarte auf ausdrücklichen Zusatzauftrag aktualisiert:überholte
+B1 Priorität durch datierten aktuellen F1 Einstieg ersetzt,spätere Quellenabschlüsse
+eingetragen,historische Septemberkarte samt Zahlen als historisch gekennzeichnet.
+
+
+## CRAIG20261103G: Zustandsquelle und tatsächliche Feldintegration
+
+Die vollständige Verbindung verlangt Gleichheit aller admissiblen gemischten
+Momente der ursprünglichen operativen Quelle mit dem selben Feldintegral.
+Die bereits vorhandene ganze OS Isometrie erhält diese Gleichheit samt
+Omega,Zeit und Reflexion; sie beweist sie nicht zwischen zwei verschiedenen
+Quellen. Der vollständige U Feld und Referenztransport bleibt übernommen.
+
+Auf einer tatsächlich identifizierten kommutativen physischen Bosonalgebra
+ist das Maß durch omega(E_B(C)) bestimmt,keine neue freie Maßwahl. Ein neuer
+quellenbezogener algebraischer Test am vorhandenen Higgsfeld trennt die
+Eichrichtungen von der radialen Richtung: v(Phi*Phi)=0,aber
+D_Phi(Phi*Phi)=2Phi*Phi. Für das Originalpotential ist
+D_Phi V=-2mu²u+4lambda u². Die ursprüngliche Gauge Wardregel liefert
+die Verteilung dieses invarianten Feldes deshalb nicht allein. R113s
+Fermionkontaktgrenze wird übernommen,kein zusätzlicher Wardgenerator gewählt.
+
+Die exakte Dichte/Integrationsprüfung auf einer tatsächlich gegebenen glatten
+reduzierten Feldkarte ist ausgeschrieben; ihre Voraussetzungen sind nicht
+als erfüllt behauptet. Keine universelle glatte positive Dichte,CAR Erweiterung
+oder gaugevariante Zustandsergänzung gefordert. Keine neue Hilfsquelle.
+Die vorhandene native Round26 Quelle bleibt in ihrer eigenen deklarierten
+Klasse,ohne sie mit der ursprünglichen S_adm Quelle gleichzusetzen.
+
+Beleg: craig-original-source-bridge-20261103/
+STATE-SOURCE-AND-FIELD-INTEGRATION.txt. Analytischer Quellen und Richtungsvergleich;
+kein neuer numerischer Lauf und keine physische oder Ledgerpromotion.
+Tatsächliche gemeinsame Bosonmomente,ursprüngliches Bosongewicht und
+vollständiger TFPT Kern weiterhin nicht berechnet. Alle vorherigen Ergebnisse,
+einschließlich REC20261103,R109/L,R112/R113 und aktiven Owner,erhalten.
+
+
+## REC20261103C: Konstruktive Quellenintegration und inverse Körperauslese
+
+Auf Nutzerkorrektur die Identifikation selbst bearbeitet. Ganze endliche
+Originalquelle H mit tatsächlichen Bosonprojektionen liefert Kt=Ey exp(-tH)Ex
+und vollständige Matrixpfadfaltung mit allen Feldern und ursprünglichem
+Omega/physischem P/Referenzrand. Ein positiver Hilfssprungprozess mit
+Matrixmarken und kompensiertem Diagonaloperator hebt sämtliche Hilfsraten
+exakt auf. Keine zusätzliche physische Bosonmaßannahme; Matrixgewichte
+bleiben vorzeichen/phasentragend. Eigenes endliches Kurzzeit/Teleskopargument
+führt von tatsächlich ausgewertetem L_epsilon=I-epsilon H+o(epsilon) zur
+ganzen markierten Quellenidentität. Keine bloße Normierung einzelner Fasern.
+
+Unveränderten ursprünglichen coupled_hamiltonian bei erstem deklarierten
+g0.8 ausgeführt:32 Z2 Zykluskoordinaten mal128 gerade Materiezustände,
+4096 Dimensionen,78336 gespeicherte Einträge. Alle12 elektrischen
+Involutionen/Kommutationen und Bosonblockstruktur erhalten; Rekonstruktion
+8.88e-16. Exakte elektrische Exponentialform und volle R Blöcke mit
+Magnet/Masse/Hopping/DET/Offsets. Zwei Vektorkontrollen mit4/8/16 Strangschritten
+zeigen erwartete Fehlerabnahme. q0->6 Einträge-0.32,+0.32; Ersetzung durch
+leere Koordinatenbesetzung malI hat Fehler0.64,kein physisches Vakuum.
+Allquellensatz analytisch,keine numerische Vollprüfung aller Einfügungen.
+
+Zweiter konstruktiver Weg:komplementäre Einfügungen rekonstruieren alle
+Koeffizientendichten der tatsächlichen endlichen Berezinquelle; gesättigtes
+Topwort extrahiert unintegrierten Körper ohne Pfaffianinversion,auch an
+Nullstellen und mit höheren Vertices. Endlicher Logarithmus rekonstruiert
+Wirkung auf nichtnull Körper. Reynolds Mittel benutzt ganze gemeinsame
+invariante Paarung einschließlich bewegter Bosonen. Exakte Kontrollen:
+acht allgemeine gerade Koeffizienten,Logrundlauf,invariante Paarung Rang6
+det-1,Partition0 bei Körper1. Tatsächliche Contact und Padm Admissibilität
+der Quellenprobe nicht durch Parität oder Eichneutralität ersetzt.
+
+Zwei getrennte Untersuchungen; unabhängiger begrenzter analytischer und
+Codereview,keine Vorzeichen/Projektions/Normierungsfehler. Beide gespeicherten
+Prüfer im tatsächlichen Contractcheckout nach relativem Quellenpfad erneut
+ausgeführt. Keine neue Modelldynamik,kein Lean/Wolfram/Vollsuitelauf,keine
+physische Kopplung oder primitives Spektrum,keine Paper/Ledgerpromotion.
+Die ursprüngliche primitive S_adm Streifenkernidentität ist nicht berechnet.
+F1,alle scoped Erledigungen und Owner bleiben;neue Konstruktionen dienen
+dem tatsächlichen gemeinsamen Quellenvergleich,keiner weiteren Modellwelt.
+
+Belege:recursive-mirrored-source-20261103/MATRIX-KERNEL-PROOF.txt,
+BEREZIN-INVERSE.txt,check_native_matrix_source.py,check_berezin_inverse.py
+sowie beide Ergebnisdateien. Atlasproblem:problem:recursive-mirrored-original-source,
+Revision33b850b8395abb9a26683271.
+
+
+## REC20261103D: Vollständige ursprüngliche Higgs Profilantwort
+
+Den ursprünglichen Operator selbst differenziert. Im gegebenen gewöhnlichen
+Dirac Higgs Produktchart enthält D_Phi² den zwingenden Cliffordterm
+i gamma gamma5 nabla PhiF. Ein nur von u=Phi†Phi abhängiges Erel kann bei
+festem gewöhnlichem Anschluss allein kein kompletter Konstruktor der
+gedruckten nichtnull Higgskinetik sein. Eine partielle relative Projektion
+wird dadurch nicht widerlegt. Ganze interne und Spintrace Faktoren erhalten.
+
+Originale archive31 Profilabbildung exakt rekonstruiert:
+f31(x)=int exp(-s x²)dnu=gnu(x²), daher f31(D/chi)=gnu(D²/chi²)
+auf demselben Operator/Domain/Referenzpaar. Kein neues nu und keine
+Identifikation mit späterem nu_star oder ganzem QFT007 Integral.
+Volle96 radiale Hesseantwort bei r0 und ganze variable Phasenantwort
+einschließlich Majorana Kontaktauslöschung explizit ausgewertet.
+Unveränderten Originalbuilder direkt ausgeführt; radiale3x3/96x96
+Abgleiche stimmen auf rund1e-16 relativ. Zusätzliche komplex symmetrische
+MR Proben unterscheiden richtiges MM† von falschem M†M. Kontakte der
+ganzen Phasenmatrix bei p0 aufgehoben. Fixture und Heatproben sind keine
+physisch gewählten Yukawa oder Profilwerte.
+
+Unabhängiger analytischer RP Test: Die inverse isolierte geladene
+Phasenhessian besitzt nach echtem Kontakt einen negativen positiven
+Zeitpuls Test. Auch der stabile radiale Heatblock bei mu>1/2 hat nach
+vollständigem Polynomkontakt negativen1/p² Rest. Positive Mischungen
+unter ausgewiesenen inversen Momenten behalten diese Obstruktion.
+Phase ist gaugevariant; Radius lokal gaugeinvariant. In beiden Fällen
+ist der geprüfte Zählergaußblock keine physische Marginale einer ganzen
+gekoppelten wechselwirkenden Quelle. Kein allgemeiner TFPT RP Ausschluss.
+
+Die volle spektrale Kraft mit ursprünglichen Ref/Eta/Skalen/Domainjets
+ist nun konkret angegeben. S_adm als bare Eingabe, Gamma als Legendre
+ausgewertete Wirkung und omega Kovarianz werden erhalten. Weder
+S_adm'' allein noch sein einzelner inverser Block bestimmen allgemein
+die integrierte Zustandsquelle. Die gezielte KMS Rückprüfung erhält
+den originalen positiven Vakuumzeitweg; ein neues endliches thermisches
+Gewicht auf derselben globalen Zeit ist kein fehlender Quellenselektor.
+
+F1 und alle früheren scoped Ergebnisse/Owner erhalten. Volles physisches
+Bosongewicht, primitiver Streifenkern und gesamte omega/S_adm Identität
+sind nicht ausgewertet. Keine vollständige fundamentale Lösung, keine
+Paper oder Ledgerpromotion. Nachweise im bestehenden recursive-mirrored
+Contract: DERIVATIVE-COMPLETE-SOURCE, ORIGINAL-PROFILE-DICTIONARY,
+RADIAL-SPECTRAL-HESSIAN, PHASE-FORM-FACTOR-REVIEW, GAUSSIAN-REFLECTION-
+PHASE-RADIAL, STATE-MATCHING-CONSEQUENCE sowie originaler Prüfer/Ergebnis.
+Atlasrevision984ca2e12d5126663b85068e.
+
+
+## REC20261103E: Ausführungsversuch des gemeinsamen Integrators
+
+Den verlangten ganzen Integralaufruf an den Originalen verfolgt. Korrektur:
+Die vorherige vollständige spektrale Kraft ist der vollständige BOSONISCHE
+SPEKTRALANTEIL auf dem gegebenen Chart, kein vollständiger S_adm Caller.
+QFT007 benutzt aggregiertes Dvarphi; der geometrische Contract benennt
+dmuCal und die BRST/Hodge Slice. Die konkrete Greenform integriert dagegen
+Raumzeit bei festem g. Quillenlinie/Fasernorm ist nicht automatisch eine
+Konfigurationsdichte. In diesen geprüften Stellen keinen ausführbaren
+gemeinsamen Integrator gewonnen. Keine Aussage über Maßabwesenheit im
+gesamten Corpus und kein neu gefordertes Ambientmaß; originale IR
+Redundanz und vorhandene komplette Zustandskonstruktionen erhalten.
+
+Direkten geometrischen Maßableitungsversuch konkret geprüft: Am gegebenen
+normalunabhängigen R=exp(-ell h)=R† ist die zurückgezogene Grassmann
+Kählerform null, da ImTr(AXAY)=0 für Hermitesche Tangenten. Daher liefert
+Liouville hier keine nichtnull Higgsdichte. Riemannsche Metrik nicht null,
+ihr Volumen aber nicht als ursprüngliches Maß hergeleitet/eingesetzt.
+Unabhängiger analytischer Review bestätigt diese Rechnung ohne
+Kommutativitätsannahme und erhält die endliche/spurzulässige Domain.
+
+Originaler hoher Gap als möglicher oberer Higgsabschluss ebenfalls
+geprüft: In der gegebenen invertiblen Yukawa Kreisfamilie mit glattem
+Higgs und nichtnull Eichanschluss gilt über alle Frequenzen uniform
+h_r² >=[(r kappa ymin-M)²-r C1-C0]I. Ganze Ableitungs/Eich/Majoranaanteile
+erhalten. Der hohe Gap wird auf dieser Familie bei großem r erfüllt;
+er erzeugt keine obere radiale Feldschranke. Keine globale Identifikation
+Dadm=h oder positive Tubusmasse eines unbekannten Grundmaßes behauptet.
+Kompaktes Index S2 ist der Normalbasisraum; Zustandskoerzivität und
+Hintergrundstationarität sind keine ausgeführte Offshell Felddichte.
+R055 beschränkter Spektraltrace nur wiederverwendet, keine neue globale
+Divergenzbehauptung. Keine neuen Code/Physikläufe oder Paper/Ledgeränderung.
+
+Ergebnis: zwei konkrete mögliche Maßproduzenten im ausgewiesenen Umfang
+ausgeschlossen, ganze Feldintegration und omega NICHT ausgewertet.
+Fundamentalauftrag unerfüllt, F1/Owner und alle scoped Ergebnisse erhalten.
+Belege: recursive-mirrored-source-20261103/JOINT-INTEGRATOR-EXECUTION.txt
+und ADMISSIBILITY-AND-MEASURE-REVIEW.txt.
+Atlasrevision3f436ccbe6102dc2a747d108.
+
+
+## REC20261103F: Maßproduzent aus Sewing konkret geprüft
+
+Neuen Auftrag am Produzenten selbst bearbeitet. Bestehendes ganzes OS
+Sewing und eindeutige CAR/Berezinpaarung wiederverwendet. Bedingte
+Supercoherentauflösung aus tatsächlichen kanonischen Paaren hergeleitet;
+Jacobian detN hebt sich auf. Ein Higgsdoublett hat4 realeKonfigurationen
+und4 Impulse, nicht nur2 vollständigeBosemoden. Der Gaußfaktor der
+Identitätsauflösung cancelt beiTrI gegen den reproduzierenden Kern;
+keine neue physische Dämpfung. Tatsächliche ursprüngliche gemeinsame
+Higgs q,p/CCR Referenzabbildung durch diese Rechnung nicht erzeugt.
+Das ist keine neue globale CCR Pflicht.
+
+Direkten Cauchygraph als skalaren Rahmenproducer konkret geprüft:
+G12=R/(I+R²)>0 fürR=exp(-ellh)>0. Kein nichtnull positivesSkalarmaß
+liefert damit ambienteI; beliebigesunverändertesRohprojektorziel nur
+beia.e.konstantemR undMasse1. GeordneteErweiterung amOriginal:
+detR=exp[-intTrh]>0, daher bleibt derPlückereintrag
+detR/det(I+R†R)>0 undkann nichtdieambienteIdentitätsnebendiagonale0
+erzeugen. AllegeordnetenBosonpfade imausgewiesenenfestenChart
+behalten; bewegteRahmen selbstbehandeln. PositiveklassischeMischung
+bleibt nurdannProjektor, wennihrebedingtenGraphen a.e.gleichbleiben;
+keineBehauptung, dassderganzegraduierteIntegralaufrufsolcheMischungist.
+
+Originale vollständige orthogonale Paarung erhalten:G+(I-G)=I.
+IhrnormalisierterIntegralwertI giltfürJEDESGewicht. Damitwirdkein
+Higgs/Bosonmoment ausgewählt. Kein physischesKonfigurationsframe mit
+derbedingtenCARkovarianzgleichgesetzt, keinClifford/Deck/JFaus2x2
+Matrizenidentifiziert, keinezusätzlichenKopien. Andereduale/quotientierte
+undkomplexeQuellen bleiben eigenständig. Analytischunabhängiggeprüft,
+keineneuenCodesuiten/Physikläufe, keinePaper/Ledgerpromotion.
+
+Ergebnis: Kandidatentscheidungen und bedingte exakte Paarung; das
+verlangte gemeinsame ursprüngliche reduzierte Maß NICHT hergeleitet.
+F1 und Owner/alle früheren scoped Ergebnisse erhalten.
+Quellen:SEWING-MEASURE-OUTCOME.txt,SUPERCOHERENT-SEWING-TEST.txt,
+POSITIVE-GRAPH-MEASURE-TEST.txt im bestehenden recursive-mirrored Contract.
+Atlasrevision6ca522191f6eab97763da305 inklusive unverändert erhaltenem
+konkurrierendem BROWSER20261103B Befund.
+
+
+## REC20261103G: Ursprüngliche Referenzfaser positiv ausgewertet
+
+Den ursprünglichen Referenzweg konkret verfolgt und seine Fermionfaser
+ausgewertet. R032 liefert in seiner tatsächlichen seameven Bundlekarte
+href,S=A gamma und href,T=h_A. Keine Auswahl zwischen den beiden Lifts.
+Der vollständige kohärente Kern, die Exteriortraces und normierten
+Faserdichten sind berechnet. Der bekannte Seafaktor ist vom ganzen
+ursprünglichen a_R getrennt; kein Bosongewicht auf1 gesetzt.
+
+Für den vorhandenen konstanten Kreis p=n+alpha ist der rohe S Trace
+[4cosh²(tp/2)]^48. Der tatsächliche sea korrigierte Faktor lautet
+(1+exp(-t|p|))^96. Der ganze gekoppelte A/T Faktor enthält die
+Singulärwerte des vollständigen48er Offdiagonalblocks, einschließlich
+aller Y und MR. T cancelt gleiche Fermionfaktoren, behält aber a_A/a_R
+und externe nur im Zähler eingefügte Quellen. Physischer zusätzlicherP
+bleibt Tr(P GammaR); der96er Det ist kein physischer Speciescount.
+
+Positiver konkreter Referenzanker: g_p(x)=log(1+exp(-t sqrt(p²+x))).
+S bei H0 hat logZheatA/ZheatRS=2Tr3[g_p(MRMR†)-g_p(0)I].
+Bei MR ungleich0 ist H0 also kein identischer Referenzanker dieses
+Fermionzweigs. Die r0 Radialantwort ist
+8[g'_p(0)Ach+Tr3 g'_p(MRMR†)Ynu†Ynu]; über die tatsächlichen
+Quartermoden absolut summierbar. Kein numerischer Hintergrund oder
+physisches Temperatur/Zeitschema gewählt. Infinite negative empty Fock
+Trace nicht mit der ursprünglichen Sea/Excitationdarstellung verwechselt.
+
+Der volle ursprüngliche Quellentransport bleibt erhalten. Die bloße
+Familie href(b) wirkt bei festem Bosonhintergrund; ihr Direktintegral
+erzeugt keine zusätzliche Bosonwirkung oder Maßwahl. Ein legitimer
+klassisch quantischer Fasertrace benötigt sein tatsächliches Grundmaß.
+Das ist keine Abwesenheitsaussage über alle ursprünglichen Maße.
+Gemeinsame Referenzdichte, Bosonintegration und omega nicht hergeleitet.
+Fundamentalauftrag bleibt unerfüllt; F1 und sämtliche Owner/scoped
+Ergebnisse erhalten. Keine neuen Code/Physikläufe, Paper/Ledgeränderung.
+
+Quellenkontinuität korrigiert: Der volle Higgs Cliffordableitungsterm
+steht bereits in R032 vom31.Oktober. REC20261103D prüft damit die
+vollständige Interpretation der gedruckten Potentialkurzform, ohne
+Neuheitsanspruch für den Term. Atlasfinding entsprechend präzisiert.
+Belege im bestehenden recursive-mirrored Contract:
+REFERENCE-FIBER-EVALUATION.txt und REFERENCE-PRODUCER-TYPE-CHECK.txt.
+Atlasrevision ef021ba53274c703525156c5.
+
+
+## TORSION20261104C: Gebundene Torsionsreferenz und ursprüngliches Feldbild
+
+Im vorhandenen gewöhnlichen Spin4/full96 Produkt die ganze Einform unter
+beiden ursprünglichen linearen Deckkarten zerlegt. DeltaDref=W[S_minus],
+DeltaDrel=W[S_plus] in beiden Karten; Referenzaufhebung des S_minus Wirbels,
+verbleibender S_plus a4 Koeffizient -3dim(F)/(64pi²). Konstante Skala erhält
+den unskalierten ursprünglichen Referenzoperator. Mellinfaktor explizit
+kontrolliert; FP0/Determinantenunterschied aus früheren Resultaten übernommen.
+
+Gewöhnliche innere Produktfluktuationen besitzen andere Cliffordtypen.
+Die tatsächlichen13 rohen v252 Gaugegeneratoren lassen alle nu_R neutral,
+während gammaF dort nichtnull ist; keine Reparatur durch totale Weylfaser.
+Der echte konforme Skalenaufruf verändert das Hauptsymbol und erzeugt
+ebenfalls kein unabhängiges axiales S. Alter fullv25 Appendix K liefert
+keine Gleichheit seines Laplaceoperators mit dem algebraischen Aux-Hessian;
+sein a2/R² Satz verwechselt die eigenen Heatindizes. Keine globale Aussage
+gegen andere ursprüngliche Spin/Superconnections oder spätere Gravitation.
+
+114 exakte Algebrakontrollen bestanden. Wissenschaftlicher Befund und
+Geltungsbereich im bestehenden historical-dynamics-source-recovery-20261103
+Contract: HISTORICAL-BOUND-TORSION-REFERENCE-AND-FIELD-IMAGE.txt und
+gebundene-referenz-und-feldbild.json. Claude Gegenrechnung unterstützt die
+begrenzten Referenz/Cliffordresultate; unbelegte Eta/Calderon/Brel Aussagen
+werden nicht übernommen. Browserantworten sind keine Proofpromotion.
+
+Der gewöhnliche Residuenanteil ist keine ganze ausgewertete primitive Quelle.
+Tatsächlicher S abhängiger Brel/Normalmodenjet, ganze Integration, physischer
+Htrpos und gemeinsames wechselwirkendes Spektrum bleiben unberechnet.
+F1 bleibt aktiv; keine neue globale Aufgabenpflicht oder Ledgeränderung.
+
+Der ursprüngliche ganze R034/R035 Higgsproduzent wurde mit allen Yukawaeinträgen symbolisch geprüft. Bei festen Y, nichtnull H und beiden nichtnull Yukawaspalten liegt der gemeinsame axiale Massenphasenorbit nur bei z=+/-1 im quaternionischen Higgsbild; festes nichtnull MR verlangt z=1. Der exakte Defekt ist8 Im(z)²|H|². Ganze Basis/Quellentransporte und andere ursprüngliche Feldräume sind dadurch nicht ausgeschlossen.
+
+
+## TORSION20261104D: Tatsächliche Verbindung und ganze Stromantwort
+
+Die ganze reelle24 dimensionale metrische Verbindungsfaser am ursprünglichen
+Spin4 Produzenten klassifiziert. Symmetrische Diracbilder sind genau axial;
+der16 dimensionale unsichtbare Kern wählt keine ursprüngliche Feldintegration.
+Die tatsächliche normale Zerlegung hat einen selbstadjungierten B_r und
+einen schiefhermiteschen A_r. Der vollständige Rahmen Uprime=-A_r U
+transportiert beide Ränder, Referenz und Domain; ein Produkt erfordert
+partial_r B+[A,B]=0. Kein unmittelbarer physikalischer Zeitgenerator.
+
+Im ganzen regulierten historischen Minimalparent folgt exakt
+G_SS,c=delta/(2A)+G_QQ,c/(4A²). Alle Phasen/Strommischungen bleiben in
+derselben gekoppelten Quelle. Bei konstanten ursprünglichen Kopplungen
+und divergenzfreien inneren Testquellen ist der transversale propagierende Anteil
+kappa_phys^4 G_J5T J5T,c/4, zusätzlich zum festen2kappa_phys² P_T/3 Kontakt.
+Das enthält mögliche zusammengesetzte Moden, berechnet aber G_JJ nicht.
+Die tatsächliche S abhängige Referenz trägt erste und zweite Ableitungen
+bei. Die unnormierte Formel benötigt kein inverses Referenzgewicht und
+erhält Nullstellen. Ganze moving Domain/Integrationsterme bleiben nötig.
+
+70 exakte Algebrakontrollen bestanden, einschließlich aller generischen
+Massen/Strom und externen Quellkoeffizienten der universellen endlichen
+Berezinalgebra. Keine physische Viermodenersatzwelt und keine neue Wirkung.
+Claude und Gemini bestätigen begrenzte Rechnungen nach Korrekturen.
+Gemini hat Positivitäts und Generatorpromotion ausdrücklich zurückgenommen.
+Groks falscher voller Cliffordkommutant mit gamma5 ist verworfen.
+Unabhängige Algebra und Originalquellen entscheiden, kein Modellkonsens.
+
+Beleg im bestehenden historischen Contract:
+HISTORICAL-CONNECTION-AND-WHOLE-CURRENT-SOURCE.txt samt
+verbindung_und_ganze_quelle_D.py und verbindung-und-ganze-quelle-D.json.
+Volle primitive Feld/Paarungs/Quellenidentität, Sadm, physischer Htrpos und
+gemeinsames Spektrum nicht hergeleitet. F1 bleibt aktiv;52 frühere
+Teilaufgaben, bestehender Owner und alle Resultate erhalten. Kein Ledger,
+Paper oder privates Korrespondenzmaterial verändert oder veröffentlicht.
+
+
+## TORSION20261104E: Ganze Quellenverkettung und tatsächliche Fermionpaarung
+
+Operative P1 Quelle, primitive Completion, Master, voller Zulässigkeitskomplex,
+Feldfluss und OS Rekonstruktion erneut am Original gemeinsam gelesen. Zustand
+und Zeit sind bereits enthalten. Der gedruckte Masterbeweis folgert aus einer
+direkten Summe fälschlich ein Produkt der Zustandssummen. Kommutierende
+Zulässigkeitsfilter wirken auf ihrem gemeinsamen Bild alle als Identität;
+sie beweisen keinen unabhängigen Sektorsplit. Originale Tensor/Fockwege
+behalten ihren präzisen Umfang. Keine globale Unmöglichkeit der TFPT.
+
+Volle ursprüngliche Spin4/v252 Paarung mit sämtlichen Y und MR symbolisch:
+J5E_mu=-i psi^T Eeps^T(C tensor KF)^dagger(gamma_mu gamma5)Eeps psi/2.
+Die ursprüngliche Halbwirkung liefert exakt -3S.J5E/4 in beiden totalen
+Weylkarten. Tatsächliche Stromkreuzblöcke und Majorana Eigenblöcke geprüft;
+kein isolierter interner96 Pfaffian und keine Feldverdopplung. Ganze
+Quellen/Berezintransporte ohne Matrixinverse erhalten. Historischer Gesamtstrom
+erzeugt den festen Kontakt -3kappa_phys²(sum J5)²/16 mit allen Kreuztermen.
+Gewöhnlicher gebundener Bulk liefert außerdem -9A_Y/(8pi²) als gemischten
+S²/r² Ableitungskoeffizienten. Scope kein beliebiger Brel oder voller IR.
+
+78 exakte Kontrollen bestanden. Beleg im vorhandenen historischen Contract:
+HISTORICAL-WHOLE-SOURCE-ASSEMBLY-AND-PAIRING.txt und whole-source-pairing-E.json.
+Browsergegenrechnungen von Claude, Gemini und Grok gelesen; unbelegte
+Positivitäts, Phasen, Kernelmaß und Generatorbehauptungen nicht übernommen.
+Korrekte ganze Kraftkovarianz samt zweitem Kontakt und Referenz erhalten.
+Volle primitive Feldintegration, Sadm, Htrpos und gemeinsames Spektrum noch
+nicht ausgewertet. Alle52 bisherigen Teilaufgaben und aktiven Owner erhalten.
+Keine neuen Paper oder Ledgerstatus und keine privaten Originalmails geändert.
+
+
+## TORSION20261104F: Drei Hypothesen an der ursprünglichen ganzen Quelle
+
+Die ganze Quellenrekonstruktion, kollektive Torsionsantwort und mögliche
+Stufenidentität gemeinsam mit Gemini, Grok und Claude am Originalcaller
+geprüft. Volle Hessianrekonstruktion liefert ein exaktes Kriterium, keine
+Auswertung aus wenigen a4 Daten. F_xy ist bei spektralen Gewichten nicht
+automatisch ein lokaler Kontakt. Richtige ell/S Trennung und Referenzrolle
+erhalten. Die tatsächliche J reale totale Weylpaarung liefert
+-log|PfM|=-(1/8)Tr_full logD² im gewöhnlichen Produkt mit passenden Domains;
+Phase und volle Quellpolynome an Nullstellen bleiben.19 exakte Kontrollen
+bestanden. Positive Proper-time UV Diagnose und lokaler a2 Vergleich sind
+keine physische Regulatorwahl oder globale Widerlegung der Quellenidentität.
+Die Primärliteratur zur spektralen Skalenanomalie bestimmt einen Cocycle,
+nicht den vollständigen invarianten Anteil. Keine neue Dilatonwirkung,
+kein frei angepasstes Maß und keine zusätzliche Regulatorpflicht eingeführt.
+Ganze S_adm, positiver Htrpos und gemeinsames physikalisches Spektrum nicht
+berechnet. Alle52 bisherigen Teilaufgaben und aktiven Owner erhalten.
+Belege: HISTORICAL-THREE-HYPOTHESES-AND-WHOLE-SOURCE.txt und
+three-hypotheses-source-F.json im bestehenden historischen Contract.
+
+
+## TORSION20261104G: Gemeinsamer Feld und Zeitkern weiter ungeklärt
+
+Der gemeinsame Browserlauf hat die verlangte vollständige Herleitung nicht
+geliefert. Eine behauptete exakte Gedächtnisfeld Konstruktion ist am ersten
+Wärmeoperator/Kovarianz Übergang widerlegt. Zwei direkte Argumente stehen in
+HISTORICAL-COMMON-FIELD-TIME-KERNEL-REVIEW.txt; die symbolische Identität
+und Grenzwerte sind reproduziert. Der Geltungsbereich betrifft diese
+behauptete Identität, nicht die Reflexionspositivität der ursprünglichen
+vollen TFPT Quelle. Originalminimalität war schon24.10. geprüft und ist
+kein neuer Fortschritt. Keine neuen physischen Modelle, Ledgeränderung,
+vollen Wirkungen, Generatoren oder Spektren; alle52 Teilaufgaben erhalten.
+
+
+## SOURCEINV20261104: Anwendung der Quellenumkehr nicht geschlossen
+
+Die vorhandene Berezin Umkehr nicht erneut hergeleitet, sondern ihre physische Anwendung mit den Originalen zu lokalem Netz, ganzem P_adm und den ursprünglichen Quellenkontakten geprüft. Drei Browserdienste erhielten den konkreten Auftrag und die anonymisierten Originalstellen. Kein tatsächliches admissibles Körperbild und kein ausgewerteter primitiver Boson oder gemischter Mehrzeitwert wurden gewonnen. Der Quellenlauf hat die vollständige fundamentale Lösung nicht geliefert.
+
+Direkter Test am vorhandenen Exteriorchart unterscheidet Körper, rohen Topkoeffizienten und ordentliche Spur: s, s detR und s det(I+R). Der angenommene Austausch von kohärentem Randkernel und ganzer Bulk Grassmanndichte ist unbewiesen. Für einen ganzen nichtfaserweisen Selektor enthält P M_s F P den zusätzlichen Term [P,M_s]F P. Globale Kompression allein beweist keine lokale Observable. Diese beiden falschen Schließungen wurden zurückgewiesen.
+
+Eine Division durch den Fermionpfaffian bleibt auf ihre tatsächlich multiplikative bedingte Klasse beschränkt. Bei höherer Korankzahl reichen beliebige Bilineare nicht. Bosonmarginalen sind nicht die vollständige Materie und Mehrzeitquelle. Claudes zusätzliche Aussage über statische b diagonale Transfers wird nicht als Ausschluss der vollen TFPT oder zusammengesetzter Bosonen verwendet. Gemini hat die behauptete ursprüngliche Umkehrung nach Korrektur als nicht ausgeführt bezeichnet; seine zusätzlichen Spur oder Lokalitätsformeln sind keine neuen Resultate.
+
+Unbekannte Quellenwerte beweisen keine neue physische Freiheit. Keine zwei vollständigen verschiedenen TFPT Quellen konstruiert und kein Bedarf eines neuen Axioms bewiesen. Originale P1/P2, E8, Clocks, Flavor, Alpha, Zustand/Zeit, alle42 vorhandenen Befunde,52 erledigten F1 Teilaufgaben und Owner erhalten. F1 bleibt in_progress. Kein neuer Checker, keine neue Modellphysik, keine Paper oder Ledgeränderung.
+
+Beleg: experiments/theory-contracts/recursive-mirrored-source-20261103/SOURCE-INVERSE-APPLICATION-I.txt. Atlasrevision62b0f90b789b6067e725a639; Planrevision129. Nächster tatsächlicher Fortschritt verlangt den ursprünglichen ausgewerteten gemeinsamen Feldkernel oder dessen konkrete physische Einfügungskarte mit berechneten Quellenkoeffizienten. Ein bloßes erneutes Umbenennen der unbekannten omega Werte als Inversionsdaten ist kein weiterer Versuch.
+
+
+### QUARTER20261104J. Tatsächliche Viererwirkung, Majoranapfad und vorhandener ganzer Holonomielift
+
+Am ursprünglichen v252 Produzenten ist exp(i pi[5(B-L)-4Y]/2)=i gamma_F auf der ganzen96 Faser. Alle84 reellen Richtungen geben Phi(H,MR) nach Phi(-H,-MR); bei festem MR bleibt exakt -2D_MR. Der vorhandene rechte Quaternionpfad flippt MR mit anderen Yukawaphasen und ist nicht U_X. Die beiden ursprünglichen seam-even R032 Referenztransporte haben ebenfalls Rest0. Dies sind konkrete Originalaufrufe, keine neue parametrisierte Modellstudie.
+
+Der September19 Beweis enthält bereits den markierten Lift in(Spin10 x SU4_A3)/Z4, seinen Kokykel und das effektive E8 Bild46080. Er wird wiederverwendet. L(r)^2=G^-1 und L(r)^8=1 sind kein Beweis der unveränderten rohen Relation r^2=1 auf geladenen Feldern. Für J=iI4 stammt die i Phase auf(16,4) aus dem A3 Partner; der native Quartikfünfer bleibt neutral. Ein direkter Fünferintertwiner ist0, was den vorhandenen gemeinsamen Partnerlift nicht ausschließt. Alle vier bereits vorhandenen Q_t=(16,3) Schnitte vertauschen mit G und tragen iI48. Dies wählt keinen Schnitt aus.
+
+Der komplexe Delta Elternzweig trägt H nach -H und Delta nach -iDelta nur in seiner erklärten vollen PS Geometrie. v252 rep_PS enthält nicht den vollen unabhängigen M4 Raum. SU4_C innerhalb Spin10 und SU4_A3 außerhalb Spin10 sind verschiedene Faktoren. Signiertes reelles Sigma, radiale positive Einschränkung und komplexes Delta getrennt halten. Keine globale Pfaffiananomalie aus endlicher Determinante1 und keine unbekannte GammaF/Padm Kommutation übernehmen. Die Antworten von Claude, Grok und Gemini wurden in zwei Browserrunden kritisch gegengeprüft; diese Dienste haben den Originalchecker nicht unabhängig ausgeführt. Rohantworten bleiben außerhalb des anonymisierten Atlasbestands.
+
+Beleg: `experiments/theory-contracts/historical-dynamics-source-recovery-20261103/HISTORICAL-QUARTER-SOURCE-AND-HOLONOMY-J.txt` mit ursprünglichem Checker `quarter_source_continuation_J.py` und Ausgabe `quarter-source-results-J.json` im selben Contract. Neue Atlasanwendung: `finding:quarter20261104j-actual-matter-quarter-and-reused-whole-holonomy`; Revision `2ceb564387ea879b04d8f5a7`. Alle42 bisherigen Befunde dieses Problems erhalten, jetzt43. Primitive gesamte S_adm, H_tr,pos und gemeinsames physikalisches Spektrum nicht berechnet. Keine physische Unteraufgabe oder Ledgerposition abgeschlossen;52 bestehende F1 Unteraufgaben und Owner erhalten.
+
+Präzisierung desselben Befunds: Die Q_t schneiden ursprüngliche Wurzelstromkoordinaten. Erst eine tatsächliche Abbildung auf48 physische linke Weylfelder mit derselben globalen Symmetrie rechtfertigt deren Z16 Anomalieinterpretation. Die Projektionsrechnung beweist diese statistische und physische Quellenabbildung nicht.
+
+
+### WHOLE20261105. Gesamte ursprüngliche Quellenherleitung versucht, nicht abgeschlossen
+
+Aktueller Nutzerauftrag: Klein-Klein beenden und die vollständige fundamentale Lösung finden. Originale Boundary001:58-377, Boundary002:100-355, QFT007:3-29 und QFT008:215-255 sowie vorhandene Gesamtquellen und Craig Reviews erneut verwendet. Dasselbe anonymisierte Gesamtpaket in den bestehenden Gesprächen an Claude, Grok und Gemini übermittelt; Antworten tatsächlich gelesen. Kein Dienst hat die ganze S_adm, den gemeinsamen physikalischen Feld und Zeitkern oder das wechselwirkende Spektrum berechnet. Diese Fortsetzung liefert keinen neuen physikalischen Quellenwert. Kein neuer Originalprüfer oder numerischer Produzent wurde ausgeführt.
+
+Prioritätskorrektur: E8 ist der Compilerabschluss. Eine universelle Pflicht, jeden bosonischen E8 Strom als physisches Weylfeld abzubilden, wird dem ursprünglichen S/Z Weg nicht hinzugefügt. QUARTER20261104J ist eine Konsistenzanwendung und kein eigener nächster Forschungszweig. Die gemeinsame originale Feldintegration bleibt das Ziel. Zustand, Zeit, Referenz und bereits geschlossene ganze Operatorabbildungen bleiben Daten derselben Quelle. Die bekannte Grenze des Minimalitätsarguments wird wiederverwendet, nicht als neuer Satz ausgegeben. Fehlende Omega oder tau Symbole in einem Tupel beweisen keinen allgemeinen Informationsverlust. Keine neue physische Nicht Eindeutigkeit oder notwendiges Zusatzaxiom behauptet.
+
+Beleg: `experiments/theory-contracts/original-paper-source-reconciliation-20261102/WHOLE-SOURCE-CONTINUATION-20261105.txt`. Bestehenden Atlasbefund `finding:original-common-action-os-and-1pi-chain-already-exists` ergänzt, keine neuen Befunde hinzugefügt; Atlasrevision `eec0f0d6998206d00400b7a4`. Frühere Befunde und alle52 scoped F1 Unteraufgaben bleiben erhalten. F1 in_progress und bisheriger Owner unverändert. Verlangte vollständige Lösung nicht erreicht.
+
+
+### APPLICATION20261105A. Tatsächliche gemeinsame Quellenauswertung nicht ausgeführt
+
+APPLICATION20261105A: Auf ausdrücklichen Auftrag Ansatz1 tatsächlich am ursprünglichen gemeinsamen Quellenaufruf weiterverfolgt; Ansatz2 und3 parallel an Originalen und Implementierungen geprüft. Kein primitiver gemischter Quellenwert, kein physischer Generator und kein gemeinsames Spektrum berechnet. Matrix Kurzzeitkriterium, ganze Faserintegration/Tower und Ward sind vorhanden und keine erneute Auswertung. Konkreter erforderlicher Produzent: ursprünglicher dynamischer d_r(w)/T_V Gewichtcompiler mit geordneter gemeinsamer Kontraktion oder gleichwertige tatsächlich ausgewertete ganze S_adm Feldintegration. Berechenbarer chiraler E8 Historykern benötigt seine tatsächliche primitive admissible Feld/Zeitkarte; native Modellwerte nicht einsetzen. Keine neue Zustands/Referenz/Maßwahl und keine globale Nicht Eindeutigkeit gefolgert. Alle früheren Resultate,52 erledigten F1 Unteraufgaben und bisheriger Owner erhalten. Ansatz1 als sofort ausführbare Zahlenrechnung war zu optimistisch empfohlen; seine Anwendung ist weiterhin zu leisten.
+
+Beleg: experiments/theory-contracts/original-paper-source-reconciliation-20261102/THREE-ROUTE-APPLICATION-20261105.md. Originalquellen und Codepfade geprüft; keine Verifikationssuite, Lean, Wolfram oder physische Auswertung ausgeführt. Keine neue wissenschaftliche Behauptung oder Ledgerpromotion. Atlasrevision cbc5851d67cd51aba3400868.
+
+
+### WEIGHTS20261105B. Vorhandene Originalgewichte ausgewertet und zusätzliche Gewichtsanforderung korrigiert
+
+WEIGHTS20261105B: Die frühere zusätzliche numerische d_r Gewichtsanforderung war für die trennende Diagonalalgebra zu weit. Original QFT004 benutzt gemeinsame Eigenräume; unter dem tatsächlichen vollständigen Labelvertrag liefern Lagrangeprojektoren die Diagonalalgebra und E_u P_V E_v alle Matrixeinheiten. Kein neuer universeller Boltzmann oder d_r Produzent ist dafür herzuleiten. Tatsächlich vorhandene Gewichte ausgewertet: ganze ursprüngliche C6 Green/inverse Quadratwurzel Walkamplituden bei originalem algebraischem delta und allen3Cusps, absolute Faktoren erhalten, beide Reste exakt rational unter1e-35; ganze ursprüngliche v330 Spektral/Stationär/Historiengewichte allgemein hergeleitet und15/15 Kontrollen bestanden. Originale v1716/0,v1755/0,v3306/0 ausgeführt. Yukawa Hol_G Kstr Koeffizienten, feste G Metrikbrücke, KMS/CAR und elliptische Quillenfaktoren als vorhandene getypte Producer erhalten. Keine neue Norm oder Feldverteilung gewählt. Die ganze primitive Higgs/Materie/Geometriequelle wurde dadurch nicht berechnet. Jetzt tatsächliche geordnete ganze Feld/Selektor/Referenzverkettung beziehungsweise gleiche admissible Feldantworten auswerten. Keine erneute zusätzliche Labelwahl und keinen passenden Produkttransfer als Ursprung einsetzen. Zustand/Zeit, vorhandene Ladungsklasse und vier Schnitte,52 erledigte F1 Unteraufgaben und Owner erhalten.
+
+Beleg: experiments/theory-contracts/original-paper-source-reconciliation-20261102/WEIGHT-PRODUCERS-20261105.md samt dortigem weights_20261105B Quellen und Prüferbestand. Diese Fortsetzung liefert tatsächliche Gewichte in den genannten endlichen Originalzweigen, keine gesamte primitive Quellenauswertung oder vollständige physische Theorie. Atlasrevision 8f692e9a0b2eb25ceabd8fe0.
+
+
+### SEWING20261105C. Ganze vorhandene Verkettung wiederverwendet und tatsächliche R104 Quellenfamilien ausgewertet
+
+SEWING20261105C: Die ganze ursprüngliche C6 Wortkonvolution, gemeinsame Selektorverkettung, vollständige U/Ref/Zeitkarte und tatsächliche Higgsquellenverschiebung sind bereits geschlossen und werden für denselben Caller wiederverwendet. Neu ausgewertet sind ganze kanonisch gaugegetwinte R104 Mirrorwörter und die gesamte nichtlineare zeitabhängige N Quellenfamilie mit ursprünglichem H=2(I-P), absolutem Z0 und tatsächlicher Zeitordnung. Keine neue allgemeine Feld, Referenz, Zustands oder Zeitkarte als fehlend einführen. Die ganze primitive S_adm Feldintegration oder äquivalente tatsächlich ausgewertete unnormierte gemischte Koeffizienten und ihre Identität mit dem benutzten realen Quellenzweig bleiben auszuführen. Die bedingte R104 Gaugekarte und ihr Resttrace werden nicht still ersetzt. Am Higgsanschluss J_H Ableitungen der integrierten H Faser von H Hintergrundableitungen der Fermionquelle trennen; sourced Pfaffian/Minoren vor der ursprünglichen H Integration behalten, keine Doppelzählung. Keine neue freie H Verteilung oder omega wählen. c3/P1/P2, E8, Clocks, Flavor und alle bisherigen scoped Resultate erhalten. Fundamentale Gesamtlösung nicht erreicht; F1,52 scoped Abschlüsse und Owner unverändert.
+
+Beleg: experiments/theory-contracts/original-paper-source-reconciliation-20261102/WHOLE-SOURCE-SEWING-20261105.md samt sewing_20261105C Originalbelegen, unabhängigen mathematischen Reviews und nativen Vergleichen. 138 zentrale native Matrixspurvergleiche und105 weitere Kontrollen,20 nichtzentrale Gamma(r) Kontrollen bestanden. Die zusätzliche ganze N Quellenfamilie besitzt ihre vollständigen nativen Vergleichsdaten im selben Artefaktbestand. Keine neue physische Unteraufgabe oder Ledgerposition abgeschlossen. Atlasrevision 6cf350ec66d189e6c2aa3c3d.
+
+
+### FIELDINT20261105D. Ursprüngliche Feldintegration und ganze Konfigurationsklassen geprüft
+
+FIELDINT20261105D: Ganze ursprüngliche Feldintegration bleibt der Auftrag. Die bereits geschlossene vollständige U/Ref/Zeit/State/Selektorverkettung derselben Quelle verwenden. Originale R_spec und R_geo Komponenten samt möglicher Higgsdämpfung sind vorhanden; der ganze Restkörper ist keine freie Skalarwahl. Das ursprüngliche unnormierte gemeinsame Boson/Rest Feldintegral oder seine echten gemischten Koeffizienten und Quellenidentität auswerten, alle übrigen Felder, Vertices, Kontakte, Selektoren, Referenz und Eta erhalten. Die geprüften alten Vollintegrationen und Hintergrundantworten sind getypt. Neu ist die gleichmäßige ganze Originalkreis Fermionheatklasse:33/33 Kontrollen,18 native96 Vergleiche bestanden; dieser Faktor allein normalisiert die frühere flache C2 Volumenklasse nicht. Kein allgemeiner Divergenzsatz und kein Beweis der Abwesenheit einer primitiven Quelle. Eine äquivalente echte Auswertung derselben operativen Randquelle bleibt zulässig. Keine weitere R104/N Einfügungsrunde als primitive Auswertung, keine frei gewählte Radialdichte, kein a_R=1, keine doppelte Fermionintegration und keine neue allgemeine Transportforderung. Vollständige Klassen und Originalinputs statt unbegrenzter Parameterläufe; alle denkbaren Konfigurationen wurden nicht enumeriert. Physische Vollauswertung und gemeinsames Spektrum nicht erreicht. F1 bleibt in_progress,52 scoped Abschlüsse und bestehender Owner erhalten. Source registry c3 Kapitel und neuer gemeinsamer Nov5 Nachtrag werden regulär in Atlas/Paper/Web synchronisiert; Bericht FIELD-INTEGRATION-20261105.txt und aktueller Publikationsnachweis beachten.
+
+Beleg: experiments/theory-contracts/original-paper-source-reconciliation-20261102/FIELD-INTEGRATION-20261105.txt samt fieldint_20261105D Originalbelegen, unabhängigen mathematischen Reviews und nativen Vergleichen. 33/33 gezielte Kontrollen,18 native96 Vergleiche bestanden. Die ganze tatsächliche Fermionheatklasse hat einen analytischen uniformen Modenrest; übriger geometrischer Körper bleibt erhalten. Keine neue physische Unteraufgabe oder Ledgerposition abgeschlossen. Atlasrevision 5f0f161ccb5fbef480ce51df.
+
+
+### HYP20261105E. Neue konstruktive Feldintegrationsstrategien und erste Originaltests
+
+HYP20261105E: Führend die tatsächliche ganze transversale Kraft und ihre gemischten Kontakte aus dem bestehenden ursprünglichen Caller auswerten. Konkrete Spektral/Referenz/Eta Ableitung und älterer geometrischer Kraftanteil sind hergeleitet; Gradienten, H Vierpunkt, ursprüngliches gemischtes H Yukawa Wort und übrige Felder zusammenhalten. Keine automatische radiale ODE: gleicher Higgsnorm können unterschiedliche Gradientenkräfte entsprechen. Parallel tatsächliche neutrale P1 Bilder von U(f)=integral f H†H und voll kontrahiertem Y(g) samt Padm, Adjungierten und infinitesimaler Generatorwirkung bestimmen; danach denselben gemischten Quellenwert direkt auswerten. Vorhandene gleiche U/Referenz/Zeit/State/Selektorkarten sofort verwenden. Eichung plus Skalenkarte lassen I=a²|H|² invariant; geschriebenes Qadm integriert nicht die physische Radialgewichtung; literal freie periodische Quarterzeit ist keine treue Linienzeit. Diese Kandidaten nicht unverändert wiederholen. Allgemeine ursprüngliche P1 Zeit und ganzer gekoppelter H_exc bleiben erhalten. Kontrollierte Einschließung derselben tatsächlichen Antwort nach Vorliegen der echten Kraft und Einfügungsdaten prüfen. Kein neues freies Maß, kein LargeN, keine unkontrollierte Momenttrunkierung, kein weiterer bedingter Reader als primitive Rechnung. Ganze primitive Integration und gemeinsames Spektrum bleiben unberechnet. F1 in_progress,52 scoped Erledigungen und bestehender Owner erhalten.
+
+Originalbelege und unabhängiger Review im bestehenden original-paper-source-reconciliation-20261102/hypotheses_20261105E Paket. 16 exakte symbolische Zeitkontrollen sowie konkrete algebraische Richtungs und Gradientenprüfungen. Keine neue primitive Antwort und kein physischer Ledgeraufstieg. Atlasrevision fb7e9df545ebd43125b0098e.
+
+
+### HYP20261105F. Ursprüngliche neutrale Operatorroute und physischer Body
+
+HYP20261105F: Priorität auf tatsächlichen ursprünglichen gemeinsamen Kurzzeitkernel/P1 Generator und neutralen Q0[u] Mark. Neuer konkreter Anschluss: aus ursprünglicher R113 CAR Generatorwirkung und ganzer96 Grammap Xa zurückgewinnen; der ganze UY Hamiltonkontakt ist festgelegtes8CAR Wort mit3ursprünglichen Zeitableitungen. Primitive SF Paarung, ganze Endpunktproduktkarte falls vorhanden, räumliche Kontakte und P nur um das ganze neutrale Wort erhalten. Tatsächlich ausgerechneter alter Hintergrundcaller liefert nur Xa=x_a(H)I und verbundenes UY=0; kein erneuter Hintergrundlauf. Parallel Y_P^S aus dem unnormierten offenen primitiven Stripjet auswerten und mit ursprünglicher positiver Selektormap M_P den physischen Body rekonstruieren. M_P^+ ist nicht generell CP und kein neuer positiver Ambientbody. Ganze physische Evolution bei tatsächlich reduziertem H; sonst alle PHQ Rückkehr und Gedächtnisblöcke erhalten. Homogene Geometrie/Higgs/Fermionkontakte schließen den gemischten Wert nicht: eindeutiger Eliminator G-RH-3F/2 lässt Masse,Vakuum,Einstein,Majorana und ganze Ref/Eta/Restkontakte. Tatsächliche räumliche Tensor/Impulsantwort als unabhängige Kontrolle derselben Quelle auswerten. Bestehende ganze same-caller U/Ref/Zeit/State/Selektorverkettung sofort verwenden; kein neues Maß oder omega,kein Currentraten und keine bloße neue Readerformel. Konkrete neue bedingte Rekonstruktionsroute,66/66 originale Koeffizienten/Wortkontrollen; primitiver gemeinsamer Quellenwert und Spektrum noch nicht berechnet. F1 in_progress,52scoped Erledigungen und vorhandener Owner erhalten.
+
+Originalquellen und unabhängiger analytischer Review im bestehenden original-paper-source-reconciliation-20261102/hypotheses_20261105F Paket. Diracneutrino Gramterm und Anfangsdaten der Rückkehrgleichung ausdrücklich erhalten. Keine physische Unteraufgabe neu erledigt. Atlasrevision eea36be5fafd595af5a2a9f0.
+
+
+### Veröffentlichungsnachweis zu WEIGHTS/SEWING/FIELDINT/HYP, 5. November 2026
+
+Commit08135c5de89cbb8d734c7a78f9b08a6bb51fdec7 ist auf main. Vercel dpl_xUwpF4Tsh3yuBL6c9GZBZr3SUdKN ist READY auf www.fixpoint-theory.com. Alle14 ausgelieferten PDF Hashes, öffentlicher Coveragehash und sichtbare neue Operatorroute entsprechen dem geprüften Stand.14 Paperbuilds, Websitebuild und Publikationsaudit bestanden. Lokaler Atlas enthält6893 aktuelle Paperabschnitte ohne pending/stale/sourceerror; private183 Abschnitte unverändert lokal erhalten. Dies ist Navigation und Publikationsprüfung, kein neuer Physikbeweis. F1 bleibt in_progress mit52scoped Abschlüssen, gleicher Fortsetzung und gleichem Owner.
+
+
+### SHORTTIME20261105G. Ursprüngliche ganze spektrale Antwort und Zeitkreuzkernel
+
+SHORTTIME20261105G: Ganze ursprüngliche gemeinsame Feldquelle über vollständige Rand und Historienbeine auswerten. Ganze96 spektrale Schur/DtN Wärmeverkettung tatsächlich berechnet,12/12+18/18 Kontrollen; nichtlokaler Zeitkreuzkoeffizient mit ursprünglichem Profil nu und getrennten Skalen exakt ausgewertet. Alle inneren Stücke und Rückkehrbeiträge,P,Referenz,Eta,Zustand,Zeit und ursprünglichen Felder erhalten. Hiermit den voll integrierten offenen OS Streifen beziehungsweise identischen primitiven P1 Wortjet berechnen. Bestehenden R113/HYPF Operatorweg und das festgelegte8CAR/3Ableitungswort unmittelbar verwenden; lokaler kinetischer Vergleich nur im tatsächlich passenden ganzen Branch,bei dynamischer Geometrie inverse ganze kinetische Matrix. BFK Konstante2^-4 bereits seit29.August relativ geschlossen; nicht wieder öffnen. Ursprüngliche Skalaronumparametrisierung nur mit tatsächlicher Wickkarte,Hilfskontur,Jacobian und Constraints untersuchen; positive klassische H5 Geometrie liefert keine neue ursprüngliche Euclidquelle. Ganzer primitiver physischer Kernel,Y_P^S,gemischter UY Wert und gemeinsames Spektrum noch nicht berechnet. F1 in_progress;52scoped Erledigungen und vorhandener Owner erhalten.
+
+Originalquellen: experiments/theory-contracts/original-paper-source-reconciliation-20261102/ORIGINAL-JOINT-SHORTTIME-KERNEL-20261105.txt und shorttime_20261105G/. Atlas problem:original-joint-short-time-kernel-20261105, Revision aa7a2fae187f8d99d93468a1. Keine Änderung des physischen Ledgers.
+
+
+### SHORTTIME20261105H. Ausgeführte Hilfsquellenintegration und ursprünglicher Vierfeldkoeffizient
+
+SHORTTIME20261105H: Ganze ursprüngliche gemeinsame Feldintegration und offenen OS Streifen/P1 Wortjet tatsächlich auswerten. G liefert ganze96 spektrale Schur/DtN Verkettung und exakten nichtlokalen Zeitkreuzkoeffizienten. H liefert jetzt exakt integriertes komplexes Hilfsbein mit ganzer Quellenkarte exp(theta mu-alpha theta²/v),mu=F+2alpha R,und neutralem Kontakt -2alpha/v; v[b] bleibt innen. Keine neue globale Wick/BRST/Referenzaufgabe. Ursprüngliche Momente I_orig[u],I_orig[R],I_orig[mu_i mu_j] im gleichen Caller auswerten. Neuer unveränderter96 Vierfeldkoeffizient bei festem diagnostischen proper time ist inklusive nichtkommutierendem MR berechnet und unabhängig Cauchy kontrolliert. Echte Profilkoeffizienten zuerst mit ursprünglichem nu und tatsächlichen Geometriefaktoren integrieren,dann Q4=C2²/2-C4;ganze Ref/Eta und Rest Bellkontakte erhalten. Vorzeichenbehaftete Heatloopform nur bei wirklicher endlicher absoluter Einzeltrace beziehungsweise ursprünglichem gepaarten relativen Regulator,kein neues positives Bad und keine unbewiesene Vertauschung mit Feldintegration. Jetzt tatsächlichen räumlich/zeitlich getesteten Vierfeldmark und festgelegtes8CAR/3Ableitungs UY Wort im ganzen offenen Caller auswerten. Bereits geschlossene gleiche Quellen/Zustand/Zeit/Referenz/P Karten sofort verwenden;Rückkehr und ganzeHistorien erhalten. Ganze primitive H/g Integration,Y_P^S,gemischter physischer Wert und gemeinsames Spektrum noch nicht berechnet. F1 in_progress,52abgeschlossene Teilaufgaben und Owner erhalten.
+
+Originalquellen: experiments/theory-contracts/original-paper-source-reconciliation-20261102/ORIGINAL-JOINT-SHORTTIME-FOLLOWUP-20261105.txt und shorttime_20261105H/. Atlas d1ff953daecc63e28671b479. Keine Änderung des physischen Ledgers.
+
+
+### SHORTTIME20261105G/H Veröffentlichung verifiziert
+
+{"commit": "593db904ac01962d2452c9f85f54a4136feaf636", "deployment_id": "dpl_HvinJW8hpadxeawLopNaeTNcPVif", "deployment_state": "READY", "domain": "https://www.fixpoint-theory.com", "scientific_plan_revision": 141, "atlas_revision": "d1ff953daecc63e28671b479", "pdf_count": 14, "new_source_excerpt_count": 18, "atlas_files_checked": 4, "all_publication_bytes_match": true, "all_three_new_links_in_live_html": true, "ledger_changed": false}
+
+Planrevision142 enthält nur den Veröffentlichungsnachweis. Wissenschaftlicher öffentlicher Plan141 bleibt maßgeblich für den nächsten tatsächlichen Rechenschritt. F1 in_progress und52abgeschlossene Teilaufgaben erhalten.
+
+
+### SHORTTIME20261105I. Ganze neutrale Originalsubquelle und wirklicher verbleibender Wert
+
+SHORTTIME20261105I: Auftrag zur primitiven Gesamtlösung bleibt unerfüllt. Ganze neutrale R048 Quadratikquelle mit detRatio,Gxx und komplexer Hilfsquelle tatsächlich integriert,12/12 exakte Kontrollen. Ihre ursprünglichen kubischen/quartischen Vertices liefern beim Gaußersatz bereits nichtzeroersteSDReste; ursprüngliches ungekürztes exp[-V3-V4-S_extra] muss innerhalb desselben Integrals mit J-j und allen übrigen Feldern ausgewertet werden. Formale Differentialoperatoren sind keine konvergente Auswertung. Jetzt wirklichen ursprünglichen Normkern K_U(t),offenen markierten H/g Stripjet oder festen UY Wert auswerten. Same-caller S/Z/OS/U/State/Time/Ref/P ist geschlossen und sofort zu verwenden; ein anderer berechneter Caller verlangt seine tatsächliche ganze markierte Quellengleichheit. Exakter Regulatortransport und kanonischesOmega beginnen mit ganzer Quelle;K_UV=phi0 ist keine quellabhängigeUVAnfangsfunktion. Der ersteHnormFluss benötigt bereits Cov(U,U). VorhandeneMethoden erfüllen keinen Rechenschritt,wennsie den gesuchtenI_origWert erneutalsArgumentkonsumieren. G/H und vollständige nativeMatrix/Berezinergebnisse scopedwiederverwenden,keine weitere isolierteHeatkoeffizienten oderHilfsnormalisierungsrunde. Kein neues Maß,Zustand,Profil,Referenz oderVakuumgate. Primitiver gemeinsamerKernel,gemischterWert undphysischesSpektrum unberechnet. F1in_progress,52begrenzteAbschlüsseundOwnererhalten.
+
+Originalquellen: experiments/theory-contracts/original-paper-source-reconciliation-20261102/ORIGINAL-JOINT-SOURCE-VALUE-20261105.txt und shorttime_20261105I/. Atlas487791896f84ba2c4cfeec86. Keine neue physische Promotion.
+
+
+### SHORTTIME20261105I Veröffentlichung verifiziert
+
+{"commit": "a2ecb32ef4e59059d01f80ee6c82bd484746199d", "deployment_id": "dpl_2SuWBGAMb4F2LhXUNrfpFKqzW2JC", "deployment_state": "READY", "domain": "https://www.fixpoint-theory.com", "scientific_plan_revision": 143, "atlas_revision": "487791896f84ba2c4cfeec86", "pdf_count": 14, "new_source_excerpt_count": 8, "atlas_files_checked": 4, "all_publication_bytes_match": true, "all_new_links_in_live_html": true, "ledger_changed": false}
+
+Planrevision144 enthält den Veröffentlichungsnachweis. Der neueste Nutzerauftrag führt parallel die gezielte Verifikations/Lean/Wolfram Suche nach bereits geschlossenen Quellenwerten und neuen tatsächlichen Lösungsstrategien fort. F1in_progress und52scoped Abschlüsse erhalten.
+
+
+### SHORTTIME20261105J. Verifikationen und konstruktive Originalintegration
+
+SHORTTIME20261105J: Nutzerziel primitive Gesamtlösung weiter unerfüllt. Gezielter Originalaudit16Pythonproduzenten und89LeanLeaves;7aktuelle einschlägige Originalmodule sowie neuerScratchaudit direktkernelgeprüft, bestehende physische Axiome ausdrücklich erhalten. Wiedergefundene CAR8KMS/Ankermaß/Transfer/PBWclosures haben tatsächliche eigene Inputtypen und liefern keinen neu integrierten H/gWert. Neue globale Originalquartikschranke mit4LeanTheoremen erlaubt ungekürzte endliche R048Radialintegration samt analytischer Polynom/Lipschitz/GaußtailRestkontrolle.6/6Methodenkontrollen und14/14exakte Momentkontrollen; Gleitkomma rounding_enclosed=false, kein gesamter LeanIntegrationsbeweis. Exakte Stokesrekurrenz reduziert alle polynomialen Radialmomente auf höchstens3^N TATSÄCHLICHE Basisintegrale, die dieselbe ungekürzte Integration liefert. Originale polynomiale Pf/Minorbeine ohneInversion direkt anschließen, Phasen/Nullen erhalten. Zusätzlich analytisch hergeleitete unabhängig geprüfte4KomponentenNormquartikschranke integriert die gegebene lokaleHiggswirkung ohneRadialchart; nicht implementiert, kein nativerWert, keine Übertragung radialer3^N und keine Gleichsetzung lokaler a4Wirkung mit ganzemS_adm. Jetzt tatsächliche Originalregulatordarstellung und ganze ursprünglicheDomain/Ref/Eta/S_extra/übrigeFelder in diese Wertauswertung einsetzen, Normzeitkern oder UY berechnen. SamecallerU/S/Z/OS/State/Time/Ref/P ist geschlossen, kein neuer allgemeiner Maß/Zustands/Profilgate. Keine unabhängige Ambientquantisierung erfinden. Primitive gemeinsameWerte/Spektrum nicht berechnet. F1in_progress,52scopedAbschlüsse undOriginalowner erhalten.
+
+Atlas9101635de54a0a3e3ea245a8. Originalbelege im bestehenden Vertrag original-paper-source-reconciliation-20261102/shorttime_20261105J/. Keine physische Ledgerpromotion.
+
+
+### SHORTTIME20261105J Veröffentlichung verifiziert
+
+{"commit": "e667a248d1b82a8cb6f234f92e07fab4f1eb02e5", "deployment_id": "dpl_DSsWqCoMTdRPfXAA8AuxaX298XLA", "deployment_state": "READY", "domain": "https://www.fixpoint-theory.com", "scientific_plan_revision": 145, "atlas_revision": "9101635de54a0a3e3ea245a8", "pdf_count": 14, "new_source_excerpt_count": 9, "atlas_files_checked": 4, "all_publication_bytes_match": true, "all_new_links_in_live_html": true, "ledger_changed": false}
+
+Plan146 enthält den Veröffentlichungsnachweis. Der erneute Auftrag zur vollständigen Lösung führt die tatsächliche vollständige Quellenauswertung weiter. F1in_progress,52scopedAbschlüsse undOriginalowner erhalten.
+
+
+### SHORTTIME20261105K. Ganze Quelle und tatsächlicher Grenzübergang
+
+SHORTTIME20261105K: Die vollständige Lösung und der primitive gemischte Quellenwert sind nicht berechnet. Die festgehaltene ganze Originalquelle bestimmt omega; PF und Singleton beweisen bedingte Eindeutigkeit, konsumieren aber den ganzen Transfer beziehungsweise Z_rel. Keine zusätzliche freie Zustandswahl oder neue Quellenkarte eröffnen. Tatsächlich geprüfte native Programme konsumieren T oder kinetische Matrizen; ihre Suchzertifikate sind keine physischen Quellenwerte. Die J Quartikintegration bleibt im lokalen Originalcaller gültig. R055/R056 schließen in ihrer alten beschränkten Profilklasse den global kleinen Rest zur lokalen Quartik aus; keine neue Entdeckung oder globale Widerlegung behaupten. Der ursprüngliche positive IR Term ermöglicht eine direkte ganze regulierte Profilintegration, wobei der wirkliche Gramfaktor, Domain, Referenz, Eta und übrige Innenfaktoren erhalten bleiben. Der positive beschränkte lineare Volumencaller besitzt beim Entfernen dieses Regulators Normmomente von Größenordnung 1/r; dies nicht auf komplexe Pfaffianquellen oder andere Originaldomains übertragen. Jetzt den tatsächlichen festen UY beziehungsweise ganzen äquivalenten OS Wortwert berechnen und die benötigten markierten Momente und Zeitdifferenzen entlang der ursprünglichen Grenzvorschrift gleichmäßig kontrollieren. Kein unbegründeter Higgs Hardcut aus dem Gap, kein neuer physischer Gaußprior und keine unabhängige Ambientquantisierung. F1 bleibt in_progress; 52 bestehende begrenzte Abschlüsse, Owner und Originalledger bleiben erhalten.
+
+Originalbelege im bestehenden Vertrag original-paper-source-reconciliation-20261102/shorttime_20261105K/. Atlas dd050d6b5c41893deb25d8c5.
+
+
+### SHORTTIME20261105K Veröffentlichung verifiziert
+
+{"commit": "c20a7dd90de355cb66a77d3852ea58ec8edd849e", "deployment_id": "dpl_35QtawSENRK4qUm8BTwKjFhpoKF7", "deployment_state": "READY", "domain": "https://www.fixpoint-theory.com", "scientific_plan_revision": 147, "atlas_revision": "dd050d6b5c41893deb25d8c5", "pdf_count": 14, "source_excerpt_count": 14, "atlas_files_checked": 4, "all_publication_bytes_match": true, "all_K_targets_present": true, "all_J_links_retained": true, "ledger_changed": false}
+
+Plan148 enthält den Live Nachweis. Die anschließende tatsächliche Prüfung der verbundenen UY Antwort bleibt aktiv. Normdivergenz allein entscheidet diese Antwort nicht.
+
+
+### SHORTTIME20261105L. Tatsächliche verbundene Modenantwort und ursprünglicher Zeitmark
+
+SHORTTIME20261105L: Ein tatsächlicher verbundener Quellenwert ist vollständig berechnet, die primitive Gesamtlösung bleibt offen. Die ganze ursprüngliche Spin4/KO Paarung liefert bei nichtnull Impuls erst im echten384er Gegenmoduspaar einen schiefen Kernel. Seine Pfaffianantwort ist CY²u96+4p²CY²Sigma u95+O(u94), mit allen vier Yukawamatrizen und ganzer Majoranamatrix. Die tatsächliche radiale Integration in den vier ursprünglichen reellen H Koordinaten ergibt den globalen affinen euklidischen verbundenen Wert -8p²Sigma/97 in der angegebenen invertierbaren Y und dominierten nichtzero Grad0 Restklasse. 64 exakte Matrix und7 Euleridentitäten bestehen; keine physikalischen Parameter wurden gewählt. Die positive lokale R048 Quartik erfüllt die Strahlresthypothese nicht. Dieser Wert ist keine lokale HYPF Hamiltonzeitmarke und kein voller Modenturm. Normdivergenz allein entscheidet verbundenes UY nicht; ursprüngliche Restkräfte, zusätzliche Fermionvertices, Ref/Eta und Kontakte bleiben erhalten. Der tatsächliche rohe Heatmark wird durch Differenzieren des Seafaktors verändert; Zeit und Feldgrenzen nicht vertauschen. Die konstante SU3 Farbprojektion behält die Sea, der ganze physische Hodgeprojektor ist dadurch nicht ausgewertet. Jetzt den wirklichen gemeinsamen offenen Strip mit U(f) und lokalem Yham(s) unter nichtkonstantem H, allen Modenkopplungen, physischem P, ursprünglichem HB, Sea/Ref/Eta und ursprünglicher Grenzfolge berechnen. Vorhandene Duhamel Markierung direkt nutzen; keinen euklidischen Gesamtwert als physische lokale Zeitantwort ausgeben. Zustand und gleiche Quellenkarten bleiben geschlossen. Kein fundamentaler Abschluss von c3/P1/P2, keine neue Maßwahl, kein Originalledgerwechsel. F1 in_progress,52 begrenzte Abschlüsse und Originalowner erhalten.
+
+Originalbelege im bestehenden Vertrag original-paper-source-reconciliation-20261102/shorttime_20261105L/. Atlas e428a22557fb119d69548c49.
+
+
+### SHORTTIME20261105M. Gemeinsame finite Quelle für alle Ränge und tatsächliche Hamiltonkopplung
+
+SHORTTIME20261105M: Die ganze tatsächlich vorgegebene finite freie Produktfamilie mit EINEM gemeinsamen konstanten H ist jetzt für alle Yukawaränge ausgewertet. Cgesamt=-8 sum_j[pj²SigmaPlus+TM(pj)]/(2kQ nPaare+1), kQ=6ru+6rd+2re+2rnu. Originale SVD/Kongruenz bestimmt den Majorana Rückkehrterm der aktiven/Nullfaser; kein physikalischer Rang wurde gewählt. Der gemeinsame Nenner entsteht aus einer einzigen vierreellen H Integration und ist nicht die Summe unabhängig normalisierter Paarwerte. Quantitativer IR Wert gilt nur bei tatsächlicher dominierter Grad0 Restgrenze mit nichtzero führendem Winkelintegral. Unabhängig davon beweist dieselbe ganze20Minorenquelle für jede passende positive statische Gewichtung mit schwankender Norm und endlichem Moment ein strikt negatives verbundenes euklidisches Yukawasignal; eine positive ungekürzte Quartik darf innen bleiben. Der tatsächliche rohe Hamiltonmark ist in der vorhandenen unprojizierten statischen Heatfaser bei fixem t>0 ebenfalls strikt negativ mit der Norm gekoppelt, über originalen Weakcenter und strikte Tracekonvexität statt Euleralias. 24 exakte Rangidentitäten bestehen; die neuen Vorzeichensätze sind analytisch und unabhängig geprüft, nicht neu Lean formalisiert. Jetzt die volle ursprüngliche physische Historienquelle mit operatorwertigem HB, nichtkonstantem H, Modenkopplungen, physischem P, Sea/Ref/Eta und korrekter Grenzfolge tatsächlich auswerten. Statik, Positivität und unprojizierte Spur nicht für den ganzen Caller voraussetzen. Vorhandene Source/State/Time Karten verwenden; keine neue freie Dichte oder Rangwahl. Die fundamentale Gesamtlösung und der primitive physische Kurzzeitwert sind nicht erreicht. F1 bleibt in_progress,52 begrenzte Abschlüsse, Originalowner und Ledger erhalten.
+
+Originalbelege im bestehenden Vertrag original-paper-source-reconciliation-20261102/shorttime_20261105M/. Atlas df1a639ff903947bcdf295d7.
+
+
+### SHORTTIME20261105L/M Veröffentlichung verifiziert
+
+{"commit": "2925e262855edf188b1e13a0310278066b20454b", "deployment_id": "dpl_5wcdtsqjaRad58Dm76UJedRYLohT", "deployment_state": "READY", "publication_trigger": "explicit Git production deployment of the already approved exact main commit; automatic push deployment did not appear", "domain": "https://www.fixpoint-theory.com", "scientific_plan_revision": 150, "atlas_revision": "df1a639ff903947bcdf295d7", "pdf_count": 14, "source_excerpt_count": 26, "atlas_files_checked": 4, "all_publication_bytes_match": true, "all_K_L_M_targets_present": true, "all_J_L_M_explain_links_present": true, "ledger_changed": false}
+
+Plan151 enthält den tatsächlichen Live Nachweis. Die verbundene gemeinsame statische Antwort und ihre Vorzeichen sind ausgewertet; die volle dynamische primitive Quelle und fundamentale Gesamtlösung bleiben offen. F1in_progress und52bestehende begrenzte Abschlüsse erhalten.
+
+
+### DYN20261106N. Tatsächliche dynamische Strukturtests aller drei Wege
+
+DYN20261106N: Die drei dynamischen Ansätze am Original geprüft. Barer positiver Phasenwirkungsrest ist bei endlichem A kein selbstadjungierter physischer Schur Return; ganze Historienquelle und alle96/Ref/Eta/Domain Beiträge bleiben. Quantenbound Y²<=B_reg U_G und tatsächlicher lokaler gemischter Kontakt [U,[H,Y]]=4aY sind hergeleitet, kein primitiver Wert. Derselbe ganze OSGenerator, neutrale Marks/Core und P um das ganze Wort sind erforderlich; separate Kompression behält QReturnkontakte. FullquantumThermalsign verlangt tatsächlich festen reduzierenden Weakcenterinvarianten P und ursprünglichen Zustand; GapkovarianzH↔-H beweist das nicht. TT Stressproben haben im kovarianten4DVakuumskalarzweig Projektion0; der ursprüngliche metrische SDKontakt fixiert 2xiG_uO+F_rest, nichtG allein. Jetzt den ganzen ursprünglichen unnormierten Feld/Historienstrip oder identischen primitiven neutralen Wortwert mit allen Feldern, actualHB, physischem P, Ref/Eta/Domain und ursprünglicher Grenzfolge auswerten. Originale räumliche Grams und markierte Momente berechnen; die zusätzlichen algebraischen Restriktionen konsumieren diese Werte und ersetzen sie nicht. Keine neue freie Dichte, Zustand, Referenz, Profil, Rangwahl oder weiterer abstrakter Neustart. c3/P1/P2,E8,Clocks,Flavor und L/M erhalten. 19exakte Symbolkontrollen und unabhängige Reviews; kein neuer Lean/Fullsuite/physischer Wert. Vollständige Lösung und gemeinsames wechselwirkendes Spektrum nicht erreicht; F1in_progress,52scopedAbschlüsse und Originalowner/Ledger erhalten.
+
+Originalbelege im bestehenden Quellenvertrag unter DYNAMIC-SOURCE-THREE-ROUTE-20261106.txt und dynamics_20261106N/. 4exakte Profil/Returnidentitäten,3gemischteOperatoridentitäten,12Ganzimpuls/Quellenkontaktidentitäten, unabhängiger analytischer und ScienceReview. Der explizite sameOS/Core/wholewordP Guard ist angewandt. Atlas95fe247a5b79224dbddad640. Veröffentlichung gesondert verifizieren.
+
+
+### DYN20261106N Veröffentlichung verifiziert
+
+{"date": "2026-11-06T07:55:12.733194+00:00", "record": "DYN20261106N", "commit": "fe26c488fec8526f6f2edb30a63b2d447065c1a7", "deployment_id": "dpl_9TyoXGBQDTxoaZ7SWQy55eao9gNR", "domain": "https://www.fixpoint-theory.com", "atlas_revision": "95fe247a5b79224dbddad640", "scientific_plan_revision": 152, "fundamental_solution_achieved": false, "ledger_changed": false, "PDFs": 14, "scoped_findings_checked": 16, "source_excerpts": 27, "data_assets": 4, "assets_checked": 45, "all_bytes_match": true, "new_explain_links_present": true}
+
+Plan153 enthält den Live Nachweis und die jüngste Nutzerpriorität zur gemeinsamen Triangulation. F1in_progress,52 scoped Erledigungen und bestehender Owner bleiben erhalten. Die Veröffentlichung ist abgeschlossen; die vollständige fundamentale Lösung ist nicht erreicht.
+
+
+### TRIANGULATION20261106O. Tatsächliche Selektorsymmetrie und ursprünglicher Blockkern
+
+TRIANGULATION20261106O: Den tatsächlich unveränderten ursprünglichen markierten Blockkern T_Vn[wout,win;marks] beziehungsweise dessen quellenidentische D_Vn und Basisintegration aus der owning Konstruktion herstellen und auswerten. Die gezielte Rückwärtssuche in QFT004, Metrology005, R113 und tatsächlichen Codeconsumern findet Definitionen und vorausgesetzte Inputs, keinen ausführbaren ganzen Vierwerteproduzenten. Dies ist keine Gesamtkorpusabwesenheit und keine neue freie Maß/Zustandsforderung. Alle Felder, ganzer physischer P, Ref/Eta/Domain und ursprüngliche Grenzen bleiben. Z0,ZU,ZY,ZUY unter demselben Regulator gemeinsam auswerten, verbundenen Wert vor der ursprünglichen Grenze bilden und mit vorhandenem neutralem Zeitwort abgleichen. Optionaler FixedP Vorzeichenweg: wirklicher CAR-Operator statt Graphlift; bei ganzer [P,W_B W_F]=0 genügt tatsächliche Bosonsigninvarianz der ganzen Pi. Weder Tensoridentität noch echte H-Abhängigkeit von P aus seiner früheren Seeddefinition folgern. v365 Energiesumme ist TrH=-logdetT, kein Hessianlogdet; bedingtes M=H liefert log[36log(3/2)log3]. chi729/665 beweist allein keine geometrische Tightness. Alte Teilintegrationen und Source/State/Time/Ref Karten direkt verwenden. Keine Ersatzquelle, neue freie Dichte oder erneute allgemeine Brückenforderung. Kein primitiver Wert und keine fundamentale Gesamtlösung erreicht; F1 in_progress,52 bestehende Abschlüsse und Originalowner erhalten.
+
+Unabhängige drei Originalreviews im bestehenden Quellenvertrag unter triangulation_20261106O/. v365 korrigiert8/8, unabhängige Rechnung am ursprünglichen Dreiertransfer4 Vergleiche bei80 Stellen mit Fehler unter4.3e-79; keine rigorose Rundungseinschließung. Historische Aussagen bleiben datiert erhalten; aktive Paper/Website/Scriptbeschreibungen werden korrekt synchronisiert. Kein neuer Lean oder Fullsuite Lauf, kein ursprünglicher Vierwertecaller und keine physische Promotion.

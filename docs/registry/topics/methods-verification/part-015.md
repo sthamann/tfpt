@@ -4,6 +4,16 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## [formula in source] monodromy, flavor and CP readouts
+
+[experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex:4495-4512](../../../../experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex#L4495) · `section:1d4a9f718ea7ff603e24` · section
+
+Machine checks for this section: v88_ cp_ phase_ audit.py
+
+Explicit source references:
+
+- [verification/v88_cp_phase_audit.py](../../../../verification/v88_cp_phase_audit.py#L1) · explicit_file_citation
+
 ## Status summary and open audit points
 
 [experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex:4728-4819](../../../../experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex#L4728) · `section:c6a172fae7d467d3744c` · section
@@ -1633,9 +1643,3 @@ Für genau zwei vollständige [formula in source] -Zellen und eine positive Brü
 [experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/18_audit_v13.tex:60-77](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/18_audit_v13.tex#L60) · `section:2aa1af74ff59a1ac5ace` · section
 
 Im ausgewiesenen harmonischen Modell eines geteilten Vermittlers lautet der symmetrische aktive Block Sein niedriger Zweig beginnt mit [formula in source] ; der antisymmetrische mit [formula in source] . Deshalb ist auf dem aktiven [formula in source] -Raum Nach Abzug beider Einzelbondkorrekturen [formula in source] bleibt Beide Schreibweisen sind kompatibel. Eine Konstante auf dem aktiven Sektor ist außerhalb davon
-
-## Ein exakter Stern-Spektralfilter unter zusätzlichen Ressourcen
-
-[experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/18_audit_v13.tex:78-90](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/18_audit_v13.tex#L78) · `section:63f4c64732e210245b88` · section
-
-Für [formula in source] gilt Mit [formula in source] und [formula in source] folgen Ein kohärentes Achtzweigregister liefert aus dem früheren Zweisingulett-Eingang [formula in source] Erfolg [formula in source] . Alle acht Ausgänge haben Gewichte [formula in source] . Dies ist eine exakte Alternative zur alten 32-Zweigschaltung. Kontrollierte kontinuierliche Sternpulse und Register bleiben zusätzliche Ressourcen. Erz

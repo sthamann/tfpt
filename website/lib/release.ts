@@ -41,16 +41,16 @@ export const RELEASE_ASSETS: Record<string, ReleaseAsset> = {
   "/papers/verification_catalog.pdf": {
     href: "/papers/verification_catalog.pdf",
     ...COMMON,
-    bytes: 1474738,
-    sha256: "e46f4d02374a8c344b9f356502db3282f8352c42017a75c451dc8b277fe08543",
+    bytes: 1474418,
+    sha256: "86973714ceaa5ee49d3b5707bdcc091abd8c942976e66b314472c6c174aa8238",
     changelog: "Standalone reference index of registered verification modules and their stated checks.",
   },
   "/papers/introduction.pdf": {
     href: "/papers/introduction.pdf",
     ...COMMON,
-    bytes: 3598480,
+    bytes: 3598630,
     sha256:
-      "3738343d2b090465bf02ce3264ea6e31f9fe006b8e5573f0eba362fe181578ac",
+      "e932e7697ec969bfba995033ce0aa7ce84c2657fb199c201571641a1e8582546",
     changelog:
       "Compiler-closure reading guide: two axioms, the dependency DAG, the predictions and the proof ledger.",
   },
@@ -102,18 +102,18 @@ export const RELEASE_ASSETS: Record<string, ReleaseAsset> = {
   "/papers/origin_theory.pdf": {
     href: "/papers/origin_theory.pdf",
     ...COMMON,
-    bytes: 1231433,
+    bytes: 1231453,
     sha256:
-      "7a21d5322f9a1acea777ebd68fa222095b046fd561c978b076b8165bb941a019",
+      "79cd9a425b9af2fe9418d3023123654090fc146bac4a56b36a9c0cd93a0df9cf",
     changelog:
       "Origin Theory: the (5,3) skeleton, the triply-forced 8, the order-30 Coxeter cycle, and the gapped unique attractor.",
   },
   "/papers/tfpt_research_contracts.pdf": {
     href: "/papers/tfpt_research_contracts.pdf",
     ...COMMON,
-    bytes: 2389047,
+    bytes: 2389016,
     sha256:
-      "76a758a90bd427af3e93d67aa1a5fcff4a8437fcbee3a0f30e0162e8b54cc27e",
+      "2ae518ad8adf4a454c3728b56665afa6d23a1c77f9bb90c28fbeb38e2d6144b9",
     changelog:
       "Research contracts separate compiler Rest = v_geo ⊕ G_net ⊕ F_transfer from Rest_TOE. Round 4 (v1026–v1030) closes the relaxed TEL-B norm at fixed M=1, Ny=8: ||R_N||HS < 2.995906 < 3 for every even N≥16, with the former CF/DG estimates discharged for this bound by native v1026 using v1022/v1025. It also adds narrow T3/T4/T6–T8 identities and counterbounds, but closes no T-gate: FE-GEN/ALG-EXH, T1–T8, TFPT.TOE.COMPLETE.01 and the shared complete 3+1D parent remain [O]. The v1029 tensor target requires global zero-mode removal and is not a TFPT embedding. Round 7 (v1031–v1035; 233 typed checks) adds full free quantum/covariant curvature proofs, auxiliary charged corners, the factorized mirror bound and prescribed-source Ward identities. Microscopic TFPT emergence and universal nonlinear interaction remain open; v1033/v1034 require full repository sources. Wave 4: v998–v1001 + lattice-fundamental quasilocal-family amendment + ALPHA relative-det note.",
   },
@@ -147,9 +147,9 @@ export const RELEASE_ASSETS: Record<string, ReleaseAsset> = {
   "/papers/changelog.pdf": {
     href: "/papers/changelog.pdf",
     ...COMMON,
-    bytes: 1875692,
+    bytes: 1877158,
     sha256:
-      "84ec559a250aa1a4b339e965ad66e64ffdcd3067097852ebb815a923394de45f",
+      "26ec1b9656824b66ea9471468cfff7180ac275d71f7bdf40e8ce62a7143cfcbe",
     changelog:
       "The canonical dated changelog of every change to the theory, the suite, the papers and the website.",
   },

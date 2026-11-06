@@ -1098,7 +1098,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 ## Front matter / support
 
-[documents/tfpt_research_contracts/sections/008-source.tex:1-390](../../../../documents/tfpt_research_contracts/sections/008-source.tex#L1) · `section:5ff3f529ae7be4541192` · frontmatter
+[documents/tfpt_research_contracts/sections/008-source.tex:1-398](../../../../documents/tfpt_research_contracts/sections/008-source.tex#L1) · `section:5ff3f529ae7be4541192` · frontmatter
 
 The fermionic Pfaffian signature ( DOILY.PFAFFIAN. WICK.01, closed — the [formula in source] motif, the sign theorem, the self-hosting counting theorem, and the mod-30 clock). Registered and closed 2026-08-09 ( v888_finite_pfaffian_signature.py, [formula in source] , k6pfaffian-closed; exact integer/sympy, first frozen run). Exact: the [formula in source] motif theorem — the [formula in source] lines of [formula in s
 
@@ -1107,7 +1107,6 @@ Explicit source references:
 - [verification/v365_qg_oneloop_saddle.py](../../../../verification/v365_qg_oneloop_saddle.py#L1) · explicit_file_citation
 - [verification/v57_horizon_crosslinks.py](../../../../verification/v57_horizon_crosslinks.py#L1) · explicit_script_identifier
 - [verification/v908_seam_equilibrium_wiring.py](../../../../verification/v908_seam_equilibrium_wiring.py#L1) · explicit_file_citation
-- [verification/v364_vgeo_sharpen.py](../../../../verification/v364_vgeo_sharpen.py#L1) · explicit_script_identifier
 - [verification/v76_gmetric_reduction.py](../../../../verification/v76_gmetric_reduction.py#L1) · explicit_file_citation
 - [verification/v898_kms_schur_mixing.py](../../../../verification/v898_kms_schur_mixing.py#L1) · explicit_file_citation
 - [verification/v323_bw_geometric_modular.py](../../../../verification/v323_bw_geometric_modular.py#L1) · explicit_script_identifier
@@ -1122,14 +1121,12 @@ Explicit source references:
 - [verification/v77_e8_conformal_net.py](../../../../verification/v77_e8_conformal_net.py#L1) · explicit_file_citation
 - [SEAM.CFIN.TWISTED.RP.01](../../../../verification/status_ledger.csv#L731) · explicit_claim_identifier · original status at linked ledger row
 - [SEAM.CFIN.KMSMIX.01](../../../../verification/status_ledger.csv#L727) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v330_qgamb_admissible_measure.py](../../../../verification/v330_qgamb_admissible_measure.py#L1) · explicit_script_identifier
 - [verification/v344_detk_synthesis.py](../../../../verification/v344_detk_synthesis.py#L1) · explicit_script_identifier
 - [verification/v369_qgamb_redundancy.py](../../../../verification/v369_qgamb_redundancy.py#L1) · explicit_file_citation
 - [verification/v366_mmst_seam_collar.py](../../../../verification/v366_mmst_seam_collar.py#L1) · explicit_script_identifier
 - [verification/v309_modular_bedrock.py](../../../../verification/v309_modular_bedrock.py#L1) · explicit_script_identifier
 - [verification/v972_seam_interaction_front.py](../../../../verification/v972_seam_interaction_front.py#L1) · explicit_file_citation
 - [verification/v995_kms_subnet_rigidity.py](../../../../verification/v995_kms_subnet_rigidity.py#L1) · explicit_file_citation
-- [verification/v334_conformal_resolution.py](../../../../verification/v334_conformal_resolution.py#L1) · explicit_script_identifier
 - [verification/v358_grav_entropy_equilibrium.py](../../../../verification/v358_grav_entropy_equilibrium.py#L1) · explicit_file_citation
 - [QGAMB.REDUNDANCY.01](../../../../verification/status_ledger.csv#L94) · explicit_claim_identifier · original status at linked ledger row
 - [SEAM.STATE.DERIVATION.01](../../../../verification/status_ledger.csv#L728) · explicit_claim_identifier · original status at linked ledger row

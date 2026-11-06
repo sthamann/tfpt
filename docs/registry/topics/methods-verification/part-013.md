@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## DG: original diagonal, not a replacement recurrence.
+
+[experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tex-artefacts/toe_round4_proofs.tex:114-142](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tex-artefacts/toe_round4_proofs.tex#L114) · `section:e383ef5a5e1f2ec28db8` · paragraph
+
+The csc-squared finite product identity and trigamma recurrence for the original remainder give, for [formula in source] , [formula in source] where [formula in source] and [formula in source] . Since [formula in source] for [formula in source] , [formula in source] . The [formula in source] -point Peano kernel and [formula in source] imply [formula in source] On each diagonal cell the imaginary mean vanishes, [formu
+
 ## CROSS: the sufficient one-sided theorem.
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tex-artefacts/toe_round4_proofs.tex:143-174](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tex-artefacts/toe_round4_proofs.tex#L143) · `section:e65838beabd687268ea8` · paragraph
@@ -2113,9 +2119,3 @@ Der separate Prüfer verify_shadows.py importiert keinen ursprünglichen TFPT- o
 [experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/18_audit_v13.tex:1-2](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/18_audit_v13.tex#L1) · `section:5db26c5c342537bd32e7` · chapter
 
 No opening prose excerpt; see the source.
-
-## Was gegenüber v1.1 neu ist
-
-[experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/18_audit_v13.tex:3-5](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/18_audit_v13.tex#L3) · `section:866e9030194940799837` · section
-
-Die sechs zusätzlichen Unterlagen heißen im neuen Quellenregister N1 bis N6; die ursprünglichen S01 bis S11 bleiben unverändert. Ihr Audit trennt exakte endliche Identitäten, numerische Spektren und zusätzliche Modellannahmen. 100 eigene Bedingungen bestanden: 78 exakte beziehungsweise Integritätsprüfungen und 22 numerische. Die anschließende gemeinsame Ausführung hat einen eigenen 231-Bedingungen-Vertrag. Diese Zähl

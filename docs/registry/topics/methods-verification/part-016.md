@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Ein exakter Stern-Spektralfilter unter zusätzlichen Ressourcen
+
+[experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/18_audit_v13.tex:78-90](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/18_audit_v13.tex#L78) · `section:63f4c64732e210245b88` · section
+
+Für [formula in source] gilt Mit [formula in source] und [formula in source] folgen Ein kohärentes Achtzweigregister liefert aus dem früheren Zweisingulett-Eingang [formula in source] Erfolg [formula in source] . Alle acht Ausgänge haben Gewichte [formula in source] . Dies ist eine exakte Alternative zur alten 32-Zweigschaltung. Kontrollierte kontinuierliche Sternpulse und Register bleiben zusätzliche Ressourcen. Erz
+
 ## Einfachheit braucht einen Auslesevertrag
 
 [experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/18_audit_v13.tex:91-98](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/18_audit_v13.tex#L91) · `section:5e577868641c8c010e69` · section
@@ -2919,9 +2925,3 @@ Explicit source references:
 Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
 
 - [experiments/lean4-carrier-rigidity/TfptCarrier/CarrierRankUniqueness.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/CarrierRankUniqueness.lean#L1)
-
-## The loop for [formula in source] — the `` [formula in source] '' is the [formula in source] rank
-
-[universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_5_tfpt_3_e8_audit_bootstrap.tex:12324-12345](../../../../universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_5_tfpt_3_e8_audit_bootstrap.tex#L12324) · `section:9a29bef7d91504823108` · section
-
-The boundary normalisation is [formula in source] . Its integer is exactly the carrier Coxeter number, which the loop above equals to the [formula in source] rank: [formula in source] where [formula in source] is Euler's totient (the number of primitive residues mod [formula in source] [formula in source] the [formula in source] exponents) — so the `` [formula in source] '' has five concordant readings. The tree seed

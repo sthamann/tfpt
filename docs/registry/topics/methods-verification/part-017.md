@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## The loop for [formula in source] — the `` [formula in source] '' is the [formula in source] rank
+
+[universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_5_tfpt_3_e8_audit_bootstrap.tex:12324-12345](../../../../universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_5_tfpt_3_e8_audit_bootstrap.tex#L12324) · `section:9a29bef7d91504823108` · section
+
+The boundary normalisation is [formula in source] . Its integer is exactly the carrier Coxeter number, which the loop above equals to the [formula in source] rank: [formula in source] where [formula in source] is Euler's totient (the number of primitive residues mod [formula in source] [formula in source] the [formula in source] exponents) — so the `` [formula in source] '' has five concordant readings. The tree seed
+
 ## The Möbius origin of the irreducible [formula in source]
 
 [universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_5_tfpt_3_e8_audit_bootstrap.tex:12346-12470](../../../../universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_5_tfpt_3_e8_audit_bootstrap.tex#L12346) · `section:a0bd29de2657307a1b42` · section
