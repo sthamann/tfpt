@@ -308,23 +308,29 @@ the constructive boundary projective limit (constructive-QFT grade) --- now disc
 longer a diffuse ``full QG missing''. \mC
 \end{keybox}
 
-\begin{keybox}[The measure as one-loop fluctuations around the \emph{parameter-free} saddle (\veri{v365\_qg\_oneloop\_saddle.py}, \texttt{QGAMB.SADDLE.01})]
-With the saddle now parameter-free (\vref{v358}/\vref{v359}), the boundary measure of Tier B organises as a
-Gaussian one-loop fluctuation determinant whose ingredients are atom-fixed. \textbf{Fixed quadratic form \mE:}
-the fluctuation inverse-propagator stiffness is the saddle coefficient $1/\cthree=8\pi$ --- no free dimensionless
-dial, so the one-loop problem is \emph{well-posed} (it was not before \vref{v358}). \textbf{Gap-controlled
-convergence \mE:} the fluctuation operator obeys
-$M\ge\Delta_{\mathrm{eff}}=6\log\tfrac32-\tfrac{31}{4\pi^2}\approx1.648>0$ (\vref{v76}/\vref{v337}), so the Gaussian
-integral converges mode-by-mode with no zero/negative modes besides the saddle directions; on the OS spectrum
-$\{0,6\log\tfrac32,6\log3\}$ the regularised one-loop log-det $\operatorname{Tr}'\log M=6\log\tfrac92$ is finite.
-\textbf{Conformal direction \mC:} the one wrong-sign mode ($c_{\mathrm{conf}}(4)=-\tfrac32$) is made convergent by
-the GHP contour ($\int e^{-|c|\phi^2}=\sqrt{2\pi/3}$) with IDG dressing (\vref{v334}). \textbf{Tightness \mE:}
-$\chi=1/(1-(2/3)^6)=729/665<\infty$ (\vref{v330}), so the one-loop measure has a projective limit on the
-admissible sector, with \emph{zero} new dimensionless dials (\vref{v364}). \textbf{Residual:} the full
-\emph{non-perturbative} projective limit (G6 on the ambient sector) is now discharged as a \mC\ redundancy
-(\vref{v369}, keybox below) --- this sharpens C7 from
-``diffuse full QG'' to a one-loop-controlled Gaussian problem around a parameter-free saddle and then to a
-certification object. \mE/\mC
+\begin{keybox}[Finite saddle diagnostics and the conditional Gaussian determinant (\veri{v365\_qg\_oneloop\_saddle.py}, \texttt{QGAMB.SADDLE.01})]
+The saddle discussion supplies the scalar stiffness $1/\cthree=8\pi$ and the
+positive gap margin $6\log(3/2)-31/(4\pi^2)\approx1.648$ \mE.
+Applying the latter bound to an actual fluctuation Hessian remains conditional;
+the scalar prefactor does not specify its whole spectrum or integration base.
+For the stated two positive OS energies
+$E_1=6\log(3/2)$ and $E_2=6\log3$, the finite calculation is
+\[
+  \operatorname{Tr}'H=-\log\det'T=E_1+E_2=6\log(9/2),\qquad T=e^{-H}.
+\]
+This energy sum was previously mislabeled as a Gaussian Hessian log determinant.
+If $M$ is additionally identified with $H$ on those two modes, then \mC
+\[
+  \log\det'M=\log(E_1E_2)=\log\!\bigl[36\log(3/2)\log3\bigr].
+\]
+The corresponding half log determinant is conditional; stiffness, base normalization
+and the original gauge, ghost and relative factors must still be retained.
+The stated GHP rotated conformal Gaussian gives $\sqrt{2\pi/3}$ \mC.
+The exact series $\chi=1/(1-(2/3)^6)=729/665$ is a finite susceptibility \mE;
+it alone establishes neither tightness nor projective consistency of a geometric measure.
+This finite diagnostic does not construct the whole common field source or its
+primitive marked values. The separate conditional admissible IR and ambient
+redundancy route below is retained. \mE/\mC/\mO
 \end{keybox}
 
 \begin{keybox}[The holographic route: the ambient measure is boundary-\emph{redundant}, not missing dynamics (\veri{v369\_qgamb\_redundancy.py}, \texttt{QGAMB.REDUNDANCY.01})]
@@ -381,9 +387,11 @@ embedding} $(D_5)_1\!\times\!(A_3)_1\subset(E_8)_1$ (coset $c=0$). Now $(E_8)_1$
 \emph{$E_8$-lattice} VOA / conformal net --- one of the most rigorously constructed objects in mathematical QFT
 (Frenkel--Kac--Segal; Kawahigashi--Longo / Carpi). \textbf{So the conditional theorem becomes concrete:}
 \emph{identify the seam-Calder\'on boundary measure with the $(E_8)_1$ lattice net} (carrier $=(D_5)_1\!\times\!(A_3)_1$
-subnet), and the gap $\Delta_{\mathrm{eff}}>0$ supplies the clustering/tightness --- so $G6$ is imported into
-existing RCFT/conformal-net rigor rather than built from scratch. Residual $=$ the net identification $+$ bulk
-reconstruction. \mE\ (charges, embedding) $+$ \mC\ (identification)
+subnet), with clustering on that matched boundary sector. Applying this route to a geometric
+projective family retains its actual compatibility and tightness hypotheses; the scalar
+susceptibility in \vref{v365} does not verify them. The RCFT/conformal-net construction remains
+available under the named identification and bulk reconstruction premises.
+\mE\ (charges, embedding) $+$ \mC\ (identification and application)
 \end{keybox}
 
 \begin{keybox}[The full covariant field equation carries no free dimensionless Newton coupling under the named QFT/entanglement premises \mC: fixed-volume equilibrium gives the Einstein tensor with conservation as an output (\veri{v359\_grav\_nonlinear\_einstein.py})]

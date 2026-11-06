@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## What is new, what is old, what stays open
+
+[experiments/theory-contracts/universalraum-spin-lift-basics-20260915/sources/input_5_tfpt_3_e8_audit_bootstrap.tex:12182-12214](../../../../experiments/theory-contracts/universalraum-spin-lift-basics-20260915/sources/input_5_tfpt_3_e8_audit_bootstrap.tex#L12182) · `section:f11aafdd5b2f10d1367d` · section
+
+The flavor selector [formula in source] is the terminal orbit of the [formula in source] cascade; the compiler is the cascade's IR endpoint. The atlas branching blocks ( [formula in source] ) are the cascade's UV head ( [formula in source] ); the secondary atlas and the orbit cascade are the same spine read top-down vs.\ as subalgebras. The anchor power sums sit on doubled-exponent rungs: [formula in source] ( [formu
+
 ## The self-consistency loop
 
 [experiments/theory-contracts/universalraum-spin-lift-basics-20260915/sources/input_5_tfpt_3_e8_audit_bootstrap.tex:12215-12225](../../../../experiments/theory-contracts/universalraum-spin-lift-basics-20260915/sources/input_5_tfpt_3_e8_audit_bootstrap.tex#L12215) · `section:f81e7d9852f1b4758b79` · part

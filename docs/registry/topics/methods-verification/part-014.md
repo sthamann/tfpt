@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Was gegenüber v1.1 neu ist
+
+[experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/18_audit_v13.tex:3-5](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/18_audit_v13.tex#L3) · `section:866e9030194940799837` · section
+
+Die sechs zusätzlichen Unterlagen heißen im neuen Quellenregister N1 bis N6; die ursprünglichen S01 bis S11 bleiben unverändert. Ihr Audit trennt exakte endliche Identitäten, numerische Spektren und zusätzliche Modellannahmen. 100 eigene Bedingungen bestanden: 78 exakte beziehungsweise Integritätsprüfungen und 22 numerische. Die anschließende gemeinsame Ausführung hat einen eigenen 231-Bedingungen-Vertrag. Diese Zähl
+
 ## Die zentrale Reparatur: Wege nicht zu früh unterscheiden
 
 [experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/18_audit_v13.tex:6-28](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/18_audit_v13.tex#L6) · `section:a736ece557b95fcb2fb0` · section
@@ -686,13 +692,3 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 - [(* ==== v532 round: E8.DEGREE.MODULAR.01 -- the dual-degree checksum 744. Exact mirrors: dual products, j-series constant 744, D16 control, non-heterotic controls, prime-totative fingerprint. ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L8334)
 - [(* v418 (3): the triple + negative controls *) checkExact["v418 ARITH.NORMTRIPLE.01 (iii): det(3I+2 Comp(Phi_{3,4,5}))=(7,13,55) over Z[omega],Z[i],Z[zeta5] (atoms 3,2,5); NEG control anchor (5,4)->(21,41,461) (461 prime, only the carrier ring distinguishes); (3,2) FORCED not unique, (2,1)->(3,5,11)", {Det[3 I2 + 2 C3], Det[3 I2 + 2 C4], Det[3 I4 + 2 C5]} == {7, 13, 55} && {Det[5 I2 + 4 C3], Det[5 I2 + 4 C4], Det[5 I4 + 4 C5]} == {21, 41, 461} && PrimeQ[461] && {Det[2 I2 + C3], Det[2 I2 + C4], Det[2 I4 + C5]} == {3, 5, 11}]; ]; (* ==== v419 round: the seam mu4 = Gal(Q(zeta5)) = (Z/5)^x ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2548)
 - [(* ==== v531 round: COX.STAGEA.TENSOR.01 -- the Stage A tensor clock. Exact mirrors: order 30, chi = Phi30, Ramanujan trace tomography, honest Phi15 scope, coprimality controls. ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L8300)
-
-## [formula in source] monodromy, flavor and CP readouts
-
-[experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex:4495-4512](../../../../experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex#L4495) · `section:1d4a9f718ea7ff603e24` · section
-
-Machine checks for this section: v88_ cp_ phase_ audit.py
-
-Explicit source references:
-
-- [verification/v88_cp_phase_audit.py](../../../../verification/v88_cp_phase_audit.py#L1) · explicit_file_citation

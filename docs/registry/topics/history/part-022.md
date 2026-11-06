@@ -4,6 +4,26 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## =150 2026-07-23 (VII) ( v529 — the interacting Fidkowski–Kitaev seam toy promoted as the ledger row SEAM.INT.FKTOY.01: the FIRST firing Kill-Test-2 shadow — triple verdict F1 [formula in source] KILL / F2 [formula in source] KILL / F3 [formula in source] ERFOLG; the celestial/twistor story in tfpt_3 gains Step 30 and the header goes twenty-six [formula in source] thirty steps — (1) F1 [formula in source] KILL : [formula in source] exists exactly on the interacting model ( [formula in source] , [formula in source] , clock-tower inversion, [formula in source] ) so Kill-Test 1 does not fire; but Kill-Test 2 fires at toy level: RP breaks for every [formula in source] — inertia ladder [formula in source] ; Gibbs [formula in source] same ladder; mechanism [formula in source] interference; STRADDLE LAW ( [formula in source] ); \ fence one toy / one interaction class / flat-band parent — narrows the Woit route, does not close it; WOIT.OS.TWISTOR.01 stays Open with the toy shadow documented as a named Kill-Test-2 threat; (2) F2 [formula in source] KILL : the TENTH side-blind test ( [formula in source] ) — [formula in source] maps [formula in source] EXACTLY despite [formula in source] -seeing spectra; (3) F3 [formula in source] ERFOLG : grading [formula in source] [formula in source] tower [formula in source] FK anchor [formula in source] constructive OS quotient at [formula in source] ; Wolfram extension [formula in source] (verified engine run); suite [formula in source] ; NO marker moves)
+
+[documents/changelog/sections/003-source.tex:231-244](../../../../documents/changelog/sections/003-source.tex#L231) · `section:e4833e93d562514547a4` · subsection
+
+Suite. New module v529_seam_interacting_toy_fk.py ( [formula in source] checks, [formula in source] s); registered in run_all.py [formula in source] script_registry.csv; suite [formula in source] modules green. Ledger. New row SEAM.INT.FKTOY.01; WOIT.OS.TWISTOR.01 text-precised (Kill-Test-2 toy shadow [formula in source] straddle law); scoreboard rows text-precised ( [formula in source] ); no status moves. Papers. tf
+
+Explicit source references:
+
+- [experiments/next.txt](../../../../experiments/next.txt#L1) · explicit_file_citation
+- [verification/v529_seam_interacting_toy_fk.py](../../../../verification/v529_seam_interacting_toy_fk.py#L1) · explicit_file_citation
+- [README.md](../../../../README.md#L1) · explicit_file_citation
+- [verification/script_registry.csv](../../../../verification/script_registry.csv#L1) · explicit_file_citation
+- [verification/run_all.py](../../../../verification/run_all.py#L1) · explicit_file_citation
+- [WOIT.OS.TWISTOR.01](../../../../verification/status_ledger.csv#L585) · explicit_claim_identifier · original status at linked ledger row
+- [SEAM.INT.FKTOY.01](../../../../verification/status_ledger.csv#L596) · explicit_claim_identifier · original status at linked ledger row
+
+Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
+
+- [(* ==== v529 round: SEAM.INT.FKTOY.01 -- interacting FK toy / Kill-Test-2 shadow. Exact mirrors: (i) Z8 integer identities; (ii) straddle combinatorics; (iii) FK binomial ladder multiplicities. 256-dim spectra Python-only. ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L8245)
+
 ## =150 2026-07-23 (VI) ( v528 — the alignment bit as an exact measurable TWIST-CLASS choice promoted as the ledger row SEAM.BIT.TWISTCLASS.01: the physical definition — verdict SUCCESS; the celestial/twistor story in tfpt_3 gains Step 29 — (1) Facets \#14 ( [formula in source] -flip [formula in source] ) and \#15 (twist-frustration [formula in source] ) both directions exact (cardinality lemma [formula in source] ; [formula in source] -class census [formula in source] axes: flip class exactly at [formula in source] ); (2) order parameter [formula in source] at [formula in source] else [formula in source] , gauge-robust; (3) unification \#14=\#15=flag-transitivity [formula in source] ONE [formula in source] invariant ( v512 web [formula in source] ); Kramers [formula in source] POSITION half (derived), twist class [formula in source] MODULUS half (the input); (4) \ measurement sketch (interferometric in principle); the bit remains formal input; NO marker moves)
 
 [documents/changelog/sections/003-source.tex:245-254](../../../../documents/changelog/sections/003-source.tex#L245) · `section:1dfae3ea2125bff27c23` · subsection
@@ -2810,34 +2830,3 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 - [(* ==== v268: reactor-angle exponent = carrier hypercharge trace (FLAV.TH13.01) ==== *) Module[{Yvec, trY2, roots}, roots = Sort[Y /. Solve[6 Y^2 - Y - 1 == 0, Y]]; Yvec = {-1/3, -1/3, -1/3, 1/2, 1/2}; trY2 = Total[Yvec^2]; checkExact["v268 FLAV.TH13.01: the theta_13 exponent is the carrier hypercharge trace -- " <> "tr_E Y^2 = 3(1/3)^2 + 2(1/2)^2 = 5/6 over the 5-slot carrier hypercharge " <> "Y=diag(-1/3,-1/3,-1/3,1/2,1/2) (the anomaly-free roots {-1/3,1/2} of 6Y^2-Y-1=0), so " <> "sin^2 theta_13 = phi0 e^{-5/6} = phi0 e^{-tr_E Y^2}; complement 1 - 5/6 = 1/6 = the neutrino ratio. " <> "theta_13 is its own carrier-trace channel (the mu-tau breaking gives only ~1e-3, not 0.023).", roots === Sort[{-1/3, 1/2}] && trY2 === 5/6 && (1 - trY2) === 1/6]; ]; (* ==== v271: concrete Epstein-Glaser one-loop quartic renormalization (QFT4D.SPERT.02) ==== v269 (S_pert skeleton) + v270 (PMNS Jarlskog, numerical) are Python-only; v271's exact EG core (scaling degree, counterterm count, loop factor) is mirrored here. *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2069)
 - [(* ==== v281: anyon-condensation tower + Gauss-Milgram (QGAMB.MODULAR.01) ==== *) Module[{cE8, cD8, cD5, cA3, dE8, dD8, dcar, gm}, cE8 = {{2,-1,0,0,0,0,0,0},{-1,2,-1,0,0,0,0,0},{0,-1,2,-1,0,0,0,0},{0,0,-1,2,-1,0,0,0}, {0,0,0,-1,2,-1,0,-1},{0,0,0,0,-1,2,-1,0},{0,0,0,0,0,-1,2,0},{0,0,0,0,-1,0,0,2}}; cD8 = {{2,-1,0,0,0,0,0,0},{-1,2,-1,0,0,0,0,0},{0,-1,2,-1,0,0,0,0},{0,0,-1,2,-1,0,0,0}, {0,0,0,-1,2,-1,0,0},{0,0,0,0,-1,2,-1,-1},{0,0,0,0,0,-1,2,0},{0,0,0,0,0,-1,0,2}}; cD5 = {{2,-1,0,0,0},{-1,2,-1,0,0},{0,-1,2,-1,-1},{0,0,-1,2,0},{0,0,-1,0,2}}; cA3 = {{2,-1,0},{-1,2,-1},{0,-1,2}}; dE8 = Det[cE8]; dD8 = Det[cD8]; dcar = Det[cD5] Det[cA3]; gm = Sum[Exp[2 Pi I h], {h, {0, 1/2, 1, 1}}]; (* D8 anyons 1,v,s,c *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2153)
 - [experiments/lean4-carrier-rigidity/TfptCarrier/CartanDeterminants.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/CartanDeterminants.lean#L1)
-
-## 2026-06-25 (The Galois [formula in source] Net bridge: v422)
-
-[documents/changelog/sections/012-source.tex:352-372](../../../../documents/changelog/sections/012-source.tex#L352) · `section:4defd98603f63d26dd3f` · subsection
-
-New module v422 ( SEAM.GALOIS.NET.01). The seam [formula in source] is the SAME cyclic [formula in source] as the [formula in source] simple-current glue — not a mere order- [formula in source] coincidence — bridging the Galois gearbox of v419 to [formula in source] / SEAM.EQUIV.01. \ [formula in source] (one Smith invariant factor [formula in source] [formula in source] cyclic, [formula in source] ); [formula in sou
-
-Explicit source references:
-
-- [verification/run_all.py](../../../../verification/run_all.py#L1) · explicit_file_citation
-- [SEAM.EQUIV.01](../../../../verification/status_ledger.csv#L381) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v419_seam_galois_carrier.py](../../../../verification/v419_seam_galois_carrier.py#L1) · explicit_script_identifier
-- [verification/script_registry.csv](../../../../verification/script_registry.csv#L1) · explicit_file_citation
-- [verification/v89_carrier_index_lemma.py](../../../../verification/v89_carrier_index_lemma.py#L1) · explicit_script_identifier
-- [verification/v422_galois_net_bridge.py](../../../../verification/v422_galois_net_bridge.py#L1) · explicit_script_identifier
-- [verification/status_ledger.csv](../../../../verification/status_ledger.csv#L1) · explicit_file_citation
-- [SEAM.GALOIS.NET.01](../../../../verification/status_ledger.csv#L489) · explicit_claim_identifier · original status at linked ledger row
-- [verification/v154_simple_current_theorem.py](../../../../verification/v154_simple_current_theorem.py#L1) · explicit_script_identifier
-
-Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
-
-- [experiments/lean4-carrier-rigidity/TfptCarrier/SeamApplicabilityLedger.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/SeamApplicabilityLedger.lean#L1)
-- [experiments/lean4-carrier-rigidity/TfptCarrier.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier.lean#L1)
-- [(* v418 (3): the triple + negative controls *) checkExact["v418 ARITH.NORMTRIPLE.01 (iii): det(3I+2 Comp(Phi_{3,4,5}))=(7,13,55) over Z[omega],Z[i],Z[zeta5] (atoms 3,2,5); NEG control anchor (5,4)->(21,41,461) (461 prime, only the carrier ring distinguishes); (3,2) FORCED not unique, (2,1)->(3,5,11)", {Det[3 I2 + 2 C3], Det[3 I2 + 2 C4], Det[3 I4 + 2 C5]} == {7, 13, 55} && {Det[5 I2 + 4 C3], Det[5 I2 + 4 C4], Det[5 I4 + 4 C5]} == {21, 41, 461} && PrimeQ[461] && {Det[2 I2 + C3], Det[2 I2 + C4], Det[2 I4 + C5]} == {3, 5, 11}]; ]; (* ==== v419 round: the seam mu4 = Gal(Q(zeta5)) = (Z/5)^x ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2548)
-- [(* v419 (3): the seam mu4 = Gal(Q(zeta5)) via the explicit Frobenius G *) checkExact["v419 SEAM.GALOIS.01 (iii): the seam mu4 = Gal(Q(zeta5)): the Frobenius G (zeta5->zeta5^2) has G C5 G^-1 = C5^2, G^4=I, G^2 C5 G^-2 = C5^-1 (complex conj)", G . C5 . Inverse[G] == C5 . C5 && MatrixPower[G, 4] == I4 && MatrixPower[G, 2] . C5 . Inverse[MatrixPower[G, 2]] == MatrixPower[C5, 4] && G != I4 && MatrixPower[G, 2] != I4]; ]; (* ==== v422 round: the Galois<->Net bridge (mu4 = Gal(Q(zeta5)) = (E8)_1 glue) ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2575)
-- [experiments/lean4-carrier-rigidity/TfptCarrier/AxiomCheck.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/AxiomCheck.lean#L1)
-- [experiments/lean4-carrier-rigidity/TfptCarrier/AuditCheck.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/AuditCheck.lean#L1)
-- [(* v419 (1): 30 squarefree => no order-4 on the cyclic clock *) checkExact["v419 SEAM.GALOIS.01 (i): 30=2*3*5 squarefree => Z/30 has orders {1,2,3,5,6,10,15,30}, NO order 4; the seam mu4 is forced onto the Galois side", SquareFreeQ[30] && Union[Table[30/GCD[k, 30], {k, 0, 29}]] == {1, 2, 3, 5, 6, 10, 15, 30} && ! MemberQ[Table[30/GCD[k, 30], {k, 0, 29}], 4]]; (* v419 (2): (Z/30)^x = mu4 x Z2 = (Z/5)^x x (Z/3)^x *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2563)
-- [(* ---- (v89) carrier index lemma ---- *) checkExact["v89 KLM: mu(D5xA3)=16, mu(E8)=1 => index 4 = |mu4| = |Z2|^2", (4*4 == 16) && (Sqrt[16/1] == 4) && (4 == mu4) && (4 == 2^2)]; checkExact["v89 branching 248 = 45+15+64+64+60; glue sectors h = 1", (45 + 15 + 16*4 + 16*4 + 10*6 == 248) && (1/2 + 1/2 == 1) && (5/8 + 3/8 == 1)]; checkExact["v89 mu-additivity: 16/4^2 = 1 (holomorphy follows)", 16/4^2 == 1]; (* ---- (v90) conical defect chain ---- *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L117)
-- [(* ---- (v154) Simple-Current Extension Theorem ---- *) Module[{Lord = 4, cB, muA, muB}, cB = 5 + 3; muA = 4*4; muB = muA/Lord^2; checkExact["v154 Simple-Current Extension: |L|=4=|mu4| (isotropic q(k(1,1))=k^2 in Z); c(B)=5+3=8; mu(B)=mu(A)/|L|^2=16/16=1 => holomorphic => B=(E8)1 (unique even-unimodular rank-8; SO(16)1 mu=4 excluded)", AllTrue[Range[0, 3], IntegerQ[5 #^2/8 + 3 #^2/8] &] && Lord == 4 && cB == 8 && muA == 16 && muB == 1 && 4 != muB]; ]; (* ---- (v156) seam-net construction: DtN = |k| + the (E8)_1 character ---- *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L1380)
-- [experiments/lean4-carrier-rigidity/TfptCarrier/GlueUniqueness.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/GlueUniqueness.lean#L1)

@@ -1,0 +1,86 @@
+TFPT scientific source excerpt
+Original repository path: verification/v365_qg_oneloop_saddle.py
+Original file SHA-256: c8e1ea70f50dcce2ef84f7227d1f45a23b805cedddb6e77c68da0f2c70191692
+Inclusive original lines: 27-104
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000027 | 
+000028 | def run():
+000029 |     reset()
+000030 |     print("v365  QGAMB.SADDLE.01: finite saddle diagnostics; conditional Gaussian determinant")
+000031 | 
+000032 |     # Scalar coefficient inherited from the original saddle discussion.
+000033 |     stiffness = 1 / c3
+000034 |     check("SCALAR STIFFNESS [E]: 1/c3=8pi (v358/v359); this coefficient alone "
+000035 |           "does not specify the whole fluctuation Hessian or integration base",
+000036 |           sp.simplify(stiffness - 8 * pi) == 0)
+000037 | 
+000038 |     # The numeric margin; application to a whole Hessian is conditional.
+000039 |     twoV = 2 * dimE8 * c3**2
+000040 |     Delta = 6 * sp.log(sp.Rational(3, 2))
+000041 |     Delta_eff = Delta - twoV
+000042 |     check("GAP MARGIN [E]: Delta-2||V||=6 ln(3/2)-31/(4pi^2)=%.4f>0; modewise "
+000043 |           "Gaussian convergence is conditional on the actual fluctuation operator "
+000044 |           "satisfying this lower bound" % float(Delta_eff),
+000045 |           sp.simplify(twoV - sp.Rational(31, 4) / pi**2) == 0
+000046 |           and 31 == 2**g_car - 1 and dimE8 == 8 * 31
+000047 |           and float(Delta_eff) > 0 and abs(float(Delta_eff) - 1.6476) < 1e-3)
+000048 | 
+000049 |     # Literal original two positive transfer energies; omit the Perron mode.
+000050 |     energies = [6 * sp.log(sp.Rational(3, 2)), 6 * sp.log(3)]
+000051 |     transfer_eigenvalues = [sp.Rational(2, 3)**6, sp.Rational(1, 3)**6]
+000052 |     trace_H = sum(energies)
+000053 |     neg_logdet_T = -sp.log(sp.prod(transfer_eigenvalues))
+000054 |     check("FINITE TRANSFER TRACE [E]: Tr' H=-log det' T=6 ln(9/2)=%.8f; "
+000055 |           "the old energy sum is not a Gaussian Hessian log determinant" % float(trace_H),
+000056 |           sp.simplify(trace_H - 6 * sp.log(sp.Rational(9, 2))) == 0
+000057 |           and sp.simplify(trace_H - neg_logdet_T) == 0)
+000058 | 
+000059 |     # Conditional M=H only; no physical Hessian or base density is selected.
+000060 |     det_H = sp.prod(energies)
+000061 |     logdet_H = sp.log(det_H)
+000062 |     W_if_M_eq_H = logdet_H / 2
+000063 |     check("CONDITIONAL GAUSSIAN DATA [C]: if M=H on these two positive modes, "
+000064 |           "det' M=36 ln(3/2) ln3, log det' M=%.8f and (1/2)log det' M=%.8f; "
+000065 |           "stiffness, measure normalization and original relative/ghost factors remain"
+000066 |           % (float(logdet_H), float(W_if_M_eq_H)),
+000067 |           sp.simplify(det_H - 36 * sp.log(sp.Rational(3, 2)) * sp.log(3)) == 0
+000068 |           and all(e > 0 for e in energies)
+000069 |           and sp.simplify(sp.exp(logdet_H) - det_H) == 0
+000070 |           and abs(float(logdet_H - trace_H)) > 1)
+000071 | 
+000072 |     # 4. conformal direction convergent on the GHP contour
+000073 |     c_conf = sp.Rational(-3, 2)
+000074 |     phi = sp.symbols('phi', real=True)
+000075 |     ghp_int = sp.integrate(sp.exp(-sp.Abs(c_conf) * phi**2), (phi, -sp.oo, sp.oo))
+000076 |     check("GHP CONTOUR [C]: for the stated rotated conformal Gaussian, "
+000077 |           "int exp(-|c|phi^2)=sqrt(2pi/3); the whole source contour is not derived here",
+000078 |           sp.simplify(ghp_int - sp.sqrt(pi / sp.Abs(c_conf))) == 0
+000079 |           and sp.simplify(ghp_int - sp.sqrt(2 * pi / 3)) == 0)
+000080 | 
+000081 |     # A scalar transfer susceptibility, not a geometric tightness certificate.
+000082 |     lambda2 = sp.Rational(2, 3)**6
+000083 |     chi = 1 / (1 - lambda2)
+000084 |     check("FINITE SUSCEPTIBILITY [E]: sum_n (2/3)^(6n)=729/665; this scalar series "
+000085 |           "alone proves no geometric measure tightness or projective limit",
+000086 |           sp.simplify(chi - sp.Rational(729, 665)) == 0 and float(chi) < sp.oo)
+000087 | 
+000088 |     central_charge = g_car + N_fam
+000089 |     check("DIMENSIONLESS BOOKKEEPING [E]: c=g_car+N_fam=8; these expressions use "
+000090 |           "the supplied atoms, not an evaluated whole fluctuation spectrum",
+000091 |           central_charge == 8)
+000092 | 
+000093 |     check("SCOPE [C]/[O]: whole original field integration and its marked values "
+000094 |           "are not computed here; the separate conditional IR/ambient redundancy "
+000095 |           "route is retained", True)
+000096 | 
+000097 |     return summary("v365 finite saddle diagnostics: stiffness 8pi; positive gap margin; "
+000098 |                    "Tr' H=-log det' T=6 ln(9/2); conditional M=H logdet "
+000099 |                    "log[36 ln(3/2) ln3]; GHP integral and susceptibility 729/665; "
+000100 |                    "no whole measure or tightness construction")
+000101 | 
+000102 | 
+000103 | if __name__ == "__main__":
+000104 |     raise SystemExit(1 if run() else 0)

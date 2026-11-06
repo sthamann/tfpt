@@ -4,6 +4,28 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Appendix: computational verification
+
+[documents/tfpt_4_frontier/sections/004-source.tex:200-215](../../../../documents/tfpt_4_frontier/sections/004-source.tex#L200) · `section:0c7b2f5d7f77f90fe85c` · section
+
+These are the frontier items: most carry \ (open) or \ (conditional) and are therefore not part of the pass/fail suite. The one quantitative handle that is reproduced is [formula in source] (whence the [formula in source] order) in verification/v7_gravity_cosmo.py. The [formula in source] structure and the gap-decoupling of the physical QG sector are machine-checked ( v28_gravity_fR.py, v36_spectral_action_g2.py); th
+
+Explicit source references:
+
+- [verification/v28_gravity_fR.py](../../../../verification/v28_gravity_fR.py#L1) · explicit_file_citation
+- [verification/run_all.py](../../../../verification/run_all.py#L1) · explicit_file_citation
+- [verification/README.md](../../../../verification/README.md#L1) · explicit_file_citation
+- [verification/v7_gravity_cosmo.py](../../../../verification/v7_gravity_cosmo.py#L1) · explicit_file_citation
+- [verification/v369_qgamb_redundancy.py](../../../../verification/v369_qgamb_redundancy.py#L1) · explicit_script_identifier
+- [verification/v374_ftransfer_qcd.py](../../../../verification/v374_ftransfer_qcd.py#L1) · explicit_script_identifier
+- [verification/v36_spectral_action_g2.py](../../../../verification/v36_spectral_action_g2.py#L1) · explicit_file_citation
+
+Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
+
+- [(* v477 (i): Frullani + the moment dictionary at flat weight *) frul = Integrate[(Exp[-aa tt] - Exp[-tt])/tt, {tt, 0, Infinity}, Assumptions -> aa > 0]; eig = Join[{1}, Table[1/4, 4], Table[1/6, 6]]; tr = Total[Exp[-tt (1 - bb # RR)] & /@ eig] - 11 Exp[-tt]; serR = Normal[Series[tr, {RR, 0, 2}]]; mu1f = Integrate[Coefficient[serR, RR, 1]/tt, {tt, 0, Infinity}]; mu2f = Integrate[Coefficient[serR, RR, 2]/tt, {tt, 0, Infinity}]; checkExact["v477 GRAV.ENTROPIC.SCALEFLOW.01 (i): the Frullani/scale-flow identity -Log[a] = Integrate[(e^{-a t}-e^{-t})/t] (symbolic) and the moment dictionary -- at the FLAT weight the maximally-symmetric relative trace integrates to exactly the v475 raw coefficients 3 b R + (17/24) b^2 R^2 (unit moments mu1 = mu2 = 1): the raw entropic action is the unit-moment point of a scale-measure family", frul == -Log[aa] && Simplify[mu1f - 3 bb] == 0 && Simplify[mu2f - (17/24) bb^2] == 0]; (* v477 (ii): the one moment condition + closure + v36 consistency *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L3071)
+- [(* v475 (iii): the Lorentzian timelike positivity witness *) gL = DiagonalMatrix[{-1, 1, 1, 1}]; mM = Outer[Times, {vv, 0, 0, 0}, {vv, 0, 0, 0}]; evT = Sort[Eigenvalues[(gL + aal mM) . Inverse[gL]]]; evS = Sort[Eigenvalues[(gL + aal Outer[Times, {0, vv, 0, 0}, {0, vv, 0, 0}]) . Inverse[gL]]]; checkExact["v475 GRAV.ENTROPIC.SCALARON.01 (iii): the Lorentzian-positivity witness -- on Minkowski a TIMELIKE gradient gives G g^-1 eigenvalues {1 - alpha v^2, 1, 1, 1} (nonpositive for v^2 >= 1/alpha, ln undefined) while a SPACELIKE gradient gives {1 + alpha v^2, 1, 1, 1} (positive for all v) -- the v473 caveat exhibited, the OS route sturdier", Sort[evT] == Sort[{1 - aal vv^2, 1, 1, 1}] && Sort[evS] == Sort[{1 + aal vv^2, 1, 1, 1}]]; ]; (* ==== v477 round: the scale-flow representation of the entropic action -- the exact content: the Frullani identity Integrate[(e^{-a t}-e^{-t})/t] = -Log[a], the moment dictionary (flat weight = unit moments = the v475 raw coefficients 3 b R + (17/24) b^2 R^2), the ONE moment condition mu2/mu1^2 = (72/17)(8 pi)^9 with the exact closure (4608 pi^2/17)/((72/17)(8 pi)^9) = c3^7, and the v36 consistency f0 = 6 (4 pi)^2/c3^7 <=> M^2 = c3^7 Mbar^2; mirrors v477 (the chi-form quadrature is numerical, Python-only). ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L3052)
+- [(* ---- (v24) quark ratio closure ---- *) checkExact["c_u/c_d = g_car*11/(N_fam^2 Delta_Q) = 55/117", (gcar*11)/(Nfam^2*13) == 55/117]; checkExact["c_c/c_s = p_5(a)/(Omega_adm-1) = 34/47", pn[5]/(48 - 1) == 34/47]; checkExact["c_t/c_b = N_fam/(2 Delta_Q) = 3/26", Nfam/(2*13) == 3/26]; check["m_c/m_s = (34/47)/phi0 = 13.605", (34/47)/phi0, 13.605, 10^-3]; check["m_t/m_b = (3/26)/phi0^2 = 40.81", (3/26)/phi0^2, 40.81, 10^-2]; (* ---- (v36) G2: spectral-action Seeley-DeWitt coefficients -> R + R^2 ---- *)](../../../../verification/wolfram/tfpt_readouts.wl#L105)
+
 ## -1.2cm TFPT — Red Team / Stress Test layer\\[2mm] Adversarial targets A–E, the QFT round (F) and the seam round (G): try to break the reductions, not confirm them
 
 [documents/tfpt_5_redteam/preamble.tex:1-37](../../../../documents/tfpt_5_redteam/preamble.tex#L1) · `section:57628e792bbc3f4e2f1c` · frontmatter
@@ -2245,9 +2267,3 @@ Explicit source references:
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tex-artefacts/toe_round4_proofs.tex:23-113](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tex-artefacts/toe_round4_proofs.tex#L23) · `section:e6789663704e1e5cda55` · paragraph
 
 Put [formula in source] , [formula in source] , [formula in source] , [formula in source] and let bars denote normalized means over [formula in source] . Define [formula in source] Partial fractions give [formula in source] , [formula in source] , [formula in source] , [formula in source] and [formula in source] , with [formula in source] . The identities used are the standard cotangent and polygamma identities https
-
-## DG: original diagonal, not a replacement recurrence.
-
-[experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tex-artefacts/toe_round4_proofs.tex:114-142](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/fortsetzung/source-snapshots/tfpt/tex-artefacts/toe_round4_proofs.tex#L114) · `section:e383ef5a5e1f2ec28db8` · paragraph
-
-The csc-squared finite product identity and trigamma recurrence for the original remainder give, for [formula in source] , [formula in source] where [formula in source] and [formula in source] . Since [formula in source] for [formula in source] , [formula in source] . The [formula in source] -point Peano kernel and [formula in source] imply [formula in source] On each diagonal cell the imaginary mean vanishes, [formu

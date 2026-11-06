@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Die Ausgangsannahmen enthalten mehr als zwei Zahlen
+
+[experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/02_algebra.tex:3-12](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/02_algebra.tex#L3) · `section:965df915fe3244035611` · section
+
+Die historische Kurzfassung nennt [formula in source] und einen fünfteiligen Träger. Vollständig gelesen setzt P1 einen orientierten Rand beziehungsweise eine Naht, einen geeigneten positiven Kern und eine Normierung voraus. P2 setzt Art und Struktur des Trägers voraus; die spätere [formula in source] -Lesart wird mit Farb- und schwachen Richtungen verbunden. Orientierung, Positivität, komplexe Struktur und Markierun
+
 ## Warum ein Logarithmus noch keine Sekunde ist
 
 [experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/06_zeit_echo.tex:58-62](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/06_zeit_echo.tex#L58) · `section:d9cb81021e9bdd93448f` · section

@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Level 2.9 — the [formula in source] Coxeter cyclotomic compiler (meta-theorem)
+
+[experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex:4442-4467](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex#L4442) · `section:ef6b3386018f18c6b0d4` · subsection
+
+The three hard carrier atoms — weak rank [formula in source] , color rank / family count [formula in source] , carrier rank [formula in source] — generate the [formula in source] data cyclotomically, without taking [formula in source] as input. Set where [formula in source] is the Coxeter number and [formula in source] the rank. Then the standard [formula in source] , [formula in source] give Moreover the [formula in
+
 ## Level 3 — conjectural geometric readings ( )
 
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex:4468-4494](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex#L4468) · `section:d6fc33b23f07258c35e0` · subsection
@@ -1177,18 +1183,3 @@ Two carrier roots generate the family and the transport cusps . With [formula in
 [experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex:3667-3691](../../../../experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex#L3667) · `section:7d57528668a5c0220a43` · subsection
 
 The discrete coefficients are not isolated numbers; they are exact carrier traces: So: [formula in source] is a Pythagorean carrier identity ( [formula in source] ); equivalently the anchor-product form [formula in source] reads ``all four glue corners times all ten carrier pairs, plus the one leftover Higgs slot''; the electroweak exponent [formula in source] is the hypercharge variance times the [formula in source]
-
-## Grammar II — the seed grammar (one decoder [formula in source] )
-
-[experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex:3692-3727](../../../../experiments/theory-contracts/universalraum-native-exterior-reset-20260915/sources/tfpt_1_architecture_e8.tex#L3692) · `section:78dc60846ed800922f5e` · section
-
-Machine checks for this section: v106_ review_ validation.py
-
-Explicit source references:
-
-- [verification/v106_review_validation.py](../../../../verification/v106_review_validation.py#L1) · explicit_file_citation
-
-Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
-
-- [experiments/lean4-carrier-rigidity/TfptCarrier/AnchorLadder.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/AnchorLadder.lean#L1)
-- [(* ---- (v105) residual inventory ---- *) checkExact["v105 one-constant inventory (exact items): Koide branch -2/3; gap base (2/3)^6; Nariai bound 2/3; branch separation 2/3; canonical amplitude/frequency 2/3; curvature (2/3)^3", ((3 (-2/3) + 2) == 0) && ((2/3)^6 == 64/729) && ((4/3 - (2/3) Cos[0]) == 2/3) && ((1/3) - (-1/3) == 2/3) && (Coefficient[4/3 - (2/3) Cos[2 ps/3], Cos[2 ps/3]] == -2/3) && (((2/3)^3) == 8/27)]; checkExact["v105 anchor triptych: chi_a = (t-1)^2(t-2); Nariai = (t-1)^2(t+2) = (t-1) x clock (lam-1)(lam+2)", (Expand[(t - 1)^2 (t - 2)] == t^3 - 4 t^2 + 5 t - 2) && (Expand[(t - 1)^2 (t + 2) - (t - 1) (t^2 + t - 2)] === 0)]; check["v105 relocation: eps = (8/24Pi) * 7.125e-121 = 7.56e-122 (deficient ~121.5 orders vs Delta)", (8/(24 Pi)) 7.125329526706`20 10^-121 / (6 Log[3/2]), 10^-121.5076, 10^-3]; checkExact["v105 residual table: exactly FIVE structural objects + 2 irreducibles (typing contract)", Length[{"R1clock", "R2holc8", "R3seamEH", "R4H2", "R5Qreal"}] == 5]; (* ---- (v106) review validation ---- *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L435)

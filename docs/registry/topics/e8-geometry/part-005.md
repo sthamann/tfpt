@@ -4,6 +4,20 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## [formula in source] -anchored metrology closure, and two anchors
+
+[documents/tfpt_1_architecture_e8/sections/008-source.tex:47-118](../../../../documents/tfpt_1_architecture_e8/sections/008-source.tex#L47) · `section:2e952b790b5a8d78fbb2` · section
+
+Machine checks for this section: v60_ lambda_ metrology_ branch.py
+
+Explicit source references:
+
+- [verification/v60_lambda_metrology_branch.py](../../../../verification/v60_lambda_metrology_branch.py#L1) · explicit_file_citation
+
+Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
+
+- [(* ---- (v60) Lambda branch selection: prefactor 3/(4pi^2), branch mis-scale 64pi^3/3 ---- *) checkExact["delta_top=48 c3^4=3/(256 pi^4); (8pi)^2 delta_top=3/(4 pi^2); 2c3/delta_top=64 pi^3/3 (G_N pinned)", With[{c3 = 1/(8 Pi), dt = 48 (1/(8 Pi))^4}, Simplify[dt - 3/(256 Pi^4)] == 0 && Simplify[(8 Pi)^2 dt - 3/(4 Pi^2)] == 0 && Simplify[2 c3/dt - 64 Pi^3/3] == 0]]; checkExact["action exponents (1,5,10) = K5 counts (5 vertices, C(5,2)=10 edges); Pascal 16=1+5+10", {1, 5, Binomial[5, 2]} == {1, 5, 10} && 1 + 5 + 10 == 16]; (* ---- (v61) boundary-CFT bridge: WZW central charges = atoms, conformal embedding ---- *)](../../../../verification/wolfram/tfpt_readouts.wl#L282)
+
 ## The landscape: [formula in source] is overdetermined
 
 [documents/tfpt_1_architecture_e8/sections/008-source.tex:119-144](../../../../documents/tfpt_1_architecture_e8/sections/008-source.tex#L119) · `section:02cd9e4255c0130088b5` · section
@@ -1972,9 +1986,3 @@ Der Flavoransatz schreibt tatsächlich auf dem zulässigen, invertierbaren Proje
 [documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/004-subsection-auch-die-skalen-besitzen-einen-gemeinsamen-va.tex:178-182](../../../../documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/004-subsection-auch-die-skalen-besitzen-einen-gemeinsamen-va.tex#L178) · `section:7f0a334934c934f50714` · section
 
 Die gemeinsame Verbindung ist konkreter geworden. Das ursprüngliche Fuchssystem liefert jetzt einen wirklichen Wegoperator, der exakt zum bereits verwendeten Sechsertransport äquivalent ist. Auf der anderen Seite liefert die ursprüngliche E8-Quelle eine konkrete neutrale Anregung mit Gewicht zwei und Normquadrat 48. Die gemeinsame Aufgabe ist dadurch keine Suche nach irgendeiner passenden Matrix mehr: Es ist die Herl
-
-## Die tatsächliche Quelle liefert einen bestimmten neutralen Kandidaten
-
-[documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/005-subsection-die-urspr-ngliche-determinantenlinie-tr-gt-be.tex:115-156](../../../../documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/005-subsection-die-urspr-ngliche-determinantenlinie-tr-gt-be.tex#L115) · `section:65038733291239a68723` · subsection
-
-Die ursprüngliche Level-eins-E8-Quelle enthält die Spinorströme [formula in source] mit 64 Komponenten und ihre Gegenfelder. Unter der erklärten Familienauswahl [formula in source] zerfällt dieser Block in [formula in source] . Die erste Komponente ist der hier untersuchte 48er-Materiereadout. Seine Identifikation mit dem ursprünglichen topologischen Familienraum bleibt Teil des markierten Wörterbuchs; die Rechnung b

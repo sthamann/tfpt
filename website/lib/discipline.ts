@@ -77,11 +77,11 @@ export const DISCIPLINE: DisciplineStats =
   },
   "suite": {
     "modules": 707,
-    "checkSites": 8230,
+    "checkSites": 8231,
     "mustfailOccurrences": 3343,
     "mustfailModules": 301,
-    "eMarks": 3710,
-    "cMarks": 1412,
+    "eMarks": 3704,
+    "cMarks": 1411,
     "seededModules": 81,
     "sympyModules": 443
   },

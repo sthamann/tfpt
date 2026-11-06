@@ -4,6 +4,46 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## 2026-06-23 (Directions 3 \& 7 — the two hard functional-analysis residuals ADVANCED: the QG measure as one-loop fluctuations around the parameter-free saddle ( v365), and the seam collar verified IN MMST's free-fermion class so the scaling limit is [formula in source] ( v366))
+
+[documents/changelog/sections/014-source.tex:258-280](../../../../documents/changelog/sections/014-source.tex#L258) · `section:4a157afd200102fcaaee` · subsection
+
+v365 ( QGAMB.SADDLE.01) — Direction 3. With the parameter-free saddle ( v358/ v359) the QG measure (gate C7/ QG.AMB.01) organises as a one-loop Gaussian fluctuation determinant. \ the fluctuation stiffness is [formula in source] (no free dial, so the one-loop problem is now well-posed); \ the fluctuation operator is gapped [formula in source] ( v76/ v337) [formula in source] mode-by-mode convergence, finite model log
+
+Explicit source references:
+
+- [verification/v359_grav_nonlinear_einstein.py](../../../../verification/v359_grav_nonlinear_einstein.py#L1) · explicit_script_identifier
+- [verification/v351_continuum_realisation_sharpened.py](../../../../verification/v351_continuum_realisation_sharpened.py#L1) · explicit_script_identifier
+- [verification/v334_conformal_resolution.py](../../../../verification/v334_conformal_resolution.py#L1) · explicit_script_identifier
+- [verification/v358_grav_entropy_equilibrium.py](../../../../verification/v358_grav_entropy_equilibrium.py#L1) · explicit_script_identifier
+- [verification/v160_seam_gaussianity_from_pf.py](../../../../verification/v160_seam_gaussianity_from_pf.py#L1) · explicit_script_identifier
+- [verification/v356_continuum_mmst_applicability.py](../../../../verification/v356_continuum_mmst_applicability.py#L1) · explicit_script_identifier
+- [verification/v76_gmetric_reduction.py](../../../../verification/v76_gmetric_reduction.py#L1) · explicit_script_identifier
+- [verification/v297_route_a_literature_stack.py](../../../../verification/v297_route_a_literature_stack.py#L1) · explicit_script_identifier
+- [SEAM.EQUIV.01](../../../../verification/status_ledger.csv#L381) · explicit_claim_identifier · original status at linked ledger row
+- [verification/v155_quasifree_boundary.py](../../../../verification/v155_quasifree_boundary.py#L1) · explicit_script_identifier
+- [QG.AMB.01](../../../../verification/status_ledger.csv#L47) · explicit_claim_identifier · original status at linked ledger row
+- [verification/v337_decoupling_theorem.py](../../../../verification/v337_decoupling_theorem.py#L1) · explicit_script_identifier
+- [verification/v302_seam_gap.py](../../../../verification/v302_seam_gap.py#L1) · explicit_script_identifier
+- [verification/v330_qgamb_admissible_measure.py](../../../../verification/v330_qgamb_admissible_measure.py#L1) · explicit_script_identifier
+- [QGAMB.SADDLE.01](../../../../verification/status_ledger.csv#L78) · explicit_claim_identifier · original status at linked ledger row
+- [verification/v364_vgeo_sharpen.py](../../../../verification/v364_vgeo_sharpen.py#L1) · explicit_script_identifier
+- [SEAM.MMST.INCLASS.01](../../../../verification/status_ledger.csv#L79) · explicit_claim_identifier · original status at linked ledger row
+- [verification/v366_mmst_seam_collar.py](../../../../verification/v366_mmst_seam_collar.py#L1) · explicit_script_identifier
+- [verification/v365_qg_oneloop_saddle.py](../../../../verification/v365_qg_oneloop_saddle.py#L1) · explicit_script_identifier
+
+Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
+
+- [(* ==== v351 SEAM.EQUIV.CONTINUUM.02: the order-4 clock + Coxeter-match pin E8 over SO(16) ==== *) Module[{cE8, cD8}, cE8 = {{2,-1,0,0,0,0,0,0},{-1,2,-1,0,0,0,0,0},{0,-1,2,-1,0,0,0,0},{0,0,-1,2,-1,0,0,0}, {0,0,0,-1,2,-1,0,-1},{0,0,0,0,-1,2,-1,0},{0,0,0,0,0,-1,2,0},{0,0,0,0,-1,0,0,2}}; cD8 = {{2,-1,0,0,0,0,0,0},{-1,2,-1,0,0,0,0,0},{0,-1,2,-1,0,0,0,0},{0,0,-1,2,-1,0,0,0}, {0,0,0,-1,2,-1,0,0},{0,0,0,0,-1,2,-1,-1},{0,0,0,0,0,-1,2,0},{0,0,0,0,0,-1,0,2}}; checkExact["v351 SEAM.EQUIV.CONTINUUM.02: the c=8 which-net ambiguity (E8 det 1 vs SO(16)=D8 det 4) is RESOLVED by the seam's ORDER-4 mu4 clock -- index-4 extension of D5(+)A3 = E8 (full mu4 condensation 16->4->1), index-2 = SO(16) (partial Z2 16->4); the order (4 not 2) selects E8. The bootstrap agrees: h(E8)=30 max prime 5=g_car, h(D8)=14 max prime 7, so SO(16) fails the Coxeter-match. The residual of SEAM.EQUIV.01 is then PURELY the chiral-edge existence, not which-net", Det[cE8] == 1 && Det[cD8] == 4 && Max[FactorInteger[30][[All,1]]] == 5 && Max[FactorInteger[14][[All,1]]] == 7]; ]; (* ==== v352 TFPT.IRREDUCIBLE.01: both axioms bootstrap-forced; irreducibles = framework + pi ==== *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2334)
+- [experiments/lean4-carrier-rigidity/TfptCarrier/SeamEquivChain.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/SeamEquivChain.lean#L1)
+- [(* ==== v337 DECOUPLING.THEOREM.01: the ambient back-reaction scale identity ==== *) Module[{ambient}, (* the largest ambient back-reaction scale 2*dim(E8)*c3^2 = 31/(4 pi^2) exactly (c3=1/(8pi)) *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2240)
+- [experiments/lean4-carrier-rigidity/TfptCarrier/SeamResidualAxiom.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/SeamResidualAxiom.lean#L1)
+- [(* ==== v358 GRAV.ENTROPY.EQUILIBRIUM.01: parameter-free linearised Einstein + thermo=geo ==== *) Module[{c3, eta, Z2, mu4, chi, r, R, w, wint}, c3 = 1/(8 Pi); eta = 1/4; Z2 = 2; mu4 = 4; chi = 2; w = (R^2 - r^2)/(2 R); wint = Integrate[w * 4 Pi r^2, {r, 0, R}]; (* CHM 3-ball weight integral *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2371)
+- [(* ---- (v75) Gate 1: U_point -> v_geo. lepton product 32/9; (ratios,product)<=>(individuals) bijection ---- *) checkExact["lepton c-product 16/7*4/3*7/6 = 32/9 = 2^g_car/N_fam^2; (ratios,product)=>(individuals) bijection rebuilds (16/7,4/3,7/6)", Module[{c = {16/7, 4/3, 7/6}, P, r, c0}, P = Times @@ c; r = c/c[[1]]; c0 = (P/(Times @@ r))^(1/3); (P == 32/9 == 2^gcar/Nfam^2) && (c0*r === c)]]; (* ---- (v76) Gate 2: decoupling margin Delta_eff = 6log(3/2) - 31/(4pi^2) > 0 ---- *)](../../../../verification/wolfram/tfpt_readouts.wl#L365)
+- [(* ==== v359 GRAV.NONLINEAR.01: full covariant Einstein eq, both coefficients parameter-free ==== *) Module[{c3, eta, d, Rs, traceG, dtop, prefactor}, c3 = 1/(8 Pi); eta = 1/4; traceG = (1 - d/2); (* g^{ab}G_ab = (1-d/2) R; coefficient of R *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2382)
+- [experiments/lean4-carrier-rigidity/TfptCarrier/SeamScalingLimit.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/SeamScalingLimit.lean#L1)
+- [experiments/lean4-carrier-rigidity/TfptCarrier/SeamApplicabilityLedger.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/SeamApplicabilityLedger.lean#L1)
+
 ## 2026-06-23 (Consistency pass: the parameter-free full covariant Einstein equation ( v358/ v359) propagated across ALL stale paper and website surfaces; new v359 keybox; homepage gravity animation)
 
 [documents/changelog/sections/014-source.tex:281-302](../../../../documents/changelog/sections/014-source.tex#L281) · `section:e7b2d5a6deafa57401db` · subsection
@@ -1888,15 +1928,3 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 [documents/experiments--lean4-carrier-rigidity--note_carrier_rigidity_lean4/sections/004-section-interface-table-tfpt-paper-2-texorpdfstring-left.tex:239-251](../../../../documents/experiments--lean4-carrier-rigidity--note_carrier_rigidity_lean4/sections/004-section-interface-table-tfpt-paper-2-texorpdfstring-left.tex#L239) · `section:02393735276ef9585ebf` · paragraph
 
 Full [formula in source] -quotient theorem for [formula in source] . Derived Standard-Model representations (dual, exterior powers, tensor products); the diagonal formalised here is the carrier hypercharge, not the full SM hypercharge spectrum. Analytic content of Paper 1 (Calder\'on polarisation, boundary elliptic theory).
-
-## How It Was Verified
-
-[documents/experiments--lean4-carrier-rigidity--note_carrier_rigidity_lean4/sections/004-section-interface-table-tfpt-paper-2-texorpdfstring-left.tex:252-319](../../../../documents/experiments--lean4-carrier-rigidity--note_carrier_rigidity_lean4/sections/004-section-interface-table-tfpt-paper-2-texorpdfstring-left.tex#L252) · `section:fe53e8d4ab98d645d8ec` · section
-
-The audit gate scripts/audit.sh enforces seven hard checks on every commit:
-
-Explicit source references:
-
-- [experiments/lean4-carrier-rigidity/TfptCarrier/Sanity.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/Sanity.lean#L1) · explicit_file_citation
-- [experiments/lean4-carrier-rigidity/TfptCarrier/AuditCheck.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/AuditCheck.lean#L1) · explicit_file_citation
-- [experiments/lean4-carrier-rigidity/TfptCarrier/AuditContract.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/AuditContract.lean#L1) · explicit_file_citation

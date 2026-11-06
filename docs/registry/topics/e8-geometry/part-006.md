@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Die tatsächliche Quelle liefert einen bestimmten neutralen Kandidaten
+
+[documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/005-subsection-die-urspr-ngliche-determinantenlinie-tr-gt-be.tex:115-156](../../../../documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/005-subsection-die-urspr-ngliche-determinantenlinie-tr-gt-be.tex#L115) · `section:65038733291239a68723` · subsection
+
+Die ursprüngliche Level-eins-E8-Quelle enthält die Spinorströme [formula in source] mit 64 Komponenten und ihre Gegenfelder. Unter der erklärten Familienauswahl [formula in source] zerfällt dieser Block in [formula in source] . Die erste Komponente ist der hier untersuchte 48er-Materiereadout. Seine Identifikation mit dem ursprünglichen topologischen Familienraum bleibt Teil des markierten Wörterbuchs; die Rechnung b
+
 ## Ausführbare Nachweise dieser Fortsetzung
 
 [documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/006-subsection-die-48-und-die-41-sind-zwei-antworten-derselb.tex:119-123](../../../../documents/tfpt_explorer--docs--session-2026-09-28--TFPT_Gesamtsynthese_2026-09-28/sections/006-subsection-die-48-und-die-41-sind-zwei-antworten-derselb.tex#L119) · `section:e7294e8d8a250400195d` · subsection
@@ -1715,9 +1721,3 @@ Use the universal root-system identity [formula in source] (Coxeter number [form
 [experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex:4426-4441](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex#L4426) · `section:88c69ecaf544842d5205` · subsection
 
 The number of positive [formula in source] roots equals the master hypercharge moment: so the second hypercharge moment of one family is the positive-root half-system. The whole integer chain then reads off [formula in source] : The [formula in source] slice is then [formula in source] : one [formula in source] phase slice of the [formula in source] root atlas is exactly the full flavor transport budget. \ (arithmeti
-
-## Level 2.9 — the [formula in source] Coxeter cyclotomic compiler (meta-theorem)
-
-[experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex:4442-4467](../../../../experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/transformationen/source-snapshots/tfpt/tfpt_1_architecture_e8.tex#L4442) · `section:ef6b3386018f18c6b0d4` · subsection
-
-The three hard carrier atoms — weak rank [formula in source] , color rank / family count [formula in source] , carrier rank [formula in source] — generate the [formula in source] data cyclotomically, without taking [formula in source] as input. Set where [formula in source] is the Coxeter number and [formula in source] the rank. Then the standard [formula in source] , [formula in source] give Moreover the [formula in

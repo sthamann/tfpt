@@ -4,6 +4,17 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## 2026-06-12 (tex-artefacts refactor + introduction visual pass B2)
+
+[documents/changelog/sections/023-source.tex:303-330](../../../../documents/changelog/sections/023-source.tex#L303) · `section:826ddf772de04049b71a` · subsection
+
+Shared imports moved to tex-artefacts/. The shared, imported-only TeX fragments ( tfpt_style.tex, tfpt_figures.tex, tfpt_docset.tex, tfpt_status.tex) now live in a dedicated tex-artefacts/ folder; all nine active documents input them via tex-artefacts/<name> (and tfpt_style loads tex-artefacts/tfpt_figures). changelog.tex stays at the repo root because it is also a standalone build.sh notes deliverable. The make_mani
+
+Explicit source references:
+
+- [README.md](../../../../README.md#L1) · explicit_file_citation
+- [verification/make_manifest.py](../../../../verification/make_manifest.py#L1) · explicit_file_citation
+
 ## 2026-06-12 (visual pass: box reduction B1)
 
 [documents/changelog/sections/023-source.tex:331-340](../../../../documents/changelog/sections/023-source.tex#L331) · `section:37c689285c5fc6a40772` · subsection
@@ -1169,9 +1180,3 @@ L41mmL46mmL63mm Zweig& Historischer Quellwert& Offener Anteil\\ Starke CP-Phase&
 [experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/10_ausblick.tex:2-15](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/source-v1.1/TFPT_Universalraum_LaTeX_2026-09-14/chapters/10_ausblick.tex#L2) · `section:4a91dc99b94bb4d1e454` · section
 
 Der eingefügte Gesprächstext vergleicht den Universalraum mit Konrad Zuse und Stephen Wolfram. Zuses Werk heißt Rechnender Raum, nicht „denkender Raum“. In seinem Buch von 1969 untersucht er digitale Beschreibungen physikalischer Felder und Teilchen und die Rolle von Automaten. Das ist ein historischer Bezugspunkt für die Vorstellung von Physik als regelgeleitetem Prozess. https://link.springer.com/book/10.1007/978-3
-
-## Die Ausgangsannahmen enthalten mehr als zwei Zahlen
-
-[experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/02_algebra.tex:3-12](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/02_algebra.tex#L3) · `section:965df915fe3244035611` · section
-
-Die historische Kurzfassung nennt [formula in source] und einen fünfteiligen Träger. Vollständig gelesen setzt P1 einen orientierten Rand beziehungsweise eine Naht, einen geeigneten positiven Kern und eine Normierung voraus. P2 setzt Art und Struktur des Trägers voraus; die spätere [formula in source] -Lesart wird mit Farb- und schwachen Richtungen verbunden. Orientierung, Positivität, komplexe Struktur und Markierun
