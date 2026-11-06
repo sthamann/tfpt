@@ -80,7 +80,8 @@ export function FlavorDerivation() {
   return <section id="flavor" className={`guide-section ${styles.flavor}`} aria-labelledby="flavor-heading">
     <h2 id="flavor-heading">How one seed becomes a hierarchy of masses</h2>
     <p className="guide-lead">An electron is much lighter than a muon, and a muon much lighter than a tau. TFPT describes this hierarchy through transport lengths and a finite response. Follow the actual operators, then calculate two lepton ratios and the up to down quark ratio.</p>
-    <p>There are two different jobs to do. Integer operators determine the powers of a small common seed. A response calculation determines the coefficient multiplying each power. The dimensionful scale is shared. The calculation below follows the documented charged flavour branch in its marked family frame.</p>
+    <p>There are two different jobs to do. Integer operators determine the powers of a small common seed. A response calculation determines the coefficient multiplying each power. The dimensionful scale is shared. The same master formula covers all nine charged fermions: the six quarks and the electron, muon and tau. The calculation below follows this documented charged flavour branch in its marked family frame.</p>
+    <p className={styles.sources}><a href="#standard-model">Place masses in the Standard Model derivation</a><Link href="/interactive/flavor">Watch the hierarchy form step by step</Link><a href="#predictions">Compare the registered source ratios</a></p>
 
     <ol className={styles.sequence}>
       <li>
@@ -103,7 +104,7 @@ export function FlavorDerivation() {
         <p>Why these operators? The four punctures form a square with D₄ symmetry. Their action on the three independent cycles splits the family space into a line and a plane. The established cusp weights 0, 1/3 and 2/3 become the three grading values 1, 2 and 3 through the rule 3w + 1. The sheet coupling has square 3 on its support. The order three cusp class also supplies the integer lift with det Q = 3.</p>
         <p>In the marked integer frame, the documented budgets, spectra and hierarchy conditions select the displayed normal form. Exhaustive integer enumeration checks uniqueness under those conditions. The result uses this family geometry and its typing, beyond the count of five carrier slots.</p>
         <details className={styles.details}><summary>See the even and odd parts of Q</summary>
-          <Math block plain="Conjugating Q by the sheet signs separates an even part with eigenvalues one, two and three, and an odd part whose square is three on its support.">{String.raw`\begin{aligned}Q_+&=\frac{Q+\Sigma Q\Sigma}{2},&\operatorname{Spec}Q_+&=\{1,2,3\},\\Q_-&=\frac{Q-\Sigma Q\Sigma}{2},&\chi_{Q_-}(t)&=t(t^2-3).\end{aligned}`}</Math>
+          <Math block plain="Conjugating Q by the sheet signs separates an even part with eigenvalues one, two and three, and an odd part whose square is three on its support.">{String.raw`\begin{aligned}Q_+&=\frac{Q+\Sigma Q\Sigma}{2},\\\operatorname{Spec}Q_+&=\{1,2,3\},\\Q_-&=\frac{Q-\Sigma Q\Sigma}{2},\\\chi_{Q_-}(t)&=t(t^2-3).\end{aligned}`}</Math>
           <p>The cusp weights, marked homology frame and discrete normal form are part of this statement. The Q geometry and integer lift are established layers of the documented construction.</p>
         </details>
         <p className={styles.sources}><Link href={source.geometry}>Read the D₄ construction and integer lift</Link><Link href="/verification/v11_unique_KQ.py">Inspect the integer uniqueness calculation</Link></p>
@@ -122,7 +123,7 @@ export function FlavorDerivation() {
         <div className={styles.matrixRow}><Matrix name="K" values={K} selected={generation} meaning="Powers of φ₀" /><span className={styles.matrixJoin}>L = K + Q</span><Matrix name="L" values={L} selected={generation} meaning="Transport lengths" /></div>
         <p>The column numbers above mean generations. In L, the first column is (7, 7, 8), obtained from (1, 1, 2) by adding six. In K, the lepton row is (5, 3, 2). Those are the three seed powers used below. Matrix entries give these powers; the eigenvalues describe other properties of the operators.</p>
         <p>All nine entries also give a shared transport budget. R contributes 22. L adds six in each of its three first column entries, contributing another eighteen. Equivalently, sum the three sector rows directly:</p>
-        <Math block plain="The up row sums to ten, the down row to fourteen, and the lepton row to sixteen. Their total is forty, also equal to the residue total twenty two plus three times six.">{String.raw`\begin{aligned}\sum_{f,j}L_{f,j}&=(7+3+0)+(7+5+2)+(8+5+3)\\&=10+14+16=40\\&=22+3\cdot6.\end{aligned}`}</Math>
+        <Math block plain="The up row sums to ten, the down row to fourteen, and the lepton row to sixteen. Their total is forty, also equal to the residue total twenty two plus three times six.">{String.raw`\begin{aligned}\sum_{f,j}L_{f,j}&=(7+3+0)\\&\quad +(7+5+2)\\&\quad +(8+5+3)\\&=10+14+16=40\\&=22+3\cdot6.\end{aligned}`}</Math>
         <p>This is a sum of actual transport entries. The electromagnetic budget reuses it alongside an independent calculation from the family charges.</p>
         <p className={styles.sources}><Link href={source.residue}>Read the residue matrix and winding theorem</Link><Link href={source.geometry}>Read K and L as two sheet readings</Link><Link href="/explain#budget">Follow 40 into the electromagnetic budget</Link></p>
       </li>
@@ -174,6 +175,9 @@ export function FlavorDerivation() {
 
       <li>
         <h3>Carry a source mass into a physical comparison</h3>
+        <p>The full matrix also fixes a determinant scaling. The three K row sums are 6, 9 and 10, so the up, down and charged lepton determinants scale with seed powers 6, 9 and 10. Together they give 25. The Q row sums add another 15, recovering the transport budget 40. This fixes the exponent relation; it does not select the remaining absolute quark amplitude anchor.</p>
+        <Math block>{String.raw`\begin{aligned}\det M_u&\propto\varphi_0^6,\quad\det M_d\propto\varphi_0^9,\\\det M_e&\propto\varphi_0^{10},\\6+9+10&=25,\quad25+15=40.\end{aligned}`}</Math>
+        <p className={styles.sources}><Link href={source.geometry}>Read the determinant and transport identities</Link></p>
         <p>The hats matter. These are source masses in the declared branch. A measured electron pole mass or a quark mass quoted in a renormalization scheme is a particular physical reader of the common renormalized action. The common source construction already supplies the route through its action, field moments, conditional OS/CAR reconstruction and Γ<sub>ren</sub>.</p>
         <div className={styles.handoff} aria-label="Physical comparison route"><span>Source ratio</span><span>Same Γ<sub>ren</sub></span><span>Scale and mass scheme</span><span>Dated measurement</span></div>
         <p>For a numerical comparison, apply the corresponding reader and specify the scale and scheme, especially for quarks. Cancelling v<sub>geo</sub> removes the overall units; it does not remove running or scheme dependence. The dimensionless source relations calculated above remain closed in their stated branch. The absolute amplitude anchor is a separate part of that construction.</p>

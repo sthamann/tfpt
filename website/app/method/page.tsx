@@ -57,6 +57,25 @@ export default function MethodPage() {
         <Link href="/results?search=metric-dtn-form-bound-needs-transfer-comparison-for-gap">An example: the corrected metric gap argument</Link>
       </nav>
     </section>
+    <section className="reference-section" id="red-team">
+      <h2>A worked adversarial test: which cuts preserve positivity?</h2>
+      <p>Paper 5 tests a condition needed for quantum reconstruction: reflection positivity. In its finite model of sixteen Majorana modes, a reflection divides the observables across a cut. The resulting norm form must be nonnegative to define the reconstructed state space.</p>
+      <ol className="reference-rows list-decimal space-y-6 pl-6">
+        <li><h3>Add an interaction that can break the condition</h3><p>The test adds the specified quartic interaction and varies the cut. The reflection operator still exists and respects the Hamiltonian, so those checks alone cannot settle positivity.</p></li>
+        <li><h3>Keep both the failure and the surviving cuts</h3><p>In the tested model, cuts splitting an interacting quartet into one mode on one side and three on the other produce negative norm directions. Quartet avoiding cuts survive. The later refinement also finds positive symmetric two plus two cuts. Crossing the interaction is therefore insufficient to predict failure; its actual split matters.</p></li>
+        <li><h3>Use the failure to constrain the next construction</h3><p>The follow-up tests the stated interacting mark family, both coupling signs and its admissible cuts. On the tested coupling grid, exactly one member and sign survive: the symmetric configuration δ = π/2 with positive coupling. This is a concrete selection result within that finite family.</p></li>
+      </ol>
+      <p>The result concerns one finite toy model and its specified interaction class. It does not derive the physical seam or complete the interacting continuum construction. The broader OS twistor contract, WOIT.OS.TWISTOR.01, remains open in this paper. A passing test can therefore certify a counterexample or a restricted survivor, rather than confirm the whole theory.</p>
+      <nav className="reference-links" aria-label="Original adversarial test and scope">
+        <Link href="/documentation?section=section%3A3bc2480a0b64fd3112f1">Read Paper 5, Target G, including the odd split refinement</Link>
+        <Link href="/results?search=WOIT.OS.TWISTOR.01">Inspect the parent contract and later results</Link>
+      </nav>
+    </section>
+    <section className="reference-section" id="reverse-audit">
+      <h2>Check what the structure leaves unused</h2>
+      <p>The safeguards paper also runs a reverse audit. Of the eight E₈ Casimir degrees, its map assigns primary readouts to degrees 2, 8 and 30. The remaining five, 12, 14, 18, 20 and 24, stay visible as structure without a primary readout. This audit records the stated mapping and its unused content; a degree appearing in the map does not by itself derive a physical observable.</p>
+      <nav className="reference-links" aria-label="Reverse audit source"><Link href="/documentation?section=section%3A5accfde4a70bd57ce618">Read the safeguards reverse audit</Link></nav>
+    </section>
     <section className="reference-section" id="ai">
       <h2>Tools assist the work; sources support the result</h2>
       <p>AI can assist with searches, calculations, code and drafting. The evidence for a result remains its original derivation, explicit assumptions and reproducible checks. A fluent explanation, generated summary or a matching source hash does not substitute for that evidence.</p>

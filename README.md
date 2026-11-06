@@ -1,233 +1,153 @@
-# TFPT — Topological Fixed-Point Theory
+# Topological Fixed Point Theory
 
-TFPT is a research programme connecting a discrete compiler, the E₈ lattice,
-clock and code structures, Standard Model readouts, and conditional physical
-interpretations. Its original assumptions, exact constructions, numerical
-checks and remaining physical derivations have different scopes. The
-[status ledger](verification/status_ledger.csv) and cited original sources
-are authoritative; the number of checks is not a proof of a complete theory.
+**TFPT connects boundary geometry, the E₈ lattice and a common compiler for particle structure, mass relations and physical constants.**
 
-[Website](https://www.fixpoint-theory.com/) ·
-[Published papers](https://www.fixpoint-theory.com/papers) ·
-[Central content registry](docs/registry/INDEX.md) ·
-[Machine-readable registry](docs/registry/registry.json) ·
-[Agent instructions](AGENTS.md)
+The central idea is that the same small set of structures should do several jobs. A marked boundary supplies carrier and family data. Their representations determine charges and transport rules. Those rules feed mass and mixing relations, an electromagnetic fixed point, and connected quantum and cosmological readouts. This repository contains the original papers, executable calculations, formal statements and the public explanations of that construction.
 
-For focused explanations, read the [fine structure constant](https://www.fixpoint-theory.com/fine-structure-constant),
-[E₈ and Standard Model structure](https://www.fixpoint-theory.com/e8-standard-model),
-and [three fermion generations](https://www.fixpoint-theory.com/three-fermion-generations).
-The [selected original arguments](https://www.fixpoint-theory.com/research)
-retain their source versions, formulas and premises. The [author pages](https://www.fixpoint-theory.com/authors)
-connect the current publications with their public identities and the explicitly
-historical archive.
+Each result carries its own premises: a declared starting principle, an exact consequence, a numerical root and a physical identification answer different questions. The [claim ledger](verification/status_ledger.csv) and cited original sources record those distinctions.
 
-## Shared origin of c3, P1 and P2
+[Explore interactively](https://www.fixpoint-theory.com/interactive) · [Understand the derivations](https://www.fixpoint-theory.com/explain) · [Predictions and tests](https://www.fixpoint-theory.com/predictions) · [Original papers](https://www.fixpoint-theory.com/papers)
 
-P1 is the primitive oriented reflection-positive seam kernel with unit winding;
-c3 is its normalization. The shared four-mark geometry and parabolic anchor
-(1,1,2) explain the c3 and five-carrier numerical data under their named source
-hypotheses. The actual A0* connection already has analytic finite monodromy and
-an invariant positive Hermitian form. Both W-bridge premises close at finite
-level in v1014/v1015, modulo the external continuum identification. P2's
-interface and the physical source identifications retain their ledger scope.
+## Choose a starting point
 
-The [source reconciliation](docs/research/REC20261105C3.md)
-and the Architecture chapter “Shared origin” give the common explanation and
-the exact remaining determinant-response and source-identification premises.
+| I want to… | Start here |
+|---|---|
+| See how the pieces connect | [The interactive journey](https://www.fixpoint-theory.com/interactive), with visual constructions and controls |
+| Follow the actual calculations | [Understand TFPT](https://www.fixpoint-theory.com/explain), from the starting structures through charges, masses and alpha |
+| Examine a particular question | [Fine structure constant](https://www.fixpoint-theory.com/fine-structure-constant), [E₈ and the Standard Model](https://www.fixpoint-theory.com/e8-standard-model), or [three fermion generations](https://www.fixpoint-theory.com/three-fermion-generations) |
+| Compare a readout with data | [Frozen predictions](https://www.fixpoint-theory.com/predictions), [dated empirical comparisons](https://www.fixpoint-theory.com/empirical-audit) and [failure criteria](https://www.fixpoint-theory.com/falsification) |
+| Read or reproduce an argument | [Selected original arguments](https://www.fixpoint-theory.com/research), the [papers](https://www.fixpoint-theory.com/papers), and the [source registry](docs/registry/INDEX.md) |
 
-## Source and field integration results, 6 November 2026
+## The connected construction
 
-The finite saddle diagnostic in v365 distinguishes `Tr′H = −log det′T` from
-the conditional Gaussian Hessian log determinant. Its finite susceptibility
-does not establish a whole geometric measure or its tightness.
+**Boundary and carrier.** The declared interfaces are an oriented reflection positive seam kernel with unit winding, normalized by $c_3=1/(8\pi)$, and a five slot carrier with a marked three plus two split. The shared four mark geometry and parabolic anchor $(1,1,2)$ explain their numerical data under the source hypotheses stated in the [Architecture paper](documents/tfpt_1_architecture_e8/main.tex). The interface assumptions and their conditional reductions remain visible in the original statements.
 
-The shared paper update retains the evaluated C6 and family histories,
-canonical R104 mirror source and whole original field, reference, state and
-time transports. The original finite static product family has an evaluated connected
-Yukawa response and a strict coupling sign in its stated positive weight class.
-The new dynamic tests distinguish the profile action tail from a physical
-return kernel, give conditional quantum bounds and a mixed time contact,
-and identify the scalar stress response missed by tracefree probes.
-Nineteen targeted exact checks passed. The complete primitive field and history
-response, physical time kernel and common interacting spectrum remain unevaluated;
-no physical ledger marker is promoted.
+**Particle structure and families.** The even exterior representation of the five slots has $1+10+5=16$ components. With normalized slot hypercharges $(-1/3,-1/3,-1/3,1/2,1/2)$, it gives one Standard Model generation, including the conjugate right handed neutrino, in an all left handed convention. The structure preserving group is $(SU(3)\times SU(2)\times U(1)_Y)/\mathbb Z_6$. Four punctures leave three independent cycle directions; their identification with physical families uses the stated family dictionary. The finite Dirac construction then organizes Yukawa and Majorana blocks and the specified Higgs doublet. [Follow the complete Standard Model map](https://www.fixpoint-theory.com/explain#standard-model).
 
-The single authored source is
-[the shared field integration update](tex-artefacts/toe_field_integration_20261105.tex),
-included by the six active source-completion paper views and mirrored on the
-[common-source explanation](https://www.fixpoint-theory.com/explain#source).
-Its original reference, eta, physical selector, domain and limiting conditions
-remain attached to each calculation.
+**E₈, codes and clocks.** The carrier lattice $D_5$ and family lattice $A_3$ join through order four discriminant glue into the even unimodular E₈ lattice. Its four glue classes contain $52+60+64+64=240$ roots. Clifford actions, binary and Gaussian code descriptions, and the connected clock actions provide further descriptions of this structure. The order thirty Coxeter data, the order four automorphism and the relaxation operator act on specified spaces. Their orders alone do not identify their actions. [Explore the lattice](https://www.fixpoint-theory.com/interactive/e8) or read the [code working note](documents/note_e8_gaussian_code/main.tex).
 
-The current [shared research plan](docs/research/fundamental-plan/PLAN.md) and
-[consolidated source assessment](docs/research/fundamental-plan/CONSOLIDATION-SESSION-20261103.md)
-retain the connected carrier, E8, clocks, flavor and alpha construction.
-The original whole-source/reference transport, canonical vacuum attachment
-and given classical Clifford field/time kernel are available. The free,
-unprojected positive source excludes an exactly separated flat DET16 factor;
-actual projection, interacting environments and dynamical bosons retain their
-own scope. The primitive physical field/source identification remains open.
+**Masses and mixing.** The shared seed and the mass master formula are
 
-The [session result account](docs/research/fundamental-plan/SESSION-RESULTS-A-L-20261103-DE.md)
-links the dated A–L and R104–R110 results. The live plan also retains the
-subsequent R111 source-generator qualification. These are scoped research
-results; no physical completion or ledger promotion is inferred. The website
-ships a reproducible public Atlas snapshot with source excerpts and explicit
-omissions. Local private Atlas databases and unpublished original sources
-are outside that publication export.
-
-## Find a topic or a source
-
-Start with the **[central content registry](docs/registry/INDEX.md)** or its
-[compact agent entry](docs/registry/summary.json). Use the bounded query CLI
-in the maintenance guide rather than loading the complete graph into context. It maps
-LaTeX documents and sections to their editable source modules, topics,
-registered Python verifications, ledger claims, and explicit Lean or Wolfram
-references. It distinguishes a citation from a proof and an inferred topic
-match from an explicit reference. Missing or ambiguous evidence links remain
-visible.
-
-All registry sections are structurally located. The local Atlas also exposes
-dedicated paper search, outlines, section summaries and evidence tools; consult
-`paper_coverage` for actual completed, pending, failed and stale AI coverage.
-Source-grounded AI descriptions remain separate from reviewed scientific
-findings. The [semantic navigation guide](docs/SEMANTIC_NAVIGATION.md) explains
-the paper → original evidence → research-state route and public/private scopes.
-
-The former `tfpt5-shadow` mirror was retired on 2026-10-18: its repository is
-archived/read-only and automatic synchronization is disabled. Its history is
-retained; no shadow-sync token renewal is needed. The optional legacy export
-utility remains documented in the maintenance guide.
-
-The [LaTeX maintenance guide](docs/LATEX_MAINTENANCE.md) explains source
-ownership, builds, registry updates and change validation. Do not edit a
-published PDF, generated index or website mirror to change the theory.
-Edit the owning source, then regenerate its derived surfaces.
-
-## Repository structure
-
-```text
-documents/                 Modular LaTeX sources and extraction provenance
-*.tex                      Stable entry points for the existing PDF filenames
-tex-artefacts/             Shared style, notation, references and generated indices
-docs/registry/             Generated document/topic/evidence registry
-docs/                      Reading guides, scientific scope and maintenance docs
-verification/              Registered Python checks, ledger and build/audit tools
-verification/wolfram/      Independent Wolfram checks within their stated scope
-experiments/               Exploratory work and recorded results
-experiments/lean4-carrier-rigidity/
-                           Formal TFPT statements, toolchain and axiom audit
-website/                   Public presentation and generated download mirrors
-_archive/                  Historical document sets; not the current authority
-semantic_explorer/         Local Knowledge Atlas, when installed (not shipped)
+```math
+\begin{aligned}
+\varphi_0&=\frac1{6\pi}+\frac3{256\pi^4},\\
+\lambda_Y&=\sqrt{\varphi_0(1-\varphi_0)},\\
+\widehat m_{f,j}&=\frac{v_{\mathrm{geo}}}{\sqrt2}\lambda_Y^{L_{f,j}}\Lambda_{f,j}\\
+&=\frac{v_{\mathrm{geo}}\pi}{\sqrt2}c_{f,j}\varphi_0^{K_{f,j}}.
+\end{aligned}
 ```
 
-Physical TFPT work belongs here. RH, prime-number, Weil-window and
-factorisation campaigns belong in the independent
-[Prime Front repository](https://github.com/sthamann/prime-front) and
-[website](https://prime.fixpoint-theory.com/). Shared mathematical support
-is explicitly scoped; an old namespace or historical citation does not
-merge the two research programmes.
+The residue, grading and sheet operators determine the transport lengths $L$ and mass powers $K$ for all nine charged fermions. The finite lepton response gives the coefficients $(16/7,4/3,7/6)$. The quark readouts give source ratios including $\widehat m_u/\widehat m_d=55/117$ on the derived selector stratum. The absolute quark amplitude anchor has a separate role. Mixing magnitudes share the same seed, while the phase and neutrino branches retain their named conditions. These are derived source relations; comparison with pole or running masses uses the specified physical reader, scale and scheme. [Work through the mass calculation](https://www.fixpoint-theory.com/explain#flavor) or read [Paper 2](documents/tfpt_2_standard_model/main.tex).
 
-## Reading the document set
+**The electromagnetic fixed point.** The same carrier, family and transport structure supplies the matter budget 41 in the specified alpha equation. Its root gives $\alpha^{-1}=137.03599921684\ldots$. Existence and uniqueness of that root, coefficient provenance, the response calculation and the physical electromagnetic interpretation are distinct steps of the argument. [Calculate the balance yourself](https://www.fixpoint-theory.com/interactive/alpha) or [inspect the full derivation](https://www.fixpoint-theory.com/fine-structure-constant).
 
-The **compact reading guide** (`introduction_guide.pdf`) leaves the full
-module catalog and dated history in separate reference volumes
-(`verification_catalog.pdf` and `changelog.pdf`). The established overall
-PDFs remain available under their original names.
-Their entry points now assemble maintainable source modules. Begin with
-`introduction.tex`, then use the registry to choose the relevant sections.
+**Physical dynamics and other readouts.** The transfer spectrum has an exact continuous stochastic interpolation at finite level. The papers also construct quantum lifts, finite field models, horizon identities, and cosmological and physical transfer calculations. Each keeps its operator, physical branch and limiting hypotheses. The [common source explanation](https://www.fixpoint-theory.com/explain#source) connects these results to the original action, fields, state and time reconstruction. The [frontier paper](documents/tfpt_4_frontier/main.tex) and [research contracts](documents/tfpt_research_contracts/main.tex) give their precise scope.
 
-| Document | Primary role |
+## Read the papers and trace a claim
+
+Begin with [the introduction](documents/introduction/main.tex). Stable root `.tex` entry points assemble the modular sources; the [published editions](https://www.fixpoint-theory.com/papers) provide the reading PDFs and their publication details.
+
+| Source | What it develops |
 |---|---|
-| `introduction` | Orientation, assumptions, readouts, status and reading routes |
-| `tfpt_1_architecture_e8` | Compiler architecture, seam inputs, E₈ and the EM closure |
-| `tfpt_2_standard_model` | Representations, flavor and Standard Model readouts |
-| `tfpt_3_e8_audit_bootstrap` | E₈ consistency slices and bootstrap constructions |
-| `tfpt_4_frontier` | Conditional interfaces and outstanding physical derivations |
-| `tfpt_5_redteam` | Adversarial checks, counterexamples and limits |
-| `origin_theory` | Origin, anchor, clocks and source-selection questions |
-| `tfpt_horizon_readouts` | Horizon and gravity-related readouts under their assumptions |
-| `tfpt_research_contracts` | Detailed research interfaces and scoped contracts |
-| `tfpt_safeguards` | Safeguards, uniqueness and audit mechanisms |
-| `note_e8_gaussian_code` | Standalone E₈/Gaussian-code working note |
-| `changelog` | Dated publication history; historical statements retain their dates |
+| [Introduction](introduction.tex) | Starting assumptions, derivation map, predictions and reading routes |
+| [1. Architecture and E₈](tfpt_1_architecture_e8.tex) | Boundary and carrier inputs, lattice glue and electromagnetic closure |
+| [2. Standard Model](tfpt_2_standard_model.tex) | Particle representations, parabolic transport, mass and mixing readouts |
+| [3. E₈ audit and bootstrap](tfpt_3_e8_audit_bootstrap.tex) | Consistency slices, cascade and bootstrap constructions |
+| [4. Frontier](tfpt_4_frontier.tex) | Physical transfer calculations and their conditional inputs |
+| [5. Red team](tfpt_5_redteam.tex) | Counterexamples, adversarial checks and failure criteria |
 
-The registry also inventories other authored LaTeX, shared fragments,
-experimental notes and archived versions. A historical document can be
-useful without being the current decision record.
+The companions cover [origin and clocks](origin_theory.tex), [horizons](tfpt_horizon_readouts.tex), [research contracts](tfpt_research_contracts.tex) and [safeguards](tfpt_safeguards.tex). The standalone [E₈ and Gaussian code note](note_e8_gaussian_code.tex) develops the code bridge. The compact introduction, verification catalog and dated history are also available as separate reading editions.
 
-## Sources of truth
-
-| Information | Owner |
-|---|---|
-| Scientific text and assumptions | Owning LaTeX module and cited original research source |
-| Claim status and scope | `verification/status_ledger.csv` |
-| Registered verification modules | `verification/run_all.py`, `script_registry.csv` |
-| Prediction freeze | `verification/predictions_frozen.json` |
-| Document and topic navigation | Generated `docs/registry/` and its documented configuration |
-| Publication history | Modular `changelog.tex` entry point |
-| Formal theorem and axioms | Actual `.lean` statement and audit output |
-| Wolfram identity/check | Actual `.wl` source and its stated prerequisites |
-| Current local research decisions | Knowledge Atlas via `tfpt-knowledge`, when available |
-
-A registry entry, graph edge, successful finite test or theorem name is a
-navigation aid. Read the original statement and all prerequisites before
-using it to support a broader conclusion.
-
-## Build and maintain
-
-Use Python 3 and TeX Live/MacTeX. The website needs Node.js and npm; Lean
-and Wolfram have their own tools and requirements. Install the Python
-requirements in a virtual environment for numerical verifications.
+Use the [central registry](docs/registry/INDEX.md) to move from a topic to its original section, editable module and cited Python, Lean or Wolfram evidence. A bounded local query is often the quickest route:
 
 ```sh
-python3 -m venv .venv
-.venv/bin/pip install -r requirements.txt
-bash build.sh gen          # regenerate source-derived maps and indices
-bash build.sh notes        # compile the active PDF set and reading editions
-bash build.sh editions     # compile only the compact guide + reference catalog
-bash build.sh website      # refresh public PDF/script mirrors and hashes
-bash build.sh audit        # source, scope, registry and mirror consistency
-cd website && npm ci && npm run build
+python3 verification/make_content_registry.py --query 'hypercharge' --limit 10
+python3 verification/make_content_registry.py --topic flavor-masses --limit 10
 ```
 
-For a complete publication rebuild, run `bash build.sh release`. Run the
-manifest generator last, after staging newly shipped source files:
+The [frozen prediction register](verification/predictions_frozen.json) preserves its dated formulas and distinguishes calculated values, conditional readouts, assigned textures and conditional bands. Existing measurement comparisons keep their dates. The [paper changelog](changelog.tex) preserves publication history, and the [author pages](https://www.fixpoint-theory.com/authors) connect publications to their public author identities. Earlier archived releases retain their own versions and dates.
+
+## Run the verifier
+
+Clone the repository and install the numerical dependencies with Python 3:
+
+```sh
+git clone https://github.com/sthamann/topological-fixed-point-theory.git
+cd topological-fixed-point-theory
+python3 -m venv .venv
+.venv/bin/pip install -r requirements.txt
+. .venv/bin/activate
+```
+
+Start with the core check, or run the registered suite when you need its full coverage:
+
+```sh
+./verify
+.venv/bin/python verification/run_all.py
+python3 verification/check_project_scope.py
+```
+
+For a particular claim, follow its original section to the named verification module and inspect the inputs and negative controls. Python execution, Lean kernel checking and Wolfram evaluation are separate checks. The formal carrier development includes its own toolchain and axiom audit:
+
+```sh
+cd experiments/lean4-carrier-rigidity
+bash scripts/audit.sh --core
+```
+
+The [ledger](verification/status_ledger.csv), [script registry](verification/script_registry.csv), actual `.lean` statements and `.wl` sources define the scope of those checks. Report the command and result actually obtained; an inventory entry or passing numerical example does not establish a broader theorem.
+
+## Build the documents and website
+
+Document builds use TeX Live or MacTeX. The website requires Node.js 20.9 or newer and npm; the production deployment uses Node.js 24. Run the source workflow from the repository root:
+
+```sh
+bash build.sh gen          # regenerate source maps and indices
+bash build.sh notes        # compile active PDFs and reading editions
+bash build.sh editions     # compile only the compact guide and reference catalog
+bash build.sh website      # refresh public PDF/script mirrors and hashes
+bash build.sh audit        # check source, registry and mirror consistency
+```
+
+Build or run the public presentation locally:
+
+```sh
+cd website
+npm ci
+npm run dev
+# For a production build:
+npm run build
+```
+
+`bash build.sh release` runs the complete publication rebuild. After staging newly shipped source files, generate the manifest last and check it:
 
 ```sh
 python3 verification/make_manifest.py
 python3 verification/make_manifest.py --check
 ```
 
-The [maintenance guide](docs/LATEX_MAINTENANCE.md) contains targeted document
-and registry commands. Existing root entry points remain valid; compile
-from the documented working directory so shared figures and includes resolve.
+See [LaTeX maintenance](docs/LATEX_MAINTENANCE.md) for targeted builds, generated outputs and registry commands. Compile from the documented directory so figures and shared includes resolve.
 
-## Check the relevant claim
+## Where the sources live
 
-```sh
-./verify                                  # concise core check
-.venv/bin/python verification/run_all.py   # full registered Python suite
-python3 verification/check_project_scope.py
-cd experiments/lean4-carrier-rigidity && bash scripts/audit.sh --core
+```text
+documents/                 Editable modular paper sources and provenance
+*.tex                      Stable compilation entry points
+tex-artefacts/             Shared notation, figures, references and indices
+verification/              Executable checks, claim ledger and frozen predictions
+experiments/lean4-carrier-rigidity/
+                           Formal statements, toolchain and axiom audit
+docs/registry/             Generated topic, document and evidence navigation
+docs/                      Reading, scope and maintenance guides
+website/                   Public explanations and generated download mirrors
+_archive/                  Historical document sets
 ```
 
-Python checks, Lean elaboration, Wolfram evaluation, PDF compilation and
-source consistency are separate operations. Report which actually ran and
-its result. Do not infer a fresh Lean/Wolfram run from a Python summary.
-For a documentation refactor, source preservation, affected consumer tests
-and successful document compilation are the relevant first checks.
+The owning LaTeX module and cited original source own the scientific text. `verification/status_ledger.csv` owns claim status; registered scripts own executable checks. Edit the owner once and regenerate its derived tables, indices and public mirrors. Published PDFs and generated files are outputs.
 
-Repository-structure changes are recorded in [maintenance history](docs/CHANGELOG.md);
-the paper changelog preserves dated scientific/publication statements.
+The local Knowledge Atlas, accessed through `tfpt-knowledge` when installed, supplies current research navigation and reviewed decisions. The public checkout includes a reproducible public snapshot; private local databases and unpublished sources are outside that export. The [semantic navigation guide](docs/SEMANTIC_NAVIGATION.md) explains freshness, coverage and public scopes. Source summaries and graph links help locate an argument; its original premises and evidence still decide what follows.
 
-## Contributing and agent work
+## Contribute
 
-Read [AGENTS.md](AGENTS.md) before changing sources. Locate the owning
-module in the registry; use the code graph for code discovery and the
-Knowledge Atlas for current research navigation. Keep exploratory work,
-registered claims, formal proofs and presentation separate. Preserve
-negative results and conditional assumptions. Update the owning source
-once, regenerate derived views, and verify the affected path through to
-the public output.
+Read [AGENTS.md](AGENTS.md) and the [maintenance guide](docs/LATEX_MAINTENANCE.md) before changing sources. Find the owning module, preserve claim scope and negative results, and check the affected path through to its public output. Record repository maintenance in [docs/CHANGELOG.md](docs/CHANGELOG.md); keep scientific and publication history in the paper changelog.
+
+This repository owns physical TFPT and its compiler mathematics. RH, prime number, Weil window and factorisation research belongs to the independent [Prime Front repository](https://github.com/sthamann/prime-front) and [website](https://prime.fixpoint-theory.com/).

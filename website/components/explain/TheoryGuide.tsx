@@ -11,6 +11,10 @@ import { GuideNav } from "./GuideNav";
 import { StartingStructures } from "./StartingStructures";
 import { PatternConnections } from "./PatternConnections";
 import { AlphaDerivation } from "./AlphaDerivation";
+import { StandardModelDerivationMap } from "./StandardModelDerivationMap";
+import { GuidePredictions } from "./GuidePredictions";
+import { BootstrapSelection, HorizonAndFrontier } from "./PaperConnections";
+import { ContinuousTransfer } from "./ContinuousTransfer";
 
 const evidence = (q: string) => `/results?search=${encodeURIComponent(q)}`;
 const areas = [
@@ -49,10 +53,12 @@ export function TheoryGuide() {
     <header className="guide-introduction">
       <h1>From particle structure to a calculated coupling.</h1>
       <p className="guide-lead">Follow the actual operations, then carry their outputs into the next calculation. Build the carrier representation, compute charges and transport lengths, and see the same lattice norms and matter budget enter alpha. The connected cosmological and quantum examples follow the same discipline.</p><Link className="guide-link inline-flex min-h-11 items-center mt-3" href="/#outcomes">Start with the overall results and connections</Link>
+      <nav className="reference-links" aria-label="Understand reading paths"><a href="#standard-model">How the Standard Model is built</a><a href="#flavor">How the masses arise</a><a href="#predictions">Predictions and tests</a><Link href="/interactive">Follow an animated journey</Link></nav>
     </header>
     <p className="figure-note">An accepted starting principle, a mathematical consequence, a physical readout under hypotheses and a measured value play different roles. Each step below says which role its inputs and result have.</p>
     <GuideNav />
     <StartingStructures embedded />
+    <StandardModelDerivationMap />
     <section className="guide-section" id="matter">
       <h2>Build the charges of one family</h2><p className="guide-lead">Select one colour slot and one weak slot. Their hypercharges add to 1/6: a quark component. Every even selection has a place in the family.</p>
       <p className="figure-note">Given here: the marked five slot carrier, normalized hypercharge and the even exterior representation. <a className="guide-link" href="#inputs">Inspect the starting inputs</a>.</p>
@@ -73,11 +79,15 @@ export function TheoryGuide() {
       </details>
     </section>
     <SharedStructureBridge />
+    <BootstrapSelection />
     <SharedSeedDerivation />
     <FlavorDerivation />
     <AbelianBudgetDerivation />
     <AlphaDerivation />
+    <GuidePredictions />
     <CosmologyDerivation />
+    <HorizonAndFrontier />
+    <ContinuousTransfer />
     <section className="guide-section" id="clocks">
       <h2>Several clocks, connected by actual actions</h2><p className="guide-lead">The clock network is part of the construction. Each operator acts on a particular space; an order or a recurring number does not identify two operators.</p>
       <ClockExplorer />
@@ -90,6 +100,12 @@ export function TheoryGuide() {
       <p>The interactive gallery below follows the code construction, the Gaussian and quantum dictionary, the actual clock actions, shared operator budgets and later source geometry. Each connection has its own premises and source.</p>
     </section>
     <PatternConnections embedded />
+    <section className="guide-section" id="code-families">
+      <h2>How the code also carries the family cycle</h2>
+      <p className="guide-lead">The Gaussian quotient connects the code and clock pictures. It has four independent binary labels. In a suitable basis, the actual family action cycles F₁ → F₂ → F₃ → F₁ and leaves the anchor A fixed.</p>
+      <p>Among its fifteen nonzero root bearing labels, this gives three fixed labels and four cycles of length three. These are classes in the Gaussian quotient L/(1+i)L. They are different from the raw binary codeword fibres used to construct the lattice. The explicit quotient map and its action supply the connection.</p>
+      <nav className="reference-links" aria-label="Code and family source"><Link href="/documentation?section=section%3A5d71fdfd1d43434581f5">Read the information layer and family action</Link><Link href="/interactive/quantum">Explore the code and quantum dictionary</Link></nav>
+    </section>
     <section className="guide-section" id="source">
       <h2>From connected mathematics to a common physical source</h2><p className="guide-lead">The original papers provide the common reconstruction route, complete reference transport and a geometric action realization. The latest calculations retain this whole-source concatenation and evaluate entire ordered mirror and nonlinear number-source families. The full primitive interacting field integral and its identification with these calculated callers remain the common calculation target.</p>
       <CommonSourcePath/>

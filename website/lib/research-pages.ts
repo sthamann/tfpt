@@ -23,7 +23,7 @@ export interface ResearchPage {
 export const RESEARCH_SOURCE_REVISION = "2925e262855edf188b1e13a0310278066b20454b";
 export function researchSourceHref(path: string, lineStart?: number, lineEnd?: number) {
   const anchor = lineStart ? `#L${lineStart}${lineEnd ? `-L${lineEnd}` : ""}` : "";
-  return `https://github.com/sthamann/tfpt/blob/${RESEARCH_SOURCE_REVISION}/${path.split("/").map(encodeURIComponent).join("/")}${anchor}`;
+  return `https://github.com/sthamann/topological-fixed-point-theory/blob/${RESEARCH_SOURCE_REVISION}/${path.split("/").map(encodeURIComponent).join("/")}${anchor}`;
 }
 
 const p = (text: string): ResearchBlock => ({ kind: "paragraph", text });

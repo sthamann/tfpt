@@ -7,8 +7,8 @@ import { SectionHeader } from "./SectionHeader";
 /**
  * HorizonStory — a plain-language visual of the v101/v102 result:
  * put a black hole inside the de Sitter bulk; at the maximal (Nariai)
- * size the horizon roots form the anchor pattern (1,1,−2), the entropy
- * bound is exactly the Koide branch value 2/3, and the dynamics in both
+ * size the horizon roots form the anchor pattern (1,1,−2), each horizon
+ * carries 1/3 of the de Sitter entropy and together they carry 2/3, and the dynamics in both
  * sectors flows away from the anchor configuration (stationary repeller).
  * Everything shown is machine-checked in v101_horizon_anchor.py and
  * v102_seam_orientation.py; the carrier-in-the-bulk reading is typed [C].
@@ -112,10 +112,12 @@ const FACTS = [
     title: "The Koide 2/3 is the entropy bound",
     body: (
       <>
-        The maximal black hole carries exactly{" "}
-        <Math>{"\\tfrac{2}{3}=|\\mathbb{Z}_2|/N_{\\mathrm{fam}}"}</Math> of the
-        de Sitter entropy — the same constant that sits at the Koide branch
-        point of the flavor sector. Zero adjustable parameters on either side.
+        At the Nariai limit, the black hole horizon and the cosmological
+        horizon each carry <Math>{"\\tfrac{1}{3}"}</Math> of the pure de Sitter
+        entropy. Their combined entropy is{" "}
+        <Math>{"\\tfrac{2}{3}=|\\mathbb{Z}_2|/N_{\\mathrm{fam}}"}</Math> of that
+        reference value, the same constant as the Koide branch point of the
+        flavor sector.
       </>
     ),
     marker: "[E]",
