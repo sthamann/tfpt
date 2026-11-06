@@ -4,6 +4,33 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## 2026-06-25 (F_pole external: the Koide source [formula in source] pole transfer is one-loop EM: v420)
+
+[documents/changelog/sections/013-source.tex:1-19](../../../../documents/changelog/sections/013-source.tex#L1) · `section:8ac4310a6a4cf6c449f1` · subsection
+
+New module v420 ( FR.POLE.QED.01). The honest external-physics follow-up to v93 and the clock No-Go: the Koide source [formula in source] pole transfer is a one-loop electromagnetic effect, not an algebraic step. \ Koide [formula in source] is rescaling-invariant ( [formula in source] ), so flavor-universal running leaves it fixed and the source [formula in source] pole shift is purely flavor-split; \ the tree defici
+
+Explicit source references:
+
+- [verification/status_ledger.csv](../../../../verification/status_ledger.csv#L1) · explicit_file_citation
+- [verification/v187_ftransfer_laws.py](../../../../verification/v187_ftransfer_laws.py#L1) · explicit_script_identifier
+- [verification/script_registry.csv](../../../../verification/script_registry.csv#L1) · explicit_file_citation
+- [FR.POLE.QED.01](../../../../verification/status_ledger.csv#L488) · explicit_claim_identifier · original status at linked ledger row
+- [verification/v327_hypergraph_rewrite.py](../../../../verification/v327_hypergraph_rewrite.py#L1) · explicit_script_identifier
+- [verification/v420_fpole_qed_running.py](../../../../verification/v420_fpole_qed_running.py#L1) · explicit_script_identifier
+- [verification/v93_koide_relaxation_toy.py](../../../../verification/v93_koide_relaxation_toy.py#L1) · explicit_script_identifier
+- [verification/v82_koide_attractor_splitting.py](../../../../verification/v82_koide_attractor_splitting.py#L1) · explicit_script_identifier
+- [verification/run_all.py](../../../../verification/run_all.py#L1) · explicit_file_citation
+- [verification/v371_ftransfer_pole.py](../../../../verification/v371_ftransfer_pole.py#L1) · explicit_script_identifier
+
+Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
+
+- [(* v327 HYP.REWRITE.01: the minimal 3-channel/1-absorbing rewrite M has spectrum {0,2/3,1} *) M = {{1, 0, 0}, {0, 1/3, 1/3}, {0, 1/3, 1/3}}; evs = Sort[Eigenvalues[M]]; checkExact["v327 HYP.REWRITE.01: the minimal 3-channel/1-absorbing rewrite M has spectrum {0,2/3,1}; the recovery survival 2/3 = (Nfam-1)/Nfam = |Z2|/Nfam emerges from the rule arity, and over the order-6 = 2 Nfam hand (2/3)^(2 Nfam) = 64/729 = the recovery gap", evs == {0, 2/3, 1} && 2/3 == (Nfam - 1)/Nfam && (2/3)^(2 Nfam) == 64/729]; (* v327 NON-GRAPH-SPECTRAL: 2/3 is NOT a root of the affine-E8 charpoly (sharpens v312) *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2227)
+- [experiments/lean4-carrier-rigidity/TfptCarrier/SpectralGapAttractor.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/SpectralGapAttractor.lean#L1)
+- [(* ---- (v99) Koide flow time ---- *) DeltaGap = 6 Log[3/2]; rhoK[q_] := (q - 2)/(5 - q); qOfRho[r_] := (2 + 5 r)/(1 + r); checkExact["v99 canonical generator: time-1 map of the rho-scaling flow IS the v82 Moebius F (exact symbolic identity)", Simplify[FK[q] - qOfRho[(2/3)^6 rhoK[q]]] === 0]; checkExact["v99 e^{-Delta} = (2/3)^6 exactly (the gap is the multiplier)", Simplify[Exp[-DeltaGap] - (2/3)^6] === 0]; koideQ[a_, b_, c_] := (a + b + c)/(Sqrt[a] + Sqrt[b] + Sqrt[c])^2; mE = 0.51099895069`20; mMU = 105.6583755`20; (* PDG 2024 pole masses, MeV *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L303)
+- [(* ---- (v93) Koide relaxation toy ---- *) FK[q_] := 2 (569 q - 3325)/(665 q - 3517); checkExact["v93 F fixes branch points; F'(2)=(2/3)^6, F'(5)=(3/2)^6", (FK[2] == 2) && (FK[5] == 5) && (Simplify[FK'[2]] == (2/3)^6) && (Simplify[FK'[5]] == (3/2)^6)]; Qsrc = Module[{me = (16/7) phi0^5, mm = (4/3) phi0^3, mt = (7/6) phi0^2}, (me + mm + mt)/(Sqrt[me] + Sqrt[mm] + Sqrt[mt])^2]; check["v93 Q_src = 0.6644638161 from the exact ladder", Qsrc, 0.664463816123`12, 10^-10]; checkExact["v93 basin lemma: Q in [1/3,1] -> q = 3Q in [1,3]: attractor 2 in, repeller 5 out", (3 (1/3) == 1) && (3*1 == 3) && (1 < 2 < 3) && ! (1 < 5 < 3)]; rhoOf[q_] := (q - 2)/(5 - q); check["v93 rho_src = -phi0/24 to 0.8% (v25 conjecture in attractor coordinates)", rhoOf[3 Qsrc]/(-phi0/24), 0.992105906542`12, 10^-8]; (* ---- (v94) sheet diamond & winding line ---- *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L165)
+- [(* ==== v325/v327: the keystone pillowcase orbifold + the cusp-weight rewrite (exact) ==== *) Module[{chiOrb, M, evs, edges, cAff, x, p23}, (* v325 QGEO.KEYSTONE.01: the flat pillowcase orbifold S^2(2,2,2,2) has chi_orb = 0 *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2220)
+
 ## 2026-06-25 (The seam [formula in source] is the carrier's Galois group: v419 [formula in source] figure)
 
 [documents/changelog/sections/013-source.tex:20-44](../../../../documents/changelog/sections/013-source.tex#L20) · `section:36246a833c23944e824a` · subsection
@@ -2641,29 +2668,6 @@ Explicit source references:
 - [verification/redteam/run_redteam.py](../../../../verification/redteam/run_redteam.py#L1) · explicit_file_citation
 - [LAMBDA.BRANCH.01](../../../../verification/status_ledger.csv#L129) · explicit_claim_identifier · original status at linked ledger row
 - [verification/redteam/rt_F_qft4d.py](../../../../verification/redteam/rt_F_qft4d.py#L1) · explicit_file_citation
-- [verification/v275_qgamb_roadmap.py](../../../../verification/v275_qgamb_roadmap.py#L1) · explicit_script_identifier
-
-Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
-
-- [(* ==== v268: reactor-angle exponent = carrier hypercharge trace (FLAV.TH13.01) ==== *) Module[{Yvec, trY2, roots}, roots = Sort[Y /. Solve[6 Y^2 - Y - 1 == 0, Y]]; Yvec = {-1/3, -1/3, -1/3, 1/2, 1/2}; trY2 = Total[Yvec^2]; checkExact["v268 FLAV.TH13.01: the theta_13 exponent is the carrier hypercharge trace -- " <> "tr_E Y^2 = 3(1/3)^2 + 2(1/2)^2 = 5/6 over the 5-slot carrier hypercharge " <> "Y=diag(-1/3,-1/3,-1/3,1/2,1/2) (the anomaly-free roots {-1/3,1/2} of 6Y^2-Y-1=0), so " <> "sin^2 theta_13 = phi0 e^{-5/6} = phi0 e^{-tr_E Y^2}; complement 1 - 5/6 = 1/6 = the neutrino ratio. " <> "theta_13 is its own carrier-trace channel (the mu-tau breaking gives only ~1e-3, not 0.023).", roots === Sort[{-1/3, 1/2}] && trY2 === 5/6 && (1 - trY2) === 1/6]; ]; (* ==== v271: concrete Epstein-Glaser one-loop quartic renormalization (QFT4D.SPERT.02) ==== v269 (S_pert skeleton) + v270 (PMNS Jarlskog, numerical) are Python-only; v271's exact EG core (scaling degree, counterterm count, loop factor) is mirrored here. *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2069)
-- [(* ==== v273: EG one-loop gauge self-energy -> (b1,b2,b3) (QFT4D.SPERT.03) ==== v272 (nu-scale, numerical) + v274 (over-determination, numerical) + v275 (QG roadmap) are Python-only; v273's exact one-loop beta coefficients from the content are mirrored. *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2102)
-
-## 2026-06-18 (Zenodo release 5.2 (rev 191) — the perturbative 4D-QFT layer + scale closure, v269–v275)
-
-[documents/changelog/sections/018-source.tex:55-67](../../../../documents/changelog/sections/018-source.tex#L55) · `section:63427eabab107d1a2a94` · subsection
-
-Published to Zenodo. Version 5.2 (rev 191) of the ten-PDF document set was published as a new version of the TFPT deposit — record 20743347, DOI 10.5281/zenodo.20743347. This release carries the perturbative 4D-QFT layer (the Epstein–Glaser [formula in source] skeleton v269, the concrete one-loop quartic v271 and gauge [formula in source] -coefficients v273), the complete complex PMNS matrix and leptonic CP strength
-
-Explicit source references:
-
-- [verification/v272_nu_mass_scale.py](../../../../verification/v272_nu_mass_scale.py#L1) · explicit_script_identifier
-- [verification/v273_eg_gauge_running.py](../../../../verification/v273_eg_gauge_running.py#L1) · explicit_script_identifier
-- [verification/v269_spert_paqft_skeleton.py](../../../../verification/v269_spert_paqft_skeleton.py#L1) · explicit_script_identifier
-- [QG.AMB.01](../../../../verification/status_ledger.csv#L47) · explicit_claim_identifier · original status at linked ledger row
-- [verification/run_all.py](../../../../verification/run_all.py#L1) · explicit_file_citation
-- [verification/v274_scale_overdetermination.py](../../../../verification/v274_scale_overdetermination.py#L1) · explicit_script_identifier
-- [verification/v271_eg_oneloop_quartic.py](../../../../verification/v271_eg_oneloop_quartic.py#L1) · explicit_script_identifier
-- [verification/v270_pmns_jarlskog_assembly.py](../../../../verification/v270_pmns_jarlskog_assembly.py#L1) · explicit_script_identifier
 - [verification/v275_qgamb_roadmap.py](../../../../verification/v275_qgamb_roadmap.py#L1) · explicit_script_identifier
 
 Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):

@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Zwei weitere Eingaben und ihre wirklichen Zusatzinformationen
+
+[experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/25_revision_v15.tex:8-20](../../../../experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/25_revision_v15.tex#L8) · `section:02d307d696e24c0d1f2a` · section
+
+Die Texte TFPT Universalraum Fortsetzung, 14.09.2026 NEU und TFPT Universalraum Ergebnisse, 14.09.2026 sind mit der v1.4-Grundlage abgeglichen. Ihre unveränderten Originale liegen als N14 und N15 im Quellenpaket. Interne Arbeitsanweisungen werden als Quelleninhalt, nicht als neue Aufträge behandelt.
+
 ## S03
 
 [experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/sources_manifest.tex:12-16](../../../../experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/sources_manifest.tex#L12) · `section:3b9468b6c21f262e79c7` · subsection
@@ -1991,9 +1997,3 @@ L16mmL41mmY Quelle& Berichtete Prüfung& Reichweite\\ S09&11214 Bedingungen pro 
 [experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/14_schatten_dimension.tex:9-23](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/14_schatten_dimension.tex#L9) · `section:197a2c8ae00eae55da74` · section
 
 Ein traceloses hermitesches [formula in source] -Objekt hat genau drei reelle Komponenten: [formula in source] Ergänzt man [formula in source] , ergibt die Determinante [formula in source] Der positive Kegel erfüllt [formula in source] . Das ist die präzise Lorentz-Brücke aus dem Ursprungsteil. Sie zeigt eine passende lokale algebraische Form. Noch fehlen ihre Interpretation als Ereignisse, die Verklebung zu einer Ra
-
-## Eine engere Arbeitshypothese
-
-[experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/16_schatten_synthese.tex:8-20](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/16_schatten_synthese.tex#L8) · `section:fd626374a8e99ccde304` · section
-
-Die bildhafte Aussage Alles ist aus Primzahlen gebaut lässt sich zu einer brauchbareren Hypothese präzisieren: Ein möglicher gemeinsamer Ursprung besitzt elementare, zusammensetzbare Operationen. In einem kommutativen arithmetischen Schatten erscheinen primitive Faktoren. Vor dieser Auslesung bleiben zusätzliche Phasen, Kontexte und Aufzeichnungen erhalten. Räumliche Nachbarschaft und Zeitordnung müssten aus den erla

@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Schluss in einem Satz
+
+[documents/experiments--theory-contracts--universalraum-singlet-observable-20260915--tmp--pdfs--TFPT_Universalraum_Richtige_Kette_Konsolidierung_2026-09-15_v1.6.7/sections/003-subsection-10-die-drei-n-chsten-entscheidenden.tex:58-66](../../../../documents/experiments--theory-contracts--universalraum-singlet-observable-20260915--tmp--pdfs--TFPT_Universalraum_Richtige_Kette_Konsolidierung_2026-09-15_v1.6.7/sections/003-subsection-10-die-drei-n-chsten-entscheidenden.tex#L58) · `section:24062bfa1aa8db3b6e0a` · subsubsection
+
+Die einfache Regel ist vorhanden; ihr erster verzweigter Zustandsbereich und die richtige kleine Rechenkette sind jetzt genauer gelöst. Was noch fehlt, ist die aus dem Ursprung folgende Auswahl und Ausführung dieses Prozesses als dieselbe physikalische Welt.
+
 ## 8. T1-T8: gemeinsamer Fortschritt ohne Statusinflation
 
 [documents/experiments--theory-contracts--universalraum-singlet-observable-20260915--tmp--pdfs--TFPT_Universalraum_Richtige_Kette_Konsolidierung_2026-09-15_v1.6.7/sections/006-subsection-5-neuer-kleiner-transportzeuge-mit-tats-chlic.tex:267-317](../../../../documents/experiments--theory-contracts--universalraum-singlet-observable-20260915--tmp--pdfs--TFPT_Universalraum_Richtige_Kette_Konsolidierung_2026-09-15_v1.6.7/sections/006-subsection-5-neuer-kleiner-transportzeuge-mit-tats-chlic.tex#L267) · `section:9bd14da4f52922be1ca1` · subsection
@@ -2417,9 +2423,3 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 - [(* v431 (1): two-family split forced by 30 = 2*3*5 *) checkExact["v431 E8.DEGREE.LADDER.01 (i): E8 exponents = phi(30)=8 totatives of h=30=2*N_fam*g_car; coprime to 6 => +-1 mod 6, so degrees occupy ONLY {0,2} mod 6", exps == tot30 && EulerPhi[h] == 8 && h == 2*3*5 && expMod6 == {1, 5} && degMod6 == {0, 2}]; (* v431 (2): 6k family = 6 x spine {2,3,4,5} = v91 anchor a=(1,1,2) *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2663)
 - [(* ---- (v91) spine tetrahedron ---- *) spine = {2, 3, 4, 5}; checkExact["v91 edges/faces/volume of {2,3,4,5}", (Sort[Times @@@ Subsets[spine, {2}]] == {6, 8, 10, 12, 15, 20}) && (Sort[Times @@@ Subsets[spine, {3}]] == {24, 30, 40, 60}) && (Times @@ spine == 120) && (120 == Total[{1, 7, 11, 13, 17, 19, 23, 29}])]; checkExact["v91 graph reading 240 = |mu4| |E(K4)| |E(K5)|; breaks at K6", (4 Binomial[4, 2] Binomial[5, 2] == 240) && (Binomial[6, 2] == 15) && (1 + 1 + 2^4 != 15)]; chiT[t_] := (t - 2) (t - 3) (t - 4) (t - 5); checkExact["v91 chi_T audit: coeffs (14,71,154,120); chi(0)=chi(7)=120, chi(1)=chi(6)=24", (Expand[chiT[t]] == t^4 - 14 t^3 + 71 t^2 - 154 t + 120) && (chiT[0] == 120) && (chiT[7] == 120) && (chiT[1] == 24) && (chiT[6] == 24)]; (* ---- (v92) glue uniqueness ---- *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L136)
-
-## Direct [formula in source] relations: old vs current
-
-[documents/tfpt_3_e8_audit_bootstrap/sections/010-section-three-views-of-one-spine.tex:49-73](../../../../documents/tfpt_3_e8_audit_bootstrap/sections/010-section-three-views-of-one-spine.tex#L49) · `section:6508c261edddca80b810` · section
-
-The old cascade's ``fundamental relations near [formula in source] '' connect directly to the current note — one is identical, two are early forms of current refinements:

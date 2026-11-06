@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## 2026-06-12 (visual pass: box reduction B1)
+
+[documents/changelog/sections/023-source.tex:331-340](../../../../documents/changelog/sections/023-source.tex#L331) · `section:37c689285c5fc6a40772` · subsection
+
+Box reduction (B1). The [formula in source] non-load-bearing aside boxes (audit / recorded / interpretation: auditbox/ audbox/ intbox/ resbox/ roadbox) across tfpt_1, tfpt_2, tfpt_3 and origin_theory are converted to inline bold run-in paragraphs — the reviewer's prescription that an audit fingerprint must not carry the same visual volume as a theorem. The loud box families are now only keybox (claim), winbox (result
+
 ## 2026-06-12 (visual pass: shared figures, badges, marker typology)
 
 [documents/changelog/sections/023-source.tex:341-355](../../../../documents/changelog/sections/023-source.tex#L341) · `section:58cade7e0ae49570c7f2` · subsection
@@ -1169,9 +1175,3 @@ Der eingefügte Gesprächstext vergleicht den Universalraum mit Konrad Zuse und 
 [experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/02_algebra.tex:3-12](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/02_algebra.tex#L3) · `section:965df915fe3244035611` · section
 
 Die historische Kurzfassung nennt [formula in source] und einen fünfteiligen Träger. Vollständig gelesen setzt P1 einen orientierten Rand beziehungsweise eine Naht, einen geeigneten positiven Kern und eine Normierung voraus. P2 setzt Art und Struktur des Trägers voraus; die spätere [formula in source] -Lesart wird mit Farb- und schwachen Richtungen verbunden. Orientierung, Positivität, komplexe Struktur und Markierun
-
-## Warum ein Logarithmus noch keine Sekunde ist
-
-[experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/06_zeit_echo.tex:58-62](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/06_zeit_echo.tex#L58) · `section:d9cb81021e9bdd93448f` · section
-
-Aus [formula in source] folgt [formula in source] . Die historischen Größen [formula in source] und [formula in source] beschreiben deshalb sechsfach wiederholte Faktoren [formula in source] und [formula in source] . Eine physikalische Rate ist erst [formula in source] für einen festgelegten Schritt [formula in source] .

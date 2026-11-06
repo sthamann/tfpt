@@ -42,6 +42,17 @@ export const CHANGELOG_MACROS: Record<string, string> =
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    "date": "2026-11-06",
+    "dateLabel": "2026-11-06",
+    "heading": [
+      {
+        "k": "t",
+        "v": ": three original dynamic source tests"
+      }
+    ],
+    "items": []
+  },
+  {
     "date": "2026-11-05",
     "dateLabel": "2026-11-05",
     "heading": [

@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Warum ein Logarithmus noch keine Sekunde ist
+
+[experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/06_zeit_echo.tex:58-62](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/06_zeit_echo.tex#L58) · `section:d9cb81021e9bdd93448f` · section
+
+Aus [formula in source] folgt [formula in source] . Die historischen Größen [formula in source] und [formula in source] beschreiben deshalb sechsfach wiederholte Faktoren [formula in source] und [formula in source] . Eine physikalische Rate ist erst [formula in source] für einen festgelegten Schritt [formula in source] .
+
 ## Flavor und Massenschemata
 
 [experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/09_physik.tex:125-150](../../../../experiments/theory-contracts/universalraum-v16-integrated-20260915/main-v1.6/chapters/09_physik.tex#L125) · `section:974dd665a1d27f23702d` · section

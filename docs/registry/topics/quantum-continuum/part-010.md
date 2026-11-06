@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Spectral geometry, gravity and thermal time.
+
+[tex-artefacts/tfpt_references.tex:88-100](../../../../tex-artefacts/tfpt_references.tex#L88) · `section:73013c8dfaf5aa22eb09` · paragraph
+
+A. H. Chamseddine, A. Connes, The spectral action principle, Comm.\ Math.\ Phys.\ 186 (1997) 731–750. A. Connes, C. Rovelli, Von Neumann algebra automorphisms and time–thermodynamics relation in general covariant quantum theories, Class.\ Quantum Grav.\ 11 (1994) 2899–2918. R. M. Wald, Black hole entropy is the Noether charge, Phys.\ Rev.\ D 48 (1993) R3427–R3431. H. Casini, M. Huerta, R. C. Myers, Towards a derivati
+
 ## Front matter / support
 
 [tex-artefacts/tfpt_status.tex:1-84](../../../../tex-artefacts/tfpt_status.tex#L1) · `section:ea84c12b5f6b31caebb5` · frontmatter
@@ -58,9 +64,15 @@ The whole spectral parameter dependent Dirichlet to Neumann family now reconstru
 
 ## An evaluated connected original pair response.
 
-[tex-artefacts/toe_field_integration_20261105.tex:288-321](../../../../tex-artefacts/toe_field_integration_20261105.tex#L288) · `section:3af2d927d144fcfb5d31` · paragraph
+[tex-artefacts/toe_field_integration_20261105.tex:288-328](../../../../tex-artefacts/toe_field_integration_20261105.tex#L288) · `section:3af2d927d144fcfb5d31` · paragraph
 
 For the original free product's 384 dimensional opposite momentum Spin4 pair, let [formula in source] be its given momentum and [formula in source] the original IR insertion [formula in source] . The global Euclidean Yukawa action mark gives [formula in source] [formula in source] All four supplied Yukawa matrices are invertible in this statement; the held fixed remainder is bounded and has the stated nonzero dominat
+
+## Dynamic source tests, 6 November 2026.
+
+[tex-artefacts/toe_field_integration_20261105.tex:329-368](../../../../tex-artefacts/toe_field_integration_20261105.tex#L329) · `section:7500f6b19f9302ce11dc` · paragraph
+
+Nineteen targeted exact symbolic checks passed in the three route assessments. For the original charged sector with [formula in source] , define the actual inverse proper time moment by [formula in source] Under this condition, the bare profile action tail fails the positive Hankel test required of a selfadjoint complementary-sector return kernel. This excludes that direct substitution, while retaining the full integ
 
 ## Research consolidation: source fields, dynamics and the remaining bridge (2026-09-09)
 

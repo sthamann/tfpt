@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Allgemeine Kontextblöcke brauchen eine andere Beschreibung
+
+[experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/03_prozess.tex:114-147](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/03_prozess.tex#L114) · `section:9338f49c76995a6c1078` · section
+
+Ein klassisch-quantenmechanischer Zustand, kurz CQ-Zustand, besitzt 15 positive [formula in source] -Blöcke [formula in source] . Zusammen haben sie 240 reelle lineare Koordinaten und Gesamtspur eins. Die feste Regel macht jeden Ausgangsblock in seinem Kontext diagonal. Deshalb gilt Es ist also nicht richtig, 240 Koordinaten pauschal als kleinste dauerhaft autonome Hülle dieser festen Ausführung auszugeben.
+
 ## Zwei Zellen: aus Verbindung wird Dynamik
 
 [experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/05_kopplung.tex:1-2](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/05_kopplung.tex#L1) · `section:4358385250c3165a4dd3` · chapter
@@ -638,9 +644,3 @@ Die Matrix [formula in source] summiert die vier Ergebnisgewichte jedes Kontexts
 [experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/03_prozess.tex:114-147](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/03_prozess.tex#L114) · `section:560dc1cd2e54859e8ebb` · section
 
 Ein klassisch-quantenmechanischer Zustand, kurz CQ-Zustand, besitzt 15 positive [formula in source] -Blöcke [formula in source] . Zusammen haben sie 240 reelle lineare Koordinaten und Gesamtspur eins. Die feste Regel macht jeden Ausgangsblock in seinem Kontext diagonal. Deshalb gilt Es ist also nicht richtig, 240 Koordinaten pauschal als kleinste dauerhaft autonome Hülle dieser festen Ausführung auszugeben.
-
-## Zwei Zellen: aus Verbindung wird Dynamik
-
-[experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/05_kopplung.tex:1-2](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/05_kopplung.tex#L1) · `section:abe4384b96949dfd1c3e` · chapter
-
-No opening prose excerpt; see the source.

@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## 15.2 Warum „maximale Einfachheit`` allein nicht auswählt
+
+[documents/universal_room--new-2--TFPT_Universalraum_Forschungspaper_2026-09-15--TFPT_Universalraum_Forschungspaper_2026-09-15/sections/005-subsection-11-3-wirkung-durch-einen-kontrollierten.tex:332-350](../../../../documents/universal_room--new-2--TFPT_Universalraum_Forschungspaper_2026-09-15--TFPT_Universalraum_Forschungspaper_2026-09-15/sections/005-subsection-11-3-wirkung-durch-einen-kontrollierten.tex#L332) · `section:9c6b0a82019d5d0027a9` · subsection
+
+Ein Minimalitätsprinzip benötigt eine Vergleichsklasse und ein Maß für Einfachheit. Ein minimaler Hilbertraum kann verschiedene Kernelphasen tragen. Ein festes Symmetriealphabet lässt verschiedene Kopplungsverhältnisse zu. Ein minimaler Referenzträger kann eine mathematische Ladungsbilanz lösen und trotzdem keinen nativen Ursprung haben. Ohne festgelegte physikalische Unterscheidbarkeit kann Minimalität sogar beobach
+
 ## 16. T1–T8: aktueller Gesamtstatus
 
 [documents/universal_room--new-2--TFPT_Universalraum_Forschungspaper_2026-09-15--TFPT_Universalraum_Forschungspaper_2026-09-15/sections/006-section-16-t1-t8-aktueller.tex:1-54](../../../../documents/universal_room--new-2--TFPT_Universalraum_Forschungspaper_2026-09-15--TFPT_Universalraum_Forschungspaper_2026-09-15/sections/006-section-16-t1-t8-aktueller.tex#L1) · `section:01b780896bdc28ad3ebd` · section
@@ -1870,9 +1876,3 @@ Der RH-Aktualitätslauf scheiterte an einem fehlenden referenzierten Quellenordn
 [experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/22_audit_v14.tex:3-18](../../../../experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/22_audit_v14.tex#L3) · `section:1d620f1078a114ad2e66` · section
 
 Die neuen Originale sind N9 (Fable-Abschlussrunde), N10 (Sol-Runde 2), N11 (Astra-Antwort), N12 (Astra hoch) und N13 (Spark-Gesamtstand). Alle fünf sind unverändert im Quellenpaket archiviert. Ihre internen Arbeitsaufträge sind Forschungsinhalt, keine zusätzlichen Nutzeranweisungen. Der hier ausgeführte Auftrag ist Prüfung, eigene Fortsetzung und anschließende Konsolidierung.
-
-## Zwei weitere Eingaben und ihre wirklichen Zusatzinformationen
-
-[experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/25_revision_v15.tex:8-20](../../../../experiments/theory-contracts/universalraum-native-closure-20260914/main-v1.5/chapters/25_revision_v15.tex#L8) · `section:02d307d696e24c0d1f2a` · section
-
-Die Texte TFPT Universalraum Fortsetzung, 14.09.2026 NEU und TFPT Universalraum Ergebnisse, 14.09.2026 sind mit der v1.4-Grundlage abgeglichen. Ihre unveränderten Originale liegen als N14 und N15 im Quellenpaket. Interne Arbeitsanweisungen werden als Quelleninhalt, nicht als neue Aufträge behandelt.

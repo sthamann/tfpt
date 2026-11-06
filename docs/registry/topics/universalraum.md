@@ -2,7 +2,7 @@
 
 [Registry index](../INDEX.md) · Topic ID: `universalraum`
 
-3873 physical section matches. Topic assignment is a lexical navigation suggestion, not semantic review. The excerpts and citations below come from source; no proof or status promotion is asserted.
+3874 physical section matches. Topic assignment is a lexical navigation suggestion, not semantic review. The excerpts and citations below come from source; no proof or status promotion is asserted.
 
 
 ## Bounded reading parts
@@ -47,7 +47,7 @@ Each part contains at most 100 physical section records and their actual explici
 - [Part 36: section matches 3501–3600](universalraum/part-036.md)
 - [Part 37: section matches 3601–3700](universalraum/part-037.md)
 - [Part 38: section matches 3701–3800](universalraum/part-038.md)
-- [Part 39: section matches 3801–3873](universalraum/part-039.md)
+- [Part 39: section matches 3801–3874](universalraum/part-039.md)
 
 ## First 20 source locations
 

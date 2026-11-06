@@ -4,6 +4,86 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Research Contract 1 — [formula in source]
+
+[documents/tfpt_research_contracts/sections/001-source.tex:161-397](../../../../documents/tfpt_research_contracts/sections/001-source.tex#L161) · `section:22fb298fcb28accfbf39` · section
+
+Goal. Prove [formula in source] with [formula in source] and [formula in source] at the four points of [formula in source] . The substrate is standard: degree-zero stable parabolic bundles correspond to unitary representations with prescribed local monodromies (Mehta–Seshadri); tame non-abelian Hodge gives the Higgs / flat-connection side. The TFPT content is to pin the one [formula in source] -symmetric, rank-3, fou
+
+Explicit source references:
+
+- [verification/v180_clock_is_mobius.py](../../../../verification/v180_clock_is_mobius.py#L1) · explicit_file_citation
+- [verification/v181_clock_is_conformal_symmetry.py](../../../../verification/v181_clock_is_conformal_symmetry.py#L1) · explicit_file_citation
+- [verification/v600_joint_embedding.py](../../../../verification/v600_joint_embedding.py#L1) · explicit_script_identifier
+- [verification/v54_seam_horizon_keystones.py](../../../../verification/v54_seam_horizon_keystones.py#L1) · explicit_script_identifier
+- [FORM.QGEO.03](../../../../verification/status_ledger.csv#L298) · explicit_claim_identifier · original status at linked ledger row
+- [verification/v566_parabolic_anchor_selfcode.py](../../../../verification/v566_parabolic_anchor_selfcode.py#L1) · explicit_script_identifier
+- [experiments/lean4-carrier-rigidity/TfptCarrier/CohomologyGrading.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/CohomologyGrading.lean#L1) · explicit_file_citation
+- [QGEO.CONF.01](../../../../verification/status_ledger.csv#L259) · explicit_claim_identifier · original status at linked ledger row
+- [verification/v196_seam_energy_functional.py](../../../../verification/v196_seam_energy_functional.py#L1) · explicit_file_citation
+- [verification/v176_seam_collar_realisation.py](../../../../verification/v176_seam_collar_realisation.py#L1) · explicit_file_citation
+- [verification/v601_equivariant_dual.py](../../../../verification/v601_equivariant_dual.py#L1) · explicit_file_citation
+- [verification/v599_real_structure.py](../../../../verification/v599_real_structure.py#L1) · explicit_script_identifier
+- [verification/v117_monodromy_weyl_a3.py](../../../../verification/v117_monodromy_weyl_a3.py#L1) · explicit_script_identifier
+- [verification/v155_quasifree_boundary.py](../../../../verification/v155_quasifree_boundary.py#L1) · explicit_script_identifier
+- [verification/v192_qgeo_energy_clock.py](../../../../verification/v192_qgeo_energy_clock.py#L1) · explicit_file_citation
+- [verification/v590_involution_existence.py](../../../../verification/v590_involution_existence.py#L1) · explicit_script_identifier
+- [verification/v175_net_existence_full_cone.py](../../../../verification/v175_net_existence_full_cone.py#L1) · explicit_script_identifier
+- [verification/v154_simple_current_theorem.py](../../../../verification/v154_simple_current_theorem.py#L1) · explicit_script_identifier
+- [QGEO.ISO.01](../../../../verification/status_ledger.csv#L260) · explicit_claim_identifier · original status at linked ledger row
+- [verification/v179_conformal_realisation.py](../../../../verification/v179_conformal_realisation.py#L1) · explicit_file_citation
+- [verification/v162_seam_transport_identification.py](../../../../verification/v162_seam_transport_identification.py#L1) · explicit_script_identifier
+- [verification/v137_qplus_cohomology.py](../../../../verification/v137_qplus_cohomology.py#L1) · explicit_script_identifier
+- [verification/v168_qgeo_rigidity.py](../../../../verification/v168_qgeo_rigidity.py#L1) · explicit_file_citation
+- [QGEO.REALIZE.01](../../../../verification/status_ledger.csv#L253) · explicit_claim_identifier · original status at linked ledger row
+- [verification/v194_raw_seam_dtn_rp.py](../../../../verification/v194_raw_seam_dtn_rp.py#L1) · explicit_file_citation
+- [QGEO.KERNEL.01](../../../../verification/status_ledger.csv#L257) · explicit_claim_identifier · original status at linked ledger row
+- [verification/v597_mu4_cover_model.py](../../../../verification/v597_mu4_cover_model.py#L1) · explicit_file_citation
+- [verification/v178_marks_kernel_attempt.py](../../../../verification/v178_marks_kernel_attempt.py#L1) · explicit_file_citation
+- [FORM.QGEO.02](../../../../verification/status_ledger.csv#L297) · explicit_claim_identifier · original status at linked ledger row
+- [verification/v602_duality_forms.py](../../../../verification/v602_duality_forms.py#L1) · explicit_file_citation
+- [verification/v156_seam_net_construction.py](../../../../verification/v156_seam_net_construction.py#L1) · explicit_script_identifier
+- [verification/v177_seam_marking_kernel.py](../../../../verification/v177_seam_marking_kernel.py#L1) · explicit_script_identifier
+- [verification/v572_rp_bit_form.py](../../../../verification/v572_rp_bit_form.py#L1) · explicit_script_identifier
+- [QGEO.MARKS.01](../../../../verification/status_ledger.csv#L256) · explicit_claim_identifier · original status at linked ledger row
+- [verification/v150_replica_eh_model.py](../../../../verification/v150_replica_eh_model.py#L1) · explicit_script_identifier
+- [verification/v193_qgeo_energy_commutator.py](../../../../verification/v193_qgeo_energy_commutator.py#L1) · explicit_file_citation
+- [verification/v58_seam_horizon_chain.py](../../../../verification/v58_seam_horizon_chain.py#L1) · explicit_script_identifier
+- [experiments/lean4-carrier-rigidity/TfptCarrier/CoverEmbedding.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/CoverEmbedding.lean#L1) · explicit_file_citation
+- [verification/v195_marks_lefschetz_character.py](../../../../verification/v195_marks_lefschetz_character.py#L1) · explicit_file_citation
+- [verification/v73_k_c3_half.py](../../../../verification/v73_k_c3_half.py#L1) · explicit_script_identifier
+- [FORM.QGEO.04](../../../../verification/status_ledger.csv#L374) · explicit_claim_identifier · original status at linked ledger row
+- [QGEO.RIGID.01](../../../../verification/status_ledger.csv#L252) · explicit_claim_identifier · original status at linked ledger row
+- [QGEO.ENERGY.02](../../../../verification/status_ledger.csv#L267) · explicit_claim_identifier · original status at linked ledger row
+- [verification/v158_fixed_point_stable.py](../../../../verification/v158_fixed_point_stable.py#L1) · explicit_script_identifier
+- [QGEO.SYM.01](../../../../verification/status_ledger.csv#L261) · explicit_claim_identifier · original status at linked ledger row
+- [experiments/lean4-carrier-rigidity/TfptCarrier/MobiusUniformisation.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/MobiusUniformisation.lean#L1) · explicit_file_citation
+- [QGEO.ENERGY.01](../../../../verification/status_ledger.csv#L266) · explicit_claim_identifier · original status at linked ledger row
+
+Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
+
+- [experiments/lean4-carrier-rigidity/TfptCarrier/CohomologyGrading.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/CohomologyGrading.lean#L1)
+- [(* ---- (v117) monodromy = W(A3) ---- The [N] ODE identification (scipy monodromy of the exact A0* system) is Python-only by convention; the exact statements are mirrored here. *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L713)
+- [(* ---- (v158) free chiral c=8 fixed point is stable ---- *) Module[{hpsi, hcur, hquart, bosonic, relevant}, hpsi = 1/2; hcur = 2 hpsi; hquart = 4 hpsi; bosonic = {1, 2, 3}; (* integer-h bosonic chiral ops *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L1421)
+- [(* ---- (v53) compiler core: everything from (g_car,N_fam)=(5,3) ---- *) checkExact["rank E8=g+n=8, |Z2|=g-n=2, |mu4|=(g+n)/2=4; five core ints {2,3,4,5,8} from (5,3)", gcar + Nfam == 8 && gcar - Nfam == 2 && (gcar + Nfam)/2 == 4 && Sort[{gcar - Nfam, Nfam, 4, gcar, gcar + Nfam}] == {2, 3, 4, 5, 8}]; checkExact["Pythagorean mass-volume: Delta_Y=g^2=25=N_fam^2 + (g-n)(g+n)=9+16; up+lep=|Z2|*rank E8=dim S+", Module[{rs = Total /@ K}, gcar^2 == Nfam^2 + 4^2 == 25 && rs == {6, 9, 10} && rs[[2]] == Nfam^2 == 9 && (rs[[1]] + rs[[3]]) == (gcar - Nfam)(gcar + Nfam) == 16]]; checkExact["anchor char-poly: (t-1)^2(t-2)=t^3-|mu4|t^2+g_car t-|Z2|; e_k(1,1,2)=(4,5,2)", Module[{tt}, Expand[(tt - 1)^2 (tt - 2)] == tt^3 - 4 tt^2 + gcar tt - 2] && {1 + 1 + 2, 1*1 + 1*2 + 1*2, 1*1*2} == {4, 5, 2}]; (* ---- (v54) seam=horizon keystones: triply-forced 8 + shared transfer operator ---- *)](../../../../verification/wolfram/tfpt_readouts.wl#L222)
+- [experiments/lean4-carrier-rigidity/TfptCarrier/AuditContract.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/AuditContract.lean#L1)
+- [experiments/lean4-carrier-rigidity/TfptCarrier/MobiusUniformisation.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/MobiusUniformisation.lean#L1)
+- [(* ---- (v137) Q+ cohomology grading ---- *) Module[{omchar, resok, qp, a0c}, omchar = Table[Simplify[((I z)^(k - 1)/((I z)^4 - 1)) I/(z^(k - 1)/(z^4 - 1))], {k, 3}]; resok = And @@ Flatten[Table[ Simplify[Residue[z^(k - 1)/(z^4 - 1), {z, zeta}] - zeta^k/4] === 0, {k, 3}, {zeta, {1, -1, I, -I}}]]; checkExact["v137 characters + residues: omega_k has mu_4 character i^k (k=1,2,3); residue vector = zeta^k/4 exactly", omchar === {I, -1, -I} && resok]; qp = DiagonalMatrix[3 {0, 1/3, 2/3} + 1]; a0c = {{1/2, Sqrt[2]/6, 0}, {Sqrt[2]/6, 1/4, Sqrt[5]/12}, {0, Sqrt[5]/12, 1/4}}; checkExact["v137 grading: Spec(Q+) = {1,2,3}; cusp weights {0,1/3,2/3} = spec(A0*)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L1086)
+- [experiments/lean4-carrier-rigidity/TfptCarrier/SeamApplicabilityLedger.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/SeamApplicabilityLedger.lean#L1)
+- [(* ---- (v150) replica EH model ---- *) Module[{cdef, imgOK, convOK, mellin, dz0, dC, target}, cdef[g_] := (1/12) (2 Pi/g - g/(2 Pi)); imgOK = And @@ Table[ FullSimplify[Sum[1/Sin[Pi k/n]^2, {k, 1, n - 1}] - (n^2 - 1)/3] === 0, {n, 2, 8}]; convOK = Simplify[(1/(4 nn)) (nn^2 - 1)/3 - cdef[2 Pi/nn]] === 0; mellin = Integrate[tt^(ss - 1) Exp[-mm^2 tt], {tt, 0, Infinity}, Assumptions -> ss > 0 && mm > 0]; dz0 = D[mm^(-2 ss), ss] /. ss -> 0; dC = D[cdef[gg], gg] /. gg -> 2 Pi; target = Simplify[12 Pi (1/2) (1/(8 Pi))]; checkExact["v150 replica EH model: image sum exact (N=2..8); orbifold deficit = C(2pi/N); Mellin Delta-zeta(s) = C m^-2s => Delta log det' = 2C ln m (cutoff-independent); dC/dgamma|_{2pi} = -1/(12pi) => EH form with k = ln m/(12pi); target k = c3/2 <=> ln m = 3/4 = q(A3)", imgOK && convOK && Simplify[mellin - Gamma[ss] mm^(-2 ss)] === 0 && Simplify[dz0 + 2 Log[mm]] === 0 && Simplify[dC + 1/(12 Pi)] === 0 && target == 3/4]; ]; (* ---- (v151) BFK split ---- *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L1321)
+- [(* ---- (v73) k=c3/2 forced: variational factor x Gauss-Bonnet topology; Fursaev-Solodukhin S=A/4 ---- *) checkExact["k=c3/2=1/(16pi)=(1/2)*(1/(|Z2|*2pi*chi(S2))), chi(S2)=2; Fursaev-Solodukhin 4pi k = 1/4", Module[{c3 = 1/(8 Pi), chi = 2, Z2 = 2}, (c3/2 == 1/(16 Pi)) && (c3 == 1/(Z2*2 Pi*chi)) && (4 Pi*(c3/2) == 1/4)]]; (* ---- (v74) compiler micro-lemmas: pencil differences 2->16->48; anchor QF 41-25=16 ---- *)](../../../../verification/wolfram/tfpt_readouts.wl#L352)
+- [experiments/lean4-carrier-rigidity/TfptCarrier/SeamResidualAxiom.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/SeamResidualAxiom.lean#L1)
+- [(* ---- (v196) QGEO.VARI.01: E_fail = 0 on the mu4 block (exact finite vanishing) ---- *) Module[{rho, Lam, comm, order4, twist}, rho = DiagonalMatrix[{I, -1, -I}]; Lam = DiagonalMatrix[{1, 2, 3}]; (* any real diagonal (mu4-equivariant) DtN *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L1619)
+- [experiments/lean4-carrier-rigidity/TfptCarrier/CoverEmbedding.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/CoverEmbedding.lean#L1)
+- [(* ---- (v57) horizon cross-links: Jacobson 8pi, Hod ln(3), Hawking |W(D5)| ---- *) checkExact["c3=1/(8pi) Einstein/Jacobson: 1/(16pi)=c3/2; 1/4=1/|mu4|; 1/(2pi)=4c3", Simplify[1/(16 Pi) - (1/(8 Pi))/2] == 0 && 1/4 == 1/4 && Simplify[1/(2 Pi) - 4/(8 Pi)] == 0]; checkExact["Hod QNM omega_R/T_H = ln(3) = ln(N_fam); Hawking power denom 1920=|W(D5)|=2^4*5!", Nfam == 3 && 1920 == 2^4 * 5!]; (* ---- (v58) seam-horizon chain: one-sided Gauss-Bonnet, KMS, S_BH, RT in seam units ---- *)](../../../../verification/wolfram/tfpt_readouts.wl#L263)
+- [experiments/lean4-carrier-rigidity/TfptCarrier/ParityWeightLaws.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/ParityWeightLaws.lean#L1)
+- [(* ---- (v175) net existence + full-cone RP: E8 Cartan even unimodular, character order 5, Gamma(t) functoriality integers ---- *) Module[{cartan, det, evenDiag, sig3, E4, prodv, chi, c5, fockDim, fixedMult, gap, pairCount}, (* E8 Cartan matrix (Bourbaki): even (diag 2) and det 1 = unique rank-8 even unimodular lattice *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L1522)
+- [(* ---- (v154) Simple-Current Extension Theorem ---- *) Module[{Lord = 4, cB, muA, muB}, cB = 5 + 3; muA = 4*4; muB = muA/Lord^2; checkExact["v154 Simple-Current Extension: |L|=4=|mu4| (isotropic q(k(1,1))=k^2 in Z); c(B)=5+3=8; mu(B)=mu(A)/|L|^2=16/16=1 => holomorphic => B=(E8)1 (unique even-unimodular rank-8; SO(16)1 mu=4 excluded)", AllTrue[Range[0, 3], IntegerQ[5 #^2/8 + 3 #^2/8] &] && Lord == 4 && cB == 8 && muA == 16 && muB == 1 && 4 != muB]; ]; (* ---- (v156) seam-net construction: DtN = |k| + the (E8)_1 character ---- *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L1380)
+- [(* ---- (v195) QGEO.MARKS.02: Lefschetz/character forcing of the free mu4 orbit ---- *) Module[{chars, trace, noTrivial, orbit, orbitClosed, nPunct}, chars = I^Range[1, 3]; (* {I, -1, -I} *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L1607)
+- [(* ---- (v168) QGEO rigidity: mu4 square cross-ratio, mu4 characters = A3 exponents ---- *) Module[{mu4, cross, zz, eig, qspec}, mu4 = {1, I, -1, -I}; cross = Simplify[(mu4[[1]] - mu4[[3]]) (mu4[[2]] - mu4[[4]]) / ((mu4[[1]] - mu4[[4]]) (mu4[[2]] - mu4[[3]])) ]; (* omega_k = z^{k-1}/(z^4-1); pullback z->i z eigenvalue should be i^k *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L1452)
+- [(* ---- (v193) QGEO.ENERGY.02 EH-rigidity rider: the EH coeff selects q(A3), not q(D5) ---- *) Module[{gcar, Nfam, mu4, c3, qA3, qD5, kFamily, kCarrier, kTarget}, gcar = 5; Nfam = 3; mu4 = 4; c3 = 1/(8 Pi); qA3 = Nfam/mu4; (* 3/4 family glue norm *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L1594)
+- [experiments/lean4-carrier-rigidity/TfptCarrier/AxiomCheck.lean](../../../../experiments/lean4-carrier-rigidity/TfptCarrier/AxiomCheck.lean#L1)
+
 ## Front matter / support
 
 [documents/tfpt_research_contracts/sections/004-source.tex:1-394](../../../../documents/tfpt_research_contracts/sections/004-source.tex#L1) · `section:a153934887244824336d` · frontmatter
@@ -3896,9 +3976,3 @@ Die älteren, in S09 zusammengefassten Untersuchungen fanden mehrere Räume, die
 [experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/03_prozess.tex:20-55](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/03_prozess.tex#L20) · `section:07562212c420bc603ab7` · section
 
 Die Matrix [formula in source] summiert die vier Ergebnisgewichte jedes Kontexts. Die Matrix [formula in source] liest die 15 nichttrivialen Pauli-Erwartungswerte aus. Mit [formula in source] lauten ihre Einträge Für [formula in source] und [formula in source] ergibt sich exakt Der Systemschatten entwickelt sich somit als depolarisierender Kanal Die Dämpfung [formula in source] entsteht aus der Kontextkombinatorik. B
-
-## Allgemeine Kontextblöcke brauchen eine andere Beschreibung
-
-[experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/03_prozess.tex:114-147](../../../../experiments/theory-contracts/universalraum-five-source-frontier-20260914/baseline-v1.3/chapters/03_prozess.tex#L114) · `section:9338f49c76995a6c1078` · section
-
-Ein klassisch-quantenmechanischer Zustand, kurz CQ-Zustand, besitzt 15 positive [formula in source] -Blöcke [formula in source] . Zusammen haben sie 240 reelle lineare Koordinaten und Gesamtspur eins. Die feste Regel macht jeden Ausgangsblock in seinem Kontext diagonal. Deshalb gilt Es ist also nicht richtig, 240 Koordinaten pauschal als kleinste dauerhaft autonome Hülle dieser festen Ausführung auszugeben.

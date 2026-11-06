@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Direct [formula in source] relations: old vs current
+
+[documents/tfpt_3_e8_audit_bootstrap/sections/010-section-three-views-of-one-spine.tex:49-73](../../../../documents/tfpt_3_e8_audit_bootstrap/sections/010-section-three-views-of-one-spine.tex#L49) · `section:6508c261edddca80b810` · section
+
+The old cascade's ``fundamental relations near [formula in source] '' connect directly to the current note — one is identical, two are early forms of current refinements:
+
 ## Sector inventory: have all the old-cascade sectors been computed?
 
 [documents/tfpt_3_e8_audit_bootstrap/sections/010-section-three-views-of-one-spine.tex:74-112](../../../../documents/tfpt_3_e8_audit_bootstrap/sections/010-section-three-views-of-one-spine.tex#L74) · `section:9b133930ab1a7134e578` · section
@@ -1546,9 +1552,3 @@ We consolidate finite algebraic and analytic controls, four attributed research-
 [documents/universal_room--new-2--TFPT_Universalraum_Forschungspaper_2026-09-15--TFPT_Universalraum_Forschungspaper_2026-09-15/sections/001-section-zusammenfassung-label-zusammenfassung.tex:8-73](../../../../documents/universal_room--new-2--TFPT_Universalraum_Forschungspaper_2026-09-15--TFPT_Universalraum_Forschungspaper_2026-09-15/sections/001-section-zusammenfassung-label-zusammenfassung.tex#L8) · `section:ee5fc9cfdf402b42bc51` · section
 
 Die Topological Fixed-Point Theory (TFPT) verbindet eine markierte algebraische Ausgangsstruktur mit Darstellungen, Gitterdaten und Kandidaten für physikalische Größen. Der Universalraum bezeichnet das weitergehende Ziel, Zustände, erlaubte Operationen, Aufzeichnungen und beobachtbare Entwicklung als Teile einer gemeinsamen Konstruktion zu verstehen. Die vorliegende Arbeit synthetisiert die bis zum 15. September 2026
-
-## 15.2 Warum „maximale Einfachheit`` allein nicht auswählt
-
-[documents/universal_room--new-2--TFPT_Universalraum_Forschungspaper_2026-09-15--TFPT_Universalraum_Forschungspaper_2026-09-15/sections/005-subsection-11-3-wirkung-durch-einen-kontrollierten.tex:332-350](../../../../documents/universal_room--new-2--TFPT_Universalraum_Forschungspaper_2026-09-15--TFPT_Universalraum_Forschungspaper_2026-09-15/sections/005-subsection-11-3-wirkung-durch-einen-kontrollierten.tex#L332) · `section:9c6b0a82019d5d0027a9` · subsection
-
-Ein Minimalitätsprinzip benötigt eine Vergleichsklasse und ein Maß für Einfachheit. Ein minimaler Hilbertraum kann verschiedene Kernelphasen tragen. Ein festes Symmetriealphabet lässt verschiedene Kopplungsverhältnisse zu. Ein minimaler Referenzträger kann eine mathematische Ladungsbilanz lösen und trotzdem keinen nativen Ursprung haben. Ohne festgelegte physikalische Unterscheidbarkeit kann Minimalität sogar beobach

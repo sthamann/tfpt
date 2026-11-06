@@ -4,6 +4,29 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## 2026-06-18 (Zenodo release 5.2 (rev 191) — the perturbative 4D-QFT layer + scale closure, v269–v275)
+
+[documents/changelog/sections/018-source.tex:55-67](../../../../documents/changelog/sections/018-source.tex#L55) · `section:63427eabab107d1a2a94` · subsection
+
+Published to Zenodo. Version 5.2 (rev 191) of the ten-PDF document set was published as a new version of the TFPT deposit — record 20743347, DOI 10.5281/zenodo.20743347. This release carries the perturbative 4D-QFT layer (the Epstein–Glaser [formula in source] skeleton v269, the concrete one-loop quartic v271 and gauge [formula in source] -coefficients v273), the complete complex PMNS matrix and leptonic CP strength
+
+Explicit source references:
+
+- [verification/v272_nu_mass_scale.py](../../../../verification/v272_nu_mass_scale.py#L1) · explicit_script_identifier
+- [verification/v273_eg_gauge_running.py](../../../../verification/v273_eg_gauge_running.py#L1) · explicit_script_identifier
+- [verification/v269_spert_paqft_skeleton.py](../../../../verification/v269_spert_paqft_skeleton.py#L1) · explicit_script_identifier
+- [QG.AMB.01](../../../../verification/status_ledger.csv#L47) · explicit_claim_identifier · original status at linked ledger row
+- [verification/run_all.py](../../../../verification/run_all.py#L1) · explicit_file_citation
+- [verification/v274_scale_overdetermination.py](../../../../verification/v274_scale_overdetermination.py#L1) · explicit_script_identifier
+- [verification/v271_eg_oneloop_quartic.py](../../../../verification/v271_eg_oneloop_quartic.py#L1) · explicit_script_identifier
+- [verification/v270_pmns_jarlskog_assembly.py](../../../../verification/v270_pmns_jarlskog_assembly.py#L1) · explicit_script_identifier
+- [verification/v275_qgamb_roadmap.py](../../../../verification/v275_qgamb_roadmap.py#L1) · explicit_script_identifier
+
+Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
+
+- [(* ==== v268: reactor-angle exponent = carrier hypercharge trace (FLAV.TH13.01) ==== *) Module[{Yvec, trY2, roots}, roots = Sort[Y /. Solve[6 Y^2 - Y - 1 == 0, Y]]; Yvec = {-1/3, -1/3, -1/3, 1/2, 1/2}; trY2 = Total[Yvec^2]; checkExact["v268 FLAV.TH13.01: the theta_13 exponent is the carrier hypercharge trace -- " <> "tr_E Y^2 = 3(1/3)^2 + 2(1/2)^2 = 5/6 over the 5-slot carrier hypercharge " <> "Y=diag(-1/3,-1/3,-1/3,1/2,1/2) (the anomaly-free roots {-1/3,1/2} of 6Y^2-Y-1=0), so " <> "sin^2 theta_13 = phi0 e^{-5/6} = phi0 e^{-tr_E Y^2}; complement 1 - 5/6 = 1/6 = the neutrino ratio. " <> "theta_13 is its own carrier-trace channel (the mu-tau breaking gives only ~1e-3, not 0.023).", roots === Sort[{-1/3, 1/2}] && trY2 === 5/6 && (1 - trY2) === 1/6]; ]; (* ==== v271: concrete Epstein-Glaser one-loop quartic renormalization (QFT4D.SPERT.02) ==== v269 (S_pert skeleton) + v270 (PMNS Jarlskog, numerical) are Python-only; v271's exact EG core (scaling degree, counterterm count, loop factor) is mirrored here. *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2069)
+- [(* ==== v273: EG one-loop gauge self-energy -> (b1,b2,b3) (QFT4D.SPERT.03) ==== v272 (nu-scale, numerical) + v274 (over-determination, numerical) + v275 (QG roadmap) are Python-only; v273's exact one-loop beta coefficients from the content are mirrored. *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L2102)
+
 ## 2026-06-18 (scale + frontier round: [formula in source] -mass scale, EG gauge running, over-determination, QG roadmap, v272– v275)
 
 [documents/changelog/sections/018-source.tex:68-92](../../../../documents/changelog/sections/018-source.tex#L68) · `section:366ba63a37a50edd34ea` · subsection
@@ -2091,9 +2114,3 @@ Explicit source references:
 
 - [README.md](../../../../README.md#L1) · explicit_file_citation
 - [verification/make_manifest.py](../../../../verification/make_manifest.py#L1) · explicit_file_citation
-
-## 2026-06-12 (visual pass: box reduction B1)
-
-[documents/changelog/sections/023-source.tex:331-340](../../../../documents/changelog/sections/023-source.tex#L331) · `section:37c689285c5fc6a40772` · subsection
-
-Box reduction (B1). The [formula in source] non-load-bearing aside boxes (audit / recorded / interpretation: auditbox/ audbox/ intbox/ resbox/ roadbox) across tfpt_1, tfpt_2, tfpt_3 and origin_theory are converted to inline bold run-in paragraphs — the reviewer's prescription that an audit fingerprint must not carry the same visual volume as a theorem. The loud box families are now only keybox (claim), winbox (result

@@ -4,6 +4,12 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Zwei Zellen: aus Verbindung wird Dynamik
+
+[experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/05_kopplung.tex:1-2](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/05_kopplung.tex#L1) · `section:abe4384b96949dfd1c3e` · chapter
+
+No opening prose excerpt; see the source.
+
 ## Warum viele Zellen noch ein eigener Schritt sind
 
 [experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/05_kopplung.tex:112-120](../../../../experiments/theory-contracts/universalraum-paired-release-20260914/main-v1.3/chapters/05_kopplung.tex#L112) · `section:4ae6a758379e532bd502` · section
@@ -744,9 +750,3 @@ M. Takesaki, Tomita's Theory of Modular Hilbert Algebras and its Applications, L
 [tex-artefacts/tfpt_references.tex:43-71](../../../../tex-artefacts/tfpt_references.tex#L43) · `section:419291db9b3bf697f68f` · paragraph
 
 I. B. Frenkel, V. G. Kac, Basic representations of affine Lie algebras and dual resonance models, Invent.\ Math.\ 62 (1980) 23–66; G. Segal, Unitary representations of some infinite-dimensional groups, Comm.\ Math.\ Phys.\ 80 (1981) 301–342. T. J. Osborne, A. Stottmeister, Conformal field theory from lattice fermions, Comm.\ Math.\ Phys.\ 398 (2023) 219–289, arXiv:2107.13834, doi:10.1007/s00220-022-04521-8. (This is
-
-## Spectral geometry, gravity and thermal time.
-
-[tex-artefacts/tfpt_references.tex:88-100](../../../../tex-artefacts/tfpt_references.tex#L88) · `section:73013c8dfaf5aa22eb09` · paragraph
-
-A. H. Chamseddine, A. Connes, The spectral action principle, Comm.\ Math.\ Phys.\ 186 (1997) 731–750. A. Connes, C. Rovelli, Von Neumann algebra automorphisms and time–thermodynamics relation in general covariant quantum theories, Class.\ Quantum Grav.\ 11 (1994) 2899–2918. R. M. Wald, Black hole entropy is the Noether charge, Phys.\ Rev.\ D 48 (1993) R3427–R3431. H. Casini, M. Huerta, R. C. Myers, Towards a derivati

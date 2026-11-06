@@ -64,7 +64,7 @@ Recovered verification calculations retain their original scope. Current Lean ke
 
 ## Durable result route.
 
-[tex-artefacts/toe_field_integration_20261105.tex:322-341](../../../../tex-artefacts/toe_field_integration_20261105.tex#L322) · `section:311cda8e2201599f83be` · paragraph
+[tex-artefacts/toe_field_integration_20261105.tex:369-390](../../../../tex-artefacts/toe_field_integration_20261105.tex#L369) · `section:311cda8e2201599f83be` · paragraph
 
 The earlier research records WEIGHTS20261105B, SEWING20261105C, FIELDINT20261105D, HYP20261105E and HYP20261105F retain their stated scope. The followups SHORTTIME20261105G and SHORTTIME20261105H add the calculated source coefficients. The continuation SHORTTIME20261105I records the neutral source integration and its full source boundary. The continuation SHORTTIME20261105J records the recovered proof scopes and conv
 
