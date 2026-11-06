@@ -21,11 +21,11 @@ export default function InteractivePage(){
   const alpha=comparisonFor("ALPHA_INV");
   return <article className={styles.world}>
     <script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify({"@context":"https://schema.org","@type":"LearningResource",name:"Explore TFPT interactively",url:`${SITE_URL}/interactive`,description:metadata.description,inLanguage:"en",learningResourceType:"Interactive explanation",educationalLevel:"Introductory",isAccessibleForFree:true,hasPart:INTERACTIVE_CHAPTERS.filter(c=>c.id!=="overview").map(c=>({"@type":"LearningResource",name:c.title,url:`${SITE_URL}/interactive/${c.id}`}))})}}/>
-    <header className={styles.header}><h1>Start small. See what follows.</h1><p>You do not need to know the theory first. Change one thing, watch what happens, and build the bigger picture one step at a time.</p></header>
-    <ChapterNavigation current="overview"/>
+    <header className={styles.header}><h1>Follow the whole theory.</h1><p>Follow one continuous journey from four marked points to matter, E₈, alpha and predictions. Watch the branches connect, pause anywhere and explore each calculation.</p></header>
     <BeginnerJourney inverseAlpha={alpha.predicted} comparison={{predicted:alpha.predicted,central:alpha.central,uncertaintyMinus:alpha.uncertaintyMinus,date:alpha.date,measured:alpha.measured}}/>
     <details className={styles.deepDive}><summary>Explore the full connection map</summary><TheoryJourney/></details>
     <section className={styles.index} aria-labelledby="interactive-chapters-heading">
+      <ChapterNavigation current="overview"/>
       <h2 id="interactive-chapters-heading">Pick something to try.</h2>
       <p>Each chapter starts with one idea you can see and change. Explore freely, or follow the chapters from the particle structure through its connected readouts.</p>
       <ul className={styles.chapterList}>{INTERACTIVE_CHAPTERS.filter(c=>c.id!=="overview").map(chapter=>{const Icon=icons[chapter.id as keyof typeof icons];return <li key={chapter.id}><Link href={`/interactive/${chapter.id}`}><Icon size={50} strokeWidth={1.2} aria-hidden/><h3>{chapter.question}</h3><p>{chapter.summary}</p><ArrowRight size={22} aria-hidden/></Link></li>})}</ul>

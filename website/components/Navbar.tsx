@@ -12,11 +12,11 @@ import researchSummary from "@/lib/research-summary.json";
 
 const primaryLinks = [
   { href: "/", label: "Start" },
-  { href: "/interactive", label: "Interactive" },
   { href: "/explain", label: "Understand" },
   { href: "/results", label: "Knowledge atlas" },
   { href: "/documentation", label: "Sources" },
   { href: "/verification", label: "Verification" },
+  { href: "/interactive", label: "Interactive" },
 ];
 
 const moreLinks = [
