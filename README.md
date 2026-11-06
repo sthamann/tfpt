@@ -13,6 +13,14 @@ are authoritative; the number of checks is not a proof of a complete theory.
 [Machine-readable registry](docs/registry/registry.json) ·
 [Agent instructions](AGENTS.md)
 
+For focused explanations, read the [fine structure constant](https://www.fixpoint-theory.com/fine-structure-constant),
+[E₈ and Standard Model structure](https://www.fixpoint-theory.com/e8-standard-model),
+and [three fermion generations](https://www.fixpoint-theory.com/three-fermion-generations).
+The [selected original arguments](https://www.fixpoint-theory.com/research)
+retain their source versions, formulas and premises. The [author pages](https://www.fixpoint-theory.com/authors)
+connect the current publications with their public identities and the explicitly
+historical archive.
+
 ## Shared origin of c3, P1 and P2
 
 P1 is the primitive oriented reflection-positive seam kernel with unit winding;

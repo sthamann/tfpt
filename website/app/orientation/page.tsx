@@ -12,6 +12,7 @@ import { RosettaLexicon } from "@/components/RosettaLexicon";
 import { SITE_VERSION } from "@/lib/version";
 import { SITE_URL } from "@/lib/utils";
 import Link from "next/link";
+import { AUTHOR_ENTITIES } from "@/lib/authors";
 
 export const metadata: Metadata = pageMetadata("/orientation");
 
@@ -27,10 +28,7 @@ const articleJsonLd = {
     issueNumber: "0",
     name: `TFPT ${SITE_VERSION} compiler-closure document set`,
   },
-  author: [
-    { "@type": "Person", name: "Stefan Hamann" },
-    { "@type": "Person", name: "Alessandro Rizzo" },
-  ],
+  author: AUTHOR_ENTITIES,
   abstract:
     `The entry document for the TFPT ${SITE_VERSION} set. It states what TFPT claims and does not claim, the structured P1 kernel, its c₃ normalization, the P2 readout and their shared conditional reductions to E₈, the two engines, the bootstrap loop, and where each load-bearing argument is isolated in the document set.`,
   about: [

@@ -3,6 +3,18 @@ import { SITE_URL } from "@/lib/utils";
 
 // Search descriptions summarize published scope; they do not change claim status.
 export const PAGE_SEARCH = {
+  "/fine-structure-constant": [
+    "The Fine Structure Constant in TFPT: Equation, Value and Evidence",
+    "Understand the TFPT alpha equation, its unique positive root near 1/137, the dated CODATA comparison and the separate physical identification."
+  ],
+  "/e8-standard-model": [
+    "E₈ and the Standard Model in TFPT: Construction and Scope",
+    "Follow the D₅ and A₃ lattice construction into E₈, its 240 roots and the distinction between lattice closure and physical Standard Model readout."
+  ],
+  "/three-fermion-generations": [
+    "Why Three Fermion Generations? The TFPT Construction",
+    "Explore the four marked points, the rank three family space and five dimensional carrier in TFPT, with their geometric premises and physical scope."
+  ],
   "/explain": [
     "Understand TFPT: Charges, Alpha, Clocks & Their Derivations",
     "Work through TFPT charge assignments and the alpha equation. Follow the connected E8, flavour, clock and physical source results with their inputs and limits."

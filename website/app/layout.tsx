@@ -16,6 +16,8 @@ import { SectionConnections } from "@/components/SectionConnections";
 import { ReproducerProvider } from "@/components/Reproducer";
 import { REPO_URL, SITE_URL } from "@/lib/utils";
 import { SITE_VERSION } from "@/lib/version";
+import { AUTHORS, AUTHOR_ENTITIES } from "@/lib/authors";
+import { PROJECT_SUMMARY } from "@/lib/topic-guides";
 
 
 const SITE_NAME = "TFPT — Topological Fixed-Point Theory";
@@ -69,10 +71,7 @@ export const metadata: Metadata = {
     "Quantum field theory",
     `TFPT ${SITE_VERSION}`,
   ],
-  authors: [
-    { name: "Stefan Hamann" },
-    { name: "Alessandro Rizzo" },
-  ],
+  authors: AUTHORS.map(author => ({ name: author.name, url: `${SITE_URL}/authors/${author.slug}` })),
   creator: "Stefan Hamann & Alessandro Rizzo",
   publisher: "TFPT Collaboration",
   category: "science",
@@ -123,17 +122,14 @@ const websiteJsonLd = {
   alternateName: "TFPT",
   name: SITE_NAME,
   url: SITE_URL,
-  description: SITE_DESCRIPTION,
+  description: PROJECT_SUMMARY,
   inLanguage: "en",
   sameAs: [REPO_URL],
   publisher: {
     "@type": "Organization",
     name: "TFPT Collaboration",
     url: SITE_URL,
-    member: [
-      { "@type": "Person", name: "Stefan Hamann" },
-      { "@type": "Person", name: "Alessandro Rizzo" },
-    ],
+    member: AUTHOR_ENTITIES,
   },
   potentialAction: {
     "@type": "ReadAction",
@@ -147,7 +143,7 @@ const researchProjectJsonLd = {
   "@id": `${SITE_URL}/#research-project`,
   name: SITE_NAME,
   url: SITE_URL,
-  description: SITE_DESCRIPTION,
+  description: PROJECT_SUMMARY,
   sameAs: [REPO_URL],
   keywords: [
     "Topological Fixed-Point Theory",
@@ -159,10 +155,7 @@ const researchProjectJsonLd = {
     "PMNS",
     "CKM",
   ],
-  member: [
-    { "@type": "Person", name: "Stefan Hamann" },
-    { "@type": "Person", name: "Alessandro Rizzo" },
-  ],
+  member: AUTHOR_ENTITIES,
   parentOrganization: {
     "@type": "Organization",
     name: "TFPT Collaboration",

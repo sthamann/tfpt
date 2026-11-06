@@ -9,7 +9,7 @@ import {
   type ReactNode,
 } from "react";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import katex from "katex";
 import {
   ChevronDown,
@@ -31,8 +31,8 @@ import { cn } from "@/lib/utils";
  * log on expand. Inline formulas are KaTeX-rendered in a cyan tint so they
  * stand out from the prose.
  *
- * Only the selected day's node trees are shipped from the server; a compact
- * index powers the global filter without shipping the full ~2 MB data.
+ * Only the selected day's node trees are shipped from the server. Native
+ * disclosure bodies remain in the HTML; the global index loads on first filter.
  */
 
 export interface DayMeta {
@@ -62,7 +62,6 @@ export interface ChangelogDayEntry {
 
 interface Props {
   days: DayMeta[];
-  index: ChangelogIndexEntry[];
   selectedDay: string;
   entries: ChangelogDayEntry[];
   macros: Record<string, string>;
@@ -324,18 +323,19 @@ function peelLabel(nodes: ChangelogNode[]): { label?: string; nodes: ChangelogNo
 
 export function ChangelogBrowser({
   days,
-  index,
   selectedDay,
   entries,
   macros,
 }: Props) {
   const router = useRouter();
-  const pathname = usePathname();
 
   const [query, setQuery] = useState("");
   const [activeAreas, setActiveAreas] = useState<Set<string>>(new Set());
   const [activeMarkers, setActiveMarkers] = useState<Set<string>>(new Set());
-  const [open, setOpen] = useState<Set<string>>(new Set());
+  const [open, setOpen] = useState<Set<string>>(() => new Set(entries[0] ? [entries[0].anchor] : []));
+  const [index, setIndex] = useState<ChangelogIndexEntry[] | null>(null);
+  const [searchError, setSearchError] = useState(false);
+  const [searchAttempt, setSearchAttempt] = useState(0);
 
   const filtering =
     query.trim() !== "" || activeAreas.size > 0 || activeMarkers.size > 0;
@@ -344,8 +344,25 @@ export function ChangelogBrowser({
   const olderDay = dayIdx >= 0 ? days[dayIdx + 1] : undefined;
   const newerDay = dayIdx > 0 ? days[dayIdx - 1] : undefined;
 
-  // Areas that actually occur (for the filter row).
+  useEffect(() => {
+    if (!filtering || index) return;
+    const controller = new AbortController();
+    setSearchError(false);
+    fetch("/changelog/search-index", { signal: controller.signal })
+      .then((response) => {
+        if (!response.ok) throw new Error("Publication search unavailable");
+        return response.json() as Promise<ChangelogIndexEntry[]>;
+      })
+      .then(setIndex)
+      .catch((error: unknown) => {
+        if (!(error instanceof Error && error.name === "AbortError")) setSearchError(true);
+      });
+    return () => controller.abort();
+  }, [filtering, index, searchAttempt]);
+
+  // Keep every theory filter available before the deferred index is loaded.
   const presentAreas = useMemo(() => {
+    if (!index) return AREA_ORDER;
     const set = new Set(index.map((e) => e.area));
     return AREA_ORDER.filter((a) => set.has(a));
   }, [index]);
@@ -395,7 +412,7 @@ export function ChangelogBrowser({
   }, [filtering, selectedDay]);
 
   const results = useMemo(() => {
-    if (!filtering) return [];
+    if (!filtering || !index) return [];
     const q = query.trim().toLowerCase();
     return index.filter((e) => {
       if (q && !e.text.includes(q)) return false;
@@ -407,7 +424,7 @@ export function ChangelogBrowser({
   }, [filtering, query, activeAreas, activeMarkers, index]);
 
   function goToDay(date: string) {
-    router.push(`${pathname}?day=${date}`, { scroll: true });
+    router.push(`/changelog/${date}`, { scroll: true });
   }
 
   function clearFilters() {
@@ -421,10 +438,6 @@ export function ChangelogBrowser({
     if (next.has(value)) next.delete(value);
     else next.add(value);
     return next;
-  }
-
-  function toggleOpen(anchor: string) {
-    setOpen((s) => toggle(s, anchor));
   }
 
   const allOpen = structured.length > 0 && structured.every((e) => open.has(e.anchor));
@@ -493,7 +506,8 @@ export function ChangelogBrowser({
               type="search"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search all entries — module id, claim id, keyword…"
+              placeholder="Search all entries by module, claim or keyword"
+              aria-label="Search all publication entries"
               className="w-full rounded-lg border border-slate-300/60 bg-slate-50/60 py-2 pl-9 pr-9 text-sm text-slate-800 placeholder:text-slate-600 focus:border-blue-400/50 focus:outline-none"
             />
             {filtering && (
@@ -517,10 +531,11 @@ export function ChangelogBrowser({
                   key={a}
                   type="button"
                   onClick={() => setActiveAreas((s) => toggle(s, a))}
+                  aria-pressed={on}
                   className={cn(
                     "inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium ring-1 transition-opacity",
                     meta.cls,
-                    on ? "opacity-100" : "opacity-45 hover:opacity-80",
+                    on ? "ring-2 ring-offset-2 ring-offset-slate-50" : "hover:bg-slate-200/50",
                   )}
                 >
                   <span aria-hidden className={cn("h-1.5 w-1.5 rounded-full", meta.dot)} />
@@ -537,10 +552,11 @@ export function ChangelogBrowser({
                   type="button"
                   onClick={() => setActiveMarkers((s) => toggle(s, m))}
                   title={MARKER[m].title}
+                  aria-pressed={on}
                   className={cn(
                     "inline-flex items-center rounded px-1.5 py-1 font-mono text-xs font-semibold ring-1 transition-opacity",
                     MARKER[m].cls,
-                    on ? "opacity-100" : "opacity-40 hover:opacity-80",
+                    on ? "ring-2 ring-offset-2 ring-offset-slate-50" : "hover:bg-slate-200/50",
                   )}
                 >
                   [{m}]
@@ -554,11 +570,12 @@ export function ChangelogBrowser({
       {/* ---- Filter results (global) ------------------------------------- */}
       {filtering ? (
         <div>
-          <p className="mb-4 text-sm text-slate-600">
-            <span className="font-semibold text-slate-800">{results.length}</span>{" "}
-            {results.length === 1 ? "entry" : "entries"} match your filter.
+          <p role="status" className="mb-4 text-sm text-slate-600">
+            {!index ? searchError ? "Publication search could not load." : "Loading publication search…" : <><span className="font-semibold text-slate-800">{results.length}</span>{" "}
+            {results.length === 1 ? "entry" : "entries"} match your filter.</>}
           </p>
-          {results.length === 0 ? (
+          {searchError && <button type="button" onClick={() => setSearchAttempt((attempt) => attempt + 1)} className="rounded-lg px-3 py-2 text-sm text-slate-700 ring-1 ring-slate-300/60">Retry publication search</button>}
+          {!index ? null : results.length === 0 ? (
             <div className="rounded-2xl border border-slate-200/60 bg-slate-100/30 px-6 py-10 text-center text-sm text-slate-600">
               No entries match. Try a different keyword or clear the filters.
             </div>
@@ -568,7 +585,7 @@ export function ChangelogBrowser({
                 <li key={r.anchor}>
                   <Link
                     prefetch={false}
-                    href={`${pathname}?day=${r.date}#${r.anchor}`}
+                    href={`/changelog/${r.date}#${r.anchor}`}
                     onClick={clearFilters}
                     className="group flex gap-3 rounded-xl border border-slate-200/60 bg-slate-100/30 px-4 py-3 transition-colors hover:border-slate-400/60 hover:bg-slate-100/60"
                   >
@@ -618,11 +635,21 @@ export function ChangelogBrowser({
               const isOpen = open.has(entry.anchor);
               return (
                 <li key={entry.anchor} id={entry.anchor} className="scroll-mt-24">
-                  <article className="glass overflow-hidden rounded-2xl ring-1 ring-slate-300/40">
-                    <button
-                      type="button"
-                      onClick={() => toggleOpen(entry.anchor)}
-                      aria-expanded={isOpen}
+                  <details
+                    open={isOpen}
+                    onToggle={(event) => {
+                      const expanded = event.currentTarget.open;
+                      setOpen((current) => {
+                        if (current.has(entry.anchor) === expanded) return current;
+                        const next = new Set(current);
+                        if (expanded) next.add(entry.anchor);
+                        else next.delete(entry.anchor);
+                        return next;
+                      });
+                    }}
+                    className="glass overflow-hidden rounded-2xl ring-1 ring-slate-300/40"
+                  >
+                    <summary
                       className="flex w-full flex-col gap-2 px-5 py-4 text-left transition-colors hover:bg-slate-900/[0.02] sm:px-6"
                     >
                       <div className="flex items-center gap-2">
@@ -654,9 +681,8 @@ export function ChangelogBrowser({
                           {renderNodes(entry.summary, macros)}
                         </div>
                       )}
-                    </button>
+                    </summary>
 
-                    {isOpen && (
                       <div className="border-t border-slate-200/60 px-5 pb-5 pt-4 sm:px-6">
                         {entry.summary.length > 0 && (
                           <div className="rounded-xl border border-slate-200/50 bg-slate-100/40 px-4 py-3">
@@ -722,8 +748,7 @@ export function ChangelogBrowser({
                           </div>
                         )}
                       </div>
-                    )}
-                  </article>
+                  </details>
                 </li>
               );
             })}

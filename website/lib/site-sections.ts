@@ -1,4 +1,7 @@
 export const siteSections = [
+ {href:"/fine-structure-constant",title:"The fine structure constant",purpose:"Understand the alpha equation, its root and physical interpretation.",group:"Understand",next:["/research/alpha-fixed-point-proof","/empirical-audit"]},
+ {href:"/e8-standard-model",title:"E₈ and the Standard Model",purpose:"Follow the lattice construction and the scope of its particle readout.",group:"Understand",next:["/research/e8-discriminant-glue","/compiler"]},
+ {href:"/three-fermion-generations",title:"Three fermion generations",purpose:"Trace the four marked points into the family and carrier spaces.",group:"Understand",next:["/research/four-mark-divisor","/papers/standard-model"]},
  {href:"/explain",title:"Understand the construction",purpose:"Work through the charges, E₈, alpha, masses and clocks.",group:"Understand",next:["/architecture","/results"]},
  {href:"/architecture",title:"System map",purpose:"See which structures connect, under which assumptions, and where the physical bridges remain.",group:"Understand",next:["/compiler","/results"]},
  {href:"/compiler",title:"Construction lab",purpose:"Inspect a concrete lattice construction and its calculated outputs.",group:"Understand",next:["/architecture","/verification"]},
@@ -10,7 +13,9 @@ export const siteSections = [
  {href:"/method",title:"Research method",purpose:"Understand how inputs, proof, computation and physical interpretation are assessed.",group:"Evidence",next:["/verification","/results"]},
  {href:"/replication",title:"Independent reproduction",purpose:"Reproduce a scoped result and report the exact environment, output and disagreement.",group:"Evidence",next:["/verification","/method"]},
  {href:"/documentation",title:"Source library",purpose:"Search the paper sections and follow their original claims and verification references.",group:"Sources",next:["/papers","/results"]},
+ {href:"/research",title:"Selected original arguments",purpose:"Read complete worked arguments with their mathematical premises and original sources.",group:"Sources",next:["/documentation","/verification"]},
  {href:"/papers",title:"Complete papers",purpose:"Read the complete publication documents and PDFs.",group:"Sources",next:["/documentation","/results"]},
  {href:"/faq",title:"Questions and answers",purpose:"Find short answers with links to the exact subject and evidence.",group:"Reference",next:["/explain","/results"]},
+ {href:"/authors",title:"Authors and publications",purpose:"Find the authors, their papers and public source records.",group:"Reference",next:["/papers","/replication"]},
  {href:"/changelog",title:"Research and publication history",purpose:"Distinguish the current research snapshot from the dated publication log.",group:"Reference",next:["/results","/documentation"]},
 ] as const;

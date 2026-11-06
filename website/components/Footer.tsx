@@ -8,6 +8,7 @@ import { trackPdfInteraction, type DownloadKind } from "@/lib/track";
 import { SITE_VERSION } from "@/lib/version";
 import { siteSections } from "@/lib/site-sections";
 import { SuiteBadge } from "./SuiteBadge";
+import { ARCHIVE_RELEASE } from "@/lib/publication";
 
 interface FooterLink {
   href: string;
@@ -64,9 +65,10 @@ export function Footer() {
             <SuiteBadge />
           </div>
           <p className="mt-4 text-xs text-slate-600">
-            By <span className="text-slate-700">Stefan Hamann</span> &amp;{" "}
-            <span className="text-slate-700">Alessandro Rizzo</span>.
+            By <Link href="/authors/stefan-hamann" className="text-slate-700 underline underline-offset-2">Stefan Hamann</Link> &amp;{" "}
+            <Link href="/authors/alessandro-rizzo" className="text-slate-700 underline underline-offset-2">Alessandro Rizzo</Link>.
           </p>
+          <p className="mt-2 text-xs text-slate-600"><a href={ARCHIVE_RELEASE.url} className="underline underline-offset-2">Earlier archived release: v{ARCHIVE_RELEASE.version}</a></p>
           <p className="mt-2 text-xs text-slate-600">
             Contact:{" "}
             <Link

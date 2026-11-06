@@ -3,6 +3,11 @@ import { papers } from "@/lib/papers";
 import { RELEASE_ASSETS } from "@/lib/release";
 import { SITE_DATE } from "@/lib/version";
 import { SITE_URL } from "@/lib/utils";
+import { AUTHORS } from "@/lib/authors";
+import { TOPIC_GUIDES } from "@/lib/topic-guides";
+import { researchPages } from "@/lib/research-pages";
+import { CHANGELOG_DAYS, CHANGELOG_MONTHS } from "@/lib/changelog-navigation";
+import { EDITORIAL_DATE } from "@/lib/publication";
 
 /**
  * Sitemap priority by asset path.
@@ -137,7 +142,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // These visible editorial pages changed independently of the PDF release.
   const updatedPages = new Set([SITE_URL, ...["papers", "faq", "orientation", "predictions", "verification", "review", "architecture", "compiler", "documentation", "empirical-audit", "method", "replication", "falsification", "changelog"].map((path) => `${SITE_URL}/${path}`)]);
-  return [...pages.map((page) => updatedPages.has(page.url)
-    ? { ...page, lastModified: new Date("2026-11-02") }
-    : page), ...paperPages, ...releaseFiles];
+  const editedPages = new Set(["", "/faq", "/orientation", "/documentation", "/changelog"].map(path => SITE_URL + path));
+  const additions: MetadataRoute.Sitemap = [
+    ...TOPIC_GUIDES.map(guide => ({ url: SITE_URL + guide.slug, lastModified: new Date(EDITORIAL_DATE), changeFrequency: "monthly" as const, priority: 0.9 })),
+    ...["/research", "/authors", ...AUTHORS.map(author => `/authors/${author.slug}`), ...researchPages.map(page => `/research/${page.slug}`)].map(path => ({ url: SITE_URL + path, lastModified: new Date(EDITORIAL_DATE), changeFrequency: "monthly" as const, priority: 0.8 })),
+    ...[...CHANGELOG_MONTHS, ...CHANGELOG_DAYS.map(day => day.date)].map(period => ({ url: `${SITE_URL}/changelog/${period}`, lastModified: new Date(EDITORIAL_DATE), changeFrequency: "monthly" as const, priority: 0.4 })),
+  ];
+  return [...pages.map((page) => editedPages.has(page.url)
+    ? { ...page, lastModified: new Date(EDITORIAL_DATE) }
+    : updatedPages.has(page.url) ? { ...page, lastModified: new Date("2026-11-02") } : page),
+    ...paperPages.map(page => ({ ...page, lastModified: new Date(EDITORIAL_DATE) })), ...releaseFiles, ...additions];
 }

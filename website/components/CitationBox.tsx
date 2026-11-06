@@ -4,6 +4,8 @@ import { useState } from "react";
 import Link from "next/link";
 import { Check, Copy, Download, Github } from "lucide-react";
 import { REPO_URL } from "@/lib/utils";
+import { AUTHORS } from "@/lib/authors";
+import { ARCHIVE_RELEASE } from "@/lib/publication";
 
 interface CitationBoxProps {
   title: string;
@@ -62,7 +64,7 @@ export function CitationBox({
   const facts: { label: string; value: string }[] = [
     { label: "Authors", value: "Stefan Hamann, Alessandro Rizzo" },
     ...(version ? [{ label: "Version", value: version }] : []),
-    ...(releaseDate ? [{ label: "Date", value: releaseDate }] : []),
+    ...(releaseDate ? [{ label: "PDF manifest date", value: releaseDate }] : []),
     { label: "Claim status", value: statusLabel },
     ...(sha256 ? [{ label: "PDF SHA-256", value: sha256 }] : []),
   ];
@@ -81,6 +83,7 @@ export function CitationBox({
           release facts. The PDF SHA-256 pins the exact bytes; the source and
           ledger are public.
         </p>
+        <p className="mt-3 max-w-2xl text-sm text-slate-600">Authors: {AUTHORS.map((author, index) => <span key={author.slug}>{index > 0 && " and "}<Link href={`/authors/${author.slug}`} className="underline underline-offset-2">{author.name}</Link></span>)}. The date below comes from this PDF’s build manifest. The <a className="underline underline-offset-2" href={ARCHIVE_RELEASE.url}>Zenodo archive of v{ARCHIVE_RELEASE.version}</a> is an earlier release from 25 June 2026, rather than a DOI for this individual paper.</p>
 
         <div className="mt-5 grid gap-5 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)]">
           {/* BibTeX */}

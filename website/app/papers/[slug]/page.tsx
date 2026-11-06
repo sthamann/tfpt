@@ -10,6 +10,8 @@ import { PaperSection } from "@/components/PaperSection";
 import { CitationBox } from "@/components/CitationBox";
 import { SITE_VERSION } from "@/lib/version";
 import { REPO_URL, SITE_URL } from "@/lib/utils";
+import { AUTHORS, AUTHOR_ENTITIES } from "@/lib/authors";
+import { PUBLICATION_YEAR } from "@/lib/publication";
 
 export function generateStaticParams() {
   return papers.map((p) => ({ slug: p.slug }));
@@ -31,11 +33,8 @@ export async function generateMetadata(
   const [searchTitle, oneSentence] = PAPER_SEARCH[paper.slug] ?? [paper.title, paper.subtitle];
   const title = searchTitle;
 
-  // Highwire `citation_publication_date` prefers YYYY/MM/DD; fall back to the year.
+  // Keep the known publication year separate from the generated PDF release day.
   const release = getReleaseAsset(paper.pdf);
-  const citationDate = release?.releaseDate
-    ? release.releaseDate.replace(/-/g, "/")
-    : "2026";
 
   return {
     title,
@@ -50,10 +49,7 @@ export async function generateMetadata(
       "Stefan Hamann",
       "Alessandro Rizzo",
     ],
-    authors: [
-      { name: "Stefan Hamann" },
-      { name: "Alessandro Rizzo" },
-    ],
+    authors: AUTHORS.map(author => ({ name: author.name, url: `${SITE_URL}/authors/${author.slug}` })),
     alternates: {
       canonical: `${SITE_URL}/papers/${paper.slug}`,
     },
@@ -67,6 +63,7 @@ export async function generateMetadata(
       locale: "en_US",
       authors: ["Stefan Hamann", "Alessandro Rizzo"],
       tags: [paper.title, meta.label, `TFPT ${SITE_VERSION}`],
+      modifiedTime: release?.releaseDate,
     },
     twitter: {
     images: [`${SITE_URL}/papers/${paper.slug}/opengraph-image`],
@@ -81,7 +78,7 @@ export async function generateMetadata(
       // elements, so two authors round-trip correctly.
       citation_title: paper.title,
       citation_author: ["Hamann, Stefan", "Rizzo, Alessandro"],
-      citation_publication_date: citationDate,
+      citation_publication_date: PUBLICATION_YEAR,
       citation_pdf_url: `${SITE_URL}${paper.pdf}`,
       citation_abstract_html_url: `${SITE_URL}/papers/${paper.slug}`,
       citation_keywords: paper.keyFormulas.map((k) => k.label).join("; "),
@@ -111,17 +108,15 @@ export default async function PaperPage({ params }: PaperPageProps) {
     abstract: paper.abstract,
     url: `${SITE_URL}/papers/${paper.slug}`,
     inLanguage: "en",
-    datePublished: release?.releaseDate ?? "2026",
+    datePublished: PUBLICATION_YEAR,
+    dateModified: release?.releaseDate,
     version: release?.version ?? `TFPT ${SITE_VERSION}`,
     isPartOf: {
       "@type": "PublicationIssue",
       issueNumber: String(paper.number),
       name: `TFPT ${SITE_VERSION} compiler-closure document set`,
     },
-    author: [
-      { "@type": "Person", name: "Stefan Hamann" },
-      { "@type": "Person", name: "Alessandro Rizzo" },
-    ],
+    author: AUTHOR_ENTITIES,
     // The machine-checked code + ledger the document is verified against.
     isBasedOn: {
       "@type": "SoftwareSourceCode",
@@ -129,7 +124,6 @@ export default async function PaperPage({ params }: PaperPageProps) {
       codeRepository: REPO_URL,
       programmingLanguage: ["Python", "Wolfram Language", "Lean 4"],
     },
-    sameAs: [REPO_URL],
     encoding: {
       "@type": "MediaObject",
       contentUrl: `${SITE_URL}${paper.pdf}`,

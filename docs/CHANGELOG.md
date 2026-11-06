@@ -4,6 +4,23 @@ Scientific findings, their original scope and dated publication history remain
 in the modular `changelog.tex` document. This file records repository structure,
 navigation and maintenance changes that make no new scientific claim.
 
+## 2026-11-06: Improve public search and source navigation
+
+Three topic guides and three original argument reading editions provide stable
+addresses with their mathematical premises, source versions and verification
+scope. The FAQ and llms.txt share the same scoped summaries. Author identities
+are connected across profiles and papers; the earlier Zenodo release is kept
+distinct from the current document set. Generated PDF dates remain artifact
+metadata rather than invented first publication dates.
+
+The complete publication history remains available through month and day archives.
+Eleven duplicated presentation archives are removed, the global history search
+index loads on demand, and stylesheets are cacheable across pages. A delivered
+site check covers canonical addresses, readable content, legacy redirects,
+bibliographic metadata and sitemap discovery. A fixed observation question set
+supports later search and AI citation measurements. Scientific sources, claim
+statuses and prediction values are unchanged.
+
 ## 2026-11-05 — Preserve the shared source update in every public view
 
 The c3/P1/P2 architecture chapter and the new shared source supplement are now

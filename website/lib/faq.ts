@@ -1,4 +1,5 @@
 import summary from "@/lib/research-summary.json";
+import { PROJECT_SUMMARY, topicGuide } from "@/lib/topic-guides";
 
 /** The visible FAQ and its FAQPage structured data share these exact answers. */
 export interface FaqItem {
@@ -10,13 +11,13 @@ export interface FaqItem {
 export const FAQ_ITEMS: FaqItem[] = [
   {
     q: "What is Topological Fixed-Point Theory?",
-    a: "TFPT is a research programme by Stefan Hamann and Alessandro Rizzo. It connects an oriented boundary structure and a five slot carrier to representations, E₈ lattice structure, flavour relations and numerical readouts. Its mathematical results retain their assumptions. Complete source transports and a classical Clifford kernel are available; identifying the full original interacting physical source remains the central research goal.",
+    a: PROJECT_SUMMARY,
     sources: [{ label: "Work through the construction", href: "/explain" }],
   },
   {
     q: "What does TFPT say about the fine structure constant?",
-    a: "A specified boundary equation has a unique positive root giving α⁻¹ ≈ 137.03599921684. The equation includes an alpha dependent response, so the complete function is more than a cubic polynomial. Its mathematical root and the derivation of its actual electromagnetic origin are separate statements.",
-    sources: [{ label: "Equation, root and physical connection", href: "/explain#alpha" }, { label: "The analytic root result", href: "/results?search=alpha-global-positive-root" }],
+    a: topicGuide("alpha").answer,
+    sources: [{ label: "Equation, root and physical connection", href: "/fine-structure-constant" }, { label: "The analytic root argument", href: "/research/alpha-fixed-point-proof" }],
   },
   {
     q: "Is TFPT a completed physical theory of everything?",
@@ -25,8 +26,13 @@ export const FAQ_ITEMS: FaqItem[] = [
   },
   {
     q: "What role does E₈ play?",
-    a: "E₈ appears as the positive even unimodular lattice obtained from the specified carrier and family glue. It is a closure and consistency object. This construction does not identify E₈ itself as the unbroken physical gauge group. The particle representations and their physical interpretation need their own explicit maps and premises.",
-    sources: [{ label: "Follow the lattice construction", href: "/explain#e8" }, { label: "Lattice results and sources", href: "/results?search=glue" }],
+    a: topicGuide("e8").answer,
+    sources: [{ label: "E₈ and the Standard Model", href: "/e8-standard-model" }, { label: "The discriminant glue argument", href: "/research/e8-discriminant-glue" }],
+  },
+  {
+    q: "Why does TFPT have three fermion generations?",
+    a: topicGuide("families").answer,
+    sources: [{ label: "Three fermion generations", href: "/three-fermion-generations" }, { label: "The four mark divisor argument", href: "/research/four-mark-divisor" }],
   },
   {
     q: "Where does experimental input enter?",
