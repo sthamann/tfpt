@@ -8,6 +8,7 @@ import { TOPIC_GUIDES } from "@/lib/topic-guides";
 import { researchPages } from "@/lib/research-pages";
 import { CHANGELOG_DAYS, CHANGELOG_MONTHS } from "@/lib/changelog-navigation";
 import { EDITORIAL_DATE } from "@/lib/publication";
+import { INTERACTIVE_CHAPTERS } from "@/lib/interactive-content";
 
 /**
  * Sitemap priority by asset path.
@@ -144,6 +145,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const updatedPages = new Set([SITE_URL, ...["papers", "faq", "orientation", "predictions", "verification", "review", "architecture", "compiler", "documentation", "empirical-audit", "method", "replication", "falsification", "changelog"].map((path) => `${SITE_URL}/${path}`)]);
   const editedPages = new Set(["", "/faq", "/orientation", "/documentation", "/changelog"].map(path => SITE_URL + path));
   const additions: MetadataRoute.Sitemap = [
+    ...INTERACTIVE_CHAPTERS.map(chapter => ({url: `${SITE_URL}/interactive${chapter.id === "overview" ? "" : `/${chapter.id}`}`, lastModified: new Date(EDITORIAL_DATE), changeFrequency: "monthly" as const, priority: chapter.id === "overview" ? 0.95 : 0.85})),
     ...TOPIC_GUIDES.map(guide => ({ url: SITE_URL + guide.slug, lastModified: new Date(EDITORIAL_DATE), changeFrequency: "monthly" as const, priority: 0.9 })),
     ...["/research", "/authors", ...AUTHORS.map(author => `/authors/${author.slug}`), ...researchPages.map(page => `/research/${page.slug}`)].map(path => ({ url: SITE_URL + path, lastModified: new Date(EDITORIAL_DATE), changeFrequency: "monthly" as const, priority: 0.8 })),
     ...[...CHANGELOG_MONTHS, ...CHANGELOG_DAYS.map(day => day.date)].map(period => ({ url: `${SITE_URL}/changelog/${period}`, lastModified: new Date(EDITORIAL_DATE), changeFrequency: "monthly" as const, priority: 0.4 })),

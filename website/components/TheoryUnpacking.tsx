@@ -101,9 +101,13 @@ const STEPS: UnpackingStep[] = [
 const FRAME_MS = 5500;
 
 export function TheoryUnpacking() {
-  const reduced = useReducedMotion();
-  // Deterministic initial state so the server and first client render match
-  // (avoids a hydration mismatch); reduced-motion is applied after mount below.
+  const preferredReducedMotion = useReducedMotion();
+  // Apply the browser preference after hydration so SVG and progress branches
+  // match the server render as well as the initial playback state.
+  const [reduced, setReduced] = useState(false);
+  useEffect(() => setReduced(Boolean(preferredReducedMotion)), [preferredReducedMotion]);
+
+  // Reduced motion stops playback after mount and keeps manual controls available.
   const [step, setStep] = useState(0);
   const [playing, setPlaying] = useState(true);
   const [hovered, setHovered] = useState(false);

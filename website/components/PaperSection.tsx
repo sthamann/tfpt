@@ -160,7 +160,7 @@ export function PaperSection({ paper, headingLevel = "h2" }: { paper: Paper; hea
                 {paper.highlights.map((h) => (
                   <div
                     key={h.label}
-                    className="flex flex-col gap-1 bg-slate-50/40 px-4 py-4 transition-colors hover:bg-slate-100/60"
+                    className="flex min-w-0 flex-col gap-1 bg-slate-50/40 px-4 py-4 [overflow-wrap:anywhere] transition-colors hover:bg-slate-100/60"
                   >
                     <span
                       className={cn(

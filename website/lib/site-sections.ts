@@ -1,4 +1,5 @@
 export const siteSections = [
+ {href:"/interactive",title:"Interactive",purpose:"Explore the connected theory through visual experiments, from E₈ and particle charges to alpha, dynamics and readouts.",group:"Understand",next:["/explain","/results"]},
  {href:"/fine-structure-constant",title:"The fine structure constant",purpose:"Understand the alpha equation, its root and physical interpretation.",group:"Understand",next:["/research/alpha-fixed-point-proof","/empirical-audit"]},
  {href:"/e8-standard-model",title:"E₈ and the Standard Model",purpose:"Follow the lattice construction and the scope of its particle readout.",group:"Understand",next:["/research/e8-discriminant-glue","/compiler"]},
  {href:"/three-fermion-generations",title:"Three fermion generations",purpose:"Trace the four marked points into the family and carrier spaces.",group:"Understand",next:["/research/four-mark-divisor","/papers/standard-model"]},

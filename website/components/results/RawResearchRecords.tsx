@@ -16,7 +16,7 @@ export default async function RawResearchRecords({ searchParams }: { searchParam
   const page = Math.min(pages,Math.max(1,Number.parseInt(get("page"),10)||1));
   const href = (p:number) => `/results?${new URLSearchParams({view:"ledger",search,type,status,page:String(p)})}`;
   const premises = new Map(data.premises.map(x => [x.id,x]));
-  return <div className="guide-shell">
+  return <div className="guide-shell [overflow-wrap:anywhere]">
     <header className="pt-8 pb-6"><Link className="guide-link inline-flex min-h-11 items-center" href="/results">Back to the knowledge atlas</Link><h1 className="font-serif text-4xl sm:text-5xl">Original claim records.</h1>
       <p className="guide-lead mt-5">The original technical record remains available here. For explanations, reviewed conclusions and the history of research questions, start with the knowledge atlas.</p>
       <p className="mt-5 text-sm text-slate-600">Research snapshot {data.meta.generatedAt.slice(0,10)} · {counts.ledgerActive} active ledger claims · {counts.reviewedFindings} scientific findings · {counts.registeredScripts} registered scripts. These are different inventories, not counts of independent physical confirmations.</p>

@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode, useId, useState } from "react";
+import { ReactNode, useId, useLayoutEffect, useRef, useState } from "react";
 import { findEntry } from "@/lib/glossary";
 import { cn } from "@/lib/utils";
 
@@ -31,7 +31,29 @@ export function GlossTerm({
   const entry = lookupKey ? findEntry(lookupKey) : undefined;
   const definition = override ?? entry?.short;
   const [open, setOpen] = useState(false);
+  const [horizontalShift, setHorizontalShift] = useState(0);
+  const anchor = useRef<HTMLSpanElement>(null);
+  const tooltip = useRef<HTMLSpanElement>(null);
   const id = useId();
+
+  useLayoutEffect(() => {
+    if (!open) return;
+    const keepInsideViewport = () => {
+      if (!anchor.current || !tooltip.current) return;
+      const target = anchor.current.getBoundingClientRect();
+      const width = tooltip.current.getBoundingClientRect().width;
+      const centeredLeft = target.left + (target.width - width) / 2;
+      const left = Math.max(16, Math.min(centeredLeft, window.innerWidth - width - 16));
+      setHorizontalShift(left - centeredLeft);
+    };
+    keepInsideViewport();
+    window.addEventListener("resize", keepInsideViewport);
+    window.addEventListener("scroll", keepInsideViewport, { passive: true, capture: true });
+    return () => {
+      window.removeEventListener("resize", keepInsideViewport);
+      window.removeEventListener("scroll", keepInsideViewport, true);
+    };
+  }, [open]);
 
   if (!definition) {
     // No matching glossary entry → render plain children, no extra DOM.
@@ -39,16 +61,27 @@ export function GlossTerm({
   }
 
   return (
-    <span className="relative inline-block">
+    <span ref={anchor} className="relative inline-block">
       <button
         type="button"
         aria-describedby={open ? id : undefined}
         aria-expanded={open}
         onClick={() => setOpen((v) => !v)}
-        onMouseEnter={() => setOpen(true)}
-        onMouseLeave={() => setOpen(false)}
-        onFocus={() => setOpen(true)}
+        onPointerEnter={(event) => {
+          if (event.pointerType === "mouse") setOpen(true);
+        }}
+        onPointerLeave={(event) => {
+          if (event.pointerType === "mouse") setOpen(false);
+        }}
+        onFocus={(event) => {
+          // Touch focuses the button before click; opening here would make
+          // that first tap immediately toggle the definition closed again.
+          if (event.currentTarget.matches(":focus-visible")) setOpen(true);
+        }}
         onBlur={() => setOpen(false)}
+        onKeyDown={(event) => {
+          if (event.key === "Escape") setOpen(false);
+        }}
         title={definition}
         className={cn(
           "cursor-help border-b border-dotted border-blue-400/50 align-baseline text-left text-inherit transition-colors hover:text-blue-800 focus:outline-none focus-visible:rounded-sm focus-visible:ring-2 focus-visible:ring-blue-400/40",
@@ -64,9 +97,11 @@ export function GlossTerm({
       */}
       {open && (
         <span
+          ref={tooltip}
           id={id}
           role="tooltip"
-          className="absolute left-1/2 top-full z-30 mt-2 w-72 max-w-[80vw] -translate-x-1/2 rounded-xl border border-slate-300/60 bg-slate-50/95 p-3 text-xs leading-relaxed text-slate-800 shadow-2xl ring-1 ring-blue-400/20 backdrop-blur-md"
+          style={{ marginLeft: horizontalShift }}
+          className="absolute left-1/2 top-full z-30 mt-2 w-72 max-w-[calc(100vw-2rem)] -translate-x-1/2 rounded-xl border border-slate-300/60 bg-slate-50/95 p-3 text-xs leading-relaxed text-slate-800 shadow-2xl ring-1 ring-blue-400/20 backdrop-blur-md"
         >
           {entry && (
             <span className="block text-[10px] font-semibold uppercase tracking-widest text-blue-700/80">

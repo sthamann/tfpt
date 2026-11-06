@@ -12,6 +12,7 @@ import researchSummary from "@/lib/research-summary.json";
 
 const primaryLinks = [
   { href: "/", label: "Start" },
+  { href: "/interactive", label: "Interactive" },
   { href: "/explain", label: "Understand" },
   { href: "/results", label: "Knowledge atlas" },
   { href: "/documentation", label: "Sources" },
@@ -92,7 +93,7 @@ export function Navbar() {
             <Logo size={36} />
           </Link>
           <span
-            className="hidden shrink-0 select-none items-baseline gap-1.5 whitespace-nowrap border border-slate-300/40 bg-slate-200/50 px-2.5 py-1 font-mono text-[10px] tracking-wide text-slate-600 xl:inline-flex"
+            className="hidden shrink-0 select-none items-baseline gap-1.5 whitespace-nowrap border border-slate-300/40 bg-slate-200/50 px-2.5 py-1 font-mono text-[10px] tracking-wide text-slate-600 2xl:inline-flex"
             title={`TFPT ${SITE_VERSION}; papers ${SITE_DATE} (build ${SITE_REV}); research snapshot ${researchSummary.generatedAt}`}
           >
             <span className="font-semibold text-slate-700">v{SITE_VERSION}</span>
